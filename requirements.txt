@@ -13,7 +13,10 @@ yt-dlp
 pykeyboard
 bs4
 pymediainfo
+youtube-search
 youtube-search-python
 attrify
 maling==0.3.1
 gitpython
+heroku3
+speedtest-cli
