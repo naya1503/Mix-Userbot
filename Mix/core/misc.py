@@ -39,7 +39,7 @@ XCB = [
     "https",
     str(heroku_app_name),
     "HEAD",
-    "dev",
+    "main",
 ]
 
 
