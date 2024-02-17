@@ -15,6 +15,6 @@ user = Userbot(
 )
 
 
-bot = Bot()
+bot = Bot2()
 
 from team import *
