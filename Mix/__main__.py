@@ -6,7 +6,6 @@ from pyrogram.errors import *
 from uvloop import install
 from Mix import *
 from Mix.core import heroku
-from team.nandev.autopilot import autobot2
 
 async def main():
 
@@ -30,28 +29,27 @@ async def main():
     except UserDeactivatedBan:
         LOGGER.info("Huahahahaha Akun Lu Ke Deak Cokk.")
         sys.exit(1)
-    #if not udB.get_token(user.me.id):
     if bot_token is None:
-        await autobot2()
+        await autobot()
         await asyncio.sleep(1)
     try:
         await bot.start()
         await asyncio.sleep(1)
     except AccessTokenExpired:
         LOGGER.info("Token Expired.")
-        udB.rem_token(user.me.id)
+        
         sys.exit(1)
     except SessionRevoked:
         LOGGER.info("Token Revoked.")
-        udB.rem_token(user.me.id)
+        
         sys.exit(1)
     except AccessTokenInvalid:
         LOGGER.info("Token Invalid, Try again.")
-        udB.rem_token(user.me.id)
+        
         sys.exit(1)
     except UserDeactivated:
         LOGGER.info("Bot Deactive, Try again.")
-        udB.rem_token(user.me.id)
+        
         sys.exit(1)
     await check_logger()
     LOGGER.info(f"Check Finished.")
