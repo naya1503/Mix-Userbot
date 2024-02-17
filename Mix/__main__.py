@@ -29,8 +29,9 @@ async def main():
     except UserDeactivatedBan:
         LOGGER.info("Huahahahaha Akun Lu Ke Deak Cokk.")
         sys.exit(1)
-    if not udB.get_token(user.me.id):
-        await autobot()
+    #if not udB.get_token(user.me.id):
+    if bot_token is None:
+        await autobot2()
         await asyncio.sleep(1)
     try:
         await bot.start()
