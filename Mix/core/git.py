@@ -50,7 +50,7 @@ def git():
             f"https://{GIT_USERNAME}:{git_token}@{TEMP_REPO}"
         )
     else:
-        upstream_repo = upstream_repo
+        UPSTREAM_REPO = upstream_repo
     try:
         repo = Repo()
         LOGGER.info(f"Git Client Found [VPS DEPLOYER]")
@@ -61,7 +61,7 @@ def git():
         if "origin" in repo.remotes:
             origin = repo.remote("origin")
         else:
-            origin = repo.create_remote("origin", upstream_repo)
+            origin = repo.create_remote("origin", UPSTREAM_REPO)
         origin.fetch()
         repo.create_head(
             upstream_branch,
