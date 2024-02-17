@@ -29,3 +29,8 @@ google-auth-httplib2
 google-auth-oauthlib
 oauth2client
 httpx[http2]
+gpytranslate
+gtts
+search_engine_parser
+pytimeparse
+regex
