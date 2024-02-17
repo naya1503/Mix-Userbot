@@ -7,7 +7,7 @@
 ################################################################
 
 
-__modles__ = "gcast"
+__modles__ = "Broadcast"
 __help__ = """
  Help Command Gcast
 
