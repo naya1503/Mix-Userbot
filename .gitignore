@@ -1,5 +1,7 @@
 
 venv/
 __pycache__/
-*.session
-*.session-journal
+user.session
+user.session-journal
+bot.session
+bot.session-journal
