@@ -8,7 +8,7 @@
 
 from Mix import *
 
-__modles__ = "emoji"
+__modles__ = "Emoji"
 __help__ = """
  Help Command Emoji
 
