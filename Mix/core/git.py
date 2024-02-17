@@ -17,7 +17,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 
 from config import *
 
-from Mix import LOGGER
+from team.nandev.class_log import LOGGER
 
 
 def install_req(cmd: str) -> Tuple[str, str, int, int]:
