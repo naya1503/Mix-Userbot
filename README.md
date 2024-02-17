@@ -45,7 +45,10 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
  • `pip3 install -r req*`
 
+ • `cp .env.sample .env`
+
  • `nano .env`
+ 
   - isi vars .env api_id, api_hash, mongo_uri, db_name, session, owner_id
   - Jika sudah 
   - ketik ctrl + S
@@ -67,7 +70,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
  • `cd Mix-Userbot`
 
- • `cp sample.env .env`
+ • `cp .env.sample .env`
 
  • `nano .env`
   - isi vars .env api_id, api_hash, session, mongo_uri, db_name, owner_id
