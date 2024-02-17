@@ -11,10 +11,9 @@ user = Userbot(
     api_id=api_id,
     api_hash=api_hash,
     session_string=session,
-    in_memory=True,
 )
 
 
-bot = Bot2()
+bot = Bot()
 
 from team import *
