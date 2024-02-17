@@ -42,15 +42,15 @@ def install_req(cmd: str) -> Tuple[str, str, int, int]:
 
 
 def git():
-    REPO_LINK = UPSTREAM_REPO
-    if GIT_TOKEN:
+    REPO_LINK = upstream_repo
+    if git_token:
         GIT_USERNAME = REPO_LINK.split("com/")[1].split("/")[0]
         TEMP_REPO = REPO_LINK.split("https://")[1]
-        UPSTREAM_REPO = (
-            f"https://{GIT_USERNAME}:{GIT_TOKEN}@{TEMP_REPO}"
+        upstream_repo = (
+            f"https://{GIT_USERNAME}:{git_token}@{TEMP_REPO}"
         )
     else:
-        UPSTREAM_REPO = UPSTREAM_REPO
+        UPSTREAM_REPO = upstream_repo
     try:
         repo = Repo()
         LOGGER.info(f"Git Client Found [VPS DEPLOYER]")
@@ -64,21 +64,21 @@ def git():
             origin = repo.create_remote("origin", UPSTREAM_REPO)
         origin.fetch()
         repo.create_head(
-            UPSTREAM_BRANCH,
-            origin.refs[UPSTREAM_BRANCH],
+            upstream_branch,
+            origin.refs[upstream_branch],
         )
-        repo.heads[UPSTREAM_BRANCH].set_tracking_branch(
-            origin.refs[UPSTREAM_BRANCH]
+        repo.heads[upstream_branch].set_tracking_branch(
+            origin.refs[upstream_branch]
         )
-        repo.heads[UPSTREAM_BRANCH].checkout(True)
+        repo.heads[upstream_branch].checkout(True)
         try:
-            repo.create_remote("origin", UPSTREAM_REPO)
+            repo.create_remote("origin", upstream_repo)
         except BaseException:
             pass
         nrs = repo.remote("origin")
-        nrs.fetch(UPSTREAM_BRANCH)
+        nrs.fetch(upstream_branch)
         try:
-            nrs.pull(UPSTREAM_BRANCH)
+            nrs.pull(upstream_branch)
         except GitCommandError:
             repo.git.reset("--hard", "FETCH_HEAD")
         install_req("pip3 install --no-cache-dir -r requirements.txt")
