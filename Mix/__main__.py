@@ -50,11 +50,6 @@ async def main():
         os.system("rm -rf bot.session")
         os.system("rm -rf *.session*")
         sys.exit(1)
-    except UserDeactivated:
-        LOGGER.info("Bot Deactive, Try again.")
-        os.system("rm -rf bot.session")
-        os.system("rm -rf *.session*")
-        sys.exit(1)
     await check_logger()
     LOGGER.info(f"Check Finished.")
     await asyncio.sleep(1)
