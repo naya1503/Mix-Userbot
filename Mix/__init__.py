@@ -1,6 +1,6 @@
 import asyncio
 
-from team.nandev import Userbot, Bot
+from team.nandev.class_ubot import Userbot, Bot
 
 from config import *
 
