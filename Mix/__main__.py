@@ -5,7 +5,7 @@ from pyrogram import *
 from pyrogram.errors import *
 
 from Mix import *
-
+from Mix.core import heroku
 
 async def main():
 
@@ -60,5 +60,6 @@ async def main():
 
 if __name__ == "__main__":
     # install()
+    heroku()
     loop = asyncio.get_event_loop_policy().get_event_loop()
     loop.run_until_complete(main())
