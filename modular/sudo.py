@@ -8,7 +8,7 @@
 
 from Mix import *
 
-__modles__ = "sudo"
+__modles__ = "Sudo"
 __help__ = """
  Help Command Sudo
 
