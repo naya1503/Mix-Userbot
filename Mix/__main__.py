@@ -56,7 +56,7 @@ async def main():
     await asyncio.sleep(1)
     LOGGER.info("Successfully Started Userbot.")
     await idle()
-
+    await aiohttpsession.close()
 
 if __name__ == "__main__":
     install()
