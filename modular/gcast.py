@@ -190,7 +190,7 @@ async def _(c: user, m):
         chat_id = m.chat.id if len(m.command) < 2 else m.text.split()[1]
         try:
             if c.me.id != bot.me.id:
-                if m.reply_to_m.reply_markup:
+                if m.reply_to_message.reply_markup:
                     x = await c.get_inline_bot_results(
                         bot.me.username, f"_send_ {id(message)}"
                     )
@@ -201,7 +201,7 @@ async def _(c: user, m):
             return await m.reply(error)
         else:
             try:
-                return await m.reply_to_m.copy(chat_id)
+                return await m.reply_to_message.copy(chat_id)
             except Exception as t:
                 return await m.reply(f"{t}")
     else:
@@ -226,16 +226,16 @@ async def send_inline(client, inline_query):
         _id = int(inline_query.query.split()[1])
         m = [obj for obj in get_objects() if id(obj) == _id][0]
 
-        if m.reply_to_m.photo:
-            m_d = await m.reply_to_m.download()
+        if m.reply_to_message.photo:
+            m_d = await m.reply_to_message.download()
             photo_tg = upload_file(m_d)
-            cp = m.reply_to_m.caption
+            cp = m.reply_to_message.caption
             text = cp if cp else ""
             hasil = [
                 InlineQueryResultPhoto(
                     photo_url=f"https://telegra.ph/{photo_tg[0]}",
                     title="kon",
-                    reply_markup=m.reply_to_m.reply_markup,
+                    reply_markup=m.reply_to_message.reply_markup,
                     caption=text,
                 ),
             ]
@@ -244,8 +244,8 @@ async def send_inline(client, inline_query):
             hasil = [
                 InlineQueryResultArticle(
                     title="kon",
-                    reply_markup=m.reply_to_m.reply_markup,
-                    input_message_content=InputTextMessageContent(m.reply_to_m.text),
+                    reply_markup=m.reply_to_message.reply_markup,
+                    input_message_content=InputTextMessageContent(m.reply_to_message.text),
                 )
             ]
         await c.answer_inline_query(
