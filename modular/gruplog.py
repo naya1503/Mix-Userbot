@@ -6,7 +6,7 @@
 """
 ################################################################
 
-__modles__ = "gruplog"
+__modles__ = "Gruplog"
 __help__ = """
 Help Command GrupLog
 
