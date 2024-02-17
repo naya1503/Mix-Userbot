@@ -73,6 +73,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
  • `cp .env.sample .env`
 
  • `nano .env`
+ 
   - isi vars .env api_id, api_hash, session, mongo_uri, db_name, owner_id
   - Jika sudah 
   - ketik ctrl + S
