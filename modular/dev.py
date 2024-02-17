@@ -8,7 +8,7 @@
 
 import os
 import platform
-import subprocess
+
 import sys
 import traceback
 from datetime import datetime
@@ -43,23 +43,6 @@ __help__ = """
 • Perintah : <code>{0}stats</code>
 • Penjelasan : System stats.
 """
-
-
-@ky.ubot("update", sudo=True)
-@ky.devs("diupdate")
-async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    xx = await m.reply(f"{emo.proses} Processing...")
-    try:
-        out = subprocess.check_output(["git", "pull"]).decode("UTF-8")
-        if "Already up to date." in str(out):
-            return await xx.edit("Its already up-to date!")
-        await xx.edit(f"`{out}`")
-    except Exception as e:
-        return await xx.edit(str(e))
-    await xx.delete()
-    await c.restart()
 
 
 @ky.ubot("sh", sudo=True)
