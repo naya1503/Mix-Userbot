@@ -21,7 +21,7 @@ from psutil._common import bytes2human
 
 from Mix import *
 
-__modles__ = "developer"
+__modles__ = "Developer"
 __help__ = """
  Help Command Developer
 
