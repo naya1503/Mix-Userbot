@@ -2,7 +2,7 @@ import asyncio
 
 
 from Mix.core import *
-from team.nandev.class_ubot import Userbot, Bot
+from team.nandev.class_ubot import Userbot, Bot2
 from config import *
 
 
