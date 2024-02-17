@@ -1,1 +1,1 @@
-git pull --rebase -f && python3 -m Mix
+&& python3 -m Mix
