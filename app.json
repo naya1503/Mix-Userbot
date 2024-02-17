@@ -19,7 +19,7 @@
             "required": true
         },
         "session": {
-            "description": "Silakan isi Telethon Atau Pyrogram V2",
+            "description": "Silakan isi Pyrogram V2",
             "required": true
         },
         "mongo_uri": {
