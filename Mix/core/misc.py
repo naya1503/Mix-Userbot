@@ -16,7 +16,7 @@ from pyrogram import filters
 
 from config import *
 
-from Mix import LOGGER
+from team.nandev.class_log import LOGGER
 
 HAPP = None
 
