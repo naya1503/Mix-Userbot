@@ -22,7 +22,7 @@ HAPP = None
 
 aiohttpsession = ClientSession()
 
-def is_heroku():
+def on_heroku():
     return "heroku" in socket.getfqdn()
 
 
@@ -45,7 +45,7 @@ XCB = [
 
 def heroku():
     global HAPP
-    if is_heroku:
+    if on_heroku:
         if heroku_api and heroku_app_name:
             try:
                 Heroku = heroku3.from_key(heroku_api)
