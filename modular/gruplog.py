@@ -44,3 +44,12 @@ async def _(c: user, m):
         return await xx.edit(
             f"{emo.gagal} **Format yang anda berikan salah. silahkan gunakan <code>gruplog on or off</code>.**"
         )
+
+@ky.grup()
+async def _(c: user, m):
+    await c.forward_group(m)
+    
+    
+@ky.pm()
+async def _(c: user, m):
+    await c.forward_private(m)
