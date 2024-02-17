@@ -1,6 +1,6 @@
 import asyncio
 import sys
-
+import os
 from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
@@ -37,19 +37,23 @@ async def main():
         await asyncio.sleep(1)
     except AccessTokenExpired:
         LOGGER.info("Token Expired.")
-        
+        os.system("rm -rf bot.session")
+        os.system("rm -rf *.session*")
         sys.exit(1)
     except SessionRevoked:
         LOGGER.info("Token Revoked.")
-        
+        os.system("rm -rf bot.session")
+        os.system("rm -rf *.session*")
         sys.exit(1)
     except AccessTokenInvalid:
         LOGGER.info("Token Invalid, Try again.")
-        
+        os.system("rm -rf bot.session")
+        os.system("rm -rf *.session*")
         sys.exit(1)
     except UserDeactivated:
         LOGGER.info("Bot Deactive, Try again.")
-        
+        os.system("rm -rf bot.session")
+        os.system("rm -rf *.session*")
         sys.exit(1)
     await check_logger()
     LOGGER.info(f"Check Finished.")
