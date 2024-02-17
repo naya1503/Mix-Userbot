@@ -49,7 +49,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
  • `nano .env`
  
-  - isi vars .env api_id, api_hash, mongo_uri, db_name, session, owner_id
+  - isi vars .env api_id, api_hash, mongo_uri, db_name, session, 
   - Jika sudah 
   - ketik ctrl + S
   - ctrl + X
@@ -74,7 +74,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
  • `nano .env`
  
-  - isi vars .env api_id, api_hash, session, mongo_uri, db_name, owner_id
+  - isi vars .env api_id, api_hash, session, mongo_uri, db_name, 
   - Jika sudah 
   - ketik ctrl + S
   - ctrl + X
@@ -88,7 +88,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 <details>
 <summary><b>🔗 Deploy on Heroku</b></summary>
 <br>
-• Silakan isi vars yang diperlukan api_id, api_hash, session, heroku_api, heroku_app_name, mongo_uri, db_name, dan owner_id
+• Silakan isi vars yang diperlukan api_id, api_hash, session, heroku_api, heroku_app_name, mongo_uri, db_name, dan 
 
 <h3 align="center">Click The Button</h3>
 <a align="center" href="https://dashboard.heroku.com/new?template=https://github.com/naya1503/Mix-Userbot"><img src="https://www.herokucdn.com/deploy/button.svg"></a>
