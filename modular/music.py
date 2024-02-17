@@ -1,9 +1,9 @@
-################################################################
-"""
- Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
- 
- @ CREDIT : NAN-DEV
-"""
+################################################################
+"""
+ Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
+ 
+ @ CREDIT : NAN-DEV
+"""
 ################################################################
 
 import datetime
@@ -16,16 +16,16 @@ from pyrogram import *
 from pyrogram.errors import MessageNotModified, QueryIdInvalid
 from pyrogram.raw.functions.phone import CreateGroupCall
 from pyrogram.types import *
+from pytgcalls import StreamType
 from pytgcalls.exceptions import NoActiveGroupCall, NotInGroupCallError
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import (HighQualityAudio,
                                                   HighQualityVideo)
 from yt_dlp import YoutubeDL
-
 from Mix import *
 
-__MODULE__ = "music"
-__HELP__ = """
+__modles__ = "music"
+__help__ = """
 Help Command Music
 
 • Perintah: <code>{0}play</code>
@@ -53,9 +53,13 @@ async def _(c, m):
             chat_id = int(m.text.split()[1])
         if m.reply_to_m.audio or m.reply_to_m.voice:
             if chat_id in play_id:
-                return await m.reply("<b>Ada proses yang sedang berlangsung...</b>")
+                return await m.reply(
+                    "<b>Ada proses yang sedang berlangsung...</b>"
+                )
             play_id.append(chat_id)
-            _play_ = await m.reply_to_m.reply("<b>❏ Processing Audio...</b>")
+            _play_ = await m.reply_to_m.reply(
+                "<b>❏ Processing Audio...</b>"
+            )
             dl = await c.download_media(m.reply_to_message)
             link = m.reply_to_m.link
             if chat_id in c.call_py._call_holder._calls:
@@ -71,6 +75,7 @@ async def _(c, m):
                 await c.call_py.join_group_call(
                     chat_id,
                     AudioPiped(dl, HighQualityAudio()),
+                    
                 )
                 await _play_.delete()
                 __play__ = await m.reply_to_m.reply(
@@ -81,9 +86,13 @@ async def _(c, m):
                 play_id.remove(chat_id)
         if m.reply_to_m.video or m.reply_to_m.document:
             if chat_id in play_id:
-                return await m.reply("<b>Ada proses yang sedang berlangsung...</b>")
+                return await m.reply(
+                    "<b>Ada proses yang sedang berlangsung...</b>"
+                )
             play_id.append(chat_id)
-            _play_ = await m.reply_to_m.reply("<b>❏ Processing Video...</b>")
+            _play_ = await m.reply_to_m.reply(
+                "<b>❏ Processing Video...</b>"
+            )
             dl = await c.download_media(m.reply_to_message)
             link = m.reply_to_m.link
             if chat_id in c.call_py._call_holder._calls:
@@ -102,6 +111,7 @@ async def _(c, m):
                 await c.call_py.join_group_call(
                     chat_id,
                     AudioVideoPiped(dl, HighQualityAudio(), HighQualityVideo()),
+                    
                 )
                 await _play_.delete()
                 __play__ = await m.reply_to_m.reply(
@@ -626,8 +636,7 @@ async def _(_, cq):
             m.chat.id, file=AudioPiped(file_path, HighQualityAudio())
         )
         capt2 = (
-            f"<b>📝 Music Ditambahkan Ke Antrian</b> » <code>{position}</code>\n"
-            + capt1
+            f"<b>📝 Music Ditambahkan Ke Antrian</b> » <code>{position}</code>\n" + capt1
         )
         await cq.edit_message_media(
             InputMediaPhoto(thumb, caption=capt2), reply_markup=pl_btn
@@ -637,6 +646,7 @@ async def _(_, cq):
             await m._client.call_py.join_group_call(
                 m.chat.id,
                 AudioPiped(file_path, HighQualityAudio()),
+                
             )
         except Exception as e:
             if "Already joined into group call" not in str(e):
@@ -660,6 +670,7 @@ async def _(_, cq):
                     await m._client.call_py.join_group_call(
                         m.chat.id,
                         AudioPiped(file_path, HighQualityAudio()),
+                        
                     )
                 else:
                     await m._client.send_message(
@@ -735,6 +746,7 @@ async def _(_, cq):
             await m._client.call_py.join_group_call(
                 m.chat.id,
                 AudioVideoPiped(file_path, HighQualityAudio(), HighQualityVideo()),
+                
             )
         except Exception as e:
             if "Already joined into group call" not in str(e):
@@ -760,6 +772,7 @@ async def _(_, cq):
                         AudioVideoPiped(
                             file_path, HighQualityAudio(), HighQualityVideo()
                         ),
+                        
                     )
                 else:
                     await m._client.send_message(
@@ -825,8 +838,7 @@ async def _(_, cq):
             chat_id, file=AudioPiped(file_path, HighQualityAudio())
         )
         capt2 = (
-            f"<b>📝 Music Ditambahkan Ke Antrian</b> » <code>{position}</code>\n"
-            + capt1
+            f"<b>📝 Music Ditambahkan Ke Antrian</b> » <code>{position}</code>\n" + capt1
         )
         await cq.edit_message_media(
             InputMediaPhoto(thumb, caption=capt2), reply_markup=pl_btn
@@ -836,6 +848,7 @@ async def _(_, cq):
             await m._client.call_py.join_group_call(
                 chat_id,
                 AudioPiped(file_path, HighQualityAudio()),
+                
             )
         except Exception as e:
             if "Already joined into group call" not in str(e):
@@ -859,6 +872,7 @@ async def _(_, cq):
                     await m._client.call_py.join_group_call(
                         m.chat.id,
                         AudioPiped(file_path, HighQualityAudio()),
+                        
                     )
                 else:
                     await m._client.send_message(
@@ -935,6 +949,7 @@ async def _(_, cq):
             await m._client.call_py.join_group_call(
                 chat_id,
                 AudioVideoPiped(file_path, HighQualityAudio(), HighQualityVideo()),
+                
             )
         except Exception as e:
             if "Already joined into group call" not in str(e):
@@ -960,6 +975,7 @@ async def _(_, cq):
                         AudioVideoPiped(
                             file_path, HighQualityAudio(), HighQualityVideo()
                         ),
+                        
                     )
                 else:
                     await m._client.send_message(
