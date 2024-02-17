@@ -12,5 +12,7 @@ temp.png
 venv/
 __pycache__/
 # tgbot
-*.session
-*.session-journal
+user.session
+user.session-journal
+bot.session
+bot.session-journal
