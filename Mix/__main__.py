@@ -40,6 +40,10 @@ async def main():
         LOGGER.info("Token Revoked.")
         udB.rem_token(user.me.id)
         sys.exit(1)
+    except AccessTokenInvalid:
+        LOGGER.info("Token Invalid, Try again.")
+        udB.rem_token(user.me.id)
+        sys.exit(1)
     await check_logger()
     LOGGER.info(f"Check Finished.")
     await asyncio.sleep(1)
