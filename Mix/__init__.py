@@ -1,11 +1,9 @@
 import asyncio
 
-from aiohttp import ClientSession
+
 from Mix.core import *
 from team.nandev.class_ubot import Userbot, Bot
 from config import *
-
-aiohttpsession = ClientSession()
 
 
 user = Userbot(
