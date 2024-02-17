@@ -1,6 +1,6 @@
 import asyncio
 
-from team import *
+from team.nandev import Userbot, Bot
 
 from config import *
 
@@ -14,3 +14,5 @@ user = Userbot(
 
 
 bot = Bot()
+
+from team import *
