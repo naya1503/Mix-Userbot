@@ -1,5 +1,4 @@
-pyaes
-pysocks
+
 python-dotenv
 tgcrypto
 requests
