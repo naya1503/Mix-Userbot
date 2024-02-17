@@ -33,15 +33,6 @@ __help__ = """
 
 • Perintah : <code>{0}trash</code>
 • Penjelasan : Dump message.
-
-• Perintah : <code>{0}host</code>
-• Penjelasan : System host.
-
-• Perintah : <code>{0}host</code>
-• Penjelasan : System host.
-
-• Perintah : <code>{0}stats</code>
-• Penjelasan : System stats.
 """
 
 
