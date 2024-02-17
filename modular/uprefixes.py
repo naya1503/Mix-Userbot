@@ -10,7 +10,7 @@
 from Mix import *
 
 
-__modles__ = "prefixes"
+__modles__ = "Prefixes"
 __help__ = """
  Help Command Prefixes
 
