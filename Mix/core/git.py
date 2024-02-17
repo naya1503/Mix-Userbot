@@ -15,7 +15,7 @@ from typing import Tuple
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 
-from config import *
+import config
 
 from team.nandev.class_log import LOGGER
 
