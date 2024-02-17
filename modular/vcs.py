@@ -101,7 +101,7 @@ async def _(c, m):
     with suppress(ValueError):
         chat_id = int(chat_id)
     if chat_id:
-        file = "core/vc.mp3"
+        file = "Mix/core/vc.mp3"
         try:
             daftar_join.append(chat_id)
             if turun_dewek: turun_dewek = False
