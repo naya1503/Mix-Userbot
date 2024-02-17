@@ -12,17 +12,11 @@ __modles__ = "developer"
 __help__ = """
  Help Command Developer
 
-• Perintah : <code>{0}sh</code>
+• Perintah : <code>{0}update</code>
 • Penjelasan : Execute code.
 
-• Perintah : <code>{0}eval</code>
+• Perintah : <code>{0}restart</code>
 • Penjelasan : Execute code.
-
-• Perintah : <code>{0}trash</code>
-• Penjelasan : Dump message.
-
-• Perintah : <code>{0}host</code>
-• Penjelasan : System host.
 
 • Perintah : <code>{0}host</code>
 • Penjelasan : System host.
