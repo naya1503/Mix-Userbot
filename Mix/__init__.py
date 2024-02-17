@@ -13,7 +13,8 @@ user = Userbot(
     session_string=session,
 )
 
-
+git()
+heroku()
 bot = Bot()
 
 from team import *
