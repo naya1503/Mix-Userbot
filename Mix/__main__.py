@@ -26,6 +26,9 @@ async def main():
     except ApiIdInvalid:
         LOGGER.info("Api ID Not Valid.")
         sys.exit(1)
+    except UserDeactivatedBan:
+        LOGGER.info("Huahahahaha Akun Lu Ke Deak Cokk.")
+        sys.exit(1)
     if not udB.get_token(user.me.id):
         await autobot()
         await asyncio.sleep(1)
