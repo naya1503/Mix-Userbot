@@ -33,7 +33,7 @@ XCB = [
     "git",
     "heroku",
     "push",
-    str(heroku_api_key),
+    str(heroku_api),
     "https",
     str(heroku_app_name),
     "HEAD",
