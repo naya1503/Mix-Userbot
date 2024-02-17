@@ -3,11 +3,10 @@ import asyncio
 from aiohttp import ClientSession
 
 from team.nandev.class_ubot import Userbot, Bot
-from Mix.core import heroku
 from config import *
 
 aiohttpsession = ClientSession()
-heroku()
+
 
 user = Userbot(
     name="user",
