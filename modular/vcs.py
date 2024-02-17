@@ -31,7 +31,7 @@ from pytgcalls.exceptions import AlreadyJoinedError
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from Mix import *
-from team.nandev.queues import daftar_join
+from team.nandev.class_pytgc import daftar_join
 
 turun_dewek = False
 
