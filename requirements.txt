@@ -16,4 +16,4 @@ bs4
 pymediainfo
 youtube-search-python
 attrify
-maling==0.3.0
+maling==0.3.1
