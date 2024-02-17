@@ -1,1 +1,1 @@
-&& python3 -m Mix
+python3 -m Mix
