@@ -1,4 +1,6 @@
-
+aiofiles
+aiohttp
+beautifulsoup4
 python-dotenv
 tgcrypto
 requests
@@ -20,3 +22,10 @@ maling==0.3.1
 gitpython
 heroku3
 speedtest-cli
+telegraph
+pySmartDL
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+oauth2client
+httpx[http2]
