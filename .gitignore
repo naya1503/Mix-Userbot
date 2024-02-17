@@ -1,7 +1,10 @@
-
-venv/
+.env
+.cache
+log.txt
+.DS_Store
+*.session
+raw_files/
+cache/
+downloads/
 __pycache__/
-user.session
-user.session-journal
-bot.session
-bot.session-journal
+*.session-journal
