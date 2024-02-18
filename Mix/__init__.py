@@ -13,11 +13,8 @@ user = Userbot(
 )
 
 git()
-
 heroku()
 bot = Bot()
 
-loop = asyncio.get_event_loop_policy()
-loop2 = loop.get_event_loop()
 
 from team import *
