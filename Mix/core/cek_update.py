@@ -9,6 +9,10 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 import heroku3
 from .misc import XCB
 
+
+async def in_heroku():
+    return "heroku" in socket.getfqdn()
+
 async def cek_updater():
     if await in_heroku():
           if heroku_api and heroku_app_name:
