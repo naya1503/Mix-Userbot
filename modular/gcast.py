@@ -188,6 +188,7 @@ async def _(c: user, m):
         udB.remove_chat(c.me.id, x)
     await msg.edit(f"{emo.sukses} <b>Semua daftar hitam telah berhasil dihapus.</b>")
 
+# @Tomi
 
 @ky.ubot("send", sudo=True)
 async def _(c: user, m):
