@@ -57,7 +57,7 @@ async def main():
     await asyncio.sleep(1)
     await refresh_modules()
     LOGGER.info(f"Modules Imported...")
-    await _global_users(user.me.id)
+    await _global_users()
     LOGGER.info(f"Loading Finished...")
     await asyncio.sleep(1)
     LOGGER.info("Successfully Started Userbot.")
