@@ -108,9 +108,9 @@ async def _(c: user, m):
 
     if sudo_list:
         response = (
-            f"{emo.alive} <b>Daftar Pengguna:</b>\n"
+            f"{emo.profil} <b>Daftar Pengguna:</b>\n"
             + "\n".join(sudo_list)
-            + f"\n<b> • </b> <code>{len(sudo_list)}</code>"
+            + f"\n{emo.sukses} <code>{len(sudo_list)}</code>"
         )
         return await msg.edit(response)
     else:
