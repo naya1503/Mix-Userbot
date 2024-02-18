@@ -3,7 +3,6 @@ import sys
 import os
 from pyrogram import *
 from pyrogram.errors import *
-from uvloop import install
 from Mix import *
 
 async def main():
@@ -62,5 +61,5 @@ async def main():
     await aiohttpsession.close()
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop_policy().get_event_loop()
-    loop.run_until_complete(main())
+    asyncio.set_event_loop(loop2)
+    loop2.run_until_complete(main())
