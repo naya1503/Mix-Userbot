@@ -13,7 +13,7 @@ __help__ = """
  Help Command PMPermit
 
 • Perintah: <code>{0}setmsg</code> [balas atau berikan pesan]
-• Penjelasan: Untuk mengatur pesan antipm.
+• Penjelasan: Untuk mengatur pesan PMPERMIT.
 
 • Perintah: <code>{0}setlimit</code> [angka]
 • Penjelasan: Untuk mengatur peringatan pesan blokir.
@@ -181,7 +181,7 @@ async def _(c: user, m):
     chat_id = m.chat.id
     in_user = m.from_user
     fsdj = udB.dicek_pc(chat_id)
-    is_pm_guard_enabled = udB.get_var(user_id, "ANTIPM")
+    is_pm_guard_enabled = udB.get_var(user_id, "PMPERMIT")
     getc_pm_txt = udB.get_var(user_id, "PMTEXT")
     getc_pm_warns = udB.get_var(user_id, "PMLIMIT")
     master = await c.get_me()
