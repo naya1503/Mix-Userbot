@@ -1,7 +1,7 @@
 import asyncio
 import os
 import time
-from gc import g_objects
+from gc import gc_objects
 from time import time
 
 from pyrogram import *
@@ -260,7 +260,7 @@ async def _(c, cq):
     global nyolong_jalan
     try:
         q = int(cq.data.split("_", 1)[1])
-        m = [obj for obj in g_objects() if id(obj) == q][0]
+        m = [obj for obj in gc_objects() if id(obj) == q][0]
         await m._c.unblock_user(bot.me.username)
         await cq.edit_message_text("<b>Tunggu Sebentar</b>")
         copy = await m._c.send_message(
