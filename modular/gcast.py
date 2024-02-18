@@ -228,9 +228,9 @@ async def _(c: user, m):
 
 
 @ky.inline("^_send_")
-async def send_inline(client, inline_query):
+async def send_inline(c, iq):
     try:
-        _id = int(inline_query.query.split()[1])
+        _id = int(iq.query.split()[1])
         m = [obj for obj in get_objects() if id(obj) == _id][0]
 
         if m.reply_to_message.photo:
@@ -256,9 +256,9 @@ async def send_inline(client, inline_query):
                 )
             ]
         await c.answer_inline_query(
-            inline_query.id,
+            iq.id,
             cache_time=0,
             results=hasil,
         )
     except Exception as e:
-        LOGGER.info("Error:", str(e))
+        LOGGER.info(f"Error: {e}")
