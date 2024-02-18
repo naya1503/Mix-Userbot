@@ -6,18 +6,26 @@
 """
 ################################################################
 
-import os
-import asyncio
-import sys
+
 import subprocess
-import socket
 from team.nandev.class_log import LOGGER
 from config import *
+import asyncio
+import math
+import os
+import shutil
+import socket
+from datetime import datetime
+import sys
+import dotenv
+import heroku3
+import requests
+import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
-import heroku3
 from .misc import XCB
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 async def in_heroku():
     return "heroku" in socket.getfqdn()
