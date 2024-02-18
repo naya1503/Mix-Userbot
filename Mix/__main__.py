@@ -63,5 +63,5 @@ async def main():
 
 if __name__ == "__main__":
     install()
-    loop = asyncio.get_event_loop_policy().get_event_loop()
+    loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
