@@ -13,7 +13,7 @@ user = Userbot(
     session_string=session,
 )
 
-git()
+#git()
 heroku()
 bot = Bot()
 
