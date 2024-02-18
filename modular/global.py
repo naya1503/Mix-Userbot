@@ -82,7 +82,7 @@ async def _(c: user, m):
             await asyncio.sleep(0.1)
     mmg = f"{emo.alive} <b>Warning Global Banned\n\n{emo.sukses} Berhasil: `{bs}` Chat\n{emo.gagal} Gagal: `{gg}` Chat\n{emo.profil} User: `{mention}`</b>\n"
     if alasan:
-        mmg += f"**Alasan: `{alasan}`**"
+        mmg += f"{emo.alive} **Alasan: `{alasan}`**"
     await m.reply(mmg)
     await xx.delete()
 
@@ -169,7 +169,7 @@ async def _(c: user, m):
             await asyncio.sleep(0.1)
     mmg = f"{emo.alive} <b>Warning Global Gmute\n\n{emo.sukses} Berhasil: `{bs}` Chat\n{emo.gagal} Gagal: `{gg}` Chat\n{emo.profil} User: `{mention}`</b>\n"
     if alasan:
-        mmg += f"**Alasan: `{alasan}`**"
+        mmg += f"{emo.alive} **Alasan: `{alasan}`**"
     await m.reply(mmg)
     await xx.delete()
     
