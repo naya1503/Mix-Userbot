@@ -61,7 +61,7 @@ async def _(c, m):
 """
      donut = InlineKeyboardMarkup([InlineKeyboardButton("Tautan Grup", url=lenk)])
      try:
-         await bot.send_message
+         await bot.send_message(
           db,
           teks,
           disable_web_page_preview=True,
