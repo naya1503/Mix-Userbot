@@ -8,7 +8,7 @@ from Mix import *
 
 async def main():
     LOGGER.info(f"Check Updater...")
-    await cek_updater()
+    #await cek_updater()
     LOGGER.info(f"Updater Finished...")
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
