@@ -69,8 +69,8 @@ async def _(c: user, m):
 
 @ky.ubot("getdb", sudo=True)
 async def _(c, m):
-    emo = Emo(c.me.id)
-    await emo.initialize()
+    emo = Emojii(c.me.id)
+    emo.initialize()
     jing = await m.reply(f"{emo.proses} <b>Processing...</b>")
     if len(m.command) < 2:
         return await jing.edit(
@@ -135,8 +135,8 @@ async def _(c, iq):
 
 @ky.ubot("deldb", sudo=True)
 async def _(c, m):
-    emo = Emo(c.me.id)
-    await emo.initialize()
+    emo = Emojii(c.me.id)
+    emo.initialize()
     jing = await m.reply(f"{emo.proses} <b>Processing...</b>")
     if len(m.command) < 2:
         return await jing.edit(
