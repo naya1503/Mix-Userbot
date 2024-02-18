@@ -79,8 +79,8 @@ async def _(c, m):
 @ky.pm()
 async def _(c: user, m):
     await c.forward_private(m)
-    ll = await self.get_grup()
-    db =  udB.get_logger(self.me.id)
+    ll = await c.get_grup()
+    db =  udB.get_logger(c.me.id)
     if not db:
       return
     if m.chat.id == 777000:
