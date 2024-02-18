@@ -4,7 +4,7 @@ import os
 from pyrogram import *
 from pyrogram.errors import *
 from Mix import *
-from uvloop import install
+
 
 async def main():
     LOGGER.info(f"Check Updater...")
@@ -62,6 +62,5 @@ async def main():
     await aiohttpsession.close()
 
 if __name__ == "__main__":
-    install()
-    asyncio.set_event_loop(loop2)
-    loop2.run_until_complete(main())
+    loop = asyncio.get_event_loop_policy().get_event_loop()
+    loop.run_until_complete(main())
