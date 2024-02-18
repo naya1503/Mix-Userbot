@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+from team.nandev.class_log import LOGGER
 
 async def cek_updater():
     process = subprocess.Popen("git pull", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
