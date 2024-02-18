@@ -1,9 +1,11 @@
 import asyncio
-
-
 from Mix.core import *
 from team.nandev.class_ubot import Userbot, Bot
 from config import *
+from pyrogram import filters
+
+GBAN_USER = filters.user()
+GMUTE_USER = filters.user()
 
 
 user = Userbot(
