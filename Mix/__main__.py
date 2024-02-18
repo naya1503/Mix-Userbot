@@ -62,6 +62,6 @@ async def main():
     await aiohttpsession.close()
 
 if __name__ == "__main__":
-    #install()
+    install()
     asyncio.set_event_loop(loop2)
     loop2.run_until_complete(main())
