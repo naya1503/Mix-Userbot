@@ -47,36 +47,32 @@ async def _(c: user, m):
 
 @ky.grup()
 async def _(c, m):
-    async def forward_group(self, m):
-        ll = await user.get_grup()
-        db =  udB.get_logger(user.me.id)
-        if not db:
-            return
-        org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
-        lenk = m.link
-        teks = f"""
+     db =  udB.get_logger(user.me.id)
+     if not db:
+         return
+     org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
+     lenk = m.link
+     teks = f"""
 📨 <b>TAGS MESSAGE</b>
 • <b>Logs:</b> <code>{user.me.first_name}</code>
 • <b>Group:</b> <code>{m.chat.title}</code>
 • <b>Dari :</b> <code>{org}</code>
 • <b>Pesan:</b> <code>{m.text}</code>
 """
-        donut = InlineKeyboardMarkup([InlineKeyboardButton("Tautan Grup", url=lenk)])
-        try:
-            await bot.send_message(
-              db,
-              teks,
-              disable_web_page_preview=True,
-              reply_markup=donut,
-            )
-        except FloodWait as e:
-            await asyncio.sleep(e.value)
-            await bot.send_message(
-              db,
-              teks,
-              disable_web_page_preview=True,
-              reply_markup=donut,
-            )
+     donut = InlineKeyboardMarkup([InlineKeyboardButton("Tautan Grup", url=lenk)])
+     try:
+         await bot.send_message
+          db,
+          teks,
+          disable_web_page_preview=True,
+          reply_markup=donut)
+      except FloodWait as e:
+          await asyncio.sleep(e.value)
+          await bot.send_message(
+            db,
+            teks,
+            disable_web_page_preview=True,
+            reply_markup=donut)
 
 
 @ky.pm()
