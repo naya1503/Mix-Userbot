@@ -8,7 +8,9 @@ from Mix import *
 from Mix.core import heroku
 
 async def main():
-
+    LOGGER.info(f"Check Updater...")
+    await cek_updater()
+    LOGGER.info(f"Updater Finished...")
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
