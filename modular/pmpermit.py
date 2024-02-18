@@ -221,7 +221,7 @@ async def _(c, m):
                 reply_to_message_id=m.id,
             )
         except:
-            continue 
+            pass 
     else:
         gmbr = udB.get_var(user_id, "PMPIC")
         if gmbr:
