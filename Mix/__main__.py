@@ -4,7 +4,7 @@ import os
 from pyrogram import *
 from pyrogram.errors import *
 from Mix import *
-from Mix.core.load_global import GBAN_USER, GMUTE_USER
+from Mix.core.load_global import _global_users
 from uvloop import install
 
 async def main():
