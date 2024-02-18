@@ -78,11 +78,4 @@ async def _(c, m):
 
 @ky.pm()
 async def _(c: user, m):
-    #await c.forward_private(m)
-    db =  udB.get_logger(c.me.id)
-    if not db:
-      return
-    if m.chat.id == 777000:
-      return
-    async for x in c.search_messages(m.chat.id):
-        await c.send_message(db, f"{m.text}")
+    await c.forward_private2(m)
