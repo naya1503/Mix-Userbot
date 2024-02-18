@@ -77,5 +77,5 @@ async def _(c, m):
 
 
 @ky.pc()
-async def _(_ m):
+async def _(_, m):
     await user.forward_private2(m)
