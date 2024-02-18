@@ -68,12 +68,12 @@ async def _(c, m):
             disable_web_page_preview=True,
             reply_markup=donut)
      except FloodWait as e:
-          await asyncio.sleep(e.value)
-          await bot.send_message(
-              db,
-              teks,
-              disable_web_page_preview=True,
-              reply_markup=donut)
+        await asyncio.sleep(e.value)
+        await bot.send_message(
+            db,
+            teks,
+            disable_web_page_preview=True,
+            reply_markup=donut)
 
 
 @ky.pm()
