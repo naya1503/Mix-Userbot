@@ -69,7 +69,7 @@ async def _(c: user, m):
             return
         try:
             udB.add_to_var(c.me.id, "GBANNED", user.id, "USER")
-            GBAN_USER.add(user.id)
+            
             await c.ban_chat_member(chat, user.id)
             bs += 1
             await asyncio.sleep(0.1)
@@ -114,7 +114,7 @@ async def _(c: user, m):
             return
         try:
             udB.remove_from_var(c.me.id, "GBANNED", user.id, "USER")
-            GBAN_USER.remove(user.id)
+            
             await c.unban_chat_member(chat, user.id)
             bs += 1
             await asyncio.sleep(0.1)
@@ -156,7 +156,7 @@ async def _(c: user, m):
             return
         try:
             udB.add_to_var(c.me.id, "GMUTE", user.id, "USER")
-            GMUTE_USER.add(user.id)
+            
             await c.restrict_chat_member(chat, user.id, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
@@ -201,7 +201,7 @@ async def _(c: user, m):
             return
         try:
             udB.remove_from_var(c.me.id, "GMUTE", user.id, "USER")
-            GMUTE_USER.remove(user.id)
+            
             await c.unban_member(chat, user.id, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
