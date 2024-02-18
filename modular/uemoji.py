@@ -174,6 +174,8 @@ async def _(c: user, m):
 
 @ky.ubot("getemo", sudo=True)
 async def _(c: user, m):
+    emo = Emojii(c.me.id)
+    emo.initialize()
     xx = await m.reply(f"{emo.proses} <b>Processing...</b>")
     await xx.edit(
         f"{emo.sukses} <b>๏ Emoji Yang Digunakan :</b>\n\n Ping : {emo.ping}\n Pong : {emo.pong}\n Proses : {emo.proses}\n Sukses : {emo.sukses}\n Gagal : {emo.gagal}\n Profil : {emo.profil}\n Alive : {emo.alive}"
