@@ -73,6 +73,9 @@ async def _(c: user, m):
             await c.ban_chat_member(chat, user.id)
             bs += 1
             await asyncio.sleep(0.1)
+        except PeerIdInvalid:
+            await xx.edit(f"{emo.gagal} Pengguna tidak ditemukan.")
+            return
         except FloodWait as e:
             await asyncio.sleep(int(e.value))
             await c.ban_chat_member(chat, user.id)
