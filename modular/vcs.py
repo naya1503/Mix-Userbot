@@ -31,9 +31,7 @@ from pytgcalls.exceptions import AlreadyJoinedError
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from Mix import *
-from team.nandev.class_pytgc import daftar_join
-
-turun_dewek = False
+from team.nandev.class_pytgc import daftar_join, turun_dewek
 
 
 
@@ -142,4 +140,6 @@ async def _(c, m):
                 f"{emo.suksss} <b>Berhasil Meninggalkan Voice Chat</b>\n <b>Chat :</b><code>{m.chat.title}</code>"
             )
         except Exception as e:
-            return await ky.edit(f"{emo.gagal} <b>ERROR:</b> {e}")
+           await ky.edit(f"{emo.gagal} <b>ERROR:</b> {e}")
+    else:
+        return ky.edit(f"{emo.gagal} Akun anda sedang tidak berada dalam obrolan {chat_id}.")
