@@ -67,9 +67,11 @@ async def cek_updater():
           updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
     _update_response_ = "<b>A new update is available for the Mix-Userbot !</b>\n\n<code>➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n"
     _final_updates_ = _update_response_ + updates
-    LOGGER.info(f"{_final_updates_}")
+    #LOGGER.info(f"{_final_updates_}")
     os.system("git stash &> /dev/null && git pull")
-    if await in_heroku():
+    if heroku_api and heroku_app_name:
+        hehe = heroku3.from_key(heroku_api)
+        haha = hehe.app(heroku_app_name)
         try:
             os.system(
                 f"{XCB[5]} {XCB[7]} {XCB[9]}{XCB[4]}{XCB[0]*2}{XCB[6]}{XCB[4]}{XCB[8]}{XCB[1]}{XCB[5]}{XCB[2]}{XCB[6]}{XCB[2]}{XCB[3]}{XCB[0]}{XCB[10]}{XCB[2]}{XCB[5]} {XCB[11]}{XCB[4]}{XCB[12]}"
