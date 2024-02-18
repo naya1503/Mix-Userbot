@@ -45,11 +45,15 @@ async def _(c: user, m):
     emo.initialize()
     nyet, alasan = await c.extract_user_and_reason(m)
     xx = await m.reply(f"{emo.proses} Processing...")
-    user = await c.get_users(nyet)
-    if not user:
-        await xx.edit(f"{emo.gg} Pengguna tidak ditemukan.")
+    try:
+        org = await c.get_users(nyet)
+    except PeerIdInvalid:
+        await xx.edit(f"{emo.gagal} Pengguna tidak ditemukan.")
         return
-    if user.id in DEVS:
+    if not org:
+        await xx.edit(f"{emo.gagal} Pengguna tidak ditemukan.")
+        return
+    if org.id in DEVS:
         await xx.edit(f"{emo.gagal} Dia adalah Developer Mix-Userbot.")
         return
     bs = 0
@@ -64,21 +68,19 @@ async def _(c: user, m):
             if m.reply_to_message
             else "Anon")
     for chat in chats:
-        if user.id in gban_users:
+        if org.id in gban_users:
             await xx.edit(f"{emo.gagal} Pengguna sudah digban.")
             return
         try:
-            udB.add_to_var(c.me.id, "GBANNED", user.id, "USER")
+            udB.add_to_var(c.me.id, "GBANNED", org.id, "USER")
             
-            await c.ban_chat_member(chat, user.id)
+            await c.ban_chat_member(chat, org.id)
             bs += 1
             await asyncio.sleep(0.1)
-        except PeerIdInvalid:
-            await xx.edit(f"{emo.gagal} Pengguna tidak ditemukan.")
-            return
+        
         except FloodWait as e:
             await asyncio.sleep(int(e.value))
-            await c.ban_chat_member(chat, user.id)
+            await c.ban_chat_member(chat, org.id)
             bs += 1
         except BaseException:
             gg += 1
@@ -96,9 +98,9 @@ async def _(c: user, m):
     emo.initialize()
     nyet = await c.extract_user(m)
     xx = await m.reply(f"{emo.proses} Processing...")
-    user = await c.get_users(nyet)
-    if not user:
-        await xx.edit(f"{emo.gg} Pengguna tidak ditemukan.")
+    org = await c.get_users(nyet)
+    if not org:
+        await xx.edit(f"{emo.gagal} Pengguna tidak ditemukan.")
         return
     bs = 0
     gg = 0
@@ -112,13 +114,13 @@ async def _(c: user, m):
             if m.reply_to_message
             else "Anon")
     for chat in chats:
-        if user.id not in gban_users:
+        if org.id not in gban_users:
             await xx.edit(f"{emo.gagal} Pengguna belum digban.")
             return
         try:
-            udB.remove_from_var(c.me.id, "GBANNED", user.id, "USER")
+            udB.remove_from_var(c.me.id, "GBANNED", org.id, "USER")
             
-            await c.unban_chat_member(chat, user.id)
+            await c.unban_chat_member(chat, org.id)
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
@@ -135,11 +137,11 @@ async def _(c: user, m):
     emo.initialize()
     nyet, alasan = await c.extract_user_and_reason(m)
     xx = await m.reply(f"{emo.proses} Processing...")
-    user = await c.get_users(nyet)
-    if not user:
-        await xx.edit(f"{emo.gg} Pengguna tidak ditemukan.")
+    org = await c.get_users(nyet)
+    if not org:
+        await xx.edit(f"{emo.gagal} Pengguna tidak ditemukan.")
         return
-    if user.id in DEVS:
+    if org.id in DEVS:
         await xx.edit(f"{emo.gagal} Dia adalah Developer Mix-Userbot.")
         return
     bs = 0
@@ -154,13 +156,13 @@ async def _(c: user, m):
             if m.reply_to_message
             else "Anon")
     for chat in chats:
-        if user.id in gmute_users:
+        if org.id in gmute_users:
             await xx.edit(f"{emo.gagal} Pengguna sudah digmute.")
             return
         try:
-            udB.add_to_var(c.me.id, "GMUTE", user.id, "USER")
+            udB.add_to_var(c.me.id, "GMUTE", org.id, "USER")
             
-            await c.restrict_chat_member(chat, user.id, ChatPermissions())
+            await c.restrict_chat_member(chat, org.id, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
@@ -180,11 +182,11 @@ async def _(c: user, m):
     emo.initialize()
     nyet = await c.extract_user(m)
     xx = await m.reply(f"{emo.proses} Processing...")
-    user = await c.get_users(nyet)
-    if not user:
-        await xx.edit(f"{emo.gg} Pengguna tidak ditemukan.")
+    org = await c.get_users(nyet)
+    if not org:
+        await xx.edit(f"{emo.gagal} Pengguna tidak ditemukan.")
         return
-    if user.id in DEVS:
+    if org.id in DEVS:
         await xx.edit(f"{emo.gagal} Dia adalah Developer Mix-Userbot.")
         return
     bs = 0
@@ -199,13 +201,13 @@ async def _(c: user, m):
             if m.reply_to_message
             else "Anon")
     for chat in chats:
-        if user.id not in gmute_users:
+        if org.id not in gmute_users:
             await xx.edit(f"{emo.gagal} Pengguna belum pernah digmute.")
             return
         try:
-            udB.remove_from_var(c.me.id, "GMUTE", user.id, "USER")
+            udB.remove_from_var(c.me.id, "GMUTE", org.id, "USER")
             
-            await c.unban_member(chat, user.id, ChatPermissions())
+            await c.unban_member(chat, org.id, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
@@ -227,9 +229,9 @@ async def _(c: user, m):
         return await msg.edit(f"{emo.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     for x in gbanu:
         try:
-            user = await c.get_users(int(x))
+            org = await c.get_users(int(x))
             gban_list.append(
-                f"{emo.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) | <code>{user.id}</code>")
+                f"{emo.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>")
         except:
             continue
     if gban_list:
@@ -254,9 +256,9 @@ async def _(c: user, m):
         return await msg.edit(f"{emo.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     for x in gmute:
         try:
-            user = await c.get_users(int(x))
+            org = await c.get_users(int(x))
             gmute_list.append(
-                f"{emo.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) | <code>{user.id}</code>")
+                f"{emo.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>")
         except:
             continue
     if gmute_list:
