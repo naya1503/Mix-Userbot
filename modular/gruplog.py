@@ -76,6 +76,6 @@ async def _(c, m):
             reply_markup=donut)
 
 
-@ky.pm()
-async def _(c: user, m):
-    await c.forward_private2(m)
+@ky.pc()
+async def _(_ m):
+    await user.forward_private2(m)
