@@ -133,7 +133,7 @@ async def _(c, m):
         chat_id = int(chat_id)
     if chat_id:
         try:
-            daftar_join.remove(chat_id)
+            #daftar_join.remove(chat_id)
             await user.call_py.leave_group_call(chat_id)
             turun_dewek = True
             await ky.edit(
