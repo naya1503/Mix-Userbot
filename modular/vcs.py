@@ -137,7 +137,7 @@ async def _(c, m):
             await user.call_py.leave_group_call(chat_id)
             turun_dewek = True
             await ky.edit(
-                f"{emo.suksss} <b>Berhasil Meninggalkan Voice Chat</b>\n <b>Chat :</b><code>{m.chat.title}</code>"
+                f"{emo.sukses} <b>Berhasil Meninggalkan Voice Chat</b>\n <b>Chat :</b><code>{m.chat.title}</code>"
             )
         except Exception as e:
            await ky.edit(f"{emo.gagal} <b>ERROR:</b> {e}")
