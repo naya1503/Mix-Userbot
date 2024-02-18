@@ -36,7 +36,7 @@ __help__ = """
 from Mix import *
 import asyncio
 from gc import get_objects
-
+from telegraph import upload_file
 
 from pyrogram.errors import *
 
