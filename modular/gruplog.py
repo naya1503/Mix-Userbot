@@ -15,6 +15,7 @@ Help Command GrupLog
 """
 
 from Mix import *
+from pyrogram.errors import *
 
 @ky.ubot("gruplog", sudo=True)
 async def _(c: user, m):
