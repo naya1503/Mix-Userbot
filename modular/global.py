@@ -237,9 +237,8 @@ async def _(c: user, m):
        stak = (
             f"{emo.profil} <b>Daftar Pengguna:</b>\n"
             + "\n".join(gban_list)
-            + f"\n{emo.sukses} <code>{len(gban_list)}</code>"
-        )
-        return await msg.edit(stak)
+            + f"\n{emo.sukses} <code>{len(gban_list)}</code>")
+       return await msg.edit(stak)
     else:
         return await msg.edit(f"{emo.gagal} <b>Eror</b>")
         
@@ -265,8 +264,7 @@ async def _(c: user, m):
        stak = (
             f"{emo.profil} <b>Daftar Pengguna:</b>\n"
             + "\n".join(gmute_list)
-            + f"\n{emo.sukses} <code>{len(gmute_list)}</code>"
-        )
-        return await msg.edit(stak)
+            + f"\n{emo.sukses} <code>{len(gmute_list)}</code>")
+       return await msg.edit(stak)
     else:
         return await msg.edit(f"{emo.gagal} <b>Eror</b>")
