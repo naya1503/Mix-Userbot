@@ -222,6 +222,7 @@ async def _(c: user, m):
                     )
                     COPY_ID[c.me.id] = int(results.updates[0].id)
                     await inf.delete()
+                    nyolong_jalan = False
                 except Exception as error:
                     await inf.edit(f"{str(error)}")
 
