@@ -1,7 +1,10 @@
 
 from team.nandev.database import udB
 from team.nandev.class_log import LOGGER
-from config import GMUTE_USER, GBAN_USER
+from pyrogram import filters
+
+GBAN_USER = filters.user()
+GMUTE_USER = filters.user()
 
 async def _global_users(c):
     LOGGER.info(f"Loading For Gbanned And Gmute User.")
