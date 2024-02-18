@@ -318,7 +318,7 @@ async def _(c, iq):
             flood2[int(org[1])] += 1
         else:
             flood2[int(org[1])] = 1
-        async for m in ki.get_chat_history(int(org[1]), limit=pm_warns):
+        async for m in user.get_chat_history(int(org[1]), limit=pm_warns):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
@@ -330,7 +330,7 @@ async def _(c, iq):
         if flood2[int(org[1])] > pm_warns:
             await user.send_message(int(org[1]), "Spam Terdeteksi !!! Blokir.")
             del flood2[int(org[1])]
-            await ki.block_user(int(org[1]))
+            await user.block_user(int(org[1]))
             return
         lah = udB.get_var(gw, "PMPIC")
         if lah:
