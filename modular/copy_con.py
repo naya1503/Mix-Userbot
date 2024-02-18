@@ -158,7 +158,7 @@ async def _(c, m):
     if m.from_user.id != user.me.id:
         return
     xx = await m.reply("Tunggu Sebentar...")
-    link = user.g_arg(m)
+    link = user.get_arg(m)
     if not link:
         return await xx.edit(f"<b><code>{m.text}</code> [link]</b>")
     if link.startswith(("https", "t.me")):
@@ -168,7 +168,7 @@ async def _(c, m):
         else:
             chat = str(link.split("/")[-2])
         try:
-            g = await c.g_messages(chat, msg_id)
+            g = await c.get_messages(chat, msg_id)
             await g.copy(m.chat.id)
             await xx.delete()
         except Exception as error:
@@ -185,7 +185,7 @@ async def _(c: user, m):
     emo.initialize()
     msg = m.reply_to_message or m
     inf = await m.reply(f"{emo.proses} <b>Processing...</b>")
-    link = c.g_arg(m)
+    link = c.get_arg(m)
     if not link:
         return await inf.edit(f"<b><code>{m.text}</code> [link]</b>")
 
@@ -195,7 +195,7 @@ async def _(c: user, m):
         if "t.me/c/" in link:
             chat = int("-100" + str(link.split("/")[-2]))
             try:
-                g = await c.g_messages(chat, msg_id)
+                g = await c.get_messages(chat, msg_id)
                 try:
                     await g.copy(m.chat.id, reply_to_message_id=msg.id)
                     await inf.delete()
@@ -206,14 +206,14 @@ async def _(c: user, m):
         else:
             chat = str(link.split("/")[-2])
             try:
-                g = await c.g_messages(chat, msg_id)
+                g = await c.get_messages(chat, msg_id)
                 await g.copy(m.chat.id, reply_to_message_id=msg.id)
                 await inf.delete()
             except Exception:
                 try:
                     nyolong_jalan = True
-                    text = f"g_msg {id(m)}"
-                    x = await c.g_inline_bot_results(bot.me.username, text)
+                    text = f"get_msg {id(m)}"
+                    x = await c.get_inline_bot_results(bot.me.username, text)
                     results = await c.send_inline_bot_result(
                         m.chat.id,
                         x.query_id,
@@ -228,7 +228,7 @@ async def _(c: user, m):
     else:
         await inf.edit(f"{emo.sukses} Nyolong dihentikan.")
 
-@ky.inline("^g_msg")
+@ky.inline("^get_msg")
 async def _(c, iq):
     await c.answer_inline_query(
         iq.id,
