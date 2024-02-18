@@ -55,6 +55,8 @@ async def cek_updater():
             * (format % 10 < 4)
             * format
             % 10 :: 4])
+    for info in repo.iter_commits(f"HEAD..origin/{upstream_branch}"):
+          updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
     os.system("git stash &> /dev/null && git pull")
     if await in_heroku():
         try:
@@ -64,7 +66,7 @@ async def cek_updater():
             return
         except Exception as err:
             LOGGER.info(
-                f"Something went wrong while initiating reboot! Please try again later or check logs for more info.")
+                f"Something went wrong while initiating reboot! Please try again later or check logs for more info.\n\n{err}")
     else:
         process = subprocess.Popen("git pull", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, error = process.communicate()
