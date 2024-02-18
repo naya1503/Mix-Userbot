@@ -220,8 +220,8 @@ async def _(c, m):
                 x.results[0].id,
                 reply_to_message_id=m.id,
             )
-        except Exception as e:
-            return await m.reply(f"Error {e}")
+        except:
+            continue 
     else:
         gmbr = udB.get_var(user_id, "PMPIC")
         if gmbr:
