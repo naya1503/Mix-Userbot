@@ -57,7 +57,7 @@ async def _(c: user, m):
     jing = await m.reply(f"{emo.proses} <b>Processing...</b>")
     if len(m.command) < 3:
         return await jing.edit(
-            f"{emo.gagal} <b>Gunakan Format : <code>setvar variable value</code>.</b>"
+            f"{emo.gagal} <b>Gunakan Format : <code>emoji variable value</code>.</b>"
         )
     command, variable, value = m.command[:3]
     emoji_id = None
@@ -168,7 +168,7 @@ async def _(c: user, m):
             await jing.edit(f"{emo.sukses} <b>Emoji profil diset ke :</b> {value}")
     else:
         await jing.edit(
-            f"{emo.gagal} <b>Silakan ketik <code>help {m.text}<code>.</b>"
+            f"{emo.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>"
         )
 
 
