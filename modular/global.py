@@ -230,7 +230,7 @@ async def _(c: user, m):
         try:
             user = await c.get_users(int(x))
             gban_list.append(
-                f" {emo.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) | <code>{user.id}</code>")
+                f"{emo.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) | <code>{user.id}</code>")
         except:
             continue
     if gban_list:
@@ -257,7 +257,7 @@ async def _(c: user, m):
         try:
             user = await c.get_users(int(x))
             gmute_list.append(
-                f" {emo.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) | <code>{user.id}</code>")
+                f"{emo.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) | <code>{user.id}</code>")
         except:
             continue
     if gmute_list:
