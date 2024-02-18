@@ -60,7 +60,7 @@ async def _(c, m):
 • <b>Dari :</b> <code>{org}</code>
 • <b>Pesan:</b> <code>{m.text}</code>
 """
-     donut = InlineKeyboardMarkup([InlineKeyboardButton("Tautan Grup", url=lenk)])
+     donut = InlineKeyboardMarkup([[InlineKeyboardButton("Tautan Grup", url=lenk)]])
      try:
          await bot.send_message(
             db,
