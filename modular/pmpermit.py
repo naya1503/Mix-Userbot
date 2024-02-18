@@ -66,10 +66,7 @@ async def _(c: user, m):
         return
     elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         return
-    elif chat_type == enums.ChatType.PRIVATE:
-        dia = m.chat.id
-    else:
-        return
+    dia = m.chat.id
     ok_tak = udB.dicek_pc(dia)
     if ok_tak:
         await babi.edit(f"{emo.sukses} <b>Pengguna ini sudah disetujui.</b>")
@@ -104,10 +101,7 @@ async def _(c: user, m):
     chat_type = m.chat.type
     if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         return
-    elif chat_type == enums.ChatType.PRIVATE:
-        user_id = m.chat.id
-    else:
-        return
+    user_id = m.chat.id
     ok_tak = udB.dicek_pc(user_id)
     if not ok_tak:
         await babi.edit(
