@@ -2,7 +2,11 @@ from os import getenv
 
 from dotenv import load_dotenv
 
+from pyrogram import filters
+
 load_dotenv(".env")
+
+GBAN_USER = filters.user()
 
 api_id = int(getenv("api_id", None))
 api_hash = getenv("api_hash", None)
