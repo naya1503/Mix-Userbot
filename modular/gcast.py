@@ -39,6 +39,7 @@ from gc import get_objects
 from telegraph import upload_file
 
 from pyrogram.errors import *
+from pyrogram.types import *
 
 
 @ky.ubot("gcast", sudo=True)
