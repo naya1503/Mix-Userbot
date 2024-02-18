@@ -36,7 +36,7 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 from Mix import *
-from Mix.core.load_global import GBAN_USER, GMUTE_USER
+
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
