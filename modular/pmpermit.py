@@ -218,7 +218,7 @@ async def _(c, m):
                 m.chat.id,
                 x.query_id,
                 x.results[0].id,
-                reply_to_message_id=ReplyCheck(message),
+                reply_to_message_id=message.id,
             )
         except Exception as e:
             return await m.reply(f"Error {e}")
