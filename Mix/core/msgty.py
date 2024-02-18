@@ -219,7 +219,7 @@ async def get_filter_type(m):
     return text, data_type, content
 
 
-def get_file_id(msg: Message):
+def get_file_id(msg):
     data_type = None
     content = None
     if msg.media:
