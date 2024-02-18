@@ -5,7 +5,6 @@ from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
 from Mix import *
-from Mix.core import heroku
 
 async def main():
     LOGGER.info(f"Check Updater...")
