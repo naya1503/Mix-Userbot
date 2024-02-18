@@ -44,7 +44,7 @@ I am {} maintains this Chat Room . Don't spam or You will be auto blocked.
 """
 
 PM_WARN = """
-Security Message <b>{}</b> . You have <code>{}/{}</code> warnings !!
+<b>Security Message of {} . You have <code>{}/{}</code> warnings !! </b>
 
 <b>{}</b>
 """
