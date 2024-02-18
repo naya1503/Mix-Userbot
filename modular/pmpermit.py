@@ -168,7 +168,7 @@ async def _(c: user, m):
     )
 
 @ky.permit()
-async def _(c: user, m):
+async def _(c, m):
     user_id = c.me.id
     siapa = m.from_user.id
     biji = m.from_user.mention
@@ -196,7 +196,7 @@ async def _(c: user, m):
         try:
             udB.oke_pc(chat_id)
             await c.send_message(
-                chat_id,
+                in_user.id,
                 f"<b>Menerima Pesan Dari {biji} !!\nTerdeteksi Developer Dari Mix-Userbot.</b>",
                 parse_mode=enums.ParseMode.HTML,
             )
