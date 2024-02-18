@@ -155,7 +155,7 @@ async def gas_download(g, c: user, inf, m):
 
 @ky.bots("copy")
 async def _(c, m):
-    if m.from_user.id != user.me.id
+    if m.from_user.id != user.me.id:
         return
     xx = await m.reply("Tunggu Sebentar...")
     link = user.g_arg(m)
