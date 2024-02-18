@@ -54,8 +54,8 @@ LIMIT = 5
 
 @ky.ubot("ok|setuju", sudo=True)
 async def _(c: user, m):
-    emo = Emo(c.me.id)
-    await emo.initialize()
+    emo = Emojii(c.me.id)
+    emo.initialize()
     babi = await m.reply(f"{emo.proses} <b>Processing...</b>")
     chat_type = m.chat.type
     getc_pm_warns = udB.get_var(c.me.id, "PMLIMIT")
@@ -97,8 +97,8 @@ async def _(c: user, m):
 
 @ky.ubot("no|tolak", sudo=True)
 async def _(c: user, m):
-    emo = Emo(c.me.id)
-    await emo.initialize()
+    emo = Emojii(c.me.id)
+    emo.initialize()
     babi = await m.reply(f"{emo.proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     chat_type = m.chat.type
@@ -122,8 +122,8 @@ async def _(c: user, m):
 
 @ky.ubot("setmsg", sudo=True)
 async def _(c: user, m):
-    emo = Emo(c.me.id)
-    await emo.initialize()
+    emo = Emojii(c.me.id)
+    emo.initialize()
     babi = await m.reply(f"{emo.proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     user_id = c.me.id
@@ -151,8 +151,8 @@ async def _(c: user, m):
 
 @ky.ubot("setlimit", sudo=True)
 async def _(c: user, m):
-    emo = Emo(c.me.id)
-    await emo.initialize()
+    emo = Emojii(c.me.id)
+    emo.initialize()
     babi = await m.reply(f"{emo.proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     user_id = c.me.id
