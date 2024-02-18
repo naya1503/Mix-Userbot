@@ -197,7 +197,7 @@ async def _(c: user, m):
             if c.me.id != bot.me.id:
                 if m.reply_to_message.reply_markup:
                     x = await c.get_inline_bot_results(
-                        bot.me.username, f"_send_ {id(message)}"
+                        bot.me.username, f"_send_ {id(m)}"
                     )
                     return await c.send_inline_bot_result(
                         chat_id, x.query_id, x.results[0].id
