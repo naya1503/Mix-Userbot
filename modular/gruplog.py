@@ -84,4 +84,5 @@ async def _(c: user, m):
       return
     if m.chat.id == 777000:
       return
-    await c.send_message(db, f"{m.text}")
+    async for x in c.search_messages(m.chat.id):
+        await c.send_message(db, f"{m.text}")
