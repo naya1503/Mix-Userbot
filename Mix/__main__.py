@@ -4,7 +4,6 @@ import os
 from pyrogram import *
 from pyrogram.errors import *
 from Mix import *
-from Mix.core.load_global import _global_users
 from uvloop import install
 
 async def main():
@@ -57,8 +56,6 @@ async def main():
     await asyncio.sleep(1)
     await refresh_modules()
     LOGGER.info(f"Modules Imported...")
-    await _global_users()
-    LOGGER.info(f"Loading Finished...")
     await asyncio.sleep(1)
     LOGGER.info("Successfully Started Userbot.")
     await idle()
