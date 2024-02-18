@@ -34,6 +34,11 @@ __help__ = """
 """
 
 from Mix import *
+import asyncio
+from gc import get_objects
+
+
+from pyrogram.errors import *
 
 
 @ky.ubot("gcast", sudo=True)
