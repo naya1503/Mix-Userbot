@@ -259,4 +259,4 @@ async def send_inline(client, inline_query):
             results=hasil,
         )
     except Exception as e:
-        LOGGER("Error:", str(e))
+        LOGGER.info("Error:", str(e))
