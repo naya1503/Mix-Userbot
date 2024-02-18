@@ -63,4 +63,4 @@ async def main():
 
 if __name__ == "__main__":
     install()
-    loop.run_until_complete(main())
+    event_loop.run_until_complete(main())
