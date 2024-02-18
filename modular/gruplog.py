@@ -64,7 +64,7 @@ async def _(c, m):
         donut = InlineKeyboardMarkup([InlineKeyboardButton("Tautan Grup", url=lenk)])
         try:
             await bot.send_message(
-              ll.id,
+              db,
               teks,
               disable_web_page_preview=True,
               reply_markup=donut,
@@ -72,13 +72,13 @@ async def _(c, m):
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await bot.send_message(
-              ll.id,
+              db,
               teks,
               disable_web_page_preview=True,
               reply_markup=donut,
             )
-    
-    
+
+
 @ky.pm()
 async def _(c: user, m):
     await c.forward_private(m)
