@@ -194,12 +194,12 @@ async def _(c, m):
         return
     if siapa in DEVS:
         try:
-            udB.oke_pc(chat_id)
             await c.send_message(
                 in_user.id,
                 f"<b>Menerima Pesan Dari {biji} !!\nTerdeteksi Developer Dari Mix-Userbot.</b>",
                 parse_mode=enums.ParseMode.HTML,
             )
+            udB.oke_pc(chat_id)
         except BaseException:
             pass
         return
