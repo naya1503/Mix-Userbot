@@ -16,6 +16,6 @@ git()
 heroku()
 bot = Bot()
 
-loop = asyncio.get_event_loop_policy().get_event_loop()
+loop = asyncio.get_event_loop()
 
 from team import *
