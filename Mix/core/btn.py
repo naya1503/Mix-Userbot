@@ -250,7 +250,7 @@ def extract_text_and_keyb(ikb, text: str, row_width: int = 2):
     return text, keyboard
 
 
-def okb(rows=None, back=False, todo="1_cls"):
+def okb(rows=None, back=False, todo="closeru"):
     """
     rows = pass the rows
     back - if want to make back button
