@@ -21,32 +21,42 @@ from team import *
 
 emoji = user.Emojii()
 
+
 def a():
     return emoji["ping"]()
-    
+
+
 def b():
     return emoji["pong"]()
-    
+
+
 def c():
     return emoji["proses"]()
-    
+
+
 def d():
     return emoji["sukses"]()
-    
+
+
 def e():
     return emoji["gagal"]()
-    
+
+
 def f():
     return emoji["profil"]()
-    
+
+
 def g():
     return emoji["alive"]()
-    
+
+
 def h():
     return emoji["warn"]()
-    
+
+
 def i():
     return emoji["block"]()
+
 
 ping = a()
 pong = b()
