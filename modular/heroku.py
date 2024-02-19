@@ -52,7 +52,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 @ky.ubot("getlog", sudo=True)
-async def _(c, m):
+async def _(c: user,m):
 
     try:
         if on_heroku():
@@ -77,17 +77,17 @@ async def _(c, m):
                 return await m.reply_text(link)
             else:
                 return await m.reply_text(
-                    f"{gagal} Anda hanya bisa mendapatkan log dari Heroku."
+                    f"{c.gagal} Anda hanya bisa mendapatkan log dari Heroku."
                 )
     except Exception as e:
         print(e)
-        await m.reply_text(f"{gagal} Anda hanya bisa mendapatkan log dari Heroku")
+        await m.reply_text(f"{c.gagal} Anda hanya bisa mendapatkan log dari Heroku")
 
 
 @ky.ubot("getvar", sudo=True)
-async def _(c, m):
+async def _(c: user,m):
 
-    usage = f"{gagal} Usage command : `getvar variabel`."
+    usage = f"{c.gagal} Usage command : `getvar variabel`."
     if len(m.command) != 2:
         return await m.reply_text(usage)
     check_var = m.text.split(None, 2)[1]
@@ -98,25 +98,25 @@ async def _(c, m):
         heroku_config = haha.config()
         if check_var in heroku_config:
             return await m.reply_text(
-                f"{sukses} **{check_var}:** `{heroku_config[check_var]}`"
+                f"{c.sukses} **{check_var}:** `{heroku_config[check_var]}`"
             )
         else:
-            return await m.reply_text(f"{gagal} Tidak dapat menemukan var seperti itu.")
+            return await m.reply_text(f"{c.gagal} Tidak dapat menemukan var seperti itu.")
     else:
         path = dotenv.find_dotenv()
         if not path:
-            return await m.reply_text(f"{gagal} env file tidak ditemukan.")
+            return await m.reply_text(f"{c.gagal} env file tidak ditemukan.")
         output = dotenv.get_key(path, check_var)
         if not output:
-            await m.reply_text(f"{gagal} Tidak dapat menemukan var seperti itu.")
+            await m.reply_text(f"{c.gagal} Tidak dapat menemukan var seperti itu.")
         else:
-            return await m.reply_text(f"{sukses} **{check_var}:** `{str(output)}`")
+            return await m.reply_text(f"{c.sukses} **{check_var}:** `{str(output)}`")
 
 
 @ky.ubot("delvar", sudo=True)
-async def _(c, m):
+async def _(c: user,m):
 
-    usage = f"{gagal} Usage command : `delvar` [variabel]."
+    usage = f"{c.gagal} Usage command : `delvar` [variabel]."
     if len(m.command) != 2:
         return await m.reply_text(usage)
     check_var = m.text.split(None, 2)[1]
@@ -126,26 +126,26 @@ async def _(c, m):
             haha = Heroku.app(heroku_app_name)
         heroku_config = haha.config()
         if check_var in heroku_config:
-            await m.reply_text(f"{sukses} {check_var} Dihapus.")
+            await m.reply_text(f"{c.sukses} {check_var} Dihapus.")
             del heroku_config[check_var]
         else:
-            return await m.reply_text(f"{gagal} Tidak dapat menemukan var seperti itu.")
+            return await m.reply_text(f"{c.gagal} Tidak dapat menemukan var seperti itu.")
     else:
         path = dotenv.find_dotenv()
         if not path:
-            return await m.reply_text(f"{gagal} env file tidak ditemukan.")
+            return await m.reply_text(f"{c.gagal} env file tidak ditemukan.")
         output = dotenv.unset_key(path, check_var)
         if not output[0]:
-            await m.reply_text(f"{gagal} Tidak dapat menemukan var seperti itu.")
+            await m.reply_text(f"{c.gagal} Tidak dapat menemukan var seperti itu.")
         else:
-            await m.reply_text(f"{sukses} {check_var} Dihapus.")
+            await m.reply_text(f"{c.sukses} {check_var} Dihapus.")
             os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
 @ky.ubot("setvar", sudo=True)
-async def _(c, m):
+async def _(c: user,m):
 
-    usage = f"{gagal} **Penggunaan:**\n`setvar` [variabel] [value]"
+    usage = f"{c.gagal} **Penggunaan:**\n`setvar` [variabel] [value]"
     if len(m.command) < 3:
         return await m.reply_text(usage)
     to_set = m.text.split(None, 2)[1].strip()
@@ -156,24 +156,24 @@ async def _(c, m):
             haha = Heroku.app(heroku_app_name)
         heroku_config = haha.config()
         if to_set in heroku_config:
-            await m.reply_text(f"{sukses} {to_set} telah berhasil diperbarui")
+            await m.reply_text(f"{c.sukses} {to_set} telah berhasil diperbarui")
         else:
-            await m.reply_text(f"{sukses} {to_set} telah berhasil ditambahkan")
+            await m.reply_text(f"{c.sukses} {to_set} telah berhasil ditambahkan")
         heroku_config[to_set] = value
     else:
         path = dotenv.find_dotenv()
         if not path:
-            return await m.reply_text(f"{gagal} env file tidak ditemukan.")
+            return await m.reply_text(f"{c.gagal} env file tidak ditemukan.")
         dotenv.set_key(path, to_set, value)
         if dotenv.get_key(path, to_set):
-            await m.reply_text(f"{sukses} {to_set} telah berhasil diperbarui")
+            await m.reply_text(f"{c.sukses} {to_set} telah berhasil diperbarui")
         else:
-            await m.reply_text(f"{sukses} {to_set} telah berhasil ditambahkan")
+            await m.reply_text(f"{c.sukses} {to_set} telah berhasil ditambahkan")
         os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
 @ky.ubot("usage", sudo=True)
-async def _(c, m):
+async def _(c: user,m):
 
     ### Credits CatUserbot
     if on_heroku():
@@ -181,8 +181,8 @@ async def _(c, m):
             hehe = heroku3.from_key(heroku_api)
             hehe.app(heroku_app_name)
     else:
-        return await m.reply_text(f"{gagal} Hanya untuk Heroku.")
-    dyno = await m.reply_text(f"{proses} Memeriksa Penggunaan Heroku. Mohon Tunggu..")
+        return await m.reply_text(f"{c.gagal} Hanya untuk Heroku.")
+    dyno = await m.reply_text(f"{c.proses} Memeriksa Penggunaan Heroku. Mohon Tunggu..")
     Heroku = heroku3.from_key(heroku_api)
     account_id = Heroku.account().id
     useragent = (
@@ -220,31 +220,31 @@ async def _(c, m):
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
     text = f"""
-{sukses} **DYNO USAGE**
+{c.sukses} **DYNO USAGE**
 
-{sukses} <u>Usage:</u>
+{c.sukses} <u>Usage:</u>
 **Total Used: `{AppHours}h`  `{AppMinutes}m` [`{AppPercentage}%`**]
 
-{sukses} <u>Remaining Quota:</u>
+{c.sukses} <u>Remaining Quota:</u>
 **Total Left: `{hours}h`  `{minutes}m`  [`{percentage}%`**]"""
     return await dyno.edit(text)
 
 
 @ky.ubot("update", sudo=True)
 @ky.devs("diupdate")
-async def _(c, m):
+async def _(c: user,m):
 
     if await in_heroku():
         if heroku_api and heroku_app_name:
             hehe = heroku3.from_key(heroku_api)
             hehe.app(heroku_app_name)
-    jj = await m.reply_text(f"{proses} Memeriksa pembaruan yang tersedia...")
+    jj = await m.reply_text(f"{c.proses} Memeriksa pembaruan yang tersedia...")
     try:
         repo = Repo()
     except GitCommandError:
-        return await jj.edit(f"{gagal} Kesalahan Perintah Git")
+        return await jj.edit(f"{c.gagal} Kesalahan Perintah Git")
     except InvalidGitRepositoryError:
-        return await jj.edit(f"{gagal} Repositori Git Tidak Valid")
+        return await jj.edit(f"{c.gagal} Repositori Git Tidak Valid")
     to_exc = f"git fetch origin {upstream_branch} &> /dev/null"
     os.system(to_exc)
     await asyncio.sleep(7)
@@ -300,11 +300,11 @@ async def _(c, m):
 
 
 @ky.ubot("restart", sudo=True)
-async def _(c, m):
+async def _(c: user,m):
 
-    jj = await m.reply_text(f"{proses} Restarting....")
+    jj = await m.reply_text(f"{c.proses} Restarting....")
     await jj.edit(
-        f"{sukses} Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
+        f"{c.sukses} Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
     )
     os.system("git pull")
     os.execl(sys.executable, sys.executable, "-m", "Mix")
