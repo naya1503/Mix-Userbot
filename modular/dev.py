@@ -153,8 +153,9 @@ def get_size(bytes, suffix="B"):
 
 @ky.ubot("host", sudo=True)
 async def _(c: user, m):
-
-    xx = await m.reply(f"{c.proses} Processing...")
+    em = Emojik()
+    em.initialize()
+    xx = await m.reply(f"{em.proses} Processing...")
     uname = platform.uname()
     softw = "Informasi Sistem\n"
     softw += f"Sistem   : {uname.system}\n"
@@ -245,8 +246,9 @@ async def generate_sysinfo(workdir):
 
 @ky.ubot("stats", sudo=True)
 async def _(c: user, m):
-
+    em = Emojik()
+    em.initialize()
     response = await generate_sysinfo(c.workdir)
     await m.reply(
-        f"{c.proses} # {user.me.first_name}\nStats : Total Usage\n" + response,
+        f"{em.proses} # {user.me.first_name}\nStats : Total Usage\n" + response,
     )
