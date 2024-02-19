@@ -805,18 +805,12 @@ async def _(_, cq):
 
 @ky.callback("^1_cls")
 async def _(_, cq):
-    if not cq.from_user or cq.from_user.id != int(cq.data.split()[1]):
-        return await cq.answer(
+    unPacked = unpackInlineMessage(cq.inline_message_id)
+    if cq.from_user.id == int(cq.data.split()[1]):
+        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
+    else:
+        await cq.answer(
             f"Jangan Di Pencet Anjeng.",
             True,
         )
-    unPacked = unpackInlineMessage(cq.inline_message_id)
-    if cq.from_user.id == int(cq.data.split()[1]):
-        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
-
-
-@ky.callback("closeru")
-async def _(_, cq):
-    unPacked = unpackInlineMessage(cq.inline_message_id)
-    if cq.from_user.id == int(cq.data.split()[1]):
-        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
+        return
