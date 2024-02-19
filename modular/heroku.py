@@ -52,7 +52,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 @ky.ubot("getlog", sudo=True)
-async def _(c: user,m):
+async def _(c: user, m):
 
     try:
         if on_heroku():
@@ -85,7 +85,7 @@ async def _(c: user,m):
 
 
 @ky.ubot("getvar", sudo=True)
-async def _(c: user,m):
+async def _(c: user, m):
 
     usage = f"{c.gagal} Usage command : `getvar variabel`."
     if len(m.command) != 2:
@@ -114,7 +114,7 @@ async def _(c: user,m):
 
 
 @ky.ubot("delvar", sudo=True)
-async def _(c: user,m):
+async def _(c: user, m):
 
     usage = f"{c.gagal} Usage command : `delvar` [variabel]."
     if len(m.command) != 2:
@@ -143,7 +143,7 @@ async def _(c: user,m):
 
 
 @ky.ubot("setvar", sudo=True)
-async def _(c: user,m):
+async def _(c: user, m):
 
     usage = f"{c.gagal} **Penggunaan:**\n`setvar` [variabel] [value]"
     if len(m.command) < 3:
@@ -173,7 +173,7 @@ async def _(c: user,m):
 
 
 @ky.ubot("usage", sudo=True)
-async def _(c: user,m):
+async def _(c: user, m):
 
     ### Credits CatUserbot
     if on_heroku():
@@ -232,7 +232,7 @@ async def _(c: user,m):
 
 @ky.ubot("update", sudo=True)
 @ky.devs("diupdate")
-async def _(c: user,m):
+async def _(c: user, m):
 
     if await in_heroku():
         if heroku_api and heroku_app_name:
@@ -300,7 +300,7 @@ async def _(c: user,m):
 
 
 @ky.ubot("restart", sudo=True)
-async def _(c: user,m):
+async def _(c: user, m):
 
     jj = await m.reply_text(f"{c.proses} Restarting....")
     await jj.edit(
