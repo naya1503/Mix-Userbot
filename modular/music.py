@@ -813,3 +813,9 @@ async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
     if cq.from_user.id == int(cq.data.split()[1]):
         await user.delete_messages(unPacked.chat_id, unPacked.message_id)
+
+@ky.callback("closeru")
+async def _(_, cq):
+    unPacked = unpackInlineMessage(cq.inline_message_id)
+    if cq.from_user.id == int(cq.data.split()[1]):
+        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
