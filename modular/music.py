@@ -1,4 +1,3 @@
-
 from asyncio import QueueEmpty
 from gc import get_objects
 from random import randint
@@ -11,10 +10,10 @@ from pytgcalls.exceptions import NoActiveGroupCall, NotInGroupCallError
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import (HighQualityAudio,
                                                   HighQualityVideo)
-from Mix.core.pytgcalls import queues
 from yt_dlp import YoutubeDL
 
 from Mix import *
+from Mix.core.pytgcalls import queues
 
 __modles__ = "Music"
 __help__ = """
@@ -38,6 +37,7 @@ daftar_join = []
 gc_id = []
 
 turun_dewek = False
+
 
 @ky.ubot("play", sudo=True)
 async def _(c, m):
