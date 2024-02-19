@@ -21,7 +21,7 @@ async def main():
         await asyncio.sleep(1)
         await refresh_cache()
         await asyncio.sleep(1)
-        await load_emo(user)
+        await load_emo(user.me.id)
         await asyncio.sleep(1)
     except SessionExpired:
         LOGGER.info("Session Expired . Create New Session")
