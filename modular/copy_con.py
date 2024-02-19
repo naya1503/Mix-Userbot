@@ -1,3 +1,11 @@
+################################################################
+"""
+ Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
+ 
+ @ CREDIT : NAN-DEV
+"""
+################################################################
+
 import asyncio
 import os
 import time
@@ -24,6 +32,8 @@ __HELP__ = """
 • Perintah : <code>{0}cancel_copy</code>
 • Penjelasan : Batalkan colong konten.
   """
+
+#### TomiXtomi
 
 async def gas_download(g, c: user, inf, m):
     msg = m.reply_to_message or m
