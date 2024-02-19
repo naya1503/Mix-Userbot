@@ -1,3 +1,4 @@
+
 from asyncio import QueueEmpty
 from gc import get_objects
 from random import randint
@@ -10,10 +11,10 @@ from pytgcalls.exceptions import NoActiveGroupCall, NotInGroupCallError
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import (HighQualityAudio,
                                                   HighQualityVideo)
+from Mix.core.pytgcalls import queues
 from yt_dlp import YoutubeDL
 
 from Mix import *
-from Mix.core.pytgcalls import queues
 
 __modles__ = "Music"
 __help__ = """
@@ -34,8 +35,9 @@ Help Command Music
 
 daftar_join = []
 
-turun_dewek = False
+gc_id = []
 
+turun_dewek = False
 
 @ky.ubot("play", sudo=True)
 async def _(c, m):
@@ -45,9 +47,9 @@ async def _(c, m):
         else:
             chat_id = int(m.text.split()[1])
         if m.reply_to_message.audio or m.reply_to_message.voice:
-            if chat_id in daftar_join:
+            if chat_id in gc_id:
                 return await m.reply("<b>Ada proses yang sedang berlangsung...</b>")
-            daftar_join.append(chat_id)
+            gc_id.append(chat_id)
             _play_ = await m.reply_to_message.reply("<b>❏ Processing Audio...</b>")
             dl = await c.download_media(m.reply_to_message)
             link = m.reply_to_message.link
@@ -59,7 +61,7 @@ async def _(c, m):
                     disable_web_page_preview=True,
                 )
                 await m.delete()
-                daftar_join.remove(chat_id)
+                gc_id.remove(chat_id)
             else:
                 await c.call_py.join_group_call(
                     chat_id,
@@ -71,11 +73,11 @@ async def _(c, m):
                     disable_web_page_preview=True,
                 )
                 await m.delete()
-                daftar_join.remove(chat_id)
+                gc_id.remove(chat_id)
         if m.reply_to_message.video or m.reply_to_message.document:
-            if chat_id in daftar_join:
+            if chat_id in gc_id:
                 return await m.reply("<b>Ada proses yang sedang berlangsung...</b>")
-            daftar_join.append(chat_id)
+            gc_id.append(chat_id)
             _play_ = await m.reply_to_message.reply("<b>❏ Processing Video...</b>")
             dl = await c.download_media(m.reply_to_message)
             link = m.reply_to_message.link
@@ -90,7 +92,7 @@ async def _(c, m):
                     disable_web_page_preview=True,
                 )
                 await m.delete()
-                daftar_join.remove(chat_id)
+                gc_id.remove(chat_id)
             else:
                 await c.call_py.join_group_call(
                     chat_id,
@@ -102,7 +104,7 @@ async def _(c, m):
                     disable_web_page_preview=True,
                 )
                 await m.delete()
-                daftar_join.remove(chat_id)
+                gc_id.remove(chat_id)
     else:
         if len(m.text.split()) < 2:
             return await m.reply_text(
@@ -114,19 +116,19 @@ async def _(c, m):
         else:
             query = f"_x {id(m)}"
             chat_id = int(m.text.split()[1])
-        if chat_id in daftar_join:
+        if chat_id in gc_id:
             return await m.reply("<b>Ada proses yang sedang berlangsung...</b>")
-        daftar_join.append(chat_id)
+        gc_id.append(chat_id)
         infomsg = await m.reply_text("<b>❏ Searching...</b>")
         x = await c.get_inline_bot_results(bot.me.username, query)
         try:
             await m.reply_inline_bot_result(x.query_id, x.results[0].id)
-            daftar_join.remove(chat_id)
+            gc_id.remove(chat_id)
             await infomsg.delete()
             await m.delete()
         except Exception as error:
             await m.reply(error)
-            daftar_join.remove(chat_id)
+            gc_id.remove(chat_id)
 
 
 @ky.ubot("end", sudo=True)
