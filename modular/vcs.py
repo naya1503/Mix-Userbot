@@ -90,10 +90,10 @@ async def _(c, m):
 
 
 @ky.ubot("joinvc", sudo=True)
-async def _(c, m):
+async def _(c: user, m):
     emo = Emojii(c.me.id)
     emo.initialize()
-    global turun_dewek
+    #global turun_dewek
     ky = await m.reply(f"{emo.proses} <b>Processing....</b>")
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
@@ -101,9 +101,9 @@ async def _(c, m):
     if chat_id:
         file = "Mix/core/vc.mp3"
         try:
-            daftar_join.append(chat_id)
-            if turun_dewek: turun_dewek = False
-            await user.call_py.join_group_call(
+            #daftar_join.append(chat_id)
+            #if turun_dewek: turun_dewek = False
+            await c.call_py.join_group_call(
                 chat_id,
                 InputStream(
                     InputAudioStream(
@@ -123,7 +123,7 @@ async def _(c, m):
 
 
 @ky.ubot("leavevc", sudo=True)
-async def _(c, m):
+async def _(c: user, m):
     emo = Emojii(c.me.id)
     emo.initialize()
     global turun_dewek
@@ -135,7 +135,7 @@ async def _(c, m):
         try:
             #daftar_join.remove(chat_id)
             await user.call_py.leave_group_call(chat_id)
-            turun_dewek = True
+            #turun_dewek = True
             await ky.edit(
                 f"{emo.sukses} <b>Berhasil Meninggalkan Voice Chat</b>\n <b>Chat :</b><code>{m.chat.title}</code>"
             )
