@@ -8,7 +8,6 @@
 
 import os
 import platform
-
 import sys
 import traceback
 from datetime import datetime
@@ -154,8 +153,7 @@ def get_size(bytes, suffix="B"):
 
 @ky.ubot("host", sudo=True)
 async def _(c: user, m):
-    
-    
+
     xx = await m.reply(f"{proses} Processing...")
     uname = platform.uname()
     softw = "Informasi Sistem\n"
@@ -247,8 +245,7 @@ async def generate_sysinfo(workdir):
 
 @ky.ubot("stats", sudo=True)
 async def _(c: user, m):
-    
-    
+
     response = await generate_sysinfo(c.workdir)
     await m.reply(
         f"{proses} # {user.me.first_name}\nStats : Total Usage\n" + response,

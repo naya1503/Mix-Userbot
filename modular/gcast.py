@@ -33,19 +33,19 @@ __help__ = """
 • Penjelasan : Untuk mengirim pesan ke pengguna/grup/channel.
 """
 
-from Mix import *
 import asyncio
 from gc import get_objects
-from telegraph import upload_file
 
 from pyrogram.errors import *
 from pyrogram.types import *
+from telegraph import upload_file
+
+from Mix import *
 
 
 @ky.ubot("gcast", sudo=True)
 async def _(c: user, m):
-    
-    
+
     msg = await m.reply(f"{proses} Processing...")
     send = c.get_m(m)
     if not send:
@@ -81,8 +81,7 @@ async def _(c: user, m):
 
 @ky.ubot("gucast", sudo=True)
 async def _(c: user, m):
-    
-    
+
     msg = await m.reply(f"{proses} Processing...")
     send = c.get_m(m)
     if not send:
@@ -116,8 +115,7 @@ async def _(c: user, m):
 
 @ky.ubot("addbl", sudo=True)
 async def _(c: user, m):
-    
-    
+
     pp = await m.reply(f"{proses} Processing...")
     chat_id = m.chat.id
     blacklist = udB.get_chat(c.me.id)
@@ -134,8 +132,7 @@ async def _(c: user, m):
 
 @ky.ubot("delbl", sudo=True)
 async def _(c: user, m):
-    
-    
+
     pp = await m.reply(f"{proses} <b>Processing...</b>")
     try:
         if not c.get_arg(m):
@@ -160,13 +157,10 @@ async def _(c: user, m):
 
 @ky.ubot("listbl", sudo=True)
 async def _(c: user, m):
-    
-    
+
     pp = await m.reply(f"{proses} <b>Processing...</b>")
 
-    msg = (
-        f"{sukses} <b>• Total blacklist {int( len(udB.get_chat(c.me.id)))}</b>\n\n"
-    )
+    msg = f"{sukses} <b>• Total blacklist {int( len(udB.get_chat(c.me.id)))}</b>\n\n"
     for x in udB.get_chat(c.me.id):
         try:
             get = await c.get_chat(x)
@@ -179,8 +173,7 @@ async def _(c: user, m):
 
 @ky.ubot("rmall", sudo=True)
 async def _(c: user, m):
-    
-    
+
     msg = await m.reply(f"{proses} <b>Processing....</b>")
     get_bls = udB.get_chat(c.me.id)
     if len(get_bls) == 0:
@@ -189,7 +182,9 @@ async def _(c: user, m):
         udB.remove_chat(c.me.id, x)
     await msg.edit(f"{sukses} <b>Semua daftar hitam telah berhasil dihapus.</b>")
 
+
 # @Tomi
+
 
 @ky.ubot("send", sudo=True)
 async def _(c: user, m):
@@ -252,7 +247,9 @@ async def send_inline(c, iq):
                 InlineQueryResultArticle(
                     title="kon",
                     reply_markup=m.reply_to_message.reply_markup,
-                    input_message_content=InputTextMessageContent(m.reply_to_message.text),
+                    input_message_content=InputTextMessageContent(
+                        m.reply_to_message.text
+                    ),
                 )
             ]
         await c.answer_inline_query(

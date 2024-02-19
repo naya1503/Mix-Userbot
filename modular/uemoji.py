@@ -32,10 +32,10 @@ __help__ = """
 <code>{0}emoji alive ⭐</code>
 """
 
+
 @ky.ubot("emoid", sudo=True)
 async def _(c: user, m):
-    
-    
+
     xx = await m.edit(f"{proses} <b>Processing...</b>")
     emoji = m.reply_to_message
     if emoji.entities:
@@ -51,8 +51,7 @@ async def _(c: user, m):
 
 @ky.ubot("emoji", sudo=True)
 async def _(c: user, m):
-    
-    
+
     gua = c.me.is_premium
     jing = await m.reply(f"{proses} <b>Processing...</b>")
     if len(m.command) < 3:
@@ -161,21 +160,19 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_alive", emoji_id)
                     await jing.edit(
-                        f"{sukses} <b>Emoji alive diset ke :</b> <emoji id={emoji_id}>{value}</emoji>")
-                    
+                        f"{sukses} <b>Emoji alive diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                    )
+
         elif gua == False:
             udB.set_var(c.me.id, "emo_alive", value)
             await jing.edit(f"{sukses} <b>Emoji alive diset ke :</b> {value}")
     else:
-        await jing.edit(
-            f"{gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>"
-        )
+        await jing.edit(f"{gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
 
 
 @ky.ubot("getemo", sudo=True)
 async def _(c: user, m):
-    
-    
+
     xx = await m.reply(f"{proses} <b>Processing...</b>")
     await xx.edit(
         f"{sukses} <b>๏ Emoji Yang Digunakan :</b>\n\n Ping : {ping}\n Pong : {pong}\n Proses : {proses}\n Sukses : {sukses}\n Gagal : {gagal}\n Profil : {profil}\n Alive : {alive}"

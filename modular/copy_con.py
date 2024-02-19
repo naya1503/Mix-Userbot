@@ -15,7 +15,7 @@ from time import time
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import bot, user, progress, Emojii, ky
+from Mix import bot, ky, progress, user
 
 COPY_ID = {}
 
@@ -34,6 +34,7 @@ __HELP__ = """
   """
 
 #### TomiXtomi
+
 
 async def gas_download(g, c: user, inf, m):
     msg = m.reply_to_message or m
@@ -190,9 +191,7 @@ async def _(c, m):
 @ky.ubot("copy", sudo=True)
 async def _(c: user, m):
     global nyolong_jalan
-    
-    
-    
+
     msg = m.reply_to_message or m
     inf = await m.reply(f"{proses} <b>Processing...</b>")
     link = c.get_arg(m)
@@ -239,6 +238,7 @@ async def _(c: user, m):
     else:
         await inf.edit(f"{sukses} Nyolong dihentikan.")
 
+
 @ky.inline("^get_msg")
 async def _(c, iq):
     await c.answer_inline_query(
@@ -266,6 +266,7 @@ async def _(c, iq):
         ],
     )
 
+
 @ky.callback("copymsg_")
 async def _(c, cq):
     global nyolong_jalan
@@ -274,9 +275,7 @@ async def _(c, cq):
         m = [obj for obj in get_objects() if id(obj) == q][0]
         await m._c.unblock_user(bot.me.username)
         await cq.edit_message_text("<b>Tunggu Sebentar</b>")
-        copy = await m._c.send_message(
-            bot.me.username, f"/copy {m.text.split()[1]}"
-        )
+        copy = await m._c.send_message(bot.me.username, f"/copy {m.text.split()[1]}")
         msg = m.reply_to_message or m
         await asyncio.sleep(1.5)
         await copy.delete()
@@ -295,9 +294,7 @@ async def _(c, cq):
 @ky.ubot("cancel_copy", sudo=True)
 async def _(c, m):
     global nyolong_jalan
-    
-    
-    
+
     if not nyolong_jalan:
         return await m.reply_text(
             f"{gagal} <b>Tidak ada penyolongan konten berlangsung.</b>"

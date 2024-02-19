@@ -54,8 +54,7 @@ LIMIT = 5
 
 @ky.ubot("ok|setuju", sudo=True)
 async def _(c: user, m):
-    
-    
+
     babi = await m.reply(f"{proses} <b>Processing...</b>")
     chat_type = m.chat.type
     getc_pm_warns = udB.get_var(c.me.id, "PMLIMIT")
@@ -92,10 +91,10 @@ async def _(c: user, m):
     )
     return
 
+
 @ky.ubot("no|tolak", sudo=True)
 async def _(c: user, m):
-    
-    
+
     babi = await m.reply(f"{proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     chat_type = m.chat.type
@@ -114,10 +113,10 @@ async def _(c: user, m):
     )
     return
 
+
 @ky.ubot("setmsg", sudo=True)
 async def _(c: user, m):
-    
-    
+
     babi = await m.reply(f"{proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     user_id = c.me.id
@@ -143,10 +142,10 @@ async def _(c: user, m):
     )
     return
 
+
 @ky.ubot("setlimit", sudo=True)
 async def _(c: user, m):
-    
-    
+
     babi = await m.reply(f"{proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     user_id = c.me.id
@@ -166,6 +165,7 @@ async def _(c: user, m):
     await babi.edit(
         f"{sukses} <b>Pesan Limit berhasil diatur menjadi : <code>{args_txt}</code>.</b>"
     )
+
 
 @ky.permit()
 async def _(c, m):
@@ -221,19 +221,15 @@ async def _(c, m):
                 reply_to_message_id=m.id,
             )
         except:
-            pass 
+            pass
     else:
         gmbr = udB.get_var(user_id, "PMPIC")
         if gmbr:
-            kok_poto = (
-                m.reply_video if gmbr.endswith(".mp4") else m.reply_photo
-            )
+            kok_poto = m.reply_video if gmbr.endswith(".mp4") else m.reply_photo
             if in_user.id in flood:
                 try:
                     if chat_id in flood2:
-                        await c.delete_messages(
-                            chat_id, message_ids=flood2[chat_id]
-                        )
+                        await c.delete_messages(chat_id, message_ids=flood2[chat_id])
                 except BaseException:
                     pass
                 flood[in_user.id] += 1
@@ -269,9 +265,7 @@ async def _(c, m):
             if in_user.id in flood:
                 try:
                     if chat_id in flood2:
-                        await c.delete_messages(
-                            chat_id, message_ids=flood2[chat_id]
-                        )
+                        await c.delete_messages(chat_id, message_ids=flood2[chat_id])
                 except BaseException:
                     pass
                 flood[in_user.id] += 1
@@ -301,6 +295,7 @@ async def _(c, m):
                     ),
                 )
             flood2[chat_id] = rplied_msg.id
+
 
 @ky.inline("^ambil_tombolpc")
 async def _(c, iq):
@@ -335,9 +330,31 @@ async def _(c, iq):
         lah = udB.get_var(gw, "PMPIC")
         if lah:
             filem = (
-                InlineQueryResultVideo if lah.endswith(".mp4") else InlineQueryResultPhoto)
-            url_ling = ({"video_url": lah, "thumb_url": lah} if lah.endswith(".mp4") else {"photo_url": lah})
-            duar = [filem(**url_ling, title="PIC Buttons !", caption=kiki, reply_markup=InlineKeyboardMarkup(button))]
+                InlineQueryResultVideo
+                if lah.endswith(".mp4")
+                else InlineQueryResultPhoto
+            )
+            url_ling = (
+                {"video_url": lah, "thumb_url": lah}
+                if lah.endswith(".mp4")
+                else {"photo_url": lah}
+            )
+            duar = [
+                filem(
+                    **url_ling,
+                    title="PIC Buttons !",
+                    caption=kiki,
+                    reply_markup=InlineKeyboardMarkup(button),
+                )
+            ]
         else:
-             duar = [(InlineQueryResultArticle(title="Tombol PM!", input_message_content=InputTextMessageContent(kiki), reply_markup=InlineKeyboardMarkup(button)))]
+            duar = [
+                (
+                    InlineQueryResultArticle(
+                        title="Tombol PM!",
+                        input_message_content=InputTextMessageContent(kiki),
+                        reply_markup=InlineKeyboardMarkup(button),
+                    )
+                )
+            ]
         await c.answer_inline_query(iq.id, cache_time=0, results=duar)

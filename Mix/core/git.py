@@ -14,10 +14,9 @@ from typing import Tuple
 
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
+from team.nandev.class_log import LOGGER
 
 import config
-
-from team.nandev.class_log import LOGGER
 
 
 def install_req(cmd: str) -> Tuple[str, str, int, int]:
@@ -36,9 +35,7 @@ def install_req(cmd: str) -> Tuple[str, str, int, int]:
             process.pid,
         )
 
-    return asyncio.get_event_loop().run_until_complete(
-        install_requirements()
-    )
+    return asyncio.get_event_loop().run_until_complete(install_requirements())
 
 
 def git():
@@ -46,9 +43,7 @@ def git():
     if config.git_token:
         GIT_USERNAME = REPO_LINK.split("com/")[1].split("/")[0]
         TEMP_REPO = REPO_LINK.split("https://")[1]
-        upstream_repo = (
-            f"https://{GIT_USERNAME}:{config.git_token}@{TEMP_REPO}"
-        )
+        upstream_repo = f"https://{GIT_USERNAME}:{config.git_token}@{TEMP_REPO}"
     else:
         UPSTREAM_REPO = config.upstream_repo
     try:

@@ -31,18 +31,19 @@ __help__ = """
 
 
 import asyncio
+
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
+
 from Mix import *
 
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
 async def _(c: user, m):
-    
-    
+
     nyet, alasan = await c.extract_user_and_reason(m)
     xx = await m.reply(f"{proses} Processing...")
     try:
@@ -63,10 +64,7 @@ async def _(c: user, m):
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
-        mention = (
-            m.reply_to_message.sender_chat.title
-            if m.reply_to_message
-            else "Anon")
+        mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
         if org.id in gban_users:
             await xx.edit(f"{gagal} Pengguna sudah digban.")
@@ -75,7 +73,7 @@ async def _(c: user, m):
             await c.ban_chat_member(chat, org.id)
             bs += 1
             await asyncio.sleep(0.1)
-        
+
         except FloodWait as e:
             await asyncio.sleep(int(e.value))
             await c.ban_chat_member(chat, org.id)
@@ -90,11 +88,11 @@ async def _(c: user, m):
     await m.reply(mmg)
     await xx.delete()
 
+
 @ky.ubot("ungban", sudo=True)
 @ky.devs("cungban")
 async def _(c: user, m):
-    
-    
+
     nyet = await c.extract_user(m)
     xx = await m.reply(f"{proses} Processing...")
     org = await c.get_users(nyet)
@@ -108,10 +106,7 @@ async def _(c: user, m):
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
-        mention = (
-            m.reply_to_message.sender_chat.title
-            if m.reply_to_message
-            else "Anon")
+        mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
         if org.id not in gban_users:
             await xx.edit(f"{gagal} Pengguna belum digban.")
@@ -128,11 +123,11 @@ async def _(c: user, m):
     await m.reply(mmg)
     await xx.delete()
 
+
 @ky.ubot("gmute", sudo=True)
 @ky.devs("cgmute")
 async def _(c: user, m):
-    
-    
+
     nyet, alasan = await c.extract_user_and_reason(m)
     xx = await m.reply(f"{proses} Processing...")
     org = await c.get_users(nyet)
@@ -149,10 +144,7 @@ async def _(c: user, m):
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
-        mention = (
-            m.reply_to_message.sender_chat.title
-            if m.reply_to_message
-            else "Anon")
+        mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
         if org.id in gmute_users:
             await xx.edit(f"{gagal} Pengguna sudah digmute.")
@@ -170,13 +162,12 @@ async def _(c: user, m):
         mmg += f"{block} **Alasan: `{alasan}`**"
     await m.reply(mmg)
     await xx.delete()
-    
+
 
 @ky.ubot("ungmute", sudo=True)
 @ky.devs("cungmute")
 async def _(c: user, m):
-    
-    
+
     nyet = await c.extract_user(m)
     xx = await m.reply(f"{proses} Processing...")
     org = await c.get_users(nyet)
@@ -193,10 +184,7 @@ async def _(c: user, m):
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
-        mention = (
-            m.reply_to_message.sender_chat.title
-            if m.reply_to_message
-            else "Anon")
+        mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
         if org.id not in gmute_users:
             await xx.edit(f"{gagal} Pengguna belum pernah digmute.")
@@ -212,12 +200,11 @@ async def _(c: user, m):
     mmg = f"{warn} <b>Warning Global Ungmute\n\n{sukses} Berhasil: `{bs}` Chat\n{gagal} Gagal: `{gg}` Chat\n{profil} User: `{mention}`</b>\n"
     await m.reply(mmg)
     await xx.delete()
-    
-    
+
+
 @ky.ubot("gbanlist|listgban", sudo=True)
 async def _(c: user, m):
-    
-    
+
     gban_list = []
     msg = await m.reply(f"{proses} <b>Processing...</b>")
     gbanu = udB.get_list_from_var(c.me.id, "GBANNED", "USER")
@@ -227,24 +214,24 @@ async def _(c: user, m):
         try:
             org = await c.get_users(int(x))
             gban_list.append(
-                f"{profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>")
+                f"{profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>"
+            )
         except:
             continue
     if gban_list:
-       stak = (
+        stak = (
             f"{profil} <b>Daftar Pengguna:</b>\n"
             + "\n".join(gban_list)
-            + f"\n{sukses} <code>{len(gban_list)}</code>")
-       return await msg.edit(stak)
+            + f"\n{sukses} <code>{len(gban_list)}</code>"
+        )
+        return await msg.edit(stak)
     else:
         return await msg.edit(f"{gagal} <b>Eror</b>")
-        
-        
+
 
 @ky.ubot("gmutelist|listgmute", sudo=True)
 async def _(c: user, m):
-    
-    
+
     gmute_list = []
     msg = await m.reply(f"{proses} <b>Processing...</b>")
     gmute = udB.get_list_from_var(c.me.id, "GMUTE", "USER")
@@ -254,14 +241,16 @@ async def _(c: user, m):
         try:
             org = await c.get_users(int(x))
             gmute_list.append(
-                f"{profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>")
+                f"{profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>"
+            )
         except:
             continue
     if gmute_list:
-       stak = (
+        stak = (
             f"{profil} <b>Daftar Pengguna:</b>\n"
             + "\n".join(gmute_list)
-            + f"\n{sukses} <code>{len(gmute_list)}</code>")
-       return await msg.edit(stak)
+            + f"\n{sukses} <code>{len(gmute_list)}</code>"
+        )
+        return await msg.edit(stak)
     else:
         return await msg.edit(f"{gagal} <b>Eror</b>")

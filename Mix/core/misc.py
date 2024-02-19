@@ -9,18 +9,17 @@
 #
 
 import socket
-import time
-from aiohttp import ClientSession
+
 import heroku3
-from pyrogram import filters
+from aiohttp import ClientSession
+from team.nandev.class_log import LOGGER
 
 from config import *
-
-from team.nandev.class_log import LOGGER
 
 HAPP = None
 
 aiohttpsession = ClientSession()
+
 
 def on_heroku():
     return "heroku" in socket.getfqdn()

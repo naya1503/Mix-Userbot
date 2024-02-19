@@ -25,8 +25,7 @@ __help__ = """
 
 @ky.ubot("addsudo", sudo=True)
 async def _(c: user, m):
-    
-    
+
     msg = await m.reply(f"{proses} <b>Processing...</b>")
     user_id = await c.extract_user(m)
     if not user_id:
@@ -56,8 +55,7 @@ async def _(c: user, m):
 
 @ky.ubot("delsudo", sudo=True)
 async def _(c: user, m):
-    
-    
+
     msg = await m.reply(f"{proses} <b>Processing...</b>")
     user_id = await c.extract_user(m)
     if not user_id:
@@ -88,8 +86,7 @@ async def _(c: user, m):
 
 @ky.ubot("sudolist", sudo=True)
 async def _(c: user, m):
-    
-    
+
     msg = await m.reply(f"{proses} <b>Processing...</b>")
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
 

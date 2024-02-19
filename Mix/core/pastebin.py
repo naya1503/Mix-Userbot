@@ -41,8 +41,3 @@ async def paste(content: str):
     if not resp["success"]:
         return
     return BASE + resp["message"]
-
-
-
-
-

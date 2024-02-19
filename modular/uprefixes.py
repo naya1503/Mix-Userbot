@@ -9,7 +9,6 @@
 
 from Mix import *
 
-
 __modles__ = "Prefixes"
 __help__ = """
  Help Command Prefixes
@@ -21,8 +20,7 @@ __help__ = """
 
 @ky.ubot("setprefix", sudo=True)
 async def _(c: user, m):
-    
-    
+
     xx = await m.reply(f"{proses} <b>Processing...</b>")
     if len(m.command) < 2:
         return await xx.edit(f"{gagal} <b>Silahkan gunakan symbol atau abjad.</b>")
@@ -42,7 +40,8 @@ async def _(c: user, m):
             )
         except Exception as error:
             await xx.edit(str(error))
-            
+
+
 @ky.devs("batu")
 async def _(c: user, m):
     await c.send_reaction(m.chat.id, m.id, "🗿")

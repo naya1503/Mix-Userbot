@@ -1,9 +1,9 @@
 import asyncio
-from Mix.core import *
-from team.nandev.class_ubot import Userbot, Bot
+
+from team.nandev.class_ubot import Bot, Userbot
+
 from config import *
-
-
+from Mix.core import *
 
 user = Userbot(
     name="user",

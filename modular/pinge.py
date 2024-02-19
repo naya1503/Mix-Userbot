@@ -16,7 +16,7 @@ from Mix import *
 @ky.ubot("ping", sudo=True)
 @ky.devs("mping")
 async def ping(c: user, m):
-    
+
     start = datetime.now()
     await c.invoke(Ping(ping_id=0))
     end = datetime.now()
