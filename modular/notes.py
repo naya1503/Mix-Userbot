@@ -40,19 +40,21 @@ def kontol_siapa(xi, tipe):
 
 @ky.ubot("save", sudo=True)
 async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
     gua = c.me.id
     cek = m.reply_to_message
     note_name, text, data_type, content = get_note_type(m)
-    xx = await m.reply(f"{proses} <b>Processing...</b>")
+    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
     if not note_name:
         return await xx.edit(
-            f"{gagal} <b>Gunakan format :</b> <code>save</code> [nama catatan] [balas ke pesan]."
+            f"{em.gagal} <b>Gunakan format :</b> <code>save</code> [nama catatan] [balas ke pesan]."
         )
 
     if data_type == Types.TEXT:
         teks, _ = parse_button(text)
         if not teks:
-            return await xx.edit(f"{gagal} <b>Teks tidak dapat kosong.</b>")
+            return await xx.edit(f"{em.gagal} <b>Teks tidak dapat kosong.</b>")
         udB.save_note(c.me.id, note_name, text, data_type, content)
     elif data_type in [Types.PHOTO, Types.VIDEO]:
         teks, _ = parse_button(text)
@@ -64,24 +66,26 @@ async def _(c: user, m):
         udB.save_note(c.me.id, note_name, text, data_type, mmk)
         os.remove(xo)
     await xx.edit(
-        f"{sukses} <b>Catatan <code>{note_name}</code> berhasil disimpan.</b>"
+        f"{em.sukses} <b>Catatan <code>{note_name}</code> berhasil disimpan.</b>"
     )
 
 
 @ky.ubot("get", sudo=True)
 async def _(c: user, m):
-    xx = await m.reply(f"{proses} <b>Processing...</b>")
+    em = Emojik()
+    em.initialize()
+    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
     note = None
     if len(m.text.split()) >= 2:
         note = m.text.split()[1]
     else:
-        await xx.edit(f"{gagal} <b>Berikan nama catatan !</b>")
+        await xx.edit(f"{em.gagal} <b>Berikan nama catatan !</b>")
         return
 
     getnotes = udB.get_note(c.me.id, note)
     teks = None
     if not getnotes:
-        return await xx.edit(f"{gagal} <b>{note} tidak ada dalam catatan.</b>")
+        return await xx.edit(f"{em.gagal} <b>{note} tidak ada dalam catatan.</b>")
 
     if getnotes["type"] == Types.TEXT:
         teks, button = parse_button(getnotes.get("value"))
@@ -228,34 +232,38 @@ async def _(c: user, m):
 
 @ky.ubot("notes", sudo=True)
 async def _(c: user, m):
-    xx = await m.reply(f"{proses} <b>Processing...</b>")
+    em = Emojik()
+    em.initialize()
+    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
     getnotes = udB.get_all_notes(c.me.id)
     if not getnotes:
-        await xx.edit(f"{gagal} <b>Tidak ada catatan satupun!</b>")
+        await xx.edit(f"{em.gagal} <b>Tidak ada catatan satupun!</b>")
         return
-    rply = f"{alive} <b>Daftar Catatan:</b>\n"
+    rply = f"{em.alive} <b>Daftar Catatan:</b>\n"
     for x in getnotes:
         if len(rply) >= 1800:
             await xx.edit(rply)
-            rply = f"{alive} <b>Daftar Catatan:</b>\n"
-        rply += f"{sukses} <code>{x}</code>\n"
+            rply = f"{em.alive} <b>Daftar Catatan:</b>\n"
+        rply += f"{em.sukses} <code>{x}</code>\n"
 
     await xx.edit(rply)
 
 
 @ky.ubot("rm", sudo=True)
 async def _(c: user, m):
-    xx = await m.reply(f"{proses} <b>Processing...</b>")
+    em = Emojik()
+    em.initialize()
+    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
     if len(m.text.split()) <= 1:
-        return await xx.edit(f"{gagal} <b>Catatan apa yang perlu dihapus ?</b>")
+        return await xx.edit(f"{em.gagal} <b>Catatan apa yang perlu dihapus ?</b>")
 
     note = m.text.split()[1]
     getnote = udB.rm_note(c.me.id, note)
     if not getnote:
-        return await xx.edit(f"{gagal} <b>Tidak ada catatan!</b>")
+        return await xx.edit(f"{em.gagal} <b>Tidak ada catatan!</b>")
     else:
         return await xx.edit(
-            f"{sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
+            f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
         )
 
 
