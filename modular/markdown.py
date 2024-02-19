@@ -64,7 +64,7 @@ async def _(c, iq):
     )
 
 
-@ky.callback("^markd.")
+@ky.callback("markd.")
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
     kb = okb([[("Kembali", "bace.markd")]])
@@ -108,7 +108,7 @@ Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, A
         )
 
 
-@ky.callback("^bace.")
+@ky.callback("bace")
 async def _(c, cq):
     txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
     await cq.edit_message_text(text=txt, reply_markup=markdown_help())
