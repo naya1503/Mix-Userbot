@@ -102,7 +102,7 @@ async def _(c: user, m):
         return
     try:
         await c.send(EditGroupCallTitle(call=group_call, title=f"{txt}"))
-    except ChatAdminRequired:
+    except Forbidden:
         await ky.edit(f"{em.gagal} <b>Anda bukan admin digrup ini.</b>")
         return
     await ky.edit(f"{em.gagal} <b>Judul Voice Chat :</b> <code>{txt}</code>")
