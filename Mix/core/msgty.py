@@ -16,8 +16,8 @@ class Types(IntEnum):
     ANIMATION = 9
     ANIMATED_STICKER = 10
     CONTACT = 11
-    
-    
+
+
 def ReplyCheck(m):
     reply_id = None
     if m.reply_to_message:
