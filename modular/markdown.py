@@ -6,7 +6,7 @@
 """
 ################################################################
 
-from pyrogram import enums
+from pyrogram.enums import *
 from pyrogram.types import *
 
 from Mix import *
@@ -87,11 +87,10 @@ Jika Anda ingin mengirimkan tombol dalam satu baris yang sama, gunakan pemformat
 <code>[tombol 3](buttonurl://3)</code>
 Ini akan menampilkan tombol 1 dan 2 di baris yang sama, sementara 3 akan berada di bawahnya."""
         await cq.edit_message_text(
-            text=nan, reply_markup=kb, parse_mode=enums.ParseMode.HTML
+            text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
         )
     elif cmd == "filing":
-        await cq.edit_message_text(
-            nen="""<b>Fillings</b>
+        nen="""<b>Fillings</b>
 
 Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, Anda bisa menyebut nama pengguna dalam pesan selamat datang, atau menyebutnya dalam filter!
 
@@ -103,9 +102,11 @@ Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, A
 <code>{username}</code>: Nama pengguna pengguna. Jika mereka tidak memiliki satu, akan menyebutkan pengguna tersebut.
 <code>{mention}</code>: Menyebutkan pengguna dengan nama depan mereka.
 <code>{id}</code>: ID pengguna.
-<code>{chatname}</code>: Nama obrolan.""",
+<code>{chatname}</code>: Nama obrolan."""
+        await cq.edit_message_text(
+            text=nen,
             reply_markup=kb,
-            parse_mode=enums.ParseMode.HTML,
+            parse_mode=ParseMode.HTML,
         )
 
 
