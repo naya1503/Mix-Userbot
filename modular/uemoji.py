@@ -36,27 +36,27 @@ __help__ = """
 @ky.ubot("emoid", sudo=True)
 async def _(c: user, m):
 
-    xx = await m.edit(f"{proses} <b>Processing...</b>")
+    xx = await m.edit(f"{c.proses} <b>Processing...</b>")
     emoji = m.reply_to_message
     if emoji.entities:
         for entot in emoji.entities:
             if entot.custom_emoji_id:
                 emoid = entot.custom_emoji_id
                 await xx.edit(
-                    f"{sukses} <b>Custom Emoji ID : <code>{emoid}</code>.</b>"
+                    f"{c.sukses} <b>Custom Emoji ID : <code>{emoid}</code>.</b>"
                 )
             else:
-                await xx.edit(f"{gagal} <b>Reply ke Custom Emoji.</b>")
+                await xx.edit(f"{c.gagal} <b>Reply ke Custom Emoji.</b>")
 
 
 @ky.ubot("emoji", sudo=True)
 async def _(c: user, m):
 
     gua = c.me.is_premium
-    jing = await m.reply(f"{proses} <b>Processing...</b>")
+    jing = await m.reply(f"{c.proses} <b>Processing...</b>")
     if len(m.command) < 3:
         return await jing.edit(
-            f"{gagal} <b>Gunakan Format : <code>emoji variable value</code>.</b>"
+            f"{c.gagal} <b>Gunakan Format : <code>emoji variable value</code>.</b>"
         )
     command, variable, value = m.command[:3]
     emoji_id = None
@@ -70,11 +70,11 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_ping", emoji_id)
                     await jing.edit(
-                        f"{sukses} <b>Emoji ping diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                        f"{c.sukses} <b>Emoji ping diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
                     )
         elif gua == False:
             udB.set_var(c.me.id, "emo_ping", value)
-            await jing.edit(f"{sukses} <b>Emoji ping diset ke :</b> {value}")
+            await jing.edit(f"{c.sukses} <b>Emoji ping diset ke :</b> {value}")
     elif variable.lower() == "pong":
         if gua == True:
             if m.entities:
@@ -85,11 +85,11 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_pong", emoji_id)
                     await jing.edit(
-                        f"{sukses} <b>Emoji pong diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                        f"{c.sukses} <b>Emoji pong diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
                     )
         elif gua == False:
             udB.set_var(c.me.id, "emo_pong", value)
-            await jing.edit(f"{sukses} <b>Emoji pong diset ke :</b> {value}")
+            await jing.edit(f"{c.sukses} <b>Emoji pong diset ke :</b> {value}")
     elif variable.lower() == "proses":
         if gua == True:
             if m.entities:
@@ -100,11 +100,11 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_proses", emoji_id)
                     await jing.edit(
-                        f"{sukses} <b>Emoji proses diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                        f"{c.sukses} <b>Emoji proses diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
                     )
         elif gua == False:
             udB.set_var(c.me.id, "emo_proses", value)
-            await jing.edit(f"{sukses} <b>Emoji proses diset ke :</b> {value}")
+            await jing.edit(f"{c.sukses} <b>Emoji proses diset ke :</b> {value}")
     elif variable.lower() == "gagal":
         if gua == True:
             if m.entities:
@@ -115,11 +115,11 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_gagal", emoji_id)
                     await jing.edit(
-                        f"{sukses} <b>Emoji gagal diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                        f"{c.sukses} <b>Emoji gagal diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
                     )
         elif gua == False:
             udB.set_var(c.me.id, "emo_gagal", value)
-            await jing.edit(f"{sukses} <b>Emoji gagal diset ke :</b> {value}")
+            await jing.edit(f"{c.sukses} <b>Emoji gagal diset ke :</b> {value}")
     elif variable.lower() == "sukses":
         if gua == True:
             if m.entities:
@@ -130,11 +130,11 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_sukses", emoji_id)
                     await jing.edit(
-                        f"{sukses} <b>Emoji sukses diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                        f"{c.sukses} <b>Emoji sukses diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
                     )
         elif gua == False:
             udB.set_var(c.me.id, "emo_sukses", value)
-            await jing.edit(f"{sukses} <b>Emoji sukses diset ke :</b> {value}")
+            await jing.edit(f"{c.sukses} <b>Emoji sukses diset ke :</b> {value}")
     elif variable.lower() == "profil":
         if gua == True:
             if m.entities:
@@ -145,11 +145,11 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_profil", emoji_id)
                     await jing.edit(
-                        f"{sukses} <b>Emoji profil diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                        f"{c.sukses} <b>Emoji profil diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
                     )
         elif gua == False:
             udB.set_var(c.me.id, "emo_profil", value)
-            await jing.edit(f"{sukses} <b>Emoji profil diset ke :</b> {value}")
+            await jing.edit(f"{c.sukses} <b>Emoji profil diset ke :</b> {value}")
     elif variable.lower() == "alive":
         if gua == True:
             if m.entities:
@@ -160,20 +160,20 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_alive", emoji_id)
                     await jing.edit(
-                        f"{sukses} <b>Emoji alive diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                        f"{c.sukses} <b>Emoji alive diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
                     )
 
         elif gua == False:
             udB.set_var(c.me.id, "emo_alive", value)
-            await jing.edit(f"{sukses} <b>Emoji alive diset ke :</b> {value}")
+            await jing.edit(f"{c.sukses} <b>Emoji alive diset ke :</b> {value}")
     else:
-        await jing.edit(f"{gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
+        await jing.edit(f"{c.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
 
 
 @ky.ubot("getemo", sudo=True)
 async def _(c: user, m):
 
-    xx = await m.reply(f"{proses} <b>Processing...</b>")
+    xx = await m.reply(f"{c.proses} <b>Processing...</b>")
     await xx.edit(
-        f"{sukses} <b>๏ Emoji Yang Digunakan :</b>\n\n Ping : {ping}\n Pong : {pong}\n Proses : {proses}\n Sukses : {sukses}\n Gagal : {gagal}\n Profil : {profil}\n Alive : {alive}"
+        f"{c.sukses}<b>๏ Emoji Yang Digunakan :</b>\n\n Ping : {c.ping}\n Pong : {c.pong}\n Proses : {c.proses}\n Sukses : {c.sukses}\n Gagal : {c.gagal}\n Profil : {c.profil}\n Alive : {c.alive}\n Warning : {c.warn}\n Block : {c.block}"
     )
