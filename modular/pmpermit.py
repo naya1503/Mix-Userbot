@@ -54,9 +54,9 @@ LIMIT = 5
 
 @ky.ubot("ok|setuju", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    babi = await m.reply(f"{emo.proses} <b>Processing...</b>")
+    
+    
+    babi = await m.reply(f"{proses} <b>Processing...</b>")
     chat_type = m.chat.type
     getc_pm_warns = udB.get_var(c.me.id, "PMLIMIT")
     pm_text = udB.get_var(c.me.id, "PMTEXT")
@@ -69,7 +69,7 @@ async def _(c: user, m):
     dia = m.chat.id
     ok_tak = udB.dicek_pc(dia)
     if ok_tak:
-        await babi.edit(f"{emo.sukses} <b>Pengguna ini sudah disetujui.</b>")
+        await babi.edit(f"{sukses} <b>Pengguna ini sudah disetujui.</b>")
         return
     teks, button = parse_button(custom_pm_txt)
     button = build_keyboard(button)
@@ -88,15 +88,15 @@ async def _(c: user, m):
             pass
     udB.oke_pc(dia)
     await babi.edit(
-        f"{emo.sukses} <b>Baiklah, pengguna ini disetujui untuk mengirim pesan.</b>"
+        f"{sukses} <b>Baiklah, pengguna ini disetujui untuk mengirim pesan.</b>"
     )
     return
 
 @ky.ubot("no|tolak", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    babi = await m.reply(f"{emo.proses} <b>Processing...</b>")
+    
+    
+    babi = await m.reply(f"{proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     chat_type = m.chat.type
     if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
@@ -105,20 +105,20 @@ async def _(c: user, m):
     ok_tak = udB.dicek_pc(user_id)
     if not ok_tak:
         await babi.edit(
-            f"{emo.gagal} <b>Pengguna ini memang belum disetujui untuk mengirim pesan.</b>"
+            f"{gagal} <b>Pengguna ini memang belum disetujui untuk mengirim pesan.</b>"
         )
         return
     udB.tolak_pc(user_id)
     await babi.edit(
-        f"{emo.sukses} <b>Baiklah, pengguna ini ditolak untuk mengirim pesan.</b>"
+        f"{sukses} <b>Baiklah, pengguna ini ditolak untuk mengirim pesan.</b>"
     )
     return
 
 @ky.ubot("setmsg", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    babi = await m.reply(f"{emo.proses} <b>Processing...</b>")
+    
+    
+    babi = await m.reply(f"{proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     user_id = c.me.id
     r_msg = m.reply_to_message
@@ -128,26 +128,26 @@ async def _(c: user, m):
             pm_txt = r_msg.text
         else:
             return await babi.edit(
-                f"{emo.gagal} <b>Silakan balas ke pesan untuk dijadikan teks PMPermit !</b>"
+                f"{gagal} <b>Silakan balas ke pesan untuk dijadikan teks PMPermit !</b>"
             )
     elif args_txt:
         pm_txt = args_txt
     else:
         return await babi.edit(
-            f"{emo.gagal} <b>Silakan balas ke pesan atau berikan pesan untuk dijadikan teks PMPermit !\nContoh :<code>{m.command} Halo saya anuan.</code></b>"
+            f"{gagal} <b>Silakan balas ke pesan atau berikan pesan untuk dijadikan teks PMPermit !\nContoh :<code>{m.command} Halo saya anuan.</code></b>"
         )
     teks, _ = parse_button(pm_txt)
     udB.set_var(user_id, "PMTEXT", pm_txt)
     await babi.edit(
-        f"{emo.sukses} <b>Pesan PMPermit berhasil diatur menjadi : <code>{pm_txt}</code>.</b>"
+        f"{sukses} <b>Pesan PMPermit berhasil diatur menjadi : <code>{pm_txt}</code>.</b>"
     )
     return
 
 @ky.ubot("setlimit", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    babi = await m.reply(f"{emo.proses} <b>Processing...</b>")
+    
+    
+    babi = await m.reply(f"{proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     user_id = c.me.id
     args_txt = c.get_arg(m)
@@ -156,15 +156,15 @@ async def _(c: user, m):
             pm_warns = int(args_txt)
         else:
             return await babi.edit(
-                f"{emo.gagal} <b>Silakan berikan untuk angka limit !</b>"
+                f"{gagal} <b>Silakan berikan untuk angka limit !</b>"
             )
     else:
         return await babi.edit(
-            f"{emo.gagal} <b>Silakan berikan pesan untuk dijadikan angka limit !\nContoh :<code> {m.command}setlimit 5.</code></b>"
+            f"{gagal} <b>Silakan berikan pesan untuk dijadikan angka limit !\nContoh :<code> {m.command}setlimit 5.</code></b>"
         )
     udB.set_var(user_id, "PMLIMIT", pm_warns)
     await babi.edit(
-        f"{emo.sukses} <b>Pesan Limit berhasil diatur menjadi : <code>{args_txt}</code>.</b>"
+        f"{sukses} <b>Pesan Limit berhasil diatur menjadi : <code>{args_txt}</code>.</b>"
     )
 
 @ky.permit()
@@ -240,7 +240,7 @@ async def _(c, m):
                 if flood[in_user.id] >= custom_pm_warns:
                     del flood[in_user.id]
                     await m.reply(
-                        f"{emo.gagal} <b>Saya sudah memberi tahu `{custom_pm_warns}` peringatan\nTunggu tuan saya menyetujui pesan anda, atau anda akan diblokir !</b>"
+                        f"{gagal} <b>Saya sudah memberi tahu `{custom_pm_warns}` peringatan\nTunggu tuan saya menyetujui pesan anda, atau anda akan diblokir !</b>"
                     )
                     return await c.block_user(in_user.id)
                 else:
@@ -278,7 +278,7 @@ async def _(c, m):
                 if flood[in_user.id] >= custom_pm_warns:
                     del flood[in_user.id]
                     await m.reply(
-                        f"{emo.gagal} <b>Saya sudah memberi tahu `{custom_pm_warns}` peringatan\nTunggu tuan saya menyetujui pesan anda, atau anda akan diblokir !</b>"
+                        f"{gagal} <b>Saya sudah memberi tahu `{custom_pm_warns}` peringatan\nTunggu tuan saya menyetujui pesan anda, atau anda akan diblokir !</b>"
                     )
                     return await c.block_user(in_user.id)
                 else:
