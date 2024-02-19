@@ -15,7 +15,7 @@ from time import time
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import bot, ky, progress, user
+from Mix import bot, ky, progress, user, Emojik
 
 COPY_ID = {}
 
@@ -191,7 +191,8 @@ async def _(c, m):
 @ky.ubot("copy", sudo=True)
 async def _(c: user, m):
     global nyolong_jalan
-
+    em = Emojik()
+    em.initialize()
     msg = m.reply_to_message or m
     inf = await m.reply(f"{c.proses} <b>Processing...</b>")
     link = c.get_arg(m)
