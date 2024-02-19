@@ -39,6 +39,7 @@ from .music import daftar_join
 
 turun_dewek = False
 
+
 async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCall]:
     chat_peer = await c.resolve_peer(m.chat.id)
     if isinstance(chat_peer, (InputPeerChannel, InputPeerChat)):
@@ -89,9 +90,12 @@ async def _(c: user, m):
         f"{em.gagal} <b>Obrolan Suara Diakhiri</b>\n<b> Chat : </b><code>{m.chat.title}</code>"
     )
 
+
 """
 Ini Gw Bikin Dewek Ya Anj, Kalo Masih Dikata Copas Coba Cari Jing.
 """
+
+
 @ky.ubot("vctitle", sudo=True)
 async def _(c: user, m):
     em = Emojik()
