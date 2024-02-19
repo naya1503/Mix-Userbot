@@ -107,7 +107,6 @@ Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, A
             reply_markup=kb,
             parse_mode=enums.ParseMode.HTML,
         )
-    await cq.answer()
 
 
 @ky.callback("^bacek.")
@@ -116,4 +115,3 @@ async def _(c, cq):
     await cq.edit_message_text(
         text=txt,
         reply_markup=markdown_help(),
-    await cq.answer()
