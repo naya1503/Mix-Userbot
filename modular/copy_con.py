@@ -14,7 +14,7 @@ COPY_ID = {}
 nyolong_jalan = False
 
 
-__MODULE__ = "Copy"
+__MODULE__ = "Content"
 __HELP__ = """
  Bantuan Untuk Copy
 
