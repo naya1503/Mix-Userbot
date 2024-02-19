@@ -35,7 +35,6 @@ from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from Mix import *
 
-from .music import daftar_join
 
 turun_dewek = False
 
@@ -117,7 +116,7 @@ async def _(c: user, m):
 
 @ky.ubot("joinvc", sudo=True)
 async def _(c: user, m):
-    #global turun_dewek
+    # global turun_dewek
     em = Emojik()
     em.initialize()
 
@@ -128,9 +127,9 @@ async def _(c: user, m):
     if chat_id:
         file = "Mix/core/vc.mp3"
         try:
-            #daftar_join.append(chat_id)
-            #if turun_dewek:
-                #turun_dewek = False
+            # daftar_join.append(chat_id)
+            # if turun_dewek:
+            # turun_dewek = False
             await c.call_py.join_group_call(
                 chat_id,
                 InputStream(
@@ -152,7 +151,7 @@ async def _(c: user, m):
 
 @ky.ubot("leavevc", sudo=True)
 async def _(c: user, m):
-    #global turun_dewek
+    # global turun_dewek
     em = Emojik()
     em.initialize()
 
@@ -164,7 +163,7 @@ async def _(c: user, m):
         try:
 
             await c.call_py.leave_group_call(chat_id)
-            #turun_dewek = True
+            # turun_dewek = True
             await ky.edit(
                 f"{em.sukses} <b>Berhasil Meninggalkan Voice Chat</b>\n <b>Chat :</b><code>{m.chat.title}</code>"
             )
