@@ -13,8 +13,8 @@ from telegraph import upload_file
 
 from Mix import *
 
-__MODULE__ = "Notes"
-__HELP__ = """
+__modles__ = "Notes"
+__help__ = """
 Help Command Notes
 
 • Perintah: <code>{0}save</code> [nama catatan] [balas pesan]
