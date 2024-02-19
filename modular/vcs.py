@@ -29,7 +29,9 @@ from pytgcalls.exceptions import AlreadyJoinedError
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from Mix import *
-from .music import turun_dewek, daftar_join
+
+from .music import daftar_join
+
 
 async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCall]:
     chat_peer = await c.resolve_peer(m.chat.id)
@@ -88,7 +90,7 @@ async def _(c: user, m):
     global turun_dewek
     em = Emojik()
     em.initialize()
-    
+
     ky = await m.reply(f"{em.proses} <b>Processing....</b>")
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
@@ -97,7 +99,8 @@ async def _(c: user, m):
         file = "Mix/core/vc.mp3"
         try:
             daftar_join.append(chat_id)
-            if turun_dewek: turun_dewek = False
+            if turun_dewek:
+                turun_dewek = False
             await c.call_py.join_group_call(
                 chat_id,
                 InputStream(
@@ -122,7 +125,7 @@ async def _(c: user, m):
     global turun_dewek
     em = Emojik()
     em.initialize()
-    
+
     ky = await m.reply(f"{em.proses} <b>Processing....</b>")
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):

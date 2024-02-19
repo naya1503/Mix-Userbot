@@ -7,7 +7,6 @@ from Mix import user
 from Mix.core.pytgcalls import queues
 
 
-
 @user.pytgc_dec()
 async def _(_, chat: int):
     try:
