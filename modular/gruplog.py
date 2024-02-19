@@ -23,7 +23,7 @@ from Mix import *
 @ky.ubot("gruplog", sudo=True)
 async def _(c: user, m):
 
-    xx = await m.reply(f"{proses} Processing...")
+    xx = await m.reply(f"{c.proses} Processing...")
     cek = c.get_arg(m)
     logs = udB.get_logger(c.me.id)
     if cek.lower() == "on":
@@ -32,22 +32,22 @@ async def _(c: user, m):
             xx = await c.get_grup()
             ff = await c.export_chat_invite_link(int(xx.id))
             return await xx.edit(
-                f"{sukses} **Log Group Berhasil Diaktifkan :\n\n{ff}**"
+                f"{c.sukses} **Log Group Berhasil Diaktifkan :\n\n{ff}**"
             )
             udB.set_logger(c.me.id, int(xx.id))
         else:
-            return await xx.edit(f"{sukses} **Log Group Anda Sudah Aktif.**")
+            return await xx.edit(f"{c.sukses} **Log Group Anda Sudah Aktif.**")
     if cek.lower() == "off":
         if logs:
             udB.rem_logger(c.me.id)
             xx = await c.get_grup()
             await c.delete_supergroup(int(xx.id))
-            return await xx.edit(f"{gagal} **Log Group Berhasil Dinonaktifkan.**")
+            return await xx.edit(f"{c.gagal} **Log Group Berhasil Dinonaktifkan.**")
         else:
-            return await xx.edit(f"{gagal} **Log Group Anda Sudah Dinonaktifkan.**")
+            return await xx.edit(f"{c.gagal} **Log Group Anda Sudah Dinonaktifkan.**")
     else:
         return await xx.edit(
-            f"{gagal} **Format yang anda berikan salah. silahkan gunakan <code>gruplog on or off</code>.**"
+            f"{c.gagal} **Format yang anda berikan salah. silahkan gunakan <code>gruplog on or off</code>.**"
         )
 
 
