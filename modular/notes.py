@@ -1,4 +1,3 @@
-
 ################################################################
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
@@ -255,7 +254,9 @@ async def _(c: user, m):
     if not getnote:
         return await xx.edit(f"{gagal} <b>Tidak ada catatan!</b>")
     else:
-        return await xx.edit(f"{sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>")
+        return await xx.edit(
+            f"{sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
+        )
 
 
 @ky.inline("^get_note_")
