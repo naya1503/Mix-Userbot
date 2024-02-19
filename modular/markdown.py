@@ -35,7 +35,7 @@ def markdown_help():
 @ky.ubot("markdown", sudo=True)
 async def _(c: user, m):
     try:
-        xi = await c.get_inline_bot_results(bot.me.username, f"mark_in {note}")
+        xi = await c.get_inline_bot_results(bot.me.username, "mark_in")
         await m.delete()
         await c.send_inline_bot_result(
             m.chat.id, xi.query_id, xi.results[0].id, reply_to_message_id=ReplyCheck(m)
