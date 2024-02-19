@@ -7,7 +7,7 @@ from Mix.core import *
 
 user = Userbot(
     name="user",
-    api=api,
+    api=api_id,
     api_hash=api_hash,
     session_string=session,
 )
@@ -19,13 +19,14 @@ bot = Bot()
 
 from team import *
 
-# def fexid():
-# emo = Emojii()
-# emo.initialize()
-#   return emo
+
+#def fexid():
+    #emo = Emojii()
+   # emo.initialize()
+ #   return emo
 
 
-# fex = fexid()
+#fex = fexid()
 
 ping = "<emoji id=5269563867305879894>🏓</emoji>"
 pong = "<emoji id=6183961455436498818>🥵</emoji>"
