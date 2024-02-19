@@ -73,7 +73,7 @@ async def _(c: user, m):
 
     ky = await m.reply(f"{c.proses} <b>Processing....</b>")
     m.chat.id
-    if not (group_call := (await get_group_call(c: user, m, err_msg=", Kesalahan..."))):
+    if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
         return
     await c.invoke(DiscardGroupCall(call=group_call))
     await ky.edit(
