@@ -25,7 +25,7 @@ async def _(c: user, m):
     _ping = f"""
 **{em.ping} Pong !! `{str(delta_ping).replace('.', ',')}ms`**
 **{em.pong} Mix-Userbot**
-**{em.alive} {em.me.first_name} **"""
+**{em.alive} {c.me.first_name} **"""
     await m.reply(_ping)
 
 
