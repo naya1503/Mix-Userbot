@@ -53,7 +53,9 @@ async def _(c: user, m):
             await jing.edit(f"{c.sukses} <b>PM PIC Dimatikan.</b>")
         else:
             udB.set_var(c.me.id, "PMPIC", value)
-            await jing.edit(f"{c.sukses} <b>PM PIC Diatur ke : <code>{value}<code>.</b>")
+            await jing.edit(
+                f"{c.sukses} <b>PM PIC Diatur ke : <code>{value}<code>.</b>"
+            )
     elif variable.lower() == "pmtext":
         if value.lower() == "clear":
             udB.remove_var(c.me.id, "PMTEXT")

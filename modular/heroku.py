@@ -101,7 +101,9 @@ async def _(c: user, m):
                 f"{c.sukses} **{check_var}:** `{heroku_config[check_var]}`"
             )
         else:
-            return await m.reply_text(f"{c.gagal} Tidak dapat menemukan var seperti itu.")
+            return await m.reply_text(
+                f"{c.gagal} Tidak dapat menemukan var seperti itu."
+            )
     else:
         path = dotenv.find_dotenv()
         if not path:
@@ -129,7 +131,9 @@ async def _(c: user, m):
             await m.reply_text(f"{c.sukses} {check_var} Dihapus.")
             del heroku_config[check_var]
         else:
-            return await m.reply_text(f"{c.gagal} Tidak dapat menemukan var seperti itu.")
+            return await m.reply_text(
+                f"{c.gagal} Tidak dapat menemukan var seperti itu."
+            )
     else:
         path = dotenv.find_dotenv()
         if not path:
