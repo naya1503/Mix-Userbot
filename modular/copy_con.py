@@ -22,8 +22,8 @@ COPY_ID = {}
 nyolong_jalan = False
 
 
-__MODULE__ = "Content"
-__HELP__ = """
+__modles__ = "Content"
+__help__ = """
  Bantuan Untuk Copy
 
 • Perintah : <code>{0}copy</code> [link]
