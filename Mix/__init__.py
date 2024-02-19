@@ -18,3 +18,15 @@ bot = Bot()
 
 
 from team import *
+
+emoji = Emojii()
+
+ping = emoji["ping"]()
+pong = emoji["pong"]()
+proses = emoji["proses"]()
+sukses = emoji["sukses"]()
+gagal = emoji["gagal"]()
+profil = emoji["profil"]()
+alive = emoji["alive"]()
+warn = emoji["warn"]()
+block = emoji["block"]()
