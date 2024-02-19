@@ -72,8 +72,6 @@ async def _(c: user, m):
             await xx.edit(f"{emo.gagal} Pengguna sudah digban.")
             return
         try:
-            udB.add_to_var(c.me.id, "GBANNED", org.id, "USER")
-            
             await c.ban_chat_member(chat, org.id)
             bs += 1
             await asyncio.sleep(0.1)
@@ -85,6 +83,7 @@ async def _(c: user, m):
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
+    udB.add_to_var(c.me.id, "GBANNED", org.id, "USER")
     mmg = f"{emo.alive} <b>Warning Global Banned\n\n{emo.sukses} Berhasil: `{bs}` Chat\n{emo.gagal} Gagal: `{gg}` Chat\n{emo.profil} User: `{mention}`</b>\n"
     if alasan:
         mmg += f"{emo.alive} **Alasan: `{alasan}`**"
@@ -118,14 +117,13 @@ async def _(c: user, m):
             await xx.edit(f"{emo.gagal} Pengguna belum digban.")
             return
         try:
-            udB.remove_from_var(c.me.id, "GBANNED", org.id, "USER")
-            
             await c.unban_chat_member(chat, org.id)
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
+    udB.remove_from_var(c.me.id, "GBANNED", org.id, "USER")
     mmg = f"{emo.alive} <b>Warning Global Unbanned\n\n{emo.sukses} Berhasil: `{bs}` Chat\n{emo.gagal} Gagal: `{gg}` Chat\n{emo.profil} User: `{mention}`</b>\n"
     await m.reply(mmg)
     await xx.delete()
@@ -160,14 +158,13 @@ async def _(c: user, m):
             await xx.edit(f"{emo.gagal} Pengguna sudah digmute.")
             return
         try:
-            udB.add_to_var(c.me.id, "GMUTE", org.id, "USER")
-            
             await c.restrict_chat_member(chat, org.id, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
+    udB.add_to_var(c.me.id, "GMUTE", org.id, "USER")
     mmg = f"{emo.alive} <b>Warning Global Gmute\n\n{emo.sukses} Berhasil: `{bs}` Chat\n{emo.gagal} Gagal: `{gg}` Chat\n{emo.profil} User: `{mention}`</b>\n"
     if alasan:
         mmg += f"{emo.alive} **Alasan: `{alasan}`**"
@@ -205,14 +202,13 @@ async def _(c: user, m):
             await xx.edit(f"{emo.gagal} Pengguna belum pernah digmute.")
             return
         try:
-            udB.remove_from_var(c.me.id, "GMUTE", org.id, "USER")
-            
             await c.unban_member(chat, org.id, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
+    udB.remove_from_var(c.me.id, "GMUTE", org.id, "USER")
     mmg = f"{emo.alive} <b>Warning Global Ungmute\n\n{emo.sukses} Berhasil: `{bs}` Chat\n{emo.gagal} Gagal: `{gg}` Chat\n{emo.profil} User: `{mention}`</b>\n"
     await m.reply(mmg)
     await xx.delete()
