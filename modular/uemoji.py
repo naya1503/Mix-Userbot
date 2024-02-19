@@ -169,7 +169,9 @@ async def _(c: user, m):
             udB.set_var(c.me.id, "emo_alive", value)
             await jing.edit(f"{em.sukses} <b>Emoji alive diset ke :</b> {value}")
     else:
-        await jing.edit(f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
+        await jing.edit(
+            f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>"
+        )
 
 
 @ky.ubot("getemo", sudo=True)
