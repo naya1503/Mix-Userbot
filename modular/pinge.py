@@ -16,15 +16,16 @@ from Mix import *
 @ky.ubot("ping", sudo=True)
 @ky.devs("mping")
 async def _(c: user, m):
-
+    em = Emojik()
+    em.initialize()
     start = datetime.now()
     await c.invoke(Ping(ping_id=0))
     end = datetime.now()
     delta_ping = (end - start).microseconds / 1000
     _ping = f"""
-**{c.ping} Pong !! `{str(delta_ping).replace('.', ',')}ms`**
-**{c.pong} Mix-Userbot**
-**{c.alive} {c.me.first_name} **"""
+**{em.ping} Pong !! `{str(delta_ping).replace('.', ',')}ms`**
+**{em.pong} Mix-Userbot**
+**{em.alive} {em.me.first_name} **"""
     await m.reply(_ping)
 
 
