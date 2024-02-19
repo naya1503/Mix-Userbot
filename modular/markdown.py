@@ -114,4 +114,4 @@ async def _(c, cq):
     txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
     await cq.edit_message_text(
         text=txt,
-        reply_markup=markdown_help(),
+        reply_markup=markdown_help())
