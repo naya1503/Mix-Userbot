@@ -4,3 +4,4 @@ from .colong import progress
 from .git import *
 from .misc import *
 from .pastebin import *
+from .msgty import *
