@@ -13,6 +13,9 @@ __help__ = """
 
 • Perintah: <code>{0}leavevc</code>
 • Penjelasan: Untuk meninggalkan voice chat grup.
+
+• Perintah: <code>{0}vctitle</code>
+• Penjelasan: Untuk mengubah voice chat grup.
 """
 
 from asyncio import sleep
@@ -23,7 +26,7 @@ from typing import Optional
 from pyrogram import enums
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
-from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall
+from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall, EditGroupCallTitle
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pytgcalls.exceptions import AlreadyJoinedError
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
@@ -76,7 +79,6 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     ky = await m.reply(f"{em.proses} <b>Processing....</b>")
-    m.chat.id
     if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
         return
     await c.invoke(DiscardGroupCall(call=group_call))
@@ -84,6 +86,25 @@ async def _(c: user, m):
         f"{em.gagal} <b>Obrolan Suara Diakhiri</b>\n<b> Chat : </b><code>{m.chat.title}</code>"
     )
 
+@ky.ubot("vctitle", sudo=True)
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
+    txt = c.get_arg(m)
+    ky = await m.reply(f"{em.proses} <b>Processing....</b>")
+    if len(m.command) < 2:
+        await m.reply(f"{em.gagal} <b>Berikan judul voice chat grup.</b>")
+        return
+    if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
+        return
+    try:
+        await c.send(EditGroupCallTitle(call=group_call, title=f"{txt}"))
+    except ChatAdminRequired:
+        await m.reply(f"{em.gagal} <b>Anda bukan admin digrup ini.</b>")
+        return
+    await ky.edit(
+        f"{em.gagal} <b>Judul Voice Chat: </b><code>{txt}</code>"
+    )
 
 @ky.ubot("joinvc", sudo=True)
 async def _(c: user, m):
