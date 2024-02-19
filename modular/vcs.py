@@ -96,14 +96,14 @@ async def _(c: user, m):
     txt = c.get_arg(m)
     ky = await m.reply(f"{em.proses} <b>Processing....</b>")
     if len(m.command) < 2:
-        await m.reply(f"{em.gagal} <b>Berikan judul voice chat grup.</b>")
+        await ky.edit(f"{em.gagal} <b>Berikan judul voice chat grup.</b>")
         return
     if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
         return
     try:
         await c.send(EditGroupCallTitle(call=group_call, title=f"{txt}"))
     except ChatAdminRequired:
-        await m.reply(f"{em.gagal} <b>Anda bukan admin digrup ini.</b>")
+        await ky.edit(f"{em.gagal} <b>Anda bukan admin digrup ini.</b>")
         return
     await ky.edit(f"{em.gagal} <b>Judul Voice Chat: </b><code>{txt}</code>")
 
