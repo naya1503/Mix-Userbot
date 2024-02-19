@@ -11,6 +11,13 @@ from pyrogram.errors import MediaCaptionTooLong
 
 from Mix import *
 
+__MODULE__ = "Markdown"
+__HELP__ = """
+Help Command Markdown
+
+• Perintah: <code>{0}markdown</code>
+• Penjelasan: Untuk melihat format button.
+"""
 
 def markdown_help():
     return okb(
@@ -78,12 +85,12 @@ Jika Anda ingin mengirimkan tombol dalam satu baris yang sama, gunakan pemformat
 <code>[tombol 2](buttonurl://2:same)</code>
 <code>[tombol 3](buttonurl://3)</code>
 Ini akan menampilkan tombol 1 dan 2 di baris yang sama, sementara 3 akan berada di bawahnya."""
-        await cq.edit_message_caption(
+        await cq.edit_message_text(
             text=nan,
             reply_markup=kb,
             parse_mode=enums.ParseMode.HTML)
     elif cmd == "filing":
-        await cq.edit_message_caption(
+        await cq.edit_message_text(
             nen="""<b>Fillings</b>
 
 Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, Anda bisa menyebut nama pengguna dalam pesan selamat datang, atau menyebutnya dalam filter!
@@ -101,7 +108,6 @@ Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, A
             parse_mode=enums.ParseMode.HTML,
         )
     await cq.answer()
-    return
 
 
 @ky.callback("^bacek.")
@@ -111,4 +117,3 @@ async def _(c, cq):
         text=txt,
         reply_markup=markdown_help(),
     await cq.answer()
-    return
