@@ -191,7 +191,9 @@ async def _(c: user, m):
             hehe.app(heroku_app_name)
     else:
         return await m.reply_text(f"{em.gagal} Hanya untuk Heroku.")
-    dyno = await m.reply_text(f"{em.proses} Memeriksa Penggunaan Heroku. Mohon Tunggu..")
+    dyno = await m.reply_text(
+        f"{em.proses} Memeriksa Penggunaan Heroku. Mohon Tunggu.."
+    )
     Heroku = heroku3.from_key(heroku_api)
     account_id = Heroku.account().id
     useragent = (
