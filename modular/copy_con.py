@@ -15,7 +15,7 @@ from time import time
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import bot, ky, progress, user, Emojik
+from Mix import Emojik, bot, ky, progress, user
 
 COPY_ID = {}
 
