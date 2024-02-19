@@ -1,8 +1,9 @@
-from Mix import user, Emojii
+from Mix import Emojii, user
+
 
 def fexid():
     emo = Emojii(user.me.id)
     emo.initialize()
-    
-    
+
+
 fex = fexid()
