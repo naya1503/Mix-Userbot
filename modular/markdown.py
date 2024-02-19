@@ -7,7 +7,7 @@
 ################################################################
 
 from pyrogram import enums
-
+from pyrogram.types import *
 from Mix import *
 
 __modles__ = "Markdown"
