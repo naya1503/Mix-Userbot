@@ -108,7 +108,7 @@ Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, A
         )
 
 
-@ky.callback("^bacek.")
+@ky.callback("^bace.")
 async def _(c, cq):
     txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
     await cq.edit_message_text(text=txt, reply_markup=markdown_help())
