@@ -29,7 +29,7 @@ def markdown_help():
             ],
         ],
         True,
-        "closeru",
+        "help_back",
     )
 
 
