@@ -19,9 +19,11 @@ bot = Bot()
 
 from team import *
 
+
 def fexid():
     emo = Emojii()
     emo.initialize()
+
 
 fex = fexid()
 
