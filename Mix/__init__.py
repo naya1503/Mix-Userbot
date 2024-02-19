@@ -18,3 +18,14 @@ bot = Bot()
 
 
 from team import *
+from Mix.core.fxd import fex
+
+ping = fex.ping
+pong = fex.pong
+proses = fex.proses
+alive = fex.alive
+gagal = fex.gagal
+sukses = fex.sukses
+profil = fex.profil
+warn = fex.warn
+block = fex.block
