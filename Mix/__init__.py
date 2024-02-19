@@ -19,14 +19,41 @@ bot = Bot()
 
 from team import *
 
-emoji = Emojii()
+emoji = user.Emojii()
 
-ping = emoji["ping"]()
-pong = emoji["pong"]()
-proses = emoji["proses"]()
-sukses = emoji["sukses"]()
-gagal = emoji["gagal"]()
-profil = emoji["profil"]()
-alive = emoji["alive"]()
-warn = emoji["warn"]()
-block = emoji["block"]()
+def a():
+    return emoji["ping"]()
+    
+def b():
+    return emoji["pong"]()
+    
+def c():
+    return emoji["proses"]()
+    
+def d():
+    return emoji["sukses"]()
+    
+def e():
+    return emoji["gagal"]()
+    
+def f():
+    return emoji["profil"]()
+    
+def g():
+    return emoji["alive"]()
+    
+def h():
+    return emoji["warn"]()
+    
+def i():
+    return emoji["block"]()
+
+ping = a()
+pong = b()
+proses = c()
+sukses = d()
+gagal = e()
+profil = f()
+alive = g()
+warn = h()
+block = i()
