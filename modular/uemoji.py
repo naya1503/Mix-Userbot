@@ -30,6 +30,8 @@ __help__ = """
 <code>{0}emoji gagal ❌</code>
 <code>{0}emoji profil 👤</code>
 <code>{0}emoji alive ⭐</code>
+<code>{0}emoji warn !</code>
+code>{0}emoji block ?</code>
 """
 
 
@@ -168,6 +170,38 @@ async def _(c: user, m):
         elif gua == False:
             udB.set_var(c.me.id, "emo_alive", value)
             await jing.edit(f"{em.sukses} <b>Emoji alive diset ke :</b> {value}")
+    elif variable.lower() == "warn":
+        if gua == True:
+            if m.entities:
+                for entity in m.entities:
+                    if entity.custom_emoji_id:
+                        emoji_id = entity.custom_emoji_id
+                        break
+                if emoji_id:
+                    udB.set_var(c.me.id, "emo_warn", emoji_id)
+                    await jing.edit(
+                        f"{em.sukses} <b>Emoji alive diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                    )
+
+        elif gua == False:
+            udB.set_var(c.me.id, "emo_warn", value)
+            await jing.edit(f"{em.sukses} <b>Emoji warn diset ke :</b> {value}")
+    elif variable.lower() == "block":
+        if gua == True:
+            if m.entities:
+                for entity in m.entities:
+                    if entity.custom_emoji_id:
+                        emoji_id = entity.custom_emoji_id
+                        break
+                if emoji_id:
+                    udB.set_var(c.me.id, "emo_block", emoji_id)
+                    await jing.edit(
+                        f"{em.sukses} <b>Emoji block diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
+                    )
+
+        elif gua == False:
+            udB.set_var(c.me.id, "emo_block", value)
+            await jing.edit(f"{em.sukses} <b>Emoji block diset ke :</b> {value}")
     else:
         await jing.edit(
             f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>"
