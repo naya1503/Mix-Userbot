@@ -44,12 +44,12 @@ from pyrogram.types import *
 
 @ky.ubot("gcast", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    msg = await m.reply(f"{emo.proses} Processing...")
+    
+    
+    msg = await m.reply(f"{proses} Processing...")
     send = c.get_m(m)
     if not send:
-        return await msg.edit(f"{emo.gagal} Silakan balas ke pesan atau berikan pesan.")
+        return await msg.edit(f"{gagal} Silakan balas ke pesan atau berikan pesan.")
     chats = await c.get_user_dialog("group")
     blacklist = udB.get_chat(c.me.id)
     done = 0
@@ -73,20 +73,20 @@ async def _(c: user, m):
                 await asyncio.sleep(e.value)
     return await msg.edit(
         f"""
-{emo.alive} Broadcast Message Sent :
-{emo.sukses} Success in <code>{done}</code> Group.
-{emo.gagal} Failed at <code>{failed}</code> Group.""",
+{alive} Broadcast Message Sent :
+{sukses} Success in <code>{done}</code> Group.
+{gagal} Failed at <code>{failed}</code> Group.""",
     )
 
 
 @ky.ubot("gucast", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    msg = await m.reply(f"{emo.proses} Processing...")
+    
+    
+    msg = await m.reply(f"{proses} Processing...")
     send = c.get_m(m)
     if not send:
-        return await msg.edit(f"{emo.gagal} Silakan balas ke pesan atau berikan pesan.")
+        return await msg.edit(f"{gagal} Silakan balas ke pesan atau berikan pesan.")
     chats = await c.get_user_dialog("users")
     blacklist = udB.get_chat(c.me.id)
     done = 0
@@ -108,35 +108,35 @@ async def _(c: user, m):
                 failed += 1
     return await msg.edit(
         f"""
-{emo.alive} Broadcast Message Sent :
-{emo.sukses} Success in <code>{done}</code> Group.
-{emo.gagal} Failed at <code>{failed}</code> Group.""",
+{alive} Broadcast Message Sent :
+{sukses} Success in <code>{done}</code> Group.
+{gagal} Failed at <code>{failed}</code> Group.""",
     )
 
 
 @ky.ubot("addbl", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    pp = await m.reply(f"{emo.proses} Processing...")
+    
+    
+    pp = await m.reply(f"{proses} Processing...")
     chat_id = m.chat.id
     blacklist = udB.get_chat(c.me.id)
     if str(chat_id) in blacklist:
-        return await pp.edit(f"{emo.sukses} <b>Grup ini sudah ada dalam blacklist</b>")
+        return await pp.edit(f"{sukses} <b>Grup ini sudah ada dalam blacklist</b>")
     add_blacklist = udB.add_chat(c.me.id, chat_id)
     if add_blacklist:
         await pp.edit(
-            f"{emo.sukses} <b><code>{m.chat.id}</code> | {m.chat.title} berhasil ditambahkan ke dalam blacklist.</b>"
+            f"{sukses} <b><code>{m.chat.id}</code> | {m.chat.title} berhasil ditambahkan ke dalam blacklist.</b>"
         )
     else:
-        await pp.edit(f"{emo.gagal} <b>Error.</b>")
+        await pp.edit(f"{gagal} <b>Error.</b>")
 
 
 @ky.ubot("delbl", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    pp = await m.reply(f"{emo.proses} <b>Processing...</b>")
+    
+    
+    pp = await m.reply(f"{proses} <b>Processing...</b>")
     try:
         if not c.get_arg(m):
             chat_id = m.chat.id
@@ -145,27 +145,27 @@ async def _(c: user, m):
         blacklist = udB.get_chat(c.me.id)
         if chat_id not in blacklist:
             return await pp.edit(
-                f"{emo.gagal} <b><code>{m.chat.id}</code> | {m.chat.title} tidak ada dalam daftar blacklist.</b>"
+                f"{gagal} <b><code>{m.chat.id}</code> | {m.chat.title} tidak ada dalam daftar blacklist.</b>"
             )
         del_blacklist = udB.remove_chat(c.me.id, chat_id)
         if del_blacklist:
             await pp.edit(
-                f"{emo.sukses} <b><code>{chat_id}</code> berhasil dihapus dari daftar blacklist.</b>"
+                f"{sukses} <b><code>{chat_id}</code> berhasil dihapus dari daftar blacklist.</b>"
             )
         else:
-            await pp.edit(f"{emo.gagal} <b>Error.</b>")
+            await pp.edit(f"{gagal} <b>Error.</b>")
     except Exception as error:
         await pp.edit(str(error))
 
 
 @ky.ubot("listbl", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    pp = await m.reply(f"{emo.proses} <b>Processing...</b>")
+    
+    
+    pp = await m.reply(f"{proses} <b>Processing...</b>")
 
     msg = (
-        f"{emo.sukses} <b>• Total blacklist {int( len(udB.get_chat(c.me.id)))}</b>\n\n"
+        f"{sukses} <b>• Total blacklist {int( len(udB.get_chat(c.me.id)))}</b>\n\n"
     )
     for x in udB.get_chat(c.me.id):
         try:
@@ -179,15 +179,15 @@ async def _(c: user, m):
 
 @ky.ubot("rmall", sudo=True)
 async def _(c: user, m):
-    emo = Emojii(c.me.id)
-    emo.initialize()
-    msg = await m.reply(f"{emo.proses} <b>Processing....</b>")
+    
+    
+    msg = await m.reply(f"{proses} <b>Processing....</b>")
     get_bls = udB.get_chat(c.me.id)
     if len(get_bls) == 0:
-        return await msg.edit(f"{emo.gagal} <b>Daftar hitam Anda kosong.</b>")
+        return await msg.edit(f"{gagal} <b>Daftar hitam Anda kosong.</b>")
     for x in get_bls:
         udB.remove_chat(c.me.id, x)
-    await msg.edit(f"{emo.sukses} <b>Semua daftar hitam telah berhasil dihapus.</b>")
+    await msg.edit(f"{sukses} <b>Semua daftar hitam telah berhasil dihapus.</b>")
 
 # @Tomi
 
