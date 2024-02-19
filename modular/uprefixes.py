@@ -20,10 +20,11 @@ __help__ = """
 
 @ky.ubot("setprefix", sudo=True)
 async def _(c: user, m):
-
-    xx = await m.reply(f"{c.proses} <b>Processing...</b>")
+    em = Emojik()
+    em.initialize()
+    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
     if len(m.command) < 2:
-        return await xx.edit(f"{c.gagal} <b>Silahkan gunakan symbol atau abjad.</b>")
+        return await xx.edit(f"{em.gagal} <b>Silahkan gunakan symbol atau abjad.</b>")
     else:
         mepref = []
         for x in m.command[1:]:
@@ -36,7 +37,7 @@ async def _(c: user, m):
             udB.set_pref(c.me.id, mepref)
             parsed = " ".join(f"{x}" for x in mepref)
             return await xx.edit(
-                f"{c.sukses} <b>Prefix diatur ke : <code>{parsed}</code></b>"
+                f"{em.sukses} <b>Prefix diatur ke : <code>{parsed}</code></b>"
             )
         except Exception as error:
             await xx.edit(str(error))
