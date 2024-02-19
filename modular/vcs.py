@@ -30,7 +30,7 @@ from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from Mix import *
 
-from .music import daftar_join, turun_dewek
+from .music import daftar_join
 
 
 async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCall]:
