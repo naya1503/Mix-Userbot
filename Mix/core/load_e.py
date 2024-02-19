@@ -21,7 +21,7 @@ async def load_emo():
     block_id = "<emoji id=5240241223632954241>🚫</emoji>"
     a = udB.get_var(user.me.id, "emo_ping")
     b = udB.get_var(user.me.id, "emo_pong")
-    udB.get_var(user.me.id, "emo_proses")
+    c = udB.get_var(user.me.id, "emo_proses")
     d = udB.get_var(user.me.id, "emo_gagal")
     e = udB.get_var(user.me.id, "emo_sukses")
     f = udB.get_var(user.me.id, "emo_profil")
@@ -30,7 +30,7 @@ async def load_emo():
     i = udB.get_var(user.me.id, "emo_block")
     uprem = user.me.is_premium
     if uprem == True:
-        if (a, b, user.me.id, d, e, f, g, h, i) is not None:
+        if (a, b, c, d, e, f, g, h, i) is not None:
             return
         else:
             udB.set_var(user.me.id, "emo_ping", ping_id)
@@ -51,7 +51,7 @@ async def load_emo():
             await asyncio.sleep(0.5)
             udB.set_var(user.me.id, "emo_block", block_id)
     elif uprem == False:
-        if (a, b, user.me.id, d, e, f, g, h, i) is not None:
+        if (a, b, c, d, e, f, g, h, i) is not None:
             return
         else:
             udB.set_var(user.me.id, "emo_ping", eping)
