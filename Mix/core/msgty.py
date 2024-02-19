@@ -27,7 +27,7 @@ def ReplyCheck(m):
     return reply_id
 
 
-async def get_note_type(m):
+def get_note_type(m):
     """Get type of note."""
     if len(m.text.split()) <= 1:
         return None, None, None, None
@@ -97,7 +97,7 @@ async def get_note_type(m):
     return note_name, text, data_type, content
 
 
-async def get_wlcm_type(m):
+def get_wlcm_type(m):
     """Get wlcm type."""
     data_type = None
     content = None
@@ -156,7 +156,7 @@ async def get_wlcm_type(m):
     return text, data_type, content
 
 
-async def get_filter_type(m):
+def get_filter_type(m):
     """Get filter type."""
     if len(m.text.split()) <= 1:
         return None, None, None
@@ -263,7 +263,7 @@ def get_file_id(msg):
     return data_type, content
 
 
-async def get_afk_type(m):
+def get_afk_type(m):
     data_type = None
     content = None
     raw_text = m.text.markdown if m.text else m.caption.markdown
