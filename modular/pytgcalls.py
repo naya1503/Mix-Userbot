@@ -1,11 +1,11 @@
 from asyncio import QueueEmpty
-from contextlib import suppress
+
 from pytgcalls.exceptions import NoActiveGroupCall, NotInGroupCallError
 from pytgcalls.types import StreamAudioEnded, Update
 
 from Mix import user
 from Mix.core.pytgcalls import queues
-from .music import turun_dewek, daftar_join
+
 
 
 @user.pytgc_dec()
@@ -26,6 +26,4 @@ async def _(c: user, u: Update):
             except (NotInGroupCallError, NoActiveGroupCall):
                 pass
         else:
-            await c.change_stream(
-                u.chat_id, queues.get(u.chat_id)["file"]
-            )
+            await c.change_stream(u.chat_id, queues.get(u.chat_id)["file"])
