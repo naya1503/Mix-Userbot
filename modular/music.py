@@ -36,8 +36,6 @@ daftar_join = []
 
 gc_id = []
 
-turun_dewek = False
-
 
 @ky.ubot("play", sudo=True)
 async def _(c, m):
