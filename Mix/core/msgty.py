@@ -16,6 +16,15 @@ class Types(IntEnum):
     ANIMATION = 9
     ANIMATED_STICKER = 10
     CONTACT = 11
+    
+    
+def ReplyCheck(m):
+    reply_id = None
+    if .reply_to_message:
+        reply_id = m.reply_to_message.id
+    elif not m.from_user.is_self:
+        reply_id = m.id
+    return reply_id
 
 
 async def get_note_type(m):
