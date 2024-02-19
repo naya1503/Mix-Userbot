@@ -22,9 +22,9 @@ async def ping(c: user, m):
     end = datetime.now()
     delta_ping = (end - start).microseconds / 1000
     _ping = f"""
-**{ping} Pong !! `{str(delta_ping).replace('.', ',')}ms`**
-**{pong} Mix-Userbot**
-**{alive} {c.me.first_name} **"""
+**{c.ping} Pong !! `{str(delta_ping).replace('.', ',')}ms`**
+**{c.pong} Mix-Userbot**
+**{c.alive} {c.me.first_name} **"""
     await m.reply(_ping)
 
 
