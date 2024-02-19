@@ -62,7 +62,9 @@ async def _(c: user, m):
             udB.remove_var(c.me.id, "PMTEXT")
             await jing.edit(f"{em.sukses} <b>PM TEXT Diatur ke Default.</b>")
     else:
-        await jing.edit(f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
+        await jing.edit(
+            f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>"
+        )
 
 
 @ky.ubot("getdb", sudo=True)
@@ -145,4 +147,6 @@ async def _(c, m):
         udB.remove_var(c.me.id, "PMTEXT")
         await jing.edit(f"{em.sukses} <b>PM TEXT Diatur ke Default.</b>")
     else:
-        await jing.edit(f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
+        await jing.edit(
+            f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>"
+        )
