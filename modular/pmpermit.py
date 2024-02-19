@@ -168,7 +168,7 @@ async def _(c: user, m):
 
 
 @ky.permit()
-async def _(c, m):
+async def _(c: user, m):
     user_id = c.me.id
     siapa = m.from_user.id
     biji = m.from_user.mention
