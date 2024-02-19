@@ -7,7 +7,7 @@
 ################################################################
 import os
 
-from pyrogram.erros import *
+from pyrogram.errors import *
 from pyrogram.types import *
 from telegraph import upload_file
 
