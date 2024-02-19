@@ -191,10 +191,10 @@ async def _(c, m):
 async def _(c: user, m):
     global nyolong_jalan
     
-    emo = Emojii(c.me.id)
-    emo.initialize()
+    
+    
     msg = m.reply_to_message or m
-    inf = await m.reply(f"{emo.proses} <b>Processing...</b>")
+    inf = await m.reply(f"{proses} <b>Processing...</b>")
     link = c.get_arg(m)
     if not link:
         return await inf.edit(f"<b><code>{m.text}</code> [link]</b>")
@@ -237,7 +237,7 @@ async def _(c: user, m):
                     await inf.edit(f"{str(error)}")
 
     else:
-        await inf.edit(f"{emo.sukses} Nyolong dihentikan.")
+        await inf.edit(f"{sukses} Nyolong dihentikan.")
 
 @ky.inline("^get_msg")
 async def _(c, iq):
@@ -295,12 +295,12 @@ async def _(c, cq):
 @ky.ubot("cancel_copy", sudo=True)
 async def _(c, m):
     global nyolong_jalan
-    emo = Emojii(c.me.id)
-    emo.initialize()
+    
+    
     
     if not nyolong_jalan:
         return await m.reply_text(
-            f"{emo.gagal} <b>Tidak ada penyolongan konten berlangsung.</b>"
+            f"{gagal} <b>Tidak ada penyolongan konten berlangsung.</b>"
         )
     nyolong_jalan = False
     await m.delete()
