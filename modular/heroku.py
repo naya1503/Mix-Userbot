@@ -46,7 +46,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 
 from config import *
-from Mix import XCB, in_heroku, ky, on_heroku, paste, user, Emojik
+from Mix import XCB, Emojik, in_heroku, ky, on_heroku, paste, user
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 

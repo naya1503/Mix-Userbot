@@ -6,8 +6,7 @@
 """
 ################################################################
 
-from pyrogram import enums, filters
-from pyrogram.errors import MediaCaptionTooLong
+from pyrogram import enums
 
 from Mix import *
 
@@ -18,6 +17,7 @@ Help Command Markdown
 • Perintah: <code>{0}markdown</code>
 • Penjelasan: Untuk melihat format button.
 """
+
 
 def markdown_help():
     return okb(
@@ -38,13 +38,12 @@ async def _(c: user, m):
         xi = await c.get_inline_bot_results(bot.me.username, f"mark_in {note}")
         await m.delete()
         await c.send_inline_bot_result(
-            m.chat.id,
-            xi.query_id,
-            xi.results[0].id,
-            reply_to_message_id=ReplyCheck(m))
+            m.chat.id, xi.query_id, xi.results[0].id, reply_to_message_id=ReplyCheck(m)
+        )
     except Exception as e:
         await m.edit(f"{e}")
         return
+
 
 @ky.inline("^mark_in")
 async def _(c, iq):
@@ -62,6 +61,7 @@ async def _(c, iq):
             )
         ],
     )
+
 
 @ky.callback("^markd.")
 async def _(c, cq):
@@ -86,9 +86,8 @@ Jika Anda ingin mengirimkan tombol dalam satu baris yang sama, gunakan pemformat
 <code>[tombol 3](buttonurl://3)</code>
 Ini akan menampilkan tombol 1 dan 2 di baris yang sama, sementara 3 akan berada di bawahnya."""
         await cq.edit_message_text(
-            text=nan,
-            reply_markup=kb,
-            parse_mode=enums.ParseMode.HTML)
+            text=nan, reply_markup=kb, parse_mode=enums.ParseMode.HTML
+        )
     elif cmd == "filing":
         await cq.edit_message_text(
             nen="""<b>Fillings</b>
@@ -112,6 +111,4 @@ Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, A
 @ky.callback("^bacek.")
 async def _(c, cq):
     txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
-    await cq.edit_message_text(
-        text=txt,
-        reply_markup=markdown_help())
+    await cq.edit_message_text(text=txt, reply_markup=markdown_help())
