@@ -22,6 +22,7 @@ async def main():
         await refresh_cache()
         await asyncio.sleep(1)
         await load_emo()
+        Emojii()
         await asyncio.sleep(1)
     except SessionExpired:
         LOGGER.info("Session Expired . Create New Session")
