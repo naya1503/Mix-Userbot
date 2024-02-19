@@ -19,7 +19,11 @@ bot = Bot()
 
 from team import *
 
-from Mix.core.fxd import fex
+def fexid():
+    emo = Emojii()
+    emo.initialize()
+
+fex = fexid()
 
 ping = fex.ping
 pong = fex.pong
