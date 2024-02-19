@@ -20,6 +20,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 from team.nandev.class_log import LOGGER
 
 from config import *
+
 from .misc import XCB
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -83,8 +84,10 @@ async def cek_updater():
 
         os.execl(sys.executable, sys.executable, "-m", "Mix")
 
+
 async def load_emo():
     from Mix import user
+
     eping = "🏓"
     ping_id = "<emoji id=5269563867305879894>🏓</emoji>"
     epong = "🥵"
@@ -105,7 +108,7 @@ async def load_emo():
     block_id = "<emoji id=5240241223632954241>🚫</emoji>"
     a = udB.get_var(user.me.id, "emo_ping")
     b = udB.get_var(user.me.id, "emo_pong")
-    c = udB.get_var(user.me.id, "emo_proses")
+    udB.get_var(user.me.id, "emo_proses")
     d = udB.get_var(user.me.id, "emo_gagal")
     e = udB.get_var(user.me.id, "emo_sukses")
     f = udB.get_var(user.me.id, "emo_profil")
@@ -155,4 +158,3 @@ async def load_emo():
             udB.set_var(user.me.id, "emo_warn", ewarn)
             await asyncio.sleep(0.5)
             udB.set_var(user.me.id, "emo_block", eblock)
-
