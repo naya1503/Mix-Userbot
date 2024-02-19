@@ -1,9 +1,3 @@
-################################################################
-"""
- Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
- @ CREDIT : NAN-DEV
-"""
-################################################################
 
 from asyncio import QueueEmpty
 from gc import get_objects
@@ -17,8 +11,7 @@ from pytgcalls.exceptions import NoActiveGroupCall, NotInGroupCallError
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import (HighQualityAudio,
                                                   HighQualityVideo)
-from team.nandev import queues
-from team.nandev.class_pytgc import *
+from Mix.core.pytgcalls import queues
 from yt_dlp import YoutubeDL
 
 from Mix import *
@@ -40,6 +33,9 @@ Help Command Music
 • Penjelasan: Untuk mengakhiri voice chat grup.
 """
 
+daftar_join = []
+
+turun_dewek = False
 
 @ky.ubot("play", sudo=True)
 async def _(c, m):
