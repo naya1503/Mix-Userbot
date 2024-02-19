@@ -86,11 +86,9 @@ Jika Anda ingin mengirimkan tombol dalam satu baris yang sama, gunakan pemformat
 <code>[tombol 2](buttonurl://2:same)</code>
 <code>[tombol 3](buttonurl://3)</code>
 Ini akan menampilkan tombol 1 dan 2 di baris yang sama, sementara 3 akan berada di bawahnya."""
-        await cq.edit_message_text(
-            text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
-        )
+        await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
     elif cmd == "filing":
-        nen="""<b>Fillings</b>
+        nen = """<b>Fillings</b>
 
 Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, Anda bisa menyebut nama pengguna dalam pesan selamat datang, atau menyebutnya dalam filter!
 
