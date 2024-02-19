@@ -33,43 +33,45 @@ __help__ = """
 
 @ky.ubot("setdb", sudo=True)
 async def _(c: user, m):
-
-    jing = await m.reply(f"{c.proses} <b>Processing...</b>")
+    em = Emojik()
+    em.initialize()
+    jing = await m.reply(f"{em.proses} <b>Processing...</b>")
     if len(m.command) < 3:
         return await jing.edit(
-            f"{c.gagal} <b>Gunakan Format : <code>setdb variable value</code>.</b>"
+            f"{em.gagal} <b>Gunakan Format : <code>setdb variable value</code>.</b>"
         )
     command, variable, value = m.command[:3]
     if variable.lower() == "pmpermit":
         if value.lower() == "off":
             udB.remove_var(c.me.id, "PMPERMIT")
-            await jing.edit(f"{c.sukses} <b>PMPermit Dimatikan.</b>")
+            await jing.edit(f"{em.sukses} <b>PMPermit Dimatikan.</b>")
         else:
             udB.set_var(c.me.id, "PMPERMIT", True)
-            await jing.edit(f"{c.sukses} <b>PMPermit Dihidupkan.</b>")
+            await jing.edit(f"{em.sukses} <b>PMPermit Dihidupkan.</b>")
     elif variable.lower() == "pmpic":
         if value.lower() == "off":
             udB.remove_var(c.me.id, "PMPIC")
-            await jing.edit(f"{c.sukses} <b>PM PIC Dimatikan.</b>")
+            await jing.edit(f"{em.sukses} <b>PM PIC Dimatikan.</b>")
         else:
             udB.set_var(c.me.id, "PMPIC", value)
             await jing.edit(
-                f"{c.sukses} <b>PM PIC Diatur ke : <code>{value}<code>.</b>"
+                f"{em.sukses} <b>PM PIC Diatur ke : <code>{value}<code>.</b>"
             )
     elif variable.lower() == "pmtext":
         if value.lower() == "clear":
             udB.remove_var(c.me.id, "PMTEXT")
-            await jing.edit(f"{c.sukses} <b>PM TEXT Diatur ke Default.</b>")
+            await jing.edit(f"{em.sukses} <b>PM TEXT Diatur ke Default.</b>")
     else:
-        await jing.edit(f"{c.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
+        await jing.edit(f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
 
 
 @ky.ubot("getdb", sudo=True)
 async def _(c, m):
-
-    jing = await m.reply(f"{c.proses} <b>Processing...</b>")
+    em = Emojik()
+    em.initialize()
+    jing = await m.reply(f"{em.proses} <b>Processing...</b>")
     if len(m.command) < 2:
-        return await jing.edit(f"{c.gagal} <b>Tidak ada variabel tersebut !!")
+        return await jing.edit(f"{em.gagal} <b>Tidak ada variabel tersebut !!")
     command, variable = m.command[:2]
     if variable.lower() == "pmtext":
         bb = udB.get_var(c.me.id, "PMTEXT")
@@ -95,15 +97,15 @@ async def _(c, m):
             except Exception as e:
                 await jing.edit(f"Error {e}")
         else:
-            await jing.edit(f"{c.sukses} <b>Ini PM Text anda :\n<code>{bb}</code></b>")
+            await jing.edit(f"{em.sukses} <b>Ini PM Text anda :\n<code>{bb}</code></b>")
     elif variable.lower() == "pmlimit":
         bb = udB.get_var(c.me.id, "PMLIMIT")
-        await jing.edit(f"{c.sukses} <b>Ini PM Limit anda :\n<code>{bb}</code></b>")
+        await jing.edit(f"{em.sukses} <b>Ini PM Limit anda :\n<code>{bb}</code></b>")
     elif variable.lower() == "pmpic":
         bb = udB.get_var(c.me.id, "PMPIC")
-        await jing.edit(f"{c.sukses} <b>Ini PM Pic anda :\n<code>{bb}</code></b>")
+        await jing.edit(f"{em.sukses} <b>Ini PM Pic anda :\n<code>{bb}</code></b>")
     else:
-        await jing.edit(f"{c.gagal} <b>Tidak ada variabel tersebut !!")
+        await jing.edit(f"{em.gagal} <b>Tidak ada variabel tersebut !!")
 
 
 @ky.ubot("^get_teks_but")
@@ -127,19 +129,20 @@ async def _(c, iq):
 
 @ky.ubot("deldb", sudo=True)
 async def _(c, m):
-
-    jing = await m.reply(f"{c.proses} <b>Processing...</b>")
+    em = Emojik()
+    em.initialize()
+    jing = await m.reply(f"{em.proses} <b>Processing...</b>")
     if len(m.command) < 2:
-        return await jing.edit(f"{c.gagal} <b>Tidak ada variabel tersebut !!")
+        return await jing.edit(f"{em.gagal} <b>Tidak ada variabel tersebut !!")
     command, variable = m.command[:2]
     if variable.lower() == "pmpermit":
         udB.remove_var(c.me.id, "PMPERMIT")
-        await jing.edit(f"{c.sukses} <b>PMPermit Dimatikan.</b>")
+        await jing.edit(f"{em.sukses} <b>PMPermit Dimatikan.</b>")
     elif variable.lower() == "pmpic":
         udB.remove_var(c.me.id, "PMPIC")
-        await jing.edit(f"{c.sukses} <b>PM PIC Dimatikan.</b>")
+        await jing.edit(f"{em.sukses} <b>PM PIC Dimatikan.</b>")
     elif variable.lower() == "pmtext":
         udB.remove_var(c.me.id, "PMTEXT")
-        await jing.edit(f"{c.sukses} <b>PM TEXT Diatur ke Default.</b>")
+        await jing.edit(f"{em.sukses} <b>PM TEXT Diatur ke Default.</b>")
     else:
-        await jing.edit(f"{c.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
+        await jing.edit(f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>")
