@@ -26,7 +26,8 @@ from typing import Optional
 from pyrogram import enums
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
-from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall, EditGroupCallTitle
+from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
+                                          EditGroupCallTitle)
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pytgcalls.exceptions import AlreadyJoinedError
 from pytgcalls.types.input_stream import InputAudioStream, InputStream
@@ -86,6 +87,7 @@ async def _(c: user, m):
         f"{em.gagal} <b>Obrolan Suara Diakhiri</b>\n<b> Chat : </b><code>{m.chat.title}</code>"
     )
 
+
 @ky.ubot("vctitle", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -102,9 +104,8 @@ async def _(c: user, m):
     except ChatAdminRequired:
         await m.reply(f"{em.gagal} <b>Anda bukan admin digrup ini.</b>")
         return
-    await ky.edit(
-        f"{em.gagal} <b>Judul Voice Chat: </b><code>{txt}</code>"
-    )
+    await ky.edit(f"{em.gagal} <b>Judul Voice Chat: </b><code>{txt}</code>")
+
 
 @ky.ubot("joinvc", sudo=True)
 async def _(c: user, m):
