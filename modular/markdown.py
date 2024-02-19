@@ -10,8 +10,8 @@ from pyrogram import enums
 
 from Mix import *
 
-__MODULE__ = "Markdown"
-__HELP__ = """
+__modles__ = "Markdown"
+__help__ = """
 Help Command Markdown
 
 • Perintah: <code>{0}markdown</code>
