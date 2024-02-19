@@ -29,7 +29,7 @@ def markdown_help():
             ],
         ],
         True,
-        "1_cls",
+        "closeru",
     )
 
 
