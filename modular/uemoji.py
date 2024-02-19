@@ -161,11 +161,11 @@ async def _(c: user, m):
                 if emoji_id:
                     udB.set_var(c.me.id, "emo_alive", emoji_id)
                     await jing.edit(
-                        f"{emo.sukses} <b>Emoji profil diset ke :</b> <emoji id={emoji_id}>{value}</emoji>"
-                    )
+                        f"{emo.sukses} <b>Emoji alive diset ke :</b> <emoji id={emoji_id}>{value}</emoji>")
+                    
         elif gua == False:
             udB.set_var(c.me.id, "emo_alive", value)
-            await jing.edit(f"{emo.sukses} <b>Emoji profil diset ke :</b> {value}")
+            await jing.edit(f"{emo.sukses} <b>Emoji alive diset ke :</b> {value}")
     else:
         await jing.edit(
             f"{emo.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>"
