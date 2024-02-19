@@ -20,7 +20,7 @@ class Types(IntEnum):
     
 def ReplyCheck(m):
     reply_id = None
-    if .reply_to_message:
+    if m.reply_to_message:
         reply_id = m.reply_to_message.id
     elif not m.from_user.is_self:
         reply_id = m.id
