@@ -15,7 +15,7 @@ from Mix import *
 
 @ky.ubot("ping", sudo=True)
 @ky.devs("mping")
-async def ping(c: user, m):
+async def _(c: user, m):
 
     start = datetime.now()
     await c.invoke(Ping(ping_id=0))
@@ -29,5 +29,5 @@ async def ping(c: user, m):
 
 
 @bot.on_message(filters.command("ping"))
-async def ping(u, m):
+async def _(u, m):
     await m.reply_text("<b> Mix Userbot Tes</b>")
