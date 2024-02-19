@@ -23,6 +23,7 @@ from team import *
 def fexid():
     emo = Emojii()
     emo.initialize()
+    return emo
 
 
 fex = fexid()
