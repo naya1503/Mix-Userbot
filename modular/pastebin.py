@@ -54,9 +54,10 @@ async def _(c, iq):
 
 @ky.ubot("paste", sudo=True)
 async def _(c: user, m):
-
+    em = Emojik()
+    em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(f"{c.gagal} Silahkan balas ke pesan.")
+        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan.")
     try:
         x = await c.get_inline_bot_results(bot.me.username, f"paste_an {id(m)}")
         return await c.send_inline_bot_result(m.chat.id, x.query_id, x.results[0].id)
