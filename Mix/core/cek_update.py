@@ -20,6 +20,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 from team.nandev.class_log import LOGGER
 
 from config import *
+
 from .misc import XCB
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
