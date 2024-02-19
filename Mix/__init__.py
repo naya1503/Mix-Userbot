@@ -18,5 +18,3 @@ bot = Bot()
 
 
 from team import *
-
-
