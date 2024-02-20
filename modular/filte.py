@@ -168,65 +168,10 @@ async def _(c: user, m):
     all_bls = db.get_all_filters(m.chat.id)
     if not all_bls:
         return await m.reply_text(f"{em.gagal} Tidak ada filter digrup ini!")
-    try:
-        xi = await c.get_inline_bot_results(
-            bot.me.username, f"unfillter_inline {m.chat.id}"
-        )
-        await m.delete()
-        await c.send_inline_bot_result(
-            m.chat.id,
-            xi.query_id,
-            xi.results[0].id,
-        )
-    except Exception as e:
-        await m.edit(f"{e}")
-        return
-
-
-def unfilter_kb():
-    return okb(
-        [
-            [
-                ("⚠️ Yakin", "rm_allfilters"),
-            ],
-        ],
-        True,
-        "help_back",
-    )
-
-
-@ky.inline("^unfillter_inline")
-async def _(c, iq):
-    txt = "<b>Apakah kamu yakin ingin menghapus semua filter digrup ini ?</b>"
-    await c.answer_inline_query(
-        iq.id,
-        cache_time=0,
-        results=[
-            (
-                InlineQueryResultArticle(
-                    title="Filter Online!",
-                    reply_markup=unfilter_kb(),
-                    input_message_content=InputTextMessageContent(txt),
-                )
-            )
-        ],
-    )
-
-
-@ky.callback("rm_allfilters")
-async def _(_, q):
-    org = q.data.split()
-    gw = q.from_user.id
-    if int(org[0]) == gw:
-        db.rm_all_filters(q.inline_message_id)
-        await q.edit_message_text(f"Berhasil menghapus semua kata filter?")
-        await q.answer("Berhasil menghapus semua kata filter!", True)
-    else:
-        await q.answer(
-            f"Jangan Di Pencet Anjeng.",
-            True,
-        )
-        return
+    db.rm_all_filters(m.chat.id)
+    await m.reply_text(f"{em.sukses} Semua filter berhasil dihapus!")
+    
+    
 
 
 async def send_filter_reply(c: user, m, trigger: str):
