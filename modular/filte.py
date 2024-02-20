@@ -7,19 +7,14 @@
 ################################################################
 
 
-
 from re import escape as re_escape
 from secrets import choice
 from traceback import format_exc
 
-from pyrogram import filters
-from pyrogram.enums import ChatMemberStatus as CMS
 from pyrogram.enums import ParseMode as PM
 from pyrogram.errors import RPCError
-from pyrogram.types import CallbackQuery, Message
 
 from Mix import *
-
 
 # Initialise
 db = Filters()
@@ -60,10 +55,14 @@ async def _(c: user, m):
         return
 
     if not m.reply_to_message and len(m.text.split()) < 3:
-        return await m.reply_text(f"{em.gagal} Format yang anda berikan salah. Gunakan format : `filter [nama filter] [balas ke pesan]`.")
+        return await m.reply_text(
+            f"{em.gagal} Format yang anda berikan salah. Gunakan format : `filter [nama filter] [balas ke pesan]`."
+        )
 
     if m.reply_to_message and len(args) < 2:
-        return await m.reply_text(f"{em.gagal} Format yang anda berikan salah. Gunakan format : `filter [nama filter] [balas ke pesan]`.")
+        return await m.reply_text(
+            f"{em.gagal} Format yang anda berikan salah. Gunakan format : `filter [nama filter] [balas ke pesan]`."
+        )
 
     extracted = await split_quotes(args[1])
     keyword = extracted[0].lower()
@@ -78,7 +77,9 @@ async def _(c: user, m):
         )
 
     if keyword.startswith("<") or keyword.startswith(">"):
-        return await m.reply_text(f"{em.gagal} Tidak dapat menyimpan filter dengan symbol '<' atau '>'.")
+        return await m.reply_text(
+            f"{em.gagal} Tidak dapat menyimpan filter dengan symbol '<' atau '>'."
+        )
 
     eee, msgtype, file_id = await get_filter_type(m)
     lol = eee if m.reply_to_message else extracted[1]
@@ -158,7 +159,7 @@ async def _(c: user, m):
     except Exception as e:
         await m.edit(f"{e}")
         return
-    
+
 
 def unfilter_kb():
     return okb(
@@ -170,6 +171,7 @@ def unfilter_kb():
         True,
         "help_back",
     )
+
 
 @ky.inline("^unfillter_inline")
 async def _(c, iq):
@@ -187,6 +189,7 @@ async def _(c, iq):
             )
         ],
     )
+
 
 @ky.callback("rm_allfilters")
 async def _(_, q):
@@ -307,7 +310,7 @@ async def _(c: user, m):
         match = await regex_searcher(pattern, m.text.lower())
         if match:
             try:
-                msgtype = await send_filter_reply(c, m, trigger)
+                await send_filter_reply(c, m, trigger)
             except Exception as ef:
                 await m.reply_text(f"Error: {ef}")
                 LOGGER(__name__).error(format_exc())
