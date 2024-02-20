@@ -88,8 +88,8 @@ def parse_button(text):
         note_data += markdown_note[prev:]
 
     return note_data, buttons
-    
-    
+
+
 def parse_mark(mark):
     if mark and isinstance(mark, InlineKeyboardMarkup):
         buttons = []
@@ -100,7 +100,6 @@ def parse_mark(mark):
         return buttons
     else:
         return []
-
 
 
 def extract_time(time_val):
