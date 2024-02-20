@@ -171,7 +171,9 @@ async def _(c: user, m):
     if not all_bls:
         return await m.reply_text(f"{em.gagal} Tidak ada filter digrup ini!")
     try:
-        xi = await c.get_inline_bot_results(bot.me.username, f"unfillter_inline {id(m)}")
+        xi = await c.get_inline_bot_results(
+            bot.me.username, f"unfillter_inline {id(m)}"
+        )
         await m.delete()
         await c.send_inline_bot_result(
             m.chat.id, xi.query_id, xi.results[0].id, reply_to_message_id=ReplyCheck(m)
