@@ -18,6 +18,7 @@ async def main():
     try:
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
+        await load_emo(user.me.id)
         await asyncio.sleep(1)
         await refresh_cache()
     except SessionExpired:
