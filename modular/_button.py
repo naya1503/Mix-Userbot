@@ -8,8 +8,9 @@
 
 from gc import get_objects
 
-from pyrogram.types import *
 from pyrogram import *
+from pyrogram.types import *
+
 from Mix import *
 
 __modles__ = "Button"
