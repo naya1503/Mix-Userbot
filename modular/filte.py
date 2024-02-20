@@ -171,7 +171,7 @@ async def _(c: user, m):
         return await m.reply_text(f"{em.gagal} Tidak ada filter digrup ini!")
     try:
         xi = await c.get_inline_bot_results(
-            bot.me.username, f"unfillter_inline {id(m)}"
+            bot.me.username, f"unfillter_inline {m.chat.id}"
         )
         await m.delete()
         await c.send_inline_bot_result(
@@ -216,10 +216,10 @@ async def _(c, iq):
 
 @ky.callback("rm_allfilters")
 async def _(_, q):
-    _id = int(q.data.split()[1])
-    m = [obj for obj in get_objects() if id(obj) == _id][0]
-    if q.from_user.id == m.id:
-        db.rm_all_filters(m.chat.id)
+    org = iq.query.split()
+    gw = iq.from_user.id
+    if int(org[0]) == gw:
+        db.rm_all_filters(q.inline_message_id)
         await q.edit_message_text(f"Berhasil menghapus semua kata filter?")
         await q.answer("Berhasil menghapus semua kata filter!", True)
     else:
