@@ -105,15 +105,12 @@ def parse_mark(mark):
         for row in mark.inline_keyboard:
             for button in row:
                 if button.text and button.url:
-                    url = button.url
-                    if url.startswith("buttonurl:"):
-                        url_parts = url.split(":")
-                        formatted_url = url_parts[1]
-                        formatted_button = f"[{button.text}]({formatted_url})"
-                        formatted_buttons.append(formatted_button)
+                    formatted_button = f"[{button.text}]({button.url})"
+                    formatted_buttons.append(formatted_button)
         return "\n".join(formatted_buttons)
     else:
         return ""
+
 
 
 def extract_time(time_val):
