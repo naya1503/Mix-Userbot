@@ -88,6 +88,19 @@ def parse_button(text):
         note_data += markdown_note[prev:]
 
     return note_data, buttons
+    
+    
+def parse_mark(mark):
+    if mark and isinstance(mark, InlineKeyboardMarkup):
+        buttons = []
+        for row in mark.inline_keyboard:
+            for button in row:
+                if button.text and button.url:
+                    buttons.append((button.text, button.url, False))
+        return buttons
+    else:
+        return []
+
 
 
 def extract_time(time_val):
