@@ -68,7 +68,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("getdb", sudo=True)
-async def _(c, m):
+async def _(c: user, m):
     em = Emojik()
     em.initialize()
     jing = await m.reply(f"{em.proses} <b>Processing...</b>")
@@ -110,7 +110,7 @@ async def _(c, m):
         await jing.edit(f"{em.gagal} <b>Tidak ada variabel tersebut !!")
 
 
-@ky.ubot("^get_teks_but")
+@ky.inline("^get_teks_but")
 async def _(c, iq):
     gw = iq.from_user.id
     getpm_txt = udB.get_var(gw, "PMTEXT")
