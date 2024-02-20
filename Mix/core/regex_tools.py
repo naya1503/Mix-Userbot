@@ -1,9 +1,8 @@
-#Gojo_Satoru
+# Gojo_Satoru
 
 from traceback import format_exc
 
 from regex import search
-
 from team.nandev.class_log import LOGGER
 
 
