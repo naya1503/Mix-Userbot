@@ -262,7 +262,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan!"
+        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan!")
     await m.reply_to_message.delete()
     await m.delete()
 
