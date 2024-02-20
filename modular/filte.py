@@ -270,8 +270,9 @@ async def send_filter_reply(c: user, m, trigger: str):
             if button:
                 try:
                     x = await c.get_inline_bot_results(
-                    bot.me.username, f"get_fil_inl {getfilter}")
-                    #await m.delete()
+                        bot.me.username, f"get_fil_inl {getfilter}"
+                    )
+                    # await m.delete()
                     await c.send_inline_bot_result(
                         m.chat.id,
                         x.query_id,
