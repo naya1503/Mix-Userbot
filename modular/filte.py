@@ -215,10 +215,11 @@ async def _(c, iq):
 @ky.callback("rm_allfilters")
 async def _(_, q):
     user_id = q.from_user.id
-    if user_id == user.me.id:
-        db.rm_all_filters(q.message.chat.id)
+    aa = int(q.data.split()[1])
+    if user_id == aa:
+        db.rm_all_filters(q.inline_message_id)
         await q.edit_message_text(f"Berhasil menghapus semua kata filter?")
-        await q.answer("Berhasil menghapus semua kata filter?", True)
+        await q.answer("Berhasil menghapus semua kata filter!", True)
     else:
         await q.answer(
             f"Jangan Di Pencet Anjeng.",
@@ -268,18 +269,22 @@ async def send_filter_reply(c: user, m, trigger: str):
         if msgtype == Types.TEXT:
             if button:
                 try:
-                    await m.reply_text(
-                        textt,
-                        # parse_mode=PM.MARKDOWN,
-                        reply_markup=button,
-                        disable_web_page_preview=True,
+                    x = await c.get_inline_bot_results(
+                    bot.me.username, f"get_fil_inl {getfilter}")
+                    #await m.delete()
+                    await c.send_inline_bot_result(
+                        m.chat.id,
+                        x.query_id,
+                        x.results[0].id,
+                        reply_to_message_id=ReplyCheck(m),
                     )
+                except Exception as e:
+                    await xx.edit(f"Error {e}")
                     return
                 except RPCError as ef:
                     await m.reply_text(
                         f"{ef} An error has occured! Cannot parse note.\n\nLaporkan ke @KynanSupport.",
                     )
-                    LOGGER(__name__).error(format_exc())
                     return
             else:
                 await m.reply_text(
