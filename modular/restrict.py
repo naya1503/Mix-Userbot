@@ -272,12 +272,12 @@ async def _(c: user, m):
     if m.command[0][0] == "u":
         await r.unpin()
         return await m.reply_text(
-            f"{em.sukses} **Sematan dilepas [ini]({r.link}).**",
+            f"{em.sukses} **Sematan dilepas [pesan]({r.link}).**",
             disable_web_page_preview=True,
         )
     await r.pin(disable_notification=True)
     await m.reply(
-        f"{em.sukses} **Pesan disematkan [ini]({r.link}) m.**",
+        f"{em.sukses} **Berhasil disematkan [pesan]({r.link}) m.**",
         disable_web_page_preview=True,
     )
 
