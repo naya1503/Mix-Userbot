@@ -170,8 +170,6 @@ async def _(c: user, m):
         return await m.reply_text(f"{em.gagal} Tidak ada filter digrup ini!")
     db.rm_all_filters(m.chat.id)
     await m.reply_text(f"{em.sukses} Semua filter berhasil dihapus!")
-    
-    
 
 
 async def send_filter_reply(c: user, m, trigger: str):
