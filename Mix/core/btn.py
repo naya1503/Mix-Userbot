@@ -2,7 +2,8 @@ import re
 from datetime import datetime, timedelta
 from html import escape
 from re import findall
-from typing import List
+from re import sub as re_sub
+from typing import List, Tuple
 
 from pykeyboard import InlineKeyboard
 from pyrogram.enums import ChatType
@@ -88,47 +89,6 @@ def parse_button(text):
         note_data += markdown_note[prev:]
 
     return note_data, buttons
-
-
-async def parse_button2(text: str):
-    """Parse button from text."""
-    markdown_note = text
-    prev = 0
-    note_data = ""
-    buttons = []
-    for match in BTN_URL_REGEX.finditer(markdown_note):
-        # Check if btnurl is escaped
-        n_escapes = 0
-        to_check = match.start(1) - 1
-        while to_check > 0 and markdown_note[to_check] == "\\":
-            n_escapes += 1
-            to_check -= 1
-
-        # if even, not escaped -> create button
-        if n_escapes % 2 == 0:
-            # create a thruple with button label, url, and newline status
-            buttons.append((match.group(2), match.group(3), bool(match.group(4))))
-            note_data += markdown_note[prev : match.start(1)]
-            prev = match.end(1)
-        # if odd, escaped -> move along
-        else:
-            note_data += markdown_note[prev:to_check]
-            prev = match.start(1) - 1
-    else:
-        note_data += markdown_note[prev:]
-    return note_data, buttons
-
-
-async def build_keyboard2(buttons):
-    """Build keyboards from provided buttons."""
-    keyb = []
-    for btn in buttons:
-        if btn[-1] and keyb:
-            keyb[-1].append((btn[0], btn[1], "url"))
-        else:
-            keyb.append([(btn[0], btn[1], "url")])
-
-    return keyb
 
 
 def extract_time(time_val):
