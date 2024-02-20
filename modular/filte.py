@@ -17,6 +17,23 @@ from pyrogram.errors import RPCError
 from Mix import *
 from Mix.core.sender_tools import send_cmd
 
+__modles__ = "Filter"
+__help__ = """
+Help Command Filter 
+
+• Perintah: <code>{0}filters</code>
+• Penjelasan: Untuk melihat daftar filters digrup tersebut.
+
+• Perintah: <code>{0}filter</code> [nama filter] [balas pesan]
+• Penjelasan: Untuk menambahkan filters digrup tersebut.
+
+• Perintah: <code>{0}unfilter</code> [nama filter]
+• Penjelasan: Untuk menghapus filters digrup tersebut.
+
+• Perintah: <code>{0}unfilterall</code>
+• Penjelasan: Untuk menghapus semua filters digrup tersebut.
+"""
+
 # Initialise
 db = Filters()
 
@@ -82,7 +99,7 @@ async def _(c: user, m):
             f"{em.gagal} Tidak dapat menyimpan filter dengan symbol '<' atau '>'."
         )
 
-    eee, msgtype, file_id = await get_filter_type(m)
+    eee, msgtype, file_id = get_filter_type(m)
     lol = eee if m.reply_to_message else extracted[1]
     teks = lol if msgtype == Types.TEXT else eee
 
