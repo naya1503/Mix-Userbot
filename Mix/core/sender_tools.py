@@ -1,17 +1,15 @@
 # Gojo_satoru
-import asyncio
-import os
-import shlex
-from io import BytesIO
 from traceback import format_exc
-from typing import Tuple, Union
-from Mix import user, Users
+from typing import Tuple
 
-from .msgty import Types
 from pyrogram import *
 from pyrogram.enums import MessageEntityType as entity
 from pyrogram.enums import *
 from pyrogram.types import *
+
+from Mix import Users, user
+
+from .msgty import Types
 
 
 async def send_cmd(c: user, msgtype: int):
