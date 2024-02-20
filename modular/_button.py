@@ -6,9 +6,11 @@
 """
 ################################################################
 
-from Mix import *
 from gc import get_objects
+
 from pyrogram.types import *
+
+from Mix import *
 
 __modles__ = "Button"
 __help__ = """
@@ -31,27 +33,29 @@ async def _(c: user, m):
         button = InlineKeyboardMarkup(button)
         try:
             x = await c.get_inline_bot_results(
-                bot.me.username,
-                f"dibikin_button {id(m)}")
+                bot.me.username, f"dibikin_button {id(m)}"
+            )
             await c.send_inline_bot_result(
                 m.chat.id,
                 x.query_id,
                 x.results[0].id,
-                reply_to_message_id=ReplyCheck(message))
-            
+                reply_to_message_id=ReplyCheck(message),
+            )
+
         except Exception as e:
             await babi.edit(f"Error {e}")
             return
     else:
-         button = None
-         await m.reply(f"{em.gagal} Silahkan ketik `help markdown` untuk melihat format button!")
+        button = None
+        await m.reply(
+            f"{em.gagal} Silahkan ketik `help markdown` untuk melihat format button!"
+        )
     await babi.delete()
-        
-        
-        
+
+
 @ky.ubot("^dibikin_button")
 async def _(c, iq):
-    gw = iq.from_user.id
+    iq.from_user.id
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
     rep = m.reply_to_message
