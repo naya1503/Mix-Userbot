@@ -13,6 +13,7 @@ from traceback import format_exc
 
 from pyrogram.enums import ParseMode as PM
 from pyrogram.errors import RPCError
+from pyrogram.enums import *
 from pyrogram.types import *
 
 from Mix import *
