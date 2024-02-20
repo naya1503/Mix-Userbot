@@ -17,8 +17,10 @@ __modles__ = "Button"
 __help__ = """
  Help Command Button
 
-• Perintah: <code>{0}setmsg</code> [balas atau berikan pesan]
-• Penjelasan: Untuk mengatur pesan PMPERMIT.
+• Perintah: <code>{0}button</code> [balas pesan]
+• Penjelasan: Untuk membuat teks button.
+
+• Silahkan ketik <code>{0}help markdown</code> untuk melihat format button.
 """
 
 
