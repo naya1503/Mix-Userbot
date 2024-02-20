@@ -57,7 +57,7 @@ async def _(c: user, m):
 
 @ky.ubot("^dibikin_button")
 async def _(c, iq):
-    #iq.from_user.id
+    # iq.from_user.id
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
     rep = m.reply_to_message
