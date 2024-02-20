@@ -628,18 +628,15 @@ async def _(c: user, m):
                 can_manage_video_chats=False,
             ),
         )
-        await m.reply_text
-            ("{e1} {demoter}\n{e2} Pengguna {demoted} berhasil diturunkan admin!").format(
-                e1=em.profil,
-                demoter=(
-                    await mention_html(
-                        m.from_user.first_name,
-                        m.from_user.id,
-                    )
-                ),
-                e2=em.warn,
-                demoted=(await mention_html(user_first_name, user_id)),
-                chat_title=m.chat.title,
+        await m.reply_text(
+          "{e1} {demoter}\n{e2} Pengguna {demoted} berhasil diturunkan admin!").format(
+              e1=em.profil,
+              demoter=(await mention_html(
+                  m.from_user.first_name,
+                  m.from_user.id)),
+              e2=em.warn,
+              demoted=(await mention_html(user_first_name, user_id)),
+              chat_title=m.chat.title,
         )
     except BotChannelsNa:
         await m.reply_text(f"{em.gagal} Pengguna tidak diangkat oleh saya!")
