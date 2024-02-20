@@ -716,6 +716,8 @@ async def _(c: user, m):
         await c.set_administrator_title(m.chat.id, from_user.id, title)
     except Exception as e:
         return await m.reply_text(f"{em.gagal} Error: {e}")
+    except UserCreator:
+        return await m.reply_text(f"{em.gagal} Dia adalah pemilik grup ini!")
     return await m.reply_text(
         f"{em.sukses} Berhasil mengubah title pengguna {from_user.mention} menjadi {title}",
     )
