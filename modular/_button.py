@@ -31,6 +31,9 @@ async def _(c: user, m):
     button = build_keyboard(button)
     if button:
         button = InlineKeyboardMarkup(button)
+    else:
+        button = None
+    if button:
         try:
             x = await c.get_inline_bot_results(
                 bot.me.username, f"dibikin_button {id(m)}"
@@ -46,7 +49,6 @@ async def _(c: user, m):
             await babi.edit(f"Error {e}")
             return
     else:
-        button = None
         await m.reply(
             f"{em.gagal} Silahkan ketik `help markdown` untuk melihat format button!"
         )
@@ -55,7 +57,7 @@ async def _(c: user, m):
 
 @ky.ubot("^dibikin_button")
 async def _(c, iq):
-    iq.from_user.id
+    #iq.from_user.id
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
     rep = m.reply_to_message
