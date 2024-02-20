@@ -9,7 +9,7 @@
 from gc import get_objects
 
 from pyrogram.types import *
-
+from pyrogram import *
 from Mix import *
 
 __modles__ = "Button"
@@ -55,7 +55,7 @@ async def _(c: user, m):
     await babi.delete()
 
 
-@ky.ubot("^dibikin_button")
+@ky.inline("^dibikin_button")
 async def _(c, iq):
     # iq.from_user.id
     _id = int(iq.query.split()[1])
