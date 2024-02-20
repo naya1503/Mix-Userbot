@@ -299,7 +299,7 @@ async def _(c: user, m):
         return await m.reply_text(f"{em.gagal} Tidak dapat membisukan admin!")
     mention = (await c.get_users(user_id)).mention
     msg = (
-        f"{em.user} **Muted User:** {mention}\n"
+        f"{em.profil} **Muted User:** {mention}\n"
         f"{em.block} **Muted By:** {m.from_user.mention if m.from_user else 'Anon'}\n"
     )
     if m.command[0][0] == "d":
