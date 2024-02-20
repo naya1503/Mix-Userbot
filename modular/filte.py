@@ -6,7 +6,7 @@
 """
 ################################################################
 
-
+from gc import get_objects
 from re import escape as re_escape
 from secrets import choice
 from traceback import format_exc
@@ -175,7 +175,7 @@ async def _(c: user, m):
         )
         await m.delete()
         await c.send_inline_bot_result(
-            m.chat.id, xi.query_id, xi.results[0].id, reply_to_message_id=ReplyCheck(m)
+            m.chat.id, xi.query_id, xi.results[0].id,
         )
     except Exception as e:
         await m.edit(f"{e}")
@@ -214,10 +214,10 @@ async def _(c, iq):
 
 @ky.callback("rm_allfilters")
 async def _(_, q):
-    user_id = q.from_user.id
-    # int(q.data.split()[0])
-    if q.id == user_id:
-        db.rm_all_filters(q.inline_message_id)
+    _id = int(q.data.split()[1])
+    m = [obj for obj in get_objects() if id(obj) == _id][0]
+    if q.from_user.id == m.id:
+        db.rm_all_filters(m.chat.id)
         await q.edit_message_text(f"Berhasil menghapus semua kata filter?")
         await q.answer("Berhasil menghapus semua kata filter!", True)
     else:
