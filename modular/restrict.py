@@ -488,7 +488,6 @@ async def _(c: user, m):
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
         await m.reply_text(
-            (
                 "{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi fulladmin!"
             ).format(
                 em.profil,
@@ -500,7 +499,6 @@ async def _(c: user, m):
                     if title
                     else f"{escape(m.chat.title)} title Default"
                 ),
-            ),
         )
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
