@@ -49,7 +49,7 @@ async def _(c: user, m):
         
         
         
- @ky.ubot("^dibikin_button")
+@ky.ubot("^dibikin_button")
 async def _(c, iq):
     gw = iq.from_user.id
     _id = int(iq.query.split()[1])
