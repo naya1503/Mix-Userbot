@@ -2,8 +2,7 @@ import re
 from datetime import datetime, timedelta
 from html import escape
 from re import findall
-from re import sub as re_sub
-from typing import List, Tuple
+from typing import List
 
 from pykeyboard import InlineKeyboard
 from pyrogram.enums import ChatType
