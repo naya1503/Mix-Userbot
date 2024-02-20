@@ -610,9 +610,8 @@ async def _(c: user, m):
     except Exception:
         return
     if user_id == c.me.id:
-        await m.reply_text(f"{em.gagal} Cari pendiri grup dan turunkan anda."
+        await m.reply_text(f"{em.gagal} Cari pendiri grup dan turunkan anda.")
         return
-    # If user not already admin
     botol = await member_permissions(m.chat.id, user_id)
     if not botol:
         await m.reply_text(
