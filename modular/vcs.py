@@ -110,7 +110,7 @@ async def _(c: user, m):
     except Forbidden:
         await ky.edit(f"{em.gagal} <b>Anda bukan admin digrup ini.</b>")
         return
-    await ky.edit(f"{em.gagal} <b>Judul Voice Chat :</b> <code>{txt}</code>")
+    await ky.edit(f"{em.sukses} <b>Judul Voice Chat :</b> <code>{txt}</code>")
 
 
 @ky.ubot("joinvc", sudo=True)
