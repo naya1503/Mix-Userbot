@@ -35,7 +35,6 @@ from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from Mix import *
 
-
 turun_dewek = False
 
 
