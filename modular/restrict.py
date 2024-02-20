@@ -488,11 +488,11 @@ async def _(c: user, m):
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
         await m.reply_text(
-                "{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi fulladmin!"
+                "{e1} {promoter}\n{e2} Pengguna {promoted} berhasil diangkat menjadi fulladmin!"
             ).format(
-                em.profil,
+                e1=em.profil,
                 promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
-                em.warn,
+                e2=em.warn,
                 promoted=(await mention_html(user_first_name, user_id)),
                 chat_title=(
                     f"{escape(m.chat.title)} title {title}"
