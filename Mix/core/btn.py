@@ -62,53 +62,6 @@ def ikb(data: dict, row_width: int = 2):
     return keyboard(data.items(), row_width=row_width)
 
 
-def button_markdown_parser(msg: Message) -> Tuple[str, List]:
-    # args = None
-    # offset = len(args[2]) - len(raw_text)
-    # set correct offset relative to command + notename
-    markdown_note = None
-    if msg.media:
-        if msg.caption:
-            markdown_note = msg.caption.markdown
-    else:
-        markdown_note = msg.text.markdown
-    note_data = ""
-    buttons = []
-    if markdown_note is None:
-        return note_data, buttons
-    #
-    if markdown_note.startswith("/"):
-        args = markdown_note.split(None, 2)
-        # use python's maxsplit to separate cmd and args
-        markdown_note = args[2]
-    prev = 0
-    for match in BTN_URL_REGEX.finditer(markdown_note):
-        # Check if btnurl is escaped
-        n_escapes = 0
-        to_check = match.start(1) - 1
-        while to_check > 0 and markdown_note[to_check] == "\\":
-            n_escapes += 1
-            to_check -= 1
-
-        # if even, not escaped -> create button
-        if n_escapes % 2 == 0:
-            # create a thruple with button label, url, and newline status
-            if bool(match.group(4)) and buttons:
-                buttons[-1].append(Ikb(text=match.group(2), url=match.group(3)))
-            else:
-                buttons.append([Ikb(text=match.group(2), url=match.group(3))])
-            note_data += markdown_note[prev : match.start(1)]
-            prev = match.end(1)
-        # if odd, escaped -> move along
-        else:
-            note_data += markdown_note[prev:to_check]
-            prev = match.start(1) - 1
-    else:
-        note_data += markdown_note[prev:]
-
-    return note_data, buttons
-
-
 def parse_button(text):
     markdown_note = text
     prev = 0
@@ -222,32 +175,6 @@ def build_keyboard(buttons):
             keyb.append([Ikb(btn[0], url=btn[1])])
 
     return keyb
-
-
-def extract_text_and_keyb(ikb, text: str, row_width: int = 2):
-    keyboard = {}
-    try:
-        text = text.strip()
-        if text.startswith("`"):
-            text = text[1:]
-        if text.endswith("`"):
-            text = text[:-1]
-
-        text, keyb = text.split("~")
-
-        keyb = findall(r"\[.+\,.+\]", keyb)
-        for btn_str in keyb:
-            btn_str = re_sub(r"[\[\]]", "", btn_str)
-            btn_str = btn_str.split(",")
-            btn_txt, btn_url = btn_str[0], btn_str[1].strip()
-
-            if not is_url(btn_url):
-                continue
-            keyboard[btn_txt] = btn_url
-        keyboard = ikb(keyboard, row_width)
-    except Exception:
-        return
-    return text, keyboard
 
 
 def okb(rows=None, back=False, todo="closeru"):
