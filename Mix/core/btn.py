@@ -89,6 +89,7 @@ def parse_button(text):
 
     return note_data, buttons
 
+
 ################################################################
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
@@ -97,6 +98,7 @@ def parse_button(text):
 """
 ################################################################
 
+
 def parse_mark(mark):
     if mark and isinstance(mark, InlineKeyboardMarkup):
         formatted_buttons = []
@@ -104,15 +106,14 @@ def parse_mark(mark):
             for button in row:
                 if button.text and button.url:
                     url = button.url
-                    if url.startswith('buttonurl:'):
-                        url_parts = url.split(':')
+                    if url.startswith("buttonurl:"):
+                        url_parts = url.split(":")
                         formatted_url = url_parts[1]
                         formatted_button = f"[{button.text}]({formatted_url})"
                         formatted_buttons.append(formatted_button)
-        return '\n'.join(formatted_buttons)
+        return "\n".join(formatted_buttons)
     else:
-        return ''
-
+        return ""
 
 
 def extract_time(time_val):
