@@ -6,6 +6,7 @@
 """
 ################################################################
 
+from gc import get_objects
 from re import escape as re_escape
 from secrets import choice
 from traceback import format_exc
@@ -215,8 +216,8 @@ async def _(c, iq):
 
 @ky.callback("rm_allfilters")
 async def _(_, q):
-    org = iq.query.split()
-    gw = iq.from_user.id
+    org = q.data.split()
+    gw = q.from_user.id
     if int(org[0]) == gw:
         db.rm_all_filters(q.inline_message_id)
         await q.edit_message_text(f"Berhasil menghapus semua kata filter?")
