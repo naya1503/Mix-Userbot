@@ -5,3 +5,5 @@ from .git import *
 from .misc import *
 from .msgty import *
 from .pastebin import *
+from .regex_tools import *
+from .sender_tools import *
