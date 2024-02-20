@@ -13,7 +13,7 @@ from traceback import format_exc
 
 from pyrogram.enums import ParseMode as PM
 from pyrogram.enums import *
-from pyrogram.errors import RPCError
+from pyrogram.errors import *
 from pyrogram.types import *
 
 from Mix import *
@@ -271,7 +271,7 @@ async def send_filter_reply(c: user, m, trigger: str):
                 try:
                     await m.reply_text(
                         textt,
-                        parse_mode=PM.MARKDOWN,
+                        #parse_mode=PM.MARKDOWN,
                         reply_markup=button,
                         disable_web_page_preview=True,
                     )
@@ -285,7 +285,7 @@ async def send_filter_reply(c: user, m, trigger: str):
             else:
                 await m.reply_text(
                     textt,
-                    parse_mode=PM.MARKDOWN,
+                    #parse_mode=PM.MARKDOWN,
                     disable_web_page_preview=True,
                 )
                 return
@@ -307,7 +307,7 @@ async def send_filter_reply(c: user, m, trigger: str):
                 m.chat.id,
                 getfilter["fileid"],
                 caption=textt,
-                parse_mode=PM.MARKDOWN,
+                #parse_mode=PM.MARKDOWN,
                 reply_markup=button,
                 reply_to_message_id=m.id,
             )
