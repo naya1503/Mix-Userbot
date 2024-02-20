@@ -15,6 +15,7 @@ from pyrogram.enums import ParseMode as PM
 from pyrogram.errors import RPCError
 
 from Mix import *
+from Mix.core.sender_tools import send_cmd
 
 # Initialise
 db = Filters()
