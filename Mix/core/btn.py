@@ -105,7 +105,7 @@ def parse_mark(mark):
         for row in mark.inline_keyboard:
             for button in row:
                 if button.text and button.url:
-                    formatted_button = f"[{button.text}]({button.url})"
+                    formatted_button = f"[{button.text}](buttonurl://{button.url})"
                     formatted_buttons.append(formatted_button)
         return "\n".join(formatted_buttons)
     else:
