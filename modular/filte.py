@@ -237,7 +237,7 @@ async def send_filter_reply(c: user, m, trigger: str):
     if not getfilter:
         return await m.reply_text(
             "<b>Error:</b> Tidak dapat menemukan filter ini!!",
-            quote=True,
+            
         )
 
     msgtype = getfilter["msgtype"]
@@ -275,13 +275,13 @@ async def send_filter_reply(c: user, m, trigger: str):
                         parse_mode=PM.MARKDOWN,
                         reply_markup=button,
                         disable_web_page_preview=True,
-                        quote=True,
+                        
                     )
                     return
                 except RPCError as ef:
                     await m.reply_text(
                         f"{ef} An error has occured! Cannot parse note.\n\nLaporkan ke @KynanSupport.",
-                        quote=True,
+                        
                     )
                     LOGGER(__name__).error(format_exc())
                     return
@@ -289,7 +289,7 @@ async def send_filter_reply(c: user, m, trigger: str):
                 await m.reply_text(
                     textt,
                     parse_mode=PM.MARKDOWN,
-                    quote=True,
+                    
                     disable_web_page_preview=True,
                 )
                 return
