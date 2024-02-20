@@ -9,14 +9,17 @@
 import asyncio
 from html import escape
 from time import time
+from traceback import format_exc
 
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 
-from Mix import DEVS, Emojik, ky, mention_html, user
+from Mix import ky, Emojik, user, okb, DEVS
+from team.nandev.class_log import LOGGER
 from Mix.core.sender_tools import extract_user
+from Mix.core.msgty import mention_html
 
 __modles__ = "Group"
 __help__ = """
@@ -77,7 +80,6 @@ Help Command Group
 • Penjelasan: Untuk menyematkan pesan atau melepas sematan grup.
 """
 
-
 async def member_permissions(chat: int, org: int):
     perms = []
     member = (await user.get_chat_member(chat, org)).privileges
@@ -124,7 +126,6 @@ async def list_admins(chat: int):
         ],
     }
     return admins_in_chat[chat]["data"]
-
 
 @ky.ubot("purge", sudo=True)
 async def _(c: user, m):
@@ -179,11 +180,11 @@ async def _(c: user, m):
     if user_id == c.me.id:
         return await m.reply_text(f"{em.gagal} Oh anda ingin menendang diri sendiri ?")
     if user_id in DEVS:
-        return await m.reply_text(
-            f"{em.gagal} Oh anda ingin menendang Developer Mix-Userbot ?"
-        )
+        return await m.reply_text(f"{em.gagal} Oh anda ingin menendang Developer Mix-Userbot ?")
     if user_id in (await list_admins(m.chat.id)):
-        return await m.reply_text(f"{em.gagal} Tidak dapat menendang admin!")
+        return await m.reply_text(
+            f"{em.gagal} Tidak dapat menendang admin!"
+        )
     mention = (await c.get_users(user_id)).mention
     msg = f"""
 {em.profil} **Kicked User:** {mention}
@@ -209,15 +210,19 @@ async def _(c: user, m):
     if user_id == c.me.id:
         return await m.reply_text(f"{em.gagal} Oh anda ingin memblokir diri sendiri ?")
     if user_id in DEVS:
-        return await m.reply_text(
-            f"{em.gagal} Oh anda ingin memblokir Developer Mix-Userbot ?"
-        )
+        return await m.reply_text(f"{em.gagal} Oh anda ingin memblokir Developer Mix-Userbot ?")
     if user_id in (await list_admins(m.chat.id)):
-        return await m.reply_text(f"{em.gagal} Tidak dapat memblokir admin!")
+        return await m.reply_text(
+            f"{em.gagal} Tidak dapat memblokir admin!"
+        )
     try:
         mention = (await c.get_users(user_id)).mention
     except IndexError:
-        mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
+        mention = (
+            m.reply_to_message.sender_chat.title
+            if m.reply_to_message
+            else "Anon"
+        )
     msg = (
         f"{em.profil} **Banned User:** {mention}\n"
         f"{em.block} **Banned By:** {m.from_user.mention if m.from_user else 'Anon'}\n"
@@ -245,7 +250,9 @@ async def _(c: user, m):
     elif len(m.command) == 1 and reply:
         user = m.reply_to_message.from_user.id
     else:
-        return await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        return await m.reply_text(
+            f"{em.gagal} Berikan username atau userid pengguna!"
+        )
     await m.chat.unban_member(user)
     umention = (await c.get_users(user)).mention
     await m.reply_text(f"{em.sukses} Unbanned! {umention}")
@@ -259,6 +266,7 @@ async def _(c: user, m):
         return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan!")
     await m.reply_to_message.delete()
     await m.delete()
+
 
 
 @ky.ubot("pin|unpin", sudo=True)
@@ -291,11 +299,11 @@ async def _(c: user, m):
     if user_id == c.me.id:
         return await m.reply_text(f"{em.gagal} Oh anda ingin membisukan diri sendiri ?")
     if user_id in DEVS:
-        return await m.reply_text(
-            f"{em.gagal} Oh anda ingin membisukan Developer Mix-Userbot ?"
-        )
+        return await m.reply_text(f"{em.gagal} Oh anda ingin membisukan Developer Mix-Userbot ?")
     if user_id in (await list_admins(m.chat.id)):
-        return await m.reply_text(f"{em.gagal} Tidak dapat membisukan admin!")
+        return await m.reply_text(
+            f"{em.gagal} Tidak dapat membisukan admin!"
+        )
     mention = (await c.get_users(user_id)).mention
     msg = (
         f"{em.user} **Muted User:** {mention}\n"
@@ -316,9 +324,7 @@ async def _(c: user, m):
     except UserAdminInvalid:
         await m.reply_text(f"{em.gagal} Pengguna invalid!")
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        await m.reply_text(f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}")
     except Exception as e:
         await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
     return
@@ -342,9 +348,7 @@ async def _(c: user, m):
     except UserAdminInvalid:
         await m.reply_text(f"{em.gagal} Pengguna invalid!")
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        await m.reply_text(f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}")
     except Exception as e:
         await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
     return
@@ -369,9 +373,7 @@ async def _(c: user, m):
             except Exception:
                 pass
             banned_users += 1
-        await m.edit(
-            f"{em.sukses} Berhasil mengeluarkan `{banned_users}` akun terhapus."
-        )
+        await m.edit(f"{em.sukses} Berhasil mengeluarkan `{banned_users}` akun terhapus.")
     else:
         await m.edit(f"{em.gagal} Tidak ada akun terhapus disini!")
 
@@ -386,7 +388,9 @@ async def _(c: user, m):
             link = await c.export_chat_invite_link(m.chat.id)
         text = f"{em.sukses} **Ini adalah link invite grup :**\n\n{link}"
         if m.reply_to_message:
-            await m.reply_to_message.reply_text(text, disable_web_page_preview=True)
+            await m.reply_to_message.reply_text(
+                text, disable_web_page_preview=True
+            )
         else:
             await m.reply_text(text, disable_web_page_preview=True)
 
@@ -396,9 +400,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(
-            f"{em.gagal} Silahkan balas ke pesan untuk dilaporkan ke admin!"
-        )
+        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan untuk dilaporkan ke admin!")
 
     reply = m.reply_to_message
     reply_id = reply.from_user.id if reply.from_user else reply.sender_chat.id
@@ -414,10 +416,14 @@ async def _(c: user, m):
             or reply_id == m.chat.id
             or reply_id == linked_chat.id
         ):
-            return await m.reply_text(f"{em.gagal} Dia adalah admin!")
+            return await m.reply_text(
+                f"{em.gagal} Dia adalah admin!"
+            )
     else:
         if reply_id in list_of_admins or reply_id == m.chat.id:
-            return await m.reply_text(f"{em.gagal} Dia adalah admin!")
+            return await m.reply_text(
+                f"{em.gagal} Dia adalah admin!"
+            )
 
     user_mention = (
         reply.from_user.mention if reply.from_user else reply.sender_chat.title
@@ -443,7 +449,9 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(
+            f"{em.gagal} Berikan username atau userid pengguna!"
+        )
         return
     try:
         user_id, user_first_name, user_name = await extract_user(c, m)
@@ -481,17 +489,17 @@ async def _(c: user, m):
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
         await m.reply_text(
-            "{e1} {promoter}\n{e2} Pengguna {promoted} berhasil diangkat menjadi fulladmin!"
-        ).format(
-            e1=em.profil,
-            promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
-            e2=em.warn,
-            promoted=(await mention_html(user_first_name, user_id)),
-            chat_title=(
-                f"{escape(m.chat.title)} title {title}"
-                if title
-                else f"{escape(m.chat.title)} title Default"
-            ),
+                "{e1} {promoter}\n{e2} Pengguna {promoted} berhasil diangkat menjadi fulladmin!"
+            ).format(
+                e1=em.profil,
+                promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
+                e2=em.warn,
+                promoted=(await mention_html(user_first_name, user_id)),
+                chat_title=(
+                    f"{escape(m.chat.title)} title {title}"
+                    if title
+                    else f"{escape(m.chat.title)} title Default"
+                ),
         )
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
@@ -500,9 +508,7 @@ async def _(c: user, m):
     except UserAdminInvalid:
         await m.reply_text(f"{em.gagal} Pengguna invalid!")
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        await m.reply_text(f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}")
     except Exception as e:
         await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
     return
@@ -513,7 +519,9 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(
+            f"{em.gagal} Berikan username atau userid pengguna!"
+        )
         return
     try:
         user_id, user_first_name, user_name = await extract_user(c, m)
@@ -529,7 +537,7 @@ async def _(c: user, m):
     try:
         admin_list = await list_admins(m.chat.id)
     except KeyError:
-
+        
         return
     if user_id in admin_list:
         await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
@@ -558,19 +566,19 @@ async def _(c: user, m):
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
-
+        
         await m.reply_text(
-            "{e1} {promoter}\n{e2} Pengguna {promoted} berhasil diangkat menjadi admin!"
-        ).format(
-            e1=em.profil,
-            promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
-            e2=em.warn,
-            promoted=(await mention_html(user_first_name, user_id)),
-            chat_title=(
-                f"{escape(m.chat.title)} title set to {title}"
-                if title
-                else f"{escape(m.chat.title)} title set to default"
-            ),
+                "{e1} {promoter}\n{e2} Pengguna {promoted} berhasil diangkat menjadi admin!"
+            ).format(
+                e1=em.profil,
+                promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
+                e2=em.warn,
+                promoted=(await mention_html(user_first_name, user_id)),
+                chat_title=(
+                    f"{escape(m.chat.title)} title set to {title}"
+                    if title
+                    else f"{escape(m.chat.title)} title set to default"
+                ),
         )
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
@@ -579,9 +587,7 @@ async def _(c: user, m):
     except UserAdminInvalid:
         await m.reply_text(f"{em.gagal} Pengguna invalid!")
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        await m.reply_text(f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}")
     except Exception as e:
         await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
     return
@@ -592,7 +598,9 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(
+            f"{em.gagal} Berikan username atau userid pengguna!"
+        )
         return
     try:
         user_id, user_first_name, _ = await extract_user(c, m)
@@ -603,7 +611,9 @@ async def _(c: user, m):
         return
     botol = await member_permissions(m.chat.id, user_id)
     if not botol:
-        await m.reply_text(f"{em.gagal} Pengguna bukan admin!")
+        await m.reply_text(
+            f"{em.gagal} Pengguna bukan admin!"
+        )
         return
     try:
         await m.chat.promote_member(
@@ -620,13 +630,14 @@ async def _(c: user, m):
             ),
         )
         await m.reply_text(
-            "{e1} {demoter}\n{e2} Pengguna {demoted} berhasil diturunkan admin!"
-        ).format(
-            e1=em.profil,
-            demoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
-            e2=em.warn,
-            demoted=(await mention_html(user_first_name, user_id)),
-            chat_title=m.chat.title,
+          "{e1} {demoter}\n{e2} Pengguna {demoted} berhasil diturunkan admin!").format(
+              e1=em.profil,
+              demoter=(await mention_html(
+                  m.from_user.first_name,
+                  m.from_user.id)),
+              e2=em.warn,
+              demoted=(await mention_html(user_first_name, user_id)),
+              chat_title=m.chat.title,
         )
     except BotChannelsNa:
         await m.reply_text(f"{em.gagal} Pengguna tidak diangkat oleh saya!")
@@ -637,9 +648,7 @@ async def _(c: user, m):
     except UserAdminInvalid:
         await m.reply_text(f"{em.gagal} Pengguna invalid!")
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        await m.reply_text(f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}")
     except Exception as e:
         await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
     return
@@ -650,7 +659,9 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan teks atau balas pesan!")
+        await m.reply_text(
+            f"{em.gagal} Berikan teks atau balas pesan!"
+        )
         return
     if m.reply_to_message:
         gtit = m.reply_to_message.text
@@ -670,7 +681,9 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan teks atau balas pesan!")
+        await m.reply_text(
+            f"{em.gagal} Berikan teks atau balas pesan!"
+        )
         return
     if m.reply_to_message:
         desp = m.reply_to_message.text
@@ -690,9 +703,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        return await m.reply_text(
-            f"{em.gagal} Balas pengguna atau berikan username pengguna!"
-        )
+        return await m.reply_text(f"{em.gagal} Balas pengguna atau berikan username pengguna!")
     if m.reply_to_message:
         if len(m.text.split()) >= 2:
             reason = m.text.split(None, 1)[1]
@@ -739,13 +750,9 @@ async def _(c: user, m):
             await m.reply_text(f"{em.sukses} Foto grup berhasil diubah!")
         if m.reply_to_message.document:
             await c.set_chat_photo(m.chat.id, photo=m.reply_to_message.document.file_id)
-            await m.reply_text(
-                f"{em.sukses} Berhasil mengubah dokumen menjadi foto grup!"
-            )
+            await m.reply_text(f"{em.sukses} Berhasil mengubah dokumen menjadi foto grup!")
         elif m.reply_to_message.video:
             await c.set_chat_photo(m.chat.id, video=m.reply_to_message.video.file_id)
-            await m.reply_text(
-                f"{em.sukses} Berhasil mengubah video menjadi foto grup!"
-            )
+            await m.reply_text(f"{em.sukses} Berhasil mengubah video menjadi foto grup!")
     else:
         return await m.reply_text(f"{em.gaga} Balas ke media!")
