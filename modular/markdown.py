@@ -2,7 +2,7 @@
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
- @ CREDIT : NAN-DEV
+ @ CREDIT : NAN-DEV || Gojo_Satoru
 """
 ################################################################
 
