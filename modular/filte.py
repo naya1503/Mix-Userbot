@@ -175,7 +175,9 @@ async def _(c: user, m):
         )
         await m.delete()
         await c.send_inline_bot_result(
-            m.chat.id, xi.query_id, xi.results[0].id,
+            m.chat.id,
+            xi.query_id,
+            xi.results[0].id,
         )
     except Exception as e:
         await m.edit(f"{e}")
