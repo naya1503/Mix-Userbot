@@ -130,9 +130,9 @@ async def _(c: user, m):
             pm_txt = direp.reply_markup
         else:
             pm_txt = direp.text
-            #return await babi.edit(
-                #f"{em.gagal} <b>Silakan balas ke pesan untuk dijadikan teks PMPermit !</b>"
-            #)
+            # return await babi.edit(
+            # f"{em.gagal} <b>Silakan balas ke pesan untuk dijadikan teks PMPermit !</b>"
+            # )
     elif args_txt:
         pm_txt = args_txt
     else:
