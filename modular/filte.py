@@ -6,7 +6,6 @@
 """
 ################################################################
 
-from gc import get_objects
 from re import escape as re_escape
 from secrets import choice
 from traceback import format_exc
