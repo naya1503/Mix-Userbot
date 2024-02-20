@@ -214,7 +214,7 @@ async def _(c, iq):
 @ky.callback("rm_allfilters")
 async def _(_, q):
     user_id = q.from_user.id
-    if user_id == int(cq.data.split()[1]):
+    if user_id == user.me.id:
         db.rm_all_filters(q.message.chat.id)
         await q.edit_message_text(f"Berhasil menghapus semua kata filter?")
         await q.answer("Berhasil menghapus semua kata filter?", True)
