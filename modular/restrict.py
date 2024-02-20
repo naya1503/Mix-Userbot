@@ -203,7 +203,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    user_id, reason = c.extract_user_and_reason(m, sender_chat=True)
+    user_id, reason = c.extract_user_and_reason(m)
 
     if not user_id:
         return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
