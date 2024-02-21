@@ -128,8 +128,8 @@ async def _(c: user, m):
 
     if direp:
         if direp.reply_markup:
-            cixi = parse_mark(direp.text, direp.reply_markup)
-            pm_txt, button = parse_button(cixi)
+            pm_txt = parse_mark(direp.text, direp.reply_markup)
+            teks, button = parse_button(cixi)
             button = build_keyboard(button)
 
         else:
