@@ -17,7 +17,7 @@ async def test():
     try:
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
-        await load_emo(user.me.id)
+        #await load_emo(user.me.id)
     except SessionExpired:
         LOGGER.info("Session Expired . Create New Session")
         sys.exit(1)
