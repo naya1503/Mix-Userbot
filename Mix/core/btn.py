@@ -102,7 +102,6 @@ def parse_mark(teks, xx):
     return " ".join(buttons)
 
 
-
 def extract_time(time_val):
     if any(time_val.endswith(unit) for unit in ("s", "m", "h", "d")):
         unit = time_val[-1]
