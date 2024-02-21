@@ -108,9 +108,7 @@ def parse_mark(teks, xx):
                 if button.text and button.url:
                     msg = f"{teks} [{button.text}]|(buttonurl://{button.url})"
                     buttons.append(msg)
-        return buttons
-    else:
-        return []
+    return buttons
 
 
 def extract_time(time_val):
