@@ -111,7 +111,7 @@ async def _(c: user, m):
     redirected_error = sys.stderr = StringIO()
     stdout, stderr, exc = None, None, None
     try:
-        await c.aexec(cmd, m)
+        await c.aexec(cmd, c, m)
     except Exception:
         exc = traceback.format_exc()
     stdout = redirected_output.getvalue()
