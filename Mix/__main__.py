@@ -36,18 +36,12 @@ async def test():
         await asyncio.sleep(1)
     except AccessTokenExpired:
         LOGGER.info("Token Expired.")
-        os.system("rm -rf bot.session")
-        os.system("rm -rf *.session*")
         sys.exit(1)
     except SessionRevoked:
         LOGGER.info("Token Revoked.")
-        os.system("rm -rf bot.session")
-        os.system("rm -rf *.session*")
         sys.exit(1)
     except AccessTokenInvalid:
         LOGGER.info("Token Invalid, Try again.")
-        os.system("rm -rf bot.session")
-        os.system("rm -rf *.session*")
         sys.exit(1)
     await aiohttpsession.close()
 
@@ -62,7 +56,7 @@ async def main():
         LOGGER.info(f"Modules Imported...")
         LOGGER.info("Successfully Started Userbot.")
         if "test" not in sys.argv:
-            await bot.idle()
+            await idle()
     except KeyboardInterrupt:
         LOGGER.warning("BOT STOP....")
     finally:
