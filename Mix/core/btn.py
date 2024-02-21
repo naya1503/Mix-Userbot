@@ -111,13 +111,6 @@ def parse_reply_markup(xx):
     else:
         return []
 
-# Menggunakan fungsi parse_reply_markup di dalam kode Anda
-if direp and direp.reply_markup:
-    buttons = parse_reply_markup(direp.reply_markup)
-    teks, _ = parse_button(pm_txt)
-    # Lakukan sesuatu dengan teks dan tombol
-
-
 
 def extract_time(time_val):
     if any(time_val.endswith(unit) for unit in ("s", "m", "h", "d")):
