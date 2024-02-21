@@ -99,13 +99,14 @@ def parse_button(text):
 ################################################################
 
 
-def parse_reply_markup(xx):
+def parse_mark(teks, xx):
     if xx and isinstance(xx, InlineKeyboardMarkup):
         buttons = []
+        buttons.append(teks)
         for row in xx.inline_keyboard:
             for button in row:
                 if button.text and button.url:
-                    msg = f"[{button.text}]|({button.url})"
+                    msg = f"{teks} [{button.text}]({button.url})"
                     buttons.append(msg)
         return buttons
     else:
