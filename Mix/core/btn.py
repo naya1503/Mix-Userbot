@@ -95,9 +95,9 @@ def parse_mark(teks, xx):
     if xx and xx.inline_keyboard:
         for i, row in enumerate(xx.inline_keyboard):
             for j, button in enumerate(row):
-                button_str = f"[{button.text}]|(buttonurl://{button.url})"
+                button_str = f"[{button.text}]|(buttonurl://{button.url}:same)"
                 if j == 0 and i != 0:
-                    button_str += ":same"
+                    button_str += ""
                 buttons.append(button_str)
     return f"{teks} {' '.join(buttons)}"
 
