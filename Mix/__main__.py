@@ -62,7 +62,7 @@ async def main():
         LOGGER.info(f"Modules Imported...")
         LOGGER.info("Successfully Started Userbot.")
         if "test" not in sys.argv:
-            await idle()
+            await bot.idle()
     except KeyboardInterrupt:
         LOGGER.warning("BOT STOP....")
     finally:
