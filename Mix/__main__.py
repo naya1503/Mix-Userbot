@@ -42,7 +42,7 @@ async def test():
     except AccessTokenInvalid:
         LOGGER.info("Token Invalid, Try again.")
         sys.exit(1)
-    await aiohttpsession.close()
+    
 
 
 async def main():
@@ -59,7 +59,7 @@ async def main():
     except KeyboardInterrupt:
         LOGGER.warning("BOT STOP....")
     finally:
-        await bot.stop()
+        await aiohttpsession.close()
 
 
 if __name__ == "__main__":
