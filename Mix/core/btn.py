@@ -100,16 +100,16 @@ def parse_button(text):
 
 
 def parse_mark(mark):
-    if mark and isinstance(mark, InlineKeyboardMarkup):
-        formatted_buttons = []
-        for row in mark.inline_keyboard:
-            for button in row:
-                if button.text and button.url:
-                    formatted_button = f"[{button.text}](buttonurl://{button.url})"
-                    formatted_buttons.append(formatted_button)
-        return "\n".join(formatted_buttons)
-    else:
-        return ""
+    #if mark and isinstance(mark, InlineKeyboardMarkup):
+    formatted_buttons = []
+    for row in mark.inline_keyboard:
+        for button in row:
+            if button.text and button.url:
+                formatted_button = f"[{button.text}](buttonurl://{button.url})"
+                formatted_buttons.append(formatted_button)
+    return formatted_buttons
+    #else:
+        #return ""
 
 
 def extract_time(time_val):
