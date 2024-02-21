@@ -99,17 +99,24 @@ def parse_button(text):
 ################################################################
 
 
-def parse_mark(mark):
-    # if mark and isinstance(mark, InlineKeyboardMarkup):
-    formatted_buttons = []
-    for row in mark.inline_keyboard:
-        for button in row:
-            if button.text and button.url:
-                formatted_button = f"[{button.text}](buttonurl://{button.url})"
-                formatted_buttons.append(formatted_button)
-    return formatted_buttons
-    # else:
-    # return ""
+def parse_reply_markup(xx):
+    if xx and isinstance(xx, InlineKeyboardMarkup):
+        buttons = []
+        for row in xx.inline_keyboard:
+            for button in row:
+                if button.text and button.url:
+                    msg = f"[{button.text}]|({button.url})"
+                    buttons.append(msg)
+        return buttons
+    else:
+        return []
+
+# Menggunakan fungsi parse_reply_markup di dalam kode Anda
+if direp and direp.reply_markup:
+    buttons = parse_reply_markup(direp.reply_markup)
+    teks, _ = parse_button(pm_txt)
+    # Lakukan sesuatu dengan teks dan tombol
+
 
 
 def extract_time(time_val):
