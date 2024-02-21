@@ -8,7 +8,7 @@ from pyrogram.errors import *
 from Mix import *
 
 
-async def main():
+async def test():
     LOGGER.info(f"Check Updater...")
     await cek_updater()
     LOGGER.info(f"Updater Finished...")
@@ -19,8 +19,6 @@ async def main():
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
         await load_emo(user.me.id)
-        await asyncio.sleep(1)
-        await refresh_cache()
     except SessionExpired:
         LOGGER.info("Session Expired . Create New Session")
         sys.exit(1)
@@ -51,16 +49,28 @@ async def main():
         os.system("rm -rf bot.session")
         os.system("rm -rf *.session*")
         sys.exit(1)
-    await check_logger()
+    
     LOGGER.info(f"Check Finished.")
     await asyncio.sleep(1)
-    await refresh_modules()
+    
     LOGGER.info(f"Modules Imported...")
     await asyncio.sleep(1)
     LOGGER.info("Successfully Started Userbot.")
-    await idle()
+    
     await aiohttpsession.close()
 
+async def main():
+    await test()
+    try:
+        await refresh_cache()
+        await check_logger()
+        await refresh_modules()
+        if "test" not in sys.argv:
+            await idle()
+    except KeyboardInterrupt:
+        LOGGER.warning("BOT STOP....")
+    finally:
+        await bot.stop()
 
 if __name__ == "__main__":
     loop.run_until_complete(main())
