@@ -53,9 +53,9 @@ async def test():
     LOGGER.info(f"Check Finished.")
     await asyncio.sleep(1)
 
-    LOGGER.info(f"Modules Imported...")
+    
     await asyncio.sleep(1)
-    LOGGER.info("Successfully Started Userbot.")
+    
 
     await aiohttpsession.close()
 
@@ -66,6 +66,8 @@ async def main():
         await refresh_cache()
         await check_logger()
         await refresh_modules()
+        LOGGER.info(f"Modules Imported...")
+        LOGGER.info("Successfully Started Userbot.")
         if "test" not in sys.argv:
             await idle()
     except KeyboardInterrupt:
