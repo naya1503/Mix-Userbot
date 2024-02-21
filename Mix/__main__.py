@@ -1,5 +1,4 @@
 import asyncio
-import os
 import sys
 
 from pyrogram import *
