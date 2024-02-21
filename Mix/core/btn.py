@@ -106,7 +106,7 @@ def parse_mark(teks, xx):
         for row in xx.inline_keyboard:
             for button in row:
                 if button.text and button.url:
-                    msg = f"{teks} [{button.text}]({button.url})"
+                    msg = f"{teks} [{button.text}](buttonurl://{button.url})"
                     buttons.append(msg)
         return buttons
     else:
