@@ -53,9 +53,7 @@ async def test():
     LOGGER.info(f"Check Finished.")
     await asyncio.sleep(1)
 
-    
     await asyncio.sleep(1)
-    
 
     await aiohttpsession.close()
 
