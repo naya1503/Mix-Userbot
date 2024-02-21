@@ -42,7 +42,6 @@ async def test():
     except AccessTokenInvalid:
         LOGGER.info("Token Invalid, Try again.")
         sys.exit(1)
-    
 
 
 async def main():
