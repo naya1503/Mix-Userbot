@@ -49,15 +49,16 @@ async def test():
         os.system("rm -rf bot.session")
         os.system("rm -rf *.session*")
         sys.exit(1)
-    
+
     LOGGER.info(f"Check Finished.")
     await asyncio.sleep(1)
-    
+
     LOGGER.info(f"Modules Imported...")
     await asyncio.sleep(1)
     LOGGER.info("Successfully Started Userbot.")
-    
+
     await aiohttpsession.close()
+
 
 async def main():
     await test()
@@ -71,6 +72,7 @@ async def main():
         LOGGER.warning("BOT STOP....")
     finally:
         await bot.stop()
+
 
 if __name__ == "__main__":
     loop.run_until_complete(main())
