@@ -101,7 +101,7 @@ def parse_mark(teks, xx):
                     if prev_button.text != button.text:
                         button_str = f"[{button.text}]|(buttonurl://{button.url}:same)"
                 elif j > 0:
-                    button_str = f"[{button.text}]|(buttonurl://{button.url}) [{button.text}]|(buttonurl://{button.url}:same)"
+                    button_str += ":same"
                 buttons.append(button_str)
     return f"{teks} {' '.join(buttons)}"
 
