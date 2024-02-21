@@ -99,11 +99,12 @@ def parse_mark(teks, xx):
                 if j > 0 and i > 0:
                     prev_button = xx.inline_keyboard[i][j - 1]
                     if prev_button.text != button.text:
-                        button_str = f"{button_str}:same"
+                        button_str += ":same"
                 elif j > 0:
-                    button_str = f"{button_str}:same"
-                buttons.append(button_str)
+                    button_str += ":same"
+                buttons.append(f"{button_str}:same" if j < len(row) - 1 else button_str)
     return f"{teks} {' '.join(buttons)}"
+
 
 
 def extract_time(time_val):
