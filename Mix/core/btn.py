@@ -22,16 +22,8 @@ from .parser import escape_markdown
 # Gojo
 # William
 
-MATCH_MD = re.compile(
-    r"\*(.*?)\*|"
-    r"_(.*?)_|"
-    r"`(.*?)`|"
-    r"(?<!\\)(\[.*?\])(\(.*?\))|"
-    r"(?P<esc>[*_`\[])"
-)
 
-# regex to find []() links -> hyperlinks/buttons
-LINK_REGEX = re.compile(r"(?<!\\)\[.+?\]\((.*?)\)")
+
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
 
