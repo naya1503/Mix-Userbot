@@ -7,7 +7,8 @@
 ################################################################
 
 from Mix import *
-
+from pyrogram import *
+from pyrogram.types import *
 from .pmpermit import DEFAULT_TEXT
 
 __modles__ = "Settings"
