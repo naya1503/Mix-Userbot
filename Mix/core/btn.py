@@ -94,7 +94,7 @@ def parse_mark(teks, xx):
     buttons = [teks] if teks else []
     if xx and xx.inline_keyboard:
         button_str = " ".join(
-            f"[{button.text}]|(buttonurl://{button.url})"
+            f"[{button.text}](buttonurl://{button.url})"
             for row in xx.inline_keyboard
             for button in row
         )
