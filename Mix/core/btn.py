@@ -94,11 +94,12 @@ def parse_mark(teks, xx):
     buttons = [teks]
     if xx and xx.inline_keyboard:
         button_str = " ".join(
-            f"[{button.text}]|(buttonurl://{button.url})" for row in xx.inline_keyboard for button in row
+            f"[{button.text}]|(buttonurl://{button.url})"
+            for row in xx.inline_keyboard
+            for button in row
         )
         buttons.append(button_str)
     return " ".join(buttons)
-
 
 
 def extract_time(time_val):
