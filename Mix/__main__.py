@@ -49,12 +49,6 @@ async def test():
         os.system("rm -rf bot.session")
         os.system("rm -rf *.session*")
         sys.exit(1)
-
-    LOGGER.info(f"Check Finished.")
-    await asyncio.sleep(1)
-
-    await asyncio.sleep(1)
-
     await aiohttpsession.close()
 
 
@@ -63,6 +57,7 @@ async def main():
     try:
         await refresh_cache()
         await check_logger()
+        LOGGER.info(f"Check Finished.")
         await refresh_modules()
         LOGGER.info(f"Modules Imported...")
         LOGGER.info("Successfully Started Userbot.")
