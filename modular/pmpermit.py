@@ -127,11 +127,8 @@ async def _(c: user, m):
     args_txt = c.get_arg(m)
 
     if direp:
-        if direp.reply_markup:
+        if direp:
             pm_txt = parse_mark(direp.text, direp.reply_markup)
-            teks, button = parse_button(cixi)
-            button = build_keyboard(button)
-
         else:
             pm_txt = direp.text
     elif args_txt:
