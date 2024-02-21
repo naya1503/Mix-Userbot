@@ -125,26 +125,29 @@ async def _(c: user, m):
     user_id = c.me.id
     direp = m.reply_to_message
     args_txt = c.get_arg(m)
+    
+    pm_txt = None
+    buttons = None
+    
     if direp:
-        if direp:
-            pm_txt = direp.reply_markup
+        if direp.reply_markup:
+            pm_txt = parse_mark(pm_txt, direp.reply_markup)
         else:
             pm_txt = direp.text
-            # return await babi.edit(
-            # f"{em.gagal} <b>Silakan balas ke pesan untuk dijadikan teks PMPermit !</b>"
-            # )
     elif args_txt:
         pm_txt = args_txt
-    else:
+    
+    if not pm_txt:
         return await babi.edit(
             f"{em.gagal} <b>Silakan balas ke pesan atau berikan pesan untuk dijadikan teks PMPermit !\nContoh :<code>{m.command} Halo saya anuan.</code></b>"
         )
-    teks, _ = parse_button(pm_txt)
-    udB.set_var(user_id, "PMTEXT", teks)
+    
+    udB.set_var(user_id, "PMTEXT", pm_txt)
     await babi.edit(
         f"{em.sukses} <b>Pesan PMPermit berhasil diatur menjadi : <code>{pm_txt}</code>.</b>"
     )
     return
+
 
 
 @ky.ubot("setlimit", sudo=True)
