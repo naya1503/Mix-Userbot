@@ -126,11 +126,12 @@ async def _(c: user, m):
     direp = m.reply_to_message
     args_txt = c.get_arg(m)
 
-    pm_txt = None
-
     if direp:
         if direp.reply_markup:
-            pm_txt = parse_mark(pm_txt, direp.reply_markup)
+            cixi = parse_mark(direp.text, direp.reply_markup)
+            pm_txt, button = parse_button(cixi)
+            button = build_keyboard(button)
+            
         else:
             pm_txt = direp.text
     elif args_txt:
