@@ -23,7 +23,6 @@ from .parser import escape_markdown
 # William
 
 
-
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
 
