@@ -28,7 +28,7 @@ __help__ = """
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = c.get_arg(m)
+    xx = m.reply_to_message
     babi = await m.reply(f"{em.proses} <b>Processing...</b>")
     teks, button = nan_parse(xx)
     button = build_keyboard(button)
