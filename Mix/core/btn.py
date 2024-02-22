@@ -120,7 +120,10 @@ def nan_parse(text):
             to_check -= 1
         if n_escapes % 2 == 0:
             buttons.append((match.group(1), match.group(2)))
-            note_data += markdown_note[prev:match.start(0)] + f"{match.group(1)} - {match.group(2)}"
+            note_data += (
+                markdown_note[prev : match.start(0)]
+                + f"{match.group(1)} - {match.group(2)}"
+            )
             prev = match.end(0)
         else:
             note_data += markdown_note[prev:to_check]
