@@ -113,14 +113,13 @@ def nan_parse(text):
     note_data = ""
     buttons = []
     for match in NANDEV_REGEX.finditer(markdown_note):
-        button_text, button_link = map(str.strip, match.group(1).split('-'))
+        button_text, button_link = map(str.strip, match.group(1).split("-"))
         buttons.append((button_text, button_link))
         note_data += markdown_note[prev : match.start()]
         prev = match.end()
 
     note_data += markdown_note[prev:]
     return note_data, buttons
-
 
 
 def extract_time(time_val):
