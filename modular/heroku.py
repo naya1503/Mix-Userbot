@@ -265,7 +265,7 @@ async def _(c: user, m):
     for checks in repo.iter_commits(f"HEAD..origin/{upstream_branch}"):
         verification = str(checks.count())
     if verification == "":
-        return await jj.edit(f"{alive} Mix-Userbot is up-to-date!")
+        return await jj.edit(f"{em.alive} Mix-Userbot is up-to-date!")
     updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
