@@ -64,7 +64,7 @@ async def _(c, iq):
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
     rep = m.reply_to_message
-    teks, button = parse_button(rep.text)
+    teks, button = nan_parse(rep.text)
     button = build_keyboard(button)
     duar = [
         (
