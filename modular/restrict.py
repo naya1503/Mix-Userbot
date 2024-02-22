@@ -7,7 +7,6 @@
 ################################################################
 
 import asyncio
-from html import escape
 from time import time
 
 from pyrogram import *
