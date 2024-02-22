@@ -91,16 +91,16 @@ def parse_button(text):
 ################################################################
 
 
-def parse_mark(teks, kb):
+def parse_mark(tk, kk):
     buttons = []
-    if kb and kb.inline_keyboard:
-        for i, row in enumerate(kb.inline_keyboard):
-            for j, button in enumerate(row):
-                button_str = f"{button.text} - {button.url}"
+    if kk and kk.inline_keyboard:
+        for i, row in enumerate(kk.inline_keyboard):
+            for j, but in enumerate(row):
+                button_str = f"{but.text} - {but.url}"
                 if j > 0 and i > 0:
-                    prev_button = kb.inline_keyboard[i][j - 1]
-                    if prev_button.text != button.text:
-                        button_str = f"{button.text} - {button.url} &&"
+                    prev_button = kk.inline_keyboard[i][j - 1]
+                    if prev_button.text != but.text:
+                        button_str = f"{but.text} - {but.url} &&"
                 elif j > 0:
                     button_str += f"&&"
                 buttons.append(button_str)
@@ -157,11 +157,11 @@ def format_welcome_caption(html_string, chat_member):
 
 def build_keyboard(buttons):
     keyb = []
-    for btn in buttons:
-        if btn[-1] and keyb:
-            keyb[-1].append(Ikb(btn[0], url=btn[1]))
+    for als in buttons:
+        if als[-1] and keyb:
+            keyb[-1].append(Ikb(als[0], url=als[1]))
         else:
-            keyb.append([Ikb(btn[0], url=btn[1])])
+            keyb.append([Ikb(als[0], url=als[1])])
 
     return keyb
 
