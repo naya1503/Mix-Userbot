@@ -24,7 +24,7 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NANDEV_REGEX = re.compile(r"([^-\n]+) - ([^\n]+)(?:\s+&&\s+|$)")
+NANDEV_REGEX = re.compile(r"([^-\n]+ - [^\n]+)(?:\s+&&\s+|$)")
 
 
 def is_url(text: str) -> bool:
@@ -113,13 +113,14 @@ def nan_parse(text):
     note_data = ""
     buttons = []
     for match in NANDEV_REGEX.finditer(markdown_note):
-        button_text, button_link = map(str.strip, match.group(1).split("-"))
+        button_text, button_link = map(str.strip, match.group(1).split('-'))
         buttons.append((button_text, button_link))
-        note_data += markdown_note[prev : match.start()]
+        note_data += markdown_note[prev : match.start()] + "[" + button_text + "](" + button_link + ")"
         prev = match.end()
 
     note_data += markdown_note[prev:]
     return note_data, buttons
+
 
 
 def extract_time(time_val):
