@@ -27,6 +27,7 @@ BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\)
 NANDEV_REGEX = re.compile(r"(\[([^\[]+?)\] - (?://\S+))(?: && )?")
 
 
+
 def is_url(text: str) -> bool:
     regex = r"""(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
                 [.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(
@@ -121,7 +122,7 @@ def nan_parse(text):
             to_check -= 1
         if n_escapes % 2 == 0:
             buttons.append((match.group(2), "https://" + match.group(3)))
-            note_data += markdown_note[prev : match.start(1)]
+            note_data += markdown_note[prev:match.start(1)]
             prev = match.end(1)
         else:
             note_data += markdown_note[prev:to_check]
