@@ -115,7 +115,9 @@ def nan_parse(text):
     for match in NANDEV_REGEX.finditer(markdown_note):
         button_text, button_link = map(str.strip, (match.group(1), match.group(2)))
         buttons.append((button_text, button_link))
-        note_data += markdown_note[prev : match.start()] + button_text + " - " + button_link
+        note_data += (
+            markdown_note[prev : match.start()] + button_text + " - " + button_link
+        )
         prev = match.end()
 
     note_data += markdown_note[prev:]
