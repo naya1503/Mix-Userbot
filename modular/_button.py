@@ -29,7 +29,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     xx = m.reply_to_message
-    
+
     babi = await m.reply(f"{em.proses} <b>Processing...</b>")
     teks, button = nan_parse(xx.text)
     button = build_keyboard(button)
