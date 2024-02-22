@@ -116,7 +116,14 @@ def nan_parse(text):
         button_text = match.group(1).strip()
         button_link = match.group(2).strip()
         buttons.append((button_text, button_link))
-        note_data += markdown_note[prev:match.start()] + "[" + button_text + "](" + button_link + ")"
+        note_data += (
+            markdown_note[prev : match.start()]
+            + "["
+            + button_text
+            + "]("
+            + button_link
+            + ")"
+        )
         prev = match.end()
 
     note_data += markdown_note[prev:]
