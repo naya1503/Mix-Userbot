@@ -91,7 +91,7 @@ def parse_button(text):
 ################################################################
 
 
-def parse_mark(tk, kk):
+def parse_mark(tk: str, kk):
     buttons = []
     if kk and kk.inline_keyboard:
         for i, row in enumerate(kk.inline_keyboard):
