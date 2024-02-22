@@ -30,7 +30,7 @@ async def _(c: user, m):
     em.initialize()
     xx = c.get_arg(m)
     babi = await m.reply(f"{em.proses} <b>Processing...</b>")
-    teks, button = parse_button(xx)
+    teks, button = nan_parse(xx)
     button = build_keyboard(button)
     if button:
         button = InlineKeyboardMarkup(button)
