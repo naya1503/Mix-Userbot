@@ -105,8 +105,8 @@ def parse_mark(teks, kb):
                     button_str = f"[{button.text}](buttonurl://{button.url}:same)"
                 buttons.append(button_str)
     return f"{teks} {' '.join(buttons)}"
-    
-    
+
+
 def nan_parse(text):
     markdown_note = text
     prev = 0
@@ -114,7 +114,7 @@ def nan_parse(text):
     buttons = []
     for match in NANDEV_REGEX.finditer(markdown_note):
         buttons.append((match.group(1).strip(), match.group(2).strip()))
-        note_data += markdown_note[prev:match.start()]
+        note_data += markdown_note[prev : match.start()]
         prev = match.end()
 
     note_data += markdown_note[prev:]
