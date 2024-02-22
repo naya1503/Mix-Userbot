@@ -96,13 +96,13 @@ def parse_mark(teks, kb):
     if kb and kb.inline_keyboard:
         for i, row in enumerate(kb.inline_keyboard):
             for j, button in enumerate(row):
-                button_str = f"[{button.text}](buttonurl://{button.url})"
+                button_str = f"{button.text} - {button.url}"
                 if j > 0 and i > 0:
                     prev_button = kb.inline_keyboard[i][j - 1]
                     if prev_button.text != button.text:
-                        button_str = f"[{button.text}](buttonurl://{button.url}:same)"
+                        button_str = f"{button.text} - {button.url} &&"
                 elif j > 0:
-                    button_str = f"[{button.text}](buttonurl://{button.url}:same)"
+                    button_str += f"&&"
                 buttons.append(button_str)
     return f"{teks} {' '.join(buttons)}"
 
