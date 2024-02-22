@@ -104,7 +104,7 @@ def parse_mark(tk, kk):
                 elif j > 0:
                     button_str += f"&&"
                 buttons.append(button_str)
-    return f"{teks} {' '.join(buttons)}"
+    return f"{tk} {' '.join(buttons)}"
 
 
 def nan_parse(text):
