@@ -24,7 +24,7 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NANDEV_REGEX = re.compile(r"(\[([^\[]+?)\] - ((?:https?://)?(?:\S+))(?: && )?)")
+NANDEV_REGEX = re.compile(r"([^ -]+) - ((?:https?://)?(?:\S+))(?: && )?")
 
 
 def is_url(text: str) -> bool:
@@ -114,17 +114,17 @@ def nan_parse(text):
     buttons = []
     for match in NANDEV_REGEX.finditer(markdown_note):
         n_escapes = 0
-        to_check = match.start(1) - 1
+        to_check = match.start(0) - 1
         while to_check > 0 and markdown_note[to_check] == "\\":
             n_escapes += 1
             to_check -= 1
         if n_escapes % 2 == 0:
-            buttons.append((match.group(2), match.group(3)))
-            note_data += markdown_note[prev : match.start(1)]
-            prev = match.end(1)
+            buttons.append((match.group(1), match.group(2)))
+            note_data += markdown_note[prev:match.start(0)] + f"{match.group(1)} - {match.group(2)}"
+            prev = match.end(0)
         else:
             note_data += markdown_note[prev:to_check]
-            prev = match.start(1) - 1
+            prev = match.start(0) - 1
     else:
         note_data += markdown_note[prev:]
 
