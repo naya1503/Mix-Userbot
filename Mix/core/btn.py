@@ -113,15 +113,14 @@ def nan_parse(text):
     note_data = ""
     buttons = []
     for match in NANDEV_REGEX.finditer(markdown_note):
-        # Check if the URL is escaped
         n_escapes = 0
         to_check = match.start(1) - 1
         while to_check > 0 and markdown_note[to_check] == "\\":
             n_escapes += 1
             to_check -= 1
         if n_escapes % 2 == 0:
-            buttons.append((match.group(2), "https://" + match.group(3)))
-            note_data += markdown_note[prev : match.start(1)]
+            buttons.append((match.group(2), match.group(3)))
+            note_data += markdown_note[prev:match.start(1)]
             prev = match.end(1)
         else:
             note_data += markdown_note[prev:to_check]
