@@ -488,11 +488,6 @@ async def _(c: user, m):
             promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
             e2=em.warn,
             promoted=(await mention_html(user_first_name, user_id)),
-            chat_title=(
-                f"{escape(m.chat.title)} title {title}"
-                if title
-                else f"{escape(m.chat.title)} title Default"
-            ),
         )
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
@@ -567,11 +562,6 @@ async def _(c: user, m):
             promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
             e2=em.warn,
             promoted=(await mention_html(user_first_name, user_id)),
-            chat_title=(
-                f"{escape(m.chat.title)} title set to {title}"
-                if title
-                else f"{escape(m.chat.title)} title set to default"
-            ),
         )
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
@@ -627,7 +617,6 @@ async def _(c: user, m):
             demoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
             e2=em.warn,
             demoted=(await mention_html(user_first_name, user_id)),
-            chat_title=m.chat.title,
         )
     except BotChannelsNa:
         await m.reply_text(f"{em.gagal} Pengguna tidak diangkat oleh saya!")
