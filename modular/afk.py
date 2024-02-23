@@ -196,7 +196,7 @@ async def _(c: user, m):
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
 
 
-@user.on_message(filters.outgoing & filters.me)
+#@user.on_message(filters.outgoing & filters.me)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
