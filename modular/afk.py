@@ -369,8 +369,6 @@ async def _(c: user, m):
             msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                 a=em.warn, c=seenago, d=reasonafk
             )
-    except:
-        pass
     if msg != "":
         try:
             send = await m.reply_text(msg, disable_web_page_preview=True)
