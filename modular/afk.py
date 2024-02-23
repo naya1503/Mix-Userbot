@@ -282,8 +282,8 @@ async def _(c: user, m):
     em.initialize()
     if m.sender_chat:
         return
-    userid = message.from_user.id
-    message.from_user.mention
+    userid =m.from_user.id
+   
     c.me.mention
     if m.entities:
         possible = ["/afk", f"/afk@{kntl.me.username}", "!afk"]
