@@ -11,7 +11,8 @@ from datetime import datetime
 from pyrogram.raw.functions import Ping
 
 from Mix import *
-from Mix.core.waktu import start_time, get_time
+from Mix.core.waktu import get_time, start_time
+
 
 @ky.ubot("ping", sudo=True)
 @ky.devs("mping")
