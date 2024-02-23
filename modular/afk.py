@@ -14,7 +14,6 @@ from pyrogram.types import *
 from Mix import *
 from Mix.core.waktu import get_time, put_cleanmode
 
-
 __modles__ = "Afk"
 __help__ = """
  Help Command Afk
@@ -25,8 +24,6 @@ __help__ = """
 • Perintah : <code>{0}afkdel</code> [on/off]
 • Penjelasan : Untuk mengaktifkan hapus otomatis pesan afk anda.
 """
-
-
 
 
 @ky.ubot("afk", sudo=True)
@@ -282,12 +279,7 @@ async def _(c: user, m):
         return
 
 
-@user.on_message(
-    filters.mentioned
-    & ~filters.me
-    & ~filters.bot
-    & filters.incoming
-)
+@user.on_message(filters.mentioned & ~filters.me & ~filters.bot & filters.incoming)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
