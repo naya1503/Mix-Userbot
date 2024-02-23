@@ -227,7 +227,7 @@ async def _(c: user, m):
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
     dftr = f"{em.profil} **Daftar GBanned :**\n\n"
     if not gbanu:
-        return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
+        return await m.reply(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     for ii in gbanu:
         dftr += f"{em.block} <b>{ii['_id']}</b>\n"
         if ii["reason"]:
@@ -240,6 +240,8 @@ async def _(c: user, m):
             await m.reply_document(
                 document=f, caption=f"{em.profil} **Daftar Pengguna GBan!!**\n\n"
             )
+    await msg.delete()
+    return
 
 
 @ky.ubot("gmutelist|listgmute", sudo=True)
@@ -250,7 +252,7 @@ async def _(c: user, m):
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
     dftr = f"{em.profil} **Daftar Pengguna :**\n\n"
     if not gmnu:
-        return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
+        await m.reply(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     for ii in gmnu:
         dftr += f"{em.warn} <b>{ii['_id']}</b>\n"
         if ii["reason"]:
@@ -263,3 +265,5 @@ async def _(c: user, m):
             await m.reply_document(
                 document=f, caption=f"{em.profil} **Daftar Pengguna GMute!!**\n\n"
             )
+    await msg.delete()
+    return
