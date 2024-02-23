@@ -13,6 +13,7 @@ from pyrogram.types import *
 
 from Mix import *
 from Mix.core.waktu import get_time, put_cleanmode
+
 """
 __modles__ = "Afk"
 __help__ = "
@@ -25,7 +26,6 @@ __help__ = "
 • Penjelasan : Untuk mengaktifkan hapus otomatis pesan afk anda.
 "
 """
-
 
 
 async def is_afk_(f, client, message):
@@ -370,7 +370,7 @@ async def _(c: user, m):
                 a=em.warn, c=seenago, d=reasonafk
             )
     except:
-          pass
+        pass
     if msg != "":
         try:
             send = await m.reply_text(msg, disable_web_page_preview=True)
