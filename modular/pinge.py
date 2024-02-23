@@ -22,6 +22,7 @@ __help__ = """
 • Penjelasan : Untuk mengecek userbot anda.
 """
 
+
 @ky.ubot("ping", sudo=True)
 @ky.devs("mping")
 async def _(c: user, m):
