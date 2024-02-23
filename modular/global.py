@@ -37,10 +37,10 @@ from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
-
-from Mix import Emojik, ky, DEVS
-from Mix.core.parser import remove_markdown_and_html
 from team.nandev.new_database import GBan, GMute
+
+from Mix import DEVS, Emojik, ky
+from Mix.core.parser import remove_markdown_and_html
 
 dbgb = GBan()
 dbgm = GMute()
