@@ -22,13 +22,13 @@ __modles__ = "Group"
 __help__ = """
 Help Command Group 
 
-• Perintah: <code>{0}purge</code> [balas pesan]
+• Perintah: <code>{0}purge</code> 
 • Penjelasan: Untuk menghapus pesan keseluruhan dari pesan yg dibalas.
 
-• Perintah: <code>{0}del</code> [balas pesan]
+• Perintah: <code>{0}del</code> 
 • Penjelasan: Untuk menghapus pesan.
 
-• Perintah: <code>{0}report</code> [balas pesan]
+• Perintah: <code>{0}report</code> 
 • Penjelasan: Untuk melaporkan pengguna.
 
 • Perintah: <code>{0}zombies</code>
@@ -37,10 +37,10 @@ Help Command Group
 • Perintah: <code>{0}ban or delban</code>
 • Penjelasan: Untuk memblokir pengguna.
 
-• Perintah: <code>{0}kick or delkick</code> [nama filter] [balas pesan]
+• Perintah: <code>{0}kick or delkick</code>  
 • Penjelasan: Untuk mengeluarkan pengguna.
 
-• Perintah: <code>{0}mute or delmute</code> [nama filter]
+• Perintah: <code>{0}mute or delmute</code> 
 • Penjelasan: Untuk membisukan pengguna.
 
 • Perintah: <code>{0}unmute</code>
@@ -49,10 +49,10 @@ Help Command Group
 • Perintah: <code>{0}unban</code>
 • Penjelasan: Untuk melepas blokir pengguna.
 
-• Perintah: <code>{0}promote</code> [nama filter] [balas pesan]
+• Perintah: <code>{0}promote</code>  
 • Penjelasan: Untuk mengangkat admin.
 
-• Perintah: <code>{0}fullpromote</code> [nama filter]
+• Perintah: <code>{0}fullpromote</code> 
 • Penjelasan: Untuk mengangkat wakil pendiri.
 
 • Perintah: <code>{0}demote</code>
@@ -61,7 +61,7 @@ Help Command Group
 • Perintah: <code>{0}title</code>
 • Penjelasan: Untuk mengubah titel pengguna.
 
-• Perintah: <code>{0}gctitle</code> [nama filter]
+• Perintah: <code>{0}gctitle</code> 
 • Penjelasan: Untuk mengubah nama grup.
 
 • Perintah: <code>{0}gcdes</code>
