@@ -1,11 +1,9 @@
-
-import asyncio
 import glob
 import os
 import random
+import subprocess
 
 from PIL import *
-import subprocess
 
 from Mix import *
 
@@ -16,6 +14,7 @@ Help Command Logo
 • Perintah: <code>{0}logo</code> [text]
 • Penjelasan: Untuk membuat sebuah logo dengan background random .
 """
+
 
 @ky.ubot("logo", sudo=True)
 async def _(c: user, m):
