@@ -32,6 +32,7 @@ async def extract_user(c: user, m) -> Tuple[int, str, str]:
     user_id = None
     user_first_name = None
     user_name = None
+    user_found = None
 
     if m.reply_to_message and m.reply_to_message.from_user:
         user_id = m.reply_to_message.from_user.id
