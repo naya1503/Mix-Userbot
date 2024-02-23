@@ -2,7 +2,7 @@
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
- @ CREDIT : NAN-DEV || Misskaty
+ @ CREDIT : NAN-DEV || Misskaty || Geez-Pyro
 """
 ################################################################
 
@@ -13,9 +13,9 @@ from pyrogram.types import *
 
 from Mix import *
 from Mix.core.waktu import get_time, put_cleanmode
-
+"""
 __modles__ = "Afk"
-__help__ = """
+__help__ = "
  Help Command Afk
 
 • Perintah : <code>{0}afk</code> [reason]
@@ -23,18 +23,21 @@ __help__ = """
 
 • Perintah : <code>{0}afkdel</code> [on/off]
 • Penjelasan : Untuk mengaktifkan hapus otomatis pesan afk anda.
+"
 """
 
 
-# async def apa_ya(f, c, m):
-# af_k_c = udB.is_afk(user.me.id)
-# if af_k_c:
-# return bool(True)
-# else:
-# return bool(False)
+
+async def is_afk_(f, client, message):
+    user_id = client.me.id
+    af_k_c = await check_afk(user_id)
+    if af_k_c:
+        return bool(True)
+    else:
+        return bool(False)
 
 
-# isAfk = filters.create(apa_ya)
+is_afk = filters.create(func=is_afk_, name="is_afk_")
 
 
 @ky.ubot("afk")
@@ -196,7 +199,7 @@ async def _(c: user, m):
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
 
 
-# @user.on_message(filters.outgoing & filters.me)
+@user.on_message(filters.outgoing & filters.me & is_afk)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -290,13 +293,19 @@ async def _(c: user, m):
         return
 
 
-@user.on_message(filters.mentioned & filters.incoming & filters.private & filters.me)
+@user.on_message(
+    is_afk
+    & (filters.mentioned | filters.private)
+    & ~filters.me
+    & ~filters.bot
+    & filters.incoming
+)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     msg = ""
     verifier, reasondb = udB.is_afk(user.me.id)
-    if verifier:
+    try:
         try:
             afktype = reasondb["type"]
             timeafk = reasondb["time"]
@@ -360,8 +369,8 @@ async def _(c: user, m):
             msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                 a=em.warn, c=seenago, d=reasonafk
             )
-        except:
-            pass
+    except:
+          pass
     if msg != "":
         try:
             send = await m.reply_text(msg, disable_web_page_preview=True)
