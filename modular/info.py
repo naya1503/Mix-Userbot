@@ -16,7 +16,7 @@ from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.users import GetFullUser
 from Mix.core.sender_tools import extract_user
-from Mix import ky, Emojik,
+from Mix import ky, Emojik, GBan
 
 gban_db = GBan()
 
@@ -108,13 +108,13 @@ async def user_info(c: user, sus, already=False):
     photo_id = susu.photo.big_file_id if susu.photo else None
     is_support = True if user_id in DEVS else False
     if user_id == bot.me.id:
-        is_support = "A person is a great support to himself"
-    omp = "Hmmm.......Who is that again?"
+        is_support = "I'm Bot"
+    omp = "Tidak Diketahui"
     if is_support or bot.me.id:
         if user_id in DEVS:
             omp = "Developer"
         elif user_id == bot.me.id:
-            omp = "I am the targeted user"
+            omp = "I'm Bot"
         elif user_id == c.me.id:
             omp = "Owner of the bot"
         if user_id in DEVS and user_id == c.me.id:
