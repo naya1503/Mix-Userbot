@@ -27,7 +27,7 @@ async def send_cmd(c: user, msgtype: int):
     return GET_FORMAT[msgtype]
 
 
-async def extract_user(c: user, m) -> Tuple[int, str, str]:
+async def extract_user(c, m) -> Tuple[int, str, str]:
     """Extract the user from the provided message."""
     user_id = None
     user_first_name = None
@@ -66,7 +66,7 @@ async def extract_user(c: user, m) -> Tuple[int, str, str]:
                 try:
                     sone = Users.get_user_info(user_found)
                     user_id = sone["_id"]
-                    user_first_name = sone["first_name"]
+                    user_first_name = sone["name"]
                     user_name = sone["username"]
                 except KeyError:
                     # If user not in database
@@ -106,7 +106,7 @@ async def extract_user(c: user, m) -> Tuple[int, str, str]:
             if user_id is not None:
                 try:
                     sone = Users.get_user_info(user_id)
-                    user_first_name = sone["first_name"]
+                    user_first_name = sone["name"]
                     user_name = sone["username"]
                 except Exception as ef:
                     try:
