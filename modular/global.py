@@ -61,7 +61,7 @@ async def _(c: user, m):
     if not org:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if nyet in DEVS:
+    if org.id in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
@@ -146,7 +146,7 @@ async def _(c: user, m):
     if not org:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if nyet in DEVS:
+    if org.id in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
