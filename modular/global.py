@@ -225,13 +225,13 @@ async def _(c: user, m):
     em.initialize()
     gbanu = dbgb.load_from_db()
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
-    dftr = f"{em.profil} **Daftar Pengguna :**\n\n"
+    dftr = f"{em.profil} **Daftar GBanned :**\n\n"
     if not gbanu:
         return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     for ii in gbanu:
-        dftr += f"{em.warn} <b>{ii['_id']}</b>\n"
+        dftr += f"{em.block} <b>{ii['_id']}</b>\n"
         if ii["reason"]:
-            dftr += f"<b>Alasan:</b> {ii['reason']}\n\nn{em.sukses} **Total :`{dbgb.count_gbans()}**\n"
+            dftr += f"{em.warn} <b>Alasan:</b> {ii['reason']}\n\n{em.sukses} **Total :`{dbgb.count_gbans()}`**\n"
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
