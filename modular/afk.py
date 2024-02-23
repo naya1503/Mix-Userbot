@@ -26,15 +26,15 @@ __help__ = """
 """
 
 
-#async def apa_ya(f, c, m):
-    #af_k_c = udB.is_afk(user.me.id)
-    #if af_k_c:
-        #return bool(True)
-    #else:
-        #return bool(False)
+# async def apa_ya(f, c, m):
+# af_k_c = udB.is_afk(user.me.id)
+# if af_k_c:
+# return bool(True)
+# else:
+# return bool(False)
 
 
-#isAfk = filters.create(apa_ya)
+# isAfk = filters.create(apa_ya)
 
 
 @ky.ubot("afk")
