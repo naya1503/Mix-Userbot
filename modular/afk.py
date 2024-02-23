@@ -13,7 +13,7 @@ from pyrogram import *
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.waktu import get_time
+from Mix.core.waktu import get_time, put_cleanmode
 
 __modles__ = "Afk"
 __help__ = """
