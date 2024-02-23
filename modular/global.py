@@ -229,7 +229,7 @@ async def _(c: user, m):
     if not gbanu:
         return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     for ii in gbanu:
-        dftr += f"{em.warn} <b>{Users.get_user_info(ii['username'])}</b> - <code>{ii['_id']}</code>\n"
+        dftr += f"{em.warn} <b>{ii['_id']}</b>\n"
         if ii["reason"]:
             dftr += f"<b>Alasan:</b> {ii['reason']}\n\nn{em.sukses} **Total :`{dbgb.count_gbans()}**\n"
     try:
@@ -252,7 +252,7 @@ async def _(c: user, m):
     if not gmnu:
         return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     for ii in gmnu:
-        dftr += f"{em.warn} <b>{Users.get_user_info(ii['username'])}</b> - <code>{ii['_id']}</code>\n"
+        dftr += f"{em.warn} <b>{ii['_id']}</b>\n"
         if ii["reason"]:
             dftr += f"<b>Alasan:</b> {ii['reason']}\n\n{em.sukses} **Total :`{dbgm.count_gbans()}**\n"
     try:
