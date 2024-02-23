@@ -283,7 +283,7 @@ async def _(c: user, m):
     if m.sender_chat:
         return
     userid = message.from_user.id
-    user_name = message.from_user.mention
+    message.from_user.mention
     c.me.mention
     if m.entities:
         possible = ["/afk", f"/afk@{kntl.me.username}", "!afk"]
@@ -366,7 +366,7 @@ async def _(c: user, m):
     # Replied to a User which is AFK
     if m.reply_to_message:
         try:
-            replied_first_name = m.reply_to_message.from_user.mention
+            m.reply_to_message.from_user.mention
             replied_user_id = m.reply_to_message.from_user.id
             verifier, reasondb = udB.is_afk(replied_user_id)
             if verifier:
