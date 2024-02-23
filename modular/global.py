@@ -40,6 +40,7 @@ from pyrogram.types import *
 
 from Mix import *
 from Mix.core.parser import remove_markdown_and_html
+from Mix.core.sender_tools import extract_user
 
 dbgb = GBan()
 dbgm = GMute()
@@ -50,7 +51,7 @@ dbgm = GMute()
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    nyet, alasan = await c.extract_user_and_reason(m)
+    nyet, user_first_name = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     try:
         org = await c.get_users(nyet)
@@ -60,7 +61,7 @@ async def _(c: user, m):
     if not org:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if org.id in DEVS:
+    if nyet in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
@@ -78,22 +79,22 @@ async def _(c: user, m):
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
-        if dbgb.check_gban(org.id):
+        if dbgb.check_gban(nyet):
             await xx.edit(f"{em.gagal} Pengguna sudah digban.")
             return
         try:
-            await c.ban_chat_member(chat, org.id)
+            await c.ban_chat_member(chat, nyet)
             bs += 1
             await asyncio.sleep(0.1)
 
         except FloodWait as e:
             await asyncio.sleep(int(e.value))
-            await c.ban_chat_member(chat, org.id)
+            await c.ban_chat_member(chat, nyet)
             bs += 1
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    dbgb.add_gban(org.id, alasan, c.me.id)
+    dbgb.add_gban(nyet, alasan, c.me.id)
     mmg = f"{em.warn} <b>Warning Global Banned\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n{em.block} **Alasan: `{alasan}`**"
     await m.reply(mmg)
     await xx.delete()
@@ -104,7 +105,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    nyet = await c.extract_user(m)
+    nyet, user_first_name = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     org = await c.get_users(nyet)
     if not org:
@@ -118,17 +119,17 @@ async def _(c: user, m):
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
-        if not dbgb.check_gban(org.id):
+        if not dbgb.check_gban(nyet):
             await xx.edit(f"{em.gagal} Pengguna belum digban.")
             return
         try:
-            await c.unban_chat_member(chat, org.id)
+            await c.unban_chat_member(chat, nyet)
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    dbgb.remove_gban(org.id)
+    dbgb.remove_gban(nyet)
     mmg = f"{em.warn} <b>Warning Global Unbanned\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
     await m.reply(mmg)
     await xx.delete()
@@ -139,13 +140,13 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    nyet, alasan = await c.extract_user_and_reason(m)
+    nyet, user_first_name = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     org = await c.get_users(nyet)
     if not org:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if org.id in DEVS:
+    if nyet in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
@@ -164,17 +165,17 @@ async def _(c: user, m):
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
-        if dbgm.check_gmute(org.id):
+        if dbgm.check_gmute(nyet):
             await xx.edit(f"{em.gagal} Pengguna sudah digmute.")
             return
         try:
-            await c.restrict_chat_member(chat, org.id, ChatPermissions())
+            await c.restrict_chat_member(chat, nyet, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    dbgm.add_gmute(org.id, alasan, c.me.id)
+    dbgm.add_gmute(nyet, alasan, c.me.id)
     mmg = f"{em.warn} <b>Warning Global Gmute\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n{em.block} **Alasan: `{alasan}`**"
     await m.reply(mmg)
     await xx.delete()
@@ -185,13 +186,13 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    nyet = await c.extract_user(m)
+    nyet, user_first_name = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     org = await c.get_users(nyet)
     if not org:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if org.id in DEVS:
+    if nyet in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     bs = 0
@@ -202,17 +203,17 @@ async def _(c: user, m):
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
-        if not dbgm.check_gmute(org.id):
+        if not dbgm.check_gmute(nyet):
             await xx.edit(f"{em.gagal} Pengguna belum pernah diGMute.")
             return
         try:
-            await c.unban_member(chat, org.id, ChatPermissions())
+            await c.unban_member(chat, nyet, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    dbgm.remove_gmute(org.id)
+    dbgm.remove_gmute(nyet)
     mmg = f"{em.warn} <b>Warning Global Ungmute\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
     await m.reply(mmg)
     await xx.delete()
