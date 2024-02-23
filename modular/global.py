@@ -65,7 +65,7 @@ async def _(c: user, m):
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Silahkan berikan alasan untuk diGban!")
+        await xx.edit(f"{em.gagal} Silahkan berikan alasan untuk diGban!")
         return
     if m.reply_to_message:
         alasan = m.text.split(None, 1)[1]
@@ -150,7 +150,7 @@ async def _(c: user, m):
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Silahkan berikan alasan untuk diGMute!")
+        await xx.edit(f"{em.gagal} Silahkan berikan alasan untuk diGMute!")
         return
     if m.reply_to_message:
         alasan = m.text.split(None, 1)[1]
@@ -231,7 +231,7 @@ async def _(c: user, m):
     for ii in gbanu:
         dftr += f"[x] <b>{Users.get_user_info(ii['_id'])['name']}</b> - <code>{ii['_id']}</code>\n"
         if ii["reason"]:
-            dftr += f"<b>Alasan:</b> {ii['reason']}\n"
+            dftr += f"<b>Alasan:</b> {ii['reason']}\n\nn{em.sukses} **Total :`{dbgb.count_gbans()}**\n"
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
@@ -254,7 +254,7 @@ async def _(c: user, m):
     for ii in gmnu:
         dftr += f"[x] <b>{Users.get_user_info(ii['_id'])['name']}</b> - <code>{ii['_id']}</code>\n"
         if ii["reason"]:
-            dftr += f"<b>Alasan:</b> {ii['reason']}\n"
+            dftr += f"<b>Alasan:</b> {ii['reason']}\n\n{em.sukses} **Total :`{dbgm.count_gbans()}**\n"
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
