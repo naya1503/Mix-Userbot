@@ -28,9 +28,6 @@ __help__ = """
 
 • Perintah : <code>{0}copy</code> [link]
 • Penjelasan : Untuk mengambil pesan melalui link telegram.
-
-• Perintah : <code>{0}cancel_copy</code>
-• Penjelasan : Batalkan colong konten.
   """
 
 #### TomiXtomi
