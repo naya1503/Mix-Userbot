@@ -2,7 +2,7 @@
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
- @ CREDIT : NAN-DEV || Misskaty || Geez-Pyro
+ @ CREDIT : NAN-DEV || Misskaty
 """
 ################################################################
 
@@ -14,30 +14,19 @@ from pyrogram.types import *
 from Mix import *
 from Mix.core.waktu import get_time, put_cleanmode
 
-"""
+
 __modles__ = "Afk"
-__help__ = "
+__help__ = """
  Help Command Afk
 
-• Perintah : <code>{0}afk</code> [reason]
-• Penjelasan : Untuk mengaktifkan mode afk.
+• Perintah : <code>{0}afk or unafk</code> [reason]
+• Penjelasan : Untuk mengaktifkan atau menonaktifkan mode afk.
 
 • Perintah : <code>{0}afkdel</code> [on/off]
 • Penjelasan : Untuk mengaktifkan hapus otomatis pesan afk anda.
-"
 """
 
 
-async def is_afk_(f, c: user, m):
-    user_id = c.me.id
-    af_k_c = udB.is_afk(user_id)
-    if af_k_c:
-        return bool(True)
-    else:
-        return bool(False)
-
-
-# isAfk = filters.create(func=is_afk_, name="is_afk_")
 
 
 @ky.ubot("afk", sudo=True)
@@ -294,7 +283,7 @@ async def _(c: user, m):
 
 
 @user.on_message(
-    (filters.mentioned | filters.private)
+    filters.mentioned
     & ~filters.me
     & ~filters.bot
     & filters.incoming
