@@ -5,9 +5,8 @@
  @ CREDIT : NAN-DEV
 """
 ################################################################
-
+from time import time
 from datetime import datetime
-
 from pyrogram.raw.functions import Ping
 
 from Mix import *
