@@ -105,7 +105,7 @@ async def extract_user(c: user, m) -> Tuple[int, str, str]:
             if user_id is not None:
                 try:
                     sone = Users.get_user_info(user_id)
-                    user_first_name = sone["name"]
+                    user_first_name = sone["first_name"]
                     user_name = sone["username"]
                 except Exception as ef:
                     try:
