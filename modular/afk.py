@@ -6,7 +6,6 @@
 """
 ################################################################
 
-import re
 import time
 
 from pyrogram import *
@@ -313,39 +312,62 @@ async def _(c: user, m):
             reasonafk = reasondb["reason"]
             seenago = await get_time((int(time.time() - timeafk)))
             if afktype == "text":
-                msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(a=em.warn, c=seenago)
+                msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                    a=em.warn, c=seenago
+                )
             if afktype == "text_reason":
-                msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(a=em.warn, c=seenago, d=reasonafk)
+                msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
+                    a=em.warn, c=seenago, d=reasonafk
+                )
             if afktype == "animation":
-                 if str(reasonafk) == "None":
-                     send = await m.reply_animation(
-                          data,
-                          caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(a=em.warn, c=seenago))
-                 else:
-                     send = await m.reply_animation(
-                          data,
-                          caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(a=em.warn, c=seenago, d=reasonafk
-                                ))
+                if str(reasonafk) == "None":
+                    send = await m.reply_animation(
+                        data,
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                            a=em.warn, c=seenago
+                        ),
+                    )
+                else:
+                    send = await m.reply_animation(
+                        data,
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
+                            a=em.warn, c=seenago, d=reasonafk
+                        ),
+                    )
             if afktype == "photo":
-                 if str(reasonafk) == "None":
-                     send = await m.reply_photo(
-                          photo=f"downloads/{c.me.id}.jpg",
-                          caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(a=em.warn, c=seenago))
-                 else:
-                     send = await m.reply_photo(
-                          photo=f"downloads/{c.me.id}.jpg",
-                          caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(a=em.warn, c=seenago, d=reasonafk))
+                if str(reasonafk) == "None":
+                    send = await m.reply_photo(
+                        photo=f"downloads/{c.me.id}.jpg",
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                            a=em.warn, c=seenago
+                        ),
+                    )
+                else:
+                    send = await m.reply_photo(
+                        photo=f"downloads/{c.me.id}.jpg",
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
+                            a=em.warn, c=seenago, d=reasonafk
+                        ),
+                    )
             if afktype == "video":
-                 if str(reasonafk) == "None":
-                     send = await m.reply_video(
-                     video=f"downloads/{c.me.id}.mp4",
-                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(a=em.warn, c=seenago))
-                 else:
-                      send = await m.reply_video(
-                      video=f"downloads/{c.me.id}.mp4",
-                      caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(a=em.warn, c=seenago, d=reasonafk))
+                if str(reasonafk) == "None":
+                    send = await m.reply_video(
+                        video=f"downloads/{c.me.id}.mp4",
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                            a=em.warn, c=seenago
+                        ),
+                    )
+                else:
+                    send = await m.reply_video(
+                        video=f"downloads/{c.me.id}.mp4",
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
+                            a=em.warn, c=seenago, d=reasonafk
+                        ),
+                    )
         except Exception:
-              msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(a=em.warn, c=seenago, d=reasonafk)
+            msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
+                a=em.warn, c=seenago, d=reasonafk
+            )
         except:
             pass
     if msg != "":
