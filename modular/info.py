@@ -240,7 +240,7 @@ async def chat_info(c: user, chat, already=False):
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    if m.reply_to_message and m.reply_to_m.sender_chat:
+    if m.reply_to_message and m.reply_to_message.sender_chat:
         await m.reply_text(
             f"{em.gagal} Ini bukan pengguna, tetapi Grup! Silahkan gunakan <code>.cinfo</code>."
         )
@@ -293,8 +293,8 @@ async def _(c: user, m):
     em.initialize()
     splited = m.text.split()
     if len(splited) == 1:
-        if m.reply_to_message and m.reply_to_m.sender_chat:
-            chat = m.reply_to_m.sender_chat.id
+        if m.reply_to_message and m.reply_to_message.sender_chat:
+            chat = m.reply_to_message.sender_chat.id
         else:
             chat = m.chat.id
 
