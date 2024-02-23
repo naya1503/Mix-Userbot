@@ -30,7 +30,7 @@ Help Command Notes
 • Penjelasan: Untuk melihat semua catatan.
 
 • Untuk menggunakan inline button silahkan ketik :
-<code>{0}help markdown</code>
+<code>{0}markdown</code>
 """
 
 
