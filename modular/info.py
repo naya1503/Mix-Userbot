@@ -245,13 +245,13 @@ async def _(c: user, m):
             f"{em.gagal} Ini bukan pengguna, tetapi Grup! Silahkan gunakan <code>.cinfo</code>."
         )
         return
-    sus, _, user_name = await extract_user(c, m)
+    sus, user_name = await extract_user(c, m)
 
     if not sus:
         await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna!")
 
     m = await m.reply_text(
-        f"{em.proses} Fetching {('@' + user_name) if user_name else 'user'} info..."
+        f"{em.proses} Fetching {('@' + user_name) if user_name else 'pengguna'} info..."
     )
 
     try:
