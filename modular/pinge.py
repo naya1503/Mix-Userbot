@@ -11,7 +11,7 @@ from datetime import datetime
 from pyrogram.raw.functions import Ping
 
 from Mix import *
-
+from Mix.core.waktu import start_time, get_time
 
 @ky.ubot("ping", sudo=True)
 @ky.devs("mping")
@@ -22,10 +22,12 @@ async def _(c: user, m):
     await c.invoke(Ping(ping_id=0))
     end = datetime.now()
     delta_ping = (end - start).microseconds / 1000
+    upnya = await get_time((time() - start_time))
     _ping = f"""
 **{em.ping} Pong !! `{str(delta_ping).replace('.', ',')}ms`**
 **{em.pong} Mix-Userbot**
-**{em.alive} {c.me.first_name} **"""
+**{em.alive} {c.me.first_name} **
+**{em.warn} Uptime : `{upnya}`"""
     await m.reply(_ping)
 
 
