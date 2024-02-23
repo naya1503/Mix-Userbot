@@ -73,7 +73,7 @@ async def count(c: user, chat):
     return total_bot, total_admin, bot_admin, total_banned
 
 
-async def user_info(c: user, sus, already=False):
+async def user_info(c, sus, already=False):
     em = Emojik()
     em.initialize()
     if not already:
