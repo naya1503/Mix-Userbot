@@ -20,7 +20,7 @@ Help Command ShowID
 • Perintah: <code>{0}id</code>
 • Penjelasan: Untuk melihat id pengguna atau grup/channel.
 
-• Perintah: <code>{0}gifid</code> [balas pesan]
+• Perintah: <code>{0}gifid</code>
 • Penjelasan: Untuk melihat id gif.
 """
 
