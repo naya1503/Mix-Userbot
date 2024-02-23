@@ -6,11 +6,12 @@
 """
 ################################################################
 
-from Mix import *
 from pyrogram.enums import *
 from pyrogram.errors import *
-from Mix.core.sender_tools import extract_user
+
+from Mix import *
 from Mix.core.parser import mention_html
+from Mix.core.sender_tools import extract_user
 
 __modles__ = "ShowID"
 __help__ = """
@@ -23,6 +24,7 @@ Help Command ShowID
 • Penjelasan: Untuk melihat id gif.
 """
 
+
 @ky.ubot("id", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -33,8 +35,13 @@ async def _(c: user, m):
             txt = f"{em.sukses} ID pengguna <code>{user_id}</code>"
             await m.reply_text(txt, parse_mode=ParseMode.HTML)
             return
-        elif m.chat.type in [ChatType.SUPERGROUP, ChatType.GROUP] and not m.reply_to_message:
-            await m.reply_text(text=f"{em.sukses} ID Group <code>{m.chat.id}</code>\n{em.profil} Your ID <code>{m.from_user.id}</code>")
+        elif (
+            m.chat.type in [ChatType.SUPERGROUP, ChatType.GROUP]
+            and not m.reply_to_message
+        ):
+            await m.reply_text(
+                text=f"{em.sukses} ID Group <code>{m.chat.id}</code>\n{em.profil} Your ID <code>{m.from_user.id}</code>"
+            )
             return
 
         elif m.chat.type == ChatType.PRIVATE and not m.reply_to_message:
@@ -72,15 +79,15 @@ async def _(c: user, m):
                 parse_mode=ParseMode.HTML,
             )
     elif m.chat.type == ChatType.PRIVATE:
-        text=f"{em.sukses} Your ID is <code>{m.chat.id}</code>."
+        text = f"{em.sukses} Your ID is <code>{m.chat.id}</code>."
         if m.reply_to_message:
             if m.forward_from:
-                text+=f"{em.sukses} Forwarded from user ID <code>{m.forward_from.id}</code>."
+                text += f"{em.sukses} Forwarded from user ID <code>{m.forward_from.id}</code>."
             elif m.forward_from_chat:
-                text+=f"{em.sukses} Forwarded from user ID <code>{m.forward_from_chat.id}</code>."
+                text += f"{em.sukses} Forwarded from user ID <code>{m.forward_from_chat.id}</code>."
         await m.reply_text(text)
     else:
-        text=f"{em.sukses} Chat ID <code>{m.chat.id}</code>\n{em.profil} Your ID <code>{m.from_user.id}</code>"
+        text = f"{em.sukses} Chat ID <code>{m.chat.id}</code>\n{em.profil} Your ID <code>{m.from_user.id}</code>"
         await m.reply_text(text)
     return
 
