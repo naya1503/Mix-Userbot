@@ -17,6 +17,8 @@ Help Command Logo
 
 
 async def dl_font():
+    if os.path.exists("font-module"):
+        return
     subprocess.run(["git", "clone", "https://github.com/naya1503/font-module.git"])
 
 
