@@ -15,8 +15,9 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.users import GetFullUser
+
+from Mix import Emojik, GBan, ky
 from Mix.core.sender_tools import extract_user
-from Mix import ky, Emojik, GBan
 
 gban_db = GBan()
 
@@ -30,6 +31,7 @@ Help Command Info
 • Perintah: <code>{0}cinfo</code>
 • Penjelasan: Untuk melihat grup.
 """
+
 
 async def count(c: user, chat):
     em = Emojik()
@@ -50,9 +52,7 @@ async def count(c: user, chat):
         total_bot = bot
         bot_admin = 0
         ban = []
-        async for banned in c.get_chat_members(
-            chat, filter=ChatMembersFilter.BANNED
-        ):
+        async for banned in c.get_chat_members(chat, filter=ChatMembersFilter.BANNED):
             ban.append(banned)
 
         total_banned = ban
@@ -64,8 +64,10 @@ async def count(c: user, chat):
         total_bot = len(total_bot)
         total_banned = len(total_banned)
         return total_bot, total_admin, bot_admin, total_banned
-    except Exception as e:
-        total_bot = total_admin = bot_admin = total_banned = f"{em.gagal} Saya tidak berada digrup itu?"
+    except Exception:
+        total_bot = total_admin = bot_admin = total_banned = (
+            f"{em.gagal} Saya tidak berada digrup itu?"
+        )
 
     return total_bot, total_admin, bot_admin, total_banned
 
@@ -74,7 +76,7 @@ async def user_info(c: user, sus, already=False):
     em = Emojik()
     em.initialize()
     if not already:
-        susu =await c.get_users(user_ids=sus)
+        susu = await c.get_users(user_ids=sus)
     if not susu.first_name:
         return ["Deleted account", None]
 
@@ -90,11 +92,7 @@ async def user_info(c: user, sus, already=False):
     userrr = await c.resolve_peer(user_id)
     about = "NA"
     try:
-        ll = await c.invoke(
-            GetFullUser(
-                id=userrr
-            )
-        )
+        ll = await c.invoke(GetFullUser(id=userrr))
         about = ll.full_susu.about
     except Exception:
         pass
@@ -119,29 +117,31 @@ async def user_info(c: user, sus, already=False):
             omp = "Owner of the bot"
         if user_id in DEVS and user_id == c.me.id:
             omp = "Developer and Owner"
-        
+
     is_scam = susu.is_scam
     is_bot = susu.is_bot
     is_fake = susu.is_fake
     status = susu.status
     last_date = "Unable to fetch"
     if is_bot is True:
-      last_date = "Targeted user is a bot"
+        last_date = "Targeted user is a bot"
     if status == UserStatus.RECENTLY:
-      last_date = "User was seen recently"
+        last_date = "User was seen recently"
     if status == UserStatus.LAST_WEEK:
-      last_date = "User was seen last week"
+        last_date = "User was seen last week"
     if status == UserStatus.LAST_MONTH:
-      last_date = "User was seen last month"
+        last_date = "User was seen last month"
     if status == UserStatus.LONG_AGO:
-      last_date = "User was seen long ago or may be I am blocked by the user  :("
+        last_date = "User was seen long ago or may be I am blocked by the user  :("
     if status == UserStatus.ONLINE:
-      last_date = "User is online"
-    if status == UserStatus.OFFLINE: 
-      try:
-        last_date = datetime.fromtimestamp(susu.status.date).strftime("%Y-%m-%d %H:%M:%S")
-      except Exception:
-        last_date = "User is offline"
+        last_date = "User is online"
+    if status == UserStatus.OFFLINE:
+        try:
+            last_date = datetime.fromtimestamp(susu.status.date).strftime(
+                "%Y-%m-%d %H:%M:%S"
+            )
+        except Exception:
+            last_date = "User is offline"
 
     caption = f"""
 <b>User Info</b>
@@ -175,25 +175,17 @@ async def chat_info(c: user, chat, already=False):
         try:
             chat = await c.get_chat(chat)
             try:
-                chat_r = (await c.resolve_peer(chat.id))
-                ll = await c.invoke(
-                    GetFullChannel(
-                        channel=chat_r
-                    )
-                )    
+                chat_r = await c.resolve_peer(chat.id)
+                ll = await c.invoke(GetFullChannel(channel=chat_r))
                 u_name = ll.chats[0].usernames
             except Exception:
-                pass 
+                pass
         except Exception:
             try:
                 chat_r = await c.resolve_peer(chat)
                 chat = await c.get_chat(chat_r.channel_id)
                 try:
-                    ll = await c.invoke(
-                        GetFullChannel(
-                            channel=chat_r
-                        )
-                    )    
+                    ll = await c.invoke(GetFullChannel(channel=chat_r))
                     u_name = ll.chats[0].usernames
                 except Exception:
                     pass
@@ -202,7 +194,7 @@ async def chat_info(c: user, chat, already=False):
                 return caption, None
     chat_id = chat.id
     if u_name:
-        username = " ".join([f"@{i}"for i in u_name])
+        username = " ".join([f"@{i}" for i in u_name])
     elif not u_name:
         username = chat.username
     total_bot, total_admin, total_bot_admin, total_banned = await count(c, chat.id)
@@ -248,7 +240,9 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if m.reply_to_message and m.reply_to_m.sender_chat:
-        await m.reply_text(f"{em.gagal} Ini bukan pengguna, tetapi Grup! Silahkan gunakan <code>.cinfo</code>.")
+        await m.reply_text(
+            f"{em.gagal} Ini bukan pengguna, tetapi Grup! Silahkan gunakan <code>.cinfo</code>."
+        )
         return
     sus, _, user_name = await extract_user(c, m)
 
@@ -300,7 +294,7 @@ async def _(c: user, m):
     if len(splited) == 1:
         if m.reply_to_message and m.reply_to_m.sender_chat:
             chat = m.reply_to_m.sender_chat.id
-        else:  
+        else:
             chat = m.chat.id
 
     else:
@@ -312,16 +306,14 @@ async def _(c: user, m):
         if "invalid literal for int() with base 10:" in str(ef):
             chat = str(chat)
             if chat.startswith("https://"):
-                chat = '@'+chat.split("/")[-1]
+                chat = "@" + chat.split("/")[-1]
         else:
             return await m.reply_text(
                 f"{em.gagal} Silahkan gunakan : <code>.cinfo</code> @username/id grup."
             )
 
-    m = await m.reply_text(
-        f"{em.proses} Fetching chat info..."
-    )
-    
+    m = await m.reply_text(f"{em.proses} Fetching chat info...")
+
     try:
         info_caption, photo_id = await chat_info(c, chat=chat)
         if info_caption.startswith("Failed to find the chat due"):

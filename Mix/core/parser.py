@@ -42,5 +42,6 @@ async def clean_html(text: str) -> str:
 async def clean_markdown(text: str) -> str:
     return text.replace("`", "").replace("**", "").replace("__", "")
 
+
 async def remove_markdown_and_html(text: str) -> str:
     return await clean_markdown(await clean_html(text))
