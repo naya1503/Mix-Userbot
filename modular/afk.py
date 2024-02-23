@@ -44,7 +44,7 @@ async def _(c: user, m):
             timeafk = reasondb["time"]
             data = reasondb["data"]
             reasonafk = reasondb["reason"]
-            seenago = await get_time)(int(time.time() - timeafk)))
+            seenago = await get_time((int(time.time() - timeafk)))
             if afktype == "animation":
                 send = (
                     await m.reply_animation(
@@ -307,7 +307,7 @@ async def _(c: user, m):
             timeafk = reasondb["time"]
             data = reasondb["data"]
             reasonafk = reasondb["reason"]
-            seenago = await get_time)(int(time.time() - timeafk)))
+            seenago = await get_time((int(time.time() - timeafk)))
             if afktype == "text":
                 msg += "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
                     a=em.profil, b=user_name, c=seenago
@@ -377,7 +377,7 @@ async def _(c: user, m):
                     timeafk = reasondb["time"]
                     data = reasondb["data"]
                     reasonafk = reasondb["reason"]
-                    seenago = await get_time)(int(time.time() - timeafk)))
+                    seenago = await get_time((int(time.time() - timeafk)))
                     if afktype == "text":
                         msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.".format(
                             a=em.profil, b=user_name, c=seenago
@@ -469,7 +469,7 @@ async def _(c: user, m):
                         timeafk = reasondb["time"]
                         data = reasondb["data"]
                         reasonafk = reasondb["reason"]
-                        seenago = await get_time)(int(time.time() - timeafk)))
+                        seenago = await get_time((int(time.time() - timeafk)))
                         if afktype == "text":
                             msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                 a=em.profil,
@@ -562,7 +562,7 @@ async def _(c: user, m):
                         timeafk = reasondb["time"]
                         data = reasondb["data"]
                         reasonafk = reasondb["reason"]
-                        seenago = await get_time)(int(time.time() - timeafk)))
+                        seenago = await get_time((int(time.time() - timeafk)))
                         if afktype == "text":
                             msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                 a=em.profil,
