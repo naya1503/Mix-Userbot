@@ -63,21 +63,21 @@ async def extract_user(c: user, m) -> Tuple[int, str, str]:
                         LOGGER.error(format_exc())
 
                 try:
-                    user = Users.get_user_info(user_found)
-                    user_id = user["_id"]
-                    user_first_name = user["first_name"]
-                    user_name = user["username"]
+                    sone = Users.get_user_info(user_found)
+                    user_id = sone["_id"]
+                    user_first_name = sone["first_name"]
+                    user_name = sone["username"]
                 except KeyError:
                     # If user not in database
                     try:
-                        user = await c.get_users(user_found)
+                        sone = await c.get_users(user_found)
                     except Exception:
                         try:
                             user_r = await c.resolve_peer(user_found)
-                            user = await c.get_users(user_r.user_id)
+                            sone = await c.get_users(user_r.user_id)
                         except Exception as ef:
                             return await m.reply_text(f"User not found ! Error: {ef}")
-                    user_id = user.id
+                    user_id = sone.id
                     user_first_name = user.first_name
                     user_name = user.username
                 except Exception as ef:
@@ -104,16 +104,16 @@ async def extract_user(c: user, m) -> Tuple[int, str, str]:
 
             if user_id is not None:
                 try:
-                    user = Users.get_user_info(user_id)
-                    user_first_name = user["name"]
-                    user_name = user["username"]
+                    sone = Users.get_user_info(user_id)
+                    user_first_name = sone["name"]
+                    user_name = sone["username"]
                 except Exception as ef:
                     try:
-                        user = await c.get_users(user_id)
+                        sone = await c.get_users(user_id)
                     except Exception:
                         try:
                             user_r = await c.resolve_peer(user_found)
-                            user = await c.get_users(user_r.user_id)
+                            sone = await c.get_users(user_r.user_id)
                         except Exception as ef:
                             return await m.reply_text(f"User not found ! Error: {ef}")
                     user_first_name = user.first_name
