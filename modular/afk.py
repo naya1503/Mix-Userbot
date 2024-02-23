@@ -51,7 +51,6 @@ async def _(c: user, m):
                         data,
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
                             a=em.sukses,
-                            
                             c=seenago,
                         ),
                     )
@@ -59,7 +58,7 @@ async def _(c: user, m):
                     else await m.reply_animation(
                         data,
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.sukses,  c=seenago, d=reasonafk
+                            a=em.sukses, c=seenago, d=reasonafk
                         ),
                     )
                 )
@@ -69,7 +68,6 @@ async def _(c: user, m):
                         photo=f"downloads/{user_id}.jpg",
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
                             a=em.sukses,
-                            
                             c=seenago,
                         ),
                     )
@@ -78,7 +76,6 @@ async def _(c: user, m):
                         photo=f"downloads/{user_id}.jpg",
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
                             a=em.sukses,
-                            
                             c=seenago,
                             d=reasonafk,
                         ),
@@ -90,7 +87,6 @@ async def _(c: user, m):
                         video=f"downloads/{user_id}.mp4",
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
                             a=em.sukses,
-                            
                             c=seenago,
                         ),
                     )
@@ -99,7 +95,6 @@ async def _(c: user, m):
                         video=f"downloads/{user_id}.mp4",
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
                             a=em.sukses,
-                            
                             c=seenago,
                             d=reasonafk,
                         ),
@@ -108,20 +103,21 @@ async def _(c: user, m):
             elif afktype == "text":
                 send = await m.reply_text(
                     "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                        a=em.sukses,  c=seenago
+                        a=em.sukses, c=seenago
                     ),
                     disable_web_page_preview=True,
                 )
             elif afktype == "text_reason":
                 send = await m.reply_text(
                     "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                        a=em.sukses,  c=seenago, d=reasonafk
+                        a=em.sukses, c=seenago, d=reasonafk
                     ),
                 )
         except Exception:
             send = await m.reply_text(
                 "**{a} Sedang AFK sejak : `{c}` yang lalu.**".format(
-                    a=em.sukses, c=seenago,
+                    a=em.sukses,
+                    c=seenago,
                 ),
                 disable_web_page_preview=True,
             )
@@ -253,7 +249,6 @@ async def _(c: user, m):
     udB.add_afk(user_id, details)
     formatted_text = "{a} Sekarang Afk!!".format(
         a=em.sukses,
-        
     )
     send = await m.reply_text(formatted_text)
     await put_cleanmode(c.me.id, send.id)
@@ -286,7 +281,7 @@ async def _(c: user, m):
     if m.sender_chat:
         return
     userid = c.me.id
-    user_name = c.me.mention
+    c.me.mention
     if m.entities:
         possible = ["/afk"]
         message_text = m.text or m.caption
@@ -414,7 +409,6 @@ async def _(c: user, m):
                                 photo=f"downloads/{replied_user_id}.jpg",
                                 caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                     a=em.sukses,
-                                    
                                     c=seenago,
                                     d=reasonafk,
                                 ),
@@ -425,7 +419,6 @@ async def _(c: user, m):
                                 video=f"downloads/{replied_user_id}.mp4",
                                 caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                     a=em.sukses,
-                                    
                                     c=seenago,
                                 ),
                             )
@@ -434,7 +427,6 @@ async def _(c: user, m):
                                 video=f"downloads/{replied_user_id}.mp4",
                                 caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                     a=em.sukses,
-                                    
                                     c=seenago,
                                     d=reasonafk,
                                 ),
@@ -473,13 +465,11 @@ async def _(c: user, m):
                         if afktype == "text":
                             msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                 a=em.sukses,
-                                
                                 c=seenago,
                             )
                         if afktype == "text_reason":
                             msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                 a=em.sukses,
-                                
                                 c=seenago,
                                 d=reasonafk,
                             )
@@ -489,7 +479,6 @@ async def _(c: user, m):
                                     data,
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                     ),
                                 )
@@ -498,7 +487,6 @@ async def _(c: user, m):
                                     data,
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                         d=reasonafk,
                                     ),
@@ -509,7 +497,6 @@ async def _(c: user, m):
                                     photo=f"downloads/{ore.id}.jpg",
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                     ),
                                 )
@@ -518,7 +505,6 @@ async def _(c: user, m):
                                     photo=f"downloads/{ore.id}.jpg",
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                         d=reasonafk,
                                     ),
@@ -529,7 +515,6 @@ async def _(c: user, m):
                                     video=f"downloads/{ore.id}.mp4",
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                     ),
                                 )
@@ -538,7 +523,6 @@ async def _(c: user, m):
                                     video=f"downloads/{ore.id}.mp4",
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                         d=reasonafk,
                                     ),
@@ -566,13 +550,11 @@ async def _(c: user, m):
                         if afktype == "text":
                             msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                 a=em.sukses,
-                                
                                 c=seenago,
                             )
                         if afktype == "text_reason":
                             msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                 a=em.sukses,
-                                
                                 c=seenago,
                                 d=reasonafk,
                             )
@@ -582,7 +564,6 @@ async def _(c: user, m):
                                     data,
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                     ),
                                 )
@@ -591,7 +572,6 @@ async def _(c: user, m):
                                     data,
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                         d=reasonafk,
                                     ),
@@ -602,7 +582,6 @@ async def _(c: user, m):
                                     photo=f"downloads/{user_id}.jpg",
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                     ),
                                 )
@@ -611,7 +590,6 @@ async def _(c: user, m):
                                     photo=f"downloads/{user_id}.jpg",
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                         d=reasonafk,
                                     ),
@@ -622,7 +600,6 @@ async def _(c: user, m):
                                     video=f"downloads/{user_id}.mp4",
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                     ),
                                 )
@@ -631,14 +608,13 @@ async def _(c: user, m):
                                     video=f"downloads/{user_id}.mp4",
                                     caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                                         a=em.sukses,
-                                        
                                         c=seenago,
                                         d=reasonafk,
                                     ),
                                 )
                     except:
                         msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
-                            a=em.sukses,  c=seenago, d=reasonafk
+                            a=em.sukses, c=seenago, d=reasonafk
                         )
             j += 1
     if msg != "":
