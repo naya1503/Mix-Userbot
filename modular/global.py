@@ -192,9 +192,6 @@ async def _(c: user, m):
     if not org:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if nyet in DEVS:
-        await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
-        return
     bs = 0
     gg = 0
     chats = await c.get_user_dialog("group")
