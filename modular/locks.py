@@ -24,13 +24,14 @@ Help Command Group
 """
 
 from asyncio import sleep
-from traceback import format_exc
 
 from pyrogram import filters
 from pyrogram.enums import MessageEntityType as MET
 from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
-from pyrogram.types import ChatPermissions, Message
+from pyrogram.types import ChatPermissions
+
 from Mix import *
+
 from .restrict import list_admins
 
 l_t = """
@@ -56,7 +57,7 @@ l_t = """
 
 async def prevent_approved(m):
     ceksud = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
-    ms = m.from_user.id 
+    ms = m.from_user.id
     for ms in (DEVS, ceksud):
         try:
             await m.chat.unban_member(ms)
@@ -64,13 +65,12 @@ async def prevent_approved(m):
             continue
         await sleep(0.1)
     return
-  
+
 
 async def is_approved_user(c: user, m):
     admins_group = await list_admins(m.chat.id)
     if m.forward_from:
         if (
-            
             m.from_user.id in DEVS
             or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
@@ -80,7 +80,6 @@ async def is_approved_user(c: user, m):
     elif m.forward_from_chat:
         x_chat = (await c.get_chat(m.forward_from_chat.id)).linked_chat
         if (
-            
             m.from_user.id in DEVS
             or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
@@ -92,7 +91,6 @@ async def is_approved_user(c: user, m):
             return True
     elif m.from_user:
         if (
-            
             m.from_user.id in DEVS
             or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
@@ -100,14 +98,15 @@ async def is_approved_user(c: user, m):
             return True
         return False
 
-  
+
 async def delete_messages(c: user, m):
     try:
         await m.delete()
         return
-    except RPCError as rp:
+    except RPCError:
         return
-      
+
+
 @user.on_message(filters.group & ~filters.me, 18)
 async def _(c: user, m):
     lock = LOCKS()
@@ -146,14 +145,15 @@ async def _(c: user, m):
                 await delete_messages(c, m)
                 return
 
+
 @ky.ubot("locktypes", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     await m.reply_text(l_t)
     return
-  
-  
+
+
 @ky.ubot("lock", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -185,7 +185,9 @@ async def _(c: user, m):
         except ChatNotModified:
             pass
         except ChatAdminRequired:
-            await m.reply_text(f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!")
+            await m.reply_text(
+                f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!"
+            )
         await m.reply_text(f"{em.sukses}" + "Terkunci <b>all</b> untuk grup ini!")
         await prevent_approved(m)
         return
@@ -271,7 +273,9 @@ async def _(c: user, m):
         await m.reply_text(f"{em.sukses} Pesan terusan channel dikunci digrup ini!")
         return
     else:
-        await m.reply_text(f"{em.gagal} Invalid Lock Tipe!\n\n{em.sukses} Silahkan ketik <code>locktypes</code> untuk melihat format lock!")
+        await m.reply_text(
+            f"{em.gagal} Invalid Lock Tipe!\n\n{em.sukses} Silahkan ketik <code>locktypes</code> untuk melihat format lock!"
+        )
         return
 
     try:
@@ -297,7 +301,7 @@ async def _(c: user, m):
     )
     await prevent_approved(m)
     return
-  
+
 
 @ky.ubot("unlock", sudo=True)
 async def _(c: user, m):
@@ -331,7 +335,9 @@ async def _(c: user, m):
         except ChatNotModified:
             pass
         except ChatAdminRequired:
-            await m.reply_text(f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!")
+            await m.reply_text(
+                f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!"
+            )
         await m.reply_text(f"{em.sukses}" + "Dibuka <b>all</b> untuk grup ini!")
         await prevent_approved(m)
         return
@@ -351,47 +357,36 @@ async def _(c: user, m):
 
     if unlock_type == "msg":
         umsg = True
-        uperm = "messages"
 
     elif unlock_type == "media":
         umedia = True
-        uperm = "audios, documents, photos, videos, video notes, voice notes"
 
     elif unlock_type == "stickers":
         ustickers = True
-        uperm = "stickers"
 
     elif unlock_type == "animations":
         uanimations = True
-        uperm = "animations"
 
     elif unlock_type == "games":
         ugames = True
-        uperm = "games"
 
     elif unlock_type == "inline":
         uinlinebots = True
-        uperm = "inline bots"
 
     elif unlock_type == "webprev":
         uwebprev = True
-        uperm = "web page previews"
 
     elif unlock_type == "polls":
         upolls = True
-        uperm = "polls"
 
     elif unlock_type == "info":
         uinfo = True
-        uperm = "info"
 
     elif unlock_type == "invite":
         uinvite = True
-        uperm = "invite"
 
     elif unlock_type == "pin":
         upin = True
-        uperm = "pin"
     elif unlock_type == "anonchannel":
         curr = lock.remove_lock_channel(m.chat.id, "anti_c_send")
 
@@ -435,10 +430,12 @@ async def _(c: user, m):
         return
 
     else:
-        await m.reply_text(f"{em.gagal} Invalid Unlock Tipe!\n\n{em.sukses} Silahkan ketik <code>locktypes</code> untuk melihat format lock!")
+        await m.reply_text(
+            f"{em.gagal} Invalid Unlock Tipe!\n\n{em.sukses} Silahkan ketik <code>locktypes</code> untuk melihat format lock!"
+        )
 
     try:
-        
+
         await c.set_chat_permissions(
             chat_id,
             ChatPermissions(
@@ -463,7 +460,8 @@ async def _(c: user, m):
     )
     await prevent_approved(m)
     return
-  
+
+
 @ky.ubot("locks", sudo=True)
 async def _(c: user, m):
     em = Emojik()
