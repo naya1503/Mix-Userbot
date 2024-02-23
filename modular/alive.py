@@ -58,7 +58,7 @@ async def _(c, iq):
     txt = f"""
 <b>Mix-Userbot</b>
     <b>status:</b> {stutas}
-      <b>dc_id:</b> {user.me.dc.id}
+      <b>dc_id:</b> {user.dc.id}
       <b>ping_dc:</b> {str(pink).replace('.', ',')} ms
       <b>pmpermit:</b> {pmper}
       <b>peer_users:</b> {len(apa)}
