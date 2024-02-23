@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import ky, Emojik, user
+from Mix import Emojik, ky, user
 
 __MODULE__ = "Logo"
 __HELP__ = """
