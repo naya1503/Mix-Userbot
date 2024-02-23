@@ -16,8 +16,9 @@ from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.users import GetFullUser
 
-from Mix import Emojik, GBan, ky
+from Mix import Emojik, ky
 from Mix.core.sender_tools import extract_user
+from team.nandev.new_database import GBan
 
 gban_db = GBan()
 
