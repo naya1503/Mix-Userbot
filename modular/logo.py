@@ -9,8 +9,8 @@ from pyrogram.types import *
 
 from Mix import Emojik, ky, user
 
-__MODULE__ = "Logo"
-__HELP__ = """
+__modles__ = "Logo"
+__help__ = """
 Help Command Logo
 
 • Perintah: <code>{0}logo</code> [text]
