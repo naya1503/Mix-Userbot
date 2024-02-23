@@ -24,6 +24,7 @@ async def dl_font():
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
+    await dl_font()
     name = c.get_arg(m)
     xx = await m.reply(f"{em.proses} <b>Processing...</b>")
     if not name:
@@ -51,7 +52,6 @@ async def _(c: user, m):
                 pics.append(i)
         id_ = random.choice(pics)
         bg_ = await id_.download()
-        await dl_font()
         fpath_ = glob.glob("font-module/*")
         font_ = random.choice(fpath_)
     if not bg_:
@@ -64,7 +64,6 @@ async def _(c: user, m):
         id_ = random.choice(pics)
         bg_ = await id_.download()
     if not font_:
-        await download_fonts()
         fpath_ = glob.glob("font-module/*")
         font_ = random.choice(fpath_)
     if len(name) <= 8:
