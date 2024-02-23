@@ -26,7 +26,7 @@ async def _(c: user, m):
     try:
          x = await c.get_inline_bot_results(bot.me.username, "alive")
          await m.reply_inline_bot_result(x.query_id, x.results[0].id, reply_to_message=m.id)
-     except Exception as error:
+    except Exception as error:
          await m.reply(error)
          
 
