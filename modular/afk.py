@@ -40,7 +40,7 @@ async def is_afk_(f, c: user, m):
 # isAfk = filters.create(func=is_afk_, name="is_afk_")
 
 
-@ky.ubot("afk")
+@ky.ubot("afk", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -199,7 +199,7 @@ async def _(c: user, m):
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
 
 
-@user.on_message(filters.me & filters.outgoing)
+@ky.ubot("unafk", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
