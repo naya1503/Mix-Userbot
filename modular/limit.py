@@ -30,7 +30,7 @@ async def _(c: user, m):
     )
     await sleep(1)
     await msg.delete()
-    status = await c.get_messages("SpamBot", response.updates[1].m.id + 1)
+    status = await c.get_messages("SpamBot", response.updates[1].message.id + 1)
     if status:
         result = status.text
         emoji = None
