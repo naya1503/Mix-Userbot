@@ -68,7 +68,9 @@ async def _(c, iq):
     bo_ol = [InlineKeyboardButton(text="Support", url="t.me/kynansupport")]
     if cekpic:
         filem = (
-            InlineQueryResultVideo if cekpic.endswith(".mp4") else InlineQueryResultPhoto
+            InlineQueryResultVideo
+            if cekpic.endswith(".mp4")
+            else InlineQueryResultPhoto
         )
         url_ling = (
             {"video_url": cekpic, "thumb_url": cekpic}
