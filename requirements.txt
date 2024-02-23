@@ -1,6 +1,7 @@
 aiofiles
 aiohttp
 beautifulsoup4
+bs4
 python-dotenv
 tgcrypto
 requests
