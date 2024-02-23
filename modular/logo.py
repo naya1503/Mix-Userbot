@@ -19,7 +19,7 @@ Help Command Logo
 @ky.ubot("logo", sudo=True)
 async def _(c: user, m):
     em = Emojik()
-    await em.initialize()
+    em.initialize()
     name = c.get_arg(m)
     subprocess.run(["git", "clone", "https://github.com/naya1503/font-module.git"])
     xx = await m.reply(f"{em.proses} <b>Processing...</b>")
