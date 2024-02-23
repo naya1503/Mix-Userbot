@@ -3,9 +3,9 @@ import os
 import random
 import subprocess
 
-from PIL import *
+from PIL import Image, ImageDraw, ImageFont
 
-from Mix import *
+from Mix import ky, Emojik, user
 
 __MODULE__ = "Logo"
 __HELP__ = """
