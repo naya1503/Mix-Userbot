@@ -12,6 +12,7 @@ Help Command Spambot
 • Penjelasan: Untuk melihat status akun anda dibatasi atau tidak.
 """
 
+
 @ky.ubot("limit")
 async def _(c: user, m):
     em = Emojik()
@@ -37,8 +38,8 @@ async def _(c: user, m):
             emoji = f"{em.sukses}"
         if "I'm afraid" in result or "Saya khawatir" in result:
             emoji = f"{em.gagal}"
-        await c.send_message(m.chat.id,
-            f"{emoji} <b>{result}</b>\n\n ~ {em.alive} <b>{x.first_name}</b>"
+        await c.send_message(
+            m.chat.id, f"{emoji} <b>{result}</b>\n\n ~ {em.alive} <b>{x.first_name}</b>"
         )
         await c.invoke(DeleteHistory(peer=xin, max_id=0, revoke=True))
         await msg.delete()
