@@ -9,7 +9,7 @@ async def get_time(seconds):
     count = 0
     up_time = ""
     time_list = []
-    time_suffix_list = ["s", "m", "h", "d"]
+    time_suffix_list = ["detik", "menit", "jam", "hari", "minggi", "bulan", "tahun"]
 
     while count < 4:
         count += 1
