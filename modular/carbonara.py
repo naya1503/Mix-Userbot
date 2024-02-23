@@ -8,6 +8,7 @@
 
 import asyncio
 from io import BytesIO
+
 from Mix import *
 
 __modles__ = "Carbon"
@@ -17,6 +18,7 @@ __help__ = """
 • Perintah: <code>{0} carbon</code
 • Penjelasan: Untuk membuat teks carbonara.
 """
+
 
 async def make_carbon(code):
     url = "https://carbonara.solopov.dev/api/cook"
@@ -48,9 +50,7 @@ async def _(c, m):
     await asyncio.gather(
         ex.delete(),
         c.send_photo(
-            m.chat.id,
-            carbon,
-            caption=f"**{em.sukses} Carbonara by {user.me.mention}**"
+            m.chat.id, carbon, caption=f"**{em.sukses} Carbonara by {user.me.mention}**"
         ),
     )
     carbon.close()
