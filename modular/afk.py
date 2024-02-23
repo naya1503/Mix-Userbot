@@ -37,7 +37,7 @@ async def is_afk_(f, c: user, m):
         return bool(False)
 
 
-#isAfk = filters.create(func=is_afk_, name="is_afk_")
+# isAfk = filters.create(func=is_afk_, name="is_afk_")
 
 
 @ky.ubot("afk")
