@@ -97,7 +97,7 @@ async def _(c: user, m):
                     if str(reasonafk) == "None"
                     else await m.reply_video(
                         video=f"downloads/{user_id}.mp4",
-                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**.format(
+                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
                             a=em.profil,
                             b=c.me.mention,
                             c=seenago,
@@ -112,7 +112,7 @@ async def _(c: user, m):
                 )
             elif afktype == "text_reason":
                 send = await m.reply_text(
-                    "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**.format(
+                    "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
                         a=em.profil, b=c.me.mention, c=seenago, d=reasonafk
                     ),
                 )
