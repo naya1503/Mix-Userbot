@@ -282,8 +282,8 @@ async def _(c: user, m):
     em.initialize()
     if m.sender_chat:
         return
-    userid = m.from_user.id
-
+    userid =m.from_user.id
+   
     c.me.mention
     if m.entities:
         possible = ["/afk", f"/afk@{kntl.me.username}", "!afk"]
@@ -297,9 +297,9 @@ async def _(c: user, m):
     replied_user_id = 0
 
     # client AFK
-    verifier, reasondb = udB.is_afk(userid)
+    verifier, reasondb = udB.is_afk(user.me.id)
     if verifier:
-        udB.remove_afk(userid)
+        udB.remove_afk(user.me.id)
         try:
             afktype = reasondb["type"]
             timeafk = reasondb["time"]
@@ -368,7 +368,7 @@ async def _(c: user, m):
         try:
             m.reply_to_message.from_user.mention
             replied_user_id = m.reply_to_message.from_user.id
-            verifier, reasondb = udB.is_afk(replied_user_id)
+            verifier, reasondb = udB.is_afk(user.me.id)
             if verifier:
                 try:
                     afktype = reasondb["type"]
@@ -451,7 +451,7 @@ async def _(c: user, m):
                 try:
                     get_user = found[j]
                     ore = await c.get_users(get_user)
-                    if ore.id == replied_user_id:
+                    if ore.id == user.me.id:
                         j += 1
                         continue
                 except:
@@ -534,15 +534,15 @@ async def _(c: user, m):
                         msg += f"{em.warn} {c.me.mention} Sedang Afk!!"
             elif (entity[j].type) == enums.MessageEntityType.TEXT_MENTION:
                 try:
-                    user_id = entity[j].ore.id
-                    if user_id == replied_user_id:
+                    user_id = entity[j].user.id
+                    if user_id == user.me.id:
                         j += 1
                         continue
                     entity[j].user.first_name
                 except:
                     j += 1
                     continue
-                verifier, reasondb = udB.is_afk(user_id)
+                verifier, reasondb = udB.is_afk(user.me.id)
                 if verifier:
                     try:
                         afktype = reasondb["type"]
