@@ -13,7 +13,7 @@ from pyrogram import *
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.waktu import get_time, put_cleanmode
+from Mix.core.waktu import get_time
 
 __modles__ = "Afk"
 __help__ = """
@@ -26,12 +26,15 @@ __help__ = """
 • Penjelasan : Untuk mengaktifkan hapus otomatis pesan afk anda.
 """
 
+
 @ky.ubot("afk")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if m.sender_chat:
-        return await m.reply_text(f"{em.gagal} **Tidak dapat menggunakan akun channel.**")
+        return await m.reply_text(
+            f"{em.gagal} **Tidak dapat menggunakan akun channel.**"
+        )
     user_id = c.me.id
     verifier, reasondb = udB.is_afk(user_id)
     if verifier:
@@ -56,10 +59,7 @@ async def _(c: user, m):
                     else await m.reply_animation(
                         data,
                         caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.profil,
-                            b=c.me.mention,
-                            c=seenago,
-                            d=reasonafk
+                            a=em.profil, b=c.me.mention, c=seenago, d=reasonafk
                         ),
                     )
                 )
@@ -107,7 +107,9 @@ async def _(c: user, m):
                 )
             elif afktype == "text":
                 send = await m.reply_text(
-                    "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(a=em.profil, b=c.me.mention, c=seenago),
+                    "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
+                        a=em.profil, b=c.me.mention, c=seenago
+                    ),
                     disable_web_page_preview=True,
                 )
             elif afktype == "text_reason":
@@ -118,10 +120,10 @@ async def _(c: user, m):
                 )
         except Exception:
             send = await m.reply_text(
-              "**{a} {b} Sedang AFK sejak : `{c}` yang lalu.**".format(
-                a=em.profil,
-                b=c.me.mention),
-              disable_web_page_preview=True,
+                "**{a} {b} Sedang AFK sejak : `{c}` yang lalu.**".format(
+                    a=em.profil, b=c.me.mention
+                ),
+                disable_web_page_preview=True,
             )
         udB.put_cleanmode(c.me.id, send.id)
         return
@@ -200,9 +202,7 @@ async def _(c: user, m):
                 "reason": None,
             }
         elif m.reply_to_m.photo:
-            await c.download_media(
-                m.reply_to_message, file_name=f"{user_id}.jpg"
-            )
+            await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
             details = {
                 "type": "photo",
                 "time": time.time(),
@@ -210,9 +210,7 @@ async def _(c: user, m):
                 "reason": None,
             }
         else:
-            await c.download_media(
-                m.reply_to_message, file_name=f"{user_id}.mp4"
-            )
+            await c.download_media(m.reply_to_message, file_name=f"{user_id}.mp4")
             details = {
                 "type": "video",
                 "time": time.time(),
@@ -229,9 +227,7 @@ async def _(c: user, m):
                 "reason": _reason,
             }
         elif m.reply_to_m.photo:
-            await c.download_media(
-                m.reply_to_message, file_name=f"{user_id}.jpg"
-            )
+            await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
             details = {
                 "type": "photo",
                 "time": time.time(),
@@ -239,9 +235,7 @@ async def _(c: user, m):
                 "reason": _reason,
             }
         else:
-            await c.download_media(
-                m.reply_to_message, file_name=f"{user_id}.mp4"
-            )
+            await c.download_media(m.reply_to_message, file_name=f"{user_id}.mp4")
             details = {
                 "type": "video",
                 "time": time.time(),
@@ -258,7 +252,8 @@ async def _(c: user, m):
 
     udB.add_afk(user_id, details)
     formatted_text = "{a} {b} Sekarang Afk!!".format(
-        a=em.profil, b=c.me.mention,
+        a=em.profil,
+        b=c.me.mention,
     )
     send = await m.reply_text(formatted_text)
     udB.put_cleanmode(c.me.id, send.id)
@@ -314,42 +309,58 @@ async def _(c: user, m):
             reasonafk = reasondb["reason"]
             seenago = get_time((int(time.time() - timeafk)))
             if afktype == "text":
-                msg += "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(a=em.profil, b=user_name, c=seenago)
+                msg += "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
+                    a=em.profil, b=user_name, c=seenago
+                )
             if afktype == "text_reason":
-                msg += "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(a=em.profil, b=user_name, c=seenago, d=reasonafk)
+                msg += "**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                    a=em.profil, b=user_name, c=seenago, d=reasonafk
+                )
             if afktype == "animation":
                 if str(reasonafk) == "None":
                     send = await m.reply_animation(
                         data,
-                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(a=em.profil, b=user_name, c=seenago),
+                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
+                            a=em.profil, b=user_name, c=seenago
+                        ),
                     )
                 else:
                     send = await m.reply_animation(
                         data,
-                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(a=em.profil, b=user_name, c=seenago, d=reasonafk),
+                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                            a=em.profil, b=user_name, c=seenago, d=reasonafk
+                        ),
                     )
             if afktype == "photo":
                 if str(reasonafk) == "None":
                     send = await m.reply_photo(
                         photo=f"downloads/{userid}.jpg",
-                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(a=em.profil, b=user_name, c=seenago),
+                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
+                            a=em.profil, b=user_name, c=seenago
+                        ),
                     )
                 else:
                     send = await m.reply_photo(
                         photo=f"downloads/{userid}.jpg",
-                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(a=em.profil, b=user_name, c=seenago, d=reasonafk),
+                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                            a=em.profil, b=user_name, c=seenago, d=reasonafk
+                        ),
                     )
 
             if afktype == "video":
                 if str(reasonafk) == "None":
                     send = await m.reply_video(
                         video=f"downloads/{userid}.mp4",
-                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(a=em.profil, b=user_name, c=seenago),
+                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
+                            a=em.profil, b=user_name, c=seenago
+                        ),
                     )
                 else:
                     send = await m.reply_video(
                         video=f"downloads/{userid}.mp4",
-                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{b}` yang lalu.**\n**Alasan : `{d}`**".format(a=em.profil, b=user_name, c=seenago, d=reasonafk),
+                        caption="**{a} {b} Online kembali!\nDurasi AFK! : `{b}` yang lalu.**\n**Alasan : `{d}`**".format(
+                            a=em.profil, b=user_name, c=seenago, d=reasonafk
+                        ),
                     )
         except:
             msg += f"{em.profil} {c.me.mention} Kembali Online!"
@@ -357,7 +368,7 @@ async def _(c: user, m):
     # Replied to a User which is AFK
     if m.reply_to_message:
         try:
-            replied_first_name = m.reply_to_m.from_user.mention
+            m.reply_to_m.from_user.mention
             replied_user_id = m.reply_to_m.from_ore.id
             verifier, reasondb = udB.is_afk(replied_user_id)
             if verifier:
@@ -368,7 +379,9 @@ async def _(c: user, m):
                     reasonafk = reasondb["reason"]
                     seenago = get_time((int(time.time() - timeafk)))
                     if afktype == "text":
-                        msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.".format(a=em.profil, b=user_name, c=seenago)
+                        msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                            a=em.profil, b=user_name, c=seenago
+                        )
                     if afktype == "text_reason":
                         msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
                             a=em.profil, b=user_name, c=seenago, d=reasonafk
@@ -400,7 +413,9 @@ async def _(c: user, m):
                             send = await m.reply_photo(
                                 photo=f"downloads/{replied_user_id}.jpg",
                                 caption="**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
-                                    a=em.profil, b=user_name, c=seenago,
+                                    a=em.profil,
+                                    b=user_name,
+                                    c=seenago,
                                     d=reasonafk,
                                 ),
                             )
@@ -409,19 +424,25 @@ async def _(c: user, m):
                             send = await m.reply_video(
                                 video=f"downloads/{replied_user_id}.mp4",
                                 caption="**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.".format(
-                                    a=em.profil, b=user_name, c=seenago,
+                                    a=em.profil,
+                                    b=user_name,
+                                    c=seenago,
                                 ),
                             )
                         else:
                             send = await m.reply_video(
                                 video=f"downloads/{replied_user_id}.mp4",
                                 caption="**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
-                                    a=em.profil, b=user_name, c=seenago,
+                                    a=em.profil,
+                                    b=user_name,
+                                    c=seenago,
                                     d=reasonafk,
                                 ),
                             )
                 except Exception:
-                    msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(a=em.profil, b=user_name, c=seenago, d=reasonafk)
+                    msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
+                        a=em.profil, b=user_name, c=seenago, d=reasonafk
+                    )
         except:
             pass
 
@@ -530,7 +551,7 @@ async def _(c: user, m):
                     if user_id == replied_user_id:
                         j += 1
                         continue
-                    first_name = entity[j].user.first_name
+                    entity[j].user.first_name
                 except:
                     j += 1
                     continue
@@ -616,9 +637,9 @@ async def _(c: user, m):
                                     ),
                                 )
                     except:
-                        msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(a=em.profil,
-                                b=c.me.mention,
-                                c=seenago, d=reasonafk)
+                        msg += "**{a} {b} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
+                            a=em.profil, b=c.me.mention, c=seenago, d=reasonafk
+                        )
             j += 1
     if msg != "":
         try:
