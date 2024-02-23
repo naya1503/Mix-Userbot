@@ -27,102 +27,24 @@ __help__ = """
 """
 
 
+async def apa_ya(f, c, m):
+    af_k_c = udB.is_afk(user.me.id)
+    if af_k_c:
+        return bool(True)
+    else:
+        return bool(False)
+        
+isAfk = filters.create(apa_ya)
+
 @ky.ubot("afk")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
+    user_id = c.me.id
     if m.sender_chat:
         return await m.reply_text(
             f"{em.gagal} **Tidak dapat menggunakan akun channel.**"
         )
-    user_id = c.me.id
-    verifier, reasondb = udB.is_afk(user_id)
-    if verifier:
-        udB.remove_afk(user_id)
-        try:
-            afktype = reasondb["type"]
-            timeafk = reasondb["time"]
-            data = reasondb["data"]
-            reasonafk = reasondb["reason"]
-            seenago = await get_time((int(time.time() - timeafk)))
-            if afktype == "animation":
-                send = (
-                    await m.reply_animation(
-                        data,
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn,
-                            c=seenago,
-                        ),
-                    )
-                    if str(reasonafk) == "None"
-                    else await m.reply_animation(
-                        data,
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.warn, c=seenago, d=reasonafk
-                        ),
-                    )
-                )
-            elif afktype == "photo":
-                send = (
-                    await m.reply_photo(
-                        photo=f"downloads/{user_id}.jpg",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn,
-                            c=seenago,
-                        ),
-                    )
-                    if str(reasonafk) == "None"
-                    else await m.reply_photo(
-                        photo=f"downloads/{user_id}.jpg",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.warn,
-                            c=seenago,
-                            d=reasonafk,
-                        ),
-                    )
-                )
-            elif afktype == "video":
-                send = (
-                    await m.reply_video(
-                        video=f"downloads/{user_id}.mp4",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn,
-                            c=seenago,
-                        ),
-                    )
-                    if str(reasonafk) == "None"
-                    else await m.reply_video(
-                        video=f"downloads/{user_id}.mp4",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.warn,
-                            c=seenago,
-                            d=reasonafk,
-                        ),
-                    )
-                )
-            elif afktype == "text":
-                send = await m.reply_text(
-                    "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                        a=em.warn, c=seenago
-                    ),
-                    disable_web_page_preview=True,
-                )
-            elif afktype == "text_reason":
-                send = await m.reply_text(
-                    "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                        a=em.warn, c=seenago, d=reasonafk
-                    ),
-                )
-        except Exception:
-            send = await m.reply_text(
-                "**{a} Sedang AFK sejak : `{c}` yang lalu.**".format(
-                    a=em.warn,
-                    c=seenago,
-                ),
-                disable_web_page_preview=True,
-            )
-        await put_cleanmode(c.me.id, send.id)
-        return
     if len(m.command) == 1 and not m.reply_to_message:
         details = {
             "type": "text",
@@ -272,101 +194,123 @@ async def _(c: user, m):
     else:
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
 
-
-# Detect user that AFK based on Yukki Repo
 @user.on_message(
-    filters.mentioned & filters.incoming & ~filters.bot & ~filters.via_bot, group=1
-)
+  isAfk,
+  & filters.outgoing,
+  & filters.me)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    if m.sender_chat:
-        return
-    userid = m.from_user.id
-
-    c.me.mention
-    if m.entities:
-        possible = ["/afk", f"/afk@{kntl.me.username}", "!afk"]
-        message_text = m.text or m.caption
-        for entity in m.entities:
-            if entity.type == enums.MessageEntityType.BOT_COMMAND:
-                if (message_text[0 : 0 + entity.length]).lower() in possible:
-                    return
-
-    msg = ""
-    replied_user_id = 0
-
-    # client AFK
-    verifier, reasondb = udB.is_afk(user.me.id)
+    user_id = c.me.id
+    verifier, reasondb = udB.is_afk(user_id)
     if verifier:
-        udB.remove_afk(user.me.id)
+        udB.remove_afk(user_id)
         try:
             afktype = reasondb["type"]
             timeafk = reasondb["time"]
             data = reasondb["data"]
             reasonafk = reasondb["reason"]
             seenago = await get_time((int(time.time() - timeafk)))
-            if afktype == "text":
-                msg += "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                    a=em.warn, c=seenago
-                )
-            if afktype == "text_reason":
-                msg += "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                    a=em.warn, c=seenago, d=reasonafk
-                )
             if afktype == "animation":
-                if str(reasonafk) == "None":
-                    send = await m.reply_animation(
+                send = (
+                    await m.reply_animation(
                         data,
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn, c=seenago
+                            a=em.warn,
+                            c=seenago,
                         ),
                     )
-                else:
-                    send = await m.reply_animation(
+                    if str(reasonafk) == "None"
+                    else await m.reply_animation(
                         data,
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
                             a=em.warn, c=seenago, d=reasonafk
                         ),
                     )
-            if afktype == "photo":
-                if str(reasonafk) == "None":
-                    send = await m.reply_photo(
-                        photo=f"downloads/{userid}.jpg",
+                )
+            elif afktype == "photo":
+                send = (
+                    await m.reply_photo(
+                        photo=f"downloads/{user_id}.jpg",
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn, c=seenago
+                            a=em.warn,
+                            c=seenago,
                         ),
                     )
-                else:
-                    send = await m.reply_photo(
-                        photo=f"downloads/{userid}.jpg",
+                    if str(reasonafk) == "None"
+                    else await m.reply_photo(
+                        photo=f"downloads/{user_id}.jpg",
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.warn, c=seenago, d=reasonafk
+                            a=em.warn,
+                            c=seenago,
+                            d=reasonafk,
                         ),
                     )
-
-            if afktype == "video":
-                if str(reasonafk) == "None":
-                    send = await m.reply_video(
-                        video=f"downloads/{userid}.mp4",
+                )
+            elif afktype == "video":
+                send = (
+                    await m.reply_video(
+                        video=f"downloads/{user_id}.mp4",
                         caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn, c=seenago
+                            a=em.warn,
+                            c=seenago,
                         ),
                     )
-                else:
-                    send = await m.reply_video(
-                        video=f"downloads/{userid}.mp4",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{b}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.warn, b=seenago, d=reasonafk
+                    if str(reasonafk) == "None"
+                    else await m.reply_video(
+                        video=f"downloads/{user_id}.mp4",
+                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                            a=em.warn,
+                            c=seenago,
+                            d=reasonafk,
                         ),
                     )
-        except:
-            msg += f"{em.warn} {c.me.mention} Kembali Online!"
+                )
+            elif afktype == "text":
+                send = await m.reply_text(
+                    "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
+                        a=em.warn, c=seenago
+                    ),
+                    disable_web_page_preview=True,
+                )
+            elif afktype == "text_reason":
+                send = await m.reply_text(
+                    "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                        a=em.warn, c=seenago, d=reasonafk
+                    ),
+                )
+        except Exception:
+            send = await m.reply_text(
+                "**{a} Sedang AFK sejak : `{c}` yang lalu.**".format(
+                    a=em.warn,
+                    c=seenago,
+                ),
+                disable_web_page_preview=True,
+            )
+        await put_cleanmode(c.me.id, send.id)
+        return
 
-    # Replied to a User which is AFK
+@user.on_message(
+  isAfk
+  & filters.mentioned,
+  & filters.incoming,
+  & filters.private,
+  & ~filters.bot,
+  & ~filters.via_bot,
+  & ~filters.me)
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
+    userid = m.from_user.id
+
+    msg = ""
+    replied_user_id = 0
+
+    # client AFK
+    verifier, reasondb = udB.is_afk(user.me.id)
+    
     if m.reply_to_message:
         try:
-            m.reply_to_message.from_user.mention
             replied_user_id = m.reply_to_message.from_user.id
             verifier, reasondb = udB.is_afk(user.me.id)
             if verifier:
