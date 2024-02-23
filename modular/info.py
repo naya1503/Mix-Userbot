@@ -91,10 +91,10 @@ async def user_info(c, sus, already=False):
 
     user_id = susu.id
     userrr = await c.resolve_peer(user_id)
-    about = "NA"
+    about = None
     try:
         ll = await c.invoke(GetFullUser(id=userrr))
-        about = ll.full_susu.about
+        about = ll.full_user.about
     except Exception:
         pass
     username = susu.username
