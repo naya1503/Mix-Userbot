@@ -125,7 +125,7 @@ async def _(c: user, m):
                 ),
                 disable_web_page_preview=True,
             )
-        udB.put_cleanmode(c.me.id, send.id)
+        await put_cleanmode(c.me.id, send.id)
         return
     if len(m.command) == 1 and not m.reply_to_message:
         details = {
@@ -256,7 +256,7 @@ async def _(c: user, m):
         b=c.me.mention,
     )
     send = await m.reply_text(formatted_text)
-    udB.put_cleanmode(c.me.id, send.id)
+    await put_cleanmode(c.me.id, send.id)
 
 
 @ky.ubot("afkdel")
@@ -647,6 +647,6 @@ async def _(c: user, m):
         except:
             pass
     try:
-        udB.put_cleanmode(c.me.id, send.id)
+        await put_cleanmode(c.me.id, send.id)
     except:
         pass
