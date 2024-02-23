@@ -57,7 +57,7 @@ l_t = """
 async def prevent_approved(m):
     ceksud = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
     ms = m.from_user.id 
-    if ms in (DEVS, ceksud):
+    for ms in (DEVS, ceksud):
         try:
             await m.chat.unban_member(ms)
         except (ChatAdminRequired, ChatNotModified, RPCError):
