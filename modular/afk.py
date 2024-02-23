@@ -293,11 +293,7 @@ async def _(c: user, m):
 @user.on_message(
     filters.mentioned
     & filters.incoming
-    & filters.private
-    & ~filters.bot
-    & ~filters.via_bot
-    & ~filters.me
-)
+    & filters.private)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
