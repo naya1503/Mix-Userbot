@@ -48,7 +48,7 @@ dbgm = GMute()
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
-async def _(c,, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     nyet, user_first_name = await extract_user(c, m)
@@ -102,7 +102,7 @@ async def _(c,, m):
 
 @ky.ubot("ungban", sudo=True)
 @ky.devs("cungban")
-async def _(c,, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     nyet, user_first_name = await extract_user(c, m)
@@ -137,7 +137,7 @@ async def _(c,, m):
 
 @ky.ubot("gmute", sudo=True)
 @ky.devs("cgmute")
-async def _(c,, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     nyet, user_first_name = await extract_user(c, m)
@@ -183,7 +183,7 @@ async def _(c,, m):
 
 @ky.ubot("ungmute", sudo=True)
 @ky.devs("cungmute")
-async def _(c,, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     nyet, user_first_name = await extract_user(c, m)
@@ -220,7 +220,7 @@ async def _(c,, m):
 
 
 @ky.ubot("gbanlist|listgban", sudo=True)
-async def _(c,, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     gbanu = dbgb.load_from_db()
@@ -243,7 +243,7 @@ async def _(c,, m):
 
 
 @ky.ubot("gmutelist|listgmute", sudo=True)
-async def _(c,, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     gmnu = dbgm.load_from_db()
