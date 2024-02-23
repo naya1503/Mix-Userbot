@@ -38,7 +38,11 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 from Mix import *
+from Mix.core.parser import remove_markdown_and_html
+from io import BytesIO
 
+dbgb = GBan()
+dbgm = GMute()
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
@@ -58,16 +62,22 @@ async def _(c: user, m):
     if org.id in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
+    if len(m.text.split()) == 2 and not m.reply_to_message:
+        await m.reply_text(f"{em.gagal} Silahkan berikan alasan untuk diGban!")
+        return
+    if m.reply_to_message:
+        alasan = m.text.split(None, 1)[1]
+    else:
+        alasan = m.text.split(None, 2)[2]
     bs = 0
     gg = 0
     chats = await c.get_user_dialog("all")
-    gban_users = udB.get_list_from_var(c.me.id, "GBANNED", "USER")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
-        if org.id in gban_users:
+        if dbgb.check_gban(org.id):
             await xx.edit(f"{em.gagal} Pengguna sudah digban.")
             return
         try:
@@ -82,10 +92,8 @@ async def _(c: user, m):
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    udB.add_to_var(c.me.id, "GBANNED", org.id, "USER")
-    mmg = f"{em.warn} <b>Warning Global Banned\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
-    if alasan:
-        mmg += f"{em.block} **Alasan: `{alasan}`**"
+    dbgb.add_gban(org.id, alasan, c.me.id)
+    mmg = f"{em.warn} <b>Warning Global Banned\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n{em.block} **Alasan: `{alasan}`**"
     await m.reply(mmg)
     await xx.delete()
 
@@ -104,13 +112,12 @@ async def _(c: user, m):
     bs = 0
     gg = 0
     chats = await c.get_user_dialog("all")
-    gban_users = udB.get_list_from_var(c.me.id, "GBANNED", "USER")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
-        if org.id not in gban_users:
+        if not dbgb.check_gban(org.id):
             await xx.edit(f"{em.gagal} Pengguna belum digban.")
             return
         try:
@@ -120,7 +127,7 @@ async def _(c: user, m):
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    udB.remove_from_var(c.me.id, "GBANNED", org.id, "USER")
+    dbgb.remove_gban(org.id)
     mmg = f"{em.warn} <b>Warning Global Unbanned\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
     await m.reply(mmg)
     await xx.delete()
@@ -140,16 +147,23 @@ async def _(c: user, m):
     if org.id in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
+    if len(m.text.split()) == 2 and not m.reply_to_message:
+        await m.reply_text(f"{em.gagal} Silahkan berikan alasan untuk diGMute!")
+        return
+    if m.reply_to_message:
+        alasan = m.text.split(None, 1)[1]
+    else:
+        alasan = m.text.split(None, 2)[2]
     bs = 0
     gg = 0
     chats = await c.get_user_dialog("group")
-    gmute_users = udB.get_list_from_var(c.me.id, "GMUTE", "USER")
+    
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
-        if org.id in gmute_users:
+        if dbgm.check_gmute(org.id):
             await xx.edit(f"{em.gagal} Pengguna sudah digmute.")
             return
         try:
@@ -159,10 +173,8 @@ async def _(c: user, m):
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    udB.add_to_var(c.me.id, "GMUTE", org.id, "USER")
-    mmg = f"{em.warn} <b>Warning Global Gmute\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
-    if alasan:
-        mmg += f"{em.block} **Alasan: `{alasan}`**"
+    dbgm.add_gmute(org.id, alasan, c.me.id)
+    mmg = f"{em.warn} <b>Warning Global Gmute\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n{em.block} **Alasan: `{alasan}`**"
     await m.reply(mmg)
     await xx.delete()
 
@@ -184,14 +196,14 @@ async def _(c: user, m):
     bs = 0
     gg = 0
     chats = await c.get_user_dialog("group")
-    gmute_users = udB.get_list_from_var(c.me.id, "GMUTE", "USER")
+    gmute_users = udbgb.get_list_from_var(c.me.id, "GMUTE", "USER")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
-        if org.id not in gmute_users:
-            await xx.edit(f"{em.gagal} Pengguna belum pernah digmute.")
+        if not dbgm.check_gmute(org.id):
+            await xx.edit(f"{em.gagal} Pengguna belum pernah diGMute.")
             return
         try:
             await c.unban_member(chat, org.id, ChatPermissions())
@@ -200,7 +212,7 @@ async def _(c: user, m):
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    udB.remove_from_var(c.me.id, "GMUTE", org.id, "USER")
+    udbgm.remove_gmute(org.id)
     mmg = f"{em.warn} <b>Warning Global Ungmute\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
     await m.reply(mmg)
     await xx.delete()
@@ -210,53 +222,42 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    gban_list = []
+    gbanu = dbgb.load_from_db()
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
-    gbanu = udB.get_list_from_var(c.me.id, "GBANNED", "USER")
+    dftr = f"{em.profil} **Daftar Pengguna :**\n\n"
     if not gbanu:
         return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
-    for x in gbanu:
-        try:
-            org = await c.get_users(int(x))
-            gban_list.append(
-                f"{em.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>"
+    for ii in gbanu:
+        dftr += f"[x] <b>{Users.get_user_info(ii['_id'])['name']}</b> - <code>{ii['_id']}</code>\n"
+        if ii["reason"]:
+            dftr += f"<b>Alasan:</b> {ii['reason']}\n"
+    try:
+        await m.reply_text(dftr)
+    except MessageTooLong:
+        with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
+            f.name = "gbanlist.txt"
+            await m.reply_document(
+                document=f, caption=f"{em.profil} **Daftar Pengguna GBan!!**\n\n"
             )
-        except:
-            continue
-    if gban_list:
-        stak = (
-            f"{em.profil} <b>Daftar Pengguna:</b>\n"
-            + "\n".join(gban_list)
-            + f"\n{em.sukses} <code>{len(gban_list)}</code>"
-        )
-        return await msg.edit(stak)
-    else:
-        return await msg.edit(f"{em.gagal} <b>Eror</b>")
-
 
 @ky.ubot("gmutelist|listgmute", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    gmute_list = []
+    gmnu = dbgm.load_from_db()
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
-    gmute = udB.get_list_from_var(c.me.id, "GMUTE", "USER")
-    if not gmute:
+    dftr = f"{em.profil} **Daftar Pengguna :**\n\n"
+    if not gmnu:
         return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
-    for x in gmute:
-        try:
-            org = await c.get_users(int(x))
-            gmute_list.append(
-                f"{em.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>"
+    for ii in gmnu:
+        dftr += f"[x] <b>{Users.get_user_info(ii['_id'])['name']}</b> - <code>{ii['_id']}</code>\n"
+        if ii["reason"]:
+            dftr += f"<b>Alasan:</b> {ii['reason']}\n"
+    try:
+        await m.reply_text(dftr)
+    except MessageTooLong:
+        with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
+            f.name = "gmutelist.txt"
+            await m.reply_document(
+                document=f, caption=f"{em.profil} **Daftar Pengguna GMute!!**\n\n"
             )
-        except:
-            continue
-    if gmute_list:
-        stak = (
-            f"{em.profil} <b>Daftar Pengguna:</b>\n"
-            + "\n".join(gmute_list)
-            + f"\n{em.sukses} <code>{len(gmute_list)}</code>"
-        )
-        return await msg.edit(stak)
-    else:
-        return await msg.edit(f"{em.gagal} <b>Eror</b>")
