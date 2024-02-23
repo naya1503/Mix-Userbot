@@ -142,16 +142,16 @@ async def _(c: user, m):
             "data": None,
             "reason": _reason,
         }
-    elif len(m.command) == 1 and m.reply_to_m.animation:
-        _data = m.reply_to_m.animation.file_id
+    elif len(m.command) == 1 and m.reply_to_message.animation:
+        _data = m.reply_to_message.animation.file_id
         details = {
             "type": "animation",
             "time": time.time(),
             "data": _data,
             "reason": None,
         }
-    elif len(m.command) > 1 and m.reply_to_m.animation:
-        _data = m.reply_to_m.animation.file_id
+    elif len(m.command) > 1 and m.reply_to_message.animation:
+        _data = m.reply_to_message.animation.file_id
         _reason = (m.text.split(None, 1)[1].strip())[:100]
         details = {
             "type": "animation",
@@ -159,7 +159,7 @@ async def _(c: user, m):
             "data": _data,
             "reason": _reason,
         }
-    elif len(m.command) == 1 and m.reply_to_m.photo:
+    elif len(m.command) == 1 and m.reply_to_message.photo:
         await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
         details = {
             "type": "photo",
@@ -167,7 +167,7 @@ async def _(c: user, m):
             "data": None,
             "reason": None,
         }
-    elif len(m.command) > 1 and m.reply_to_m.photo:
+    elif len(m.command) > 1 and m.reply_to_message.photo:
         await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
         _reason = m.text.split(None, 1)[1].strip()
         details = {
@@ -176,7 +176,7 @@ async def _(c: user, m):
             "data": None,
             "reason": _reason,
         }
-    elif len(m.command) == 1 and m.reply_to_m.video:
+    elif len(m.command) == 1 and m.reply_to_message.video:
         await c.download_media(m.reply_to_message, file_name=f"{user_id}.mp4")
         details = {
             "type": "video",
@@ -184,7 +184,7 @@ async def _(c: user, m):
             "data": None,
             "reason": None,
         }
-    elif len(m.command) > 1 and m.reply_to_m.video:
+    elif len(m.command) > 1 and m.reply_to_message.video:
         await c.download_media(m.reply_to_message, file_name=f"{user_id}.mp4")
         _reason = m.text.split(None, 1)[1].strip()
         details = {
@@ -193,15 +193,15 @@ async def _(c: user, m):
             "data": None,
             "reason": _reason,
         }
-    elif len(m.command) == 1 and m.reply_to_m.sticker:
-        if m.reply_to_m.sticker.is_animated:
+    elif len(m.command) == 1 and m.reply_to_message.sticker:
+        if m.reply_to_message.sticker.is_animated:
             details = {
                 "type": "text",
                 "time": time.time(),
                 "data": None,
                 "reason": None,
             }
-        elif m.reply_to_m.photo:
+        elif m.reply_to_message.photo:
             await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
             details = {
                 "type": "photo",
@@ -217,16 +217,16 @@ async def _(c: user, m):
                 "data": None,
                 "reason": None,
             }
-    elif len(m.command) > 1 and m.reply_to_m.sticker:
+    elif len(m.command) > 1 and m.reply_to_message.sticker:
         _reason = (m.text.split(None, 1)[1].strip())[:100]
-        if m.reply_to_m.sticker.is_animated:
+        if m.reply_to_message.sticker.is_animated:
             details = {
                 "type": "text_reason",
                 "time": time.time(),
                 "data": None,
                 "reason": _reason,
             }
-        elif m.reply_to_m.photo:
+        elif m.reply_to_message.photo:
             await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
             details = {
                 "type": "photo",
@@ -368,8 +368,8 @@ async def _(c: user, m):
     # Replied to a User which is AFK
     if m.reply_to_message:
         try:
-            m.reply_to_m.from_user.mention
-            replied_user_id = m.reply_to_m.from_ore.id
+            m.reply_to_message.from_user.mention
+            replied_user_id = m.reply_to_message.from_ore.id
             verifier, reasondb = udB.is_afk(replied_user_id)
             if verifier:
                 try:
