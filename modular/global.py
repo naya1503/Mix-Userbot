@@ -37,9 +37,9 @@ from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
-from team.nandev.new_database import GBan, GMute
 
-from Mix import DEVS, Emojik, ky, user
+
+from Mix import *
 from Mix.core.parser import remove_markdown_and_html
 
 dbgb = GBan()
