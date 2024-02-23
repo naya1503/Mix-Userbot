@@ -196,7 +196,7 @@ async def _(c: user, m):
 
 @user.on_message(
   isAfk
-  & filters.outgoing,
+  & filters.outgoing
   & filters.me)
 async def _(c: user, m):
     em = Emojik()
@@ -292,11 +292,11 @@ async def _(c: user, m):
 
 @user.on_message(
   isAfk
-  & filters.mentioned,
-  & filters.incoming,
-  & filters.private,
-  & ~filters.bot,
-  & ~filters.via_bot,
+  & filters.mentioned
+  & filters.incoming
+  & filters.private
+  & ~filters.bot
+  & ~filters.via_bot
   & ~filters.me)
 async def _(c: user, m):
     em = Emojik()
