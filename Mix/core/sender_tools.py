@@ -78,8 +78,8 @@ async def extract_user(c: user, m) -> Tuple[int, str, str]:
                         except Exception as ef:
                             return await m.reply_text(f"User not found ! Error: {ef}")
                     user_id = sone.id
-                    user_first_name = user.first_name
-                    user_name = user.username
+                    user_first_name = sone.first_name
+                    user_name = sone.username
                 except Exception as ef:
                     user_id = user_found
                     user_first_name = user_found
@@ -116,8 +116,8 @@ async def extract_user(c: user, m) -> Tuple[int, str, str]:
                             sone = await c.get_users(user_r.user_id)
                         except Exception as ef:
                             return await m.reply_text(f"User not found ! Error: {ef}")
-                    user_first_name = user.first_name
-                    user_name = user.username
+                    user_first_name = sone.first_name
+                    user_name = sone.username
                     LOGGER.error(ef)
                     LOGGER.error(format_exc())
 
