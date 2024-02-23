@@ -254,7 +254,7 @@ async def _(c: user, m):
     for ii in gmnu:
         dftr += f"{em.warn} <b>{ii['_id']}</b>\n"
         if ii["reason"]:
-            dftr += f"<b>Alasan:</b> {ii['reason']}\n\n{em.sukses} **Total :`{dbgm.count_gbans()}**\n"
+            dftr += f"{em.warn} <b>Alasan:</b> {ii['reason']}\n\n{em.sukses} **Total :`{dbgm.count_gmutes()}`**\n"
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
