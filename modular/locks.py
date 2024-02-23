@@ -56,7 +56,7 @@ l_t = """
 
 
 async def prevent_approved(m):
-    ceksud = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
+    ceksud = udB.get_list_from_var(user.me.id, "SUDO_USER", "ID_NYA")
     ms = m.from_user.id
     for ms in (DEVS, ceksud):
         try:
