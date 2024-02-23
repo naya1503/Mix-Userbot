@@ -26,9 +26,9 @@ async def _(c: user, m):
     upnya = await get_time((time() - start_time))
     _ping = f"""
 **{em.ping} Pong `{str(delta_ping).replace('.', ',')}ms`**
-**{em.warn} Uptime !! `{upnya}`**
-**{em.pong} Mix-Userbot**
-**{em.alive} {c.me.first_name} **
+**{em.pong} Uptime !! `{upnya}`**
+**{em.alive} Mix-Userbot**
+**{em.profil} {c.me.first_name} **
 """
     await m.reply(_ping)
 
