@@ -38,7 +38,6 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 
-
 from Mix import *
 from Mix.core.parser import remove_markdown_and_html
 
