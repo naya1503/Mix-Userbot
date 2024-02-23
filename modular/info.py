@@ -247,7 +247,7 @@ async def _(c: user, m):
         return
     sus, _, user_name = await extract_user(c, m)
 
-    if not user:
+    if not sus:
         await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna!")
 
     m = await m.reply_text(
@@ -255,7 +255,7 @@ async def _(c: user, m):
     )
 
     try:
-        info_caption, photo_id = await user_info(c, user)
+        info_caption, photo_id = await user_info(c, sus)
 
     except Exception as e:
         LOGGER.error(e)
