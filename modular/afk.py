@@ -279,7 +279,7 @@ async def _(c: user, m):
 
 
 # Detect user that AFK based on Yukki Repo
-@user.on_message(filters.group & ~filters.bot & ~filters.via_bot, group=1)
+@user.on_message(~filters.bot & ~filters.via_bot, group=1)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
