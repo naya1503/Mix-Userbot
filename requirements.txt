@@ -34,5 +34,5 @@ gtts
 search_engine_parser
 pytimeparse
 regex
-
+Pillow
 
