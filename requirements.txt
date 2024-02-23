@@ -19,7 +19,7 @@ pymediainfo
 youtube-search
 youtube-search-python
 attrify
-maling==1.0.5
+maling==1.0.6
 gitpython
 heroku3
 speedtest-cli
@@ -36,4 +36,4 @@ search_engine_parser
 pytimeparse
 regex
 Pillow
-
+pytz
