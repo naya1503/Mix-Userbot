@@ -37,7 +37,7 @@ async def is_afk_(f, c: user, m):
         return bool(False)
 
 
-isAfk = filters.create(func=is_afk_, name="is_afk_")
+#isAfk = filters.create(func=is_afk_, name="is_afk_")
 
 
 @ky.ubot("afk")
@@ -199,7 +199,7 @@ async def _(c: user, m):
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
 
 
-@user.on_message(filters.me & isAfk)
+@user.on_message(filters.me & filters.outgoing)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -294,8 +294,7 @@ async def _(c: user, m):
 
 
 @user.on_message(
-    isAfk
-    & (filters.mentioned | filters.private)
+    (filters.mentioned | filters.private)
     & ~filters.me
     & ~filters.bot
     & filters.incoming
@@ -305,7 +304,8 @@ async def _(c: user, m):
     em.initialize()
     msg = ""
     verifier, reasondb = udB.is_afk(user.me.id)
-    try:
+    cek = udB.is_afk(user.me.id)
+    if cek:
         try:
             afktype = reasondb["type"]
             timeafk = reasondb["time"]
