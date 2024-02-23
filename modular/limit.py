@@ -20,7 +20,7 @@ async def _(c: user, m):
     await c.unblock_user("SpamBot")
     xin = await c.resolve_peer("SpamBot")
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
-    response = await c.invoke(
+    rsp = await c.invoke(
         StartBot(
             bot=xin,
             peer=xin,
@@ -30,16 +30,16 @@ async def _(c: user, m):
     )
     await sleep(1)
     await msg.delete()
-    status = await c.get_messages("SpamBot", response.updates[1].message.id + 1)
+    status = await c.get_messages("SpamBot", rsp.updates[1].message.id + 1)
     if status:
         result = status.text
         emoji = None
         if "Good news" in result or "Kabar baik" in result:
             emoji = f"{em.sukses}"
         if "I'm afraid" in result or "Saya khawatir" in result:
-            emoji = f"{em.gagal}"
+            emoji = f"{em.warn}"
         await c.send_message(
-            m.chat.id, f"{emoji} <b>{result}</b>\n\n ~ {em.alive} <b>{x.first_name}</b>"
+            m.chat.id, f"{emoji} <b>{result}</b>\n\n ~ {em.alive} <b>{c.me.first_name}</b>"
         )
         await c.invoke(DeleteHistory(peer=xin, max_id=0, revoke=True))
         await msg.delete()
