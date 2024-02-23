@@ -237,7 +237,7 @@ async def chat_info(c: user, chat, already=False):
 
 
 @ky.ubot("info|whois", sudo=True)
-async def _(c: user, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     if m.reply_to_message and m.reply_to_m.sender_chat:
