@@ -117,8 +117,10 @@ async def _(c: user, m):
                     ),
                 )
         except Exception:
-            send = await m.reply_text("**{a} {b} Sedang AFK sejak : `{c}` yang lalu.**").format(
-                (a=em.profil, b=c.me.mention),
+            send = await m.reply_text(
+              "**{a} {b} Sedang AFK sejak : `{c}` yang lalu.**".format(
+                a=em.profil,
+                b=c.me.mention),
                 disable_web_page_preview=True,
             )
         udB.put_cleanmode(c.me.id, send.id)
