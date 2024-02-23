@@ -6,10 +6,12 @@
 """
 ################################################################
 
-from time import time
 from datetime import datetime
+from time import time
+
 from pyrogram.raw.functions import Ping
 from pyrogram.types import *
+
 from Mix import *
 from Mix.core.waktu import get_time, start_time
 
@@ -21,14 +23,17 @@ __help__ = """
 • Penjelasan : Alive.
 """
 
+
 @ky.ubot("alive", sudo=True)
 async def _(c: user, m):
     try:
-         x = await c.get_inline_bot_results(bot.me.username, "alive")
-         await m.reply_inline_bot_result(x.query_id, x.results[0].id, reply_to_message=m.id)
+        x = await c.get_inline_bot_results(bot.me.username, "alive")
+        await m.reply_inline_bot_result(
+            x.query_id, x.results[0].id, reply_to_message=m.id
+        )
     except Exception as error:
-         await m.reply(error)
-         
+        await m.reply(error)
+
 
 @ky.inline("^alive")
 async def _(c, iq):
@@ -62,29 +67,30 @@ async def _(c, iq):
 """
     bo_ol = [InlineKeyboardButton(text="Support", url="t.me/kynansupport")]
     if cekpic:
-      filem = (
-          InlineQueryResultVideo
-          if lah.endswith(".mp4")
-          else InlineQueryResultPhoto)
-      url_ling = ({"video_url": lah,
-        "thumb_url": lah}
-        if lah.endswith(".mp4")
-        else {"photo_url": lah})
-      duar = [
-        filem(
-            **url_ling,
-            title="Alive Picture",
-            caption=txt,
-            reply_markup=InlineKeyboardMarkup(bo_ol),
+        filem = (
+            InlineQueryResultVideo if lah.endswith(".mp4") else InlineQueryResultPhoto
         )
-      ]
-    else:
-         duar = [(
-            InlineQueryResultArticle(
-                title="Alive Teks",
-                input_message_content=InputTextMessageContent(txt),
+        url_ling = (
+            {"video_url": lah, "thumb_url": lah}
+            if lah.endswith(".mp4")
+            else {"photo_url": lah}
+        )
+        duar = [
+            filem(
+                **url_ling,
+                title="Alive Picture",
+                caption=txt,
                 reply_markup=InlineKeyboardMarkup(bo_ol),
+            )
+        ]
+    else:
+        duar = [
+            (
+                InlineQueryResultArticle(
+                    title="Alive Teks",
+                    input_message_content=InputTextMessageContent(txt),
+                    reply_markup=InlineKeyboardMarkup(bo_ol),
                 )
             )
-         ]
+        ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
