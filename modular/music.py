@@ -20,16 +20,16 @@ __help__ = """
 Help Command Music
 
 • Perintah: <code>{0}play</code>
-• Penjelasan: Untuk memulai voice chat grup.
+• Penjelasan: Untuk memutar lagu.
 
 • Perintah: <code>{0}end</code>
-• Penjelasan: Untuk mengakhiri voice chat grup.
+• Penjelasan: Untuk mengakhiri lagu.
 
 • Perintah: <code>{0}skip</code>
-• Penjelasan: Untuk memulai voice chat grup.
+• Penjelasan: Untuk melewati trek.
 
 • Perintah: <code>{0}pause</code>
-• Penjelasan: Untuk mengakhiri voice chat grup.
+• Penjelasan: Untuk menjeda trek.
 """
 
 daftar_join = []
