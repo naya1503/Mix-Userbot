@@ -43,8 +43,8 @@ async def _(c, iq):
     await user.invoke(Ping(ping_id=0))
     pink = (datetime.now() - start).microseconds / 1000
     upnya = await get_time((time() - start_time))
-    ape = user.get_user_dialog("group")
-    apa = user.get_user_dialog("users")
+    ape = await user.get_user_dialog("group")
+    apa = await user.get_user_dialog("users")
     if user.me.id in DEVS:
         stutas = "<b>Author</b>"
     else:
