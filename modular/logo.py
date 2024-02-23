@@ -4,6 +4,8 @@ import random
 import subprocess
 
 from PIL import Image, ImageDraw, ImageFont
+from pyrogram import *
+from pyrogram.types import *
 
 from Mix import ky, Emojik, user
 
