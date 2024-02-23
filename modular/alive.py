@@ -65,7 +65,7 @@ async def _(c, iq):
       <b>peer_groups:</b> {len(ape)}
       <b>bot_uptime:</b> {upnya}
 """
-    bo_ol = [InlineKeyboardButton(text="Support", url="t.me/kynansupport")]
+    bo_ol = [[InlineKeyboardButton(text="Support", url="t.me/kynansupport")]]
     if cekpic:
         filem = (
             InlineQueryResultVideo
