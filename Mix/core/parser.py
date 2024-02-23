@@ -24,3 +24,23 @@ async def mention_html(name: str, user_id: int) -> str:
 async def mention_markdown(name: str, user_id: int) -> str:
     """Mention user in markdown format."""
     return f"[{(await escape_markdown(name))}](tg://user?id={user_id})"
+
+
+async def clean_html(text: str) -> str:
+    return (
+        text.replace("<code>", "")
+        .replace("</code>", "")
+        .replace("<b>", "")
+        .replace("</b>", "")
+        .replace("<i>", "")
+        .replace("</i>", "")
+        .replace("<u>", "")
+        .replace("</u>", "")
+    )
+
+
+async def clean_markdown(text: str) -> str:
+    return text.replace("`", "").replace("**", "").replace("__", "")
+
+async def remove_markdown_and_html(text: str) -> str:
+    return await clean_markdown(await clean_html(text))
