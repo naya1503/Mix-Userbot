@@ -13,7 +13,6 @@ from pyrogram.types import *
 
 from Mix import *
 from Mix.core.waktu import get_time, put_cleanmode
-
 """
 __modles__ = "Afk"
 __help__ = "
@@ -28,16 +27,17 @@ __help__ = "
 """
 
 
-async def is_afk_(f, client, message):
-    user_id = client.me.id
-    af_k_c = await check_afk(user_id)
+
+async def is_afk_(f, c: user, m):
+    user_id = c.me.id
+    af_k_c = udB.is_afk(user_id)
     if af_k_c:
         return bool(True)
     else:
         return bool(False)
 
 
-is_afk = filters.create(func=is_afk_, name="is_afk_")
+isAfk = filters.create(func=is_afk_, name="is_afk_")
 
 
 @ky.ubot("afk")
@@ -199,7 +199,7 @@ async def _(c: user, m):
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
 
 
-@user.on_message(filters.outgoing & filters.me & is_afk)
+@user.on_message(filters.outgoing & filters.me & isAfk)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -294,7 +294,7 @@ async def _(c: user, m):
 
 
 @user.on_message(
-    is_afk
+    isAfk
     & (filters.mentioned | filters.private)
     & ~filters.me
     & ~filters.bot
@@ -370,7 +370,7 @@ async def _(c: user, m):
                 a=em.warn, c=seenago, d=reasonafk
             )
     except:
-        pass
+          pass
     if msg != "":
         try:
             send = await m.reply_text(msg, disable_web_page_preview=True)
