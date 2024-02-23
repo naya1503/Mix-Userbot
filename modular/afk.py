@@ -121,7 +121,7 @@ async def _(c: user, m):
               "**{a} {b} Sedang AFK sejak : `{c}` yang lalu.**".format(
                 a=em.profil,
                 b=c.me.mention),
-                disable_web_page_preview=True,
+              disable_web_page_preview=True,
             )
         udB.put_cleanmode(c.me.id, send.id)
         return
@@ -523,7 +523,7 @@ async def _(c: user, m):
                                     ),
                                 )
                     except:
-                        msg += f"{em.profil} {c.me.mention} Sedang Afk!!")
+                        msg += f"{em.profil} {c.me.mention} Sedang Afk!!"
             elif (entity[j].type) == enums.MessageEntityType.TEXT_MENTION:
                 try:
                     user_id = entity[j].ore.id
