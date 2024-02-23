@@ -1,9 +1,11 @@
 # @TomiX
 
-from time import time as waktunya
 from datetime import datetime, timedelta
+from time import time as waktunya
+
 start_time = waktunya()
 from team.nandev.database import cleanmode
+
 
 async def get_time(seconds):
     count = 0
@@ -28,6 +30,7 @@ async def get_time(seconds):
     up_time += ":".join(time_list)
 
     return up_time
+
 
 async def put_cleanmode(org, message_id):
     if org not in cleanmode:
