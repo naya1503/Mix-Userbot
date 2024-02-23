@@ -238,7 +238,7 @@ async def _(c: user, m):
         with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
             f.name = "gbanlist.txt"
             await m.reply_document(
-                document=f, caption=f"{em.profil} **Daftar Pengguna GBan!!**\n\n"
+                document=f, caption=f"{em.profil} **Daftar GBanned!!**\n\n"
             )
     await msg.delete()
     return
@@ -250,7 +250,7 @@ async def _(c: user, m):
     em.initialize()
     gmnu = dbgm.load_from_db()
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
-    dftr = f"{em.profil} **Daftar Pengguna :**\n\n"
+    dftr = f"{em.profil} **Daftar GMute :**\n\n"
     if not gmnu:
         await m.reply(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     for ii in gmnu:
@@ -263,7 +263,7 @@ async def _(c: user, m):
         with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
             f.name = "gmutelist.txt"
             await m.reply_document(
-                document=f, caption=f"{em.profil} **Daftar Pengguna GMute!!**\n\n"
+                document=f, caption=f"{em.profil} **Daftar GMute!!**\n\n"
             )
     await msg.delete()
     return
