@@ -406,7 +406,7 @@ async def _(c: user, m):
             await m.reply_text(f"{em.sukses} Sudah dibuka!")
             return
         await m.reply_text(f"{em.sukses} Kirim link dibuka digrup ini!")
-            return
+        return
     elif unlock_type == "forwardall":
         curr = lock.remove_lock_channel(m.chat.id, "anti_fwd")
 
