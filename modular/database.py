@@ -156,6 +156,9 @@ async def _(c, m):
     elif variable.lower() == "pmpic":
         udB.remove_var(c.me.id, "PMPIC")
         await jing.edit(f"{em.sukses} <b>PM PIC Dimatikan.</b>")
+    elif variable.lower() == "alivepic":
+        udB.remove_var(c.me.id, "ALIVEPIC")
+        await jing.edit(f"{em.sukses} <b>Alive Pic Dimatikan.</b>")
     elif variable.lower() == "pmtext":
         udB.remove_var(c.me.id, "PMTEXT")
         await jing.edit(f"{em.sukses} <b>PM TEXT Diatur ke Default.</b>")
