@@ -33,8 +33,10 @@ async def apa_ya(f, c, m):
         return bool(True)
     else:
         return bool(False)
-        
+
+
 isAfk = filters.create(apa_ya)
+
 
 @ky.ubot("afk")
 async def _(c: user, m):
@@ -194,10 +196,8 @@ async def _(c: user, m):
     else:
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
 
-@user.on_message(
-  isAfk
-  & filters.outgoing
-  & filters.me)
+
+@user.on_message(isAfk & filters.outgoing & filters.me)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -290,25 +290,27 @@ async def _(c: user, m):
         await put_cleanmode(c.me.id, send.id)
         return
 
+
 @user.on_message(
-  isAfk
-  & filters.mentioned
-  & filters.incoming
-  & filters.private
-  & ~filters.bot
-  & ~filters.via_bot
-  & ~filters.me)
+    isAfk
+    & filters.mentioned
+    & filters.incoming
+    & filters.private
+    & ~filters.bot
+    & ~filters.via_bot
+    & ~filters.me
+)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    userid = m.from_user.id
+    m.from_user.id
 
     msg = ""
     replied_user_id = 0
 
     # client AFK
     verifier, reasondb = udB.is_afk(user.me.id)
-    
+
     if m.reply_to_message:
         try:
             replied_user_id = m.reply_to_message.from_user.id
