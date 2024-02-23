@@ -31,6 +31,7 @@ __help__ = """
 
 
 import asyncio
+from io import BytesIO
 
 from pyrogram import *
 from pyrogram.enums import *
@@ -39,10 +40,10 @@ from pyrogram.types import *
 
 from Mix import *
 from Mix.core.parser import remove_markdown_and_html
-from io import BytesIO
 
 dbgb = GBan()
 dbgm = GMute()
+
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
@@ -157,7 +158,7 @@ async def _(c: user, m):
     bs = 0
     gg = 0
     chats = await c.get_user_dialog("group")
-    
+
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -196,7 +197,7 @@ async def _(c: user, m):
     bs = 0
     gg = 0
     chats = await c.get_user_dialog("group")
-    gmute_users = udbgb.get_list_from_var(c.me.id, "GMUTE", "USER")
+    udbgb.get_list_from_var(c.me.id, "GMUTE", "USER")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -239,6 +240,7 @@ async def _(c: user, m):
             await m.reply_document(
                 document=f, caption=f"{em.profil} **Daftar Pengguna GBan!!**\n\n"
             )
+
 
 @ky.ubot("gmutelist|listgmute", sudo=True)
 async def _(c: user, m):
