@@ -20,7 +20,7 @@ __help__ = """
 • Perintah: <code>{0}button</code> [balas pesan]
 • Penjelasan: Untuk membuat teks button.
 
-• Silahkan ketik <code>{0}help markdown</code> untuk melihat format button.
+• Silahkan ketik <code>{0}markdown</code> untuk melihat format button.
 """
 
 
