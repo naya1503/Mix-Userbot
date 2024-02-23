@@ -15,13 +15,15 @@ Help Command Logo
 • Penjelasan: Untuk membuat sebuah logo dengan background random .
 """
 
+async def dl_font():
+    subprocess.run(["git", "clone", "https://github.com/naya1503/font-module.git"])
+    
 
 @ky.ubot("logo", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     name = c.get_arg(m)
-    subprocess.run(["git", "clone", "https://github.com/naya1503/font-module.git"])
     xx = await m.reply(f"{em.proses} <b>Processing...</b>")
     if not name:
         await xx.edit(f"{em.gagal} <b>Contoh :</b><code>{m.text}</code> [text]")
@@ -48,7 +50,7 @@ async def _(c: user, m):
                 pics.append(i)
         id_ = random.choice(pics)
         bg_ = await id_.download()
-        await download_fonts()
+        await dl_font()
         fpath_ = glob.glob("font-module/*")
         font_ = random.choice(fpath_)
     if not bg_:
