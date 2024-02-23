@@ -9,7 +9,7 @@ __help__ = """
 • Penjelasan: Untuk mengakhiri voice chat grup.
 
 • Perintah: <code>{0}joinvc</code>
-• Penjelasan: Untuk bergabunf voice chat grup.
+• Penjelasan: Untuk bergabung voice chat grup.
 
 • Perintah: <code>{0}leavevc</code>
 • Penjelasan: Untuk meninggalkan voice chat grup.
