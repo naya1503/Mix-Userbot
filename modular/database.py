@@ -31,6 +31,7 @@ __help__ = """
 <code>pmtext</code>
 <code>pmpic</code>
 <code>pmpermit</code>
+<code>alivepic</code>
 """
 
 
@@ -59,6 +60,15 @@ async def _(c: user, m):
             udB.set_var(c.me.id, "PMPIC", value)
             await jing.edit(
                 f"{em.sukses} <b>PM PIC Diatur ke : <code>{value}<code>.</b>"
+            )
+    elif variable.lower() == "alivepic":
+        if value.lower() == "off":
+            udB.remove_var(c.me.id, "ALIVEPIC")
+            await jing.edit(f"{em.sukses} <b>Alive Pic Dimatikan.</b>")
+        else:
+            udB.set_var(c.me.id, "ALIVEPIC", value)
+            await jing.edit(
+                f"{em.sukses} <b>Alive Pic Diatur ke : <code>{value}<code>.</b>"
             )
     elif variable.lower() == "pmtext":
         if value.lower() == "clear":
