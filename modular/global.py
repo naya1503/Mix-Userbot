@@ -38,8 +38,9 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 
-from Mix import *
+from Mix import Emojik, ky, DEVS
 from Mix.core.parser import remove_markdown_and_html
+from team.nandev.new_database import GBan, GMute
 
 dbgb = GBan()
 dbgm = GMute()
@@ -197,7 +198,6 @@ async def _(c: user, m):
     bs = 0
     gg = 0
     chats = await c.get_user_dialog("group")
-    udbgb.get_list_from_var(c.me.id, "GMUTE", "USER")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -213,7 +213,7 @@ async def _(c: user, m):
         except BaseException:
             gg += 1
             await asyncio.sleep(0.1)
-    udbgm.remove_gmute(org.id)
+    dbgm.remove_gmute(org.id)
     mmg = f"{em.warn} <b>Warning Global Ungmute\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
     await m.reply(mmg)
     await xx.delete()
