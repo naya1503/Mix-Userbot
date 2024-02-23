@@ -70,14 +70,14 @@ async def _(c, iq):
         "thumb_url": lah}
         if lah.endswith(".mp4")
         else {"photo_url": lah})
-        duar = [
-              filem(
-                  **url_ling,
-                  title="Alive Picture",
-                  caption=txt,
-                  reply_markup=InlineKeyboardMarkup(bo_ol),
-              )
-        ]
+      duar = [
+        filem(
+            **url_ling,
+            title="Alive Picture",
+            caption=txt,
+            reply_markup=InlineKeyboardMarkup(bo_ol),
+        )
+      ]
     else:
          duar = [(
             InlineQueryResultArticle(
