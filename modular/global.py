@@ -102,7 +102,7 @@ async def _(c: user, m):
     em.initialize()
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
-    org = await c.get_users(nyet)
+    await c.get_users(nyet)
     if len(m.text.split()) == 1:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
@@ -183,7 +183,7 @@ async def _(c: user, m):
     em.initialize()
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
-    org = await c.get_users(nyet)
+    await c.get_users(nyet)
     if len(m.text.split()) == 1:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
