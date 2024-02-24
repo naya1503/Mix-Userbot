@@ -281,7 +281,7 @@ async def _(c: user, m):
         return
 
 
-#@ky.grup()
+# @ky.grup()
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
