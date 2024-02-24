@@ -196,47 +196,36 @@ async def _(c: user, m):
 
     if lock_type == "msg":
         msg = False
-        perm = "messages"
 
     elif lock_type == "media":
         media = False
-        perm = "audios, documents, photos, videos, video notes, voice notes"
 
     elif lock_type == "stickers":
         stickers = False
-        perm = "stickers"
 
     elif lock_type == "animations":
         animations = False
-        perm = "animations"
 
     elif lock_type == "games":
         games = False
-        perm = "games"
 
     elif lock_type == "inline":
         inlinebots = False
-        perm = "inline bots"
 
     elif lock_type == "webprev":
         webprev = False
-        perm = "web page previews"
 
     elif lock_type == "polls":
         polls = False
-        perm = "polls"
 
     elif lock_type == "info":
         info = False
-        perm = "info"
 
     elif lock_type == "invite":
         invite = False
-        perm = "invite"
 
     elif lock_type == "pin":
         pin = False
-        perm = "pin"
     elif lock_type == "url":
         curr = lock.insert_lock_channel(m.chat.id, "anti_links")
         if not curr:
