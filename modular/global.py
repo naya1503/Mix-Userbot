@@ -54,7 +54,7 @@ async def _(c: user, m):
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     try:
-        org = await c.get_users(nyet)
+        await c.get_users(nyet)
     except PeerIdInvalid:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
@@ -142,7 +142,7 @@ async def _(c: user, m):
     em.initialize()
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
-    org = await c.get_users(nyet)
+    await c.get_users(nyet)
     if not nyet:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
@@ -222,7 +222,7 @@ async def _(c: user, m):
     em.initialize()
     gbanu = dbgb.load_from_db()
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
-    
+
     if not gbanu:
         return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
     dftr = f"{em.profil} **Daftar GBanned :**\n\n"
