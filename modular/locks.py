@@ -75,8 +75,8 @@ async def is_approved_user(c: user, m):
             or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
         ):
-            return True
-        return False
+            return False
+        #return True
     elif m.forward_from_chat:
         x_chat = (await c.get_chat(m.forward_from_chat.id)).linked_chat
         if (
@@ -84,7 +84,7 @@ async def is_approved_user(c: user, m):
             or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
         ):
-            return True
+            return False
         if not x_chat:
             return False
         elif x_chat and x_chat.id == m.chat.id:
@@ -95,19 +95,19 @@ async def is_approved_user(c: user, m):
             or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
         ):
-            return True
-        return False
+            return False
+        #return False
 
 
 async def delete_messages(c: user, m):
     try:
-        await m.delete()
+        await c.delete_messages(m.chat.id, message_ids=m.id)
         return
-    except RPCError:
-        return
+    except RPCError as e:
+        await m.reply(f"{e}")
 
 
-@user.on_message(filters.group & filters.me, 18)
+@user.on_message(filters.group & filters.me, group=1)
 async def _(c: user, m):
     lock = LOCKS()
     all_chats = lock.get_lock_channel()
