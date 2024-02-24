@@ -54,7 +54,7 @@ async def _(c: user, m):
 
 @user.on_message(
     filters.group
-    & ~filters.text
+    & filters.reply
     & filters.mentioned
     & filters.incoming
     & ~filters.bot
