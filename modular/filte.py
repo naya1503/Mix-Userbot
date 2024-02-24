@@ -268,7 +268,19 @@ async def send_filter_reply(c: user, m, trigger: str):
     return msgtype
 
 
+async def isFilter_(filter, c, m):
+    xu = db.get_all_filters(m.chat.id)
+    tx = m.text
+    for xe in xi:
+        if tx in xi:
+            return True
+    return False
+
 # @user.on_message(filters.text & filters.group & ~filters.bot, group=69)
+
+isFilter = filters.create(isFilter_)
+
+@user.on_message(isFilter & filters.group, group=69)
 async def _(c: user, m):
     chat_filters = db.get_all_filters(m.chat.id)
     actual_filters = {j for i in chat_filters for j in i.split("|")}
