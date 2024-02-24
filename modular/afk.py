@@ -281,7 +281,8 @@ async def _(c: user, m):
         return
 
 
-# @ky.grup()
+@user.on_message((filters.mentioned | filters.private) & filters.incoming & ~filters.bot, group=11
+)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
