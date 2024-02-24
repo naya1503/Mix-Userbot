@@ -237,7 +237,7 @@ async def _(c: user, m):
     elif lock_type == "pin":
         pin = False
         perm = "pin"
-        
+
     elif lock_type == "url":
         curr = lock.insert_lock_channel(m.chat.id, "anti_links")
         if not curr:
