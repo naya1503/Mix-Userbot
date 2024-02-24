@@ -107,7 +107,7 @@ async def delete_messages(c: user, m):
         await m.reply(f"{e}")
 
 
-@user.on_message(filters.group & filters.me, group=1)
+@user.on_message(filters.group, group=1)
 async def _(c: user, m):
     lock = LOCKS()
     all_chats = lock.get_lock_channel()
