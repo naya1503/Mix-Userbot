@@ -52,7 +52,14 @@ async def _(c: user, m):
         )
 
 
-@ky.grup()
+@user.on_message(
+    filters.group
+    & ~filters.text
+    & filters.mentioned
+    & filters.incoming
+    & ~filters.bot
+    & ~filters.via_bot,
+    group=69)
 async def _(c, m):
 
     db = udB.get_logger(user.me.id)
