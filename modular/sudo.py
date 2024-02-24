@@ -110,7 +110,7 @@ async def _(c: user, m):
         response = (
             f"{em.profil} <b>Daftar Pengguna:</b>\n"
             + "\n".join(sudo_list)
-            + f"\n{sukses} <code>{len(sudo_list)}</code>"
+            + f"\n{em.sukses} <code>{len(sudo_list)}</code>"
         )
         return await msg.edit(response)
     else:
