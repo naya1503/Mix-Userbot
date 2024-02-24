@@ -58,10 +58,10 @@ async def _(c: user, m):
     except PeerIdInvalid:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if not org:
+    if not nyet:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if org.id in DEVS:
+    if nyet in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
@@ -143,10 +143,10 @@ async def _(c: user, m):
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     org = await c.get_users(nyet)
-    if not org:
+    if not nyet:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
-    if org.id in DEVS:
+    if nyet in DEVS:
         await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
@@ -222,9 +222,10 @@ async def _(c: user, m):
     em.initialize()
     gbanu = dbgb.load_from_db()
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
-    dftr = f"{em.profil} **Daftar GBanned :**\n\n"
+    
     if not gbanu:
-        return await m.reply(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
+        return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
+    dftr = f"{em.profil} **Daftar GBanned :**\n\n"
     for ii in gbanu:
         dftr += f"{em.block} <b>{ii['_id']}</b>\n"
         if ii["reason"]:
@@ -247,9 +248,10 @@ async def _(c: user, m):
     em.initialize()
     gmnu = dbgm.load_from_db()
     msg = await m.reply(f"{em.proses} <b>Processing...</b>")
-    dftr = f"{em.profil} **Daftar GMute :**\n\n"
     if not gmnu:
-        await m.reply(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
+        await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
+        return
+    dftr = f"{em.profil} **Daftar GMute :**\n\n"
     for ii in gmnu:
         dftr += f"{em.warn} <b>{ii['_id']}</b>\n"
         if ii["reason"]:
