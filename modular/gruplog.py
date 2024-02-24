@@ -59,7 +59,8 @@ async def _(c: user, m):
     & filters.incoming
     & ~filters.bot
     & ~filters.via_bot,
-    group=69)
+    group=69,
+)
 async def _(c, m):
 
     db = udB.get_logger(user.me.id)
