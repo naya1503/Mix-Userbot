@@ -189,7 +189,7 @@ async def _(c: user, m):
                 f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!"
             )
         await m.reply_text(f"{em.sukses}" + "Terkunci <b>all</b> untuk grup ini!")
-        await prevent_approved(m)
+        ##await prevent_approved(m)
         return
 
     lock = LOCKS()
@@ -300,7 +300,7 @@ async def _(c: user, m):
     await m.reply_text(
         f"{em.sukses}" + f"Terkunci <b>{perm}</b> dalam grup ini.",
     )
-    await prevent_approved(m)
+    ##await prevent_approved(m)
     return
 
 
@@ -340,7 +340,7 @@ async def _(c: user, m):
                 f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!"
             )
         await m.reply_text(f"{em.sukses}" + "Dibuka <b>all</b> untuk grup ini!")
-        await prevent_approved(m)
+        ##await prevent_approved(m)
         return
 
     get_uperm = m.chat.permissions
@@ -470,7 +470,7 @@ async def _(c: user, m):
     await m.reply_text(
         f"{em.sukses}" + f"Dibuka <b>{uperm}</b> dalam grup ini.",
     )
-    await prevent_approved(m)
+    ##await prevent_approved(m)
     return
 
 
