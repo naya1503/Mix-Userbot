@@ -289,9 +289,7 @@ async def _(c: user, m):
     em.initialize()
     msg = ""
     verifier, reasondb = udB.is_afk(user.me.id)
-    cek = udB.is_afk(user.me.id)
-    seenago = None
-    if cek:
+    if verifier:
         try:
             afktype = reasondb["type"]
             timeafk = reasondb["time"]
