@@ -297,7 +297,7 @@ async def _(c: user, m):
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!")
     await m.reply_text(
-        f"{em.sukses}" + f"Terkunci <b>{perm}</b> dalam grup ini.",
+        f"{em.sukses}" + f"Terkunci <b>{uperm}</b> dalam grup ini.",
     )
     await prevent_approved(m)
     return
