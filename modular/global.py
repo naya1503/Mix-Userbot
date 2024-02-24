@@ -53,12 +53,7 @@ async def _(c: user, m):
     em.initialize()
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
-    try:
-        await c.get_users(nyet)
-    except PeerIdInvalid:
-        await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
-        return
-    if not nyet:
+    if len(m.text.split()) == 1:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
     if nyet in DEVS:
@@ -108,7 +103,7 @@ async def _(c: user, m):
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     org = await c.get_users(nyet)
-    if not org:
+    if len(m.text.split()) == 1:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
     bs = 0
@@ -143,7 +138,7 @@ async def _(c: user, m):
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     await c.get_users(nyet)
-    if not nyet:
+    if len(m.text.split()) == 1:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
     if nyet in DEVS:
@@ -189,7 +184,7 @@ async def _(c: user, m):
     nyet, userid, _ = await extract_user(c, m)
     xx = await m.reply(f"{em.proses} Processing...")
     org = await c.get_users(nyet)
-    if not org:
+    if len(m.text.split()) == 1:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
         return
     bs = 0
