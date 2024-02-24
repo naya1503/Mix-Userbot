@@ -76,7 +76,7 @@ async def is_approved_user(c: user, m):
             or m.from_user.id == c.me.id
         ):
             return False
-        #return True
+        # return True
     elif m.forward_from_chat:
         x_chat = (await c.get_chat(m.forward_from_chat.id)).linked_chat
         if (
@@ -96,7 +96,7 @@ async def is_approved_user(c: user, m):
             or m.from_user.id == c.me.id
         ):
             return False
-        #return False
+        # return False
 
 
 async def delete_messages(c: user, m):
