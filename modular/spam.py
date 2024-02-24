@@ -128,5 +128,5 @@ async def _(c: user, m):
     if not berenti:
         return await m.reply(f"{em.gagal} Sedang tidak ada perintah spam disini.")
     berenti = False
-    await m.reply(f"{em.suksss} Ok spam berhasil dihentikan.")
+    await m.reply(f"{em.sukses} Ok spam berhasil dihentikan.")
     return
