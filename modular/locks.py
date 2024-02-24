@@ -165,7 +165,7 @@ async def _(c: user, m):
     chat_id = m.chat.id
 
     if not lock_type:
-        await m.reply_text(f"{em.gaga} Berikan argumen untuk dikunci!")
+        await m.reply_text(f"{em.gagal} Berikan argumen untuk dikunci!")
         return
 
     get_perm = m.chat.permissions
@@ -196,36 +196,48 @@ async def _(c: user, m):
 
     if lock_type == "msg":
         msg = False
+        perm = "messages"
 
     elif lock_type == "media":
         media = False
+        perm = "audios, documents, photos, videos, video notes, voice notes"
 
     elif lock_type == "stickers":
         stickers = False
+        perm = "stickers"
 
     elif lock_type == "animations":
         animations = False
+        perm = "animations"
 
     elif lock_type == "games":
         games = False
+        perm = "games"
 
-    elif lock_type == "inline":
+    elif lock_type in ("inlinebots", "inline"):
         inlinebots = False
+        perm = "inline bots"
 
     elif lock_type == "webprev":
         webprev = False
+        perm = "web page previews"
 
     elif lock_type == "polls":
         polls = False
+        perm = "polls"
 
     elif lock_type == "info":
         info = False
+        perm = "info"
 
     elif lock_type == "invite":
         invite = False
+        perm = "invite"
 
     elif lock_type == "pin":
         pin = False
+        perm = "pin"
+        
     elif lock_type == "url":
         curr = lock.insert_lock_channel(m.chat.id, "anti_links")
         if not curr:
@@ -286,7 +298,7 @@ async def _(c: user, m):
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!")
     await m.reply_text(
-        f"{em.sukses}" + f"Terkunci <b>{uperm}</b> dalam grup ini.",
+        f"{em.sukses}" + f"Terkunci <b>{perm}</b> dalam grup ini.",
     )
     await prevent_approved(m)
     return
@@ -303,7 +315,7 @@ async def _(c: user, m):
     chat_id = m.chat.id
 
     if not unlock_type:
-        await m.reply_text(f"{em.gaga} Berikan argumen untuk dibuka!")
+        await m.reply_text(f"{em.gagal} Berikan argumen untuk dibuka!")
         return
 
     if unlock_type == "all":
@@ -346,36 +358,47 @@ async def _(c: user, m):
 
     if unlock_type == "msg":
         umsg = True
+        uperm = "messages"
 
     elif unlock_type == "media":
         umedia = True
+        uperm = "audios, documents, photos, videos, video notes, voice notes"
 
     elif unlock_type == "stickers":
         ustickers = True
+        uperm = "stickers"
 
     elif unlock_type == "animations":
         uanimations = True
+        uperm = "animations"
 
     elif unlock_type == "games":
         ugames = True
+        uperm = "games"
 
-    elif unlock_type == "inline":
+    elif unlock_type in ("inlinebots", "inline"):
         uinlinebots = True
+        uperm = "inline bots"
 
     elif unlock_type == "webprev":
         uwebprev = True
+        uperm = "web page previews"
 
     elif unlock_type == "polls":
         upolls = True
+        uperm = "polls"
 
     elif unlock_type == "info":
         uinfo = True
+        uperm = "info"
 
     elif unlock_type == "invite":
         uinvite = True
+        uperm = "invite"
 
     elif unlock_type == "pin":
         upin = True
+        uperm = "pin"
     elif unlock_type == "anonchannel":
         curr = lock.remove_lock_channel(m.chat.id, "anti_c_send")
 
@@ -445,7 +468,7 @@ async def _(c: user, m):
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!")
     await m.reply_text(
-        f"{em.sukses}" + f"Dibuka <b>{perm}</b> dalam grup ini.",
+        f"{em.sukses}" + f"Dibuka <b>{uperm}</b> dalam grup ini.",
     )
     await prevent_approved(m)
     return
