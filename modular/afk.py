@@ -279,7 +279,7 @@ async def _(c: user, m):
         return
 
 
-@user.on_message(filters.mentioned & ~filters.me & ~filters.bot & filters.incoming)
+@user.on_message(filters.private & filters.group & ~filters.me & ~filters.bot & filters.incoming, group=69)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
