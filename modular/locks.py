@@ -107,7 +107,7 @@ async def delete_messages(c: user, m):
         return
 
 
-@user.on_message(filters.group & ~filters.me, 18)
+@user.on_message(filters.group & filters.me, 18)
 async def _(c: user, m):
     lock = LOCKS()
     all_chats = lock.get_lock_channel()
@@ -483,7 +483,9 @@ async def _(c: user, m):
     anon = False
     if m.chat.id in anti_c_send:
         anon = True
-    anti_f = anti_f_u = anti_f_c = False
+    anti_f = False
+    anti_f_u = False
+    anti_f_c = False
     if m.chat.id in anti_forward:
         anti_f = True
     if m.chat.id in anti_forward_u:
