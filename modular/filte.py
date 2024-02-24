@@ -269,7 +269,7 @@ async def send_filter_reply(c: user, m, trigger: str):
 
 
 async def isFilter_(filter, c, m):
-    db.get_all_filters(m.chat.id)
+    xi = db.get_all_filters(m.chat.id)
     tx = m.text
     for xe in xi:
         if tx in xi:
