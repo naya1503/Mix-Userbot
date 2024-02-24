@@ -6,8 +6,9 @@
 """
 ################################################################
 
-from Mix import *
 import asyncio
+
+from Mix import *
 
 dispam = []
 
@@ -26,6 +27,7 @@ Help Command Spam
 • Perintah: <code>{0}cspam</code>
 • Penjelasan: Untuk stop spam.
 """
+
 
 @ky.ubot("spam", sudo=True)
 async def _(c: user, m):
@@ -57,7 +59,9 @@ async def _(c: user, m):
                 for i in range(count_message):
                     if not berenti:
                         break
-                    await m.reply(m.text.split(None, 2)[2], )
+                    await m.reply(
+                        m.text.split(None, 2)[2],
+                    )
                     await asyncio.sleep(0.1)
             except Exception as error:
                 return await msg.edit(str(error))
@@ -65,9 +69,8 @@ async def _(c: user, m):
 
     await msg.delete()
     await m.delete()
-    
-    
-    
+
+
 @ky.ubot("dspam", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -115,7 +118,7 @@ async def _(c: user, m):
 
     await msg.delete()
     await m.delete()
-    
+
 
 @ky.ubot("cspam", sudo=True)
 async def _(c: user, m):
