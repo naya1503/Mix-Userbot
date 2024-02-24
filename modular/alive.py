@@ -12,7 +12,7 @@ from time import time
 from pyrogram.raw.functions import Ping
 from pyrogram.types import *
 
-from Mix import DEVS, ky, udB, user, bot
+from Mix import DEVS, bot, ky, udB, user
 from Mix.core.waktu import get_time, start_time
 
 __modles__ = "Alive"
