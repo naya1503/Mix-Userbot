@@ -17,8 +17,9 @@ from pyrogram.types import *
 from Mix import *
 from Mix.core.sender_tools import send_cmd
 
+"""
 __modles__ = "Filter"
-__help__ = """
+__help__ = "
 Help Command Filter 
 
 • Perintah: <code>{0}filters</code>
@@ -267,7 +268,7 @@ async def send_filter_reply(c: user, m, trigger: str):
     return msgtype
 
 
-@user.on_message(filters.text & filters.group & ~filters.bot, group=69)
+#@user.on_message(filters.text & filters.group & ~filters.bot, group=69)
 async def _(c: user, m):
     chat_filters = db.get_all_filters(m.chat.id)
     actual_filters = {j for i in chat_filters for j in i.split("|")}
