@@ -165,6 +165,7 @@ async def _(c: user, m):
     send = await m.reply_text(formatted_text)
     await put_cleanmode(c.me.id, send.id)
 
+
 """
 @ky.ubot("afkdel")
 async def _(c: user, m):
@@ -184,6 +185,7 @@ async def _(c: user, m):
     else:
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
 """
+
 
 @ky.ubot("unafk", sudo=True)
 async def _(c: user, m):
@@ -279,10 +281,7 @@ async def _(c: user, m):
         return
 
 
-@user.on_message(
-    filters.mentioned
-    & ~filters.me & ~filters.bot & filters.incoming
-)
+@user.on_message(filters.mentioned & ~filters.me & ~filters.bot & filters.incoming)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
