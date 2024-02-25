@@ -456,11 +456,7 @@ async def _(c: user, m):
     if not bot.privileges.can_promote_members:
         await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
         return
-    await c.get_chat_member(m.chat.id, m.from_user.id)
-    try:
-        admin_list = await list_admins(m.chat.id)
-    except KeyError:
-        return
+    admin_list = await list_admins(m.chat.id)
     if user_id in admin_list:
         await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
         return
@@ -480,14 +476,12 @@ async def _(c: user, m):
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+                return
+        promoter = (await mention_html(m.from_user.first_name, m.from_user.id))
+        promoted = (await mention_html(user_first_name, user_id))
         await m.reply_text(
-            "{e1} {promoter}\n{e2} Pengguna {promoted} berhasil diangkat menjadi fulladmin!"
-        ).format(
-            e1=em.profil,
-            promoter=(await mention_html(m.from_user.first_name, m.from_user.id)),
-            e2=em.warn,
-            promoted=(await mention_html(user_first_name, user_id)),
-        )
+            f"{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi wakil pendiri!")
+            
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
     except RightForbidden:
@@ -521,11 +515,7 @@ async def _(c: user, m):
     if not bot.privileges.can_promote_members:
         await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
         return
-    try:
-        admin_list = await list_admins(m.chat.id)
-    except KeyError:
-
-        return
+    admin_list = await list_admins(m.chat.id)
     if user_id in admin_list:
         await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
         return
@@ -553,6 +543,7 @@ async def _(c: user, m):
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+                return
         promoter = await mention_html(m.from_user.first_name, m.from_user.id)
         promoted = await mention_html(user_first_name, user_id)
         await m.reply_text(
