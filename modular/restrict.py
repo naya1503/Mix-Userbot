@@ -553,8 +553,8 @@ async def _(c: user, m):
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
-        promoter = (await mention_html(m.from_user.first_name, m.from_user.id))
-        promoted = (await mention_html(user_first_name, user_id))
+        promoter = await mention_html(m.from_user.first_name, m.from_user.id)
+        promoted = await mention_html(user_first_name, user_id)
         await m.reply_text(
             f"{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi admin!"
         )
@@ -605,10 +605,11 @@ async def _(c: user, m):
                 can_manage_video_chats=False,
             ),
         )
-        demoter = (await mention_html(m.from_user.first_name, m.from_user.id))
-        demoted = (await mention_html(user_first_name, user_id))
+        demoter = await mention_html(m.from_user.first_name, m.from_user.id)
+        demoted = await mention_html(user_first_name, user_id)
         await m.reply_text(
-            f"{em.profil} {demoter}\n{em.warn} Pengguna {demoted} berhasil diturunkan admin!")
+            f"{em.profil} {demoter}\n{em.warn} Pengguna {demoted} berhasil diturunkan admin!"
+        )
     except BotChannelsNa:
         await m.reply_text(f"{em.gagal} Pengguna tidak diangkat oleh saya!")
     except ChatAdminRequired:
