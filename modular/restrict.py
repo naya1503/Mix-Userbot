@@ -477,11 +477,12 @@ async def _(c: user, m):
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
                 return
-        promoter = (await mention_html(m.from_user.first_name, m.from_user.id))
-        promoted = (await mention_html(user_first_name, user_id))
+        promoter = await mention_html(m.from_user.first_name, m.from_user.id)
+        promoted = await mention_html(user_first_name, user_id)
         await m.reply_text(
-            f"{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi wakil pendiri!")
-            
+            f"{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi wakil pendiri!"
+        )
+
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
     except RightForbidden:
