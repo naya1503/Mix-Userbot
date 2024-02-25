@@ -64,14 +64,17 @@ async def _(c: user, m):
                     await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(2)
+            except Exception:
+                failed += 1
             except SlowmodeWait:
                 continue
-            except Exception:
-                continue
-            except BaseException:
-                failed += 1
             except FloodWait as e:
-                await asyncio.sleep(e.value)
+                await asyncio.sleep(int(e))
+                if m.reply_to_message:
+                    await send.copy(chat)
+                else:
+                    await c.send_message(chat, send)
+                done += 1
     return await msg.edit(
         f"""
 {em.alive} Broadcast Message Sent :
@@ -101,12 +104,15 @@ async def _(c: user, m):
                     await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(2)
-            except FloodWait as e:
-                await asyncio.sleep(e.value)
             except Exception:
-                continue
-            except BaseException:
                 failed += 1
+            except FloodWait as e:
+                await asyncio.sleep(int(e))
+                if m.reply_to_message:
+                    await send.copy(chat)
+                else:
+                    await c.send_message(chat, send)
+                done += 1
     return await msg.edit(
         f"""
 {em.alive} Broadcast Message Sent :
