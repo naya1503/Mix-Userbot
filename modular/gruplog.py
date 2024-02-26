@@ -118,6 +118,11 @@ async def _(c: user, m):
             return
 
 
-@ky.pc()
+@user.on_message(
+  filters.private
+  & filters.incoming
+  & ~filters.me
+  & ~filters.bot
+  & ~filters.service)
 async def _(_, m):
     await user.forward_private(m)
