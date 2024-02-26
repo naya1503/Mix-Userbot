@@ -62,14 +62,13 @@ async def _(c, m):
     lenk = m.link
     teks = f"""
 📨 <b>TAGS MESSAGE</b>
-• <b>Group:</b> <code>{m.chat.title}</code>
 • <b>Pesan:</b> <code>{m.text}</code>
 """
     donut = InlineKeyboardMarkup(
       [
         [
           InlineKeyboardButton("Tautan Grup", url=lenk),
-          InlineKeyboardButton("Pengguna", url=org),
+          InlineKeyboardButton(f"{org}", url=org),
         ],
         [
           InlineKeyboardButton(f"{m.chat.title}", url=lenk),
