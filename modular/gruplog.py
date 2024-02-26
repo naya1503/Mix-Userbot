@@ -63,7 +63,7 @@ async def _(c, m):
     lenk = m.link
     teks = f"""
 **📨 New Message
-• Grup : {m.chat.title}
+• Grup : {[m.chat.title](lenk)}
 • Pengguna : {org}
 • Pesan: {m.text}**
 """
