@@ -62,7 +62,13 @@ async def _(c, m):
     lenk = m.link
     teks = f"<b>{m.text}</b>"
     donut = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("Replied Message", url=lenk), InlineKeyboardButton(f"{org}", user_id=m.from_.id)]])
+        [
+            [
+                InlineKeyboardButton("Replied Message", url=lenk),
+                InlineKeyboardButton(f"{org}", user_id=m.from_.id),
+            ]
+        ]
+    )
     try:
         ret = await bot.send_message(
             db, teks, disable_web_page_preview=True, reply_markup=donut
