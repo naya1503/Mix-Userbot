@@ -70,7 +70,7 @@ async def _(c, m):
                 InlineKeyboardButton("Tautan Grup", url=lenk),
                 InlineKeyboardButton("Pengguna", url=f"{org}"),
             ],
-            #[InlineKeyboardButton(, url=lenk)],
+            # [InlineKeyboardButton(, url=lenk)],
         ]
     )
     try:
