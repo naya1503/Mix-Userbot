@@ -16,7 +16,7 @@ Help Command GrupLog
 
 
 from pyrogram.errors import *
-
+from pyrogram import *
 from Mix import *
 
 
@@ -62,13 +62,7 @@ async def _(c, m):
     lenk = m.link
     teks = f"<b>{m.text}</b>"
     donut = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("Replied Message", url=lenk),
-                InlineKeyboardButton(f"{org}", user_id=m.from_.id),
-            ]
-        ]
-    )
+        [[InlineKeyboardButton("Replied Message", url=lenk), InlineKeyboardButton(f"{org}", user_id=m.from_user.id)]])
     try:
         ret = await bot.send_message(
             db, teks, disable_web_page_preview=True, reply_markup=donut
@@ -114,9 +108,6 @@ async def _(c: user, m):
             return
 
 
-@user.on_message(
-    filters.private & filters.incoming & ~filters.me & ~filters.bot & ~filters.service,
-    group=3,
-)
+@ky.pc()
 async def _(_, m):
     await user.forward_private(m)
