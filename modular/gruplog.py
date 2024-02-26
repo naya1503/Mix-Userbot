@@ -84,10 +84,26 @@ async def _(c, m):
 async def _(c: user, m):
     reply_ = m.reply_to_message.id
     chat, msg = who_tag(reply_)
+    anj = m.text if m.text else caption ""
     if chat and msg:
         try:
-            await c.send_message(chat, m.text, reply_to_message_id=msg)
-            return
+            if m.photo:
+                await c.send_photo(
+                  chat, 
+                  m.photo,
+                  caption=anj,
+                  reply_to_message_id=msg)
+            elif m.video:
+                await c.send_video(
+                  chat, 
+                  m.video,
+                  caption=anj,
+                  reply_to_message_id=msg)
+            else:
+                await c.send_message(
+                  chat, 
+                  anj,
+                  reply_to_message_id=msg)
         except Exception as e:
             await m.reply(f"{e}")
             return
