@@ -65,15 +65,7 @@ async def _(c, m):
 • <b>Pesan:</b> <code>{m.text}</code>
 """
     donut = InlineKeyboardMarkup(
-      [
-        [
-          InlineKeyboardButton("Tautan Grup", url=lenk),
-          InlineKeyboardButton(f"{org}", url=org),
-        ],
-        [
-          InlineKeyboardButton(f"{m.chat.title}", url=lenk),
-        ],
-    ]
+      [[InlineKeyboardButton("Tautan Grup", url=lenk), InlineKeyboardButton(f"{org}", url=org)], [InlineKeyboardButton(f"{m.chat.title}", url=lenk)]]
     try:
         ret = await bot.send_message(
             db, teks, disable_web_page_preview=True, reply_markup=donut
