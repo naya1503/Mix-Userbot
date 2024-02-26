@@ -99,6 +99,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("eval|ev", sudo=True)
+@ky.bots("eval|ev")
 async def _(c: user, m):
     if not c.get_arg(m):
         return
