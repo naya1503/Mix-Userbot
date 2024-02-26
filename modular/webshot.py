@@ -20,9 +20,9 @@ from Mix import *
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    #if len(m.command) == 1:
-        #await m.reply(f"{em.gagal} Silahkan berikan link atau belas pesan tautan!")
-        #return
+    # if len(m.command) == 1:
+    # await m.reply(f"{em.gagal} Silahkan berikan link atau belas pesan tautan!")
+    # return
 
     if len(m.command) > 1:
         lonk = m.text.split(None, 1)[1]
