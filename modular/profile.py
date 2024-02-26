@@ -111,7 +111,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    bacot = await m.reply(f"{em.prosss} Processing...")
+    bacot = await m.reply(f"{em.proses} Processing...")
     a_chats = []
     me = await c.get_me()
     async for dialog in c.get_dialogs():
@@ -169,7 +169,7 @@ async def _(c: user, m):
         pat = await c.dl_pic(media)
         await c.set_profile_photo(video=pat)
     await m.reply("**Foto Profil anda Berhasil Diubah.**")
-    return
+    #return
 
 
 @ky.ubot("purgeme", sudo=True)
