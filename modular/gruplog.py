@@ -81,16 +81,26 @@ async def _(c, m):
             media = m.photo.file_id
             pat = await c.dl_pic(media)
             ret = await bot.send_photo(
-                db, photo=pat, caption=teks, disable_web_page_preview=True, reply_markup=donut)
+                db,
+                photo=pat,
+                caption=teks,
+                disable_web_page_preview=True,
+                reply_markup=donut,
+            )
         if m.video:
             media = m.video.file_id
             pat = await c.dl_pic(media)
             ret = await bot.send_video(
-                db, video=pat, caption=teks, disable_web_page_preview=True, reply_markup=donut)
+                db,
+                video=pat,
+                caption=teks,
+                disable_web_page_preview=True,
+                reply_markup=donut,
+            )
         else:
             ret = await bot.send_message(
                 db, teks, disable_web_page_preview=True, reply_markup=donut
-        )
+            )
     except FloodWait as e:
         await asyncio.sleep(e.value)
         ret = await bot.send_message(
