@@ -4,6 +4,6 @@ from .colong import progress
 from .git import *
 from .misc import *
 from .msgty import *
+from .newdb import *
 from .pastebin import *
 from .regex_tools import *
-from .newdb import *
