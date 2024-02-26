@@ -62,12 +62,19 @@ async def _(c, m):
     lenk = m.link
     teks = f"""
 📨 <b>TAGS MESSAGE</b>
-• <b>Logs:</b> <code>{user.me.first_name}</code>
 • <b>Group:</b> <code>{m.chat.title}</code>
-• <b>Dari :</b> <code>{org}</code>
 • <b>Pesan:</b> <code>{m.text}</code>
 """
-    donut = InlineKeyboardMarkup([[InlineKeyboardButton("Tautan Grup", url=lenk)]])
+    donut = InlineKeyboardMarkup(
+      [
+        [
+          InlineKeyboardButton("Tautan Grup", url=lenk),
+          InlineKeyboardButton("Pengguna", url=org),
+        ],
+        [
+          InlineKeyboardButton(f"{m.chat.title}", url=lenk),
+        ],
+      ]
     try:
         ret = await bot.send_message(
             db, teks, disable_web_page_preview=True, reply_markup=donut
