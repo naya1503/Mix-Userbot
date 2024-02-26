@@ -36,7 +36,8 @@ __help__ = """
 
 
 @ky.ubot("sh", sudo=True)
-async def _(c: user, m):
+@ky.bots("sh")
+async def _(c, m):
     if len(m.command) < 2:
         return await m.reply(f"Input text!")
     cmd_text = m.text.split(maxsplit=1)[1]
