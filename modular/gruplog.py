@@ -20,6 +20,7 @@ from pyrogram.errors import *
 
 from Mix import *
 
+TAG_LOG = ndB.get_key("TAG_LOG")
 
 @ky.ubot("gruplog", sudo=True)
 async def _(c: user, m):
@@ -111,11 +112,12 @@ async def _(c, m):
     tag_add(ret.id, m.chat.id, m.id)
 
 
-@user.on_message(filters.reply & filters.group)
+
+@user.on_message(filters.chat(TAG_LOG))
 async def _(c: user, m):
-    dblog = udB.get_logger(user.me.id)
-    if m.chat.id != dblog:
-        return
+    #dblog = udB.get_logger(user.me.id)
+    #if m.chat.id != dblog:
+        #return
     reply_ = m.reply_to_message
     chat, msg = who_tag(reply_.id)
     media = None
