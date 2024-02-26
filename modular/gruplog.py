@@ -68,9 +68,9 @@ async def _(c, m):
         [
             [
                 InlineKeyboardButton("Tautan Grup", url=lenk),
-                InlineKeyboardButton("Pengguna", url=f"{org}"),
+                InlineKeyboardButton("Pengguna", user_id=f"{org}"),
             ],
-            # [InlineKeyboardButton(, url=lenk)],
+            #[InlineKeyboardButton(, url=lenk)],
         ]
     )
     try:
@@ -119,7 +119,6 @@ async def _(c: user, m):
 
 
 @user.on_message(
-    filters.private & filters.incoming & ~filters.me & ~filters.bot & ~filters.service
-)
+    filters.private & filters.incoming & ~filters.me & ~filters.bot & ~filters.service, group=3)
 async def _(_, m):
     await user.forward_private(m)
