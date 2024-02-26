@@ -86,7 +86,7 @@ async def _(c: user, m):
     chat, msg = who_tag(reply_)
     if chat and msg:
         try:
-            await c.send_message(chat, m, reply_to_message_id=msg)
+            await c.send_message(chat, m.text, reply_to_message_id=msg)
             return
         except Exception as e:
             await m.reply(f"{e}")
