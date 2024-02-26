@@ -15,6 +15,7 @@ __help__ = """
 
 from Mix import *
 
+
 @ky.ubot("webss|webshot|ss", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -22,7 +23,7 @@ async def _(c: user, m):
     if len(m.command) == 1:
         await m.reply(f"{em.gagal} Silahkan berikan link atau belas pesan tautan!")
         return
-    
+
     if len(m.command) > 1:
         lonk = m.text.split(None, 1)[1]
     else:
