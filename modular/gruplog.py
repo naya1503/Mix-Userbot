@@ -77,6 +77,13 @@ async def _(c, m):
 • Pengguna : {org}
 • Pesan: {m.text}**
 """
+    else:
+        teks = f"""
+**📨 New Message
+• Grup : {m.chat.title}
+• Pengguna : {org}
+• Pesan: {m.text}**
+"""
     donut = InlineKeyboardMarkup(
         [
             [
