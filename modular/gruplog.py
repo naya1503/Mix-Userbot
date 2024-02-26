@@ -22,6 +22,7 @@ from Mix import *
 
 TAG_LOG = ndB.get_key("TAG_LOG")
 
+
 @ky.ubot("gruplog", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -110,7 +111,6 @@ async def _(c, m):
             db, teks, disable_web_page_preview=True, reply_markup=donut
         )
     tag_add(ret.id, m.chat.id, m.id)
-
 
 
 @user.on_message(filters.reply & filters.chat(TAG_LOG))
