@@ -73,7 +73,7 @@ async def _(c, m):
         [
           InlineKeyboardButton(f"{m.chat.title}", url=lenk),
         ],
-      ]
+    ]
     try:
         ret = await bot.send_message(
             db, teks, disable_web_page_preview=True, reply_markup=donut
