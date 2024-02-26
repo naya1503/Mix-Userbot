@@ -91,7 +91,7 @@ async def _(c: user, m):
                 else:
                     return await m.reply(m.reply_to_message)
             else:
-                value = eval(f"m.reply_to_m.{m.command[1]}")
+                value = eval(f"m.reply_to_message.{m.command[1]}")
                 return await m.reply(value)
         except Exception as error:
             return await m.reply(str(error))
