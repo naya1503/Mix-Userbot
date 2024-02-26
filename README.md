@@ -30,7 +30,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
 
 <details>
-<summary><b>🔗 Deploy Via Screen</b></summary>
+<summary><b>🔗 Deploy Metode Screen</b></summary>
 <br>
 
 • `sudo apt-get update && sudo apt-get upgrade -y`
@@ -61,7 +61,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 </details>
 
 <details>
-<summary><b>🔗 Deploy Via Docker</b></summary>
+<summary><b>🔗 Deploy Metode Docker</b></summary>
 <br>
 
 • `curl -sSL https://get.docker.com | sh`
