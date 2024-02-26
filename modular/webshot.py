@@ -30,7 +30,7 @@ async def _(c: user, m):
         lonk = c.get_arg(m)
     try:
         linkk = f"https://mini.s-shot.ru/1920x1080/JPEG/1024/Z100/?{lonk}"
-        pat = await c.download_media(linkl, file_name=f"webshot.jpg")
+        pat = await c.download_media(linkk, file_name="webshot.jpg")
         await m.reply_photo(photo=pat)
         os.remove(pat)
     except Exception as r:
