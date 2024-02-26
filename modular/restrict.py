@@ -479,8 +479,6 @@ async def _(c: user, m):
 
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
-    except RightForbidden:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
     except UserAdminInvalid:
         await m.reply_text(f"{em.gagal} Pengguna invalid!")
     except RPCError as e:
@@ -540,8 +538,6 @@ async def _(c: user, m):
         )
     except ChatAdminRequired:
         await m.reply_text(f"{em.gagal} Saya bukan admin!")
-    except RightForbidden:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
     except UserAdminInvalid:
         await m.reply_text(f"{em.gagal} Pengguna invalid!")
     except RPCError as e:
