@@ -66,7 +66,7 @@ async def _(c, m):
     media = None
     teks = None
     if m.caption:
-        teks = f"**📨 New Message\n\n• Grup : {m.chat.title}\n• Pengguna : {org}\n• Pesan: {m.text}**"
+        teks = f"**📨 New Message\n\n• Grup : {m.chat.title}\n• Pengguna : {org}\n• Pesan: {m.caption}**"
     else:
         teks = f"""
 **📨 New Message
@@ -89,7 +89,7 @@ async def _(c, m):
             ret = await bot.send_photo(
                 db,
                 photo=pat,
-                caption=m.caption,
+                caption=teks,
                 reply_markup=donut,
             )
         elif m.video:
@@ -98,7 +98,7 @@ async def _(c, m):
             ret = await bot.send_video(
                 db,
                 video=pat,
-                caption=m.caption,
+                caption=teks,
                 reply_markup=donut,
             )
         else:
