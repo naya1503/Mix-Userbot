@@ -65,7 +65,7 @@ async def _(c, m):
     chet = f"{m.chat.title}"
     teks = f"""
 **📨 New Message
-• Grup : {[m.chat.title}
+• Grup : {m.chat.title}
 • Pengguna : {org}
 • Pesan: {m.text}**
 """
