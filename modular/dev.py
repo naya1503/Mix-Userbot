@@ -100,8 +100,8 @@ async def _(c: user, m):
 
 @ky.ubot("eval|ev", sudo=True)
 @ky.bots("eval|ev")
-async def _(c: user, m):
-    if not c.get_arg(m):
+async def _(c, m):
+    if not user.get_arg(m):
         return
     xx = await m.reply_text("Processing ...")
     cmd = m.text.split(" ", maxsplit=1)[1]
@@ -112,7 +112,7 @@ async def _(c: user, m):
     redirected_error = sys.stderr = StringIO()
     stdout, stderr, exc = None, None, None
     try:
-        await c.aexec(cmd, c, m)
+        await user.aexec(cmd, c, m)
     except Exception:
         exc = traceback.format_exc()
     stdout = redirected_output.getvalue()
