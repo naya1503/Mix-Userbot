@@ -88,24 +88,18 @@ async def _(c: user, m):
     media = None
     if chat and msg:
         try:
-            if reply_.photo:
-                media = reply_.photo.file_id
-            elif reply_.video:
-                media = reply_.video.file_id
-
-            if media:
+            if m.photo:
+                media = m.photo.file_id
                 bhan_ = await c.get_media(media)
                 pat = await bhan_.download()
-                if reply_.photo:
-                    await c.send_photo(
-                        chat, photo=pat, caption=anj, reply_to_message_id=msg
-                    )
-                elif reply_.video:
-                    await c.send_video(
-                        chat, video=pat, caption=anj, reply_to_message_id=msg
-                    )
-                else:
-                    await c.send_message(chat, anj, reply_to_message_id=msg)
+                await c.send_photo(chat, photo=pat, caption=m.text or m.caption, reply_to_message_id=msg)
+            elif m.video:
+                media = reply_.video.file_id
+                bhan_ = await c.get_media(media)
+                pat = await bhan_.download()
+                await c.send_video(chat, video=pat, caption=m.text or m.caption, reply_to_message_id=msg)
+            else:
+                 await c.send_message(chat, m.text, reply_to_message_id=msg)
         except Exception as e:
             await m.reply(f"{e}")
             return
