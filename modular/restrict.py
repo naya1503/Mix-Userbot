@@ -253,11 +253,9 @@ async def _(c: user, m):
 
 @ky.ubot("del", sudo=True)
 async def _(c: user, m):
-    em = Emojik()
-    em.initialize()
-    if not m.reply_to_message:
-        return
-    await m.reply_to_message.delete()
+    rep = m.reply_to_message
+    await m.delete()
+    await rep.delete()
 
 
 @ky.ubot("pin|unpin", sudo=True)
