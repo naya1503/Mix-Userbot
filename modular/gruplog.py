@@ -80,9 +80,9 @@ async def _(c, m):
     tag_add(ret.id, m.chat.id, m.from_user.id)
 
 
-@user.on_message(filters.reply & filters.me & filters.group, group=69)
+@user.on_message(filters.reply & filters.outgoing)
 async def _(c: user, m):
-    reply_ = m.reply_to_message.message_id
+    reply_ = m.reply_to_message.id
     chat, msg = who_tag(reply_)
     if chat and msg:
         try:
