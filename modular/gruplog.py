@@ -111,7 +111,7 @@ async def _(c, m):
     tag_add(ret.id, m.chat.id, m.id)
 
 
-@user.on_message(filters.reply & filters.outgoing)
+@user.on_message(filters.outgoing)
 async def _(c: user, m):
     reply_ = m.reply_to_message
     chat, msg = who_tag(reply_.id)
