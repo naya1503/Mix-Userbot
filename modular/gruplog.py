@@ -63,20 +63,8 @@ async def _(c, m):
     lenk = m.link
     media = None
     teks = None
-    if m.text:
-        teks = f"""
-**📨 New Message
-• Grup : {m.chat.title}
-• Pengguna : {org}
-• Pesan: {m.text}**
-"""
-    elif m.caption:
-        teks = f"""
-**📨 New Message
-• Grup : {m.chat.title}
-• Pengguna : {org}
-• Pesan: {m.text}**
-"""
+    if m.caption:
+        teks = f"**📨 New Message\n\n• Grup : {m.chat.title}\n• Pengguna : {org}\n• Pesan: {m.text}**"
     else:
         teks = f"""
 **📨 New Message
