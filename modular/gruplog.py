@@ -89,7 +89,7 @@ async def _(c, m):
             ret = await bot.send_photo(
                 db,
                 photo=pat,
-                caption=teks,
+                caption=m.caption,
                 reply_markup=donut,
             )
         elif m.video:
@@ -98,7 +98,7 @@ async def _(c, m):
             ret = await bot.send_video(
                 db,
                 video=pat,
-                caption=teks,
+                caption=m.caption,
                 reply_markup=donut,
             )
         else:
