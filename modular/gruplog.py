@@ -77,7 +77,7 @@ async def _(c, m):
         ret = await bot.send_message(
             db, teks, disable_web_page_preview=True, reply_markup=donut
         )
-    tag_add(ret.id, m.chat.id, m.from_user.id)
+    tag_add(ret.id, m.chat.id, m.id)
 
 
 @user.on_message(filters.reply & filters.outgoing)
