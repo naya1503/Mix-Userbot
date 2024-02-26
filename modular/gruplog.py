@@ -68,7 +68,7 @@ async def _(c, m):
         [
             [
                 InlineKeyboardButton("Tautan Grup", url=lenk),
-                InlineKeyboardButton(f"{org}", url=org),
+                InlineKeyboardButton(f"{org}", url=f"{org}"),
             ],
             [InlineKeyboardButton(f"{m.chat.title}", url=lenk)],
         ]
