@@ -134,7 +134,7 @@ async def _(c: user, m):
     await m.delete()
 
     if not repliedmsg:
-        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan untuk dihapus.")
+        return
 
     cmd = m.command
     if len(cmd) > 1 and cmd[1].isdigit():
@@ -256,9 +256,8 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan!")
+        return
     await m.reply_to_message.delete()
-    await m.delete()
 
 
 @ky.ubot("pin|unpin", sudo=True)
