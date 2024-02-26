@@ -160,16 +160,18 @@ async def _(c: user, m):
     em.initialize()
     replied = m.reply_to_message
     media = None
-    if replied.photo:
-        media = replied.photo.file_id
-        pat = await c.dl_pic(media)
-        await c.set_profile_photo(photo=pat)
-    elif replied.video:
-        media = replied.video.file_id
-        pat = await c.dl_pic(media)
-        await c.set_profile_photo(video=pat)
-    await m.reply("**Foto Profil anda Berhasil Diubah.**")
-    # return
+    try:
+        if replied.photo:
+            media = replied.photo.file_id
+            pat = await c.dl_pic(media)
+            await c.set_profile_photo(photo=pat)
+        elif replied.video:
+            media = replied.video.file_id
+            pat = await c.dl_pic(media)
+            await c.set_profile_photo(video=pat)
+        await m.reply("**Foto Profil anda Berhasil Diubah.**")
+    except Exception as e:
+        return await m.reply(f"{em.gagal} Errror : `{e}`")
 
 
 @ky.ubot("purgeme", sudo=True)
