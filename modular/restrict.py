@@ -472,8 +472,8 @@ async def _(c: user, m):
 
             try:
                 await c.set_administrator_title(m.chat.id, user_id, title)
-            except RPCError as e:
-                await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+            #except RPCError as e:
+                #await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
                 return
@@ -540,8 +540,8 @@ async def _(c: user, m):
                 title = " ".join(m.text.split()[1:16])  # trim title to 16 characters
             try:
                 await c.set_administrator_title(m.chat.id, user_id, title)
-            except RPCError as e:
-                await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+            #except RPCError as e:
+                #await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
             except Exception as e:
                 await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
                 return
