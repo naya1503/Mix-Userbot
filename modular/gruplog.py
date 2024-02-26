@@ -84,7 +84,8 @@ async def _(c, m):
 async def _(c: user, m):
     reply_ = m.reply_to_message.id
     chat, msg = who_tag(reply_)
-    anj = m.text if m.text else caption ""
+    anj = m.text if m.text else (m.caption if m.caption else "")
+
     if chat and msg:
         try:
             if m.photo:
