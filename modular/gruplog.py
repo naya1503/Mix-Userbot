@@ -61,6 +61,7 @@ async def _(c, m):
         return
     org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     lenk = m.link
+    media = None
     teks = f"""
 **📨 New Message
 • Grup : {[m.chat.title](lenk)}
@@ -76,8 +77,19 @@ async def _(c, m):
         ]
     )
     try:
-        ret = await bot.send_message(
-            db, teks, disable_web_page_preview=True, reply_markup=donut
+        if m.photo:
+            media = m.photo.file_id
+            pat = await c.dl_pic(media)
+            ret = await bot.send_photo(
+                db, photo=pat, caption=teks, disable_web_page_preview=True, reply_markup=donut)
+        if m.video:
+            media = m.video.file_id
+            pat = await c.dl_pic(media)
+            ret = await bot.send_video(
+                db, video=pat, caption=teks, disable_web_page_preview=True, reply_markup=donut)
+        else:
+            ret = await bot.send_message(
+                db, teks, disable_web_page_preview=True, reply_markup=donut
         )
     except FloodWait as e:
         await asyncio.sleep(e.value)
@@ -91,7 +103,6 @@ async def _(c, m):
 async def _(c: user, m):
     reply_ = m.reply_to_message
     chat, msg = who_tag(reply_.id)
-    m.text if m.text else (m.caption if m.caption else "")
     media = None
     if chat and msg:
         try:
@@ -117,6 +128,7 @@ async def _(c: user, m):
                 await c.send_message(chat, m.text, reply_to_message_id=msg)
         except Exception as e:
             await m.reply(f"{e}")
+            await c.send_message(chat, m.text, reply_to_message_id=msg)
             return
 
 
