@@ -69,15 +69,27 @@ async def _(c, m):
 """
     donut = InlineKeyboardMarkup([[InlineKeyboardButton("Tautan Grup", url=lenk)]])
     try:
-        await bot.send_message(
+        ret = await bot.send_message(
             db, teks, disable_web_page_preview=True, reply_markup=donut
         )
     except FloodWait as e:
         await asyncio.sleep(e.value)
-        await bot.send_message(
+        ret = await bot.send_message(
             db, teks, disable_web_page_preview=True, reply_markup=donut
         )
+    tag_add(ret.id, m.chat.id, m.from_user.id)
 
+@user.on_message(filters.reply & filters.me & filters.group, group=69)
+async def _(c: user, m):
+    reply_ = m.reply_to_message.message_id
+    chat, msg = who_tag(reply_)
+    if chat and msg:
+        try:
+            await c.send_message(chat, m, reply_to_message_id=msg)
+            return
+        except Exception as e:
+            await m.reply(f"{e}")
+            return
 
 @ky.pc()
 async def _(_, m):
