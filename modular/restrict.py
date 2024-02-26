@@ -153,7 +153,6 @@ async def _(c: user, m):
         )
 
 
-
 @ky.ubot("kick|delkick", sudo=True)
 async def _(c: user, m):
     em = Emojik()
