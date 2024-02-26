@@ -85,7 +85,6 @@ async def _(c, m):
                 db,
                 photo=pat,
                 caption=teks,
-                disable_web_page_preview=True,
                 reply_markup=donut,
             )
         if m.video:
@@ -95,7 +94,6 @@ async def _(c, m):
                 db,
                 video=pat,
                 caption=teks,
-                disable_web_page_preview=True,
                 reply_markup=donut,
             )
         else:
