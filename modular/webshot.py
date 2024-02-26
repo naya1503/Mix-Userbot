@@ -28,9 +28,11 @@ async def _(c: user, m):
         lonk = m.text.split(None, 1)[1]
     else:
         lonk = c.get_arg(m)
-        try:
-            linkk = f"https://mini.s-shot.ru/1920x1080/JPEG/1024/Z100/?{lonk}"
-            await m.reply(photo=linkk)
-        except Exception as r:
-            await m.reply(f"{em.gagal} Error : `{r}`\n\nLaporke @KynanSupport!")
-            return
+    try:
+        linkk = f"https://mini.s-shot.ru/1920x1080/JPEG/1024/Z100/?{lonk}"
+        pat = await c.download_media(linkl, file_name=f"webshot.jpg")
+        await m.reply_photo(photo=pat)
+        os.remove(pat)
+    except Exception as r:
+        await m.reply(f"{em.gagal} Error : `{r}`\n\nLaporke @KynanSupport!")
+        return
