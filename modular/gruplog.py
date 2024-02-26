@@ -60,17 +60,12 @@ async def _(c, m):
         return
     org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     lenk = m.link
-    teks = f"""
-📨 <b>TAGS MESSAGE</b>
-• <b>Pesan:</b> <code>{m.text}</code>
-"""
+    teks = f"<b>{m.text}</b>"
     donut = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("Tautan Grup", url=lenk),
-                InlineKeyboardButton("Pengguna", user_id=f"{m.from_user.id}"),
-            ],
-            # [InlineKeyboardButton(, url=lenk)],
+                InlineKeyboardButton("Replied Message", url=lenk),
+            [InlineKeyboardButton(f"{org}", user_id=m.from_user.id)],
         ]
     )
     try:
