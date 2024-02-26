@@ -281,7 +281,7 @@ async def _(c: user, m):
         return
 
 
-@user.on_message(filters.incoming & ~filters.bot)
+@user.on_message(filters.mentioned & filters.incoming & ~filters.bot)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
