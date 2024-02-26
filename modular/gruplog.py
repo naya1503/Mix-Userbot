@@ -62,9 +62,10 @@ async def _(c, m):
     org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     lenk = m.link
     media = None
+    chet = f"{m.chat.title}"
     teks = f"""
 **📨 New Message
-• Grup : {[m.chat.title](lenk)}
+• Grup : {[m.chat.title}
 • Pengguna : {org}
 • Pesan: {m.text}**
 """
