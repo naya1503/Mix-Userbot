@@ -107,23 +107,23 @@ async def member_permissions(chat: int, org: int):
 admins_in_chat = {}
 
 
-async def list_admins(chat: int):
+async def list_admins(m):
     global admins_in_chat
-    if chat in admins_in_chat:
-        interval = time() - admins_in_chat[chat]["last_updated_at"]
+    if m.chat.id in admins_in_chat:
+        interval = time() - admins_in_chat[m.chat.id]["last_updated_at"]
         if interval < 3600:
-            return admins_in_chat[chat]["data"]
+            return admins_in_chat[m.chat.id]["data"]
 
-    admins_in_chat[chat] = {
+    admins_in_chat[m.chat.id] = {
         "last_updated_at": time(),
         "data": [
             i.user.id
-            async for i in user.get_chat_members(
-                chat, filter=enums.ChatMembersFilter.ADMINISTRATORS
+            async for i in m._client.get_chat_members(
+                m.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
             )
         ],
     }
-    return admins_in_chat[chat]["data"]
+    return admins_in_chat[m.chat.id]["data"]
 
 
 @ky.ubot("purge", sudo=True)
@@ -672,7 +672,7 @@ async def _(c: user, m):
         and not m.reply_to_message.document
         and not m.reply_to_message.video
     ):
-        return await m.reply_text(f"{em.gaga} Balas ke media!")
+        return await m.reply_text(f"{em.gagal} Balas ke media!")
 
     if m.reply_to_message:
         if m.reply_to_message.photo:
@@ -689,4 +689,4 @@ async def _(c: user, m):
                 f"{em.sukses} Berhasil mengubah video menjadi foto grup!"
             )
     else:
-        return await m.reply_text(f"{em.gaga} Balas ke media!")
+        return await m.reply_text(f"{em.gagal} Balas ke media!")
