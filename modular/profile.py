@@ -26,7 +26,7 @@ Help Command Profile
 
 
 from pyrogram import *
-
+import os
 from Mix import *
 
 
@@ -163,13 +163,14 @@ async def _(c: user, m):
     try:
         if replied.photo:
             media = replied.photo.file_id
-            pat = await c.dl_pic(media)
+            pat = await c.download_media(media, file_name=f"{user.me.id}.jpg")
             await c.set_profile_photo(photo=pat)
         elif replied.video:
             media = replied.video.file_id
-            pat = await c.dl_pic(media)
+            pat = await c.download_media(media, file_name=f"{user.me.id}.mp4")
             await c.set_profile_photo(video=pat)
         await m.reply("**Foto Profil anda Berhasil Diubah.**")
+        os.remove(pat)
     except Exception as e:
         return await m.reply(f"{em.gagal} Errror : `{e}`")
 
