@@ -128,31 +128,16 @@ async def list_admins(chat: int):
 
 @ky.ubot("purge", sudo=True)
 async def _(c: user, m):
-    em = Emojik()
-    em.initialize()
-    repliedmsg = m.reply_to_message
     await m.delete()
-
-    if not repliedmsg:
+    if not m.reply_to_message:
         return
-
-    cmd = m.command
-    if len(cmd) > 1 and cmd[1].isdigit():
-        purge_to = repliedmsg.id + int(cmd[1])
-        if purge_to > m.id:
-            purge_to = m.id
-    else:
-        purge_to = m.id
-
     chat_id = m.chat.id
     message_ids = []
-
     for message_id in range(
-        repliedmsg.id,
-        purge_to,
+        m.reply_to_message.id,
+        m.id,
     ):
         message_ids.append(message_id)
-
         if len(message_ids) == 100:
             await c.delete_messages(
                 chat_id=chat_id,
@@ -160,13 +145,13 @@ async def _(c: user, m):
                 revoke=True,
             )
             message_ids = []
-
     if len(message_ids) > 0:
         await c.delete_messages(
             chat_id=chat_id,
             message_ids=message_ids,
             revoke=True,
         )
+
 
 
 @ky.ubot("kick|delkick", sudo=True)
