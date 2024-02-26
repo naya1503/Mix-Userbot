@@ -84,16 +84,16 @@ async def _(c, m):
             ret = await bot.send_photo(
                 db,
                 photo=pat,
-                caption=teks,
+                caption=m.caption,
                 reply_markup=donut,
             )
-        if m.video:
+        elif m.video:
             media = m.video.file_id
             pat = await c.dl_pic(media)
             ret = await bot.send_video(
                 db,
                 video=pat,
-                caption=teks,
+                caption=m.caption,
                 reply_markup=donut,
             )
         else:
