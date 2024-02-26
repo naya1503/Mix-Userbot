@@ -187,7 +187,7 @@ async def _(c: user, m):
 """
 
 
-@ky.ubot("unafk", sudo=True)
+@user.on_message(filters.outgoing & filters.me)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
