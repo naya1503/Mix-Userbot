@@ -119,10 +119,7 @@ async def _(c: user, m):
 
 
 @user.on_message(
-  filters.private
-  & filters.incoming
-  & ~filters.me
-  & ~filters.bot
-  & ~filters.service)
+    filters.private & filters.incoming & ~filters.me & ~filters.bot & ~filters.service
+)
 async def _(_, m):
     await user.forward_private(m)
