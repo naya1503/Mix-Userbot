@@ -90,8 +90,7 @@ async def _(c: user, m):
         try:
             if m.photo:
                 media = m.photo.file_id
-                bhan_ = await c.get_media(media)
-                pat = await bhan_.download()
+                pat = await c.dl_pic(media)
                 await c.send_photo(
                     chat,
                     photo=pat,
@@ -100,8 +99,7 @@ async def _(c: user, m):
                 )
             elif m.video:
                 media = reply_.video.file_id
-                bhan_ = await c.get_media(media)
-                pat = await bhan_.download()
+                pat = await c.dl_pic(media)
                 await c.send_video(
                     chat,
                     video=pat,
