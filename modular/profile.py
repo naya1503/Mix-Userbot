@@ -1,5 +1,3 @@
-
-
 __modles__ = "Profile"
 __help__ = """
 Help Command Profile
@@ -26,10 +24,10 @@ Help Command Profile
 • Penjelasan: Untuk buka blokir pengguna.
 """
 
-from Mix import *
+
 from pyrogram import *
-import os
-import asyncio
+
+from Mix import *
 
 
 @ky.ubot("unblock", sudo=True)
@@ -39,13 +37,16 @@ async def _(c: user, m):
     user_id = c.extract_user(m)
     tex = await m.reply(f"{em.proses} Processing...")
     if not user_id:
-        return await tex.edit(f"{em.gagal} Silahkan balas pesan pengguna atau berikan username.")
+        return await tex.edit(
+            f"{em.gagal} Silahkan balas pesan pengguna atau berikan username."
+        )
     if user_id == c.me.id:
         return
     await c.unblock_user(user_id)
     umention = (await c.get_users(user_id)).mention
     await tex.edit(f"{em.sukses} Berhasil membuka blokir {umention}")
     return
+
 
 @ky.ubot("block", sudo=True)
 async def _(c: user, m):
@@ -54,7 +55,9 @@ async def _(c: user, m):
     user_id = await c.extract_user(message)
     tex = await m.reply(f"{em.proses} Processing...")
     if not user_id:
-        return await tex.edit(f"{em.gagal} Silahkan balas pesan pengguna atau berikan username.")
+        return await tex.edit(
+            f"{em.gagal} Silahkan balas pesan pengguna atau berikan username."
+        )
     if user_id == c.me.id:
         return
     await c.block_user(user_id)
@@ -76,8 +79,7 @@ async def _(c: user, m):
         name = c.get_arg(m)
     try:
         await c.update_profile(first_name=name)
-        await tex.edit(f"{em.sukses} Berhasil mengganti nama menjadi {name}."
-            )
+        await tex.edit(f"{em.sukses} Berhasil mengganti nama menjadi {name}.")
         return
     except Exception as e:
         await tex.edit(f"{em.gagal} Error : `{e}`\n\nLaporke @KynanSupport!")
@@ -98,8 +100,7 @@ async def _(c: user, m):
         bio = c.get_arg(m)
     try:
         await c.update_profile(bio=bio)
-        await tex.edit(f"{em.sukses} Berhasil mengganti bio menjadi {bio}."
-            )
+        await tex.edit(f"{em.sukses} Berhasil mengganti bio menjadi {bio}.")
         return
     except Exception as e:
         await tex.edit(f"{em.gagal} Error : `{e}`\n\nLaporke @KynanSupport!")
@@ -157,7 +158,6 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    po = "Mix/core/bahan2.png"
     replied = m.reply_to_message
     media = None
     if replied.photo:
@@ -170,20 +170,15 @@ async def _(c: user, m):
         await c.set_profile_photo(video=pat)
     await m.reply("**Foto Profil anda Berhasil Diubah.**")
     return
-  
-  
-  
+
+
 @ky.ubot("purgeme", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.command) != 2:
         return await m.delete()
-    n = (
-        m.reply_to_message
-        if m.reply_to_message
-        else m.text.split(None, 1)[1].strip()
-    )
+    n = m.reply_to_message if m.reply_to_message else m.text.split(None, 1)[1].strip()
     if not n.isnumeric():
         return
     n = int(n)
