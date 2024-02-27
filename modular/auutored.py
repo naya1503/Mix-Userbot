@@ -45,42 +45,22 @@ async def _(c, m):
     biji, peler = m.command[:2]
     if peler.lower() == "gc":
         for gc in bcgc:
-            try:
-                await user.read_chat_history(gc, max_id=0)
-            except FloodWait as e:
-                await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
-                await asyncio.sleep(int(e.value))
-                await user.read_chat_history(gc, max_id=0)
+            await user.read_chat_history(gc, max_id=0)
             await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
             return
     elif peler.lower() == "us":
         for us in bcus:
-            try:
-                await user.read_chat_history(us, max_id=0)
-            except FloodWait as e:
-                await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
-                await asyncio.sleep(int(e.value))
-                await user.read_chat_history(us, max_id=0)
+            await user.read_chat_history(us, max_id=0)
             await mek.edit(f"{em.sukses} Berhasil membaca {len(bcus)} pesan pengguna.")
             return
     elif peler.lower() == "ch":
         for ch in bcch:
-            try:
-                await user.read_chat_history(ch, max_id=0)
-            except FloodWait as e:
-                await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
-                await asyncio.sleep(int(e.value))
-                await user.read_chat_history(ch, max_id=0)
+            await user.read_chat_history(ch, max_id=0)
             await mek.edit(f"{em.sukses} Berhasil membaca {len(bcch)} pesan channel.")
             return
     elif peler.lower() == "all":
         for aih in bcall:
-            try:
-                await user.read_chat_history(aih, max_id=0)
-            except FloodWait as e:
-                await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
-                await asyncio.sleep(int(e.value))
-                await user.read_chat_history(aih, max_id=0)
+            await user.read_chat_history(aih, max_id=0)
             await mek.edit(
                 f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda."
             )
