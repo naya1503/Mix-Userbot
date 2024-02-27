@@ -393,11 +393,7 @@ async def _(c: user, m):
     list_of_admins = await member_permissions(m.chat.id, user_id)
     linked_chat = (await c.get_chat(m.chat.id)).linked_chat
     if linked_chat is not None:
-        if (
-            list_of_admins
-            or reply_id == m.chat.id
-            or reply_id == linked_chat.id
-        ):
+        if list_of_admins or reply_id == m.chat.id or reply_id == linked_chat.id:
             return await m.reply_text(f"{em.gagal} Dia adalah admin!")
     else:
         if list_of_admins or reply_id == m.chat.id:
