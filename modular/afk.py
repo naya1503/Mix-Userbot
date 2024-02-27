@@ -198,7 +198,7 @@ async def _(c: user, m):
 """
 
 
-@user.on_message(filters.outgoing & filters.me)
+@user.on_message(filters.outgoing)
 async def _(c, m):
     em = Emojik()
     em.initialize()
