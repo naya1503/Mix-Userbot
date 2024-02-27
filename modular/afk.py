@@ -198,7 +198,7 @@ async def _(c: user, m):
 """
 
 
-@user.on_message(filters.outgoing)
+@ky.ubot("unafk", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -295,7 +295,6 @@ async def _(c, m):
 # @user.on_message(filters.mentioned & filters.incoming & ~filters.bot)
 @user.on_message(
     (filters.mentioned | filters.private)
-    & ~filters.me
     & ~filters.bot
     & filters.incoming
 )
