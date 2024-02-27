@@ -171,7 +171,7 @@ async def _(c: user, m):
 
     udB.add_afk(user_id, details)
     formatted_text = "{a} Sekarang Afk!!".format(
-        a=em.warn,
+        a=em.sukses,
     )
     send = await m.reply_text(formatted_text)
     await put_cleanmode(c.me.id, send.id)
@@ -189,7 +189,7 @@ async def _(c: user, m):
     state = state.lower()
     if state == "on":
         udB.cleanmode_on(chat_id)
-        await m.reply_text(f"{em.warn} Afk Delete Diaktifkan!")
+        await m.reply_text(f"{em.sukses} Afk Delete Diaktifkan!")
     elif state == "off":
         udB.cleanmode_off(chat_id)
         await m.reply_text(f"{em.gagal} Afk Delete Dinonaktifkan!")
@@ -216,16 +216,17 @@ async def _(c, m):
                 send = (
                     await m.reply_animation(
                         data,
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn,
+                        caption="**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**".format(
+                            a=em.sukses,
+                            b=em.warn,
                             c=seenago,
                         ),
                     )
                     if str(reasonafk) == "None"
                     else await m.reply_animation(
                         data,
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.warn, c=seenago, d=reasonafk
+                        caption="**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                            a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                         ),
                     )
                 )
@@ -233,16 +234,18 @@ async def _(c, m):
                 send = (
                     await m.reply_photo(
                         photo=f"downloads/{user_id}.jpg",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn,
+                        caption="**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**".format(
+                            a=em.sukses,
+                            b=em.warn,
                             c=seenago,
                         ),
                     )
                     if str(reasonafk) == "None"
                     else await m.reply_photo(
                         photo=f"downloads/{user_id}.jpg",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.warn,
+                        caption="**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                            a=em.sukses,
+                            b=em.warn
                             c=seenago,
                             d=reasonafk,
                         ),
@@ -252,16 +255,18 @@ async def _(c, m):
                 send = (
                     await m.reply_video(
                         video=f"downloads/{user_id}.mp4",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                            a=em.warn,
+                        caption="**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**".format(
+                            a=em.sukses,
+                            b=em.warn,
                             c=seenago,
                         ),
                     )
                     if str(reasonafk) == "None"
                     else await m.reply_video(
                         video=f"downloads/{user_id}.mp4",
-                        caption="**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                            a=em.warn,
+                        caption="**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                            a=em.sukses,
+                            b=em.warn,
                             c=seenago,
                             d=reasonafk,
                         ),
@@ -269,21 +274,21 @@ async def _(c, m):
                 )
             elif afktype == "text":
                 send = await m.reply_text(
-                    "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**".format(
-                        a=em.warn, c=seenago
+                    "**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**".format(
+                        a=em.sukses, b=em.warn, c=seenago
                     ),
                     disable_web_page_preview=True,
                 )
             elif afktype == "text_reason":
                 send = await m.reply_text(
-                    "**{a} Online kembali!\nDurasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
-                        a=em.warn, c=seenago, d=reasonafk
+                    "**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
+                        a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                     ),
                 )
         except Exception:
             send = await m.reply_text(
                 "**{a} Sedang AFK sejak : `{c}` yang lalu.**".format(
-                    a=em.warn,
+                    a=em.sukses,
                     c=seenago,
                 ),
                 disable_web_page_preview=True,
@@ -310,25 +315,25 @@ async def _(c, m):
             seenago = await get_time((int(time.time() - timeafk)))
             if afktype == "text":
                 msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
-                    a=em.warn, c=seenago
+                    a=em.sukses, c=seenago
                 )
             if afktype == "text_reason":
-                msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
-                    a=em.warn, c=seenago, d=reasonafk
+                msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                    a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                 )
             if afktype == "animation":
                 if str(reasonafk) == "None":
                     send = await m.reply_animation(
                         data,
                         caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
-                            a=em.warn, c=seenago
+                            a=em.sukses, c=seenago
                         ),
                     )
                 else:
                     send = await m.reply_animation(
                         data,
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
-                            a=em.warn, c=seenago, d=reasonafk
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                            a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                         ),
                     )
             if afktype == "photo":
@@ -336,14 +341,14 @@ async def _(c, m):
                     send = await m.reply_photo(
                         photo=f"downloads/{c.me.id}.jpg",
                         caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
-                            a=em.warn, c=seenago
+                            a=em.sukses, c=seenago
                         ),
                     )
                 else:
                     send = await m.reply_photo(
                         photo=f"downloads/{c.me.id}.jpg",
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
-                            a=em.warn, c=seenago, d=reasonafk
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                            a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                         ),
                     )
             if afktype == "video":
@@ -351,19 +356,19 @@ async def _(c, m):
                     send = await m.reply_video(
                         video=f"downloads/{c.me.id}.mp4",
                         caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
-                            a=em.warn, c=seenago
+                            a=em.sukses, c=seenago
                         ),
                     )
                 else:
                     send = await m.reply_video(
                         video=f"downloads/{c.me.id}.mp4",
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
-                            a=em.warn, c=seenago, d=reasonafk
+                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                            a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                         ),
                     )
         except Exception:
-            msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n **Alasan:** `{d}`".format(
-                a=em.warn, c=seenago, d=reasonafk
+            msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                a=em.sukses, b=em.warn, c=seenago, d=reasonafk
             )
     if msg != "":
         try:
