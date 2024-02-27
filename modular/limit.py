@@ -13,7 +13,7 @@ Help Command Spambot
 """
 
 
-@ky.ubot("limit")
+@ky.ubot("limit", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
