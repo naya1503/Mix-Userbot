@@ -492,7 +492,7 @@ async def _(c: user, m):
     if not bot.privileges.can_promote_members:
         await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
         return
-    diadm = await member_permissions(m.chat.id, user_id)
+    await member_permissions(m.chat.id, user_id)
     if diaadm:
         await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
         return
