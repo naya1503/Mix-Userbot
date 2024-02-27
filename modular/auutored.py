@@ -21,9 +21,7 @@ __help__ = """
 - `all` untuk membaca semua pesan gc, ch, us diakun anda.
 """
 
-import asyncio
 
-from pyrogram.errors import FloodWait
 
 from Mix import *
 
