@@ -20,15 +20,15 @@ from Mix import *
 from Mix.core.http import post
 
 
-async def quotly(messages):
-    if not isinstance(messages, list):
-        messages = [messages]
+async def quotly(ms):
+    if not isinstance(ms, list):
+        ms = [ms]
 
         payload = {
             "type": "quote",
             "format": "png",
             "backgroundColor": "#1b1429",
-            "messages": [
+            "ms": [
                 {
                     "entities": (
                         [
@@ -96,11 +96,11 @@ async def quotly(messages):
                             if m.reply_to_message
                             else {}
                         )
-                        if len(messages) == 1
+                        if len(ms) == 1
                         else {}
                     ),
                 }
-                for message in messages
+                for m in ms
             ],
         }
         response = await post("quotly", params={"payload": str(payload)})
