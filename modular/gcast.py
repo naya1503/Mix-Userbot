@@ -65,9 +65,6 @@ async def _(c: user, m):
                     await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(2)
-            except Exception as rr:
-                err += f"• {rr}\n"
-                failed += 1
             except SlowmodeWait:
                 continue
             except FloodWait as e:
@@ -77,6 +74,10 @@ async def _(c: user, m):
                 else:
                     await c.send_message(chat, send)
                 done += 1
+            except Exception as rr:
+                err += f"• {rr}\n"
+                failed += 1
+            
     return await msg.edit(
         f"""
 {em.alive} Broadcast Message Sent :
