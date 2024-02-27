@@ -294,9 +294,7 @@ async def _(c, m):
 
 # @user.on_message(filters.mentioned & filters.incoming & ~filters.bot)
 @user.on_message(
-    (filters.mentioned | filters.private)
-    & ~filters.bot
-    & filters.incoming
+    (filters.mentioned | filters.private) & ~filters.bot & filters.incoming
 )
 async def _(c, m):
     em = Emojik()
