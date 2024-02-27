@@ -34,7 +34,7 @@ async def isAfk_(filter, c, m):
         return bool(False)
 
 
-isAfk = filters.create(isAfk_)
+#isAfk = filters.create(isAfk_)
 
 
 @ky.ubot("afk", sudo=True)
@@ -198,7 +198,7 @@ async def _(c: user, m):
 """
 
 
-@user.on_message(filters.outgoing & filters.me & isAfk)
+@user.on_message(filters.outgoing & filters.me)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -294,7 +294,6 @@ async def _(c: user, m):
 
 # @user.on_message(filters.mentioned & filters.incoming & ~filters.bot)
 @user.on_message(
-    isAfk
     & (filters.mentioned | filters.private)
     & ~filters.me
     & ~filters.bot
