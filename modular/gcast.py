@@ -77,7 +77,7 @@ async def _(c: user, m):
             except Exception as rr:
                 err += f"• {rr}\n"
                 failed += 1
-            
+
     return await msg.edit(
         f"""
 {em.alive} Broadcast Message Sent :
