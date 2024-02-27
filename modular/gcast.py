@@ -53,9 +53,10 @@ async def _(c: user, m):
         return await msg.edit(f"{em.gagal} Silakan balas ke pesan atau berikan pesan.")
     chats = await c.get_user_dialog("group")
     blacklist = udB.get_chat(c.me.id)
-    done = 0
-    failed = 0
     for chat in chats:
+        done = 0
+        failed = 0
+        err = ""
         if chat not in blacklist and chat not in NO_GCAST:
             try:
                 if m.reply_to_message:
@@ -64,7 +65,8 @@ async def _(c: user, m):
                     await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(2)
-            except Exception:
+            except Exception as rr:
+                err += f"• {rr}\n"
                 failed += 1
             except SlowmodeWait:
                 continue
@@ -79,7 +81,7 @@ async def _(c: user, m):
         f"""
 {em.alive} Broadcast Message Sent :
 {em.sukses} Success in <code>{done}</code> Group.
-{em.gagal} Failed at <code>{failed}</code> Group.""",
+{em.gagal} Failed at <code>{failed}</code> Group.\n\nAlasan Gagal : {err}""",
     )
 
 
