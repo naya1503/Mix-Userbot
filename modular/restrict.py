@@ -166,9 +166,9 @@ async def _(c: user, m):
         return await m.reply_text(
             f"{em.gagal} Oh anda ingin menendang Developer Mix-Userbot ?"
         )
-    diaadm = member_permissions(m.chat.id, user_id)
-    if diaadm:
-        return await m.reply_text(f"{em.gagal} Tidak dapat menendang admin!")
+    
+    #if diaadm:
+        #return await m.reply_text(f"{em.gagal} Tidak dapat menendang admin!")
     mention = (await c.get_users(user_id)).mention
     msg = f"""
 {em.profil} **Kicked User:** {mention}
