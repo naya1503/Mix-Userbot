@@ -177,9 +177,7 @@ async def _(c: user, m):
     try:
         await m.chat.ban_member(user_id)
     except UserAdminInvalid:
-        return await m.reply_text(
-            f"{em.gagal} Anda tidak berhak mengeluarkan dia!"
-        )
+        return await m.reply_text(f"{em.gagal} Anda tidak berhak mengeluarkan dia!")
     await m.reply_text(msg)
     await asyncio.sleep(1)
     await m.chat.unban_member(user_id)
@@ -215,9 +213,7 @@ async def _(c: user, m):
     try:
         await m.chat.ban_member(user_id)
     except UserAdminInvalid:
-        return await m.reply_text(
-            f"{em.gagal} Anda tidak berhak mengeluarkan dia!"
-        )
+        return await m.reply_text(f"{em.gagal} Anda tidak berhak mengeluarkan dia!")
     await m.reply_text(msg)
 
 
