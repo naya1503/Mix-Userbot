@@ -20,14 +20,10 @@ from Mix import *
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    # if len(m.command) == 1:
-    # await m.reply(f"{em.gagal} Silahkan berikan link atau belas pesan tautan!")
-    # return
-
-    if len(m.command) > 1:
-        lonk = m.text.split(None, 1)[1]
-    else:
-        lonk = c.get_arg(m)
+    if len(m.command) == 1:
+        await m.reply(f"{em.gagal} Silahkan berikan link tautan!")
+    return
+    lonk = m.text.split(None, 1)[1]
     try:
         linkk = f"https://mini.s-shot.ru/1920x1080/JPEG/1024/Z100/?{lonk}"
         pat = await c.download_media(linkk, file_name="webshot.jpg")
