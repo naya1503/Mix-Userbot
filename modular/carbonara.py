@@ -15,7 +15,7 @@ __modles__ = "Carbon"
 __help__ = """
  Help Command Carbon
 
-• Perintah: <code>{0} carbon</code
+• Perintah: <code>{0} carbon</code>
 • Penjelasan: Untuk membuat teks carbonara.
 """
 
