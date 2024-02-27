@@ -21,11 +21,9 @@ __help__ = """
 - `all` untuk membaca semua pesan gc, ch, us diakun anda.
 """
 
-import asyncio
-
-from pyrogram.errors import FloodWait
-
 from Mix import *
+import asyncio
+from pyrogram.errors import FloodWait
 
 
 @ky.ubot("autoread", sudo=True)
@@ -46,41 +44,41 @@ async def _(c: user, m):
     if peler.lower() == "gc":
         for gc in bcgc:
             try:
-                await c.read_chat_history(gc)
+                await c.read_chat_history(gc, max_id=0)
             except FloodWait as e:
                 await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
                 await asyncio.sleep(int(e.value))
-                await c.read_chat_history(gc)
+                await c.read_chat_history(gc, max_id=0)
             await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
             return
     elif peler.lower() == "us":
         for us in bcus:
             try:
-                await c.read_chat_history(us)
+                await c.read_chat_history(us, max_id=0)
             except FloodWait as e:
                 await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
                 await asyncio.sleep(int(e.value))
-                await c.read_chat_history(us)
+                await c.read_chat_history(us, max_id=0)
             await mek.edit(f"{em.sukses} Berhasil membaca {len(bcus)} pesan pengguna.")
             return
     elif peler.lower() == "ch":
         for ch in bcch:
             try:
-                await c.read_chat_history(ch)
+                await c.read_chat_history(ch, max_id=0)
             except FloodWait as e:
                 await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
                 await asyncio.sleep(int(e.value))
-                await c.read_chat_history(ch)
+                await c.read_chat_history(ch, max_id=0)
             await mek.edit(f"{em.sukses} Berhasil membaca {len(bcch)} pesan channel.")
             return
     elif peler.lower() == "all":
         for aih in bcall:
             try:
-                await c.read_chat_history(aih)
+                await c.read_chat_history(aih, max_id=0)
             except FloodWait as e:
                 await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
                 await asyncio.sleep(int(e.value))
-                await c.read_chat_history(aih)
+                await c.read_chat_history(aih, max_id=0)
             await mek.edit(
                 f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda."
             )
