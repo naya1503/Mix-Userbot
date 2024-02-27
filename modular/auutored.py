@@ -59,8 +59,8 @@ async def _(c, m):
         for aih in bcall:
             await user.read_chat_history(aih, max_id=0)
         await mek.edit(
-                f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda."
-            )
+            f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda."
+        )
         return
     else:
         await mek.edit(f"{em.gagal} Sepertinya anda memasukkan query yang salah!")
