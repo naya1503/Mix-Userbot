@@ -26,7 +26,7 @@ Help Command Profile
 
 
 import os
-
+from io import BytesIO
 from pyrogram import *
 
 from Mix import *
@@ -72,19 +72,25 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     tex = await m.reply(f"{em.proses} Processing...")
-    if len(m.command) == 1:
-        return await tex.edit(f"{em.gagal} Provide text to set as your name.")
-    name = None
-    if len(m.command) > 1:
-        name = m.text.split(None, 1)[1]
-    else:
-        name = c.get_arg(m)
-    try:
+    direp = m.reply_to_message
+    if direp:
+        name = direp.text
         await c.update_profile(first_name=name)
         await tex.edit(f"{em.sukses} Berhasil mengganti nama menjadi {name}.")
         return
-    except Exception as e:
-        await tex.edit(f"{em.gagal} Error : `{e}`\n\nLaporke @KynanSupport!")
+    if len(m.command) == 2:
+        name = m.text.split(None, 1)[1]
+        await c.update_profile(first_name=name)
+        await tex.edit(f"{em.sukses} Berhasil mengganti nama menjadi {name}.")
+        return
+    elif len(m.command) == 3:
+        name = m.text.split(None, 2)[1]
+        last = m.text.split(None, 2)[2]
+        await c.update_profile(first_name=name, last_name=last)
+        await tex.edit(f"{em.sukses} Berhasil mengganti nama depan `{name}` nama belakang `{last}.")
+        return
+    else:
+        await tex.edit(f"{em.gagal} Silahkan berikan teks atau balas teks!")
         return
 
 
@@ -93,13 +99,11 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     tex = await m.reply("Processing...")
-    if len(m.command) == 1:
-        return await tex.edit("Provide text to set as bio.")
-    bio = None
-    if len(m.command) > 1:
-        bio = m.text.split(None, 1)[1]
+    direp = m.reply_to_message
+    if direp:
+        bio = direp.text
     else:
-        bio = c.get_arg(m)
+        bio = m.text.split(None, 1)[1]
     try:
         await c.update_profile(bio=bio)
         await tex.edit(f"{em.sukses} Berhasil mengganti bio menjadi {bio}.")
