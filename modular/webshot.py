@@ -13,11 +13,11 @@ __help__ = """
 • Penjelasan : Untuk mengambil tangkapan layar link.
 """
 
-import os
-
 from Mix import *
 from Mix.core.http import post
-
+import os
+from io import BytesIO
+from base64 import b64decode
 
 async def ss(url, full: bool = False):
     url = "https://" + url if not url.startswith("http") else url
@@ -40,7 +40,6 @@ async def ss(url, full: bool = False):
     file = BytesIO(b64decode(b))
     file.name = "webss.jpg"
     return file
-
 
 @ky.ubot("webss|webshot|ss", sudo=True)
 async def _(c: user, m):
