@@ -8,10 +8,10 @@
 
 import time
 
-from pyrogram import *
+from pyrogram import filters
 from pyrogram.types import *
 
-from Mix import *
+from Mix import Emojik, user, ky, udB
 from Mix.core.waktu import get_time, put_cleanmode
 
 __modles__ = "Afk"
@@ -25,6 +25,16 @@ __help__ = """
 • Penjelasan : Untuk mengaktifkan hapus otomatis pesan afk anda.
 """
 
+async def isAfk_(filter, c, m):
+    user_id = user.me.id
+    af_k_c = udB.is_afk(user_id)
+    if af_k_c:
+        return bool(True)
+    else:
+        return bool(False)
+
+
+isAfk = filters.create(isAfk_)
 
 @ky.ubot("afk", sudo=True)
 async def _(c: user, m):
@@ -187,7 +197,7 @@ async def _(c: user, m):
 """
 
 
-@ky.ubot("unafk", sudo=True)
+@user.on_message(filters.outgoing & filters.me & isAfk)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -281,7 +291,14 @@ async def _(c: user, m):
         return
 
 
-@user.on_message(filters.mentioned & filters.incoming & ~filters.bot)
+#@user.on_message(filters.mentioned & filters.incoming & ~filters.bot)
+@user.on_message(
+    isAfk
+    & (filters.mentioned | filters.private)
+    & ~filters.me
+    & ~filters.bot
+    & filters.incoming
+)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
