@@ -23,6 +23,7 @@ __help__ = """
 
 from Mix import *
 
+
 @ky.ubot("autoread", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -39,45 +40,47 @@ async def _(c: user, m):
     bcall = await c.get_user_dialog("allread")
     biji, peler = m.command[:2]
     if peler.lower() == "gc":
-          for gc in bcgc:
-              try:
-                  await c.read_chat_history(gc)
-              except FloodWait as e:
-                  await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
-                  await asyncio.sleep(int(e.value))
-                  await c.read_chat_history(gc)
-              await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
-              return
+        for gc in bcgc:
+            try:
+                await c.read_chat_history(gc)
+            except FloodWait as e:
+                await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
+                await asyncio.sleep(int(e.value))
+                await c.read_chat_history(gc)
+            await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
+            return
     elif peler.lower() == "us":
-          for us in bcus:
-              try:
-                  await c.read_chat_history(us)
-              except FloodWait as e:
-                  await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
-                  await asyncio.sleep(int(e.value))
-                  await c.read_chat_history(us)
-              await mek.edit(f"{em.sukses} Berhasil membaca {len(us)} pesan pengguna.")
-              return
+        for us in bcus:
+            try:
+                await c.read_chat_history(us)
+            except FloodWait as e:
+                await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
+                await asyncio.sleep(int(e.value))
+                await c.read_chat_history(us)
+            await mek.edit(f"{em.sukses} Berhasil membaca {len(us)} pesan pengguna.")
+            return
     elif peler.lower() == "ch":
-          for ch in bcch:
-              try:
-                  await c.read_chat_history(ch)
-              except FloodWait as e:
-                  await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
-                  await asyncio.sleep(int(e.value))
-                  await c.read_chat_history(ch)
-              await mek.edit(f"{em.sukses} Berhasil membaca {len(us)} pesan channel.")
-              return
+        for ch in bcch:
+            try:
+                await c.read_chat_history(ch)
+            except FloodWait as e:
+                await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
+                await asyncio.sleep(int(e.value))
+                await c.read_chat_history(ch)
+            await mek.edit(f"{em.sukses} Berhasil membaca {len(us)} pesan channel.")
+            return
     elif peler.lower() == "all":
-          for aih in bcall:
-              try:
-                  await c.read_chat_history(aih)
-              except FloodWait as e:
-                  await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
-                  await asyncio.sleep(int(e.value))
-                  await c.read_chat_history(aih)
-              await mek.edit(f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda.")
-              return
+        for aih in bcall:
+            try:
+                await c.read_chat_history(aih)
+            except FloodWait as e:
+                await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
+                await asyncio.sleep(int(e.value))
+                await c.read_chat_history(aih)
+            await mek.edit(
+                f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda."
+            )
+            return
     else:
         await mek.edit(f"{em.gagal} Sepertinya anda memasukkan query yang salah!")
         return
