@@ -40,28 +40,28 @@ async def _(c, m):
         bcgc = await user.get_user_dialog("group")
         for gc in bcgc:
             await user.read_chat_history(gc, max_id=0)
-            await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
-            return
+        await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
+        return
     elif peler.lower() == "us":
         bcus = await user.get_user_dialog("users")
         for us in bcus:
             await user.read_chat_history(us, max_id=0)
-            await mek.edit(f"{em.sukses} Berhasil membaca {len(bcus)} pesan pengguna.")
-            return
+        await mek.edit(f"{em.sukses} Berhasil membaca {len(bcus)} pesan pengguna.")
+        return
     elif peler.lower() == "ch":
         bcch = await user.get_user_dialog("ch")
         for ch in bcch:
             await user.read_chat_history(ch, max_id=0)
-            await mek.edit(f"{em.sukses} Berhasil membaca {len(bcch)} pesan channel.")
-            return
+        await mek.edit(f"{em.sukses} Berhasil membaca {len(bcch)} pesan channel.")
+        return
     elif peler.lower() == "all":
         bcall = await user.get_user_dialog("allread")
         for aih in bcall:
             await user.read_chat_history(aih, max_id=0)
-            await mek.edit(
+        await mek.edit(
                 f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda."
             )
-            return
+        return
     else:
         await mek.edit(f"{em.gagal} Sepertinya anda memasukkan query yang salah!")
         return
