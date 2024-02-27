@@ -14,21 +14,69 @@ __help__ = """
 """
 
 from Mix import *
+from Mix.core.http import post
 
+
+async def ss(url, full: bool = False):
+    url = "https://" + url if not url.startswith("http") else url
+    payload = {
+        "url": url,
+        "width": 1920,
+        "height": 1080,
+        "scale": 1,
+        "format": "jpeg",
+    }
+    if full:
+        payload["full"] = True
+    data = await post(
+        "https://webscreenshot.vercel.app/api",
+        data=payload,
+    )
+    if "image" not in data:
+        return None
+    b = data["image"].replace("data:image/jpeg;base64,", "")
+    file = BytesIO(b64decode(b))
+    file.name = "webss.jpg"
+    return file
 
 @ky.ubot("webss|webshot|ss", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    if len(m.command) == 1:
+    if len(m.command) < 2:
         await m.reply(f"{em.gagal} Silahkan berikan link tautan!")
-    return
-    lonk = m.text.split(None, 1)[1]
+
+    if len(m.command) == 2:
+        url = m.text.split(None, 1)[1]
+        full = False
+    elif len(m.command) == 3:
+        url = m.text.split(None, 2)[1]
+        full = m.text.split(None, 2)[2].lower().strip() in [
+            "yes",
+            "y",
+            "1",
+            "true",
+        ]
+    else:
+        await m.reply(f"{em.gagal} Berikan link yang valid!")
+        return
+
+    tit = await m.reply(f"{em.proses} Processing...")
+
     try:
-        linkk = f"https://mini.s-shot.ru/1920x1080/JPEG/1024/Z100/?{lonk}"
-        pat = await c.download_media(linkk, file_name="webshot.jpg")
-        await m.reply_photo(photo=pat)
-        os.remove(pat)
+        photo = await ss(url, full)
+        if not photo:
+            await tit.edit(f"{em.gagal} Gagal mendapatkan gambar!")
+            return
+        await tit.delete()
+
+        tot = await m.reply(f"{em.proses} Uploading...")
+
+        if not full:
+            await m.reply_photo(photo)
+        else:
+            await m.reply_document(photo)
+        await tot.delete()
     except Exception as r:
         await m.reply(f"{em.gagal} Error : `{r}`\n\nLaporke @KynanSupport!")
         return
