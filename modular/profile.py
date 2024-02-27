@@ -27,6 +27,7 @@ Help Command Profile
 
 import os
 from io import BytesIO
+
 from pyrogram import *
 
 from Mix import *
@@ -87,7 +88,9 @@ async def _(c: user, m):
         name = m.text.split(None, 2)[1]
         last = m.text.split(None, 2)[2]
         await c.update_profile(first_name=name, last_name=last)
-        await tex.edit(f"{em.sukses} Berhasil mengganti nama depan `{name}` nama belakang `{last}.")
+        await tex.edit(
+            f"{em.sukses} Berhasil mengganti nama depan `{name}` nama belakang `{last}."
+        )
         return
     else:
         await tex.edit(f"{em.gagal} Silahkan berikan teks atau balas teks!")
