@@ -44,9 +44,7 @@ async def _(c: user, m):
             f"{em.gagal} Silahkan balas pesan pengguna atau berikan username."
         )
     if user_id == c.me.id:
-        return await tex.edit(
-            f"{em.gagal} Ya anda gile."
-        )
+        return await tex.edit(f"{em.gagal} Ya anda gile.")
     await c.unblock_user(user_id)
     umention = (await c.get_users(user_id)).mention
     await tex.edit(f"{em.sukses} Berhasil membuka blokir {umention}")
@@ -64,9 +62,7 @@ async def _(c: user, m):
             f"{em.gagal} Silahkan balas pesan pengguna atau berikan username."
         )
     if user_id == c.me.id:
-        return await tex.edit(
-            f"{em.gagal} Ya anda gile."
-        )
+        return await tex.edit(f"{em.gagal} Ya anda gile.")
     await c.block_user(user_id)
     umention = (await c.get_users(user_id)).mention
     await tex.edit(f"{em.sukses} Berhasil memblokir {umention}")
