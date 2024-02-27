@@ -42,19 +42,13 @@ async def quotly(messages):
                         if m.entities
                         else []
                     ),
-                    "chatId": (
-                        m.forward_from.id
-                        if m.forward_from
-                        else m.from_user.id
-                    ),
+                    "chatId": (m.forward_from.id if m.forward_from else m.from_user.id),
                     "avatar": True,
                     "from": (
                         {
                             "id": m.from_user.id,
                             "username": (
-                                m.from_user.username
-                                if m.from_user.username
-                                else ""
+                                m.from_user.username if m.from_user.username else ""
                             ),
                             "photo": (
                                 {
