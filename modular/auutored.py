@@ -12,13 +12,13 @@ __help__ = """
  Help Command AutoRead
 
 • Perintah : <code>{0}autoread</code> [query]
-• Penjelasan : Untuk membaca semua pesan dalam diakun anda.
+• Penjelasan : Untuk membaca semua pesan diakun anda.
 
 **Notes Optional:**
-- gc untuk membaca semua pesan grup diakun anda.
-- ch untuk membaca semua pesan channel diakun anda.
-- us untuk membaca semua pesan pengguna diakun anda.
-- all untuk membaca semua pesan gc, ch, us diakun anda.
+- `gc` untuk membaca semua pesan grup diakun anda.
+- `ch` untuk membaca semua pesan channel diakun anda.
+- `us` untuk membaca semua pesan pengguna diakun anda.
+- `all` untuk membaca semua pesan gc, ch, us diakun anda.
 """
 
 from Mix import *
