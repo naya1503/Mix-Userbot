@@ -294,7 +294,7 @@ async def _(c: user, m):
 
 # @user.on_message(filters.mentioned & filters.incoming & ~filters.bot)
 @user.on_message(
-    & (filters.mentioned | filters.private)
+    (filters.mentioned | filters.private)
     & ~filters.me
     & ~filters.bot
     & filters.incoming
