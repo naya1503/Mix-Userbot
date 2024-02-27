@@ -82,7 +82,6 @@ async def _(c: user, m):
         else:
             await m.reply_document(photo)
         await tot.delete()
-        os.remove(photo)
         return
     except Exception as r:
         await m.reply(f"{em.gagal} Error : `{r}`\n\nLaporke @KynanSupport!")
