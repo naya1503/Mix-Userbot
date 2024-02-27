@@ -22,6 +22,8 @@ __help__ = """
 """
 
 from Mix import *
+import asyncio
+from pyrogram.errors import FloodWait
 
 
 @ky.ubot("autoread", sudo=True)
