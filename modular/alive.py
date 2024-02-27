@@ -48,7 +48,6 @@ async def _(c, iq):
     else:
         stutas = "<b>Connoisseur</b>"
     cekpr = udB.get_var(user.me.id, "PMPERMIT")
-    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if cekpr:
         pmper = "enable"
     else:
@@ -64,6 +63,7 @@ async def _(c, iq):
       <b>bot_uptime:</b> {upnya}
 """
     bo_ol = [[InlineKeyboardButton(text="Support", url="t.me/kynansupport")]]
+    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if cekpic:
         filem = (
             InlineQueryResultVideo
