@@ -15,7 +15,7 @@ __help__ = """
 
 from Mix import *
 from Mix.core.http import post
-
+import os
 
 async def ss(url, full: bool = False):
     url = "https://" + url if not url.startswith("http") else url
@@ -39,14 +39,13 @@ async def ss(url, full: bool = False):
     file.name = "webss.jpg"
     return file
 
-
 @ky.ubot("webss|webshot|ss", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2:
         await m.reply(f"{em.gagal} Silahkan berikan link tautan!")
-
+        return
     if len(m.command) == 2:
         url = m.text.split(None, 1)[1]
         full = False
@@ -78,6 +77,8 @@ async def _(c: user, m):
         else:
             await m.reply_document(photo)
         await tot.delete()
+        os.remove(photo)
+        return
     except Exception as r:
         await m.reply(f"{em.gagal} Error : `{r}`\n\nLaporke @KynanSupport!")
         return
