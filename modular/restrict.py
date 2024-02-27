@@ -166,7 +166,8 @@ async def _(c: user, m):
         return await m.reply_text(
             f"{em.gagal} Oh anda ingin menendang Developer Mix-Userbot ?"
         )
-    if user_id in (await list_admins(m.chat.id)):
+    diaadm = member_permissions(m.chat.id, user_id)
+    if diaadm:
         return await m.reply_text(f"{em.gagal} Tidak dapat menendang admin!")
     mention = (await c.get_users(user_id)).mention
     msg = f"""
@@ -196,7 +197,8 @@ async def _(c: user, m):
         return await m.reply_text(
             f"{em.gagal} Oh anda ingin memblokir Developer Mix-Userbot ?"
         )
-    if user_id in (await list_admins(m.chat.id)):
+    diaadm = member_permissions(m.chat.id, user_id)
+    if diaadm:
         return await m.reply_text(f"{em.gagal} Tidak dapat memblokir admin!")
     try:
         mention = (await c.get_users(user_id)).mention
@@ -275,7 +277,8 @@ async def _(c: user, m):
         return await m.reply_text(
             f"{em.gagal} Oh anda ingin membisukan Developer Mix-Userbot ?"
         )
-    if user_id in (await list_admins(m.chat.id)):
+    diaadm = member_permissions(m.chat.id, user_id)
+    if diaadm:
         return await m.reply_text(f"{em.gagal} Tidak dapat membisukan admin!")
     mention = (await c.get_users(user_id)).mention
     msg = (
@@ -387,7 +390,7 @@ async def _(c: user, m):
     if reply_id == user_id:
         return await m.reply_text(f"{em.gagal} Kenapa harus melaporkan diri sendiri?")
 
-    list_of_admins = await list_admins(m.chat.id)
+    list_of_admins = await member_permissions(m.chat.id, user_id)
     linked_chat = (await c.get_chat(m.chat.id)).linked_chat
     if linked_chat is not None:
         if (
@@ -437,8 +440,8 @@ async def _(c: user, m):
     if not bot.privileges.can_promote_members:
         await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
         return
-    admin_list = await list_admins(m.chat.id)
-    if user_id in admin_list:
+    diaadm = await member_permissions(m.chat.id, user_id)
+    if diaadm:
         await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
         return
     try:
@@ -489,8 +492,8 @@ async def _(c: user, m):
     if not bot.privileges.can_promote_members:
         await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
         return
-    admin_list = await list_admins(m.chat.id)
-    if user_id in admin_list:
+    diadm = await member_permissions(m.chat.id, user_id)
+    if diaadm:
         await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
         return
     try:
