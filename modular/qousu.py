@@ -16,12 +16,15 @@ Help Command Quote
 """
 
 
+from pyrogram.types import User
+
 from Mix import *
 from Mix.core.http import post
-from pyrogram.types import User
+
 
 def _get_name(from_user: User) -> str:
     return f"{from_user.first_name} {from_user.last_name or ''}".rstrip()
+
 
 async def quotly(ms):
     if not isinstance(ms, list):
