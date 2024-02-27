@@ -13,7 +13,7 @@ Help Command Quote
 
 • Perintah: <code>{0}q</code>
 • Penjelasan: Untuk membuat qoute teks.
-""""
+"""
 
 from Mix import *
 from Mix.core.http import post
