@@ -394,13 +394,13 @@ async def _(c: user, m):
     linked_chat = (await c.get_chat(m.chat.id)).linked_chat
     if linked_chat is not None:
         if (
-            reply_id in list_of_admins
+            list_of_admins
             or reply_id == m.chat.id
             or reply_id == linked_chat.id
         ):
             return await m.reply_text(f"{em.gagal} Dia adalah admin!")
     else:
-        if reply_id in list_of_admins or reply_id == m.chat.id:
+        if list_of_admins or reply_id == m.chat.id:
             return await m.reply_text(f"{em.gagal} Dia adalah admin!")
 
     user_mention = (
@@ -492,7 +492,7 @@ async def _(c: user, m):
     if not bot.privileges.can_promote_members:
         await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
         return
-    await member_permissions(m.chat.id, user_id)
+    diaadm = await member_permissions(m.chat.id, user_id)
     if diaadm:
         await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
         return
