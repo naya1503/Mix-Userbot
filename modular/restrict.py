@@ -166,9 +166,6 @@ async def _(c: user, m):
         return await m.reply_text(
             f"{em.gagal} Oh anda ingin menendang Developer Mix-Userbot ?"
         )
-
-    # if diaadm:
-    # return await m.reply_text(f"{em.gagal} Tidak dapat menendang admin!")
     mention = (await c.get_users(user_id)).mention
     msg = f"""
 {em.profil} **Kicked User:** {mention}
@@ -177,7 +174,12 @@ async def _(c: user, m):
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
-    await m.chat.ban_member(user_id)
+    try:
+        await m.chat.ban_member(user_id)
+    except UserAdminInvalid:
+        return await m.reply_text(
+            f"{em.gagal} Anda tidak berhak mengeluarkan dia!"
+        )
     await m.reply_text(msg)
     await asyncio.sleep(1)
     await m.chat.unban_member(user_id)
@@ -197,9 +199,6 @@ async def _(c: user, m):
         return await m.reply_text(
             f"{em.gagal} Oh anda ingin memblokir Developer Mix-Userbot ?"
         )
-    diaadm = member_permissions(m.chat.id, user_id)
-    if diaadm:
-        return await m.reply_text(f"{em.gagal} Tidak dapat memblokir admin!")
     try:
         mention = (await c.get_users(user_id)).mention
     except IndexError:
@@ -213,9 +212,13 @@ async def _(c: user, m):
         await m.delete()
     if reason:
         msg += f"{em.warn} **Reason:** {reason}"
-    await m.chat.ban_member(user_id)
+    try:
+        await m.chat.ban_member(user_id)
+    except UserAdminInvalid:
+        return await m.reply_text(
+            f"{em.gagal} Anda tidak berhak mengeluarkan dia!"
+        )
     await m.reply_text(msg)
-    # await msg.delete()
 
 
 @ky.ubot("unban", sudo=True)
@@ -277,9 +280,6 @@ async def _(c: user, m):
         return await m.reply_text(
             f"{em.gagal} Oh anda ingin membisukan Developer Mix-Userbot ?"
         )
-    diaadm = member_permissions(m.chat.id, user_id)
-    if diaadm:
-        return await m.reply_text(f"{em.gagal} Tidak dapat membisukan admin!")
     mention = (await c.get_users(user_id)).mention
     msg = (
         f"{em.profil} **Muted User:** {mention}\n"
@@ -436,10 +436,6 @@ async def _(c: user, m):
     if not bot.privileges.can_promote_members:
         await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
         return
-    diaadm = await member_permissions(m.chat.id, user_id)
-    if diaadm:
-        await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
-        return
     try:
         await m.chat.promote_member(user_id=user_id, privileges=bot.privileges)
         title = ""
@@ -487,10 +483,6 @@ async def _(c: user, m):
         return
     if not bot.privileges.can_promote_members:
         await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
-        return
-    diaadm = await member_permissions(m.chat.id, user_id)
-    if diaadm:
-        await m.reply_text(f"{em.gagal} Pengguna adalah admin!!")
         return
     try:
         await m.chat.promote_member(
