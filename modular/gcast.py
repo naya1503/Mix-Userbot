@@ -56,7 +56,6 @@ async def _(c: user, m):
     for chat in chats:
         done = 0
         failed = 0
-        err = ""
         if chat not in blacklist and chat not in NO_GCAST:
             try:
                 if m.reply_to_message:
@@ -64,7 +63,7 @@ async def _(c: user, m):
                 else:
                     await c.send_message(chat, send)
                 done += 1
-                await asyncio.sleep(2)
+                await asyncio.sleep(0.2)
             except SlowmodeWait:
                 continue
             except FloodWait as e:
@@ -74,16 +73,14 @@ async def _(c: user, m):
                 else:
                     await c.send_message(chat, send)
                 done += 1
-            except Exception as rr:
-                err += f"• {rr}\n"
+            except Exception:
                 failed += 1
-
+            
     return await msg.edit(
         f"""
 {em.alive} Broadcast Message Sent :
 {em.sukses} Success in <code>{done}</code> Group.
-{em.gagal} Failed at <code>{failed}</code> Group.\n\nAlasan Gagal : {err}""",
-    )
+{em.gagal} Failed at <code>{failed}</code> Group""")
 
 
 @ky.ubot("gucast", sudo=True)
