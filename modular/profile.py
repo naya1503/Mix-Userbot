@@ -37,14 +37,16 @@ from Mix import *
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    user_id = c.extract_user(m)
+    user_id = await c.extract_user(m)
     tex = await m.reply(f"{em.proses} Processing...")
     if not user_id:
         return await tex.edit(
             f"{em.gagal} Silahkan balas pesan pengguna atau berikan username."
         )
     if user_id == c.me.id:
-        return
+        return await tex.edit(
+            f"{em.gagal} Ya anda gile."
+        )
     await c.unblock_user(user_id)
     umention = (await c.get_users(user_id)).mention
     await tex.edit(f"{em.sukses} Berhasil membuka blokir {umention}")
@@ -55,14 +57,16 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    user_id = await c.extract_user(message)
+    user_id = await c.extract_user(m)
     tex = await m.reply(f"{em.proses} Processing...")
     if not user_id:
         return await tex.edit(
             f"{em.gagal} Silahkan balas pesan pengguna atau berikan username."
         )
     if user_id == c.me.id:
-        return
+        return await tex.edit(
+            f"{em.gagal} Ya anda gile."
+        )
     await c.block_user(user_id)
     umention = (await c.get_users(user_id)).mention
     await tex.edit(f"{em.sukses} Berhasil memblokir {umention}")
