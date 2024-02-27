@@ -25,7 +25,7 @@ __help__ = """
 """
 
 
-async def isAfk_(filter, c, m):
+async def isAfk_(c, m):
     user_id = user.me.id
     af_k_c = udB.is_afk(user_id)
     if af_k_c:
@@ -199,7 +199,7 @@ async def _(c: user, m):
 
 
 @user.on_message(filters.outgoing & filters.me)
-async def _(c: user, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     user_id = c.me.id
@@ -299,7 +299,7 @@ async def _(c: user, m):
     & ~filters.bot
     & filters.incoming
 )
-async def _(c: user, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     msg = ""
