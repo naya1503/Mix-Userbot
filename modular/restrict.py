@@ -117,8 +117,8 @@ async def list_admins(m):
     admins_in_chat[m.chat.id] = {
         "last_updated_at": time(),
         "data": [
-            i.user.id
-            async for i in m._client.get_chat_members(
+            mek.user.id
+            async for mek in user.get_chat_members(
                 m.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
             )
         ],
