@@ -56,7 +56,7 @@ async def _(c: user, m):
     done = 0
     failed = 0
     for chat in chats:
-
+      
         if chat not in blacklist and chat not in NO_GCAST:
             try:
                 if m.reply_to_message:
@@ -76,13 +76,12 @@ async def _(c: user, m):
                 done += 1
             except Exception:
                 failed += 1
-
+            
     return await msg.edit(
         f"""
 {em.alive} Broadcast Message Sent :
 {em.sukses} Success in <code>{done}</code> Group.
-{em.gagal} Failed at <code>{failed}</code> Group"""
-    )
+{em.gagal} Failed at <code>{failed}</code> Group""")
 
 
 @ky.ubot("gucast", sudo=True)
