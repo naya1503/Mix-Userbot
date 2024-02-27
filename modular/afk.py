@@ -245,7 +245,7 @@ async def _(c, m):
                         photo=f"downloads/{user_id}.jpg",
                         caption="**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**".format(
                             a=em.sukses,
-                            b=em.warn
+                            b=em.warn,
                             c=seenago,
                             d=reasonafk,
                         ),
