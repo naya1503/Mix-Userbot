@@ -13,7 +13,6 @@ __help__ = """
 • Penjelasan : Untuk mengambil tangkapan layar link.
 """
 
-import os
 from base64 import b64decode
 from io import BytesIO
 
