@@ -36,7 +36,7 @@ async def _(c: user, m):
         emoji = None
         if "Good news" in result or "Kabar baik" in result:
             emoji = f"{em.sukses}"
-        if "I'm afraid" in result or "Saya khawatir" in result:
+        if "We afraid" in result or "Kami khawatir" in result:
             emoji = f"{em.warn}"
         await c.send_message(
             m.chat.id,
