@@ -57,7 +57,7 @@ async def _(c: user, m):
                 await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
                 await asyncio.sleep(int(e.value))
                 await c.read_chat_history(us)
-            await mek.edit(f"{em.sukses} Berhasil membaca {len(us)} pesan pengguna.")
+            await mek.edit(f"{em.sukses} Berhasil membaca {len(bcus)} pesan pengguna.")
             return
     elif peler.lower() == "ch":
         for ch in bcch:
@@ -67,7 +67,7 @@ async def _(c: user, m):
                 await mek.edit(f"{em.proses} Mohon tunggu {int(e.value)}...")
                 await asyncio.sleep(int(e.value))
                 await c.read_chat_history(ch)
-            await mek.edit(f"{em.sukses} Berhasil membaca {len(us)} pesan channel.")
+            await mek.edit(f"{em.sukses} Berhasil membaca {len(bcch)} pesan channel.")
             return
     elif peler.lower() == "all":
         for aih in bcall:
