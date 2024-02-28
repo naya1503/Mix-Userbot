@@ -28,10 +28,10 @@ def get_emoji_regex():
     return re.compile(pattern_)
 
 
-async def con_tgs(pat):
+async def con_tgs(pat, file_name):
     try:
-        gif_path = pat.replace(".tgs", ".gif")
-        mp4_path = pat.replace(".tgs", ".mp4")
+        gif_path = pat.replace(f"{file_name}.tgs", f"{file_name}.gif")
+        mp4_path = pat.replace(f"{file_name}.tgs", f"{file_name}.mp4")
 
         gas = f"ffmpeg -i {pat} {gif_path}"
         await user.run_cmd(gas)
