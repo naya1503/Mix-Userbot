@@ -215,7 +215,7 @@ async def quotly(messages):
         )
         m_dict["from"]["type"] = m.chat.type.name.lower()
         m_dict["from"]["photo"] = await sender_photo(
-            message
+            m
         )
         if m.reply_to_message:
             m_dict["replyMessage"] = {
