@@ -17,7 +17,7 @@ Help Command Quote
 
 
 from pyrogram.types import User
-
+from base64 import b64decode
 from Mix import *
 from Mix.core.http import post
 
@@ -115,3 +115,4 @@ async def quotly(ms):
                 sub("data:image/png;base64", "", response.result)
             )
         return response
+
