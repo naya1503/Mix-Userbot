@@ -23,7 +23,7 @@ __help__ = """
 
 
 from Mix import *
-
+from pyrogram.errors import *
 from .gcast import refresh_dialog
 
 
@@ -41,7 +41,10 @@ async def _(c, m):
     if peler.lower() == "gc":
         bcgc = await refresh_dialog("group")
         for gc in bcgc:
-            await user.read_chat_history(gc, max_id=0)
+            try:
+                await user.read_chat_history(gc, max_id=0)
+            except ChannelPrivate:
+                continue
         await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
         return
     elif peler.lower() == "us":
@@ -53,13 +56,19 @@ async def _(c, m):
     elif peler.lower() == "ch":
         bcch = await refresh_dialog("ch")
         for ch in bcch:
-            await user.read_chat_history(ch, max_id=0)
+            try:
+                await user.read_chat_history(ch, max_id=0)
+            except ChannelPrivate:
+                continue
         await mek.edit(f"{em.sukses} Berhasil membaca {len(bcch)} pesan channel.")
         return
     elif peler.lower() == "all":
         bcall = await refresh_dialog("allread")
         for aih in bcall:
-            await user.read_chat_history(aih, max_id=0)
+            try:
+                await user.read_chat_history(aih, max_id=0)
+            except ChannelPrivate:
+                continue
         await mek.edit(
             f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda."
         )
