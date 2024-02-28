@@ -29,9 +29,9 @@ async def con_tgs(pat):
         gif_path = pat.replace(".tgs", ".gif")
         mp4_path = pat.replace(".tgs", ".mp4")
 
-        gas = f"ffmpeg -i {file_path} {gif_path}"
+        gas = f"ffmpeg -i {pat} {gif_path}"
         await user.run_cmd(gas)
-        gs = f"ffmpeg -i {file_path} {mp4_path}"
+        gs = f"ffmpeg -i {pat} {mp4_path}"
         await user.run_cmd(gs)
         return gif_path, mp4_path
     except Exception as e:
