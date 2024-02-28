@@ -33,11 +33,6 @@ async def _(c: user, m):
     em.initialize()
     acak = None
     messages = None
-    warna = m.text.split(None, 2)[2]
-    if warna:
-        acak = warna
-    else:
-        acak = random.choice(loanjing)
     men = m.command[1].strip()
     if tag.startswith("@"):
         user_id = await c.extract_user(m)
@@ -50,9 +45,19 @@ async def _(c: user, m):
             rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
             rep.from_user = org
             messages = [rep]
+            warna = m.text.split(None, 2)[2]
+            if warna:
+                acak = warna
+            else:
+                acak = random.choice(loanjing)
         except Exception as e:
             return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     else:
+        warna = m.text.split(None, 2)[2]
+        if warna:
+             acak = warna
+        else:
+             acak = random.choice(loanjing)
          m_one = await c.get_messages(
             chat_id=m.chat.id,
             message_ids=m.reply_to_message.id,
