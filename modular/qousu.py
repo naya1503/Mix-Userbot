@@ -40,7 +40,7 @@ async def _(c: user, m):
                 org = await c.get_users(user_id)
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
                 full = f"{org.first_name} {org.last_name or ''}"
-                message = Message(
+                message = m(
                     id=rep.id,
                     from_user=full,
                     date=rep.date,
@@ -96,7 +96,6 @@ async def _(c: user, m):
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     await mk.delete()
-
 
 @ky.ubot("qf", sudo=True)
 async def _(c: user, m):
