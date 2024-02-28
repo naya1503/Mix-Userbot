@@ -33,6 +33,7 @@ async def _(c: user, m):
     em.initialize()
     mk = await m.reply(f"{em.proses} Processing...")
     acak = None
+    messages = None
     if len(m.command) == 1:
         m_one = await c.get_messages(
             chat_id=m.chat.id,
