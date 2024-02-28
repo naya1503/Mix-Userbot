@@ -93,5 +93,3 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-
-    await mk.delete()
