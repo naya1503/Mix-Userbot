@@ -10,6 +10,7 @@
 
 from .http import http
 
+
 class QuotlyException(Exception):
     pass
 
@@ -94,10 +95,7 @@ async def sender_username(m):
     elif m.from_user and m.from_user.username:
         return m.from_user.username
     elif (
-        m.from_user
-        or m.sender_chat
-        and not m.sender_chat.username
-        or not m.sender_chat
+        m.from_user or m.sender_chat and not m.sender_chat.username or not m.sender_chat
     ):
         return ""
     else:
@@ -145,12 +143,7 @@ async def sender_photo(m):
             "big_file_id": m.from_user.photo.big_file_id,
             "big_photo_unique_id": m.from_user.photo.big_photo_unique_id,
         }
-    elif (
-        m.from_user
-        or m.sender_chat
-        and not m.sender_chat.photo
-        or not m.sender_chat
-    ):
+    elif m.from_user or m.sender_chat and not m.sender_chat.photo or not m.sender_chat:
         return ""
     else:
         return {
@@ -207,16 +200,10 @@ async def quotly(messages):
         m_dict["avatar"] = True
         m_dict["from"] = {}
         m_dict["from"]["id"] = await get_sender(m)
-        m_dict["from"]["name"] = await sender_name(
-            m
-        )
-        m_dict["from"]["username"] = (
-            await sender_username(m)
-        )
+        m_dict["from"]["name"] = await sender_name(m)
+        m_dict["from"]["username"] = await sender_username(m)
         m_dict["from"]["type"] = m.chat.type.name.lower()
-        m_dict["from"]["photo"] = await sender_photo(
-            m
-        )
+        m_dict["from"]["photo"] = await sender_photo(m)
         if m.reply_to_message:
             m_dict["replyMessage"] = {
                 "name": await sender_name(m.reply_to_message),
