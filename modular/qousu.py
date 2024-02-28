@@ -44,7 +44,7 @@ async def _(c: user, m):
                     id=rep.id,
                     from_user=user,
                     date=rep.date,
-                    chat=m.chat.id
+                    chat=m.chat.id,
                     text=rep.text,
                 )
                 messages = [message]
