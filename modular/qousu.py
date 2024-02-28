@@ -18,9 +18,10 @@ Help Command Quote
 """
 
 
-from io import BytesIO
+from base64 import b64decode
 
 from pyrogram.types import *
+from io import BytesIO
 
 from Mix import *
 from Mix.core.tools_quote import *
@@ -31,15 +32,15 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     mk = await m.reply(f"{em.proses} Processing...")
-
+    
     if len(m.text.split()) > 1:
         ct = m.command[1].strip()
         if ct.startswith("@"):
             user_id = await c.extract_user(m)
             try:
-                user = await c.get_users(user_id)
+                org = await c.get_users(user_id)
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
-                full = f"{user.first_name} {user.last_name or ''}"
+                full = f"{org.first_name} {org.last_name or ''}"
                 message = Message(
                     id=rep.id,
                     from_user=full,
@@ -54,9 +55,7 @@ async def _(c: user, m):
             ct = isArgInt(ct)
             if ct[0]:
                 if ct[1] < 2 or ct[1] > 10:
-                    return await m.reply(
-                        f"{em.gagal} Argumen yang anda berikan salah..."
-                    )
+                    return await m.reply(f"{em.gagal} Argumen yang anda berikan salah...")
                 try:
                     messages = [
                         i
@@ -83,8 +82,7 @@ async def _(c: user, m):
             return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     try:
         m_one = await c.get_messages(
-            chat_id=m.chat.id, message_ids=m.reply_to_message.id
-        )
+            chat_id=m.chat.id, message_ids=m.reply_to_message.id)
         messages = [m_one]
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
