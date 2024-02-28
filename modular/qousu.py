@@ -65,9 +65,8 @@ async def _(c: user, m):
                 chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
             )
             messages = [m_one]
-        elif angka:
-            xx = int(angka)
-            if xx > 10:
+        elif int(tag):
+            if int(tag) > 10:
                 return await m.reply(f"{em.gagal} Batas pesan adalah 10")
             warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
             if warna:
@@ -80,9 +79,9 @@ async def _(c: user, m):
                     chat_id=m.chat.id,
                     message_ids=range(
                         m.reply_to_message.id,
-                        m.reply_to_message.id + xx,
+                        m.reply_to_message.id + int(tag),
                     ),
-                    replies=-1,
+                    replies=0,
                 )
                 if not i.empty and not i.media
             ]
