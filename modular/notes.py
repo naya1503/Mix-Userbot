@@ -261,25 +261,25 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(f"{em.proses} <b>Processing...</b>")
-
+    
     if len(m.text.split()) <= 1:
         return await xx.edit(f"{em.gagal} <b>Catatan apa yang perlu dihapus ?</b>")
 
     note = m.text.split()[1]
     getnote = udB.rm_note(c.me.id, note)
-    getnotes = udB.get_note(c.me.id, note)
-
-    if getnote is None:
-        return await xx.edit(f"{em.gagal} <b>Catatan tidak ditemukan!</b>")
+    getnotes = udB.get_all_notes(c.me.id)
 
     if note not in getnotes:
-        return await xx.edit(
-            f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>"
-        )
+        return await xx.edit(f"{em.gagal} <b>Tidak dapat menemukan catatan <code>{note}</code>!</b>")
+    
+    if not getnote:
+        return await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>")
+    
+    if note not in getnote:
+        return await xx.edit(f"{em.gagal} <b>Catatan tidak ditemukan!</b>")
     else:
-        await xx.edit(
-            f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
-        )
+        await xx.edit(f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>")
+
 
 
 @ky.inline("^get_note_")
