@@ -7,9 +7,12 @@
 ################################################################
 
 import re
+
 from pyrogram import emoji
-from Mix import user
 from team.nandev.class_log import LOGGER
+
+from Mix import user
+
 
 def get_emoji_regex():
     e_list = [
@@ -23,7 +26,8 @@ def get_emoji_regex():
     # matched first
     pattern_ = f"({'|'.join(e_sort)})"
     return re.compile(pattern_)
- 
+
+
 async def con_tgs(pat):
     try:
         gif_path = pat.replace(".tgs", ".gif")
@@ -37,6 +41,7 @@ async def con_tgs(pat):
     except Exception as e:
         LOGGER.error(f"{e}")
         return None, None
-    
+
+
 EMOJI_PATTERN = get_emoji_regex()
 SUPPORTED_TYPES = ["jpeg", "png", "webp"]
