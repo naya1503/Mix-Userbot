@@ -30,17 +30,12 @@ def get_emoji_regex():
 
 async def con_tgs(pat, file_name):
     try:
-        gif_path = pat.replace(f"{file_name}.tgs", f"{file_name}.gif")
         mp4_path = pat.replace(f"{file_name}.tgs", f"{file_name}.mp4")
-
-        gas = f"ffmpeg -i {pat} {gif_path}"
-        await user.run_cmd(gas)
-        gs = f"ffmpeg -i {pat} {mp4_path}"
-        await user.run_cmd(gs)
-        return gif_path, mp4_path
+        os.system(f"ffmpeg -i {pat} {mp4_path}")
+        return mp4_path
     except Exception as e:
         LOGGER.error(f"{e}")
-        return None, None
+        return None
 
 
 EMOJI_PATTERN = get_emoji_regex()
