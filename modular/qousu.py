@@ -75,9 +75,7 @@ async def quotly(ms):
                     else {
                         "id": m.forward_from.id,
                         "username": (
-                            m.forward_from.username
-                            if m.forward_from.username
-                            else ""
+                            m.forward_from.username if m.forward_from.username else ""
                         ),
                         "photo": (
                             {
@@ -113,7 +111,5 @@ async def quotly(ms):
     }
     response = await post("quotly", json=payload)
     if response.ok:
-        response.result = b64decode(
-            sub("data:image/png;base64", "", response.result)
-        )
+        response.result = b64decode(sub("data:image/png;base64", "", response.result))
     return response
