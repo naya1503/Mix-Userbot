@@ -280,7 +280,9 @@ async def _(c: user, m):
         )
 
     if note not in getnote:
-        return await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>")
+        return await xx.edit(
+            f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>"
+        )
     else:
         await xx.edit(
             f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
