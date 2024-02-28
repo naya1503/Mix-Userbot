@@ -33,7 +33,7 @@ async def _(c: user, m):
     em.initialize()
     mk = await m.reply(f"{em.proses} Processing...")
     acak = None
-    ct = isArgInt(ct)
+    ct = isArgInt(m.command[1])
     if len(m.text.split()) > 1:
         tag = m.command[1].strip()
         if tag.startswith("@"):
