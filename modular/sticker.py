@@ -39,7 +39,7 @@ async def _(c: user, m):
         return
     else:
         if stick.is_video == True:
-            pat = await c.download_media(stick, file_name=f"{stick.set_name}.mp4")
+            pat = await bot.download_media(stick, file_name=f"{stick.set_name}.mp4")
             await m.reply_to_message.reply_document(
                 document=pat,
                 caption=f"<b>Emoji:</b> {stick.emoji}\n"
@@ -50,7 +50,7 @@ async def _(c: user, m):
             return
 
         else:
-            pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
+            pat = await bot.download_media(stick, file_name=f"{stick.set_name}.png")
             await m.reply_to_message.reply_document(
                 document=pat,
                 caption=f"<b>Emoji:</b> {stick.emoji}\n"
@@ -61,7 +61,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("kang", sudo=True)
-async def _(c: bot, m):
+async def _(_, m):
     em = Emojik()
     em.initialize()
     logme = udB.get_logger(user.me.id)
@@ -118,12 +118,12 @@ async def _(c: bot, m):
             return await prog_msg.edit(f"{em.gagal} Sticker tidak didukung!")
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
-        packname = f"{pack_prefix}_{m.from_user.id}_by_{c.me.username}"
+        packname = f"{pack_prefix}_{m.from_user.id}_by_{user.me.username}"
 
         if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
             packnum = m.command.pop(1)
-            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{c.me.username}"
+            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{user.me.username}"
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
@@ -136,7 +136,7 @@ async def _(c: bot, m):
     elif m.entities and len(m.entities) > 1:
         pack_prefix = "a"
         filename = "sticker.png"
-        packname = f"c{m.from_user.id}_by_{c.me.username}"
+        packname = f"c{m.from_user.id}_by_{user.me.username}"
         img_url = next(
             (
                 m.text[y.offset : (y.offset + y.length)]
@@ -160,7 +160,7 @@ async def _(c: bot, m):
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
                 packnum = m.command.pop(2)
-                packname = f"a{packnum}_{m.from_user.id}_by_{c.me.username}"
+                packname = f"a{packnum}_{m.from_user.id}_by_{user.me.username}"
             if len(m.command) > 2:
                 sticker_emoji = (
                     "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:]))))
@@ -179,7 +179,7 @@ async def _(c: bot, m):
         max_stickers = 50 if animated else 120
         while not packname_found:
             try:
-                stickerset = await c.invoke(
+                stickerset = await bot.invoke(
                     GetStickerSet(
                         stickerset=InputStickerSetShortName(short_name=packname),
                         hash=0,
@@ -188,30 +188,30 @@ async def _(c: bot, m):
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
                     packname = (
-                        f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{c.me.username}"
+                        f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{user.me.username}"
                     )
                 else:
                     packname_found = True
             except StickersetInvalid:
                 break
-        file = await c.save_file(filename)
-        media = await c.invoke(
+        file = await bot.save_file(filename)
+        media = await bot.invoke(
             SendMedia(
-                peer=(await c.resolve_peer(logme)),
+                peer=(await bot.resolve_peer(logme)),
                 media=InputMediaUploadedDocument(
                     file=file,
-                    mime_type=c.guess_mime_type(filename),
+                    mime_type=bot.guess_mime_type(filename),
                     attributes=[DocumentAttributeFilename(file_name=filename)],
                 ),
                 message=f"#Sticker kang by UserID -> {m.from_user.id}",
-                random_id=c.rnd_id(),
+                random_id=bot.rnd_id(),
             ),
         )
         msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
             await prog_msg.edit(f"{em.proses} Menggunakan paket stiker yang ada...")
-            await c.invoke(
+            await bot.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
                     sticker=InputStickerSetItem(
@@ -234,7 +234,7 @@ async def _(c: bot, m):
             if packnum != 0:
                 stkr_title += f" V{packnum}"
             try:
-                await c.invoke(
+                await bot.invoke(
                     CreateStickerSet(
                         user_id=user,
                         title=stkr_title,
@@ -270,7 +270,7 @@ async def _(c: bot, m):
             f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
         )
         # Cleanup
-        await c.delete_messages(chat_id=logme, message_ids=msg_.id, revoke=True)
+        await bot.delete_messages(chat_id=logme, message_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
         except OSError:
