@@ -131,7 +131,9 @@ async def _(c: bot, m):
                 "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
                 or sticker_emoji
             )
-        filename = await user.download_media(m.reply_to_message)
+        x = await user.forward_messages(bot.me.username, m.chat.id, m.reply_to_message.id)
+        filename = await bot.download_media(x)
+        
         if not filename:
             return await prog_msg.edit(f"{em.gagal} Sticker tidak didukung!")
     elif m.entities and len(m.entities) > 1:
