@@ -72,26 +72,3 @@ async def _(c: user, m):
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
 
 
-            """
-            if len(m.command) > 3:
-                try:
-                    angka = int(m.command[3].strip())
-                    if angka > 10:
-                        return await m.reply(f"{em.gagal} Batas pesan adalah 10")
-                    messages = [
-                        i
-                        for i in await c.get_messages(
-                            chat_id=m.chat.id,
-                            message_ids=range(
-                                m.reply_to_message.id,
-                                m.reply_to_message.id + (angka + 5),
-                            ),
-                            replies=-1,
-                        )
-                        if not i.empty and not i.media
-                    ]
-                except ValueError:
-                    pass
-                except Exception as e:
-                    return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-            """
