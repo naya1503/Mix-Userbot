@@ -2,7 +2,9 @@
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
- @ CREDIT : NAN-DEV
+ @ CREDIT : NAN-DEV || Misskaty
+ 
+ MIKIR GOBLOK, TOLOL, IDIOT, NGENTOT, KONTOL, BAJINGAN
 """
 ################################################################
 
@@ -18,115 +20,76 @@ Help Command Quote
 
 from base64 import b64decode
 
-from pyrogram.types import User
+from pyrogram.types import *
+from io import BytesIO
 
 from Mix import *
-from Mix.core.http import post
+from Mix.core.tools_qoute import *
 
 
-def _get_name(from_user: User) -> str:
-    return f"{from_user.first_name} {from_user.last_name or ''}".rstrip()
-
-
-async def quotly(ms):
-    if not isinstance(ms, list):
-        ms = [ms]
-
-    payload = {
-        "type": "quote",
-        "format": "png",
-        "backgroundColor": "#1b1429",
-        "ms": [
-            {
-                "entities": (
-                    [
-                        {
-                            "type": entity.type,
-                            "offset": entity.offset,
-                            "length": entity.length,
-                        }
-                        for entity in m.entities
+@ky.ubot("q", sudo=True)
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
+    mk = await m.reply(f"{em.proses} Processing...")
+    
+    if len(m.text.split()) > 1:
+        ct = m.command[1].strip()
+        if ct.startswith("@"):
+            user_id = await c.extract_user(m)
+            try:
+                user = await c.get_users(user_id)
+                rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
+                message = Message(
+                    id=rep.id,
+                    from_user=user,
+                    date=rep.date,
+                    chat=m.chat.id
+                    text=rep.text,
+                )
+                messages = [message]
+            except Exception as e:
+                return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+        else:
+            ct = isArgInt(ct)
+            if ct[0]:
+                if ct[1] < 2 or ct[1] > 10:
+                    return await m.reply(f"{em.gagal} Argumen yang anda berikan salah...")
+                try:
+                    messages = [
+                        i
+                        for i in await c.get_messages(
+                            chat_id=m.chat.id,
+                            message_ids=range(
+                                m.reply_to_message.id,
+                                m.reply_to_message.id + (ct[1] + 5),
+                            ),
+                            replies=-1,
+                        )
+                        if not i.empty and not i.media
                     ]
-                    if m.entities
-                    else []
-                ),
-                "chatId": (m.forward_from.id if m.forward_from else m.from_user.id),
-                "avatar": True,
-                "from": (
-                    {
-                        "id": m.from_user.id,
-                        "username": (
-                            m.from_user.username if m.from_user.username else ""
-                        ),
-                        "photo": (
-                            {
-                                "small_file_id": m.from_user.photo.small_file_id,
-                                "small_photo_unique_id": m.from_user.photo.small_photo_unique_id,
-                                "big_file_id": m.from_user.photo.big_file_id,
-                                "big_photo_unique_id": m.from_user.photo.big_photo_unique_id,
-                            }
-                            if m.from_user.photo
-                            else ""
-                        ),
-                        "type": m.chat.type,
-                        "name": _get_name(m.from_user),
-                    }
-                    if not m.forward_from
-                    else {
-                        "id": m.forward_from.id,
-                        "username": (
-                            m.forward_from.username if m.forward_from.username else ""
-                        ),
-                        "photo": (
-                            {
-                                "small_file_id": m.forward_from.photo.small_file_id,
-                                "small_photo_unique_id": m.forward_from.photo.small_photo_unique_id,
-                                "big_file_id": m.forward_from.photo.big_file_id,
-                                "big_photo_unique_id": m.forward_from.photo.big_photo_unique_id,
-                            }
-                            if m.forward_from.photo
-                            else ""
-                        ),
-                        "type": m.chat.type,
-                        "name": _get_name(m.forward_from),
-                    }
-                ),
-                "text": m.text if m.text else "",
-                "replyMessage": (
-                    (
-                        {
-                            "name": _get_name(m.reply_to_message.from_user),
-                            "text": m.reply_to_message.text,
-                            "chatId": m.reply_to_message.from_user.id,
-                        }
-                        if m.reply_to_message
-                        else {}
-                    )
-                    if len(ms) == 1
-                    else {}
-                ),
-            }
-            for m in ms
-        ],
-    }
-    convert_payload = {
-        "type": payload["type"],
-        "format": payload["format"],
-        "backgroundColor": payload["backgroundColor"],
-        "ms": [
-            {
-                "entities": entity["entities"],
-                "chatId": entity["chatId"],
-                "avatar": entity["avatar"],
-                "from": entity["from"],
-                "text": entity["text"],
-                "replyMessage": entity["replyMessage"],
-            }
-            for entity in payload["ms"]
-        ],
-    }
-
-    response = await post("quotly", json=convert_payload)
-    if response.ok:
-        response.result = b64decode(sub("data:image/png;base64", "", response.result))
-    return response
+                except Exception as e:
+                    return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+            else:
+                return await m.reply(f"{em.gagal} Argumen yang anda berikan salah...")
+        try:
+            hasil = await quotly(messages)
+            bs = BytesIO(hasil)
+            bs.name = "mix.webp"
+            return await m.reply_sticker(bs)
+        except Exception as e:
+            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+    try:
+        m_one = await c.get_messages(
+            chat_id=m.chat.id, message_ids=m.reply_to_message.id)
+        messages = [m_one]
+    except Exception as e:
+        return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+    try:
+        hasil = await quotly(messages)
+        bs = BytesIO(hasil)
+        bs.name = "mix.webp"
+        return await m.reply_sticker(bs)
+    except Exception as e:
+        return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+    await mk.delete()
