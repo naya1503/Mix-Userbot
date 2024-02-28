@@ -38,30 +38,26 @@ async def _(c: user, m):
         acak = warna
     else:
         acak = random.choice(loanjing)
-    if len(m.command) > 2:
-        tag = m.command[1].strip()
-        if tag.startswith("@"):
-            user_id = tag[1:]
-            try:
-                org = await c.get_users(user_id)
-                if org.id in DEVS:
-                    await mk.edit(
-                        f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
-                    )
-                    return
-                rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=-1)
-                rep.from_user = org
-                messages = [rep]
-            except Exception as e:
-                return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-    else:
+    men = m.command[1].strip()
+    if tag.startswith("@"):
+        user_id = await c.extract_user(m)
         try:
-            m_one = await c.get_messages(
-                chat_id=m.chat.id,
-                message_ids=m.reply_to_message.id,
-                replies=0,
-            )
-            messages = [m_one]
+            org = await c.get_users(user_id)
+            if org.id in DEVS:
+                await m.reply(f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
+                    )
+                return
+            rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
+            rep.from_user = org
+            messages = [rep]
+        except Exception as e:
+            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+    else:
+         m_one = await c.get_messages(
+            chat_id=m.chat.id,
+            message_ids=m.reply_to_message.id,
+            replies=0)
+         messages = [m_one]
         except Exception as e:
             return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     try:
