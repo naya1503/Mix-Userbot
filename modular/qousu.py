@@ -40,14 +40,8 @@ async def _(c: user, m):
                 org = await c.get_users(user_id)
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
                 full = f"{org.first_name} {org.last_name or ''}"
-                message = m(
-                    id=rep.id,
-                    from_user=full,
-                    date=rep.date,
-                    chat=Chat(id=m.chat.id),
-                    text=rep.text,
-                )
-                messages = [message]
+                rep.from_user = org
+                messages = [rep]
             except Exception as e:
                 return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
         else:
