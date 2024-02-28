@@ -65,6 +65,7 @@ async def _(c: user, m):
 async def _(c: bot, m):
     em = Emojik()
     em.initialize()
+    logme = udB.get_logger(user.me.id)
     await user.unblock_user(bot.me.username)
     await user.send_message(bot.me.username, "/start")
     prog_msg = await m.reply(f"{em.proses} Processing kang stickers...")
@@ -200,7 +201,7 @@ async def _(c: bot, m):
         file = await c.save_file(filename)
         media = await c.invoke(
             SendMedia(
-                peer=(await c.resolve_peer(udB.get_logger(user.me.id))),
+                peer=(await c.resolve_peer(logme),
                 media=InputMediaUploadedDocument(
                     file=file,
                     mime_type=c.guess_mime_type(filename),
@@ -274,7 +275,7 @@ async def _(c: bot, m):
         await prog_msg.edit(
             f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
         # Cleanup
-        await c.delete_messages(chat_id=udB.get_logger(user.me.id), message_ids=msg_.id, revoke=True)
+        await c.delete_messages(chat_id=logme, message_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
         except OSError:
