@@ -33,10 +33,10 @@ async def _(c: user, m):
     em.initialize()
     mk = await m.reply(f"{em.proses} Processing...")
 
-    if len(m.command) == 2:
-        ct = m.command[1].strip()
-        if ct.startswith("@"):
-            user_id = ct[1:]
+    if len(m.text.split()) > 1:
+        tag = m.command[1].strip()
+        if tag.startswith("@"):
+            user_id = tag[1:]
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
@@ -49,7 +49,7 @@ async def _(c: user, m):
                 messages = [rep]
             except Exception as e:
                 return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-        else:
+        elif not tag.startswith("@"):
             ct = isArgInt(ct)
             if ct[0]:
                 if ct[1] < 2 or ct[1] > 10:
@@ -69,26 +69,19 @@ async def _(c: user, m):
                     ]
                 except Exception as e:
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-            else:
-                return await m.reply(f"{em.gagal} Argumen yang anda berikan salah...")
-
+        else:
+             warna = m.text.split()[2].strip().lower()
+             if warna in loanjing:
+                 acak = warna
+             else:
+                 acak = random.choice(loanjing)
     try:
         m_one = await c.get_messages(
-            chat_id=m.chat.id, message_ids=m.reply_to_message.id
+            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0,
         )
         messages = [m_one]
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-
-    if len(m.text.split()) > 2:
-        warna = m.text.split()[2].strip().lower()
-        if warna in loanjing:
-            acak = warna
-        else:
-            acak = random.choice(loanjing)
-    else:
-        acak = random.choice(loanjing)
-
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
