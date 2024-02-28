@@ -6,6 +6,7 @@
 """
 ################################################################
 
+import re
 from pyrogram import emoji
 
 def get_emoji_regex():
