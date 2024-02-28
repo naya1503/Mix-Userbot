@@ -87,6 +87,8 @@ async def _(c: user, m):
                 await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(0.2)
+            except UserBannedInChannel:
+                continue
             except SlowmodeWait:
                 continue
             except PeerIdInvalid:
