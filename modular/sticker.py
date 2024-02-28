@@ -68,6 +68,7 @@ async def _(c: bot, m):
     await user.unblock_user(bot.me.username)
     await user.send_message(bot.me.username, "/start")
     prog_msg = await m.reply(f"{em.proses} Processing kang stickers...")
+    
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
