@@ -89,6 +89,8 @@ async def _(c: user, m):
                 await asyncio.sleep(0.2)
             except SlowmodeWait:
                 continue
+            except PeerIdInvalid:
+                continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
                 try:
@@ -126,6 +128,8 @@ async def _(c: user, m):
             try:
                 await c.send_message(chat, send)
                 done += 1
+            except PeerIdInvalid:
+                continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
                 try:
