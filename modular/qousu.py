@@ -53,7 +53,7 @@ async def _(c: user, m):
         except Exception as e:
             return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     else:
-        warna = m.text.split(None, 2)[2]
+        warna = m.text.split(None, 1)[1]
         if warna:
              acak = warna
         else:
