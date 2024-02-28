@@ -46,8 +46,7 @@ async def _(c: user, m):
         try:
             org = await c.get_users(user_id)
             if org.id in DEVS:
-                await mk.edit(
-                  f"{em.gagal} **Si anjing mengatasnamakan Developer!**")
+                await mk.edit(f"{em.gagal} **Si anjing mengatasnamakan Developer!**")
                 return
             rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
             rep.from_user = org
@@ -68,9 +67,12 @@ async def _(c: user, m):
                 for i in await c.get_messages(
                     chat_id=m.chat.id,
                     message_ids=range(
-                    m.reply_to_message.id,
-                    m.reply_to_message.id + (angka + 5)), replies=-1)
-                if not i.empty and not i.media]
+                        m.reply_to_message.id, m.reply_to_message.id + (angka + 5)
+                    ),
+                    replies=-1,
+                )
+                if not i.empty and not i.media
+            ]
         except Exception as e:
             await m.reply(f"{em.gagal} Error : <code>{e}</code>")
 
