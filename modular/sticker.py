@@ -24,7 +24,7 @@ from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
 
-from Mix import user, bot, Emojik, udB
+from Mix import user, bot, Emojik, udB, ky
 from Mix.core.stick_tools import resize_image, convert_video, EMOJI_PATTERN, get_emoji_regex
 
 
