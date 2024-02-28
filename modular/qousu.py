@@ -33,14 +33,13 @@ async def _(c: user, m):
     em.initialize()
     acak = None
     messages = None
-    men = m.command[1].strip()
+    m.command[1].strip()
     if tag.startswith("@"):
         user_id = await c.extract_user(m)
         try:
             org = await c.get_users(user_id)
             if org.id in DEVS:
-                await m.reply(f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
-                    )
+                await m.reply(f"{em.gagal} **Si anjing mengatasnamakan Developer!**")
                 return
             rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
             rep.from_user = org
@@ -55,13 +54,12 @@ async def _(c: user, m):
     else:
         warna = m.text.split(None, 1)[1]
         if warna:
-             acak = warna
+            acak = warna
         else:
-             acak = random.choice(loanjing)
+            acak = random.choice(loanjing)
         m_one = await c.get_messages(
-            chat_id=m.chat.id,
-            message_ids=m.reply_to_message.id,
-            replies=0)
+            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+        )
         messages = [m_one]
     try:
         hasil = await quotly(messages, acak)
