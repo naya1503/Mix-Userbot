@@ -273,7 +273,7 @@ async def _(c: bot, m):
         await prog_msg.edit(f"{all_e.__class__.__name__} : {all_e}")
     else:
         await prog_msg.edit(
-            f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
+            f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>")
         # Cleanup
         await c.delete_messages(chat_id=logme, message_ids=msg_.id, revoke=True)
         try:
