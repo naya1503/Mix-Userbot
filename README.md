@@ -104,6 +104,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 * [AyiinXd](https://github.com/AyiinXd) for [Ayiin-Userbot](https://github.com/AyiinXd/Ayiin-Userbot)
 * [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)
 * [Kynan](https://github.com/naya1503) for [Mix-Userbot](https://github.com/naya1503/Mix-Userbot)
+* [Lucifer](https://github.com/jonesroot) for [BugHunter](https://t.me/LuciferBukanRobot)
 
 ## Maintained By
 * [![Kynan.](https://img.shields.io/static/v1?label=Ky&message=nan&color=critical)](https://t.me/kenapanan)
