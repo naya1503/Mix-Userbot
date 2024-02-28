@@ -365,7 +365,7 @@ async def quotly(messages, kolor):
         else:
             m_dict["replyMessage"] = {}
         payload["messages"].append(m_dict)
-    r = await post("https://bot.lyo.su/quote/generate", json=payload)
+    r = await http.post("https://bot.lyo.su/quote/generate", json=payload)
     if not r.is_error:
         return r.read()
     else:
