@@ -31,18 +31,18 @@ async def _(c: user, m):
         return
     else:
         if stick:
-            pat = await c.download_media(stick, file_name=f"{sticker.set_name}.png")
+            pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
             await m.reply_to_message.reply_document(
                 document=pat,
-                caption=f"<b>Emoji:</b> {sticker.emoji}\n"
-                f"<b>Sticker ID:</b> <code>{sticker.file_id}</code>",
+                caption=f"<b>Emoji:</b> {stick.emoji}\n"
+                f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
             )
         elif stick.is_video == True:
-            pat = await c.download_media(stick, file_name=f"{sticker.set_name}.mp4")
+            pat = await c.download_media(stick, file_name=f"{stick.set_name}.mp4")
             await m.reply_to_message.reply_document(
                 document=pat,
-                caption=f"<b>Emoji:</b> {sticker.emoji}\n"
-                f"<b>Sticker ID:</b> <code>{sticker.file_id}</code>",
+                caption=f"<b>Emoji:</b> {stick.emoji}\n"
+                f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
             )
         elif stick.is_animated == True:
             pat = await c.download_media(stick)
