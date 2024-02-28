@@ -33,7 +33,7 @@ async def _(c: user, m):
     em.initialize()
     acak = None
     messages = None
-    m.command[1].strip()
+    tag = m.command[1].strip()
     if tag.startswith("@"):
         user_id = await c.extract_user(m)
         try:
