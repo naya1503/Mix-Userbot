@@ -79,7 +79,7 @@ async def _(c: user, m):
                 for i in await c.get_messages(
                     chat_id=m.chat.id,
                     message_ids=range(
-                        m.reply_to_message.id, m.reply_to_message.id + xx),
+                        m.reply_to_message.id, m.reply_to_message.id + xx,
                     ),
                     replies=-1,
                 )
