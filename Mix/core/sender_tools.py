@@ -164,3 +164,30 @@ async def extract_user_and_reason(message, sender_chat=False):
         return await extract_userid(message, user), reason
 
     return user, reason
+
+
+async def extract_userid(message, user_text):
+    def is_int(text):
+        try:
+            int(text)
+        except ValueError:
+            return False
+        return True
+
+    text = user_text.strip()
+
+    if is_int(text):
+        return int(text)
+
+    entities = message.entities
+    if entities:
+        entity = entities[1 if message.text and message.text.startswith("/") else 0]
+        app = message._client
+
+        if entity.type == enums.MessageEntityType.MENTION:
+            return (await app.get_users(text)).id
+
+        if entity.type == enums.MessageEntityType.TEXT_MENTION:
+            return entity.user.id
+
+    return None
