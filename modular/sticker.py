@@ -201,7 +201,7 @@ async def _(c: bot, m):
         file = await c.save_file(filename)
         media = await c.invoke(
             SendMedia(
-                peer=(await c.resolve_peer(logme),
+                peer=(await c.resolve_peer(logme)),
                 media=InputMediaUploadedDocument(
                     file=file,
                     mime_type=c.guess_mime_type(filename),
