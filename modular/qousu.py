@@ -14,7 +14,7 @@ __help__ = "
 Help Command Quote
 
 • Perintah: <code>{0}q</code>
-• Penjelasan: Untuk membuat qoute teks.
+• Penjelasan: Untuk membuat quote teks.
 """
 
 
