@@ -97,6 +97,7 @@ async def _(c: user, m):
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     await mk.delete()
 
+
 @ky.ubot("qf", sudo=True)
 async def _(c: user, m):
     em = Emojik()
