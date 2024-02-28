@@ -14,6 +14,7 @@ from pyrogram.types import *
 
 from Mix import DEVS, bot, ky, udB, user
 from Mix.core.waktu import get_time, start_time
+from .gcast import refresh_dialog
 
 __modles__ = "Alive"
 __help__ = """
@@ -41,8 +42,8 @@ async def _(c, iq):
     await user.invoke(Ping(ping_id=0))
     pink = (datetime.now() - start).microseconds / 1000
     upnya = await get_time((time() - start_time))
-    ape = await user.get_user_dialog("group")
-    apa = await user.get_user_dialog("users")
+    ape = await refresh_dialog("group")
+    apa = await refresh_dialog("users")
     if user.me.id in DEVS:
         stutas = "<b>Author</b>"
     else:
