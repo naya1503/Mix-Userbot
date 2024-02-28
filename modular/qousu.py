@@ -42,7 +42,7 @@ async def _(c: user, m):
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
                 message = Message(
                     id=rep.id,
-                    from_user=user,
+                    from_user=user.first_name user.last_name or '',
                     date=rep.date,
                     chat=m.chat.id,
                     text=rep.text,
