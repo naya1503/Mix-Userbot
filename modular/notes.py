@@ -269,9 +269,9 @@ async def _(c: user, m):
     getnote = udB.rm_note(c.me.id, note)
     getnotes = udB.get_all_notes(c.me.id)
 
-    if note not in getnotes:
+    if note in getnotes:
         return await xx.edit(
-            f"{em.gagal} <b>Tidak dapat menemukan catatan <code>{note}</code>!</b>"
+            f"{em.gagal} <b>Berhasil menghapus catatan <code>{note}</code>!</b>"
         )
 
     if not getnote:
@@ -280,7 +280,7 @@ async def _(c: user, m):
         )
 
     if note not in getnote:
-        return await xx.edit(f"{em.gagal} <b>Catatan tidak ditemukan!</b>")
+        return await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>")
     else:
         await xx.edit(
             f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
