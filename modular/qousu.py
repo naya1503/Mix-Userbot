@@ -77,10 +77,10 @@ async def _(c: user, m):
                 except Exception as e:
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     else:
-         warna = m.text.split()[2].strip().lower()
-         if warna in loanjing:
+        warna = m.text.split()[2].strip().lower()
+        if warna in loanjing:
             acak = warna
-         else:
+        else:
             acak = random.choice(loanjing)
     try:
         hasil = await quotly(messages, acak)
