@@ -6,13 +6,12 @@
 """
 ################################################################
 
+import asyncio
 import os
 import re
-import asyncio
 
 from PIL import Image
 from pyrogram import emoji
-from team.nandev.class_log import LOGGER
 
 
 def get_emoji_regex():
@@ -78,7 +77,6 @@ async def convert_video(filename: str) -> str:
     if webm_video != filename:
         os.remove(filename)
     return webm_video
-
 
 
 EMOJI_PATTERN = get_emoji_regex()
