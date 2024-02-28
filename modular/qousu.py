@@ -39,7 +39,7 @@ async def _(c: user, m):
             try:
                 org = await c.get_users(user_id)
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
-                full = f"{org.first_name} {org.last_name or ''}"
+                f"{org.first_name} {org.last_name or ''}"
                 rep.from_user = org
                 messages = [rep]
             except Exception as e:
