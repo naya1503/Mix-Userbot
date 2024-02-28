@@ -35,7 +35,7 @@ async def _(c: user, m):
     if len(m.text.split()) > 1:
         ct = m.command[1].strip()
         if ct.startswith("@"):
-            user_id = await c.extract_user(m)
+            user_id = ct[1:]
             try:
                 org = await c.get_users(user_id)
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
