@@ -40,9 +40,10 @@ async def _(c: user, m):
             try:
                 user = await c.get_users(user_id)
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
+                full = f"{user.first_name} {user.last_name or ''}"
                 message = Message(
                     id=rep.id,
-                    from_user=user.first_name user.last_name or '',
+                    from_user=full,
                     date=rep.date,
                     chat=m.chat.id,
                     text=rep.text,
