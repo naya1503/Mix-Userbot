@@ -31,50 +31,60 @@ from Mix.core.tools_quote import *
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    mk = await m.reply(f"{em.proses} Processing...")
     acak = None
     messages = None
+
     if len(m.command) == 1:
-        m_one = await c.get_messages(
-            chat_id=m.chat.id,
-            message_ids=m.reply_to_message.id,
-            replies=0,
-        )
-        messages = [m_one]
+        try:
+            m_one = await c.get_messages(
+                chat_id=m.chat.id,
+                message_ids=m.reply_to_message.id,
+                replies=0,
+            )
+            messages = [m_one]
+        except Exception as e:
+            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     elif len(m.command) > 2:
-        user_id = await c.extract_user(m)
-        try:
-            org = await c.get_users(user_id)
-            if org.id in DEVS:
-                await mk.edit(f"{em.gagal} **Si anjing mengatasnamakan Developer!**")
-                return
-            rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
-            rep.from_user = org
-            messages = [rep]
-        except Exception as e:
-            await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-        warna = m.text.split()[3].strip()
-        if warna in loanjing:
-            acak = warna
+        tag = m.command[1].strip()
+        if tag.startswith("@"):
+            user_id = tag[1:]
+            try:
+                org = await c.get_users(user_id)
+                if org.id in DEVS:
+                    await mk.edit(f"{em.gagal} **Si anjing mengatasnamakan Developer!**")
+                    return
+                rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
+                rep.from_user = org
+                messages = [rep]
+            except Exception as e:
+                return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
         else:
-            acak = random.choice(loanjing)
-        angka = int(m.text.split()[4].strip())
-        if angka > 10:
-            await m.reply(f"{em.gagal} Batas pesan adalah 10")
-        try:
-            messages = [
-                i
-                for i in await c.get_messages(
-                    chat_id=m.chat.id,
-                    message_ids=range(
-                        m.reply_to_message.id, m.reply_to_message.id + (angka + 5)
-                    ),
-                    replies=-1,
-                )
-                if not i.empty and not i.media
-            ]
-        except Exception as e:
-            await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+            warna = m.command[2].strip().lower()
+            if warna in loanjing:
+                acak = warna
+            else:
+                acak = random.choice(loanjing)
+
+            if len(m.command) > 3:
+                try:
+                    angka = int(m.command[3].strip())
+                    if angka > 10:
+                        return await m.reply(f"{em.gagal} Batas pesan adalah 10")
+                    messages = [
+                        i
+                        for i in await c.get_messages(
+                            chat_id=m.chat.id,
+                            message_ids=range(
+                                m.reply_to_message.id, m.reply_to_message.id + (angka + 5)
+                            ),
+                            replies=-1,
+                        )
+                        if not i.empty and not i.media
+                    ]
+                except ValueError:
+                    pass
+                except Exception as e:
+                    return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
 
     try:
         hasil = await quotly(messages, acak)
@@ -85,4 +95,3 @@ async def _(c: user, m):
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
 
     await mk.delete()
-    return
