@@ -271,6 +271,7 @@ async def _(c: user, m):
             f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
         )
 
+
 #    else:
 #        return await xx.edit(f"{em.gagal} <b>Tidak ada catatan!</b>")
 
