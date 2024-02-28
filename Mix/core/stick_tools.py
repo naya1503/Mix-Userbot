@@ -8,7 +8,9 @@
 
 import os
 import re
+import asyncio
 
+from PIL import Image
 from pyrogram import emoji
 from team.nandev.class_log import LOGGER
 
@@ -27,14 +29,56 @@ def get_emoji_regex():
     return re.compile(pattern_)
 
 
-async def con_tgs(pat, file_name):
-    try:
-        mp4_path = pat.replace(f"{file_name}.tgs", f"{file_name}.mp4")
-        os.system(f"ffmpeg -i {pat} {mp4_path}")
-        return mp4_path
-    except Exception as e:
-        LOGGER.error(f"{e}")
-        return None
+def resize_image(filename: str) -> str:
+    im = Image.open(filename)
+    maxsize = 512
+    scale = maxsize / max(im.width, im.height)
+    sizenew = (int(im.width * scale), int(im.height * scale))
+    im = im.resize(sizenew, Image.NEAREST)
+    downpath, f_name = os.path.split(filename)
+    # not hardcoding png_image as "sticker.png"
+    # not hardcoding png_image as "sticker.png"
+    png_image = os.path.join(downpath, f"{f_name.split('.', 1)[0]}.png")
+    im.save(png_image, "PNG")
+    if png_image != filename:
+        os.remove(filename)
+    return png_image
+
+
+async def convert_video(filename: str) -> str:
+    downpath, f_name = os.path.split(filename)
+    webm_video = os.path.join(downpath, f"{f_name.split('.', 1)[0]}.webm")
+    cmd = [
+        "downloads",
+        "-loglevel",
+        "quiet",
+        "-i",
+        filename,
+        "-t",
+        "00:00:03",
+        "-vf",
+        "fps=30",
+        "-c:v",
+        "vp9",
+        "-b:v:",
+        "500k",
+        "-preset",
+        "ultrafast",
+        "-s",
+        "512x512",
+        "-y",
+        "-an",
+        webm_video,
+    ]
+
+    proc = await asyncio.create_subprocess_exec(*cmd)
+    # Wait for the subprocess to finish
+    await proc.communicate()
+
+    if webm_video != filename:
+        os.remove(filename)
+    return webm_video
+
 
 
 EMOJI_PATTERN = get_emoji_regex()
