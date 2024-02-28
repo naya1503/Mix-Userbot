@@ -16,16 +16,17 @@ Help Command Sticker
 
 import os
 
-from pyrogram import enums
+from Mix import *
+from Mix.core.stick_tools import *
+from pyrogram import emoji, enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
+from pyrogram.file_id import FileId
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
-from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet)
+from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet,
+                                             RemoveStickerFromSet)
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
-
-from Mix import *
-from Mix.core.stick_tools import *
 
 
 @ky.ubot("gstik|getstiker|getsticker", sudo=True)
@@ -60,7 +61,7 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-@ky.ubot("gstik|getstiker|getsticker", sudo=True)
+@ky.ubot("kang", sudo=True)
 async def _(c: bot, m):
     em = Emojik()
     em.initialize()
@@ -76,7 +77,7 @@ async def _(c: bot, m):
     videos = False
     convert = False
     reply = m.reply_to_message
-    await user.resolve_peer(m.from_user.username or m.from_user.id)
+    org = await user.resolve_peer(m.from_user.username or m.from_user.id)
 
     if reply and reply.media:
         if reply.photo:
@@ -113,16 +114,22 @@ async def _(c: bot, m):
             elif not reply.sticker.file_name.endswith(".tgs"):
                 resize = True
         else:
-
+            
             return await prog_msg.edit(f"{em.gagal} Sticker tidak didukung!")
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{c.me.username}"
 
-        if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
+        if (
+            len(m.command) > 1
+            and m.command[1].isdigit()
+            and int(m.command[1]) > 0
+        ):
             # provide pack number to kang in desired pack
             packnum = m.command.pop(1)
-            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{c.me.username}"
+            packname = (
+                f"{pack_prefix}{packnum}_{m.from_user.id}_by_{c.me.username}"
+            )
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
@@ -186,9 +193,7 @@ async def _(c: bot, m):
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
-                    packname = (
-                        f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{c.me.username}"
-                    )
+                    packname = f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{c.me.username}"
                 else:
                     packname_found = True
             except StickersetInvalid:
@@ -209,7 +214,9 @@ async def _(c: bot, m):
         msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
-            await prog_msg.edit(f"{em.proses} Menggunakan paket stiker yang ada...")
+            await prog_msg.edit(
+                f"{em.proses} Menggunakan paket stiker yang ada..."
+            )
             await c.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
@@ -266,8 +273,7 @@ async def _(c: bot, m):
         await prog_msg.edit(f"{all_e.__class__.__name__} : {all_e}")
     else:
         await prog_msg.edit(
-            f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
-        )
+            f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>")
         # Cleanup
         await c.delete_messages(chat_id=logme, message_ids=msg_.id, revoke=True)
         try:
