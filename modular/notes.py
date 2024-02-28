@@ -276,7 +276,7 @@ async def _(c: user, m):
 
     if not delnote:
         return await xx.edit(
-            f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>"
+            f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
         )
 
     else:
