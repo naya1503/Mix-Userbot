@@ -45,7 +45,7 @@ async def _(c: user, m):
                         f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
                     )
                     return
-                rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
+                rep = await c.get_messages(m.chat.id, m.reply_to_message.id replies=1)
                 rep.from_user = org
                 messages = [rep]
             except Exception as e:
