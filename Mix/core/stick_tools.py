@@ -7,7 +7,9 @@
 ################################################################
 
 import re
+
 from pyrogram import emoji
+
 
 def get_emoji_regex():
     e_list = [
@@ -21,7 +23,7 @@ def get_emoji_regex():
     # matched first
     pattern_ = f"({'|'.join(e_sort)})"
     return re.compile(pattern_)
-    
-    
+
+
 EMOJI_PATTERN = get_emoji_regex()
 SUPPORTED_TYPES = ["jpeg", "png", "webp"]
