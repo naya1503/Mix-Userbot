@@ -65,7 +65,7 @@ async def _(c: user, m):
                 chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
             )
             messages = [m_one]
-        if angka:
+        elif angka:
             xx = int(angka)
             if xx > 10:
                 return await m.reply(f"{em.gagal} Batas pesan adalah 10")
