@@ -41,7 +41,7 @@ async def _(c: user, m):
             replies=0,
         )
         messages = [m_one]
-    elif len(m.command) == 2:
+    elif len(m.command) > 2:
         tag = m.command[1].strip()
         ct = isArgInt(m.command[1])
         if tag.startswith("@"):
@@ -53,12 +53,17 @@ async def _(c: user, m):
                         f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
                     )
                     return
-                rep = await c.get_messages(m.chat.id, m.reply_to_message.from_user.id)
-                rep = org
+                rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
+                rep.from_user = org
                 messages = [rep]
             except Exception as e:
                 return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-        elif not tag.startswith("@"):
+        else:
+            warna = m.text.split()[2].strip().lower()
+            if warna in loanjing:
+                acak = warna
+            else:
+                acak = random.choice(loanjing)
             if ct[0]:
                 if ct[1] < 2 or ct[1] > 10:
                     return await m.reply(f"{em.gagal} Batas pesan adalah 10")
@@ -77,12 +82,7 @@ async def _(c: user, m):
                     ]
                 except Exception as e:
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-    else:
-        warna = m.text.split()[2].strip().lower()
-        if warna in loanjing:
-            acak = warna
-        else:
-            acak = random.choice(loanjing)
+
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
