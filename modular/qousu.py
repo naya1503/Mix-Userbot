@@ -35,7 +35,7 @@ async def _(c: user, m):
     messages = None
     tag = m.command[1].strip()
     if tag.startswith("@"):
-        user_id = await c.extract_user(m)
+        user_id = tag[1:]
         try:
             org = await c.get_users(user_id)
             if org.id in DEVS:
