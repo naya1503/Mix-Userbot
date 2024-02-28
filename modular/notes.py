@@ -267,20 +267,14 @@ async def _(c: user, m):
 
     note = m.text.split()[1]
     delnote = udB.rm_note(c.me.id, note)
-    getnotes = udB.get_all_notes(c.me.id)
 
-    if note in getnotes:
-        return await xx.edit(
-            f"{em.gagal} <b>Berhasil menghapus catatan <code>{note}</code>!</b>"
-        )
-
-    if not delnote:
-        return await xx.edit(
-            f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
-        )
-
-    else:
+    if delnote:
         await xx.edit(
+            f"{em.sukses} <b>Catatan <code>{note}</code> sudah tidak ada!</b>"
+        )
+        return
+    else:
+        return await xx.edit(
             f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
         )
 
