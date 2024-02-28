@@ -24,7 +24,7 @@ from pyrogram.types import *
 from io import BytesIO
 
 from Mix import *
-from Mix.core.tools_qoute import *
+from Mix.core.tools_quote import *
 
 
 @ky.ubot("q", sudo=True)
