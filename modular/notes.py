@@ -270,9 +270,7 @@ async def _(c: user, m):
     getnotes = udB.get_note(c.me.id, note)
 
     if getnote is None:
-        return await xx.edit(
-            f"{em.gagal} <b>Catatan tidak ditemukan!</b>"
-        )
+        return await xx.edit(f"{em.gagal} <b>Catatan tidak ditemukan!</b>")
 
     if note not in getnotes:
         return await xx.edit(
