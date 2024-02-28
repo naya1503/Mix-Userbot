@@ -41,7 +41,9 @@ async def _(c: user, m):
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
-                    await m.reply(f"{em.gagal} **Si anjing mengatasnamakan Developer!**")
+                    await m.reply(
+                        f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
+                    )
                     return
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=0)
                 rep.from_user = org
@@ -60,7 +62,8 @@ async def _(c: user, m):
             else:
                 acak = random.choice(loanjing)
             m_one = await c.get_messages(
-            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0)
+                chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+            )
             messages = [m_one]
         if angka:
             xx = int(angka)
@@ -76,13 +79,16 @@ async def _(c: user, m):
                 for i in await c.get_messages(
                     chat_id=m.chat.id,
                     message_ids=range(
-                    m.reply_to_message.id,
-                    m.reply_to_message.id + (angka + 5)),
-                    replies=-1)
-                if not i.empty and not i.media]
+                        m.reply_to_message.id, m.reply_to_message.id + (angka + 5)
+                    ),
+                    replies=-1,
+                )
+                if not i.empty and not i.media
+            ]
     else:
         m_one = await c.get_messages(
-            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0)
+            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+        )
         messages = [m_one]
     try:
         hasil = await quotly(messages, acak)
