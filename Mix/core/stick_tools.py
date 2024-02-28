@@ -7,11 +7,9 @@
 ################################################################
 
 import re
-
+import os
 from pyrogram import emoji
 from team.nandev.class_log import LOGGER
-
-from Mix import user
 
 
 def get_emoji_regex():
