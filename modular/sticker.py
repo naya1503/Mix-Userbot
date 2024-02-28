@@ -38,13 +38,10 @@ async def _(c: user, m):
                 f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
             )
         elif stick.is_animated == True:
-            pat = await user.download_media(stick)
-            file_name = f"{stick.set_name}.tgs"
-            gif_, mp4_ = await con_tgs(pat, file_name)
-            if gif_:
-                await m.reply_animation(gif_)
-            else:
-                await m.reply_video(mp4_)
+            pat = await user.download_media(stick, file_name=f"{stick.set_name}.tgs")
+            x = f"{stick.set_name}.tgs"
+            vid = await con_tgs(pat, x)
+            await m.reply_video(vid)
             # await m.reply_to_message.reply_document(
             # document=pat,
             # caption=f"<b>Emoji:</b> {sticker.emoji}\n"
