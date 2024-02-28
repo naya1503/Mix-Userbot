@@ -7,9 +7,9 @@
 ################################################################
 
 import re
-
 from pyrogram import emoji
-
+from Mix import user
+from team.nandev.class_log import LOGGER
 
 def get_emoji_regex():
     e_list = [
@@ -23,7 +23,20 @@ def get_emoji_regex():
     # matched first
     pattern_ = f"({'|'.join(e_sort)})"
     return re.compile(pattern_)
+ 
+async def con_tgs(pat):
+    try:
+        gif_path = pat.replace(".tgs", ".gif")
+        mp4_path = pat.replace(".tgs", ".mp4")
 
-
+        gas = f"ffmpeg -i {file_path} {gif_path}"
+        await user.run_cmd(gas)
+        gs = f"ffmpeg -i {file_path} {mp4_path}"
+        await user.run_cmd(gs)
+        return gif_path, mp4_path
+    except Exception as e:
+        LOGGER.error(f"{e}")
+        return None, None
+    
 EMOJI_PATTERN = get_emoji_regex()
 SUPPORTED_TYPES = ["jpeg", "png", "webp"]
