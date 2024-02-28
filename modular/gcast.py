@@ -48,7 +48,11 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(f"{em.proses} Processing...")
-    send = c.get_m(m)
+    direp = m.reply_to_message
+    if direp:
+        send = direp.text or direp.caption
+    else:
+        send = c.get_m(m)
     if not send:
         return await msg.edit(f"{em.gagal} Silakan balas ke pesan atau berikan pesan.")
     chats = await c.get_user_dialog("group")
@@ -59,23 +63,18 @@ async def _(c: user, m):
 
         if chat not in blacklist and chat not in NO_GCAST:
             try:
-                if m.reply_to_message:
-                    await send.copy(chat)
-                else:
-                    await c.send_message(chat, send)
+                await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(0.2)
             except SlowmodeWait:
                 continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
-                if m.reply_to_message:
-                    await send.copy(chat)
-                else:
+                try:
                     await c.send_message(chat, send)
-                done += 1
-            except Exception:
-                failed += 1
+                    done += 1
+                except Exception:
+                    failed += 1
 
     return await msg.edit(
         f"""
