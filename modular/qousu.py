@@ -70,14 +70,16 @@ async def _(c: user, m):
                 except Exception as e:
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
         else:
-             warna = m.text.split()[2].strip().lower()
-             if warna in loanjing:
-                 acak = warna
-             else:
-                 acak = random.choice(loanjing)
+            warna = m.text.split()[2].strip().lower()
+            if warna in loanjing:
+                acak = warna
+            else:
+                acak = random.choice(loanjing)
     try:
         m_one = await c.get_messages(
-            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0,
+            chat_id=m.chat.id,
+            message_ids=m.reply_to_message.id,
+            replies=0,
         )
         messages = [m_one]
     except Exception as e:
