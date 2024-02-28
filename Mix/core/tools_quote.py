@@ -190,14 +190,21 @@ async def sender_name(m):
         if m.forward_sender_name:
             return m.forward_sender_name
         elif m.forward_from:
-            return f"{m.forward_from.first_name} {m.forward_from.last_name or ''}"
+            return (
+                f"{m.forward_from.first_name} {m.forward_from.last_name or ''}"
+                if m.forward_from.last_name
+                else m.forward_from.first_name
+            )
 
         elif m.forward_from_chat:
             return m.forward_from_chat.title
         else:
             return ""
     elif m.from_user:
-        return f"{m.from_user.first_name} {m.from_user.last_name or ''}"
+        if m.from_user.last_name:
+            return f"{m.from_user.first_name} {m.from_user.last_name or ''}"
+        else:
+            return m.from_user.first_name
     elif m.sender_chat:
         return m.sender_chat.title
     else:
