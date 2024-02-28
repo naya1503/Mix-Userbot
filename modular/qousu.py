@@ -103,9 +103,8 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     mk = await m.reply(f"{em.proses} Processing...")
-    mk = await message.reply(f"{em.proses} <b>Sedang proses...</b>")
     await asyncio.sleep(2)
-    target_user, reason = await extract_user_and_reason(message)
+    target_user, reason = await extract_user_and_reason(m)
     if target_user is None:
         return await mk.edit(f"{em.gagal} <b>Invalid username format.</b>")
 
@@ -118,14 +117,14 @@ async def _(c: user, m):
         return await mk.edit(f"{em.gagal} <b>Not found a username.</b>")
     except IndexError:
         return await mk.edit(f"{em.gagal} <b>Only for user.</b>")
-    if message.reply_to_message:
-        rep = message.reply_to_message.text
+    if m.reply_to_message:
+        rep = m.reply_to_message.text
     else:
         rep = reason if reason else ""
     fake_quote_text = rep
     if not fake_quote_text:
         return await mk.edit(f"{em.gagal} <b>Empty message.</b>")
-    q_message = await client.get_messages(message.chat.id, message.id)
+    q_message = await client.get_messages(m.chat.id, m.id)
     q_message.text = fake_quote_text
     q_message.entities = None
     q_message.from_user.id = user.id
@@ -150,7 +149,7 @@ async def _(c: user, m):
     resized = resize_image(BytesIO(response.content), img_type="webp")
     try:
         func = client.send_sticker
-        chat_id = message.chat.id
+        chat_id = m.chat.id
         await func(chat_id, resized)
     except errors.RPCError as e:
         await mk.edit(e)
