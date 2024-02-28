@@ -39,7 +39,9 @@ async def _(c: user, m):
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
-                    await mk.edit(f"{em.gagal} **Si anjing mengatasnamakan Developer!**")
+                    await mk.edit(
+                        f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
+                    )
                     return
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
                 rep.from_user = org
