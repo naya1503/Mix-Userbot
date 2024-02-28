@@ -22,8 +22,10 @@ __help__ = """
 """
 
 
-from Mix import *
 from pyrogram.errors import *
+
+from Mix import *
+
 from .gcast import refresh_dialog
 
 
