@@ -33,11 +33,18 @@ async def _(c: user, m):
     em.initialize()
     mk = await m.reply(f"{em.proses} Processing...")
     acak = None
-    ct = isArgInt(m.command[1])
-    if len(m.text.split()) > 1:
+    if len(m.command) == 1:
+        m_one = await c.get_messages(
+            chat_id=m.chat.id,
+            message_ids=m.reply_to_message.id,
+            replies=0,
+        )
+        messages = [m_one]
+    elif if len(m.command) == 2:
         tag = m.command[1].strip()
+        ct = isArgInt(m.command[1])
         if tag.startswith("@"):
-            user_id = await c.extract_user(m)
+            user_id = tag[1:]
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
@@ -45,9 +52,9 @@ async def _(c: user, m):
                         f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
                     )
                     return
-                rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
-                rep.from_user = org
-                messages = [rep.from_user]
+                rep = await c.get_messages(m.chat.id, m.reply_to_message.from_user.id)
+                rep = org
+                messages = [rep]
             except Exception as e:
                 return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
         elif not tag.startswith("@"):
@@ -69,21 +76,12 @@ async def _(c: user, m):
                     ]
                 except Exception as e:
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-        else:
-            warna = m.text.split()[2].strip().lower()
-            if warna in loanjing:
-                acak = warna
-            else:
-                acak = random.choice(loanjing)
-    try:
-        m_one = await c.get_messages(
-            chat_id=m.chat.id,
-            message_ids=m.reply_to_message.id,
-            replies=0,
-        )
-        messages = [m_one]
-    except Exception as e:
-        return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+    else:
+         warna = m.text.split()[2].strip().lower()
+         if warna in loanjing:
+            acak = warna
+         else:
+            acak = random.choice(loanjing)
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
