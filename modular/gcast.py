@@ -90,7 +90,11 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(f"{em.proses} Processing...")
-    send = c.get_m(m)
+    direp = m.reply_to_message
+    if direp:
+        send = direp.text
+    else:
+        send = c.get_m(m)
     if not send:
         return await msg.edit(f"{em.gagal} Silakan balas ke pesan atau berikan pesan.")
     chats = await c.get_user_dialog("users")
@@ -100,21 +104,16 @@ async def _(c: user, m):
     for chat in chats:
         if chat not in blacklist and chat not in DEVS:
             try:
-                if m.reply_to_message:
-                    await send.copy(chat)
-                else:
-                    await c.send_message(chat, send)
+                await c.send_message(chat, send)
                 done += 1
-                await asyncio.sleep(2)
-            except Exception:
-                failed += 1
             except FloodWait as e:
                 await asyncio.sleep(int(e))
-                if m.reply_to_message:
-                    await send.copy(chat)
-                else:
+                try:
                     await c.send_message(chat, send)
-                done += 1
+                    done += 1
+                except Exception:
+                    failed += 1
+            
     return await msg.edit(
         f"""
 {em.alive} Broadcast Message Sent :
