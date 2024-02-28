@@ -271,8 +271,8 @@ async def _(c: user, m):
 
     if getnote is None:
         return await xx.edit(
-           f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>"
-         )
+            f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>"
+        )
 
     if note not in getnotes:
         return await xx.edit(
