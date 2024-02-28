@@ -34,7 +34,7 @@ async def _(c: user, m):
     acak = None
     messages = None
     tag = m.command[1].strip()
-    angka = c.get_arg(m)
+    c.get_arg(m)
     if len(m.command) > 1:
         if tag.startswith("@"):
             user_id = tag[1:]
