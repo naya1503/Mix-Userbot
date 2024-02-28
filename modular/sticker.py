@@ -187,9 +187,7 @@ async def _(_, m):
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
-                    packname = (
-                        f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{user.me.username}"
-                    )
+                    packname = f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{user.me.username}"
                 else:
                     packname_found = True
             except StickersetInvalid:
