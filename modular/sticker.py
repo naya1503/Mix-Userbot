@@ -19,7 +19,7 @@ import os
 from pyrogram import enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
-from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet)
+from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
@@ -68,7 +68,7 @@ async def _(c: bot, m):
     await user.unblock_user(bot.me.username)
     await user.send_message(bot.me.username, "/start")
     prog_msg = await m.reply(f"{em.proses} Processing kang stickers...")
-    
+
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
