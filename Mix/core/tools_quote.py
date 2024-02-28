@@ -14,6 +14,7 @@ from .http import http
 class QuotlyException(Exception):
     pass
 
+
 loanjing = [
     "Black",
     "Navy",

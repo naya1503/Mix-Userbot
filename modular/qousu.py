@@ -18,8 +18,9 @@ Help Command Quote
 """
 
 
-from io import BytesIO
 import random
+from io import BytesIO
+
 from pyrogram.types import *
 
 from Mix import *
@@ -52,9 +53,7 @@ async def _(c: user, m):
             ct = isArgInt(ct)
             if ct[0]:
                 if ct[1] < 2 or ct[1] > 10:
-                    return await m.reply(
-                        f"{em.gagal} Batas pesan adalah 10"
-                    )
+                    return await m.reply(f"{em.gagal} Batas pesan adalah 10")
                 try:
                     messages = [
                         i
@@ -89,7 +88,7 @@ async def _(c: user, m):
             acak = random.choice(loanjing)
     else:
         acak = random.choice(loanjing)
-        
+
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
@@ -97,5 +96,5 @@ async def _(c: user, m):
         return await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-    
+
     await mk.delete()
