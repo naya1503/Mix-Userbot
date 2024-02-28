@@ -38,10 +38,24 @@ from gc import get_objects
 
 from pyrogram.errors import *
 from pyrogram.types import *
+from pyrogram.enums import *
 from telegraph import upload_file
 
 from Mix import *
 
+async def refresh_dialog(query):
+      chats = []
+      chat_types = {
+          "group": [ChatType.GROUP, ChatType.SUPERGROUP],
+          "users": [ChatType.PRIVATE],
+          "all": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
+          "ch": [ChatType.CHANNEL],
+          "allread": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL, ChatType.PRIVATE]
+      }
+      async for xxone in user.get_dialogs():
+          if xxone.chat.type in chat_types[query]:
+              chats.append(xxone.chat.id)
+      return chats
 
 @ky.ubot("gcast", sudo=True)
 async def _(c: user, m):
@@ -55,7 +69,7 @@ async def _(c: user, m):
         send = c.get_m(m)
     if not send:
         return await msg.edit(f"{em.gagal} Silakan balas ke pesan atau berikan pesan.")
-    chats = await c.get_user_dialog("group")
+    chats = await refresh_dialog("group")
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
@@ -96,7 +110,7 @@ async def _(c: user, m):
         send = c.get_m(m)
     if not send:
         return await msg.edit(f"{em.gagal} Silakan balas ke pesan atau berikan pesan.")
-    chats = await c.get_user_dialog("users")
+    chats = await refresh_dialog("users")
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
