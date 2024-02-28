@@ -15,6 +15,12 @@ Help Command Sticker
 """
 
 import os
+import asyncio
+import os
+import re
+import shutil
+import tempfile
+from PIL import Image
 
 from pyrogram import enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
@@ -26,7 +32,7 @@ from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
 
 from Mix import user, bot, Emojik, udB, ky
 from Mix.core.stick_tools import resize_image, convert_video, EMOJI_PATTERN, get_emoji_regex
-
+from Mix.core.http import http
 
 @ky.ubot("gstik|getstiker|getsticker", sudo=True)
 async def _(c: user, m):
