@@ -138,7 +138,7 @@ async def _(_, m):
     elif m.entities and len(m.entities) > 1:
         pack_prefix = "a"
         filename = "sticker.png"
-        packname = f"c{m.from_user.id}_by_{user.me.username}"
+        packname = f"{m.from_user.id}_by_{user.me.username}"
         img_url = next(
             (
                 m.text[y.offset : (y.offset + y.length)]
@@ -264,7 +264,7 @@ async def _(_, m):
             f"{em.gagal} Paket Stiker Anda penuh jika paket Anda tidak dalam Tipe V1 jika tidak dalam Tipe V2 dan seterusnya."
         )
     except Exception as all_e:
-        await prog_msg.edit(f"{all_e.__class__.__name__} : {all_e}")
+        await prog_msg.edit(f"{all_e}")
     else:
         await prog_msg.edit(
             f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
