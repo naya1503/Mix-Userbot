@@ -93,7 +93,7 @@ async def _(c: user, m):
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
         bs.name = "mix.webp"
-        return await m.reply_sticker(bs)
+        await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
 
