@@ -16,7 +16,7 @@ class QuotlyException(Exception):
 
 
 loanjing = [
-    "Black",
+    "White",
     "Navy",
     "DarkBlue",
     "MediumBlue",
@@ -163,7 +163,7 @@ loanjing = [
     "Yellow",
     "LightYellow",
     "Ivory",
-    "White",
+    "Black",
 ]
 
 
