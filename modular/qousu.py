@@ -72,7 +72,7 @@ async def _(c: user, m):
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
 
 
- """
+            """
             if len(m.command) > 3:
                 try:
                     angka = int(m.command[3].strip())
@@ -94,5 +94,4 @@ async def _(c: user, m):
                     pass
                 except Exception as e:
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-    else:
- """
+            """
