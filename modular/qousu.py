@@ -84,12 +84,13 @@ async def _(c: user, m):
                     ),
                     replies=0,
                 )
-                if not i.empty and not i.media]
+                if not i.empty and not i.media
+            ]
         else:
-             m_one = await c.get_messages(
-                  chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-             )
-             messages = [m_one]
+            m_one = await c.get_messages(
+                chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+            )
+            messages = [m_one]
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
