@@ -58,13 +58,11 @@ async def _(c: user, m):
              acak = warna
         else:
              acak = random.choice(loanjing)
-         m_one = await c.get_messages(
+        m_one = await c.get_messages(
             chat_id=m.chat.id,
             message_ids=m.reply_to_message.id,
             replies=0)
-         messages = [m_one]
-        except Exception as e:
-            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+        messages = [m_one]
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
