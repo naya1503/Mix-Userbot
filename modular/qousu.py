@@ -33,7 +33,11 @@ async def _(c: user, m):
     em.initialize()
     acak = None
     messages = None
-
+    warna = m.text.split(None, 2)[2]
+    if warna:
+        acak = warna
+    else:
+        acak = random.choice(loanjing)
     if len(m.command) > 2:
         tag = m.command[1].strip()
         if tag.startswith("@"):
@@ -45,18 +49,31 @@ async def _(c: user, m):
                         f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
                     )
                     return
-                rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=1)
+                rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=-1)
                 rep.from_user = org
                 messages = [rep]
             except Exception as e:
                 return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-        else:
-            warna = m.command[2].strip().lower()
-            if warna in loanjing:
-                acak = warna
-            else:
-                acak = random.choice(loanjing)
+    else:
+        try:
+            m_one = await c.get_messages(
+                chat_id=m.chat.id,
+                message_ids=m.reply_to_message.id,
+                replies=0,
+            )
+            messages = [m_one]
+        except Exception as e:
+            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+    try:
+        hasil = await quotly(messages, acak)
+        bs = BytesIO(hasil)
+        bs.name = "mix.webp"
+        await m.reply_sticker(bs)
+    except Exception as e:
+        return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
 
+
+ """
             if len(m.command) > 3:
                 try:
                     angka = int(m.command[3].strip())
@@ -79,19 +96,4 @@ async def _(c: user, m):
                 except Exception as e:
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     else:
-        try:
-            m_one = await c.get_messages(
-                chat_id=m.chat.id,
-                message_ids=m.reply_to_message.id,
-                replies=0,
-            )
-            messages = [m_one]
-        except Exception as e:
-            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-    try:
-        hasil = await quotly(messages, acak)
-        bs = BytesIO(hasil)
-        bs.name = "mix.webp"
-        await m.reply_sticker(bs)
-    except Exception as e:
-        return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+ """
