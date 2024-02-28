@@ -41,35 +41,32 @@ async def _(c: user, m):
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
-                    await m.reply(
-                        f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
-                    )
+                    await m.reply(f"{em.gagal} **Si anjing mengatasnamakan Developer!**")
                     return
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=0)
                 rep.from_user = org
                 messages = [rep]
             except Exception as e:
                 return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-            warna = m.text.split(None, 2)[2]() if len(m.command) > 2 else None
+            warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
             if warna:
                 acak = warna
             else:
                 acak = random.choice(loanjing)
         elif not tag.startswith("@"):
-            warna = m.text.split(None, 1)[1]() if len(m.command) > 1 else None
+            warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
             if warna:
                 acak = warna
             else:
                 acak = random.choice(loanjing)
             m_one = await c.get_messages(
-                chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-            )
+                chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0)
             messages = [m_one]
         if angka:
             xx = int(angka)
-            if len(xx) > 10:
+            if xx > 10:
                 return await m.reply(f"{em.gagal} Batas pesan adalah 10")
-            warna = m.text.split(None, 2)[2]() if len(m.command) > 2 else None
+            warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
             if warna:
                 acak = warna
             else:
@@ -79,16 +76,13 @@ async def _(c: user, m):
                 for i in await c.get_messages(
                     chat_id=m.chat.id,
                     message_ids=range(
-                        m.reply_to_message.id, m.reply_to_message.id + (angka + 5)
-                    ),
-                    replies=-1,
-                )
-                if not i.empty and not i.media
-            ]
+                        m.reply_to_message.id,
+                        m.reply_to_message.id + (angka + 5)),
+                    replies=-1)
+                if not i.empty and not i.media]
     else:
         m_one = await c.get_messages(
-            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-        )
+            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0)
         messages = [m_one]
     try:
         hasil = await quotly(messages, acak)
@@ -97,6 +91,7 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+
 
 
 """
