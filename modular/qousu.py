@@ -33,10 +33,11 @@ async def _(c: user, m):
     em.initialize()
     mk = await m.reply(f"{em.proses} Processing...")
     acak = None
+    ct = isArgInt(ct)
     if len(m.text.split()) > 1:
         tag = m.command[1].strip()
         if tag.startswith("@"):
-            user_id = tag[1:]
+            user_id = await c.extract_user(m)
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
@@ -46,11 +47,10 @@ async def _(c: user, m):
                     return
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id)
                 rep.from_user = org
-                messages = [rep]
+                messages = [rep.from_user]
             except Exception as e:
                 return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
         elif not tag.startswith("@"):
-            ct = isArgInt(ct)
             if ct[0]:
                 if ct[1] < 2 or ct[1] > 10:
                     return await m.reply(f"{em.gagal} Batas pesan adalah 10")
