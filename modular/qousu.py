@@ -8,13 +8,26 @@
 """
 ################################################################
 
-"""
+
 __modles__ = "Quote"
-__help__ = "
+__help__ = """
 Help Command Quote
 
-• Perintah: <code>{0}q</code>
+• Perintah: <code>{0}q</code> [reply message]
 • Penjelasan: Untuk membuat quote teks.
+
+**Notes Optional:**
+`q @username` - Menjadi fake quote.
+`q warna` - Kostum latar belakang quote.
+`q @username warna` Menjadi fake quote dengan latar belakang kostum.
+
+Untuk warna sendiri gunakan bahasa inggris:
+- black
+- white
+- blue
+- navy
+- pink 
+- dll.
 """
 
 
