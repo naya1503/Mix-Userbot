@@ -30,14 +30,7 @@ async def _(c: user, m):
         await m.reply(f"{em.gagal} Silahkan balas ke sticker!")
         return
     else:
-        if stick:
-            pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
-            await m.reply_to_message.reply_document(
-                document=pat,
-                caption=f"<b>Emoji:</b> {stick.emoji}\n"
-                f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
-            )
-        elif stick.is_video == True:
+        if stick.is_video == True:
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.mp4")
             await m.reply_to_message.reply_document(
                 document=pat,
@@ -57,6 +50,11 @@ async def _(c: user, m):
             # f"<b>Sticker ID:</b> <code>{sticker.file_id}</code>")
 
         else:
-            await m.reply(f"{em.gagal} Silahkan balas ke sticker!")
+            pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
+            await m.reply_to_message.reply_document(
+                document=pat,
+                caption=f"<b>Emoji:</b> {stick.emoji}\n"
+                f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
+            )
         return
     os.remove(pat)
