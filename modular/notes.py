@@ -23,7 +23,7 @@ Help Command Notes
 • Perintah: <code>{0}get</code> [nama catatan]
 • Penjelasan: Untuk mengambil catatan.
 
-• Perintah: <code>{0}rm</code> [nama catatan]
+• Perintah: <code>{0}clear</code> [nama catatan]
 • Penjelasan: Untuk menghapus catatan.
 
 • Perintah: <code>{0}notes</code>
@@ -65,6 +65,8 @@ async def _(c: user, m):
         mmk = f"https://telegra.ph/{xo_url[0]}"
         udB.save_note(c.me.id, note_name, text, data_type, mmk)
         os.remove(xo)
+    elif data_type in [Types.STICKER, Types.VIDEO_NOTE, Types.ANIMATED_STICKER, Types.VOICE]:
+        udB.save_note(c.me.id, note_name, text, data_type, content)
     await xx.edit(
         f"{em.sukses} <b>Catatan <code>{note_name}</code> berhasil disimpan.</b>"
     )
@@ -249,7 +251,7 @@ async def _(c: user, m):
     await xx.edit(rply)
 
 
-@ky.ubot("rm", sudo=True)
+@ky.ubot("clear", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
