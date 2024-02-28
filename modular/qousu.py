@@ -19,7 +19,7 @@ Help Command Quote
 
 
 from io import BytesIO
-
+import random
 from pyrogram.types import *
 
 from Mix import *
@@ -32,7 +32,7 @@ async def _(c: user, m):
     em.initialize()
     mk = await m.reply(f"{em.proses} Processing...")
 
-    if len(m.text.split()) > 1:
+    if len(m.command) == 2:
         ct = m.command[1].strip()
         if ct.startswith("@"):
             user_id = ct[1:]
@@ -53,7 +53,7 @@ async def _(c: user, m):
             if ct[0]:
                 if ct[1] < 2 or ct[1] > 10:
                     return await m.reply(
-                        f"{em.gagal} Argumen yang anda berikan salah..."
+                        f"{em.gagal} Batas pesan adalah 10"
                     )
                 try:
                     messages = [
@@ -72,13 +72,7 @@ async def _(c: user, m):
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
             else:
                 return await m.reply(f"{em.gagal} Argumen yang anda berikan salah...")
-        try:
-            hasil = await quotly(messages)
-            bs = BytesIO(hasil)
-            bs.name = "mix.webp"
-            return await m.reply_sticker(bs)
-        except Exception as e:
-            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+
     try:
         m_one = await c.get_messages(
             chat_id=m.chat.id, message_ids=m.reply_to_message.id
@@ -86,11 +80,22 @@ async def _(c: user, m):
         messages = [m_one]
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+
+    if len(m.text.split()) > 2:
+        warna = m.text.split()[2].strip().lower()
+        if warna in loanjing:
+            acak = warna
+        else:
+            acak = random.choice(loanjing)
+    else:
+        acak = random.choice(loanjing)
+        
     try:
-        hasil = await quotly(messages)
+        hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
         bs.name = "mix.webp"
         return await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+    
     await mk.delete()
