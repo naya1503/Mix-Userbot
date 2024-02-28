@@ -40,7 +40,7 @@ async def _(c: user, m):
             replies=0,
         )
         messages = [m_one]
-    elif if len(m.command) == 2:
+    elif len(m.command) == 2:
         tag = m.command[1].strip()
         ct = isArgInt(m.command[1])
         if tag.startswith("@"):
