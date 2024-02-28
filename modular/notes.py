@@ -268,10 +268,10 @@ async def _(c: user, m):
     note = m.text.split()[1]
     getnote = udB.rm_note(c.me.id, note)
 
-    if getnote is None:
-        return await xx.edit(
-            f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>"
-        )
+    # if getnote is None:
+    #     return await xx.edit(
+    #        f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>"
+    #     )
 
     if note not in getnote:
         return await xx.edit(
