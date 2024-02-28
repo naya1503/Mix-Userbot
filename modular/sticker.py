@@ -24,8 +24,8 @@ from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
 
-from Mix import *
-from Mix.core.stick_tools import *
+from Mix import user, bot, Emojik, udB
+from Mix.core.stick_tools import resize_image, convert_video, EMOJI_PATTERN, get_emoji_regex
 
 
 @ky.ubot("gstik|getstiker|getsticker", sudo=True)
@@ -39,7 +39,7 @@ async def _(c: user, m):
         return
     else:
         if stick.is_video == True:
-            pat = await bot.download_media(stick, file_name=f"{stick.set_name}.mp4")
+            pat = await c.download_media(stick, file_name=f"{stick.set_name}.mp4")
             await m.reply_to_message.reply_document(
                 document=pat,
                 caption=f"<b>Emoji:</b> {stick.emoji}\n"
@@ -50,7 +50,7 @@ async def _(c: user, m):
             return
 
         else:
-            pat = await bot.download_media(stick, file_name=f"{stick.set_name}.png")
+            pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
             await m.reply_to_message.reply_document(
                 document=pat,
                 caption=f"<b>Emoji:</b> {stick.emoji}\n"
