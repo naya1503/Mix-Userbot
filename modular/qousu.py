@@ -34,17 +34,7 @@ async def _(c: user, m):
     acak = None
     messages = None
 
-    if len(m.command) == 1:
-        try:
-            m_one = await c.get_messages(
-                chat_id=m.chat.id,
-                message_ids=m.reply_to_message.id,
-                replies=0,
-            )
-            messages = [m_one]
-        except Exception as e:
-            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-    elif len(m.command) > 2:
+    if len(m.command) > 2:
         tag = m.command[1].strip()
         if tag.startswith("@"):
             user_id = tag[1:]
@@ -88,7 +78,16 @@ async def _(c: user, m):
                     pass
                 except Exception as e:
                     return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
-
+    else:
+        try:
+            m_one = await c.get_messages(
+                chat_id=m.chat.id,
+                message_ids=m.reply_to_message.id,
+                replies=0,
+            )
+            messages = [m_one]
+        except Exception as e:
+            return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
