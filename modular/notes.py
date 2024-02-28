@@ -267,7 +267,7 @@ async def _(c: user, m):
 
     note = m.text.split()[1]
     getnote = udB.rm_note(c.me.id, note)
-    getnotes = udB.get_all_notes(c.me.id)
+    getnotes = udB.get_all_notes(c.me.id, note)
 
     if note in getnotes:
         return await xx.edit(
