@@ -36,26 +36,33 @@ __help__ = """
 import asyncio
 from gc import get_objects
 
+from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
-from pyrogram.enums import *
 from telegraph import upload_file
 
 from Mix import *
 
+
 async def refresh_dialog(query):
-      chats = []
-      chat_types = {
-          "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-          "users": [ChatType.PRIVATE],
-          "all": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
-          "ch": [ChatType.CHANNEL],
-          "allread": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL, ChatType.PRIVATE]
-      }
-      async for xxone in user.get_dialogs():
-          if xxone.chat.type in chat_types[query]:
-              chats.append(xxone.chat.id)
-      return chats
+    chats = []
+    chat_types = {
+        "group": [ChatType.GROUP, ChatType.SUPERGROUP],
+        "users": [ChatType.PRIVATE],
+        "all": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
+        "ch": [ChatType.CHANNEL],
+        "allread": [
+            ChatType.GROUP,
+            ChatType.SUPERGROUP,
+            ChatType.CHANNEL,
+            ChatType.PRIVATE,
+        ],
+    }
+    async for xxone in user.get_dialogs():
+        if xxone.chat.type in chat_types[query]:
+            chats.append(xxone.chat.id)
+    return chats
+
 
 @ky.ubot("gcast", sudo=True)
 async def _(c: user, m):
