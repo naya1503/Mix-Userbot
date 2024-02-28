@@ -113,7 +113,7 @@ async def _(c: user, m):
                     done += 1
                 except Exception:
                     failed += 1
-            
+
     return await msg.edit(
         f"""
 {em.alive} Broadcast Message Sent :
