@@ -23,7 +23,6 @@ from io import BytesIO
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.sender_tools import extract_user
 from Mix.core.tools_quote import *
 
 
