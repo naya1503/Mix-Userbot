@@ -23,7 +23,7 @@ __help__ = """
 
 
 from Mix import *
-
+from .gcast import refresh_dialog
 
 @ky.ubot("autoread", sudo=True)
 async def _(c, m):
@@ -37,25 +37,25 @@ async def _(c, m):
         return
     biji, peler = m.command[:2]
     if peler.lower() == "gc":
-        bcgc = await user.get_user_dialog("group")
+        bcgc = await refresh_dialog("group")
         for gc in bcgc:
             await user.read_chat_history(gc, max_id=0)
         await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
         return
     elif peler.lower() == "us":
-        bcus = await user.get_user_dialog("users")
+        bcus = await refresh_dialog("users")
         for us in bcus:
             await user.read_chat_history(us, max_id=0)
         await mek.edit(f"{em.sukses} Berhasil membaca {len(bcus)} pesan pengguna.")
         return
     elif peler.lower() == "ch":
-        bcch = await user.get_user_dialog("ch")
+        bcch = await refresh_dialog("ch")
         for ch in bcch:
             await user.read_chat_history(ch, max_id=0)
         await mek.edit(f"{em.sukses} Berhasil membaca {len(bcch)} pesan channel.")
         return
     elif peler.lower() == "all":
-        bcall = await user.get_user_dialog("allread")
+        bcall = await refresh_dialog("allread")
         for aih in bcall:
             await user.read_chat_history(aih, max_id=0)
         await mek.edit(
