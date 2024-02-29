@@ -221,7 +221,7 @@ async def _(self: bot, message):
         stkr_file = msg_.media.document
         if packname_found:
             await prog_msg.edit_text(
-                "<code>Menggunakan paket stiker yang ada...</code>"
+                "Menggunakan paket stiker yang ada..."
             )
             await self.invoke(
                 AddStickerToSet(
@@ -237,7 +237,7 @@ async def _(self: bot, message):
                 )
             )
         else:
-            await prog_msg.edit_text("<b>Membuat paket stiker baru...</b>")
+            await prog_msg.edit_text("Membuat paket stiker baru...")
             stkr_title = f"{message.from_user.first_name}"
             if animated:
                 stkr_title += " AnimPack"
@@ -352,10 +352,22 @@ async def _(self: user, m):
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
         async for tai in user.search_messages(
-            bot.me.username, query="Sticker Berhasil Dibuat!", limit=1
+            bot.me.username, limit=1
         ):
             await asyncio.sleep(2)
-            await tai.copy(m.chat.id)
+            if tai.text == "Sticker Anda Berhasil Dibuat!":
+                await tai.copy(m.chat.id)
+            elif tai.text == "Menggunakan paket stiker yang ada...":
+                await asyncio.sleep(2)
+                async for tai in user.search_messages(bot.me.username, limit=1):
+                      if tai.text == "Sticker Anda Berhasil Dibuat!":
+                            await tai.copy(m.chat.id)
+            elif tai.text == "Paket Stiker Anda penuh":
+                await m.reply(f"{em.gagal} Paket sticker anda penuh! Silahkan hapus salah satu paket di @Stickers")
+            elif tai.text == "Stiker tidak memiliki nama.":
+                await m.reply(f"{em.gagal} Sticker invalid tidak memiliki nama! Coba gunakan sticker lain.")
+            elif tai.text == "Ingin saya menebak stikernya?":
+                await m.reply(f"{em.gagal} Sticker invalid! Coba gunakan sticker lain.")
         await pros.delete()
         ulat = await user.resolve_peer(bot.me.username)
         await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
