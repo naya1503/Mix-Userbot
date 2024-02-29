@@ -283,9 +283,7 @@ async def _(c: user, m):
         await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> gagal dihapus!</b>")
         return
 
-    await xx.edit(
-        f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
-    )
+    await xx.edit(f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>")
 
 
 @ky.inline("^get_note_")
