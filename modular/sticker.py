@@ -73,7 +73,6 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-# @ky.ubot("kang", sudo=False)
 @ky.bots("kang")
 async def _(self: bot, message):
     prog_msg = await message.reply("Mencoba mencuri stiker Anda...")
@@ -315,8 +314,8 @@ async def _(self: user, m):
         return
     if rep.sticker:
         pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
-        ai = user.forward_messages(
-            bot.me.username, m.chat.id, reply_to_message_id=rep.id
+        ai = await user.forward_messages(
+            bot.me.username, m.chat.id, message_ids=rep.id
         )
         await user.send_message(bot.me.username, "/unkang", reply_to_message_id=ai.id)
         await asyncio.sleep(0.5)
@@ -353,11 +352,37 @@ async def _(self, m):
         return
 
 
-# else:
-# await m.reply(
-# f"<b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
-# )
-# return
+@ky.ubot("kang", sudo=False)
+async def _(self: user, m):
+    em = Emojik()
+    em.initialize()
+    rep = m.reply_to_message
+    await user.unblock_user(bot.me.username)
+    if not rep:
+        await m.reply(f"{em.gagal} <b>Harap balas media atau sticker!</b>")
+        return
+    if rep.sticker:
+        pros = await m.reply(f"{em.proses} Mencoba membuat stickers...")
+        ai = await user.forward_messages(
+            bot.me.username, m.chat.id, message_ids=rep.id
+        )
+        await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
+        await asyncio.sleep(0.5)
+        if await resleting(m) == "Stiker berhasil dicuri!":
+            await pros.edit(
+            f"""
+{em.suksss} <b>Berhasil membuat stiker pack anda!
+ <a href=https://t.me/bot.me.username>Lihat Paket Disini</a>
+Untuk menggunakan stiker.</b>
+""")
+            return
+        else:
+            await pros.edit(f"{em.gagal} Sticker gagal dibuat!")
+            return
+    else:
+        await m.reply(
+            f"{em.gagal} </b>Tolong balas stiker atau media.</b>"
+        )
 
 
 async def resleting(m):
