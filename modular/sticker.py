@@ -371,5 +371,6 @@ async def _(self: user, m):
     await pros.delete()
     return
 
+
 async def resleting(m):
     return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
