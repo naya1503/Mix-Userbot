@@ -21,6 +21,7 @@ Help Command Sticker
 """
 
 import os
+import asyncio
 
 from pyrogram import enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
@@ -124,7 +125,7 @@ async def _(self: bot, m):
             return await prog_msg.delete()
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
-        packname = f"{pack_prefix}_{m.from_user.id}_by_{self.me.username}"
+        packname = f"{pack_prefix}_{m.from_user.username}_by_{self.me.username}"
 
         if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
@@ -236,9 +237,9 @@ async def _(self: bot, m):
             await prog_msg.edit(f"{em.proses} <b>Membuat paket stiker baru...</b>")
             stkr_title = f"{m.from_user.first_name}"
             if animated:
-                stkr_title += " Animation Pack"
+                stkr_title += " AnimPack"
             elif videos:
-                stkr_title += " Video Pack"
+                stkr_title += " VideoPack"
             if packnum != 0:
                 stkr_title += f" v{packnum}"
             try:
@@ -282,42 +283,6 @@ async def _(self: bot, m):
             os.remove(filename)
         except OSError:
             pass
-
-
-"""
-@ky.ubot("unkang", sudo=False)
-async def _(self: bot, m):
-    em = Emojik()
-    em.initialize()
-    rep = m.reply_to_message
-    if not rep:
-        await m.reply(f"{em.gagal} Harap balas sticker yang ingin dihapus!")
-        return
-    if rep.sticker:
-        pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
-        try:
-            ee = rep.sticker
-            tk = await user.send_message(bot.me.username, ee.file_id)
-            decoded = FileId.decode(tk.text)
-            sticker = InputDocument(
-                id=decoded.media_id,
-                access_hash=decoded.access_hash,
-                file_reference=decoded.file_reference,
-            )
-            await self.invoke(RemoveStickerFromSet(sticker=sticker))
-            await pros.edit(f"{em.sukses} Stiker berhasil dihapus dari paket anda.")
-            return
-        except Exception as e:
-            await pros.edit(
-                f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}"
-            )
-            return
-    else:
-        await pros.edit(
-            f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda."
-        )
-        return
-"""
 
 @ky.ubot("unkang", sudo=False)
 async def _(self: user, m):
