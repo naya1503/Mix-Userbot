@@ -282,6 +282,7 @@ async def _(self: bot, m):
             pass
 
 
+"""
 @ky.ubot("unkang", sudo=False)
 async def _(self: bot, m):
     em = Emojik()
@@ -314,3 +315,37 @@ async def _(self: bot, m):
             f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda."
         )
         return
+"""
+
+
+@ky.ubot("unkang", sudo=False)
+async def _(self: bot, m):
+    em = Emojik()
+    em.initialize()
+    rep = m.reply_to_message
+    if not rep:
+        await m.reply(f"{em.gagal} Harap balas sticker yang ingin dihapus!")
+        return
+    if rep.sticker:
+        pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
+        try:
+            ee = rep.sticker
+            tk = await self.send_message(m.chat.id, ee.file_id)
+            decoded = FileId.decode(tk.text)
+            sticker = InputDocument(
+                id=decoded.media_id,
+                access_hash=decoded.access_hash,
+                file_reference=decoded.file_reference,
+            )
+            await self.invoke(RemoveStickerFromSet(sticker=sticker))
+            await pros.edit(f"{em.sukses} Stiker berhasil dihapus dari paket anda.")
+            return
+        except Exception as e:
+            await pros.edit(
+                f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}"
+            )
+            return
+    else:
+        await m.reply(
+            f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda."
+        )
