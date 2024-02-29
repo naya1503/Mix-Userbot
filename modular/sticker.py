@@ -317,12 +317,9 @@ async def _(self: user, m):
 
 @ky.bots("unkang")
 async def _(self: bot, m):
-    rep = m.reply_to_message
-    if not rep:
-        await m.reply(f"<b>Harap balas sticker yang ingin dihapus!</b>")
-        return
+        rep = m.reply_to_message.sticker
         try:
-            sticker_id = rep.text
+            sticker_id = rep.file_id
             decoded = FileId.decode(sticker_id)
             sticker = InputDocument(
                 id=decoded.media_id,
