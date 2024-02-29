@@ -61,7 +61,7 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-@ky.ubot("kang", sudo=False)
+#@ky.ubot("kang", sudo=False)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -78,13 +78,11 @@ async def _(c: user, m):
         return
 
 
-@ky.bots("kang")
-async def _(c: bot, m):
+#@ky.bots("kang")
+@ky.ubot("kang", sudo=False)
+async def _(c, m):
     logme = udB.get_logger(user.me.id)
-    # await user.unblock_user(bot.me.username)
-    # await user.send_message(bot.me.username, "/start")
     prog_msg = await m.reply(f"Processing kang stickers...")
-
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
@@ -93,7 +91,7 @@ async def _(c: bot, m):
     videos = False
     convert = False
     reply = m.reply_to_message
-    await bot.resolve_peer(m.from_user.username or m.from_user.id)
+    ser = await bot.resolve_peer(m.from_user.username or m.from_user.id)
 
     if reply and reply.media:
         if reply.photo:
@@ -254,7 +252,7 @@ async def _(c: bot, m):
             try:
                 await bot.invoke(
                     CreateStickerSet(
-                        user_id=user,
+                        user_id=ser,
                         title=stkr_title,
                         short_name=packname,
                         stickers=[
