@@ -64,7 +64,7 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-#@ky.ubot("kang", sudo=False)
+# @ky.ubot("kang", sudo=False)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
