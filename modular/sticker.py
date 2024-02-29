@@ -330,7 +330,9 @@ async def _(self: bot, m):
         pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
         try:
             ee = rep.sticker
-            tk = await self.send_message(self.me.username, ee.file_id)  # Menggunakan self untuk mengirim pesan dari bot
+            tk = await self.send_message(
+                self.me.username, ee.file_id
+            )  # Menggunakan self untuk mengirim pesan dari bot
             decoded = FileId.decode(tk.text)
             sticker = InputDocument(
                 id=decoded.media_id,
