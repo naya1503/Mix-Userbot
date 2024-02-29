@@ -220,11 +220,11 @@ async def _(self: bot, m):
                     mime_type=self.guess_mime_type(filename),
                     attributes=[DocumentAttributeFilename(file_name=filename)],
                 ),
-                m=f"#Sticker kang by UserID -> {m.from_user.id}",
+                message=f"#Sticker kang by UserID -> {m.from_user.id}",
                 random_id=self.rnd_id(),
             ),
         )
-        msg_ = media.updates[-1].m
+        msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
             await prog_msg.edit(f"{em.proses} Menggunakan paket stiker yang ada...")
@@ -286,7 +286,7 @@ async def _(self: bot, m):
             f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Disini</a></b>"
         )
         # Cleanup
-        await self.delete_messages(chat_id=LOG_ME, m_ids=msg_.id, revoke=True)
+        await self.delete_messages(chat_id=LOG_ME, message_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
         except OSError:
