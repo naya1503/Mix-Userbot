@@ -143,7 +143,9 @@ async def _(c: bot, m):
         if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
             packnum = m.command.pop(1)
-            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{m.from_user.username}"
+            packname = (
+                f"{pack_prefix}{packnum}_{m.from_user.id}_by_{m.from_user.username}"
+            )
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
