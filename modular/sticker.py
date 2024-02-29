@@ -271,7 +271,9 @@ async def _(self: bot, m):
                     )
                 )
             except PeerIdInvalid:
-                await prog_msg.edit("Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu..")
+                await prog_msg.edit(
+                    "Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu.."
+                )
                 return
     except BadRequest:
         return await prog_msg.edit(
@@ -280,7 +282,9 @@ async def _(self: bot, m):
     except Exception as all_e:
         await prog_msg.edit(f"{em.gagal} Error: {all_e}")
     else:
-        await prog_msg.edit(f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Disini</a></b>")
+        await prog_msg.edit(
+            f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Disini</a></b>"
+        )
         # Cleanup
         await self.delete_messages(chat_id=LOG_ME, m_ids=msg_.id, revoke=True)
         try:
