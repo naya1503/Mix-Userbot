@@ -342,6 +342,7 @@ async def _(self: user, m):
     em.initialize()
     rep = m.reply_to_message
     await user.unblock_user(bot.me.username)
+    await user.send_message(bot.me.username, "/start")
     pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
     if not rep:
         await pros.edit(f"{em.gagal} <b>Harap balas media atau sticker!</b>")
@@ -354,12 +355,13 @@ async def _(self: user, m):
         ):
             await asyncio.sleep(2)
             await tai.copy(m.chat.id)
+            await asyncio.sleep(5)
+            ulat = await user.resolve_peer(bot.me.username)
+            await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
     else:
         await pros.edit(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
     await pros.delete()
-    await asyncio.sleep(5)
-    ulat = await user.resolve_peer(bot.me.username)
-    await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
+    
     return
 
 
