@@ -22,10 +22,10 @@ Help Command Sticker
 
 import os
 
-from pyrogram import enums, InputDocument
+from pyrogram import InputDocument, enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
+from pyrogram.file_id import FileId
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
-from pyrogram.file_id import FileType, FileId, PHOTO_TYPES, DOCUMENT_TYPES
 from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet,
                                              RemoveStickerFromSet)
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
