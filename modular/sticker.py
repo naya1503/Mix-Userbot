@@ -46,7 +46,7 @@ async def _(c: user, m):
     rep = m.reply_to_message
     stick = rep.sticker
     if not rep:
-        await m.reply(f"{em.gagal} Silahkan balas ke sticker!")
+        await m.reply(f"{em.gagal} <b>Silahkan balas ke sticker!</b>")
         return
     else:
         if stick.is_video == True:
@@ -57,7 +57,7 @@ async def _(c: user, m):
                 f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
             )
         elif stick.is_animated == True:
-            await m.reply(f"{em.gagal} Silahkan balas ke sticker non animasi!")
+            await m.reply(f"{em.gagal} <b>Silahkan balas ke sticker non animasi!</b>")
             return
 
         else:
@@ -75,7 +75,7 @@ async def _(c: user, m):
 async def _(self: bot, m):
     em = Emojik()
     em.initialize()
-    prog_msg = await m.reply(f"{em.proses} Processing kang stickers...")
+    prog_msg = await m.reply(f"{em.proses} <b>Processing kang stickers...</b>")
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
@@ -163,7 +163,7 @@ async def _(self: bot, m):
                 with open(filename, mode="wb") as f:
                     f.write(r.read())
         except Exception as r_e:
-            return await prog_msg.edit(f"{em.gagal} Error : {r_e}")
+            return await prog_msg.edit(f"{em.gagal} <b>Error :</b> <code>{r_e}</code>")
         if len(m.command) > 2:
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
@@ -176,7 +176,7 @@ async def _(self: bot, m):
                 )
             resize = True
     else:
-        return await prog_msg.edit(f"{em.gagal} Tidak valid!")
+        return await prog_msg.edit(f"{em.gagal} <b>Tidak valid!</b>")
     try:
         if resize:
             filename = resize_image(filename)
@@ -209,14 +209,14 @@ async def _(self: bot, m):
                     mime_type=self.guess_mime_type(filename),
                     attributes=[DocumentAttributeFilename(file_name=filename)],
                 ),
-                message=f"#Sticker kang by UserID -> {m.from_user.id}",
+                message=f"<b>#Sticker kang by UserID -> </b>{m.from_user.id}",
                 random_id=self.rnd_id(),
             ),
         )
         msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
-            await prog_msg.edit(f"{em.proses} Menggunakan paket stiker yang ada...")
+            await prog_msg.edit(f"{em.proses} <b>Menggunakan paket stiker yang ada...</b>")
             await self.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
@@ -231,7 +231,7 @@ async def _(self: bot, m):
                 )
             )
         else:
-            await prog_msg.edit(f"{em.proses} Membuat paket stiker baru...")
+            await prog_msg.edit(f"{em.proses} <b>Membuat paket stiker baru...</b>")
             stkr_title = f"{m.from_user.first_name}"
             if animated:
                 stkr_title += " Animation Pack"
@@ -261,7 +261,7 @@ async def _(self: bot, m):
                 )
             except PeerIdInvalid:
                 await prog_msg.edit(
-                    "Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu.."
+                    "<b?Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu..</b>"
                 )
                 return
     except BadRequest:
@@ -324,10 +324,10 @@ async def _(self: bot, m):
     em.initialize()
     rep = m.reply_to_message
     if not rep:
-        await m.reply(f"{em.gagal} Harap balas sticker yang ingin dihapus!")
+        await m.reply(f"{em.gagal} <b>Harap balas sticker yang ingin dihapus!</b>")
         return
     if rep.sticker:
-        pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
+        pros = await m.reply(f"{em.proses} <b>Mencoba menghapus stickers...</b>")
         try:
             sticker_id = rep.sticker.file_id
             decoded = FileId.decode(sticker_id)
@@ -337,12 +337,12 @@ async def _(self: bot, m):
                 file_reference=decoded.file_reference,
             )
             await self.invoke(RemoveStickerFromSet(sticker=sticker))
-            await pros.edit(f"{em.sukses} Stiker berhasil dihapus dari paket Anda.")
+            await pros.edit(f"{em.sukses} <b>Stiker berhasil dihapus dari paket Anda.</b>")
         except Exception as e:
             await pros.edit(
-                f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code>"
+                f"{em.gagal} <b>Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code></b>"
             )
     else:
         await m.reply(
-            f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda."
+            f"{em.gagal} </b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
         )
