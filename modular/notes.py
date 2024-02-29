@@ -280,7 +280,9 @@ async def _(c: user, m):
         return
 
     if not udB.rm_note(c.me.id, note):
-        await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> berhasil dihapus!</b>")
+        await xx.edit(
+            f"{em.gagal} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
+        )
         return
 
     await xx.edit(f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>")
