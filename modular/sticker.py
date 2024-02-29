@@ -319,9 +319,8 @@ async def _(self: bot, m):
         return
 """
 
-
 @ky.ubot("unkang", sudo=False)
-async def _(self: bot, m):
+async def _(self: user, m):
     em = Emojik()
     em.initialize()
     rep = m.reply_to_message
@@ -329,9 +328,29 @@ async def _(self: bot, m):
         await m.reply(f"{em.gagal} <b>Harap balas sticker yang ingin dihapus!</b>")
         return
     if rep.sticker:
-        pros = await m.reply(f"{em.proses} <b>Mencoba menghapus stickers...</b>")
+        pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
+        xx = await user.send_message(bot.me.username, rep.sticker.file_id)
+        await user.send_message(bot.me.username, "/unkang", reply_to_message_id=xx.id)
+        await asyncio.sleep(0.5)
+        if await resleting(m) == "Stiker berhasil dihapus dari paket Anda":
+            await pros.edit(f"{em.sukses} Sticker berhasil dihapus!")
+            return
+        else:
+            await pros.edit(f"{em.gagal} Sticker gagal dihapus!")
+            return
+    else:
+        await m.reply(
+            f"{em.gagal} </b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
+        )
+
+@ky.bots("unkang")
+async def _(self: bot, m):
+    rep = m.reply_to_message
+    if not rep:
+        await m.reply(f"<b>Harap balas sticker yang ingin dihapus!</b>")
+        return
         try:
-            sticker_id = rep.sticker.file_id
+            sticker_id = rep.text
             decoded = FileId.decode(sticker_id)
             sticker = InputDocument(
                 id=decoded.media_id,
@@ -339,14 +358,20 @@ async def _(self: bot, m):
                 file_reference=decoded.file_reference,
             )
             await self.invoke(RemoveStickerFromSet(sticker=sticker))
-            await pros.edit(
-                f"{em.sukses} <b>Stiker berhasil dihapus dari paket Anda.</b>"
+            await m.reply(
+                f"<b>Stiker berhasil dihapus dari paket Anda.</b>"
             )
+            return
         except Exception as e:
-            await pros.edit(
-                f"{em.gagal} <b>Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code></b>"
+            await m.reply(
+                f"<b>Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code></b>"
             )
+            return
     else:
         await m.reply(
-            f"{em.gagal} </b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
+            f"<b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
         )
+        return
+
+async def resleting(m):
+    return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
