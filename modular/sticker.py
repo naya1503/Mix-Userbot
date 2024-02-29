@@ -16,7 +16,7 @@ Help Command Sticker
 
 import os
 
-from pyrogram import enums, Client
+from pyrogram import enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
 from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
@@ -24,11 +24,13 @@ from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from Mix import Emojik, bot, ky, user, ndB
+
+from Mix import Emojik, bot, ky, ndB, user
 from Mix.core.http import http
 from Mix.core.stick_tools import EMOJI_PATTERN, convert_video, resize_image
 
 LOG_ME = ndB.get_key("TAG_LOG")
+
 
 @ky.ubot("gstik|getstiker|getsticker", sudo=True)
 async def _(c: user, m):
