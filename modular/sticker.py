@@ -349,28 +349,33 @@ async def _(self: user, m):
         pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
-        async for tai in user.search_messages(bot.me.username, limit=10):
-            await asyncio.sleep(3)
+        async for tai in user.search_messages(bot.me.username, limit=1):
             if tai.text == "Sticker Anda Berhasil Dibuat!":
+                await asyncio.sleep(3)
                 await tai.copy(m.chat.id)
+                return
             elif tai.text == "Menggunakan paket stiker yang ada...":
-                await asyncio.sleep(2)
+                await asyncio.sleep(3)
                 await tai.copy(m.chat.id)
+                return
             elif tai.text == "Paket Stiker Anda penuh":
                 await m.reply(
                     f"{em.gagal} Paket sticker anda penuh! Silahkan hapus salah satu paket di @Stickers"
                 )
+                return
             elif tai.text == "Stiker tidak memiliki nama.":
                 await m.reply(
                     f"{em.gagal} Sticker invalid tidak memiliki nama! Coba gunakan sticker lain."
                 )
+                return
             elif tai.text == "Ingin saya menebak stikernya?":
                 await m.reply(f"{em.gagal} Sticker invalid! Coba gunakan sticker lain.")
-            else:
+                return
+            #else:
                 # await asyncio.sleep(2)
-                await m.reply(
-                    f"{em.gagal} **Error.\n\nSilahkan buat diasissten bot anda @{bot.me.username} kirim sticker kesana dan balas `/kang`.**"
-                )
+                #await m.reply(
+                    #f"{em.gagal} **Error.\n\nSilahkan buat diasissten bot anda @{bot.me.username} kirim sticker kesana dan balas `/kang`.**"
+                #)
         await pros.delete()
         ulat = await user.resolve_peer(bot.me.username)
         await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
