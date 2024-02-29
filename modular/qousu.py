@@ -16,7 +16,8 @@ Help Command Quote
 • Perintah: <code>{0}q</code> [reply message]
 • Penjelasan: Untuk membuat quote teks.
 
-
+• Perintah: <code>{0}qcolor</code>
+• Penjelasan: Untuk melihat format warna latar belakang quote.
 
 **Notes Optional:**
 `q @username` - Menjadi fake quote.
@@ -42,14 +43,11 @@ async def _(c: user, m):
     if len(iymek) > 4096:
         with open("qcolor.txt", "w") as file:
             file.write(iymek)
-        await m.reply_document(
-            "qcolor.txt",
-            caption=f"{em.sukses} Ini adalah list warna untuk latar belakang quote.",
-        )
+        await m.reply_document("qcolor.txt", 
+          caption=f"{em.sukses} Ini adalah list warna untuk latar belakang quote.")
         os.remove("qcolor.txt")
     else:
         await m.reply(iymek)
-
 
 @ky.ubot("q", sudo=True)
 async def _(c: user, m):
