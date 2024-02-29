@@ -30,7 +30,6 @@ from pyrogram.raw.functions.messages import *
 from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
 
-
 from Mix import Emojik, bot, ky, ndB, user
 from Mix.core.http import http
 from Mix.core.stick_tools import EMOJI_PATTERN, convert_video, resize_image
@@ -318,7 +317,7 @@ async def _(self: user, m):
 @ky.bots("unkang")
 async def _(self, m):
     rep = m.reply_to_message.sticker
-    
+
     try:
         sticker_id = rep.file_id
         decoded = FileId.decode(sticker_id)
