@@ -357,6 +357,7 @@ async def _(self: user, m):
     else:
         await pros.edit(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
     await pros.delete()
+    await asyncio.sleep(5)
     ulat = await user.resolve_peer(bot.me.username)
     await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
     return
