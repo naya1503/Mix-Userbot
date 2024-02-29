@@ -271,10 +271,10 @@ async def _(self: bot, m):
                     )
                 )
             except PeerIdInvalid:
-                    await prog_msg.edit(
-                        "Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu.."
-                    )
-                    return
+                await prog_msg.edit(
+                    "Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu.."
+                )
+                return
     except BadRequest:
         return await prog_msg.edit(
             "Paket Stiker Anda penuh jika paket Anda tidak dalam Tipe v1 /kang 1, jika tidak dalam Tipe v2 /kang 2 dan seterusnya."
