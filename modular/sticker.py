@@ -371,11 +371,11 @@ async def _(self: user, m):
             elif tai.text == "Ingin saya menebak stikernya?":
                 await m.reply(f"{em.gagal} Sticker invalid! Coba gunakan sticker lain.")
                 return
-            #else:
-                # await asyncio.sleep(2)
-                #await m.reply(
-                    #f"{em.gagal} **Error.\n\nSilahkan buat diasissten bot anda @{bot.me.username} kirim sticker kesana dan balas `/kang`.**"
-                #)
+            # else:
+            # await asyncio.sleep(2)
+            # await m.reply(
+            # f"{em.gagal} **Error.\n\nSilahkan buat diasissten bot anda @{bot.me.username} kirim sticker kesana dan balas `/kang`.**"
+            # )
         await pros.delete()
         ulat = await user.resolve_peer(bot.me.username)
         await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
