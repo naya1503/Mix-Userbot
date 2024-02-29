@@ -16,21 +16,15 @@ Help Command Quote
 • Perintah: <code>{0}q</code> [reply message]
 • Penjelasan: Untuk membuat quote teks.
 
+
+
 **Notes Optional:**
 `q @username` - Menjadi fake quote.
 `q warna` - Kostum latar belakang quote.
 `q @username warna` Menjadi fake quote dengan latar belakang kostum.
-
-Untuk warna sendiri gunakan bahasa inggris:
-- black
-- white
-- blue
-- navy
-- pink 
-- dll.
 """
 
-
+import os
 import random
 from io import BytesIO
 
@@ -39,6 +33,20 @@ from pyrogram.types import *
 from Mix import *
 from Mix.core.tools_quote import *
 
+
+@ky.ubot("qcolor", sudo=True)
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
+    iymek = "\n".join(loanjing)
+    if len(iymek) > 4096:
+        with open("qcolor.txt", "w") as file:
+            file.write(iymek)
+        await m.reply_document("qcolor.txt", 
+          caption=f"{em.sukses} Ini adalah list warna untuk latar belakang quote.")
+        os.remove("qcolor.txt")
+    else:
+        await m.reply(iymek)
 
 @ky.ubot("q", sudo=True)
 async def _(c: user, m):
