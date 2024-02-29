@@ -209,7 +209,7 @@ async def _(self: bot, m):
                     mime_type=self.guess_mime_type(filename),
                     attributes=[DocumentAttributeFilename(file_name=filename)],
                 ),
-                message=f"<b>#Sticker kang by UserID -> </b>{m.from_user.id}",
+                message=f"{em. sukses} <b>#Sticker kang by UserID -> </b>{m.from_user.id}",
                 random_id=self.rnd_id(),
             ),
         )
@@ -263,18 +263,18 @@ async def _(self: bot, m):
                 )
             except PeerIdInvalid:
                 await prog_msg.edit(
-                    "<b?Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu..</b>"
+                    f"{em.gagal} <b>Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu..</b>"
                 )
                 return
     except BadRequest:
         return await prog_msg.edit(
-            "<b>Paket Stiker Anda penuh!\nSilahkan gunakan perintah <code>{0} 1</code> untuk membuat sicker pack baru Anda!\natau menggunakan perintah <code>{0}> 2</code> dan seterusnya.</b>"
+            f"{em.gagal} <b>Paket Stiker Anda penuh!\nSilahkan gunakan perintah <code>kang 1</code> untuk membuat sicker pack baru Anda!\natau menggunakan perintah <code>kang 2</code> dan seterusnya.</b>"
         )
     except Exception as all_e:
         await prog_msg.edit(f"{em.gagal} Error: {all_e}")
     else:
         await prog_msg.edit(
-            f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Disini</a></b>"
+            f"{em.sukses} <b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Disini</a></b>"
         )
         # Cleanup
         await self.delete_messages(chat_id=LOG_ME, message_ids=msg_.id, revoke=True)
