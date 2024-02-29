@@ -71,7 +71,7 @@ async def _(c: user, m):
 
 @ky.bots("kang")
 async def _(self: bot, message):
-    prog_msg = await message.reply("Mencoba mencuri stiker Anda...")
+    prog_msg = await message.reply("Processing...")
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
@@ -351,10 +351,11 @@ async def _(self: user, m):
         await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
         async for tai in user.search_messages(bot.me.username, limit=1):
             await asyncio.sleep(2)
-            if tai.text == "Sticker Anda Berhasil Dibuat!":
+            if tai.text == "Processing...":
+                await asyncio.sleep(2)
                 await tai.copy(m.chat.id)
             elif tai.text == "Menggunakan paket stiker yang ada...":
-                await asyncio.sleep(5)
+                await asyncio.sleep(2)
                 await tai.copy(m.chat.id)
             elif tai.text == "Paket Stiker Anda penuh":
                 await m.reply(
@@ -367,6 +368,7 @@ async def _(self: user, m):
             elif tai.text == "Ingin saya menebak stikernya?":
                 await m.reply(f"{em.gagal} Sticker invalid! Coba gunakan sticker lain.")
             else:
+                await asyncio.sleep(2)
                 await tai.copy(m.chat.id)
         await pros.delete()
         ulat = await user.resolve_peer(bot.me.username)
