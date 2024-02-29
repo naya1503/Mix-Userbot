@@ -211,7 +211,7 @@ async def _(self: bot, message):
         file = await self.save_file(filename)
         media = await self.invoke(
             SendMedia(
-                peer=(await self.resolve_peer(LOGGER_ID)),
+                peer=(await self.resolve_peer(LOG_ME)),
                 media=InputMediaUploadedDocument(
                     file=file,
                     mime_type=self.guess_mime_type(filename),
@@ -297,7 +297,7 @@ async def _(self: bot, message):
             reply_markup=markup,
         )
         # Cleanup
-        await self.delete_messages(chat_id=LOGGER_ID, message_ids=msg_.id, revoke=True)
+        await self.delete_messages(chat_id=LOG_ME, message_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
         except OSError:
