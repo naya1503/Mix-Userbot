@@ -343,11 +343,12 @@ async def _(self: user, m):
     rep = m.reply_to_message
     await user.unblock_user(bot.me.username)
     await user.send_message(bot.me.username, "/start")
-    pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
+    
     if not rep:
-        await pros.edit(f"{em.gagal} <b>Harap balas media atau sticker!</b>")
+        await m.reply(f"{em.gagal} <b>Harap balas media atau sticker!</b>")
         return
     if rep:
+        pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
         async for tai in user.search_messages(
@@ -355,13 +356,13 @@ async def _(self: user, m):
         ):
             await asyncio.sleep(2)
             await tai.copy(m.chat.id)
-            await asyncio.sleep(5)
-            ulat = await user.resolve_peer(bot.me.username)
-            await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
-            await pros.delete()
-            return
+        await asyncio.sleep(5)
+        ulat = await user.resolve_peer(bot.me.username)
+        await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
+        await pros.delete()
+        return
     else:
-        await pros.edit(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
+        await m.reply(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
         return
 
 
