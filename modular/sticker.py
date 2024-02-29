@@ -86,7 +86,7 @@ async def _(c: user, m):
 async def _(self: bot, m):
     em = Emojik()
     em.initialize()
-    prog_msg = m.reply(f"{em.proses} Processing kang stickers...")
+    prog_msg = await m.reply(f"{em.proses} Processing kang stickers...")
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
