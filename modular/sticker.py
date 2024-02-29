@@ -84,7 +84,6 @@ async def _(c: user, m):
 
 @ky.bots("kang")
 async def _(c: bot, m):
-
     logme = udB.get_logger(user.me.id)
     # await user.unblock_user(bot.me.username)
     # await user.send_message(bot.me.username, "/start")
@@ -144,7 +143,7 @@ async def _(c: bot, m):
         if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
             packnum = m.command.pop(1)
-            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{user.me.username}"
+            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{m.from_user.username}"
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
@@ -159,7 +158,7 @@ async def _(c: bot, m):
     elif m.entities and len(m.entities) > 1:
         pack_prefix = "a"
         filename = "sticker.png"
-        packname = f"{m.from_user.id}_by_{user.me.username}"
+        packname = f"{m.from_user.id}_by_{m.from_user.username}"
         img_url = next(
             (
                 m.text[y.offset : (y.offset + y.length)]
@@ -183,7 +182,7 @@ async def _(c: bot, m):
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
                 packnum = m.command.pop(2)
-                packname = f"a{packnum}_{m.from_user.id}_by_{user.me.username}"
+                packname = f"a{packnum}_{m.from_user.id}_by_{m.from_user.username}"
             if len(m.command) > 2:
                 sticker_emoji = (
                     "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:]))))
@@ -210,7 +209,7 @@ async def _(c: bot, m):
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
-                    packname = f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{user.me.username}"
+                    packname = f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{m.from_user.username}"
                 else:
                     packname_found = True
             except StickersetInvalid:
