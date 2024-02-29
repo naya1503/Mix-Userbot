@@ -216,7 +216,9 @@ async def _(self: bot, m):
         msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
-            await prog_msg.edit(f"{em.proses} <b>Menggunakan paket stiker yang ada...</b>")
+            await prog_msg.edit(
+                f"{em.proses} <b>Menggunakan paket stiker yang ada...</b>"
+            )
             await self.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
@@ -337,7 +339,9 @@ async def _(self: bot, m):
                 file_reference=decoded.file_reference,
             )
             await self.invoke(RemoveStickerFromSet(sticker=sticker))
-            await pros.edit(f"{em.sukses} <b>Stiker berhasil dihapus dari paket Anda.</b>")
+            await pros.edit(
+                f"{em.sukses} <b>Stiker berhasil dihapus dari paket Anda.</b>"
+            )
         except Exception as e:
             await pros.edit(
                 f"{em.gagal} <b>Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code></b>"
