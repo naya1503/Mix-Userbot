@@ -71,6 +71,7 @@ async def _(c: user, m):
             await c.send_message("me", "Hasil Curi!")
 """
 
+
 @ky.ubot("curi|spy", sudo=True)
 async def _(c: user, m):
     dia = m.reply_to_message
@@ -79,10 +80,10 @@ async def _(c: user, m):
     anjing = dia.caption or ""
     await m.delete()
     logs = udB.get_logger(c.me.id)
-    
+
     if dia.photo or dia.video or dia.audio or dia.voice or dia.document:
         anu = await c.download_media(dia)
-        
+
         if os.path.getsize(anu) == 0:
             os.remove(anu)
             if logs:
@@ -90,7 +91,7 @@ async def _(c: user, m):
             else:
                 await c.send_message("me", "Gagal mengunduh file. File kosong.")
             return
-        
+
         try:
             if dia.photo:
                 if logs:
