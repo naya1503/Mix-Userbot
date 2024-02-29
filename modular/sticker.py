@@ -343,7 +343,7 @@ async def _(self: user, m):
     rep = m.reply_to_message
     await user.unblock_user(bot.me.username)
     await user.send_message(bot.me.username, "/start")
-    
+
     if not rep:
         await m.reply(f"{em.gagal} <b>Harap balas media atau sticker!</b>")
         return
