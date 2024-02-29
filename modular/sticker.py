@@ -356,7 +356,7 @@ async def _(self: user, m):
             else:
                 await asyncio.sleep(2)
                 await m.reply(
-                f"{em.gagal} **Error.\n\nSilahkan buat diasissten bot anda @{bot.me.username} kirim sticker kesana dan balas `/kang`.**"
+                    f"{em.gagal} **Error.\n\nSilahkan buat diasissten bot anda @{bot.me.username} kirim sticker kesana dan balas `/kang`.**"
                 )
         await pros.delete()
         ulat = await user.resolve_peer(bot.me.username)
