@@ -311,4 +311,4 @@ async def _(self, message):
 
 
 async def cek_res(m):
-    return [x async for x in user.get_chat_history(self.me.username, limit=1)][0].text
+    return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
