@@ -266,7 +266,7 @@ async def _(self: bot, m):
                 return
     except BadRequest:
         return await prog_msg.edit(
-            "Paket Stiker Anda penuh jika paket Anda tidak dalam Tipe v1 /kang 1, jika tidak dalam Tipe v2 /kang 2 dan seterusnya."
+            "<b>Paket Stiker Anda penuh!\nSilahkan gunakan perintah <code>{0} 1</code> untuk membuat sicker pack baru Anda!\natau menggunakan perintah <code>{0}> 2</code> dan seterusnya.</b>"
         )
     except Exception as all_e:
         await prog_msg.edit(f"{em.gagal} Error: {all_e}")
