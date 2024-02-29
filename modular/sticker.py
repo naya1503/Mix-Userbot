@@ -72,7 +72,8 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-@ky.ubot("kang", sudo=False)
+#@ky.ubot("kang", sudo=False)
+@ky.bots("kang")
 async def _(self: bot, m):
     em = Emojik()
     em.initialize()
@@ -297,11 +298,10 @@ async def _(self: user, m):
         return
     if rep.sticker:
         pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
-        ai = rep.forward_messages(
+        ai = user.forward_messages(
             bot.me.username, m.chat.id, reply_to_message_id=rep.id
         )
-        xx = await user.send_message(bot.me.username, rep.sticker.file_id)
-        await user.send_message(bot.me.username, "/unkang", reply_to_message_id=xx.id)
+        await user.send_message(bot.me.username, "/unkang", reply_to_message_id=ai.id)
         await asyncio.sleep(0.5)
         if await resleting(m) == "Stiker berhasil dihapus dari paket Anda":
             await pros.edit(f"{em.sukses} Sticker berhasil dihapus!")
