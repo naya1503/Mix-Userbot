@@ -239,6 +239,8 @@ async def _(c: user, m):
 @ky.ubot("del", sudo=True)
 async def _(c: user, m):
     rep = m.reply_to_message
+    if not rep:
+        pass
     await m.delete()
     await rep.delete()
 
