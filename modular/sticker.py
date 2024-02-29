@@ -16,7 +16,7 @@ Help Command Sticker
 
 import os
 
-from pyrogram import Client, emoji, enums, filters
+from pyrogram import enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
 from pyrogram.file_id import FileId
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
@@ -25,7 +25,6 @@ from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet,
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from Mix import Emojik, bot, ky, ndB, user
 from Mix.core.http import http
@@ -82,6 +81,7 @@ async def _(c: user, m):
         )
         return
 
+
 @ky.ubot("kang", sudo=False)
 async def _(self: bot, m):
     em = Emojik()
@@ -137,16 +137,10 @@ async def _(self: bot, m):
         pack_prefix = "anim" if animated else "vid" if videos else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{self.me.username}"
 
-        if (
-            len(m.command) > 1
-            and m.command[1].isdigit()
-            and int(m.command[1]) > 0
-        ):
+        if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
             packnum = m.command.pop(1)
-            packname = (
-                f"{pack_prefix}{packnum}_{m.from_user.id}_by_{self.me.username}"
-            )
+            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{self.me.username}"
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
@@ -193,9 +187,7 @@ async def _(self: bot, m):
                 )
             resize = True
     else:
-        return await prog_msg.edit_text(
-            f"{em.gagal} Tidak valid!"
-        )
+        return await prog_msg.edit_text(f"{em.gagal} Tidak valid!")
     try:
         if resize:
             filename = resize_image(filename)
@@ -303,6 +295,7 @@ async def _(self: bot, m):
         except OSError:
             pass
 
+
 @ky.ubot("unkang", sudo=False)
 async def _(self: bot, m):
     em = Emojik()
@@ -317,15 +310,21 @@ async def _(self: bot, m):
                 file_reference=decoded.file_reference,
             )
             await self.invoke(RemoveStickerFromSet(sticker=sticker))
-            await pros.edit_text(f"{em.sukses} Stiker berhasil dihapus dari paket anda.")
+            await pros.edit_text(
+                f"{em.sukses} Stiker berhasil dihapus dari paket anda."
+            )
             return
         except Exception as e:
-            await pros.edit_text(f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}")
+            await pros.edit_text(
+                f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}"
+            )
             return
     else:
         await pros.edit(
-            f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.")
+            f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda."
+        )
         return
+
 
 async def cek_res(m):
     return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
