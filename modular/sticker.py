@@ -60,15 +60,26 @@ async def _(c: user, m):
         return
     os.remove(pat)
 
-
-@ky.ubot("kang", sudo=True)
-async def _(c: bot, m):
+@ky.bot("kang")
+async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    logme = udB.get_logger(user.me.id)
     await user.unblock_user(bot.me.username)
     await user.send_message(bot.me.username, "/start")
-    prog_msg = await m.reply(f"{em.proses} Processing kang stickers...")
+    x = await user.forward_messages(
+            bot.me.username,
+            m.chat.id,
+            m.reply_to_message.id)
+    await user.send_message(bot.me.username, "/kang", reply_to_message_id=x.id)
+    
+
+@ky.bot("kang")
+async def _(c: bot, m):
+    
+    logme = udB.get_logger(user.me.id)
+    #await user.unblock_user(bot.me.username)
+    #await user.send_message(bot.me.username, "/start")
+    prog_msg = await m.reply(f"Processing kang stickers...")
 
     sticker_emoji = "🤔"
     packnum = 0
@@ -78,7 +89,7 @@ async def _(c: bot, m):
     videos = False
     convert = False
     reply = m.reply_to_message
-    await user.resolve_peer(m.from_user.username or m.from_user.id)
+    await bot.resolve_peer(m.from_user.username or m.from_user.id)
 
     if reply and reply.media:
         if reply.photo:
@@ -105,7 +116,7 @@ async def _(c: bot, m):
                 animated = True
         elif reply.sticker:
             if not reply.sticker.file_name:
-                return await prog_msg.edit(f"{em.gagal} Stiker tidak memiliki nama.")
+                return await prog_msg.edit(f"Stiker tidak memiliki nama.")
             if reply.sticker.emoji:
                 sticker_emoji = reply.sticker.emoji
             animated = reply.sticker.is_animated
@@ -116,7 +127,7 @@ async def _(c: bot, m):
                 resize = True
         else:
 
-            return await prog_msg.edit(f"{em.gagal} Sticker tidak didukung!")
+            return await prog_msg.edit(f"Sticker tidak didukung!")
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{user.me.username}"
@@ -131,13 +142,11 @@ async def _(c: bot, m):
                 "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
                 or sticker_emoji
             )
-        x = await user.forward_messages(
-            bot.me.username, m.chat.id, m.reply_to_message.id
-        )
-        filename = await bot.download_media(x)
+
+        filename = await bot.download_media(message.reply_to_message)
 
         if not filename:
-            return await prog_msg.edit(f"{em.gagal} Sticker tidak didukung!")
+            return await prog_msg.edit(f"Sticker tidak didukung!")
     elif m.entities and len(m.entities) > 1:
         pack_prefix = "a"
         filename = "sticker.png"
@@ -160,7 +169,7 @@ async def _(c: bot, m):
                 with open(filename, mode="wb") as f:
                     f.write(r.read())
         except Exception as r_e:
-            return await prog_msg.edit(f"{r_e.__class__.__name__} : {r_e}")
+            return await prog_msg.edit(f"{r_e}")
         if len(m.command) > 2:
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
@@ -173,14 +182,14 @@ async def _(c: bot, m):
                 )
             resize = True
     else:
-        return await prog_msg.edit(f"{em.gagal} Sticker tidak didukung!")
+        return await prog_msg.edit(f"Sticker tidak didukung!")
     try:
         if resize:
             filename = resize_image(filename)
         elif convert:
             filename = await convert_video(filename)
             if filename is False:
-                return await prog_msg.edit(f"{em.gagal} Error")
+                return await prog_msg.edit(f"Error")
         max_stickers = 50 if animated else 120
         while not packname_found:
             try:
@@ -213,7 +222,7 @@ async def _(c: bot, m):
         msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
-            await prog_msg.edit(f"{em.proses} Menggunakan paket stiker yang ada...")
+            await prog_msg.edit(f"Menggunakan paket stiker yang ada...")
             await bot.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
@@ -228,7 +237,7 @@ async def _(c: bot, m):
                 )
             )
         else:
-            await prog_msg.edit(f"{em.proses} Membuat paket stiker baru...")
+            await prog_msg.edit(f"Membuat paket stiker baru...")
             stkr_title = f"{m.from_user.first_name} "
             if animated:
                 stkr_title += "AnimPack"
@@ -259,12 +268,12 @@ async def _(c: bot, m):
             except PeerIdInvalid:
                 return (
                     await prog_msg.edit(
-                        f"{em.gagal} Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu.."
+                        f"Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu.."
                     ),
                 )
     except BadRequest:
         return await prog_msg.edit(
-            f"{em.gagal} Paket Stiker Anda penuh jika paket Anda tidak dalam Tipe V1 jika tidak dalam Tipe V2 dan seterusnya."
+            f"Paket Stiker Anda penuh jika paket Anda tidak dalam Tipe V1 jika tidak dalam Tipe V2 dan seterusnya."
         )
     except Exception as all_e:
         await prog_msg.edit(f"{all_e}")
