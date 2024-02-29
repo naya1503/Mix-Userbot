@@ -24,7 +24,6 @@ import os
 
 from pyrogram import enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
-from pyrogram.file_id import FileId
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
 from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet,
                                              RemoveStickerFromSet)
