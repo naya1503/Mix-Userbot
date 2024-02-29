@@ -296,6 +296,7 @@ async def _(self: user, m):
     em = Emojik()
     em.initialize()
     rep = m.reply_to_message
+    await user.unblock_user(bot.me.username)
     if not rep:
         await m.reply(f"{em.gagal} <b>Harap balas sticker yang ingin dihapus!</b>")
         return
@@ -319,6 +320,7 @@ async def _(self: user, m):
 @ky.bots("unkang")
 async def _(self, m):
     rep = m.reply_to_message.sticker
+    
     try:
         sticker_id = rep.file_id
         decoded = FileId.decode(sticker_id)
@@ -358,6 +360,8 @@ async def _(self: user, m):
     else:
         await pros.edit(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
     await pros.delete()
+    ulat = await user.resolve_peer(bot.me.username)
+    await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
     return
 
 
