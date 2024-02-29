@@ -354,10 +354,8 @@ async def _(self: user, m):
             if tai.text == "Sticker Anda Berhasil Dibuat!":
                 await tai.copy(m.chat.id)
             elif tai.text == "Menggunakan paket stiker yang ada...":
-                await asyncio.sleep(2)
-                async for tai in user.search_messages(bot.me.username, limit=1):
-                    if tai.text == "Sticker Anda Berhasil Dibuat!":
-                        await tai.copy(m.chat.id)
+                await asyncio.sleep(5)
+                await tai.copy(m.chat.id)
             elif tai.text == "Paket Stiker Anda penuh":
                 await m.reply(
                     f"{em.gagal} Paket sticker anda penuh! Silahkan hapus salah satu paket di @Stickers"
@@ -368,6 +366,8 @@ async def _(self: user, m):
                 )
             elif tai.text == "Ingin saya menebak stikernya?":
                 await m.reply(f"{em.gagal} Sticker invalid! Coba gunakan sticker lain.")
+            else:
+                await tai.copy(m.chat.id)
         await pros.delete()
         ulat = await user.resolve_peer(bot.me.username)
         await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
