@@ -308,7 +308,7 @@ async def _(self: bot, m):
     em = Emojik()
     em.initialize()
     if m.reply_to_message.sticker:
-        prog_msg = m.reply(f"{em.proses} Mencoba menghapus stickers...")
+        pros = m.reply(f"{em.proses} Mencoba menghapus stickers...")
         try:
             decoded = FileId.decode(m.reply_to_message.sticker.file_id)
             sticker = InputDocument(
@@ -317,13 +317,13 @@ async def _(self: bot, m):
                 file_reference=decoded.file_reference,
             )
             await self.invoke(RemoveStickerFromSet(sticker=sticker))
-            await pp.edit_text(f"{em.sukses} Stiker berhasil dihapus dari paket anda.")
+            await pros.edit_text(f"{em.sukses} Stiker berhasil dihapus dari paket anda.")
             return
         except Exception as e:
-            await pp.edit_text(f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}")
+            await pros.edit_text(f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}")
             return
     else:
-        await pp.edit(
+        await pros.edit(
             f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.")
         return
 
