@@ -279,7 +279,7 @@ async def _(self: bot, message):
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
         await prog_msg.edit_text(
-            f"<b>Sticker Berhasil Dibuat!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Sticker</a></b>"
+            f"<b>Sticker Anda Berhasil Dibuat!</b>\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Sticker Disini</a></b>\n<b>Emoji:</b> {sticker_emoji}"
         )
         await self.delete_messages(chat_id=LOG_ME, message_ids=msg_.id, revoke=True)
         try:
@@ -356,10 +356,9 @@ async def _(self: user, m):
         ):
             await asyncio.sleep(2)
             await tai.copy(m.chat.id)
-        await asyncio.sleep(5)
+        await pros.delete()
         ulat = await user.resolve_peer(bot.me.username)
         await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
-        await pros.delete()
         return
     else:
         await m.reply(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
