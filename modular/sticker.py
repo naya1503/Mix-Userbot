@@ -51,7 +51,7 @@ async def _(c: user, m):
     else:
         if stick.is_video == True:
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.mp4")
-            await m.reply_to_message.reply_document(
+            await rep.reply_document(
                 document=pat,
                 caption=f"<b>Emoji:</b> {stick.emoji}\n"
                 f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
@@ -62,7 +62,7 @@ async def _(c: user, m):
 
         else:
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
-            await m.reply_to_message.reply_document(
+            await rep.reply_document(
                 document=pat,
                 caption=f"<b>Emoji:</b> {stick.emoji}\n"
                 f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
@@ -289,10 +289,11 @@ async def _(self: bot, m):
     rep = m.reply_to_message
     if not rep:
         await m.reply(f"{em.gagal} Harap balas sticker yang ingin dihapus!")
-    if m.reply_to_message.sticker:
+        return
+    if rep.sticker:
         pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
         try:
-            ee = m.reply_to_message.sticker
+            ee = rep.sticker
             tk = await user.send_message(bot.me.username, ee.file_id)
             decoded = FileId.decode(tk.text)
             sticker = InputDocument(
