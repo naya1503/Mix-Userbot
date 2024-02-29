@@ -32,8 +32,7 @@ from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet,
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Mix import Emojik, bot, ky, ndB, user
 from Mix.core.http import http
 from Mix.core.stick_tools import EMOJI_PATTERN, convert_video, resize_image
@@ -243,11 +242,11 @@ async def _(self: bot, message):
             )
         else:
             await prog_msg.edit_text("<b>Membuat paket stiker baru...</b>")
-            stkr_title = f"{message.from_user.first_name}'s"
+            stkr_title = f"{message.from_user.first_name}"
             if animated:
-                stkr_title += "AnimPack"
+                stkr_title += " AnimPack"
             elif videos:
-                stkr_title += "VidPack"
+                stkr_title += " VidPack"
             if packnum != 0:
                 stkr_title += f" v{packnum}"
             try:
