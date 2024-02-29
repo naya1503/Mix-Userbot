@@ -317,7 +317,7 @@ async def _(self: user, m):
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/unkang", reply_to_message_id=ai.id)
         await asyncio.sleep(0.5)
-        if await resleting(m) == "Stiker berhasil dihapus dari paket Anda":
+        if await resleting(m) == "<b>Stiker berhasil dihapus dari paket Anda.</b>":
             await pros.edit(f"{em.sukses} Sticker berhasil dihapus!")
             return
         else:
@@ -364,7 +364,7 @@ async def _(self: user, m):
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
         await asyncio.sleep(0.5)
-        if await resleting(m) == "Stiker berhasil dicuri!":
+        if await resleting(m) == "<b>Stiker berhasil dicuri!</b>":
             await pros.edit(
                 f"""
 {em.suksss} <b>Berhasil membuat stiker pack anda!
