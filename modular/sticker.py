@@ -23,7 +23,6 @@ from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from Mix import Emojik, bot, ky, ndB, user
 from Mix.core.http import http
@@ -64,7 +63,7 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-#@ky.ubot("kang", sudo=False)
+# @ky.ubot("kang", sudo=False)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -290,7 +289,7 @@ async def _(self: bot, message):
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
-        
+
         await prog_msg.edit_text(
             f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>",
         )
