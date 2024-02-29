@@ -70,14 +70,10 @@ async def _(c: user, m):
     await user.unblock_user(bot.me.username)
     await user.send_message(bot.me.username, "/start")
     x = await user.forward_messages(bot.me.username, m.chat.id, m.reply_to_message.id)
-    animated = False
-    videos = False
     await user.send_message(bot.me.username, "/kang", reply_to_message_id=x.id)
-    pack_prefix = "anim" if animated else "vid" if videos else "a"
-    packname = f"{pack_prefix}_{user.me.id}_by_{user.me.username}"
     if await cek_res(m) == "Stiker berhasil dikang":
         pros.edit(
-            f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
+            f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/{bot.me.username}>👀 Klik Disini</a>"
         )
         return
 
@@ -143,9 +139,7 @@ async def _(c: bot, m):
         if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
             packnum = m.command.pop(1)
-            packname = (
-                f"{pack_prefix}{packnum}_{m.from_user.id}_by_{m.from_user.username}"
-            )
+            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{m.from_user.username}"
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
