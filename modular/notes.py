@@ -279,7 +279,7 @@ async def _(c: user, m):
         await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>")
         return
 
-    if not udB.rm_note(c.me.id, note):
+    if not udB.remove_note(c.me.id, note):
         await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> gagal dihapus!</b>")
         return
 
