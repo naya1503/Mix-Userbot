@@ -85,7 +85,7 @@ async def _(self: bot, m):
     videos = False
     convert = False
     reply = m.reply_to_message
-    org = await self.resolve_peer(m.from_user.username or m.from_user.id)
+    org = await bot.resolve_peer(m.from_user.username or m.from_user.id)
 
     if reply and reply.media:
         if reply.photo:
@@ -101,8 +101,8 @@ async def _(self: bot, m):
                 # mime_type: image/webp
                 resize = True
             elif reply.document.mime_type in (
-                enums.mMediaType.VIDEO,
-                enums.mMediaType.ANIMATION,
+                enums.MessageMediaType.VIDEO,
+                enums.MessageMediaType.ANIMATION,
             ):
                 # mime_type: application/video
                 videos = True
@@ -125,12 +125,12 @@ async def _(self: bot, m):
             return await prog_msg.delete()
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
-        packname = f"{pack_prefix}_{m.from_user.username}_by_{self.me.username}"
+        packname = f"{pack_prefix}_{m.from_user.username}_by_{bot.me.username}"
 
         if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
             packnum = m.command.pop(1)
-            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{self.me.username}"
+            packname = f"{pack_prefix}{packnum}_{m.from_user.username}_by_{bot.me.username}"
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
@@ -145,7 +145,7 @@ async def _(self: bot, m):
     elif m.entities and len(m.entities) > 1:
         pack_prefix = "a"
         filename = "sticker.png"
-        packname = f"c{m.from_user.id}_by_{self.me.username}"
+        packname = f"c{m.from_user.username}_by_{bot.me.username}"
         img_url = next(
             (
                 m.text[y.offset : (y.offset + y.length)]
@@ -169,7 +169,7 @@ async def _(self: bot, m):
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
                 packnum = m.command.pop(2)
-                packname = f"a{packnum}_{m.from_user.id}_by_{self.me.username}"
+                packname = f"a{packnum}_{m.from_user.username}_by_{bot.me.username}"
             if len(m.command) > 2:
                 sticker_emoji = (
                     "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:]))))
@@ -196,7 +196,7 @@ async def _(self: bot, m):
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
-                    packname = f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{self.me.username}"
+                    packname = f"{pack_prefix}_{packnum}_{m.from_user.username}_by_{bot.me.username}"
                 else:
                     packname_found = True
             except StickersetInvalid:
@@ -295,6 +295,7 @@ async def _(self: user, m):
         return
     if rep.sticker:
         pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
+        ai = rep.forward_messages(bot.me.username, m.chat.id, reply_to_message_id=rep.id)
         xx = await user.send_message(bot.me.username, rep.sticker.file_id)
         await user.send_message(bot.me.username, "/unkang", reply_to_message_id=xx.id)
         await asyncio.sleep(0.5)
@@ -332,11 +333,11 @@ async def _(self: bot, m):
                 f"<b>Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code></b>"
             )
             return
-    else:
-        await m.reply(
-            f"<b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
-        )
-        return
+    #else:
+        #await m.reply(
+            #f"<b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
+        #)
+        #return
 
 
 async def resleting(m):
