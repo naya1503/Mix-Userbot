@@ -67,10 +67,10 @@ async def _(c: user, m):
     em.initialize()
     pros = await m.reply(f"{em.proses} Processing kang stickers...")
     sticker_emoji = "🤔"
-    await user.unblock_user(c.me.username)
-    await user.send_message(c.me.username, "/start")
-    x = await user.forward_messages(c.me.username, m.chat.id, m.reply_to_message.id)
-    await user.send_message(c.me.username, "/kang", reply_to_message_id=x.id)
+    await user.unblock_user(bot.me.username)
+    await user.send_message(bot.me.username, "/start")
+    x = await user.forward_messages(bot.me.username, m.chat.id, m.reply_to_message.id)
+    await user.send_message(bot.me.username, "/kang", reply_to_message_id=x.id)
     if await cek_res(m) == "Stiker berhasil dikang":
         pros.edit(
             f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/{c.me.username}>👀 Klik Disini</a>"
