@@ -279,13 +279,15 @@ async def _(c: user, m):
     if not getnote:
         await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>")
         return
-    
+
     if not rmnotes:
         await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> gagal dihapus!</b>")
         return
 
     else:
-        await xx.edit(f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>")
+        await xx.edit(
+            f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
+        )
 
 
 @ky.inline("^get_note_")
