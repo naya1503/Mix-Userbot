@@ -236,14 +236,25 @@ async def _(c: user, m):
     await m.reply_text(f"{em.sukses} Unbanned! {umention}")
 
 
+async def delete_reply(client, message):
+    await message.delete()
+
+
 @ky.ubot("del", sudo=True)
 async def _(c: user, m):
+    if m.reply_to_message:
+        await delete_reply(client, m.reply_to_message)
+        await m.delete()
+    else:
+        return await m.delete()
+
+"""    
     rep = m.reply_to_message
     if not rep:
         pass
     await m.delete()
-    # await rep.delete()
-
+    await rep.delete()
+"""
 
 @ky.ubot("pin|unpin", sudo=True)
 async def _(c: user, m):
