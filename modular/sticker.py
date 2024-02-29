@@ -147,7 +147,7 @@ async def _(self: bot, m):
                 "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
                 or sticker_emoji
             )
-        filename = await self.download_media(m.reply_to_message)
+        filename = await self.download_media(reply)
         if not filename:
             # Failed to download
             await prog_msg.delete()
