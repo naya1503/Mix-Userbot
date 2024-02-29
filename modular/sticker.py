@@ -23,7 +23,7 @@ from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
-
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from Mix import Emojik, bot, ky, user, ndB
 from Mix.core.http import http
 from Mix.core.stick_tools import EMOJI_PATTERN, convert_video, resize_image
