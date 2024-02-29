@@ -177,27 +177,6 @@ async def _(c: user, m):
     await put_cleanmode(c.me.id, send.id)
 
 
-"""
-@ky.ubot("afkdel")
-async def _(c: user, m):
-    em = Emojik()
-    em.initialize()
-    if len(m.command) == 1:
-        return await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
-    chat_id = c.me.id
-    state = m.text.split(None, 1)[1].strip()
-    state = state.lower()
-    if state == "on":
-        udB.cleanmode_on(chat_id)
-        await m.reply_text(f"{em.sukses} Afk Delete Diaktifkan!")
-    elif state == "off":
-        udB.cleanmode_off(chat_id)
-        await m.reply_text(f"{em.gagal} Afk Delete Dinonaktifkan!")
-    else:
-        await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
-"""
-
-
 @ky.ubot("unafk", sudo=True)
 async def _(c, m):
     em = Emojik()
@@ -297,10 +276,8 @@ async def _(c, m):
         return
 
 
-# @user.on_message(filters.mentioned & filters.incoming & ~filters.bot)
-@user.on_message(
-    (filters.mentioned | filters.private) & ~filters.bot & filters.incoming
-)
+
+@ky.apk()
 async def _(c, m):
     em = Emojik()
     em.initialize()
