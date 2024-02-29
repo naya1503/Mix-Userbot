@@ -191,7 +191,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     msg = m.reply_to_message or m
-    inf = await m.reply(f"{c.proses} <b>Processing...</b>")
+    inf = await m.reply(f"{em.proses} <b>Processing...</b>")
     link = c.get_arg(m)
     if not link:
         return await inf.edit(f"<b><code>{m.text}</code> [link]</b>")
@@ -234,7 +234,7 @@ async def _(c: user, m):
                     await inf.edit(f"{str(error)}")
 
     else:
-        await inf.edit(f"{c.sukses} Nyolong dihentikan.")
+        await inf.edit(f"{em.sukses} Nyolong dihentikan.")
 
 
 @ky.inline("^get_msg")
