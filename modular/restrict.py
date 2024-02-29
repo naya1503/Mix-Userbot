@@ -242,7 +242,7 @@ async def _(c: user, m):
     if not rep:
         pass
     await m.delete()
-    await rep.delete()
+    # await rep.delete()
 
 
 @ky.ubot("pin|unpin", sudo=True)
