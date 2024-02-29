@@ -16,13 +16,16 @@ Help Command Sticker
 
 import os
 
-from pyrogram import enums
+from pyrogram import Client, emoji, enums, filters
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
+from pyrogram.file_id import FileId
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
-from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
+from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet,
+                                             RemoveStickerFromSet)
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from Mix import Emojik, bot, ky, ndB, user
 from Mix.core.http import http
@@ -79,10 +82,11 @@ async def _(c: user, m):
         )
         return
 
-
 @ky.ubot("kang", sudo=False)
-async def _(self: bot, message):
-    prog_msg = await message.reply("Mencoba mencuri stiker Anda...")
+async def _(self: bot, m):
+    em = Emojik()
+    em.initialize()
+    prog_msg = m.reply(f"{em.proses} Processing kang stickers...")
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
@@ -90,8 +94,8 @@ async def _(self: bot, message):
     animated = False
     videos = False
     convert = False
-    reply = message.reply_to_message
-    org = await self.resolve_peer(message.from_user.username or message.from_user.id)
+    reply = m.reply_to_message
+    org = await self.resolve_peer(m.from_user.username or m.from_user.id)
 
     if reply and reply.media:
         if reply.photo:
@@ -107,8 +111,8 @@ async def _(self: bot, message):
                 # mime_type: image/webp
                 resize = True
             elif reply.document.mime_type in (
-                enums.MessageMediaType.VIDEO,
-                enums.MessageMediaType.ANIMATION,
+                enums.mMediaType.VIDEO,
+                enums.mMediaType.ANIMATION,
             ):
                 # mime_type: application/video
                 videos = True
@@ -131,37 +135,37 @@ async def _(self: bot, message):
             return await prog_msg.edit_text()
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
-        packname = f"{pack_prefix}_{message.from_user.id}_by_{self.me.username}"
+        packname = f"{pack_prefix}_{m.from_user.id}_by_{self.me.username}"
 
         if (
-            len(message.command) > 1
-            and message.command[1].isdigit()
-            and int(message.command[1]) > 0
+            len(m.command) > 1
+            and m.command[1].isdigit()
+            and int(m.command[1]) > 0
         ):
             # provide pack number to kang in desired pack
-            packnum = message.command.pop(1)
+            packnum = m.command.pop(1)
             packname = (
-                f"{pack_prefix}{packnum}_{message.from_user.id}_by_{self.me.username}"
+                f"{pack_prefix}{packnum}_{m.from_user.id}_by_{self.me.username}"
             )
-        if len(message.command) > 1:
+        if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
-                "".join(set(EMOJI_PATTERN.findall("".join(message.command[1:]))))
+                "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
                 or sticker_emoji
             )
-        filename = await self.download_media(message.reply_to_message)
+        filename = await self.download_media(m.reply_to_message)
         if not filename:
             # Failed to download
             await prog_msg.delete()
             return
-    elif message.entities and len(message.entities) > 1:
+    elif m.entities and len(m.entities) > 1:
         pack_prefix = "a"
         filename = "sticker.png"
-        packname = f"c{message.from_user.id}_by_{self.me.username}"
+        packname = f"c{m.from_user.id}_by_{self.me.username}"
         img_url = next(
             (
-                message.text[y.offset : (y.offset + y.length)]
-                for y in message.entities
+                m.text[y.offset : (y.offset + y.length)]
+                for y in m.entities
                 if y.type == "url"
             ),
             None,
@@ -176,21 +180,21 @@ async def _(self: bot, message):
                 with open(filename, mode="wb") as f:
                     f.write(r.read())
         except Exception as r_e:
-            return await prog_msg.edit_text(f"{r_e.__class__.__name__} : {r_e}")
-        if len(message.command) > 2:
+            return await prog_msg.edit_text(f"{em.gagal} Error : {r_e}")
+        if len(m.command) > 2:
             # m.command[1] is image_url
-            if message.command[2].isdigit() and int(message.command[2]) > 0:
-                packnum = message.command.pop(2)
-                packname = f"a{packnum}_{message.from_user.id}_by_{self.me.username}"
-            if len(message.command) > 2:
+            if m.command[2].isdigit() and int(m.command[2]) > 0:
+                packnum = m.command.pop(2)
+                packname = f"a{packnum}_{m.from_user.id}_by_{self.me.username}"
+            if len(m.command) > 2:
                 sticker_emoji = (
-                    "".join(set(EMOJI_PATTERN.findall("".join(message.command[2:]))))
+                    "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:]))))
                     or sticker_emoji
                 )
             resize = True
     else:
         return await prog_msg.edit_text(
-            "Ingin saya menebak stikernya? Harap tandai stiker."
+            f"{em.gagal} Tidak valid!"
         )
     try:
         if resize:
@@ -210,7 +214,7 @@ async def _(self: bot, message):
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
-                    packname = f"{pack_prefix}_{packnum}_{message.from_user.id}_by_{self.me.username}"
+                    packname = f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{self.me.username}"
                 else:
                     packname_found = True
             except StickersetInvalid:
@@ -224,15 +228,15 @@ async def _(self: bot, message):
                     mime_type=self.guess_mime_type(filename),
                     attributes=[DocumentAttributeFilename(file_name=filename)],
                 ),
-                message=f"#Sticker kang by UserID -> {message.from_user.id}",
+                m=f"#Sticker kang by UserID -> {m.from_user.id}",
                 random_id=self.rnd_id(),
             ),
         )
-        msg_ = media.updates[-1].message
+        msg_ = media.updates[-1].m
         stkr_file = msg_.media.document
         if packname_found:
             await prog_msg.edit_text(
-                "<code>Menggunakan paket stiker yang ada...</code>"
+                f"{em.proses} Menggunakan paket stiker yang ada..."
             )
             await self.invoke(
                 AddStickerToSet(
@@ -248,8 +252,8 @@ async def _(self: bot, message):
                 )
             )
         else:
-            await prog_msg.edit_text("<b>Membuat paket stiker baru...</b>")
-            stkr_title = f"{message.from_user.first_name}'s"
+            await prog_msg.edit_text(f"{em.proses} Membuat paket stiker baru...")
+            stkr_title = f"{m.from_user.first_name}'s"
             if animated:
                 stkr_title += "AnimPack"
             elif videos:
@@ -287,19 +291,41 @@ async def _(self: bot, message):
             "Paket Stiker Anda penuh jika paket Anda tidak dalam Tipe v1 /kang 1, jika tidak dalam Tipe v2 /kang 2 dan seterusnya."
         )
     except Exception as all_e:
-        await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
+        await prog_msg.edit_text(f"{em.gagal} Error: {all_e}")
     else:
-
         await prog_msg.edit_text(
-            f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>",
+            f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Disini</a></b>",
         )
         # Cleanup
-        await self.delete_messages(chat_id=LOG_ME, message_ids=msg_.id, revoke=True)
+        await self.delete_ms(chat_id=LOG_ME, m_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
         except OSError:
             pass
 
+@ky.ubot("unkang", sudo=False)
+async def _(self: bot, m):
+    em = Emojik()
+    em.initialize()
+    if m.reply_to_message.sticker:
+        prog_msg = m.reply(f"{em.proses} Mencoba menghapus stickers...")
+        try:
+            decoded = FileId.decode(m.reply_to_message.sticker.file_id)
+            sticker = InputDocument(
+                id=decoded.media_id,
+                access_hash=decoded.access_hash,
+                file_reference=decoded.file_reference,
+            )
+            await self.invoke(RemoveStickerFromSet(sticker=sticker))
+            await pp.edit_text(f"{em.sukses} Stiker berhasil dihapus dari paket anda.")
+            return
+        except Exception as e:
+            await pp.edit_text(f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}")
+            return
+    else:
+        await pp.edit(
+            f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.")
+        return
 
 async def cek_res(m):
     return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
