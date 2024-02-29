@@ -65,23 +65,6 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-# @ky.ubot("kang", sudo=False)
-async def _(c: user, m):
-    em = Emojik()
-    em.initialize()
-    pros = await m.reply(f"{em.proses} Processing kang stickers...")
-    sticker_emoji = "🤔"
-    await user.unblock_user(bot.me.username)
-    await user.send_message(bot.me.username, "/start")
-    x = await user.forward_messages(bot.me.username, m.chat.id, m.reply_to_message.id)
-    await user.send_message(bot.me.username, "/kang", reply_to_message_id=x.id)
-    if await cek_res(m) == "Stiker berhasil dikang":
-        pros.edit(
-            f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/{bot.me.username}>👀 Klik Disini</a>"
-        )
-        return
-
-
 @ky.ubot("kang", sudo=False)
 async def _(self: bot, m):
     em = Emojik()
@@ -243,11 +226,11 @@ async def _(self: bot, m):
             )
         else:
             await prog_msg.edit(f"{em.proses} Membuat paket stiker baru...")
-            stkr_title = f"{m.from_user.first_name}'s"
+            stkr_title = f"{m.from_user.first_name}"
             if animated:
-                stkr_title += "AnimPack"
+                stkr_title += " Animation Pack"
             elif videos:
-                stkr_title += "VidPack"
+                stkr_title += " Video Pack"
             if packnum != 0:
                 stkr_title += f" v{packnum}"
             try:
@@ -298,7 +281,7 @@ async def _(self: bot, m):
     em = Emojik()
     em.initialize()
     if m.reply_to_message.sticker:
-        pros = m.reply(f"{em.proses} Mencoba menghapus stickers...")
+        pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
         try:
             decoded = FileId.decode(m.reply_to_message.sticker.file_id)
             sticker = InputDocument(
@@ -319,7 +302,3 @@ async def _(self: bot, m):
             f"{em.gagal} Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda."
         )
         return
-
-
-async def cek_res(m):
-    return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
