@@ -78,7 +78,8 @@ async def _(c: user, m):
     pack_prefix = "anim" if animated else "vid" if videos else "a"
     packname = f"{pack_prefix}_{user.me.id}_by_{user.me.username}"
     if await cek_res(m) == "Stiker berhasil dikang":
-        pros.edit(f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>")")
+        pros.edit(f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>")
+        return
 
 @ky.bots("kang")
 async def _(c: bot, m):
