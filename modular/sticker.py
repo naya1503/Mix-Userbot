@@ -64,7 +64,7 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-@ky.ubot("kang", sudo=False)
+#@ky.ubot("kang", sudo=False)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -81,7 +81,7 @@ async def _(c: user, m):
         return
 
 
-@ky.bots("kang")
+@ky.ubot("kang", sudo=False)
 async def _(self, message):
     prog_msg = await message.reply("Mencoba mencuri stiker Anda...")
     sticker_emoji = "🤔"
@@ -301,7 +301,7 @@ async def _(self, message):
             ]
         )
         await prog_msg.edit_text(
-            f"<b>Stiker berhasil dicuri!</b>\n<b>Emoji:</b> {sticker_emoji}",
+            f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}",
             reply_markup=markup,
         )
         # Cleanup
