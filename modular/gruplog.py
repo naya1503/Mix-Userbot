@@ -20,8 +20,6 @@ from pyrogram.errors import *
 
 from Mix import *
 
-TAG_LOG = ndB.get_key("TAG_LOG")
-
 
 @ky.ubot("gruplog", sudo=True)
 async def _(c: user, m):
@@ -78,7 +76,6 @@ async def _(c, m):
         [
             [
                 InlineKeyboardButton("Replied Message", url=lenk),
-                # InlineKeyboardButton(f"{org}", user_id=m.from_user.id),
             ],
         ]
     )
@@ -113,7 +110,7 @@ async def _(c, m):
     tag_add(ret.id, m.chat.id, m.id)
 
 
-@user.on_message(filters.reply & filters.chat(TAG_LOG))
+@ky.replog()
 async def _(c: user, m):
     reply_ = m.reply_to_message
     chat, msg = who_tag(reply_.id)
