@@ -73,13 +73,13 @@ async def _(c: user, m):
     await user.send_message(bot.me.username, "/kang", reply_to_message_id=x.id)
     if await cek_res(m) == "Stiker berhasil dikang":
         pros.edit(
-            f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/{c.me.username}>👀 Klik Disini</a>"
+            f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/{bot.me.username}>👀 Klik Disini</a>"
         )
         return
 
 
 @ky.bots("kang")
-async def _(c: Client, m):
+async def _(self: Client, m):
     logme = udB.get_logger(user.me.id)
     prog_msg = await m.reply(f"Processing kang stickers...")
     sticker_emoji = "🤔"
@@ -90,7 +90,7 @@ async def _(c: Client, m):
     videos = False
     convert = False
     reply = m.reply_to_message
-    ser = await c.resolve_peer(user.me.username or user.me.id)
+    ser = await self.resolve_peer(user.me.id)
 
     if reply and reply.media:
         if reply.photo:
@@ -131,7 +131,7 @@ async def _(c: Client, m):
             return await prog_msg.edit(f"Sticker tidak didukung!")
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
-        packname = f"{pack_prefix}_{user.me.id}_by_{user.me.username}"
+        packname = f"a{pack_prefix}_{user.me.id}_by_{user.me.username}"
 
         if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
@@ -144,7 +144,7 @@ async def _(c: Client, m):
                 or sticker_emoji
             )
 
-        filename = await c.download_media(m.reply_to_message)
+        filename = await self.download_media(m.reply_to_message)
 
         if not filename:
             return await prog_msg.edit(f"Sticker tidak didukung!")
@@ -194,7 +194,7 @@ async def _(c: Client, m):
         max_stickers = 50 if animated else 120
         while not packname_found:
             try:
-                stickerset = await c.invoke(
+                stickerset = await self.invoke(
                     GetStickerSet(
                         stickerset=InputStickerSetShortName(short_name=packname),
                         hash=0,
@@ -209,24 +209,24 @@ async def _(c: Client, m):
                     packname_found = True
             except StickersetInvalid:
                 break
-        file = await c.save_file(filename)
-        media = await c.invoke(
+        file = await self.save_file(filename)
+        media = await self.invoke(
             SendMedia(
-                peer=(await c.resolve_peer(logme)),
+                peer=(await self.resolve_peer(logme)),
                 media=InputMediaUploadedDocument(
                     file=file,
-                    mime_type=c.guess_mime_type(filename),
+                    mime_type=self.guess_mime_type(filename),
                     attributes=[DocumentAttributeFilename(file_name=filename)],
                 ),
                 message=f"#Sticker kang by UserID -> {user.me.id}",
-                random_id=c.rnd_id(),
+                random_id=self.rnd_id(),
             ),
         )
         msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
             await prog_msg.edit(f"Menggunakan paket stiker yang ada...")
-            await c.invoke(
+            await self.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
                     sticker=InputStickerSetItem(
@@ -247,9 +247,9 @@ async def _(c: Client, m):
             elif videos:
                 stkr_title += "VidPack"
             if packnum != 0:
-                stkr_title += f" V{packnum}"
+                stkr_title += f" v{packnum}"
             try:
-                await c.invoke(
+                await self.invoke(
                     CreateStickerSet(
                         user_id=ser,
                         title=stkr_title,
@@ -285,7 +285,7 @@ async def _(c: Client, m):
             f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
         )
         # Cleanup
-        await c.delete_messages(chat_id=logme, message_ids=msg_.id, revoke=True)
+        await self.delete_messages(chat_id=logme, message_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
         except OSError:
@@ -293,4 +293,4 @@ async def _(c: Client, m):
 
 
 async def cek_res(m):
-    return [x async for x in user.get_chat_history(c.me.username, limit=1)][0].text
+    return [x async for x in user.get_chat_history(self.me.username, limit=1)][0].text
