@@ -361,7 +361,7 @@ async def _(self: user, m):
     else:
         await pros.edit(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
     await pros.delete()
-    
+
     return
 
 
