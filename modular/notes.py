@@ -276,21 +276,15 @@ async def _(c: user, m):
         return
 
     if not getnote:
-        await xx.edit(
-            f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>"
-        )
+        await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>")
         return
 
     rmnotes = udB.rm_note(c.me.id, note)
     if not rmnotes:
-        await xx.edit(
-            f"{em.gagal} <b>Catatan <code>{note}</code> gagal dihapus!</b>"
-        )
+        await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> gagal dihapus!</b>")
         return
 
-    await xx.edit(
-        f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
-    )
+    await xx.edit(f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>")
 
 
 @ky.inline("^get_note_")
