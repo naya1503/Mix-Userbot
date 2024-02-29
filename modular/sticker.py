@@ -350,8 +350,8 @@ async def _(self: user, m):
     if rep:
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
-        await asyncio.sleep(0.5)
-        async for tai in user.search_messages(bot.me.username, query="Stiker", limit=1):
+        async for tai in user.search_messages(bot.me.username, query="Sticker Berhasil Dibuat!", limit=1):
+            await asyncio.sleep(2)
             await tai.copy(m.chat.id)
     else:
         await pros.edit(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
