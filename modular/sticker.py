@@ -340,7 +340,7 @@ async def _(self: bot, m):
             await pros.edit(f"{em.sukses} Stiker berhasil dihapus dari paket Anda.")
         except Exception as e:
             await pros.edit(
-                f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}"
+                f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code>"
             )
     else:
         await m.reply(
