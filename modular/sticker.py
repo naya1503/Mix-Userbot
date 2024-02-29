@@ -136,9 +136,7 @@ async def _(c, m):
         if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
             # provide pack number to kang in desired pack
             packnum = m.command.pop(1)
-            packname = (
-                f"{pack_prefix}{packnum}_{user.me.id}_by_{user.me.username}"
-            )
+            packname = f"{pack_prefix}{packnum}_{user.me.id}_by_{user.me.username}"
         if len(m.command) > 1:
             # matches all valid emojis in input
             sticker_emoji = (
@@ -204,7 +202,9 @@ async def _(c, m):
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
-                    packname = f"{pack_prefix}_{packnum}_{user.me.id}_by_{user.me.username}"
+                    packname = (
+                        f"{pack_prefix}_{packnum}_{user.me.id}_by_{user.me.username}"
+                    )
                 else:
                     packname_found = True
             except StickersetInvalid:
