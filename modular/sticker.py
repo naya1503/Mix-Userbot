@@ -20,8 +20,8 @@ Help Command Sticker
 • Penjelasan: Untuk menghapus sticker/stickerpack yang sudah ada.
 """
 
-import os
 import asyncio
+import os
 
 from pyrogram import enums
 from pyrogram.errors import BadRequest, PeerIdInvalid, StickersetInvalid
@@ -284,6 +284,7 @@ async def _(self: bot, m):
         except OSError:
             pass
 
+
 @ky.ubot("unkang", sudo=False)
 async def _(self: user, m):
     em = Emojik()
@@ -308,6 +309,7 @@ async def _(self: user, m):
             f"{em.gagal} </b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
         )
 
+
 @ky.bots("unkang")
 async def _(self: bot, m):
     rep = m.reply_to_message
@@ -323,9 +325,7 @@ async def _(self: bot, m):
                 file_reference=decoded.file_reference,
             )
             await self.invoke(RemoveStickerFromSet(sticker=sticker))
-            await m.reply(
-                f"<b>Stiker berhasil dihapus dari paket Anda.</b>"
-            )
+            await m.reply(f"<b>Stiker berhasil dihapus dari paket Anda.</b>")
             return
         except Exception as e:
             await m.reply(
@@ -337,6 +337,7 @@ async def _(self: bot, m):
             f"<b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
         )
         return
+
 
 async def resleting(m):
     return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
