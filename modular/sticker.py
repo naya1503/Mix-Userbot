@@ -348,14 +348,16 @@ async def _(self: user, m):
     ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
     await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
     await asyncio.sleep(5)
-    async for tai in user.search_messages(bot.me.username, query="Sticker Anda Berhasil Dibuat!", limit=1
-        ):
-         await asyncio.sleep(5)
-         await tai.copy(m.chat.id)
+    async for tai in user.search_messages(
+        bot.me.username, query="Sticker Anda Berhasil Dibuat!", limit=1
+    ):
+        await asyncio.sleep(5)
+        await tai.copy(m.chat.id)
     await pros.delete()
     ulat = await user.resolve_peer(bot.me.username)
     await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
     return
+
 
 async def resleting(m):
     return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
