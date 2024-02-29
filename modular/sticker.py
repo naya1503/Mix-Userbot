@@ -286,14 +286,14 @@ async def _(self: bot, message):
             [
                 [
                     InlineKeyboardButton(
-                        text="👀 Lihat Paket",
-                        url=f"https://t.me/addstickers/{packname}",
+                        text="",
+                        url=f"",
                     ),
                 ],
             ]
         )
         await prog_msg.edit_text(
-            f"<b>Stiker berhasil dicuri!</b>\n<b>Emoji:</b> {sticker_emoji}",
+            f"<b>Sticker Berhasil Dibuat!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Sticker</a></b>",
             reply_markup=markup,
         )
         # Cleanup
@@ -317,7 +317,7 @@ async def _(self: user, m):
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/unkang", reply_to_message_id=ai.id)
         await asyncio.sleep(0.5)
-        if await resleting(m) == "<b>Stiker berhasil dihapus dari paket Anda.</b>":
+        if await resleting(m) == "Stiker berhasil dihapus dari paket Anda.":
             await pros.edit(f"{em.sukses} Sticker berhasil dihapus!")
             return
         else:
@@ -325,7 +325,7 @@ async def _(self: user, m):
             return
     else:
         await m.reply(
-            f"{em.gagal} </b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
+            f"{em.gagal} <b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
         )
 
 
@@ -341,11 +341,11 @@ async def _(self, m):
             file_reference=decoded.file_reference,
         )
         await bot.invoke(RemoveStickerFromSet(sticker=sticker))
-        await m.reply(f"<b>Stiker berhasil dihapus dari paket Anda.</b>")
+        await m.reply(f"Stiker berhasil dihapus dari paket Anda.")
         return
     except Exception as e:
         await m.reply(
-            f"<b>Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code></b>"
+            f"Gagal menghapus stiker dari paket Anda.\n\nError: <code>{e}</code>"
         )
         return
 
@@ -360,25 +360,16 @@ async def _(self: user, m):
         await m.reply(f"{em.gagal} <b>Harap balas media atau sticker!</b>")
         return
     if rep.sticker:
-        pros = await m.reply(f"{em.proses} Mencoba membuat stickers...")
+        pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
         await asyncio.sleep(0.5)
-        if await resleting(m) == "<b>Stiker berhasil dicuri!</b>":
-            await pros.edit(
-                f"""
-{em.suksss} <b>Berhasil membuat stiker pack anda!
- <a href=https://t.me/bot.me.username>Lihat Paket Disini</a>
-Untuk menggunakan stiker.</b>
-"""
-            )
-            return
-        else:
-            await pros.edit(f"{em.gagal} Sticker gagal dibuat!")
-            return
+        async for tai in user.search_messages(bot.me.username, query="Stiker", limit=1):
+            await tai.copy(m.chat.id)
     else:
         await m.reply(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
-
+    await pros.delete()
+    return
 
 async def resleting(m):
     return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
