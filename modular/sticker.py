@@ -81,7 +81,7 @@ async def _(c: user, m):
 
 @ky.bots("kang")
 async def _(self, message):
-    prog_msg = await m.reply("Mencoba mencuri stiker Anda...")
+    prog_msg = await message.reply("Mencoba mencuri stiker Anda...")
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
