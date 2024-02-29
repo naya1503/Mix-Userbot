@@ -329,9 +329,15 @@ async def _(self: bot, m):
         pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
         try:
             sticker_id = rep.sticker.file_id
-            await self.invoke(RemoveStickerFromSet(sticker=sticker_id))
+            decoded = FileId.decode(sticker_id)
+            sticker = InputDocument(
+                id=decoded.media_id,
+                access_hash=decoded.access_hash,
+                file_reference=decoded.file_reference,
+            )
+            await self.invoke(RemoveStickerFromSet(sticker=sticker))
             await pros.edit(f"{em.sukses} Stiker berhasil dihapus dari paket Anda.")
-        except BadRequest as e:
+        except Exception as e:
             await pros.edit(
                 f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}"
             )
