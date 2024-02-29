@@ -61,7 +61,7 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-# @ky.ubot("kang", sudo=False)
+@ky.ubot("kang", sudo=False)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -78,8 +78,7 @@ async def _(c: user, m):
         return
 
 
-# @ky.bots("kang")
-@ky.ubot("kang", sudo=False)
+@ky.bots("kang")
 async def _(c, m):
     logme = udB.get_logger(user.me.id)
     prog_msg = await m.reply(f"Processing kang stickers...")
