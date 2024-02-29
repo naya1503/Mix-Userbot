@@ -340,28 +340,22 @@ async def _(self: user, m):
     em.initialize()
     rep = m.reply_to_message
     await user.unblock_user(bot.me.username)
-    await user.send_message(bot.me.username, "/start")
-
     if not rep:
         await m.reply(f"{em.gagal} <b>Harap balas media atau sticker!</b>")
         return
-    if rep:
-        pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
-        ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
-        await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
-        async for tai in user.search_messages(
-            bot.me.username, query="Sticker Anda Berhasil Dibuat!", limit=1
+    await user.send_message(bot.me.username, "/kang")
+    pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
+    ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
+    await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
+    await asyncio.sleep(5)
+    async for tai in user.search_messages(bot.me.username, query="Sticker Anda Berhasil Dibuat!", limit=1
         ):
-            await asyncio.sleep(5)
-            await tai.copy(m.chat.id)
-        await pros.delete()
-        ulat = await user.resolve_peer(bot.me.username)
-        await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
-        return
-    else:
-        await m.reply(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
-        return
-
+         await asyncio.sleep(5)
+         await tai.copy(m.chat.id)
+    await pros.delete()
+    ulat = await user.resolve_peer(bot.me.username)
+    await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
+    return
 
 async def resleting(m):
     return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
