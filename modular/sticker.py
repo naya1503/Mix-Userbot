@@ -122,7 +122,7 @@ async def _(self: bot, m):
                 animated = True
         elif reply.sticker:
             if not reply.sticker.file_name:
-                return await prog_msg.edit_text("Stiker tidak memiliki nama.")
+                return await prog_msg.edit("Stiker tidak memiliki nama.")
             if reply.sticker.emoji:
                 sticker_emoji = reply.sticker.emoji
             animated = reply.sticker.is_animated
@@ -132,7 +132,7 @@ async def _(self: bot, m):
             elif not reply.sticker.file_name.endswith(".tgs"):
                 resize = True
         else:
-            return await prog_msg.edit_text()
+            return await prog_msg.edit()
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{self.me.username}"
@@ -174,7 +174,7 @@ async def _(self: bot, m):
                 with open(filename, mode="wb") as f:
                     f.write(r.read())
         except Exception as r_e:
-            return await prog_msg.edit_text(f"{em.gagal} Error : {r_e}")
+            return await prog_msg.edit(f"{em.gagal} Error : {r_e}")
         if len(m.command) > 2:
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
@@ -187,14 +187,14 @@ async def _(self: bot, m):
                 )
             resize = True
     else:
-        return await prog_msg.edit_text(f"{em.gagal} Tidak valid!")
+        return await prog_msg.edit(f"{em.gagal} Tidak valid!")
     try:
         if resize:
             filename = resize_image(filename)
         elif convert:
             filename = await convert_video(filename)
             if filename is False:
-                return await prog_msg.edit_text("Error")
+                return await prog_msg.edit("Error")
         max_stickers = 50 if animated else 120
         while not packname_found:
             try:
@@ -227,7 +227,7 @@ async def _(self: bot, m):
         msg_ = media.updates[-1].m
         stkr_file = msg_.media.document
         if packname_found:
-            await prog_msg.edit_text(
+            await prog_msg.edit(
                 f"{em.proses} Menggunakan paket stiker yang ada..."
             )
             await self.invoke(
@@ -244,7 +244,7 @@ async def _(self: bot, m):
                 )
             )
         else:
-            await prog_msg.edit_text(f"{em.proses} Membuat paket stiker baru...")
+            await prog_msg.edit(f"{em.proses} Membuat paket stiker baru...")
             stkr_title = f"{m.from_user.first_name}'s"
             if animated:
                 stkr_title += "AnimPack"
@@ -274,18 +274,18 @@ async def _(self: bot, m):
                 )
             except PeerIdInvalid:
                 return (
-                    await prog_msg.edit_text(
+                    await prog_msg.edit(
                         "Tampaknya Anda belum pernah berinteraksi dengan saya dalam obrolan pribadi, Anda harus melakukannya dulu.."
                     ),
                 )
     except BadRequest:
-        return await prog_msg.edit_text(
+        return await prog_msg.edit(
             "Paket Stiker Anda penuh jika paket Anda tidak dalam Tipe v1 /kang 1, jika tidak dalam Tipe v2 /kang 2 dan seterusnya."
         )
     except Exception as all_e:
-        await prog_msg.edit_text(f"{em.gagal} Error: {all_e}")
+        await prog_msg.edit(f"{em.gagal} Error: {all_e}")
     else:
-        await prog_msg.edit_text(
+        await prog_msg.edit(
             f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Disini</a></b>",
         )
         # Cleanup
@@ -310,12 +310,12 @@ async def _(self: bot, m):
                 file_reference=decoded.file_reference,
             )
             await self.invoke(RemoveStickerFromSet(sticker=sticker))
-            await pros.edit_text(
+            await pros.edit(
                 f"{em.sukses} Stiker berhasil dihapus dari paket anda."
             )
             return
         except Exception as e:
-            await pros.edit_text(
+            await pros.edit(
                 f"{em.gagal} Gagal menghapus stiker dari paket Anda.\n\nError: {e}"
             )
             return
