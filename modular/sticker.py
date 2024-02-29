@@ -86,7 +86,7 @@ async def _(self: bot, m):
     videos = False
     convert = False
     reply = m.reply_to_message
-    org = await bot.resolve_peer(m.from_user.username or m.from_user.id)
+    org = await self.resolve_peer(m.from_user.username or m.from_user.id)
 
     if reply and reply.media:
         if reply.photo:
