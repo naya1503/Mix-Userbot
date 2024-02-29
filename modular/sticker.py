@@ -60,6 +60,7 @@ async def _(c: user, m):
         return
     os.remove(pat)
 
+
 @ky.ubot("kang", sudo=False)
 async def _(c: user, m):
     em = Emojik()
@@ -68,25 +69,25 @@ async def _(c: user, m):
     sticker_emoji = "🤔"
     await user.unblock_user(bot.me.username)
     await user.send_message(bot.me.username, "/start")
-    x = await user.forward_messages(
-            bot.me.username,
-            m.chat.id,
-            m.reply_to_message.id)
+    x = await user.forward_messages(bot.me.username, m.chat.id, m.reply_to_message.id)
     animated = False
     videos = False
     await user.send_message(bot.me.username, "/kang", reply_to_message_id=x.id)
     pack_prefix = "anim" if animated else "vid" if videos else "a"
     packname = f"{pack_prefix}_{user.me.id}_by_{user.me.username}"
     if await cek_res(m) == "Stiker berhasil dikang":
-        pros.edit(f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>")
+        pros.edit(
+            f"{em.sukses} <b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
+        )
         return
+
 
 @ky.bots("kang")
 async def _(c: bot, m):
-    
+
     logme = udB.get_logger(user.me.id)
-    #await user.unblock_user(bot.me.username)
-    #await user.send_message(bot.me.username, "/start")
+    # await user.unblock_user(bot.me.username)
+    # await user.send_message(bot.me.username, "/start")
     prog_msg = await m.reply(f"Processing kang stickers...")
 
     sticker_emoji = "🤔"
@@ -286,13 +287,16 @@ async def _(c: bot, m):
     except Exception as all_e:
         await prog_msg.edit(f"{all_e}")
     else:
-        await prog_msg.edit(f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>")
+        await prog_msg.edit(
+            f"<b>Stiker berhasil dikang !</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>"
+        )
         # Cleanup
         await bot.delete_messages(chat_id=logme, message_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
         except OSError:
             pass
+
 
 async def cek_res(m):
     return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
