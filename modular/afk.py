@@ -8,7 +8,6 @@
 
 import time
 
-from pyrogram import filters
 
 from Mix import Emojik, ky, udB, user
 from Mix.core.waktu import get_time, put_cleanmode
@@ -274,7 +273,6 @@ async def _(c, m):
             )
         await put_cleanmode(c.me.id, send.id)
         return
-
 
 
 @ky.apk()
