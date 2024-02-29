@@ -12,6 +12,12 @@ Help Command Sticker
 
 • Perintah: <code>{0}gstik</code> [reply sticker]
 • Penjelasan: Untuk mengambil info sticker.
+
+• Perintah: <code>{0}kang</code> [reply sticker]
+• Penjelasan: Untuk mencuri atau membuat stickerpack sendiri.
+
+• Perintah: <code>{0}unkang</code> [reply sticker]
+• Penjelasan: Untuk menghapus sticker/stickerpack yang sudah ada.
 """
 
 import os
@@ -280,6 +286,9 @@ async def _(self: bot, m):
 async def _(self: bot, m):
     em = Emojik()
     em.initialize()
+    rep = m.reply_to_message
+    if not rep:
+        await m.reply(f"{em.gagal} Harap balas sticker yang ingin dihapus!")
     if m.reply_to_message.sticker:
         pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
         try:
