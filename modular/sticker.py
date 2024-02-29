@@ -64,7 +64,7 @@ async def _(c: user, m):
     os.remove(pat)
 
 
-# @ky.ubot("kang", sudo=False)
+#@ky.ubot("kang", sudo=False)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -82,7 +82,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("kang", sudo=False)
-async def _(self, message):
+async def _(self: bot, message):
     prog_msg = await message.reply("Mencoba mencuri stiker Anda...")
     sticker_emoji = "🤔"
     packnum = 0
@@ -294,15 +294,14 @@ async def _(self, message):
             [
                 [
                     InlineKeyboardButton(
-                        text="👀 Lihat Paket",
-                        url=f"https://t.me/addstickers/{packname}",
+                        text="",
+                        url=f"",
                     ),
                 ],
             ]
         )
         await prog_msg.edit_text(
-            f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}",
-            reply_markup=markup,
+            f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>",
         )
         # Cleanup
         await self.delete_messages(chat_id=LOG_ME, message_ids=msg_.id, revoke=True)
