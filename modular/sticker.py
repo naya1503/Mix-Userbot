@@ -290,16 +290,7 @@ async def _(self: bot, message):
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
-        markup = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text="",
-                        url=f"",
-                    ),
-                ],
-            ]
-        )
+        
         await prog_msg.edit_text(
             f"<b>Stiker berhasil dikang!</b>\n<b>Emoji:</b> {sticker_emoji}\n\n<a href=https://t.me/addstickers/{packname}>👀 Lihat Paket</a>",
         )
