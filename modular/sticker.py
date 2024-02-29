@@ -73,7 +73,7 @@ async def _(c: user, m):
     await user.send_message(bot.me.username, "/kang", reply_to_message_id=x.id)
     
 
-@ky.bot("kang")
+@ky.bots("kang")
 async def _(c: bot, m):
     
     logme = udB.get_logger(user.me.id)
