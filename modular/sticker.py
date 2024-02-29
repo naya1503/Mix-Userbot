@@ -359,8 +359,8 @@ async def _(self: user, m):
                     f"{em.gagal} **Error.\n\nSilahkan buat diasissten bot anda @{bot.me.username} kirim sticker kesana dan balas `/kang`.**"
                 )
         await pros.delete()
-        ulat = await user.resolve_peer(bot.me.username)
-        await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
+        #ulat = await user.resolve_peer(bot.me.username)
+        #await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
         return
     else:
         await m.reply(f"{em.gagal} </b>Tolong balas stiker atau media.</b>")
