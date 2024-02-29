@@ -32,7 +32,6 @@ from pyrogram.raw.functions.stickers import (AddStickerToSet, CreateStickerSet,
 from pyrogram.raw.types import (DocumentAttributeFilename, InputDocument,
                                 InputMediaUploadedDocument,
                                 InputStickerSetItem, InputStickerSetShortName)
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from Mix import Emojik, bot, ky, ndB, user
 from Mix.core.http import http
@@ -283,7 +282,8 @@ async def _(self: bot, message):
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
         await prog_msg.edit_text(
-            f"<b>Sticker Berhasil Dibuat!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Sticker</a></b>")
+            f"<b>Sticker Berhasil Dibuat!</b>\n<b>Emoji:</b> {sticker_emoji}\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Sticker</a></b>"
+        )
         await self.delete_messages(chat_id=LOG_ME, message_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
