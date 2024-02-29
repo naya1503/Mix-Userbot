@@ -220,9 +220,7 @@ async def _(self: bot, message):
         msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
-            await prog_msg.edit_text(
-                "Menggunakan paket stiker yang ada..."
-            )
+            await prog_msg.edit_text("Menggunakan paket stiker yang ada...")
             await self.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
@@ -351,21 +349,23 @@ async def _(self: user, m):
         pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
-        async for tai in user.search_messages(
-            bot.me.username, limit=1
-        ):
+        async for tai in user.search_messages(bot.me.username, limit=1):
             await asyncio.sleep(2)
             if tai.text == "Sticker Anda Berhasil Dibuat!":
                 await tai.copy(m.chat.id)
             elif tai.text == "Menggunakan paket stiker yang ada...":
                 await asyncio.sleep(2)
                 async for tai in user.search_messages(bot.me.username, limit=1):
-                      if tai.text == "Sticker Anda Berhasil Dibuat!":
-                            await tai.copy(m.chat.id)
+                    if tai.text == "Sticker Anda Berhasil Dibuat!":
+                        await tai.copy(m.chat.id)
             elif tai.text == "Paket Stiker Anda penuh":
-                await m.reply(f"{em.gagal} Paket sticker anda penuh! Silahkan hapus salah satu paket di @Stickers")
+                await m.reply(
+                    f"{em.gagal} Paket sticker anda penuh! Silahkan hapus salah satu paket di @Stickers"
+                )
             elif tai.text == "Stiker tidak memiliki nama.":
-                await m.reply(f"{em.gagal} Sticker invalid tidak memiliki nama! Coba gunakan sticker lain.")
+                await m.reply(
+                    f"{em.gagal} Sticker invalid tidak memiliki nama! Coba gunakan sticker lain."
+                )
             elif tai.text == "Ingin saya menebak stikernya?":
                 await m.reply(f"{em.gagal} Sticker invalid! Coba gunakan sticker lain.")
         await pros.delete()
