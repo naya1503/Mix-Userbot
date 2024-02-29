@@ -316,7 +316,7 @@ async def _(self: user, m):
 
 
 @ky.bots("unkang")
-async def _(self: bot, m):
+async def _(self, m):
     rep = m.reply_to_message.sticker
     try:
         sticker_id = rep.file_id
@@ -326,7 +326,7 @@ async def _(self: bot, m):
             access_hash=decoded.access_hash,
             file_reference=decoded.file_reference,
         )
-        await self.invoke(RemoveStickerFromSet(sticker=sticker))
+        await bot.invoke(RemoveStickerFromSet(sticker=sticker))
         await m.reply(f"<b>Stiker berhasil dihapus dari paket Anda.</b>")
         return
     except Exception as e:
