@@ -49,8 +49,8 @@ async def _(c: user, m):
     link = await paste(content)
     photo = await ss(link, True)
     try:
-        await m.reply_photo(
-            photo=photo, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})"
+        await m.reply_document(
+            photo, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})"
         )
     except Exception:
         await m.reply(f"{em.sukses} **Paste Link:** [Klik Disini]({link})")
