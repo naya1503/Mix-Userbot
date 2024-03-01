@@ -47,7 +47,7 @@ async def _(c: user, m):
             content = await f.read()
         os.remove(doc)
     link = await paste(content)
-    photo = await ss(url, True)
+    photo = await ss(link, True)
     try:
         await m.reply_photo(
             photo=photo, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})"
