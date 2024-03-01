@@ -119,7 +119,7 @@ async def _(c: user, m):
         return
     for lang, code in kode_bahasa.items():
         kd = m.text.split(None, 1)[1]
-        if kd.lower() != code.lower():
+        if kd.lower() not in code.lower():
             await pros.edit(f"{em.gagal} Kode bahasa tidak valid atau tidak ditemukan.")
             return
         else:
