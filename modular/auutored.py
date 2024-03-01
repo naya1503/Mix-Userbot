@@ -3,6 +3,7 @@
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
  @ CREDIT : NAN-DEV || MIKIR GOBLOK, TOLOL, IDIOT, NGENTOT, KONTOL, BAJINGAN
+  • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
 """
 ################################################################
 
