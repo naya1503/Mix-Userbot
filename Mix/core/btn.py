@@ -24,7 +24,8 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NANDEV_REGEX = re.compile(r"([^ -]+) - ((?:https?://)?(?:\S+))(?: && )?")
+NAN_REGEX = re.compile(r"([^-\n]+?) - (https?://\S+)")
+
 
 
 def is_url(text: str) -> bool:
@@ -112,23 +113,24 @@ def nan_parse(text):
     prev = 0
     note_data = ""
     buttons = []
-    for match in NANDEV_REGEX.finditer(markdown_note):
-        n_escapes = 0
-        to_check = match.start(0) - 1
-        while to_check > 0 and markdown_note[to_check] == "\\":
-            n_escapes += 1
-            to_check -= 1
-        if n_escapes % 2 == 0:
-            buttons.append((match.group(1), match.group(2)))
-            note_data += markdown_note[prev : match.start(1)]
-            prev = match.end(0)
+    horizontal_buttons = []
+    for match in NAN_REGEX.finditer(markdown_note):
+        label = match.group(1).strip()
+        url = match.group(2).strip()
+        if "&&" in label:
+            horizontal_buttons.append((label.split("&&"), url))
         else:
-            note_data += markdown_note[prev:to_check]
-            prev = match.start(0) - 1
-    else:
-        note_data += markdown_note[prev:]
+            buttons.append((label, url))
+            note_data += markdown_note[prev:match.start()]
+            prev = match.end()
+    note_data += markdown_note[prev:]
+
+    for h_buttons, url in horizontal_buttons:
+        for i, label in enumerate(h_buttons):
+            buttons.append((label.strip(), url))
 
     return note_data, buttons
+
 
 
 def extract_time(time_val):
