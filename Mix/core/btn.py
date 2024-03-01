@@ -120,7 +120,7 @@ def nan_parse(text):
             horizontal_buttons.append((label.split("&&"), url))
         else:
             buttons.append((label, url, False))
-            note_data += markdown_note[prev:match.start()]
+            note_data += markdown_note[prev : match.start()]
             prev = match.end()
     note_data += markdown_note[prev:]
 
@@ -130,7 +130,6 @@ def nan_parse(text):
             buttons.append((label.strip(), url, newline))
 
     return note_data, buttons
-
 
 
 def nan_kibor(buttons):
