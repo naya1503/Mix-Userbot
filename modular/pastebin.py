@@ -30,7 +30,7 @@ async def _(c: user, m):
     em.initialize()
     if not m.reply_to_message:
         return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan.")
-    r = message.reply_to_message
+    r = m.reply_to_message
     if not r.text and not r.document:
         return await m.reply_text(
             f"{em.gagal} Silahkan balas ke pesan teks atau dokumen teks?"
