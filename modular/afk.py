@@ -15,11 +15,11 @@ __modles__ = "Afk"
 __help__ = """
  Help Command Afk
 
-• Perintah : <code>{0}afk or unafk</code> [reason]
-• Penjelasan : Untuk mengaktifkan atau menonaktifkan mode afk.
+• Perintah : <code>{0}afk</code> [reason]
+• Penjelasan : Untuk mengaktifkan mode afk.
 
-• Perintah : <code>{0}afkdel</code> [on/off]
-• Penjelasan : Untuk mengaktifkan hapus otomatis pesan afk anda.
+• Perintah : <code>{0}unafk</code> [reason]
+• Penjelasan : Untuk menonaktifkan mode afk.
 """
 
 
