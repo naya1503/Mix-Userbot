@@ -106,7 +106,7 @@ def parse_mark(tk: str, kk):
                 buttons.append(button_str)
     return f"{tk} {' '.join(buttons)}"
 
-
+"""
 def nan_parse(text):
     markdown_note = text
     prev = 0
@@ -124,6 +124,36 @@ def nan_parse(text):
                     match.group(1),
                     match.group(2),
                     True if "&&" in match.group(0) else False,
+                )
+            )
+            note_data += markdown_note[prev : match.start(0)]
+            prev = match.end(0)
+        else:
+            note_data += markdown_note[prev:to_check]
+            prev = match.start(1) - 1
+    else:
+        note_data += markdown_note[prev:]
+
+    return note_data, buttons
+"""
+
+def nan_parse(text):
+    markdown_note = text
+    prev = 0
+    note_data = ""
+    buttons = []
+    for match in NAN_REGEX.finditer(markdown_note):
+        n_escapes = 0
+        to_check = match.start(1) - 1
+        while to_check > 0 and markdown_note[to_check] == "\\":
+            n_escapes += 1
+            to_check -= 1
+        if n_escapes % 2 == 0:
+            button_text = f"{match.group(1)} && {match.group(2)}" if "&&" in match.group(2) else match.group(1) + " - " + match.group(2)
+            buttons.append(
+                (
+                    button_text,
+                    True if "&&" in match.group(2) else False,
                 )
             )
             note_data += markdown_note[prev : match.start(0)]
