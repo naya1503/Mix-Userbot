@@ -116,19 +116,16 @@ def nan_parse(text):
     for match in NAN_REGEX.finditer(markdown_note):
         label = match.group(1).strip()
         url = match.group(2).strip()
-        if "\n" in label:
-            parts = label.split("\n")
-            for part in parts:
-                buttons.append((part.strip(), url))
-        elif "&&" in label:
+        if "&&" in label:
             horizontal_buttons.append((label.split("&&"), url))
         else:
             buttons.append((label, url))
-            note_data += markdown_note[prev : match.start()]
+            note_data += markdown_note[prev:match.start()]
             prev = match.end()
     note_data += markdown_note[prev:]
+
     for h_buttons, url in horizontal_buttons:
-        for i, label in enumerate(h_buttons):
+        for label in h_buttons:
             buttons.append((label.strip(), url))
 
     return note_data, buttons
