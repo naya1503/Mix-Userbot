@@ -49,7 +49,7 @@ async def _(c: user, m):
     rep = m.reply_to_message or m
     try:
         await c.send_voice(
-            chat_id=.chat.id,
+            chat_id=m.chat.id,
             voice="trs.oog",
             reply_to_message_id=rep.id,
         )
