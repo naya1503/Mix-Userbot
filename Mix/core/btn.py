@@ -144,6 +144,7 @@ def nan_parse(text):
     prev = 0
     note_data = ""
     buttons = []
+    last_button_index = 0
     for match in NAN_REGEX.finditer(markdown_note):
         n_escapes = 0
         to_check = match.start(1) - 1
@@ -151,14 +152,17 @@ def nan_parse(text):
             n_escapes += 1
             to_check -= 1
         if n_escapes % 2 == 0:
-            button_text = f"{match.group(1)} && {match.group(2)}"
             buttons.append(
                 (
-                    button_text,
-                    True,  # Since "&&" is always present between group(1) and group(2)
+                    match.group(1),
+                    match.group(2),
+                    True if "&&" in match.group(0) else False,
                 )
             )
             note_data += markdown_note[prev : match.start(0)]
+            if len(buttons) > 1 and buttons[-1][2] and not buttons[-2][2]:
+                buttons[last_button_index], buttons[-1] = buttons[-1], buttons[last_button_index]
+                last_button_index += 1
             prev = match.end(0)
         else:
             note_data += markdown_note[prev:to_check]
