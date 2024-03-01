@@ -17,7 +17,6 @@ async def test():
     try:
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
-        udB.remove_var(user.me.id, "ALIVEPIC")
     except SessionExpired:
         LOGGER.info("Session Expired . Create New Session")
         sys.exit(1)
