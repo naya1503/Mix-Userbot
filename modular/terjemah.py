@@ -121,7 +121,7 @@ async def _(c: user, m):
     for lang, code in kode_bahasa.items():
         if code == kd:
             c._translate[c.me.id] = {"negara": kd}
-            await pros.edit(f"{em.sukses} Kode bahasa diganti ke : `{kd} - {lang}`")
+            await pros.edit(f"{em.sukses} Kode bahasa diganti ke : `{kd}` - **{lang}**")
             return
         else:
             await pros.edit(f"{em.gagal} Kode bahasa tidak valid atau tidak ditemukan.")
