@@ -161,7 +161,10 @@ def nan_parse(text):
             )
             note_data += markdown_note[prev : match.start(0)]
             if len(buttons) > 1 and buttons[-1][2] and not buttons[-2][2]:
-                buttons[last_button_index], buttons[-1] = buttons[-1], buttons[last_button_index]
+                buttons[last_button_index], buttons[-1] = (
+                    buttons[-1],
+                    buttons[last_button_index],
+                )
                 last_button_index += 1
             prev = match.end(0)
         else:
