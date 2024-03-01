@@ -35,5 +35,5 @@ gtts
 search_engine_parser
 pytimeparse
 regex
-Pillow
+Pillow==9.0.0
 pytz
