@@ -125,4 +125,3 @@ async def _(c: user, m):
             return
     await pros.edit(f"{em.gagal} Kode bahasa tidak valid atau tidak ditemukan.")
     return
-            
