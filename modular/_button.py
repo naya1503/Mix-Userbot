@@ -31,7 +31,7 @@ async def _(c: user, m):
     xx = m.reply_to_message
 
     babi = await m.reply(f"{em.proses} <b>Processing...</b>")
-    teks, button = parse_button(xx.text)
+    teks, button = nan_parse(xx.text)
     button = build_keyboard(button)
     if button:
         button = InlineKeyboardMarkup(button)
@@ -65,7 +65,7 @@ async def _(c, iq):
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
     rep = m.reply_to_message
-    teks, button = parse_button(rep.text)
+    teks, button = nan_parse(rep.text)
     button = build_keyboard(button)
     duar = [
         (
