@@ -10,9 +10,10 @@ import re
 import aiofiles
 from pyrogram.errors import *
 from pyrogram.types import *
-from .webshot import ss
 
 from Mix import *
+
+from .webshot import ss
 
 pattern = re.compile(r"^text/|json$|yaml$|xml$|toml$|x-sh$|x-shellscript$")
 
