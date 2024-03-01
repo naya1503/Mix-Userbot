@@ -98,7 +98,7 @@ async def _(c: user, m):
     em.initialize()
     try:
         bhs_list = "\n".join(
-            f"- {lang}: `{code}`" for lang, code in kode_bahasa.items()
+            f"- **{lang}**: `{code}`" for lang, code in kode_bahasa.items()
         )
         await m.reply(f"{em.sukses} **Daftar Kode Bahasa:**\n{bhs_list}")
         return
