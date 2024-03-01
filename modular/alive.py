@@ -66,7 +66,18 @@ async def _(c, iq):
 """
     bo_ol = [[InlineKeyboardButton(text="Support", url="t.me/kynansupport")]]
     cekpic = udB.get_var(user.me.id, "ALIVEPIC")
-    if cekpic:
+    if not cekpic:
+        duar = [
+            (
+                InlineQueryResultArticle(
+                    title="Alive Teks",
+                    input_message_content=InputTextMessageContent(txt),
+                    reply_markup=InlineKeyboardMarkup(bo_ol),
+                )
+            )
+        ]
+        
+    else:
         filem = (
             InlineQueryResultVideo
             if cekpic.endswith(".mp4")
@@ -83,16 +94,6 @@ async def _(c, iq):
                 title="Alive Picture",
                 caption=txt,
                 reply_markup=InlineKeyboardMarkup(bo_ol),
-            )
-        ]
-    else:
-        duar = [
-            (
-                InlineQueryResultArticle(
-                    title="Alive Teks",
-                    input_message_content=InputTextMessageContent(txt),
-                    reply_markup=InlineKeyboardMarkup(bo_ol),
-                )
             )
         ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
