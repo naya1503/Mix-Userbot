@@ -126,7 +126,7 @@ def nan_parse(text):
                     True if "&&" in match.group(0) else False,
                 )
             )
-            note_data += markdown_note[prev : match.start(1)]
+            note_data += markdown_note[prev : match.start(0)]
             prev = match.end(0)
         else:
             note_data += markdown_note[prev:to_check]
