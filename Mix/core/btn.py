@@ -131,7 +131,7 @@ def nan_parse(text):
     return note_data, buttons
 
 
-def build_keyboard(buttons):
+def nan_kibor(buttons):
     keyb = []
     for als in buttons:
         if "&&" in als[0]:
