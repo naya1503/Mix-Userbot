@@ -135,13 +135,15 @@ def nan_kibor(buttons):
     keyb = []
     for als in buttons:
         if "&&" in als[0]:
-            row = [Ikb(label.strip(), url=url) for label, url in [button.split(" - ") for button in als[0].split("&&")]]
+            row = [
+                Ikb(label.strip(), url=url)
+                for label, url in [button.split(" - ") for button in als[0].split("&&")]
+            ]
             keyb.append(row)
         else:
             keyb.append([Ikb(als[0], url=als[1])])
 
     return keyb
-
 
 
 def extract_time(time_val):
