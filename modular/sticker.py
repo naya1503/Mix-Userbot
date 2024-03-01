@@ -3,6 +3,8 @@
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
  @ CREDIT : NAN-DEV || Misskaty || William || Gojo_Satoru
+ • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
+ 
 """
 ################################################################
 
