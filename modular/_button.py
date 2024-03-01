@@ -32,7 +32,7 @@ async def _(c: user, m):
 
     babi = await m.reply(f"{em.proses} <b>Processing...</b>")
     teks, button = nan_parse(xx.text)
-    button = build_keyboard(button)
+    button = nan_kibor(button)
     if button:
         button = InlineKeyboardMarkup(button)
     else:
@@ -66,7 +66,7 @@ async def _(c, iq):
     m = [obj for obj in get_objects() if id(obj) == _id][0]
     rep = m.reply_to_message
     teks, button = nan_parse(rep.text)
-    button = build_keyboard(button)
+    button = nan_kibor(button)
     duar = [
         (
             InlineQueryResultArticle(
