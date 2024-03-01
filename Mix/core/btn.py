@@ -120,7 +120,7 @@ def nan_parse(text):
             horizontal_buttons.append((label.split("&&"), url))
         else:
             buttons.append((label, url))
-            note_data += markdown_note[prev:match.start()]
+            note_data += markdown_note[prev : match.start()]
             prev = match.end()
     note_data += markdown_note[prev:]
 
