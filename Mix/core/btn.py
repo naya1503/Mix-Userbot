@@ -24,7 +24,7 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: &&|\n|$)")
+NAN_REGEX = re.compile(r"([^-\n]+?) - (.*?)(?: && |(?:\n|$))")
 
 
 def is_url(text: str) -> bool:
@@ -82,15 +82,6 @@ def parse_button(text):
     return note_data, buttons
 
 
-################################################################
-"""
- Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
- 
- @ CREDIT : NAN-DEV
-"""
-################################################################
-
-
 def parse_mark(tk: str, kk):
     buttons = []
     if kk and kk.inline_keyboard:
@@ -144,7 +135,6 @@ def nan_parse(text):
     prev = 0
     note_data = ""
     buttons = []
-    last_button_index = 0
     for match in NAN_REGEX.finditer(markdown_note):
         n_escapes = 0
         to_check = match.start(1) - 1
@@ -160,12 +150,6 @@ def nan_parse(text):
                 )
             )
             note_data += markdown_note[prev : match.start(0)]
-            if len(buttons) > 1 and buttons[-1][2] and not buttons[-2][2]:
-                buttons[last_button_index], buttons[-1] = (
-                    buttons[-1],
-                    buttons[last_button_index],
-                )
-                last_button_index += 1
             prev = match.end(0)
         else:
             note_data += markdown_note[prev:to_check]
@@ -174,6 +158,7 @@ def nan_parse(text):
         note_data += markdown_note[prev:]
 
     return note_data, buttons
+
 
 
 def nan_kibor(buttons):
