@@ -119,7 +119,7 @@ async def _(c: user, m):
         return
     kd = m.text.split(None, 1)[1]
     for lang, code in kode_bahasa.items():
-        if code == kd:
+        if kd == code:
             c._translate[c.me.id] = {"negara": kd}
             await pros.edit(f"{em.sukses} Kode bahasa diganti ke : `{kd}` - **{lang}**")
             return
