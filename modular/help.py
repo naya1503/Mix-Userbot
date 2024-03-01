@@ -38,7 +38,7 @@ async def _(c: user, m):
 async def _(c, iq):
     user_id = iq.from_user.id
     emut = await user.get_prefix(user_id)
-    msg = "<b>Help Command Modules\n     User Prefixes: `{}`\n     Modules Count: <code>{}</code></b>".format(
+    msg = "<b>Help Commands Modules\n     User Prefixes: `{}`\n     Modules Count: <code>{}</code></b>".format(
         " ".join(emut), len(CMD_HELP)
     )
     await c.answer_inline_query(
@@ -77,7 +77,7 @@ async def _(c, cq):
             reply_markup=InlineKeyboardMarkup(button),
             disable_web_page_preview=True,
         )
-    top_text = "<b>Help Modules\n     Prefixes: <code>{}</code>\n     Commands: <code>{}</code></b>".format(
+    top_text = "<b>Help Commands Modules\n     User Prefixes: <code>{}</code>\n     Modules Count: <code>{}</code></b>".format(
         " ".join(prefix), len(CMD_HELP)
     )
 
