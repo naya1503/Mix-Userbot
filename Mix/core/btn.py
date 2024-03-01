@@ -160,7 +160,6 @@ def nan_parse(text):
     return note_data, buttons
 
 
-
 def nan_kibor(buttons):
     keyb = []
     for als in buttons:
