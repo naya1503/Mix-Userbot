@@ -25,37 +25,6 @@ __help__ = """
 """
 
 
-@ky.inline("^paste_an")
-async def _(c, iq):
-    teks = "Done Pastebin."
-    try:
-        _id = int(iq.query.split()[1])
-        m = [obj for obj in get_objects() if id(obj) == _id][0]
-        ez = await user.get_messages(m.chat.id, m.reply_to_message_id)
-        if ez.document:
-            async with aiofiles.open(ez, mode="r") as f:
-                content = await f.read()
-        else:
-            with open("ez.txt", "w") as file:
-                file.write(ez.text)
-            async with aiofiles.open("ez.txt", mode="r") as f:
-                content = await f.read()
-
-        link = await paste(content)
-        kb = InlineKeyboardMarkup([[InlineKeyboardButton(text="Paste Link", url=link)]])
-        hasil = [
-            InlineQueryResultPhoto(
-                photo_url=link, title="kon", reply_markup=kb, caption=teks
-            )
-        ]
-        await c.answer_inline_query(
-            iq.id,
-            cache_time=0,
-            results=hasil,
-        )
-    except Exception as e:
-        LOGGER.warning(f"Error: {e}")
-
 
 @ky.ubot("paste", sudo=True)
 async def _(c: user, m):
@@ -63,8 +32,20 @@ async def _(c: user, m):
     em.initialize()
     if not m.reply_to_message:
         return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan.")
+    r = message.reply_to_message
+    if not r.text and not r.document:
+        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan teks atau dokumen teks?")
+    if r.text:
+        content = str(r.text)
+    else:
+        if r.document.file_size > 40000:
+            return await m.reply(f"{em.gagal} Ukuran file harus dibawah 40kb")
+        doc = await m.reply_to_message.download()
+        async with aiofiles.open(doc, mode="r") as f:
+            content = await f.read()
+        os.remove(doc)
+    link = await paste(content)
     try:
-        x = await c.get_inline_bot_results(bot.me.username, f"paste_an {id(m)}")
-        return await c.send_inline_bot_result(m.chat.id, x.query_id, x.results[0].id)
+        await m.reply_photo(photo=link, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})")
     except Exception as e:
-        return await m.reply(e)
+        await m.reply(f"{em.suksss} **Paste Link:** [Klik Disini]({link})")
