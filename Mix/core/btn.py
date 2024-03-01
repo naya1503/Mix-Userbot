@@ -24,7 +24,7 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NAN_REGEX = re.compile(r"([^-\n]+?) - (https?://\S+)")
+NAN_REGEX = re.compile(r"(\[^-\n]+?) - (https?://\S+)")
 
 
 def is_url(text: str) -> bool:
@@ -113,22 +113,24 @@ def nan_parse(text):
     note_data = ""
     buttons = []
     horizontal_buttons = []
-    for match in NAN_REGEX.finditer(markdown_note):
+    for match in BTN_URL_REGEX.finditer(markdown_note):
         label = match.group(1).strip()
         url = match.group(2).strip()
         if "&&" in label:
             horizontal_buttons.append((label.split("&&"), url))
         else:
-            buttons.append((label, url))
-            note_data += markdown_note[prev : match.start()]
+            buttons.append((label, url, False))
+            note_data += markdown_note[prev:match.start()]
             prev = match.end()
     note_data += markdown_note[prev:]
 
     for h_buttons, url in horizontal_buttons:
-        for label in h_buttons:
-            buttons.append((label.strip(), url))
+        for i, label in enumerate(h_buttons):
+            newline = True if i == len(h_buttons) - 1 else False
+            buttons.append((label.strip(), url, newline))
 
     return note_data, buttons
+
 
 
 def nan_kibor(buttons):
