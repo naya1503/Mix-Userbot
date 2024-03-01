@@ -145,9 +145,9 @@ def nan_parse(text):
             button_text = match.group(1)
             button_url = match.group(2)
             if "&&" in button_url:
-                button_pairs = button_url.split(" && ")
+                button_pairs = button_url.split("&&")
                 for pair in button_pairs:
-                    pair_text, pair_url = pair.split(" - ")
+                    pair_text, pair_url = pair.split("-")
                     buttons.append((pair_text, pair_url, True))
             else:
                 buttons.append((button_text, button_url, False))
