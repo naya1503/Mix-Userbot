@@ -32,10 +32,15 @@ async def _(c, iq):
         _id = int(iq.query.split()[1])
         m = [obj for obj in get_objects() if id(obj) == _id][0]
         ez = await user.get_messages(m.chat.id, m.reply_to_message_id)
-        with open("ez.txt", "w") as file:
-            file.write(ez.text)
-        async with aiofiles.open("ez.txt", mode="r") as f:
-            content = await f.read()
+        if ez.document:
+            async with aiofiles.open(ez, mode="r") as f:
+                content = await f.read()
+        else:
+            with open("ez.txt", "w") as file:
+                file.write(ez.text)
+            async with aiofiles.open("ez.txt", mode="r") as f:
+                content = await f.read()
+         
         link = await paste(content)
         kb = InlineKeyboardMarkup([[InlineKeyboardButton(text="Paste Link", url=link)]])
         hasil = [
