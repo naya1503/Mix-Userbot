@@ -39,7 +39,7 @@ from Mix.core.tools_quote import *
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    iymek = f"\n •".join(loanjing)
+    iymek = f"\n• ".join(loanjing)
     jadi = f"{em.sukses} *Daftar Warna Quote :\n\n**"
     if len(iymek) > 4096:
         with open("qcolor.txt", "w") as file:
@@ -50,7 +50,7 @@ async def _(c: user, m):
         )
         os.remove("qcolor.txt")
     else:
-        await m.reply(iymek)
+        await m.reply(jadi + iymek)
 
 
 @ky.ubot("q", sudo=True)
