@@ -119,10 +119,10 @@ def nan_parse(text):
             n_escapes += 1
             to_check -= 1
         if n_escapes % 2 == 0:
+            button_text = f"{match.group(1)} && {match.group(2)}"
             buttons.append(
                 (
-                    match.group(1),
-                    match.group(2),
+                    button_text,
                     True if "&&" in match.group(0) else False,
                 )
             )
