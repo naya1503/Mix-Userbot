@@ -131,18 +131,17 @@ def nan_parse(text):
     return note_data, buttons
 
 
-def nan_kibor(buttons):
+def build_keyboard(buttons):
     keyb = []
     for als in buttons:
-        if isinstance(als, list):
-            row = []
-            for label, url in als:
-                row.append(Ikb(label, url=url))
+        if "&&" in als[0]:
+            row = [Ikb(label.strip(), url=url) for label, url in [button.split(" - ") for button in als[0].split("&&")]]
             keyb.append(row)
         else:
             keyb.append([Ikb(als[0], url=als[1])])
 
     return keyb
+
 
 
 def extract_time(time_val):
