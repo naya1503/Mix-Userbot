@@ -39,7 +39,8 @@ from Mix.core.tools_quote import *
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    iymek = "\n".join(loanjing)
+    iymek = f"\n •".join(loanjing)
+    jadi = f"{em.sukses} *Daftar Warna Quote :\n\n**"
     if len(iymek) > 4096:
         with open("qcolor.txt", "w") as file:
             file.write(iymek)
