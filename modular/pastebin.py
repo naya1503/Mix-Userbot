@@ -6,7 +6,6 @@
 ################################################################
 
 import re
-from gc import get_objects
 
 import aiofiles
 from pyrogram.errors import *
@@ -25,7 +24,6 @@ __help__ = """
 """
 
 
-
 @ky.ubot("paste", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -34,7 +32,9 @@ async def _(c: user, m):
         return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan.")
     r = message.reply_to_message
     if not r.text and not r.document:
-        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan teks atau dokumen teks?")
+        return await m.reply_text(
+            f"{em.gagal} Silahkan balas ke pesan teks atau dokumen teks?"
+        )
     if r.text:
         content = str(r.text)
     else:
@@ -46,6 +46,8 @@ async def _(c: user, m):
         os.remove(doc)
     link = await paste(content)
     try:
-        await m.reply_photo(photo=link, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})")
-    except Exception as e:
+        await m.reply_photo(
+            photo=link, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})"
+        )
+    except Exception:
         await m.reply(f"{em.suksss} **Paste Link:** [Klik Disini]({link})")
