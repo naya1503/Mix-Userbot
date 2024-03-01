@@ -10,6 +10,7 @@ import re
 import aiofiles
 from pyrogram.errors import *
 from pyrogram.types import *
+from .webshot import ss
 
 from Mix import *
 
@@ -45,9 +46,10 @@ async def _(c: user, m):
             content = await f.read()
         os.remove(doc)
     link = await paste(content)
+    photo = await ss(url, True)
     try:
         await m.reply_photo(
-            photo=link, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})"
+            photo=photo, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})"
         )
     except Exception:
         await m.reply(f"{em.sukses} **Paste Link:** [Klik Disini]({link})")
