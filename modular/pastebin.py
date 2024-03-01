@@ -40,7 +40,7 @@ async def _(c, iq):
                 file.write(ez.text)
             async with aiofiles.open("ez.txt", mode="r") as f:
                 content = await f.read()
-         
+
         link = await paste(content)
         kb = InlineKeyboardMarkup([[InlineKeyboardButton(text="Paste Link", url=link)]])
         hasil = [
