@@ -48,6 +48,8 @@ async def _(c, iq):
             (
                 InlineQueryResultArticle(
                     title="Help Menu!",
+                    description=f"Menu Bantuan",
+                    thumb_url="https://telegra.ph//file/57376cf2486052ffae0ad.jpg",
                     reply_markup=InlineKeyboardMarkup(
                         paginate_modules(0, CMD_HELP, "help")
                     ),
