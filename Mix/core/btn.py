@@ -151,15 +151,11 @@ def nan_parse(text):
             n_escapes += 1
             to_check -= 1
         if n_escapes % 2 == 0:
-            button_text = (
-                f"{match.group(1)} && {match.group(2)}"
-                if "&&" in match.group(2)
-                else match.group(1) + " - " + match.group(2)
-            )
+            button_text = f"{match.group(1)} && {match.group(2)}"
             buttons.append(
                 (
                     button_text,
-                    True if "&&" in match.group(2) else False,
+                    True,  # Since "&&" is always present between group(1) and group(2)
                 )
             )
             note_data += markdown_note[prev : match.start(0)]
