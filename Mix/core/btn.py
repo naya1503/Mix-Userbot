@@ -129,7 +129,7 @@ def nan_parse(text):
             buttons.append((label.strip(), url))
 
     return note_data, buttons
-    
+
 
 def nan_kibor(buttons):
     keyb = []
@@ -143,7 +143,6 @@ def nan_kibor(buttons):
             keyb.append([Ikb(als[0], url=als[1])])
 
     return keyb
-
 
 
 def extract_time(time_val):
