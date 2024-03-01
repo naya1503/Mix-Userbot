@@ -24,7 +24,7 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: &&|\n|$)")
+NAN_REGEX = re.compile(r"([^-\n]+?) - (.+?)(?:\n|$)")
 
 
 def is_url(text: str) -> bool:
@@ -123,7 +123,7 @@ def nan_parse(text):
             buttons.append(
                 (
                     button_text,
-                    True if "&&" in match.group(0) else False,
+                    True,
                 )
             )
             note_data += markdown_note[prev : match.start(0)]
