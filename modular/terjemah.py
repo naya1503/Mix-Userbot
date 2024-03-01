@@ -117,9 +117,9 @@ async def _(c: user, m):
             f"{em.gagal} Silahkan berikan kode bahasa!\nContoh : `{m.command}` id."
         )
         return
-    kd = m.text.split(None, 1)[1]
     for lang, code in kode_bahasa.items():
-        if kd != code:
+        kd = m.text.split(None, 1)[1]
+        if kd.lower() != code.lower():
             await pros.edit(f"{em.gagal} Kode bahasa tidak valid atau tidak ditemukan.")
             return
         else:
