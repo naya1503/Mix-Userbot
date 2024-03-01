@@ -50,4 +50,4 @@ async def _(c: user, m):
             photo=link, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})"
         )
     except Exception:
-        await m.reply(f"{em.suksss} **Paste Link:** [Klik Disini]({link})")
+        await m.reply(f"{em.sukses} **Paste Link:** [Klik Disini]({link})")
