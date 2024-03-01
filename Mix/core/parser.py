@@ -45,3 +45,35 @@ async def clean_markdown(text: str) -> str:
 
 async def remove_markdown_and_html(text: str) -> str:
     return await clean_markdown(await clean_html(text))
+
+
+kode_bahasa = {
+    "Afrikaans": "af",
+    "Arabic": "ar",
+    "Chinese": "zh-cn",
+    "Czech": "cs",
+    "German": "e",
+    "Greek": "el",
+    "English": "en",
+    "Spanish": "es",
+    "French": "fr",
+    "Hindi": "hi",
+    "Indonesian": "id",
+    "Icelandic": "is",
+    "Italian": "it",
+    "Japanese": "jp",
+    "Javanese": "jw",
+    "Korean": "ko",
+    "Latin": "la",
+    "Myanmar": "my",
+    "Nepali": "ne",
+    "Dutch": "nl",
+    "Portuguese": "pt",
+    "Russian": "ru",
+    "Sundanese": "su",
+    "Swedish": "sv",
+    "Thailand": "th",
+    "Filipino": "tl",
+    "Turkish": "tr",
+    "Vietname": "vi",
+}
