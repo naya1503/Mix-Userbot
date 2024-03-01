@@ -30,6 +30,7 @@ __help__ = """
 • Penjelasan : Untuk mengatur kode bahasa menyangkut tts dan tr.
 """
 
+
 @ky.ubot("tts", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -40,7 +41,9 @@ async def _(c: user, m):
         kata = m.reply_to_message.text or m.reply_to_message.caption
     else:
         if len(m.command) < 2:
-            await pros.edit(f"{em.gagal} Gunakan format :`{m.command}` [berikan teks/balas pesan]")
+            await pros.edit(
+                f"{em.gagal} Gunakan format :`{m.command}` [berikan teks/balas pesan]"
+            )
         else:
             bhs = c._translate[c.me.id]["negara"]
             kata = m.text.split(None, 1)[1]
@@ -61,7 +64,8 @@ async def _(c: user, m):
         return
     except FileNotFoundError:
         pass
-      
+
+
 @ky.ubot("tr", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -85,26 +89,32 @@ async def _(c: user, m):
     rep = m.reply_to_message or m
     await pros.delete()
     await c.send_message(m.chat.id, reply, reply_to_message_id=rep.id)
-    
+
+
 @ky.ubot("lang", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     try:
-        bhs_list = "\n".join(f"- {lang}: `{code}`" for lang, code in kode_bahasa.items())
+        bhs_list = "\n".join(
+            f"- {lang}: `{code}`" for lang, code in kode_bahasa.items()
+        )
         await m.reply(f"{em.sukses} **Daftar Kode Bahasa:**\n{bhs_list}")
         return
     except Exception as e:
         await m.reply(f"{em.gagal} Error: {e}")
         return
-    
+
+
 @ky.ubot("setlang", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(f"{em.proses} Processing...")
     if len(m.command) < 2:
-        await pros.edit(f"{em.gagal} Silahkan berikan kode bahasa!\nContoh : `{m.command}` id.")
+        await pros.edit(
+            f"{em.gagal} Silahkan berikan kode bahasa!\nContoh : `{m.command}` id."
+        )
         return
     kd = m.text.split(None, 1)[1]
     for lang, code in kode_bahasa.items():
