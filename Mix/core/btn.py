@@ -27,7 +27,6 @@ BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\)
 NAN_REGEX = re.compile(r"([^-\n]+?) - (https?://\S+)")
 
 
-
 def is_url(text: str) -> bool:
     regex = r"""(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
                 [.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(
@@ -121,7 +120,7 @@ def nan_parse(text):
             horizontal_buttons.append((label.split("&&"), url))
         else:
             buttons.append((label, url))
-            note_data += markdown_note[prev:match.start()]
+            note_data += markdown_note[prev : match.start()]
             prev = match.end()
     note_data += markdown_note[prev:]
 
@@ -130,7 +129,6 @@ def nan_parse(text):
             buttons.append((label.strip(), url))
 
     return note_data, buttons
-
 
 
 def extract_time(time_val):
