@@ -114,7 +114,7 @@ def nan_parse(text):
     note_data = ""
     buttons = []
     horizontal_buttons = []
-    for match in BTN_URL_REGEX.finditer(markdown_note):
+    for match in NAN_REGEX.finditer(markdown_note):
         label = match.group(1).strip()
         url = match.group(2).strip()
         if "\n" in label:
