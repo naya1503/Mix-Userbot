@@ -119,7 +119,7 @@ def nan_parse(text):
             n_escapes += 1
             to_check -= 1
         if n_escapes % 2 == 0:
-            buttons.append((match.group(2), match.group(3), bool(match.group(4))))
+            buttons.append((match.group(1), match.group(2), False))
             note_data += markdown_note[prev : match.start(1)]
             prev = match.end(1)
         else:
