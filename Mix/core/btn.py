@@ -24,7 +24,7 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: &&|$)")
+NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: &&|\n|$)")
 
 
 def is_url(text: str) -> bool:
