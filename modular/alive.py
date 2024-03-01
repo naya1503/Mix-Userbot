@@ -76,7 +76,7 @@ async def _(c, iq):
                 )
             )
         ]
-        
+
     else:
         filem = (
             InlineQueryResultVideo
