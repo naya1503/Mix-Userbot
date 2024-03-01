@@ -78,6 +78,7 @@ async def _(c, iq):
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
+
 @ky.callback("^cls_hlp")
 async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
