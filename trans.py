@@ -1,39 +1,32 @@
-import asyncio
-
-import yaml
 from gpytranslate import Translator
+import ruamel.yaml
 
+def translate_quoted_text(data, translator):
+    if isinstance(data, dict):
+        for key, value in data.items():
+            data[key] = translate_quoted_text(value, translator)
+    elif isinstance(data, list):
+        for i in range(len(data)):
+            data[i] = translate_quoted_text(data[i], translator)
+    elif isinstance(data, str) and data.startswith('"') and data.endswith('"'):
+        # Terjemahkan teks di dalam tanda kutip
+        translated_text = translator.translate(data[1:-1], src='id', dest='en').text
+        data = f'"{translated_text}"'
+    return data
 
-async def translate_text(text):
+def main():
+    input_yaml_file = 'id.yml'
+    output_yaml_file = 'en.yml'
+
+    yaml = ruamel.yaml.YAML()
+    with open(input_yaml_file, 'r') as file:
+        data = yaml.load(file)
+
     translator = Translator()
-    translated_text = await translator.translate(text, source="id", target="en")
-    return translated_text
+    data = translate_quoted_text(data, translator)
 
+    with open(output_yaml_file, 'w') as file:
+        yaml.dump(data, file)
 
-async def translate_yaml(input_file, output_file):
-    with open(input_file, "r", encoding="utf-8") as file:
-        data = yaml.safe_load(file)
-
-    tasks = []
-    for key, value in data.items():
-        if isinstance(value, str):
-            tasks.append(translate_text(value))
-
-    translated_texts = await asyncio.gather(*tasks)
-
-    translated_data = {}
-    index = 0
-    for key, value in data.items():
-        if isinstance(value, str):
-            translated_data[key] = translated_texts[index]
-            index += 1
-        else:
-            translated_data[key] = str(value)  # Ensure all values are strings
-
-    print("Translated Data:", translated_data)  # Print translated data
-
-    with open(output_file, "w", encoding="utf-8") as file:
-        yaml.dump(translated_data, file, allow_unicode=True)
-
-
-asyncio.run(translate_yaml("langs/strings/id.yml", "langs/strings/en.yml"))
+if __name__ == "__main__":
+    main()
