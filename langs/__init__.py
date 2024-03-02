@@ -6,7 +6,7 @@
   • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
 """
 ################################################################
-
+import os
 import json
 import random
 import sys
@@ -30,7 +30,8 @@ loc_lang = "langs/strings/{}.yml"
 def load(file):
     if not file.endswith(".yml"):
         return
-    file = loc_lang.format("en")
+    elif not os.path.exists(file):
+        file = loc_lang.format("en")
     code = file.split("/")[-1].split("\\")[-1][:-4]
     try:
         bahasa_[code] = safe_load(
@@ -48,8 +49,20 @@ def cgr(key, _res: bool = True):
     try:
         return bahasa_[lang][key]
     except KeyError:
-        bahasa_["en"][key]
-        LOGGER.info(f"Warning: could not load any string with the key `{key}`")
+        try:
+            en_ = languages["en"][key]
+            tr = en_
+            if languages.get(lang):
+                languages[lang][key] = tr
+            else:
+                languages.update({lang: {key: tr}})
+            return tr
+        except KeyError:
+            if not _res:
+                LOGGER.info(f"Warning: could not load any string with the key `{key}`")
+                return
+        except Exception as er:
+            LOGGER.info(f"Warning: could not load any string with the key `{er}`")
         if not _res:
             return None
         return bahasa_["en"].get(key) or LOGGER.info(
