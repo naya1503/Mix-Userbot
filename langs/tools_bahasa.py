@@ -12,7 +12,7 @@ import os.path
 from functools import partial, wraps
 from glob import glob
 from typing import Dict, List
-
+from Mix import user
 from team.nandev.database import udB
 
 list_bhs: List[str] = [
@@ -51,8 +51,8 @@ def get_bhs_str(
     return res
 
 
-async def get_bhsnya(c):
-    lang = def_bhs or udB.get_bahasa(c.me.id)
+async def get_bhsnya():
+    lang = def_bhs or udB.get_bahasa(user.me.id)
 
     # User has a language_code without hyphen
     if len(lang.split("-")) == 1:
@@ -68,10 +68,19 @@ async def get_bhsnya(c):
 
 
 def bahasa(context: str = None):
+    if not context:
+        cwd = os.getcwd()
+        frame = inspect.stack()[1]
+
+        fname = frame.filename
+
+        if fname.startswith(cwd):
+            fname = fname[len(cwd) + 1 :]
+        context = fname.split(os.path.sep)[2].split(".")[0]
     def decorator(func):
         @wraps(func)
         async def wrapper(c, m):
-            lang = await get_bhsnya(c)
+            lang = await get_bhsnya(user.me.id)
 
             dic = langdict.get(lang, langdict[def_bhs])
 
