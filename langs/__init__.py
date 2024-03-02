@@ -44,7 +44,7 @@ def translate(*args, **kwargs):
         "Chrome/47.0.2526.106 Safari/537.36",
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
     }
-    x = http.post(
+    x = http.post2(
         "https://translate.google.co.in/_/TranslateWebserverUi/data/batchexecute",
         headers=headers,
         data=_totr(*args, **kwargs),
