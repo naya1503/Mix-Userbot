@@ -71,7 +71,17 @@ async def get_lang(c) -> str:
     return lang if lang in enabled_locales else default_language
 
 
-def bahasa():
+def bahasa(context: str = None):
+    if not context:
+        cwd = os.getcwd()
+        frame = inspect.stack()[1]
+
+        fname = frame.filename
+
+        if fname.startswith(cwd):
+            fname = fname[len(cwd) + 1 :]
+        context = fname.split(os.path.sep)[1].split(".")[0]
+
     def decorator(func):
         @wraps(func)
         async def wrapper(c, m):
