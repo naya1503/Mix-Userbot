@@ -65,9 +65,7 @@ def cgr(key, _res: bool = True):
             LOGGER.info(f"Warning: could not load any string with the key `{er}`")
         if not _res:
             return None
-        return bahasa_["en"] or LOGGER.info(
-            f"Failed to load language string"
-        )
+        return bahasa_["en"] or LOGGER.info(f"Failed to load language string")
 
 
 def get_cgr(key):
