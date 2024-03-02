@@ -328,7 +328,7 @@ async def _(c: user, m):
 
 
 async def reload_user():
-    # await user.start()
+    await user.start()
     modxx = import_modular()
     for modx in modxx:
         imported_module = import_module(f"modular.{modx}")
@@ -337,4 +337,7 @@ async def reload_user():
 
 @ky.ubot("restart", sudo=True)
 async def _(c: user, m):
-    await reload_user()
+    try:
+        await user.stop()
+    except ConnectionError:
+        await reload_user()
