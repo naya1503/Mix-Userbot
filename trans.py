@@ -22,12 +22,12 @@ async def translate_yaml(input_file, output_file):
     index = 0
     for key, value in data.items():
         if isinstance(value, str):
-            translated_data[key] = str(translated_texts[index])  # Convert translation result to string
+            translated_data[key] = translated_texts[index]
             index += 1
         else:
             translated_data[key] = value
 
     with open(output_file, 'w', encoding='utf-8') as file:
-        yaml.safe_dump(translated_data, file, allow_unicode=True)
+        yaml.dump(translated_data, file, allow_unicode=True)
 
 asyncio.run(translate_yaml('langs/strings/id.yml', 'langs/strings/en.yml'))
