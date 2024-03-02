@@ -337,4 +337,4 @@ async def reload_user():
 
 @ky.ubot("restart", sudo=True)
 async def _(c: user, m):
-    await reload_userbot()
+    await reload_user()
