@@ -23,17 +23,6 @@ __help__ = """
 """
 
 
-async def isAfk_(c, m):
-    user_id = user.me.id
-    af_k_c = udB.is_afk(user_id)
-    if af_k_c:
-        return bool(True)
-    else:
-        return bool(False)
-
-
-# isAfk = filters.create(isAfk_)
-
 
 @ky.ubot("afk", sudo=True)
 async def _(c: user, m):
@@ -264,7 +253,7 @@ async def _(c, m):
                 )
         except Exception:
             send = await m.reply_text(
-                "**{a} Sedang AFK sejak : `{c}` yang lalu.**".format(
+                "**{a} Sedang AFK!!**\n**Dari : `{c}` yang lalu.**".format(
                     a=em.sukses,
                     c=seenago,
                 ),
@@ -288,25 +277,25 @@ async def _(c, m):
             reasonafk = reasondb["reason"]
             seenago = await get_time((int(time.time() - timeafk)))
             if afktype == "text":
-                msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                msg += "**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.".format(
                     a=em.sukses, c=seenago
                 )
             if afktype == "text_reason":
-                msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                msg += "**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
                     a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                 )
             if afktype == "animation":
                 if str(reasonafk) == "None":
                     send = await m.reply_animation(
                         data,
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                        caption="**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.".format(
                             a=em.sukses, c=seenago
                         ),
                     )
                 else:
                     send = await m.reply_animation(
                         data,
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                        caption="**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
                             a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                         ),
                     )
@@ -314,14 +303,14 @@ async def _(c, m):
                 if str(reasonafk) == "None":
                     send = await m.reply_photo(
                         photo=f"downloads/{c.me.id}.jpg",
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                        caption="**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.".format(
                             a=em.sukses, c=seenago
                         ),
                     )
                 else:
                     send = await m.reply_photo(
                         photo=f"downloads/{c.me.id}.jpg",
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                        caption="**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
                             a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                         ),
                     )
@@ -329,19 +318,19 @@ async def _(c, m):
                 if str(reasonafk) == "None":
                     send = await m.reply_video(
                         video=f"downloads/{c.me.id}.mp4",
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.".format(
+                        caption="**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.".format(
                             a=em.sukses, c=seenago
                         ),
                     )
                 else:
                     send = await m.reply_video(
                         video=f"downloads/{c.me.id}.mp4",
-                        caption="**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+                        caption="**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
                             a=em.sukses, b=em.warn, c=seenago, d=reasonafk
                         ),
                     )
         except Exception:
-            msg += "**{a} Sedang AFK sejak :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
+            msg += "**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`".format(
                 a=em.sukses, b=em.warn, c=seenago, d=reasonafk
             )
     if msg != "":
