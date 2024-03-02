@@ -31,14 +31,13 @@ from .gcast import refresh_dialog
 
 
 @ky.ubot("autoread", sudo=True)
-async def _(c, m):
+@bahasa()
+async def _(c, m, cgr):
     em = Emojik()
     em.initialize()
-    mek = await m.reply(f"{em.proses} Processing...")
+    mek = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 2:
-        await mek.edit(
-            f"{em.gagal} Gunakan Format : <code>autoread</code> [gc or us or ch or all]."
-        )
+        await mek.edit(cgr("atored_1").format(em.gagal)
         return
     biji, peler = m.command[:2]
     if peler.lower() == "gc":
