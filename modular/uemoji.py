@@ -36,6 +36,28 @@ __help__ = """
 code>{0}emoji block ?</code>
 """
 
+@ky.ubot("setstatus", sudo=True)
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
+    xx = await m.edit(f"{em.proses} <b>Processing...</b>")
+    emoji = m.reply_to_message
+    prem = c.me.is_premium
+    if prem == True:
+        if emoji.entities:
+            for entity in emoji.entities:
+                if entity.custom_emoji_id:
+                    emoji_id = entity.custom_emoji_id
+                    break
+            if emoji_id:
+                await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
+                await xx.edit(f"{em.sukses} <b>Emoji status diset ke :</b> <emoji id={emoji_id}>😭</emoji>"
+                    )
+
+    elif prem == False:
+        await jing.edit(f"{em.gagal} <b>Akun Telegram Lo bukan pengguna Premium Goblok!!")
+    else:
+        await jing.edit(f"{em.gagal} <b>Silahkan balas ke emoji premium!!")
 
 @ky.ubot("emoid", sudo=True)
 async def _(c: user, m):
