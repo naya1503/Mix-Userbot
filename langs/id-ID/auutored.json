@@ -1,6 +1,6 @@
 {
     "proses": "{a} Processing...",
-    "atored_1": "{a} **Gunakan Format** : `autoread` [`gc` or `us` or `ch` or `all`]",
+    "atored_1": "{a} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**",
     "atored_2": "{a} **Berhasil membaca `{b}` pesan group.**",
     "atored_3": "{a} **Berhasil membaca `{b}` pesan pengguna.**",
     "atored_4": "{a} **Berhasil membaca `{b}` pesan channel.**",
