@@ -39,7 +39,6 @@ __help__ = """
 code>{0}emoji block ?</code>
 """
 
-
 @ky.ubot("setemo", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -55,15 +54,13 @@ async def _(c: user, m):
                     break
             if emoji_id:
                 await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
-                await xx.edit(
-                    f"{em.sukses} <b>Emoji status diset ke :</b> <emoji id={emoji_id}>😭</emoji>"
-                )
+                await xx.edit(f"{em.sukses} <b>Emoji status diset ke :</b> <emoji id={emoji_id}>😭</emoji>"
+                    )
 
     elif prem == False:
-        await xx.edit(f"{em.gagal} <b>Akun Telegram Lo bukan pengguna Premium Goblok!!")
+        await xx.edit(f"{em.gagal} <b>Akun Telegram Lo bukan pengguna Premium Goblok!!</b>")
     else:
-        await xx.edit(f"{em.gagal} <b>Silahkan balas ke emoji premium!!")
-
+        await xx.edit(f"{em.gagal} <b>Silahkan balas ke emoji premium!!</b>")
 
 @ky.ubot("emoid", sudo=True)
 async def _(c: user, m):
