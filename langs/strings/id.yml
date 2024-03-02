@@ -1,14 +1,14 @@
 nama: Indonesia
 penulis:
-  - keenan
+  - Keenan
   
   
 cmds: "Bantuan Perintah"
 proses: "{} **Sedang Diproses...**"
-atored_1: "{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**"
-atored_2: "{} **Berhasil membaca `{}` pesan group.**"
-atored_3: "{} **Berhasil membaca `{}` pesan pengguna.**"
-atored_4: "{} **Berhasil membaca `{}` pesan channel.**"
-atored_5: "{} **Berhasil membaca `{}` pesan diakun anda.**"
-atored_6: "{} **Silahkan masukkan query dengan benar!!**"
+autoread_1: "{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**"
+autoread_2: "{} **Berhasil membaca `{}` pesan group.**"
+autoread_3: "{} **Berhasil membaca `{}` pesan pengguna.**"
+autoread_4: "{} **Berhasil membaca `{}` pesan channel.**"
+autoread_5: "{} **Berhasil membaca `{}` pesan diakun anda.**"
+autoread_6: "{} **Silahkan masukkan query dengan benar!!**"
   
