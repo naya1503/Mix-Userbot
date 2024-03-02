@@ -37,7 +37,7 @@ async def _(c, m, cgr):
     em.initialize()
     mek = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 2:
-        await mek.edit(cgr("atored_1").format(em.gagal)
+        await mek.edit(cgr("atored_1").format(em.gagal))
         return
     biji, peler = m.command[:2]
     if peler.lower() == "gc":
@@ -47,7 +47,7 @@ async def _(c, m, cgr):
                 await user.read_chat_history(gc, max_id=0)
             except ChannelPrivate:
                 continue
-        await mek.edit(f"{em.sukses} Berhasil membaca {len(bcgc)} pesan group.")
+        await mek.edit(cgr("atored_2").format(em.sukses, len(bcgc)))
         return
     elif peler.lower() == "us":
         bcus = await refresh_dialog("users")
