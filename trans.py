@@ -1,35 +1,32 @@
-import ruamel.yaml
+import yaml
 from gpytranslate import Translator
 
-
-def translate_quoted_text(data, translator):
-    if isinstance(data, dict):
-        for key, value in data.items():
-            data[key] = translate_quoted_text(value, translator)
-    elif isinstance(data, list):
-        for i in range(len(data)):
-            data[i] = translate_quoted_text(data[i], translator)
-    elif isinstance(data, str) and data.startswith('"') and data.endswith('"'):
-        # Terjemahkan teks di dalam tanda kutip
-        translated_text = translator.translate(data[1:-1], src="id", dest="en").text
-        data = f'"{translated_text}"'
-    return data
-
-
-def main():
-    input_yaml_file = "langs/strings/id.yml"
-    output_yaml_file = "langs/strings/en.yml"
-
-    yaml = ruamel.yaml.YAML()
-    with open(input_yaml_file, "r") as file:
-        data = yaml.load(file)
-
+# Fungsi untuk menerjemahkan teks menggunakan Google Translate API
+def translate_text(text, target_language):
     translator = Translator()
-    data = translate_quoted_text(data, translator)
+    translated_text = translator.translate(text, target_language=target_language)
+    return translated_text
 
-    with open(output_yaml_file, "w") as file:
-        yaml.dump(data, file)
+# Fungsi untuk menerjemahkan string YAML
+def translate_yaml(yaml_file, target_language):
+    with open(yaml_file, 'r') as file:
+        data = yaml.safe_load(file)
 
+    # Menerjemahkan nilai teks di dalam tanda kutip menggunakan Google Translate
+    for key, value in data.items():
+        if isinstance(value, str):
+            data[key] = translate_text(value, target_language)
+        elif isinstance(value, dict):
+            for sub_key, sub_value in value.items():
+                if isinstance(sub_value, str):
+                    value[sub_key] = translate_text(sub_value, target_language)
 
-if __name__ == "__main__":
-    main()
+    # Menghasilkan string YAML yang telah diterjemahkan
+    translated_yaml = yaml.dump(data, allow_unicode=True)
+
+    return translated_yaml
+
+# Menjalankan fungsi untuk menerjemahkan string YAML dan menyimpannya ke file
+translated_yaml = translate_yaml('langs/strings/id.yml', 'en')
+with open('translated_strings.yml', 'w') as file:
+    file.write(translated_yaml)
