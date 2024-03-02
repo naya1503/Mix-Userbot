@@ -37,7 +37,7 @@ def load_bhs(files: List[str]) -> Dict[str, Dict[str, Dict[str, str]]]:
 jsons: List[str] = []
 
 for locale in list_bhs:
-    jsons += glob(os.path.join("locales", locale, "*.json"))
+    jsons += glob(os.path.join("langs", locale, "*.json"))
 
 langdict = load_bhs(jsons)
 
