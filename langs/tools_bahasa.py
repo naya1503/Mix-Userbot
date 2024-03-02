@@ -14,9 +14,6 @@ from functools import partial, wraps
 from glob import glob
 from typing import Dict, List
 
-from pyrogram.enums import ChatType
-from pyrogram.types import CallbackQuery, ChatMemberUpdated, InlineQuery, Message
-
 from team.nandev.database import udB
 
 list_bhs: List[str] = [
@@ -51,9 +48,7 @@ def get_bhs_str(
     if context:
         default_context = context
         dic = langdict[language].get(context, langdict[def_bhs][context])
-    res: str = (
-        dic.get(key) or langdict[def_bhs][default_context].get(key) or key
-    )
+    res: str = dic.get(key) or langdict[def_bhs][default_context].get(key) or key
     return res
 
 
