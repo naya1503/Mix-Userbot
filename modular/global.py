@@ -51,7 +51,7 @@ dbgm = GMute()
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    nyet, userid, _ = await extract_user(c, m)
+    nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(f"{em.proses} Processing...")
     if len(m.text.split()) == 1:
         await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
@@ -100,7 +100,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    nyet, userid, _ = await extract_user(c, m)
+    nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(f"{em.proses} Processing...")
     await c.get_users(nyet)
     if len(m.text.split()) == 1:
@@ -135,7 +135,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    nyet, userid, _ = await extract_user(c, m)
+    nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(f"{em.proses} Processing...")
     await c.get_users(nyet)
     if len(m.text.split()) == 1:
@@ -181,7 +181,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    nyet, userid, _ = await extract_user(c, m)
+    nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(f"{em.proses} Processing...")
     await c.get_users(nyet)
     if len(m.text.split()) == 1:
