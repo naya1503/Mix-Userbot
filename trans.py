@@ -17,8 +17,8 @@ def translate_quoted_text(data, translator):
 
 
 def main():
-    input_yaml_file = "id.yml"
-    output_yaml_file = "en.yml"
+    input_yaml_file = "langs/strings/id.yml"
+    output_yaml_file = "langs/strings/en.yml"
 
     yaml = ruamel.yaml.YAML()
     with open(input_yaml_file, "r") as file:
