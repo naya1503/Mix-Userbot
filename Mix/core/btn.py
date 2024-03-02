@@ -129,6 +129,7 @@ def nan_parse(text):
     return note_data, buttons
 """
 
+
 def nan_parse(text):
     markdown_note = text
     prev = 0
@@ -157,6 +158,7 @@ def nan_parse(text):
 
     return note_data, buttons
 
+
 # Contoh penggunaan
 teks = """Halo sayang ku
 Nekopoi Disini - https://nekopoicare.com
@@ -166,7 +168,6 @@ Xvideos Disini - https://xvideos.com && Pornhub Disini - https://pornhub.com
 
 teks, buttons = nan_parse(teks)
 print(buttons)
-
 
 
 def nan_kibor(buttons):
