@@ -205,24 +205,6 @@ async def _(c: user, m):
             udB.set_var(c.me.id, "emo_block", value)
             await jing.edit(f"{em.sukses} <b>Emoji block diset ke :</b> {value}")
 
-    elif variable.lower() == "status":
-        if gua == True:
-            if m.entities:
-                for entity in m.entities:
-                    if entity.custom_emoji_id:
-                        emoji_id = entity.custom_emoji_id
-                        break
-                if emoji_id:
-                    await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
-                    await xx.edit(
-                        f"{em.sukses} <b>Emoji status diset ke :</b> <emoji id={emoji_id}>😭</emoji>"
-                    )
-
-        elif gua == False:
-            await jing.edit(
-                f"{em.sukses} <b>Akun Telegram Lo bukan pengguna Premium Goblok!!"
-            )
-
     else:
         await jing.edit(
             f"{em.gagal} <b>Silakan ketik <code>help {m.command}<code>.</b>"
