@@ -24,7 +24,7 @@ cek_bahasa = ndB.get_key("bahasa")
 from urllib.parse import quote, unquote
 
 bahasa_ = {}
-loc_lang = "langs/{}.yml"
+loc_lang = "langs/strings/{}.yml"
 
 
 def _totr(text, lang_src="auto", lang_tgt="auto"):
@@ -115,7 +115,7 @@ def get_help(key):
 
 
 def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
-    for file in glob("langs/*yml"):
+    for file in glob("langs/strings/*yml"):
         load(file)
     return {
         code: {
