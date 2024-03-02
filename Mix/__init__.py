@@ -19,3 +19,4 @@ bot = Bot()
 loop = asyncio.get_event_loop_policy().get_event_loop()
 
 from team import *
+from langs import cgr
