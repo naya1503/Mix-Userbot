@@ -5,9 +5,9 @@
  @ CREDIT : NAN-DEV || PART OF ULTROID
   • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
 """
+import json
 ################################################################
 import os
-import json
 import random
 import sys
 from glob import glob
