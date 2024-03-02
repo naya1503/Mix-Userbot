@@ -1,11 +1,12 @@
-atored_1: '{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**'
-atored_2: '{} **Successfully read `{}` group message.**'
-atored_3: '{} **Successfully read user `{}` message.**'
-atored_4: '{} **Successfully read `{}` channel message.**'
-atored_5: '{} **Successfully read `{}` message from your account.**'
-atored_6: '{} **Please enter the query correctly!!**'
-cmds: Command Help
-nama: Indonesia
-penulis:
-- keenan
-proses: '{} **Being processed...**'
+name: English
+author:
+  - Keenan
+  
+cmds: "Command Help"
+process: "{} **Processing...**"
+autoread_1: "{} **Usage: `autoread` [`gc` or `us` or `ch` or `all`]**"
+autoread_2: "{} **Successfully read {} group messages.**"
+autoread_3: "{} **Successfully read {} user messages.**"
+autoread_4: "{} **Successfully read {} channel messages.**"
+autoread_5: "{} **Successfully read {} messages in your account.**"
+autoread_6: "{} **Please enter the query correctly!!**"
