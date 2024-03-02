@@ -37,6 +37,13 @@ async def post(url: str, *args, **kwargs):
             data = await resp.text()
     return data
 
+def post2(url: str, *args, **kwargs):
+    async with session.post(url, *args, **kwargs) as resp:
+        try:
+            data = await resp.json()
+        except Exception:
+            data = await resp.text()
+    return data
 
 async def multiget(url: str, times: int, *args, **kwargs):
     return await gather(*[get(url, *args, **kwargs) for _ in range(times)])
