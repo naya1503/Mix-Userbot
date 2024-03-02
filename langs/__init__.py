@@ -62,8 +62,7 @@ def translate(*args, **kwargs):
 def load(file):
     if not file.endswith(".yml"):
         return
-    elif not loc_lang.exists(file):
-        file = loc_lang.format("id")
+    file = loc_lang.format("id")
     code = file.split("/")[-1].split("\\")[-1][:-4]
     try:
         bahasa_[code] = safe_load(
