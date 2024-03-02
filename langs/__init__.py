@@ -48,22 +48,14 @@ def cgr(key, _res: bool = True):
     try:
         return bahasa_[lang][key]
     except KeyError:
-        try:
-            bahasa_["en"][key]
-        except KeyError:
-            if not _res:
-                return
-            LOGGER.info(f"Warning: could not load any string with the key `{key}`")
-            return
-        except TypeError:
-            pass
-        except Exception as er:
-            LOGGER.error(f"{er}")
+        bahasa_["en"][key]
+        LOGGER.info(f"Warning: could not load any string with the key `{key}`")
         if not _res:
             return None
         return bahasa_["en"].get(key) or LOGGER.info(
             f"Failed to load language string '{key}'"
         )
+        
 
 
 def get_cgr(key):
