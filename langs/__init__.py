@@ -43,6 +43,7 @@ def translate(*args, **kwargs):
         response += i[0]
     return response
 
+
 def load(file):
     if not file.endswith(".yml"):
         return
