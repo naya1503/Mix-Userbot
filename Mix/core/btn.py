@@ -129,7 +129,6 @@ def nan_parse(text):
     return note_data, buttons
 """
 
-
 def nan_parse(text):
     markdown_note = text
     prev = 0
@@ -145,10 +144,7 @@ def nan_parse(text):
             button_text = match.group(1)
             button_url = match.group(2)
             if "&&" in button_url:
-                button_pairs = button_url.split(" && ")
-                for pair in button_pairs:
-                    pair_text, pair_url = pair.split(" - ")
-                    buttons.append((pair_text, pair_url, False))
+                buttons.append((button_text, button_url, True))
             else:
                 buttons.append((button_text, button_url, False))
             note_data += markdown_note[prev : match.start(0)]
@@ -160,6 +156,17 @@ def nan_parse(text):
         note_data += markdown_note[prev:]
 
     return note_data, buttons
+
+# Contoh penggunaan
+teks = """Halo sayang ku
+Nekopoi Disini - https://nekopoicare.com
+Youtube - https://youtube.com && Google - https://google.com
+Xvideos Disini - https://xvideos.com && Pornhub Disini - https://pornhub.com
+"""
+
+teks, buttons = nan_parse(teks)
+print(buttons)
+
 
 
 def nan_kibor(buttons):
