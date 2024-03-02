@@ -1,17 +1,14 @@
 import asyncio
-
 import yaml
 from gpytranslate import Translator
 
-
 async def translate_text(text):
     translator = Translator()
-    translated_text = await translator.translate(text, source="id", target="en")
+    translated_text = await translator.translate(text, source='id', target='en')
     return translated_text
 
-
 async def translate_yaml(input_file, output_file):
-    with open(input_file, "r", encoding="utf-8") as file:
+    with open(input_file, 'r', encoding='utf-8') as file:
         data = yaml.safe_load(file)
 
     tasks = []
@@ -30,8 +27,9 @@ async def translate_yaml(input_file, output_file):
         else:
             translated_data[key] = str(value)  # Ensure all values are strings
 
-    with open(output_file, "w", encoding="utf-8") as file:
+    print("Translated Data:", translated_data)  # Print translated data
+
+    with open(output_file, 'w', encoding='utf-8') as file:
         yaml.dump(translated_data, file, allow_unicode=True)
 
-
-asyncio.run(translate_yaml("langs/strings/id.yml", "langs/strings/en.yml"))
+asyncio.run(translate_yaml('langs/strings/id.yml', 'langs/strings/en.yml'))
