@@ -12,5 +12,3 @@ from Mix import *
 @ky.bots("start")
 async def _(c, m):
     await m.reply("**Hai nyet!!**")
-    
-    
