@@ -7,21 +7,25 @@
 """
 ################################################################
 
+import json
 import os
+import random
 import sys
 from glob import glob
 from typing import Any, Dict, List, Union
-import json
-import random
-from yaml import safe_load
-from team.nandev.database import ndB
+
 from team.nandev.class_log import LOGGER
+from team.nandev.database import ndB
+from yaml import safe_load
+
 from Mix.core.http import http
+
 cek_bahasa = ndB.get_key("bahasa")
 from urllib.parse import quote, unquote
 
 bahasa_ = {}
 loc_lang = "langs/{}.yml"
+
 
 def _totr(text, lang_src="auto", lang_tgt="auto"):
     GOOGLE_TTS_RPC = ["MkEWBc"]
@@ -31,6 +35,7 @@ def _totr(text, lang_src="auto", lang_tgt="auto"):
     espaced_rpc = json.dumps(rpc, separators=(",", ":"))
     freq = "f.req={}&".format(quote(espaced_rpc))
     return freq
+
 
 def translate(*args, **kwargs):
     headers = {
@@ -98,7 +103,9 @@ def cgr(key: str, _res: bool = True) -> Any:
             LOGGER.error(f"{er}")
         if not _res:
             return None
-        return bahasa_["id"].get(key) or LOGGER.info(f"Failed to load language string '{key}'")
+        return bahasa_["id"].get(key) or LOGGER.info(
+            f"Failed to load language string '{key}'"
+        )
 
 
 def get_help(key):
