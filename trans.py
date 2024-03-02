@@ -1,41 +1,32 @@
-import asyncio
-
 import yaml
+import asyncio
 from gpytranslate import Translator
 
-
-# Fungsi untuk menerjemahkan teks menggunakan Google Translate API
-async def translate_text(text, target_language):
-    translator = Translator()
-    translated_text = await translator.translate(text, target_language=target_language)
-    return translated_text
-
-
-# Fungsi untuk menerjemahkan string YAML
-async def translate_yaml(yaml_file, target_language):
-    with open(yaml_file, "r") as file:
+async def translate_yaml(input_file, output_file, target_language):
+    with open(input_file, 'r', encoding='utf-8') as file:
         data = yaml.safe_load(file)
 
-    # Menerjemahkan nilai teks di dalam tanda kutip menggunakan Google Translate
+    translator = Translator()
+
     for key, value in data.items():
         if isinstance(value, str):
-            data[key] = await translate_text(value, target_language)
-        elif isinstance(value, dict):
-            for sub_key, sub_value in value.items():
-                if isinstance(sub_value, str):
-                    value[sub_key] = await translate_text(sub_value, target_language)
+            translation = await translator.translate(value, target_language=target_language)
+            data[key] = translation
+        elif isinstance(value, list):
+            translated_list = []
+            for item in value:
+                if isinstance(item, str):
+                    translation = await translator.translate(item, target_language=target_language)
+                    translated_list.append(translation)
+                else:
+                    translated_list.append(item)
+            data[key] = translated_list
 
-    # Menghasilkan string YAML yang telah diterjemahkan
-    translated_yaml = yaml.dump(data, allow_unicode=True)
+    with open(output_file, 'w', encoding='utf-8') as file:
+        yaml.dump(data, file, allow_unicode=True)
 
-    return translated_yaml
-
-
-# Menjalankan fungsi untuk menerjemahkan string YAML dan menyimpannya ke file
 async def main():
-    translated_yaml = await translate_yaml("langs/strings/id.yml", "en")
-    with open("translated_strings.yml", "w") as file:
-        file.write(translated_yaml)
+    await translate_yaml('langs/strings/id.yml', 'langs/strings/en.yml', 'en')
 
-
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
