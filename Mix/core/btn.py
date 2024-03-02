@@ -24,7 +24,7 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: &&|\n|$)")
+NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: same|\n|$)")
 
 
 def is_url(text: str) -> bool:
@@ -98,7 +98,7 @@ def parse_mark(tk: str, kk):
     return f"{tk} {' '.join(buttons)}"
 
 
-"""
+
 def nan_parse(text):
     markdown_note = text
     prev = 0
@@ -115,7 +115,7 @@ def nan_parse(text):
                 (
                     match.group(1),
                     match.group(2),
-                    True if "&&" in match.group(0) else False,
+                    True if "|same" in match.group(0) else False,
                 )
             )
             note_data += markdown_note[prev : match.start(0)]
@@ -144,7 +144,8 @@ def nan_parse(text):
             n_escapes += 1
             to_check -= 1
         if n_escapes % 2 == 0:
-            button_text = match.group(1) + " - " + match.group(2)
+            button_text = match.group(1)
+            button_url = match.group(2)
             is_horizontal = "&&" in match.group(2)
             buttons.append((button_text, is_horizontal))
             note_data += markdown_note[prev : match.start(0)]
@@ -156,7 +157,7 @@ def nan_parse(text):
         note_data += markdown_note[prev:]
 
     return note_data, buttons
-
+"""
 
 def nan_kibor(buttons):
     keyb = []
