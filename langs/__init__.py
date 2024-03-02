@@ -76,7 +76,7 @@ def load(file):
 load(loc_lang.format(cek_bahasa))
 
 
-def cgr(key: str, _res: bool = True) -> Any:
+def cgr(key, _res: bool = True):
     lang = cek_bahasa or "id"
     try:
         return bahasa_[lang][key]
@@ -113,7 +113,7 @@ def get_cgr(key):
         return cgr("cmds") + doc
 
 
-def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
+def get_bahasa_():
     for file in glob("langs/strings/*yml"):
         load(file)
     return {
