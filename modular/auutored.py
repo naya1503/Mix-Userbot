@@ -25,7 +25,7 @@ __help__ = """
 
 from pyrogram.errors import *
 
-from langs import cgr
+
 from Mix import *
 
 from .gcast import refresh_dialog
