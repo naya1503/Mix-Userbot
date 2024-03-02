@@ -1,5 +1,6 @@
-from gpytranslate import Translator
 import ruamel.yaml
+from gpytranslate import Translator
+
 
 def translate_quoted_text(data, translator):
     if isinstance(data, dict):
@@ -10,23 +11,25 @@ def translate_quoted_text(data, translator):
             data[i] = translate_quoted_text(data[i], translator)
     elif isinstance(data, str) and data.startswith('"') and data.endswith('"'):
         # Terjemahkan teks di dalam tanda kutip
-        translated_text = translator.translate(data[1:-1], src='id', dest='en').text
+        translated_text = translator.translate(data[1:-1], src="id", dest="en").text
         data = f'"{translated_text}"'
     return data
 
+
 def main():
-    input_yaml_file = 'id.yml'
-    output_yaml_file = 'en.yml'
+    input_yaml_file = "id.yml"
+    output_yaml_file = "en.yml"
 
     yaml = ruamel.yaml.YAML()
-    with open(input_yaml_file, 'r') as file:
+    with open(input_yaml_file, "r") as file:
         data = yaml.load(file)
 
     translator = Translator()
     data = translate_quoted_text(data, translator)
 
-    with open(output_yaml_file, 'w') as file:
+    with open(output_yaml_file, "w") as file:
         yaml.dump(data, file)
+
 
 if __name__ == "__main__":
     main()
