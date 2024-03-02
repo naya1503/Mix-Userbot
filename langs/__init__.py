@@ -30,7 +30,7 @@ loc_lang = "langs/strings/{}.yml"
 def load(file):
     if not file.endswith(".yml"):
         return
-    file = loc_lang.format("id")
+    file = loc_lang.format("en")
     code = file.split("/")[-1].split("\\")[-1][:-4]
     try:
         bahasa_[code] = safe_load(
@@ -49,7 +49,7 @@ def cgr(key, _res: bool = True):
         return bahasa_[lang][key]
     except KeyError:
         try:
-            bahasa_["id"][key]
+            bahasa_["en"][key]
         except KeyError:
             if not _res:
                 return
@@ -61,7 +61,7 @@ def cgr(key, _res: bool = True):
             LOGGER.error(f"{er}")
         if not _res:
             return None
-        return bahasa_["id"].get(key) or LOGGER.info(
+        return bahasa_["en"].get(key) or LOGGER.info(
             f"Failed to load language string '{key}'"
         )
 
