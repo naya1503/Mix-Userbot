@@ -12,7 +12,7 @@ import random
 import sys
 from glob import glob
 from typing import Any, Dict, List, Union
-
+import requests
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB
 from yaml import safe_load
@@ -44,7 +44,7 @@ def translate(*args, **kwargs):
         "Chrome/47.0.2526.106 Safari/537.36",
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
     }
-    x = http.post2(
+    x = requests.post(
         "https://translate.google.co.in/_/TranslateWebserverUi/data/batchexecute",
         headers=headers,
         data=_totr(*args, **kwargs),
