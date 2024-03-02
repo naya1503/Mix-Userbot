@@ -27,8 +27,6 @@ bahasa_ = {}
 loc_lang = "langs/strings/{}.yml"
 
 
-
-
 def load(file):
     if not file.endswith(".yml"):
         return
@@ -51,7 +49,7 @@ def cgr(key, _res: bool = True):
         return bahasa_[lang][key]
     except KeyError:
         try:
-            id_ = bahasa_["id"][key]
+            bahasa_["id"][key]
         except KeyError:
             if not _res:
                 return
