@@ -47,6 +47,10 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 
 from config import *
 from Mix import XCB, Emojik, in_heroku, ky, on_heroku, paste, user
+from importlib import import_module
+import importlib
+from . import import_modular
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -310,7 +314,7 @@ async def _(c: user, m):
         os.system("pip3 install -r requirements.txt")
         os.execl(sys.executable, sys.executable, "-m", "Mix")
 
-
+"""
 @ky.ubot("restart", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -321,3 +325,19 @@ async def _(c: user, m):
     )
     os.system("git pull")
     os.execl(sys.executable, sys.executable, "-m", "Mix")
+"""
+
+async def reload_user():
+    await user.start()
+    modxx = import_modular()
+    for modx in modxx:
+        imported_module = import_module(f"modular.{modx}")
+        importlib.reload(imported_module)
+
+
+@ky.ubot("restart", sudo=True)
+async def _(c: user, m):
+    try:
+        await c.stop()
+    except ConnectionError:
+        await reload_userbot()
