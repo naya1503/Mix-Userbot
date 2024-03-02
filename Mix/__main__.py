@@ -18,10 +18,7 @@ async def test():
     try:
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
-        if ndB.get_key("bahasa") is None:
-            ndB.set_key("bahasa", "id")
-        else:
-            return
+        
     except SessionExpired:
         LOGGER.info("Session Expired . Create New Session")
         sys.exit(1)
@@ -55,6 +52,10 @@ async def main():
         await refresh_cache()
         await check_logger()
         LOGGER.info(f"Check Finished.")
+        if ndB.get_key("bahasa") is None:
+            ndB.set_key("bahasa", "id")
+        else:
+            return
         await refresh_modules()
         LOGGER.info(f"Modules Imported...")
         LOGGER.info("Successfully Started Userbot.")
