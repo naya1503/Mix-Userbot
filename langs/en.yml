@@ -1,3 +1,11 @@
 name: English
 authors:
   - keenan
+  
+ proses: "{a} **Sedang Diproses...**"
+  atored_1: "{a} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**"
+  atored_2: "{a} **Berhasil membaca `{b}` pesan group.**"
+  atored_3: "{a} **Berhasil membaca `{b}` pesan pengguna.**"
+  atored_4: "{a} **Berhasil membaca `{b}` pesan channel.**"
+  atored_5: "{a} **Berhasil membaca `{b}` pesan diakun anda.**"
+  atored_6: "{a} **Silahkan masukkan query dengan benar!!**"
