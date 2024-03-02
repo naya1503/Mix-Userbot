@@ -1,0 +1,5 @@
+{
+    "proses": "{em.proses} Processing...",
+    "atored_1": "{em.gagal} **Gunakan Format** : `autoread` [`gc` or `us` or `ch` or `all`]",
+    "atored_2": "{em.sukses} Berhasil membaca {len(bcgc)} pesan group."
+}
