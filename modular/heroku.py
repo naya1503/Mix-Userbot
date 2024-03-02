@@ -33,10 +33,12 @@ __help__ = """
 
 
 import asyncio
+import importlib
 import math
 import os
 import sys
 from datetime import datetime
+from importlib import import_module
 
 import dotenv
 import heroku3
@@ -47,10 +49,8 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 
 from config import *
 from Mix import XCB, Emojik, in_heroku, ky, on_heroku, paste, user
-from importlib import import_module
-import importlib
-from . import import_modular
 
+from . import import_modular
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -314,6 +314,7 @@ async def _(c: user, m):
         os.system("pip3 install -r requirements.txt")
         os.execl(sys.executable, sys.executable, "-m", "Mix")
 
+
 """
 @ky.ubot("restart", sudo=True)
 async def _(c: user, m):
@@ -326,6 +327,7 @@ async def _(c: user, m):
     os.system("git pull")
     os.execl(sys.executable, sys.executable, "-m", "Mix")
 """
+
 
 async def reload_user():
     await user.start()
