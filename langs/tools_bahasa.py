@@ -15,7 +15,6 @@ from typing import Dict, List
 
 from team.nandev.database import udB
 
-
 enabled_locales: List[str] = [
     "en-US",  # English (United States)
     "id-ID",  # Indonesian
