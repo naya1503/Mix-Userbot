@@ -45,7 +45,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
  • `pip3 install -r req*`
 
- • `cp .env.sample .env`
+ • `cp sample.env .env`
 
  • `nano .env`
  
