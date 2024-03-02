@@ -1,13 +1,43 @@
-nama: English
+atored_1: "{\n    \"raw\": \"...\",\n    \"orig\": \"{} **Gunakan Format : `autoread`\
+  \ [`gc` or `us` or `ch` or `all`]**\",\n    \"text\": \"{} **Gunakan Format : `autoread`\
+  \ [`gc` or `us` or `ch` or `all`]**\",\n    \"orig_raw\": [\n        \"{} **Gunakan\
+  \ Format : `autoread` [`gc` or `us` or `ch` or `all`]**\"\n    ],\n    \"text_raw\"\
+  : [\n        \"{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**\"\
+  \n    ],\n    \"lang\": \"en\"\n}"
+atored_2: "{\n    \"raw\": \"...\",\n    \"orig\": \"{} **Berhasil membaca `{}` pesan\
+  \ group.**\",\n    \"text\": \"{} **Successfully read `{}` group message.**\",\n\
+  \    \"orig_raw\": [\n        \"{} **Berhasil membaca `{}` pesan group.**\"\n  \
+  \  ],\n    \"text_raw\": [\n        \"{} **Successfully read `{}` group message.**\"\
+  \n    ],\n    \"lang\": \"id\"\n}"
+atored_3: "{\n    \"raw\": \"...\",\n    \"orig\": \"{} **Berhasil membaca `{}` pesan\
+  \ pengguna.**\",\n    \"text\": \"{} **Successfully read user `{}` message.**\"\
+  ,\n    \"orig_raw\": [\n        \"{} **Berhasil membaca `{}` pesan pengguna.**\"\
+  \n    ],\n    \"text_raw\": [\n        \"{} **Successfully read user `{}` message.**\"\
+  \n    ],\n    \"lang\": \"id\"\n}"
+atored_4: "{\n    \"raw\": \"...\",\n    \"orig\": \"{} **Berhasil membaca `{}` pesan\
+  \ channel.**\",\n    \"text\": \"{} **Successfully read `{}` channel message.**\"\
+  ,\n    \"orig_raw\": [\n        \"{} **Berhasil membaca `{}` pesan channel.**\"\n\
+  \    ],\n    \"text_raw\": [\n        \"{} **Successfully read `{}` channel message.**\"\
+  \n    ],\n    \"lang\": \"id\"\n}"
+atored_5: "{\n    \"raw\": \"...\",\n    \"orig\": \"{} **Berhasil membaca `{}` pesan\
+  \ diakun anda.**\",\n    \"text\": \"{} **Successfully read `{}` message from your\
+  \ account.**\",\n    \"orig_raw\": [\n        \"{} **Berhasil membaca `{}` pesan\
+  \ diakun anda.**\"\n    ],\n    \"text_raw\": [\n        \"{} **Successfully read\
+  \ `{}` message from your account.**\"\n    ],\n    \"lang\": \"id\"\n}"
+atored_6: "{\n    \"raw\": \"...\",\n    \"orig\": \"{} **Silahkan masukkan query\
+  \ dengan benar!!**\",\n    \"text\": \"{} **Please enter the query correctly!!**\"\
+  ,\n    \"orig_raw\": [\n        \"{} **Silahkan masukkan query dengan benar!!**\"\
+  \n    ],\n    \"text_raw\": [\n        \"{} **Please enter the query correctly!!**\"\
+  \n    ],\n    \"lang\": \"id\"\n}"
+cmds: "{\n    \"raw\": \"...\",\n    \"orig\": \"Bantuan Perintah\",\n    \"text\"\
+  : \"Command Help\",\n    \"orig_raw\": [\n        \"Bantuan Perintah\"\n    ],\n\
+  \    \"text_raw\": [\n        \"Command Help\"\n    ],\n    \"lang\": \"ms\"\n}"
+nama: "{\n    \"raw\": \"...\",\n    \"orig\": \"Indonesia\",\n    \"text\": \"Indonesia\"\
+  ,\n    \"orig_raw\": [\n        \"Indonesia\"\n    ],\n    \"text_raw\": [\n   \
+  \     \"Indonesia\"\n    ],\n    \"lang\": \"en\"\n}"
 penulis:
-  - keenan
-  
- 
-cmds: "Help Command"
-proses: "{} **Sedang Diproses...**"
-atored_1: "{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**"
-atored_2: "{} **Berhasil membaca `{}` pesan group.**"
-atored_3: "{} **Berhasil membaca `{}` pesan pengguna.**"
-atored_4: "{} **Berhasil membaca `{}` pesan channel.**"
-atored_5: "{} **Berhasil membaca `{}` pesan diakun anda.**"
-atored_6: "{} **Silahkan masukkan query dengan benar!!**"
+- keenan
+proses: "{\n    \"raw\": \"...\",\n    \"orig\": \"{} **Sedang Diproses...**\",\n\
+  \    \"text\": \"{} **Being processed...**\",\n    \"orig_raw\": [\n        \"{}\
+  \ **Sedang Diproses...**\"\n    ],\n    \"text_raw\": [\n        \"{} **Being processed...**\"\
+  \n    ],\n    \"lang\": \"id\"\n}"
