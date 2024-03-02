@@ -15,6 +15,10 @@ async def test():
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
+        if ndB.get_key("bahasa") is None:
+            ndB.set_key("bahasa", "id")
+        else:
+            return
     try:
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
