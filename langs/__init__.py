@@ -12,6 +12,7 @@ import random
 import sys
 from glob import glob
 from typing import Any, Dict, List, Union
+
 import requests
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB
