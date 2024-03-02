@@ -315,8 +315,8 @@ async def _(c: user, m):
         os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
-"""
-@ky.ubot("restart", sudo=True)
+
+@ky.ubot("reboot", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -326,11 +326,11 @@ async def _(c: user, m):
     )
     os.system("git pull")
     os.execl(sys.executable, sys.executable, "-m", "Mix")
-"""
+
 
 
 async def reload_user():
-    await user.start()
+    #await user.start()
     modxx = import_modular()
     for modx in modxx:
         imported_module = import_module(f"modular.{modx}")
@@ -339,7 +339,5 @@ async def reload_user():
 
 @ky.ubot("restart", sudo=True)
 async def _(c: user, m):
-    try:
-        await c.stop()
-    except ConnectionError:
-        await reload_userbot()
+    await reload_userbot()
+        
