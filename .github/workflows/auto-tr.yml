@@ -1,4 +1,4 @@
-name: Translate Language Files
+name: Auto Translate
 
 on:
   push:
@@ -8,19 +8,22 @@ on:
 jobs:
   translate:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python3 -m pip install gpytranslate pyyaml
 
-      - name: Install Dependencies
-        run: pip install googletrans==4.0.0-rc1 && pip install pyyaml
-
-      - name: Translate Files
+      - name: Translate id.yml to en.yml
         run: |
           python3 trans.py
+
+      - name: Commit and push translated file
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "Translate id.yml to en.yml"
+          git push
