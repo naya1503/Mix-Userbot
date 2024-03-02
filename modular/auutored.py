@@ -35,9 +35,9 @@ from .gcast import refresh_dialog
 async def _(_, m, cgr):
     em = Emojik()
     em.initialize()
-    mek = await m.reply(cgr("proses").format(em.proses))
+    mek = await m.reply(cgr("proses").format(a=em.proses))
     if len(m.command) < 2:
-        await mek.edit(cgr("atored_1").format(em.gagal))
+        await mek.edit(cgr("atored_1").format(a=em.gagal))
         return
     biji, peler = m.command[:2]
     if peler.lower() == "gc":
@@ -47,13 +47,13 @@ async def _(_, m, cgr):
                 await user.read_chat_history(gc, max_id=0)
             except ChannelPrivate:
                 continue
-        await mek.edit(cgr("atored_2").format(em.sukses, len(bcgc)))
+        await mek.edit(cgr("atored_2").format(a=em.sukses, b=len(bcgc)))
         return
     elif peler.lower() == "us":
         bcus = await refresh_dialog("users")
         for us in bcus:
             await user.read_chat_history(us, max_id=0)
-        await mek.edit(cgr("atored_3").format(em.sukses, len(bcus)))
+        await mek.edit(cgr("atored_3").format(a=em.sukses, b=len(bcus)))
         return
     elif peler.lower() == "ch":
         bcch = await refresh_dialog("ch")
@@ -62,7 +62,7 @@ async def _(_, m, cgr):
                 await user.read_chat_history(ch, max_id=0)
             except ChannelPrivate:
                 continue
-        await mek.edit(cgr("atored_4").format(em.sukses, len(bcch)))
+        await mek.edit(cgr("atored_4").format(a=em.sukses, b=len(bcch)))
         return
     elif peler.lower() == "all":
         bcall = await refresh_dialog("allread")
@@ -71,8 +71,8 @@ async def _(_, m, cgr):
                 await user.read_chat_history(aih, max_id=0)
             except ChannelPrivate:
                 continue
-        await mek.edit(cgr("atored_5").format(em.sukses, len(bcall)))
+        await mek.edit(cgr("atored_5").format(a=em.sukses, b=len(bcall)))
         return
     else:
-        await mek.edit(cgr("atored_6").format(em.gagal))
+        await mek.edit(cgr("atored_6").format(a=em.gagal))
         return
