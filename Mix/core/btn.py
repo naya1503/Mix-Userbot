@@ -114,7 +114,7 @@ def nan_parse(text):
                 (
                     match.group(1),
                     match.group(2),
-                    True if "|same" in match.group(0) else False,
+                    True if "&&" in match.group(0) else False,
                 )
             )
             note_data += markdown_note[prev : match.start(0)]
