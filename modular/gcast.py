@@ -71,7 +71,7 @@ async def _(c: user, m):
     msg = await m.reply(f"{em.proses} Processing...")
     direp = m.reply_to_message
     if direp:
-        send = direp.text or direp.caption
+        send = direp
     else:
         send = c.get_m(m)
     if not send:
