@@ -1,11 +1,11 @@
 import asyncio
 import sys
 
+from asisstant import bot_plugins
 from pyrogram import *
 from pyrogram.errors import *
 
 from Mix import *
-from asisstant import bot_plugins
 
 
 async def test():
