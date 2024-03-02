@@ -50,12 +50,12 @@ def cgr(key, _res: bool = True):
         return bahasa_[lang][key]
     except KeyError:
         try:
-            en_ = languages["en"][key]
+            en_ = bahasa_["en"][key]
             tr = en_
-            if languages.get(lang):
-                languages[lang][key] = tr
+            if bahasa_.get(lang):
+                bahasa_[lang][key] = tr
             else:
-                languages.update({lang: {key: tr}})
+                bahasa_.update({lang: {key: tr}})
             return tr
         except KeyError:
             if not _res:
