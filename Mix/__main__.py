@@ -1,7 +1,7 @@
 import asyncio
 import sys
 
-from asisstant import bot_plugins
+from assistant import bot_plugins
 from pyrogram import *
 from pyrogram.errors import *
 
