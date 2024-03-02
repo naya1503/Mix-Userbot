@@ -40,7 +40,6 @@ from pyrogram.types import *
 
 from Mix import *
 from Mix.core.parser import remove_markdown_and_html
-from Mix.core.sender_tools import extract_user
 
 dbgb = GBan()
 dbgm = GMute()
