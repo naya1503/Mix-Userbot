@@ -55,7 +55,6 @@ def cgr(key, _res: bool = True):
         return bahasa_["en"].get(key) or LOGGER.info(
             f"Failed to load language string '{key}'"
         )
-        
 
 
 def get_cgr(key):
