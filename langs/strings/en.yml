@@ -3,7 +3,7 @@ penulis:
 - keenan
 
 
-cmds: "Bantuan Perintah"
+cmds: Bantuan Perintah
 proses: '{} **Sedang Diproses...**'
 atored_1: '{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**'
 atored_2: '{} **Berhasil membaca `{}` pesan group.**'
