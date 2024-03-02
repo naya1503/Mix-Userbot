@@ -14,7 +14,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install gpytranslate pyyaml
+          python3 -m pip install gpytranslate ruamel
 
       - name: Translate id.yml to en.yml
         run: |
