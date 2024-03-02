@@ -47,26 +47,26 @@ load(loc_lang.format(cek_bahasa))
 def cgr(key, _res: bool = True):
     lang = cek_bahasa
     try:
-        return bahasa_[lang][key]
+        return bahasa_[lang]
     except KeyError:
         try:
-            en_ = bahasa_["en"][key]
+            en_ = bahasa_["en"]
             tr = en_
             if bahasa_.get(lang):
-                bahasa_[lang][key] = tr
+                bahasa_[lang] = tr
             else:
-                bahasa_.update({lang: {key: tr}})
+                bahasa_.update({lang: {tr}})
             return tr
         except KeyError:
             if not _res:
-                LOGGER.info(f"Warning: could not load any string with the key `{key}`")
+                LOGGER.info(f"Warning: could not load any string with the key ")
                 return
         except Exception as er:
             LOGGER.info(f"Warning: could not load any string with the key `{er}`")
         if not _res:
             return None
-        return bahasa_["en"].get(key) or LOGGER.info(
-            f"Failed to load language string '{key}'"
+        return bahasa_["en"] or LOGGER.info(
+            f"Failed to load language string"
         )
 
 
