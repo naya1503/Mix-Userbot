@@ -5,9 +5,9 @@
  @ CREDIT : NAN-DEV || PART OF ULTROID
   • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
 """
-import json
 ################################################################
 import os
+import json
 import random
 import sys
 from glob import glob
@@ -20,7 +20,7 @@ from yaml import safe_load
 
 from Mix.core.http import http
 
-cek_bahasa = udB.get_bahasa()
+cek_bahasa = ndB.get_key("bahasa")
 from urllib.parse import quote, unquote
 
 bahasa_ = {}
@@ -47,25 +47,27 @@ load(loc_lang.format(cek_bahasa))
 def cgr(key, _res: bool = True):
     lang = cek_bahasa
     try:
-        return bahasa_[lang]
+        return bahasa_[lang][key]
     except KeyError:
         try:
-            en_ = bahasa_["en"]
+            en_ = bahasa_["en"][key]
             tr = en_
             if bahasa_.get(lang):
-                bahasa_[lang] = tr
+                bahasa_[lang][key] = tr
             else:
-                bahasa_.update({lang: {tr}})
+                bahasa_.update({lang: {key: tr}})
             return tr
         except KeyError:
             if not _res:
-                LOGGER.info(f"Warning: could not load any string with the key ")
+                LOGGER.info(f"Warning: could not load any string with the key `{key}`")
                 return
         except Exception as er:
             LOGGER.info(f"Warning: could not load any string with the key `{er}`")
         if not _res:
             return None
-        return bahasa_["en"] or LOGGER.info(f"Failed to load language string")
+        return bahasa_["en"].get(key) or LOGGER.info(
+            f"Failed to load language string '{key}'"
+        )
 
 
 def get_cgr(key):
