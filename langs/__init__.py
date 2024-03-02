@@ -15,12 +15,12 @@ from typing import Any, Dict, List, Union
 
 import requests
 from team.nandev.class_log import LOGGER
-from team.nandev.database import ndB
+from team.nandev.database import udB
 from yaml import safe_load
 
 from Mix.core.http import http
 
-cek_bahasa = ndB.get_key("bahasa")
+cek_bahasa = udB.get_bahasa()
 from urllib.parse import quote, unquote
 
 bahasa_ = {}
