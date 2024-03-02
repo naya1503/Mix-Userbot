@@ -40,8 +40,3 @@ async def _(c: user, m):
 **{em.profil} {c.me.first_name} **
 """
     await m.reply(_ping)
-
-
-@bot.on_message(filters.command("ping"))
-async def _(u, m):
-    await m.reply_text("<b> Mix Userbot Tes</b>")
