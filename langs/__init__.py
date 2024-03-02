@@ -11,15 +11,26 @@ import os
 import sys
 from glob import glob
 from typing import Any, Dict, List, Union
-
+import json
+import random
 from yaml import safe_load
 from team.nandev.database import ndB
 from team.nandev.class_log import LOGGER
 from Mix.core.http import http
 cek_bahasa = ndB.get_key("bahasa")
+from urllib.parse import quote, unquote
 
 bahasa_ = {}
 loc_lang = "langs/{}.yml"
+
+def _totr(text, lang_src="auto", lang_tgt="auto"):
+    GOOGLE_TTS_RPC = ["MkEWBc"]
+    parameter = [[text.strip(), lang_src, lang_tgt, True], [1]]
+    escaped_parameter = json.dumps(parameter, separators=(",", ":"))
+    rpc = [[[random.choice(GOOGLE_TTS_RPC), escaped_parameter, None, "generic"]]]
+    espaced_rpc = json.dumps(rpc, separators=(",", ":"))
+    freq = "f.req={}&".format(quote(espaced_rpc))
+    return freq
 
 def translate(*args, **kwargs):
     headers = {
@@ -32,7 +43,7 @@ def translate(*args, **kwargs):
     x = http.post(
         "https://translate.google.co.in/_/TranslateWebserverUi/data/batchexecute",
         headers=headers,
-        data=_package_rpc(*args, **kwargs),
+        data=_totr(*args, **kwargs),
     ).text
     response = ""
     data = json.loads(json.loads(x[4:])[0][2])[1][0][0]
