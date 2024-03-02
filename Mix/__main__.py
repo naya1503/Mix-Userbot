@@ -7,9 +7,11 @@ from pyrogram.errors import *
 from assistant import bot_plugins
 from Mix import *
 
+
 async def reinitial():
     await user.start()
     await user.stop()
+
 
 async def test():
     LOGGER.info(f"Check Updater...")
