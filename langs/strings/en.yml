@@ -1,9 +1,9 @@
-name: English
-author:
+nama: English
+penulis:
   - Keenan
   
 cmds: "Command Help"
-process: "{} **Processing...**"
+proses: "{} **Processing...**"
 autoread_1: "{} **Usage: `autoread` [`gc` or `us` or `ch` or `all`]**"
 autoread_2: "{} **Successfully read {} group messages.**"
 autoread_3: "{} **Successfully read {} user messages.**"
