@@ -39,11 +39,11 @@ async def post(url: str, *args, **kwargs):
 
 
 def post2(url: str, *args, **kwargs):
-    async with session.post(url, *args, **kwargs) as resp:
+    with session.post(url, *args, **kwargs) as resp:
         try:
-            data = await resp.json()
+            data = resp.json()
         except Exception:
-            data = await resp.text()
+            data = resp.text()
     return data
 
 
