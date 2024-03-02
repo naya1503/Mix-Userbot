@@ -4,7 +4,7 @@ atored_3: '{} **Successfully read user `{}` message.**'
 atored_4: '{} **Successfully read `{}` channel message.**'
 atored_5: '{} **Successfully read `{}` message from your account.**'
 atored_6: '{} **Please enter the query correctly!!**'
-cmds: "Command Help"
+cmds: Command Help
 nama: Indonesia
 penulis:
 - keenan
