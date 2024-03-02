@@ -108,7 +108,7 @@ def cgr(key: str, _res: bool = True) -> Any:
         )
 
 
-def get_help(key):
+def get_cgr(key):
     doc = cgr(f"cgr_{key}", _res=False)
     if doc:
         return cgr("cmds") + doc
