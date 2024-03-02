@@ -53,7 +53,7 @@ async def _(c, m, cgr):
         bcus = await refresh_dialog("users")
         for us in bcus:
             await user.read_chat_history(us, max_id=0)
-        await mek.edit(f"{em.sukses} Berhasil membaca {len(bcus)} pesan pengguna.")
+        await mek.edit(cgr("atored_3").format(em.sukes, len(bcusl)))
         return
     elif peler.lower() == "ch":
         bcch = await refresh_dialog("ch")
