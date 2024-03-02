@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Union
 
 import requests
 from team.nandev.class_log import LOGGER
-from team.nandev.database import udB
+from team.nandev.database import ndB
 from yaml import safe_load
 
 from Mix.core.http import http
