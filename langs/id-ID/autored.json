@@ -1,9 +1,0 @@
-{
-    "proses": "{em.proses} Processing...",
-    "atored_1": "{em.gagal} **Gunakan Format** : `autoread` [`gc` or `us` or `ch` or `all`]",
-    "atored_2": "{em.sukses} **Berhasil membaca `{len(bcgc)}` pesan group.**",
-    "atored_3": "{em.sukses} **Berhasil membaca `{len(bcus)}` pesan pengguna.**",
-    "atored_4": "{em.sukses} **Berhasil membaca `{len(bcus)}` pesan pengguna.**",
-    "atored_5": "{em.sukses} **Berhasil membaca `{len(bcus)}` pesan pengguna.**",
-    "atored_6": "{em.gagal} **Silahkan masukkan query dengan benar!!**"
-}
