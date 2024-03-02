@@ -32,7 +32,7 @@ from .gcast import refresh_dialog
 
 @ky.ubot("autoread", sudo=True)
 @bahasa()
-async def _(c, m, cgr):
+async def _(_, m, cgr):
     em = Emojik()
     em.initialize()
     mek = await m.reply(cgr("proses").format(em.proses))
