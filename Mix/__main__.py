@@ -5,6 +5,7 @@ from pyrogram import *
 from pyrogram.errors import *
 
 from Mix import *
+from asisstant import bot_plugins
 
 
 async def test():
@@ -31,6 +32,7 @@ async def test():
         await asyncio.sleep(1)
     try:
         await bot.start()
+        await bot_plugins()
         await asyncio.sleep(1)
     except AccessTokenExpired:
         LOGGER.info("Token Expired.")
