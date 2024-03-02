@@ -5,9 +5,9 @@
  @ CREDIT : NAN-DEV || PART OF ULTROID
   • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
 """
+import json
 ################################################################
 import os
-import json
 import random
 import sys
 from glob import glob
@@ -23,6 +23,7 @@ from urllib.parse import quote, unquote
 
 bahasa_ = {}
 loc_lang = "langs/strings/{}.yml"
+
 
 def _totr(text, lang_src="auto", lang_tgt="auto"):
     GOOGLE_TTS_RPC = ["MkEWBc"]
@@ -55,6 +56,7 @@ def translate(*args, **kwargs):
     for i in subind:
         response += i[0]
     return response
+
 
 def load(file):
     if not file.endswith(".yml"):
