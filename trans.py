@@ -10,18 +10,20 @@ async def translate_yaml(input_file, output_file, target_language):
 
     for key, value in data.items():
         if isinstance(value, str):
-            if '"' in value:
-                translation = await translator.translate(value, target_language=target_language)
-                data[key] = translation
+            parts = value.split('"')
+            for i in range(1, len(parts), 2):
+                translation = await translator.translate(parts[i], target_language=target_language)
+                parts[i] = translation
+            data[key] = '"'.join(parts)
         elif isinstance(value, list):
             translated_list = []
             for item in value:
                 if isinstance(item, str):
-                    if '"' in item:
-                        translation = await translator.translate(item, target_language=target_language)
-                        translated_list.append(translation)
-                    else:
-                        translated_list.append(item)
+                    parts = item.split('"')
+                    for i in range(1, len(parts), 2):
+                        translation = await translator.translate(parts[i], target_language=target_language)
+                        parts[i] = translation
+                    translated_list.append('"'.join(parts))
                 else:
                     translated_list.append(item)
             data[key] = translated_list
