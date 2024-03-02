@@ -23,6 +23,9 @@ __help__ = """
 • Perintah: <code>{0}getemo</code>
 • Penjelasan: Untuk melihat tampilan emoji.
 
+• Perintah: <code>{0}setemo</code>
+• Penjelasan: Untuk mengatur status emoji.
+
 • Contoh pengunaan set emoji :
 
 <code>{0}emoji ping 🏓</code>
@@ -36,8 +39,7 @@ __help__ = """
 code>{0}emoji block ?</code>
 """
 
-
-@ky.ubot("setstatus", sudo=True)
+@ky.ubot("setemo", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -52,17 +54,13 @@ async def _(c: user, m):
                     break
             if emoji_id:
                 await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
-                await xx.edit(
-                    f"{em.sukses} <b>Emoji status diset ke :</b> <emoji id={emoji_id}>😭</emoji>"
-                )
+                await xx.edit(f"{em.sukses} <b>Emoji status diset ke :</b> <emoji id={emoji_id}>😭</emoji>"
+                    )
 
     elif prem == False:
-        await jing.edit(
-            f"{em.gagal} <b>Akun Telegram Lo bukan pengguna Premium Goblok!!"
-        )
+        await jing.edit(f"{em.gagal} <b>Akun Telegram Lo bukan pengguna Premium Goblok!!")
     else:
         await jing.edit(f"{em.gagal} <b>Silahkan balas ke emoji premium!!")
-
 
 @ky.ubot("emoid", sudo=True)
 async def _(c: user, m):
