@@ -53,7 +53,7 @@ async def _(c, m, cgr):
         bcus = await refresh_dialog("users")
         for us in bcus:
             await user.read_chat_history(us, max_id=0)
-        await mek.edit(cgr("atored_3").format(em.sukes, len(bcusl)))
+        await mek.edit(cgr("atored_3").format(em.sukses, len(bcus)))
         return
     elif peler.lower() == "ch":
         bcch = await refresh_dialog("ch")
@@ -62,7 +62,7 @@ async def _(c, m, cgr):
                 await user.read_chat_history(ch, max_id=0)
             except ChannelPrivate:
                 continue
-        await mek.edit(f"{em.sukses} Berhasil membaca {len(bcch)} pesan channel.")
+        await mek.edit(cgr("atored_4").format(em.sukses, len(bcch)))
         return
     elif peler.lower() == "all":
         bcall = await refresh_dialog("allread")
@@ -71,10 +71,8 @@ async def _(c, m, cgr):
                 await user.read_chat_history(aih, max_id=0)
             except ChannelPrivate:
                 continue
-        await mek.edit(
-            f"{em.sukses} Berhasil membaca {len(bcall)} semua pesan diakun anda."
-        )
+        await mek.edit(cgr("atored_5").format(em.sukses, len(bcall)))
         return
     else:
-        await mek.edit(f"{em.gagal} Sepertinya anda memasukkan query yang salah!")
+        await mek.edit(cgr("atored_6").format(em.gagal))
         return
