@@ -1,3 +1,12 @@
+################################################################
+"""
+ Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
+ 
+ @ CREDIT : NAN-DEV || PART OF ULTROID
+  • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
+"""
+################################################################
+
 import os
 import sys
 from glob import glob
@@ -6,12 +15,33 @@ from typing import Any, Dict, List, Union
 from yaml import safe_load
 from team.nandev.database import ndB
 from team.nandev.class_log import LOGGER
-
+from Mix.core.http import http
 cek_bahasa = ndB.get_key("bahasa")
 
 bahasa_ = {}
 loc_lang = "langs/{}.yml"
 
+def translate(*args, **kwargs):
+    headers = {
+        "Referer": "https://translate.google.co.in",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/47.0.2526.106 Safari/537.36",
+        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+    }
+    x = http.post(
+        "https://translate.google.co.in/_/TranslateWebserverUi/data/batchexecute",
+        headers=headers,
+        data=_package_rpc(*args, **kwargs),
+    ).text
+    response = ""
+    data = json.loads(json.loads(x[4:])[0][2])[1][0][0]
+    subind = data[-2]
+    if not subind:
+        subind = data[-1]
+    for i in subind:
+        response += i[0]
+    return response
 
 def load(file):
     if not file.endswith(".yml"):
