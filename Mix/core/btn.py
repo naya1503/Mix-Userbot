@@ -98,7 +98,6 @@ def parse_mark(tk: str, kk):
     return f"{tk} {' '.join(buttons)}"
 
 
-
 def nan_parse(text):
     markdown_note = text
     prev = 0
@@ -158,6 +157,7 @@ def nan_parse(text):
 
     return note_data, buttons
 """
+
 
 def nan_kibor(buttons):
     keyb = []
