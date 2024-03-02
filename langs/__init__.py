@@ -61,7 +61,7 @@ def load(file):
 load(loc_lang.format(cek_bahasa))
 
 
-def bahasa(key: str, _res: bool = True) -> Any:
+def cgr(key: str, _res: bool = True) -> Any:
     lang = cek_bahasa or "id"
     try:
         return bahasa_[lang][key]
