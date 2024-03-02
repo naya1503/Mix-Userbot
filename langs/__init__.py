@@ -102,9 +102,9 @@ def cgr(key: str, _res: bool = True) -> Any:
 
 
 def get_help(key):
-    doc = get_string(f"cgr_{key}", _res=False)
+    doc = cgr(f"cgr_{key}", _res=False)
     if doc:
-        return get_string("cmds") + doc
+        return cgr("cmds") + doc
 
 
 def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
