@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Dependencies
-        run: pip install googletrans==4.0.0-rc1
+        run: pip install googletrans==4.0.0-rc1 && pip install pyyaml
 
       - name: Translate Files
         run: |
