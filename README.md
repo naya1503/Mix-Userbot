@@ -70,7 +70,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
  • `cd Mix-Userbot`
 
- • `cp .env.sample .env`
+ • `cp sample.env .env`
 
  • `nano .env`
  
