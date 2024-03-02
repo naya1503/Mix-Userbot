@@ -144,10 +144,14 @@ def nan_parse(text):
         if n_escapes % 2 == 0:
             button_text = match.group(1)
             button_url = match.group(2)
-            if "&&" in button_text:
-                button_pairs = button_text.split(" && ")
+            if "&&" in button_url:
+                button_pairs = button_url.split(" && ")
                 for pair in button_pairs:
-                    buttons.append((pair, button_url, True))
+                    if " - " in pair:
+                        pair_text, pair_url = pair.split(" - ")
+                        buttons.append((pair_text, pair_url, True))
+                    else:
+                        buttons.append((pair, True))
             else:
                 buttons.append((button_text, button_url, False))
             note_data += markdown_note[prev : match.start(0)]
