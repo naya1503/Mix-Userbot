@@ -12,8 +12,10 @@ import os.path
 from functools import partial, wraps
 from glob import glob
 from typing import Dict, List
-from Mix import user
+
 from team.nandev.database import udB
+
+from Mix import user
 
 list_bhs: List[str] = [
     "id-ID",  # Indonesian
@@ -77,6 +79,7 @@ def bahasa(context: str = None):
         if fname.startswith(cwd):
             fname = fname[len(cwd) + 1 :]
         context = fname.split(os.path.sep)[2].split(".")[0]
+
     def decorator(func):
         @wraps(func)
         async def wrapper(c, m):
