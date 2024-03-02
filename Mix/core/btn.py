@@ -24,7 +24,7 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NAN_REGEX = re.compile(r"([^-\n]+?) - (.*?)(?: && |(?:\n|$))")
+NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: &&|\n|$)")
 
 
 def is_url(text: str) -> bool:
@@ -97,7 +97,7 @@ def parse_mark(tk: str, kk):
                 buttons.append(button_str)
     return f"{tk} {' '.join(buttons)}"
 
-
+"""
 def nan_parse(text):
     markdown_note = text
     prev = 0
@@ -141,18 +141,9 @@ def nan_parse(text):
             n_escapes += 1
             to_check -= 1
         if n_escapes % 2 == 0:
-            button_text = match.group(1)
-            button_url = match.group(2)
-            if "&&" in button_url:
-                button_pairs = button_url.split(" && ")
-                for pair in button_pairs:
-                    if " - " in pair:
-                        pair_text, pair_url = pair.split(" - ")
-                        buttons.append((pair_text, pair_url, True))
-                    else:
-                        buttons.append((pair, True))
-            else:
-                buttons.append((button_text, button_url, False))
+            button_text = match.group(1) + " - " + match.group(2)
+            is_horizontal = "&&" in match.group(2)
+            buttons.append((button_text, is_horizontal))
             note_data += markdown_note[prev : match.start(0)]
             prev = match.end(0)
         else:
@@ -162,7 +153,7 @@ def nan_parse(text):
         note_data += markdown_note[prev:]
 
     return note_data, buttons
-"""
+
 
 
 def nan_kibor(buttons):
