@@ -36,8 +36,11 @@ async def translate_text_within_quotes(text, translator, target_language):
             else:
                 translated_parts.append(translated_part.text)
         else:  # Within quotes
+            translated_parts.append('"')
             translated_parts.append(part)
+            translated_parts.append('"')
     return ''.join(translated_parts)
+
 
 async def main():
     await translate_yaml('langs/strings/id.yml', 'langs/strings/en.yml', 'en')
