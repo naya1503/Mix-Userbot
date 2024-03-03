@@ -101,7 +101,7 @@ async def _(c: user, m):
                 except Exception:
                     failed += 1
 
-    return await msg.edit(cgr("gcs_2").format(em.alive, em.sukses, done, em.gagal, failed)
+    return await msg.edit(cgr("gcs_2").format(em.alive, em.sukses, done, em.gagal, failed))
 
 
 @ky.ubot("gucast", sudo=True)
@@ -135,7 +135,7 @@ async def _(c: user, m):
                 except Exception:
                     failed += 1
 
-    return await msg.edit(cgr("gcs_3").format(em.alive, em.sukses, done, em.gagal, failed)
+    return await msg.edit(cgr("gcs_3").format(em.alive, em.sukses, done, em.gagal, failed))
 
 
 @ky.ubot("addbl", sudo=True)
@@ -149,9 +149,9 @@ async def _(c: user, m):
         return await pp.edit(cgr("gcs_4").format(em.sukses))
     add_blacklist = udB.add_chat(c.me.id, chat_id)
     if add_blacklist:
-        await pp.edit(cgr("gcs_5").format(em.sukses, m.chat.id, m.chat.title)
+        await pp.edit(cgr("gcs_5").format(em.sukses, m.chat.id, m.chat.title))
     else:
-        await pp.edit(cgr("gcs_6").format(em.sukses, m.chat.id)
+        await pp.edit(cgr("gcs_6").format(em.sukses, m.chat.id))
 
 
 @ky.ubot("delbl", sudo=True)
