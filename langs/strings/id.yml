@@ -21,12 +21,12 @@ autoread_5: "{} **Berhasil membaca `{}` pesan diakun anda.**"
 autoread_6: "{} **Silahkan masukkan query dengan benar!!**"
 
 # afk
-afk_1: "{} **Tidak dapat menggunakan akun channel.**")
+afk_1: "{} **Tidak dapat menggunakan akun channel.**"
 afk_2: "{} **Sekarang Afk!!**"
-afk_3: "**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**"
-afk_4: "**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`.**"
-afk_5: "**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu."
-afk_6: "**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`."
+afk_3: "**{} Online kembali!\n{} Durasi AFK! : `{}` yang lalu.**"
+afk_4: "**{} Online kembali!\n{} Durasi AFK! : `{}` yang lalu.**\n**Alasan : `{}`.**"
+afk_5: "**{} Sedang AFK!!**\n**Dari :** `{}` yang lalu."
+afk_6: "**{} Sedang AFK!!**\n**Dari :** `{}` yang lalu.\n{} **Alasan:** `{}`."
 
 # carbon
 crbn_1: "{} **Teks tidak boleh kosong!!**"
@@ -40,8 +40,8 @@ cpy_3: "**🔒 Konten Bersifat Private!!**"
 # database
 dbs_1: "{} **Gunakan Format : `setdb variable value`.**"
 dbs_2: "{} **PMPermit Dihidupkan.**"
-dbs_3: "{} **PMPic Diatur ke : `{value}`.**"
-dbs_4: "{} **Alive Pic Diatur ke : `{value}`.**"
+dbs_3: "{} **PMPic Diatur ke : `{}`.**"
+dbs_4: "{} **Alive Pic Diatur ke : `{}`.**"
 dbs_5: "{} **PM Text diatur ke default.**"
 dbs_6: "{} **Silahkan lihat query database!!**"
 dbs_7: "{} **Gunakan format : `{}` [query].**"
