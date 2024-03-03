@@ -29,7 +29,7 @@ async def _(c: user, m):
     em.initialize()
     user_id = c.me.id
     if m.sender_chat:
-        return await m.reply_text(cgr("afk_1").format(em.gagal)
+        return await m.reply_text(cgr("afk_1").format(em.gagal))
     if len(m.command) == 1 and not m.reply_to_message:
         details = {
             "type": "text",
