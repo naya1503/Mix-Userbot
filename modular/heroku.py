@@ -49,7 +49,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 
 from config import *
 from Mix import XCB, Emojik, in_heroku, ky, on_heroku, paste, user
-
+from team.nandev.class_log import LOGGER
 from . import import_modular
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -329,12 +329,18 @@ async def _(c: user, m):
 
 async def reload_user():
     # await user.start()
-    modxx = import_modular()
-    for modx in modxx:
-        imported_module = import_module(f"modular.{modx}")
-        importlib.reload(imported_module)
+    try:
+        modxx = import_modular()
+        for modx in modxx:
+            imported_module = import_module(f"modular.{modx}")
+            importlib.reload(imported_module)
+    except Exception as er:
+        LOGGER.error(f"{er}")
 
 
 @ky.ubot("restart", sudo=True)
 async def _(c: user, m):
-    await reload_user()
+    try:
+        await reload_user()
+    except Exception as er:
+        await m.reply(f"Error {er}")
