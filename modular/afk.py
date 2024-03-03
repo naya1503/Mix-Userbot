@@ -186,7 +186,11 @@ async def _(c, m):
                     else await m.reply_animation(
                         data,
                         caption=cgr("afk_4").format(
-                            em.sukses, em.warn, seenago, reasonafk
+                            em.sukses,
+                            em.block,
+                            seenago,
+                            em.warn,
+                            reasonafk,
                         ),
                     )
                 )
@@ -205,8 +209,9 @@ async def _(c, m):
                         photo=f"downloads/{user_id}.jpg",
                         caption=cgr("afk_4").format(
                             em.sukses,
-                            em.warn,
+                            em.block,
                             seenago,
+                            em.warn,
                             reasonafk,
                         ),
                     )
@@ -226,8 +231,9 @@ async def _(c, m):
                         video=f"downloads/{user_id}.mp4",
                         caption=cgr("afk_4").format(
                             em.sukses,
-                            em.warn,
+                            em.block,
                             seenago,
+                            em.warn,
                             reasonafk,
                         ),
                     )
@@ -239,7 +245,12 @@ async def _(c, m):
                 )
             elif afktype == "text_reason":
                 send = await m.reply_text(
-                    cgr("afk_4").format(em.sukses, em.warn, seenago, reasonafk),
+                    cgr("afk_4").format(
+                          em.sukses,
+                          em.block,
+                          seenago,
+                          em.warn,
+                          reasonafk),
                 )
         except Exception:
             send = await m.reply_text(
@@ -269,7 +280,7 @@ async def _(c, m):
             if afktype == "text":
                 msg += cgr("afk_5").format(em.sukses, seenago)
             if afktype == "text_reason":
-                msg += cgr("afk_6").format(em.sukses, em.warn, seenago, reasonafk)
+                msg += cgr("afk_6").format(em.sukses, em.block, seenago, em.warn, reasonafk)
             if afktype == "animation":
                 if str(reasonafk) == "None":
                     send = await m.reply_animation(
@@ -280,7 +291,7 @@ async def _(c, m):
                     send = await m.reply_animation(
                         data,
                         caption=cgr("afk_6").format(
-                            em.sukses, em.warn, seenago, reasonafk
+                            em.sukses, em.block, seenago, em.warn, reasonafk,
                         ),
                     )
             if afktype == "photo":
@@ -293,7 +304,7 @@ async def _(c, m):
                     send = await m.reply_photo(
                         photo=f"downloads/{c.me.id}.jpg",
                         caption=cgr("afk_6").format(
-                            em.sukses, em.warn, seenago, reasonafk
+                            em.sukses, em.block, seenago, em.warn, reasonafk
                         ),
                     )
             if afktype == "video":
@@ -306,11 +317,11 @@ async def _(c, m):
                     send = await m.reply_video(
                         video=f"downloads/{c.me.id}.mp4",
                         caption=cgr("afk_6").format(
-                            em.sukses, em.warn, seenago, reasonafk
+                            em.sukses, em.block, seenago, em.warn, reasonafk,
                         ),
                     )
         except Exception:
-            msg += cgr("afk_6").format(em.sukses, em.warn, seenago, reasonafk)
+            msg += cgr("afk_6").format(em.sukses, em.block, seenago, em.warn, reasonafk)
     if msg != "":
         try:
             send = await m.reply_text(msg, disable_web_page_preview=True)
