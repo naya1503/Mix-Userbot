@@ -154,8 +154,7 @@ async def _(c: user, m):
         }
 
     udB.add_afk(user_id, details)
-    send = await m.reply_text(cgr("afk_2").format(
-        em.sukses))
+    send = await m.reply_text(cgr("afk_2").format(em.sukses))
     await put_cleanmode(c.me.id, send.id)
 
 
@@ -270,9 +269,7 @@ async def _(c, m):
             if afktype == "text":
                 msg += cgr("afk_5").format(em.sukses, seenago)
             if afktype == "text_reason":
-                msg += cgr("afk_6").format(
-                    em.sukses, em.warn, seenago, reasonafk
-                )
+                msg += cgr("afk_6").format(em.sukses, em.warn, seenago, reasonafk)
             if afktype == "animation":
                 if str(reasonafk) == "None":
                     send = await m.reply_animation(
