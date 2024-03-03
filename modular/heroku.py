@@ -46,10 +46,11 @@ import requests
 import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
+from team.nandev.class_log import LOGGER
 
 from config import *
 from Mix import XCB, Emojik, in_heroku, ky, on_heroku, paste, user
-from team.nandev.class_log import LOGGER
+
 from . import import_modular
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
