@@ -47,19 +47,23 @@ async def _(c: user, m):
         if value.lower() == "on":
             udB.set_var(c.me.id, "PMPERMIT", True)
             await jing.edit(cgr("dbs_2").format(em.sukses))
+            return
     elif variable.lower() == "pmpic":
             udB.set_var(c.me.id, "PMPIC", value)
             await jing.edit(cgr("dbs_3").format(em.sukses, value))
+            return
     elif variable.lower() == "alivepic":
             udB.set_var(c.me.id, "ALIVEPIC", value)
             await jing.edit(cgr("dbs_4").format(em.sukses, value))
+            return
     elif variable.lower() == "pmtext":
         if value.lower() == "clear":
             udB.remove_var(c.me.id, "PMTEXT")
             await jing.edit(cgr("dbs_5").format(em.sukses))
+            return
     else:
         await jing.edit(cgr("dbs_6").format(em.gagal))
-
+        return
 @ky.ubot("getdb", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -93,14 +97,18 @@ async def _(c: user, m):
                 await jing.edit(f"Error {e}")
         else:
             await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb)
+            return
     elif variable.lower() == "pmlimit":
         bb = udB.get_var(c.me.id, "PMLIMIT")
         await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb)
+        return
     elif variable.lower() == "pmpic":
         bb = udB.get_var(c.me.id, "PMPIC")
         await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb)
+        return
     else:
         await jing.edit(cgr("dbs_6").format(em.gagal)
+        return
 
 
 @ky.inline("^get_teks_but")
@@ -133,14 +141,19 @@ async def _(c, m):
     if variable.lower() == "pmpermit":
         udB.remove_var(c.me.id, "PMPERMIT")
         await jing.edit(cgr("dbs_9").format(em.sukses, variabel)
+        return
     elif variable.lower() == "pmpic":
         udB.remove_var(c.me.id, "PMPIC")
         await jing.edit(cgr("dbs_9").format(em.sukses, variabel)
+        return
     elif variable.lower() == "alivepic":
         udB.remove_var(c.me.id, "ALIVEPIC")
         await jing.edit(cgr("dbs_9").format(em.sukses, variabel)
+        return
     elif variable.lower() == "pmtext":
         udB.remove_var(c.me.id, "PMTEXT")
         await jing.edit(cgr("dbs_9").format(em.sukses, variabel)
+        return
     else:
         await jing.edit(cgr("dbs_6").format(em.gagal))
+        return
