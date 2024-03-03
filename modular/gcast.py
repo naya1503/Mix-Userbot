@@ -154,8 +154,10 @@ async def _(c: user, m):
     add_blacklist = udB.add_chat(c.me.id, chat_id)
     if add_blacklist:
         await pp.edit(cgr("gcs_5").format(em.sukses, m.chat.id, m.chat.title))
+        return
     else:
         await pp.edit(cgr("gcs_6").format(em.sukses, m.chat.id))
+        return
 
 
 @ky.ubot("delbl", sudo=True)
@@ -174,8 +176,10 @@ async def _(c: user, m):
         del_blacklist = udB.remove_chat(c.me.id, chat_id)
         if del_blacklist:
             await pp.edit(cgr("gcs_8").format(em.sukses, chat_id))
+            return
         else:
             await pp.edit(cgr("gcs_9").format(em.gagal, chat_id))
+            return
     except Exception as error:
         await pp.edit(str(error))
 
