@@ -20,7 +20,7 @@ autoread_5: "{} **Successfully read {} messages in your account.**"
 autoread_6: "{} **Please enter the query correctly!!**"
 
 # afk
-afk_1: "{} **Cannot use channel account.**")
+afk_1: "{} **Cannot use channel account.**"
 afk_2: "{} **Now AFK!!**"
 afk_3: "**{a} Online again!\n{b} AFK Duration: `{c}` ago.**"
 afk_4: "**{a} Online again!\n{b} AFK Duration: `{c}` ago.**\n**Reason: `{d}`.**"
