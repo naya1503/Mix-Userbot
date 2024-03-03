@@ -8,7 +8,7 @@ err: "{} **Error:** {}"
 err_1: "**Error:** {}"
 proses: "{} **Sedang Diproses...**"
 proses_1: "**Sedang Diproses...**"
-upload: "{} **Mengunggah...**"
+upload: "{} **Menunggah...**"
 klk_1: "Klik Disini"
 
 # assisten
