@@ -2,6 +2,7 @@ nama: English
 penulis:
   - Keenan
   
+  
 cmds: "Command Help"
 err: "{} **Error:** {}"
 err_1: "**Error:** {}"
@@ -39,8 +40,8 @@ cpy_3: "**🔒 Content is Private!!**"
 # database
 dbs_1: "{} **Usage: `setdb variable value`.**"
 dbs_2: "{} **PMPermit Enabled.**"
-dbs_3: "{} **PMPic set to: `{value}`.**"
-dbs_4: "{} **Alive Pic set to: `{value}`.**"
+dbs_3: "{} **PMPic set to: `{}`.**"
+dbs_4: "{} **Alive Pic set to: `{}`.**"
 dbs_5: "{} **PM Text set to default.**"
 dbs_6: "{} **Please check the database query!!**"
 dbs_7: "{} **Usage: `{}` [query].**"
