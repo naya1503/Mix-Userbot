@@ -23,10 +23,10 @@ autoread_6: "{} **Please enter the query correctly!!**"
 # afk
 afk_1: "{} **Cannot use channel account.**"
 afk_2: "{} **Now AFK!!**"
-afk_3: "** Online again!\n{} AFK Duration: `{}` ago.**"
-afk_4: "**{} Online again!\n{} AFK Duration: `{}` ago.**\n**Reason: `{}`.**"
-afk_5: "**{} is AFK!!**\n**Since:** `{}` ago."
-afk_6: "**{} is AFK!!**\n**Since:** `{}` ago.\n{} **Reason:** `{}`."
+afk_3: "**{} Online again!\n{} AFK Duration: `{}` ago.**"
+afk_4: "**{} Online again!\n{} AFK Duration: `{}` ago.**\n{} **Reason: `{}`.**"
+afk_5: "**{} is AFK!!**\n{} **Since:** `{}` ago."
+afk_6: "**{} is AFK!!**\n{} **Since:** `{}` ago.\n{} **Reason:** `{}`."
 
 # carbon
 crbn_1: "{} **Text cannot be empty!!**"
