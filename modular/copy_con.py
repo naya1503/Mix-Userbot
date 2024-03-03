@@ -191,10 +191,10 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     msg = m.reply_to_message or m
-    inf = await m.reply(f"{em.proses} <b>Processing...</b>")
+    inf = await m.reply(cgr("proses").format(em.proses))
     link = c.get_arg(m)
     if not link:
-        return await inf.edit(f"<b><code>{m.text}</code> [link]</b>")
+        return await inf.edit(cgr("cpy_1").format(em.gagal, m.comand))
 
     if link.startswith(("https", "t.me")):
         msg_id = int(link.split("/")[-1])
@@ -234,7 +234,7 @@ async def _(c: user, m):
                     await inf.edit(f"{str(error)}")
 
     else:
-        await inf.edit(f"{em.sukses} Nyolong dihentikan.")
+        await inf.edit(cgr("cpy_2").format(em.sukses))
 
 
 @ky.inline("^get_msg")
@@ -250,14 +250,13 @@ async def _(c, iq):
                         [
                             [
                                 InlineKeyboardButton(
-                                    text="Klik Disini",
+                                    text=cgr("klk_1"),
                                     callback_data=f"copymsg_{int(iq.query.split()[1])}",
                                 )
                             ],
                         ]
                     ),
-                    input_message_content=InputTexxxessageContent(
-                        "<b>🔒 Konten Bersifat Private</b>"
+                    input_message_content=InputTexxxessageContent(cgr("cpy_3")
                     ),
                 )
             )
@@ -272,7 +271,7 @@ async def _(c, cq):
         q = int(cq.data.split("_", 1)[1])
         m = [obj for obj in get_objects() if id(obj) == q][0]
         await m._c.unblock_user(bot.me.username)
-        await cq.edit_message_text("<b>Tunggu Sebentar</b>")
+        await cq.edit_message_text(cgr("proses_1"))
         copy = await m._c.send_message(bot.me.username, f"/copy {m.text.split()[1]}")
         msg = m.reply_to_message or m
         await asyncio.sleep(1.5)
@@ -286,7 +285,7 @@ async def _(c, cq):
             await g.delete()
             nyolong_jalan = False
     except Exception as e:
-        await callback_query.edit_message_text(f"<b>{e}</b>")
+        await callback_query.edit_message_text(cgr("err_1").format(e))
 
 
 @ky.ubot("cancel_copy", sudo=True)
