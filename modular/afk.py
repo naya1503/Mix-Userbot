@@ -8,7 +8,7 @@
 
 import time
 
-from Mix import Emojik, ky, udB, user, cgr
+from Mix import Emojik, cgr, ky, udB, user
 from Mix.core.waktu import get_time, put_cleanmode
 
 __modles__ = "Afk"
@@ -236,18 +236,17 @@ async def _(c, m):
                     )
                 )
             elif afktype == "text":
-                send = await m.reply_text(cgr("afk_3").format(
-                        a=em.sukses, b=em.warn, c=seenago
-                    ),
+                send = await m.reply_text(
+                    cgr("afk_3").format(a=em.sukses, b=em.warn, c=seenago),
                     disable_web_page_preview=True,
                 )
             elif afktype == "text_reason":
-                send = await m.reply_text(cgr("afk_4").format(
-                        a=em.sukses, b=em.warn, c=seenago, d=reasonafk
-                    ),
+                send = await m.reply_text(
+                    cgr("afk_4").format(a=em.sukses, b=em.warn, c=seenago, d=reasonafk),
                 )
         except Exception:
-            send = await m.reply_text(cgr("afk_3").format(
+            send = await m.reply_text(
+                cgr("afk_3").format(
                     a=em.sukses,
                     c=seenago,
                 ),
@@ -271,9 +270,7 @@ async def _(c, m):
             reasonafk = reasondb["reason"]
             seenago = await get_time((int(time.time() - timeafk)))
             if afktype == "text":
-                msg += cgr("afk_5").format(
-                    a=em.sukses, c=seenago
-                )
+                msg += cgr("afk_5").format(a=em.sukses, c=seenago)
             if afktype == "text_reason":
                 msg += cgr("afk_6").format(
                     a=em.sukses, b=em.warn, c=seenago, d=reasonafk
@@ -282,9 +279,7 @@ async def _(c, m):
                 if str(reasonafk) == "None":
                     send = await m.reply_animation(
                         data,
-                        caption=cgr("afk_5").format(
-                            a=em.sukses, c=seenago
-                        ),
+                        caption=cgr("afk_5").format(a=em.sukses, c=seenago),
                     )
                 else:
                     send = await m.reply_animation(
@@ -297,9 +292,7 @@ async def _(c, m):
                 if str(reasonafk) == "None":
                     send = await m.reply_photo(
                         photo=f"downloads/{c.me.id}.jpg",
-                        caption=cgr("afk_5").format(
-                            a=em.sukses, c=seenago
-                        ),
+                        caption=cgr("afk_5").format(a=em.sukses, c=seenago),
                     )
                 else:
                     send = await m.reply_photo(
@@ -312,9 +305,7 @@ async def _(c, m):
                 if str(reasonafk) == "None":
                     send = await m.reply_video(
                         video=f"downloads/{c.me.id}.mp4",
-                        caption=cgr("afk_5").format(
-                            a=em.sukses, c=seenago
-                        ),
+                        caption=cgr("afk_5").format(a=em.sukses, c=seenago),
                     )
                 else:
                     send = await m.reply_video(
@@ -324,9 +315,7 @@ async def _(c, m):
                         ),
                     )
         except Exception:
-            msg += cgr("afk_6").format(
-                a=em.sukses, b=em.warn, c=seenago, d=reasonafk
-            )
+            msg += cgr("afk_6").format(a=em.sukses, b=em.warn, c=seenago, d=reasonafk)
     if msg != "":
         try:
             send = await m.reply_text(msg, disable_web_page_preview=True)

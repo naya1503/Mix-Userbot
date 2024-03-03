@@ -101,7 +101,9 @@ async def _(c: user, m):
                 except Exception:
                     failed += 1
 
-    return await msg.edit(cgr("gcs_2").format(em.alive, em.sukses, done, em.gagal, failed))
+    return await msg.edit(
+        cgr("gcs_2").format(em.alive, em.sukses, done, em.gagal, failed)
+    )
 
 
 @ky.ubot("gucast", sudo=True)
@@ -135,7 +137,9 @@ async def _(c: user, m):
                 except Exception:
                     failed += 1
 
-    return await msg.edit(cgr("gcs_3").format(em.alive, em.sukses, done, em.gagal, failed))
+    return await msg.edit(
+        cgr("gcs_3").format(em.alive, em.sukses, done, em.gagal, failed)
+    )
 
 
 @ky.ubot("addbl", sudo=True)
@@ -182,7 +186,7 @@ async def _(c: user, m):
     em.initialize()
     pp = await m.reply(cgr("proses").format(em.proses))
 
-    msg = cgr("gcs_10").format(em.sukses, int( len(udB.get_chat(c.me.id))))
+    msg = cgr("gcs_10").format(em.sukses, int(len(udB.get_chat(c.me.id))))
     for x in udB.get_chat(c.me.id):
         try:
             get = await c.get_chat(x)

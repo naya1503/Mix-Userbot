@@ -49,13 +49,13 @@ async def _(c: user, m):
             await jing.edit(cgr("dbs_2").format(em.sukses))
             return
     elif variable.lower() == "pmpic":
-            udB.set_var(c.me.id, "PMPIC", value)
-            await jing.edit(cgr("dbs_3").format(em.sukses, value))
-            return
+        udB.set_var(c.me.id, "PMPIC", value)
+        await jing.edit(cgr("dbs_3").format(em.sukses, value))
+        return
     elif variable.lower() == "alivepic":
-            udB.set_var(c.me.id, "ALIVEPIC", value)
-            await jing.edit(cgr("dbs_4").format(em.sukses, value))
-            return
+        udB.set_var(c.me.id, "ALIVEPIC", value)
+        await jing.edit(cgr("dbs_4").format(em.sukses, value))
+        return
     elif variable.lower() == "pmtext":
         if value.lower() == "clear":
             udB.remove_var(c.me.id, "PMTEXT")
@@ -64,6 +64,8 @@ async def _(c: user, m):
     else:
         await jing.edit(cgr("dbs_6").format(em.gagal))
         return
+
+
 @ky.ubot("getdb", sudo=True)
 async def _(c: user, m):
     em = Emojik()

@@ -256,8 +256,7 @@ async def _(c, iq):
                             ],
                         ]
                     ),
-                    input_message_content=InputTexxxessageContent(cgr("cpy_3")
-                    ),
+                    input_message_content=InputTexxxessageContent(cgr("cpy_3")),
                 )
             )
         ],

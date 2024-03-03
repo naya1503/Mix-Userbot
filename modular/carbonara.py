@@ -50,5 +50,7 @@ async def _(c, m):
     await asyncio.gather(
         ex.delete(),
         c.send_photo(
-            m.chat.id, carbon, caption=cgr("crbn_2").format(em.sukses, user.me.mention)))
+            m.chat.id, carbon, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
+        ),
+    )
     carbon.close()
