@@ -246,11 +246,8 @@ async def _(c, m):
             elif afktype == "text_reason":
                 send = await m.reply_text(
                     cgr("afk_4").format(
-                          em.sukses,
-                          em.block,
-                          seenago,
-                          em.warn,
-                          reasonafk),
+                        em.sukses, em.block, seenago, em.warn, reasonafk
+                    ),
                 )
         except Exception:
             send = await m.reply_text(
@@ -280,7 +277,9 @@ async def _(c, m):
             if afktype == "text":
                 msg += cgr("afk_5").format(em.sukses, seenago)
             if afktype == "text_reason":
-                msg += cgr("afk_6").format(em.sukses, em.block, seenago, em.warn, reasonafk)
+                msg += cgr("afk_6").format(
+                    em.sukses, em.block, seenago, em.warn, reasonafk
+                )
             if afktype == "animation":
                 if str(reasonafk) == "None":
                     send = await m.reply_animation(
@@ -291,7 +290,11 @@ async def _(c, m):
                     send = await m.reply_animation(
                         data,
                         caption=cgr("afk_6").format(
-                            em.sukses, em.block, seenago, em.warn, reasonafk,
+                            em.sukses,
+                            em.block,
+                            seenago,
+                            em.warn,
+                            reasonafk,
                         ),
                     )
             if afktype == "photo":
@@ -317,7 +320,11 @@ async def _(c, m):
                     send = await m.reply_video(
                         video=f"downloads/{c.me.id}.mp4",
                         caption=cgr("afk_6").format(
-                            em.sukses, em.block, seenago, em.warn, reasonafk,
+                            em.sukses,
+                            em.block,
+                            seenago,
+                            em.warn,
+                            reasonafk,
                         ),
                     )
         except Exception:
