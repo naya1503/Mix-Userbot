@@ -24,9 +24,9 @@ autoread_6: "{} **Silahkan masukkan query dengan benar!!**"
 afk_1: "{} **Tidak dapat menggunakan akun channel.**"
 afk_2: "{} **Sekarang Afk!!**"
 afk_3: "**{} Online kembali!\n{} Durasi AFK! : `{}` yang lalu.**"
-afk_4: "**{} Online kembali!\n{} Durasi AFK! : `{}` yang lalu.**\n**Alasan : `{}`.**"
-afk_5: "**{} Sedang AFK!!**\n**Dari :** `{}` yang lalu."
-afk_6: "**{} Sedang AFK!!**\n**Dari :** `{}` yang lalu.\n{} **Alasan:** `{}`."
+afk_4: "**{} Online kembali!\n{} Durasi AFK! : `{}` yang lalu.**\n{}**Alasan : `{}`.**"
+afk_5: "**{} Sedang AFK!!**\n{} **Dari :** `{}` yang lalu."
+afk_6: "**{} Sedang AFK!!**\n{} **Dari :** `{}` yang lalu.\n{} **Alasan:** `{}`."
 
 # carbon
 crbn_1: "{} **Teks tidak boleh kosong!!**"
