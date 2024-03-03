@@ -14,19 +14,19 @@ klk_1: "Click Here"
 # autoread 
 
 autoread_1: "{} **Usage: `autoread` [`gc` or `us` or `ch` or `all`].**"
-autoread_2: "{} **Successfully read {} group messages.**"
-autoread_3: "{} **Successfully read {} user messages.**"
-autoread_4: "{} **Successfully read {} channel messages.**"
-autoread_5: "{} **Successfully read {} messages in your account.**"
+autoread_2: "{} **Successfully read `{}` group messages.**"
+autoread_3: "{} **Successfully read `{}` user messages.**"
+autoread_4: "{} **Successfully read `{}` channel messages.**"
+autoread_5: "{} **Successfully read `{}` messages in your account.**"
 autoread_6: "{} **Please enter the query correctly!!**"
 
 # afk
 afk_1: "{} **Cannot use channel account.**"
 afk_2: "{} **Now AFK!!**"
 afk_3: "** Online again!\n{} AFK Duration: `{}` ago.**"
-afk_4: "**{} Online again!\n{} AFK Duration: `{}` ago.**\n**Reason: `{d}`.**"
+afk_4: "**{} Online again!\n{} AFK Duration: `{}` ago.**\n**Reason: `{}`.**"
 afk_5: "**{} is AFK!!**\n**Since:** `{}` ago."
-afk_6: "**{} is AFK!!**\n**Since:** `{}` ago.\n{} **Reason:** `{d}`."
+afk_6: "**{} is AFK!!**\n**Since:** `{}` ago.\n{} **Reason:** `{}`."
 
 # carbon
 crbn_1: "{} **Text cannot be empty!!**"
