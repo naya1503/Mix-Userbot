@@ -5,10 +5,25 @@ penulis:
   
 cmds: "Bantuan Perintah"
 proses: "{} **Sedang Diproses...**"
+upload: "{} **Menunggah...**"
+
+# autoread 
+
 autoread_1: "{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`]**"
 autoread_2: "{} **Berhasil membaca `{}` pesan group.**"
 autoread_3: "{} **Berhasil membaca `{}` pesan pengguna.**"
 autoread_4: "{} **Berhasil membaca `{}` pesan channel.**"
 autoread_5: "{} **Berhasil membaca `{}` pesan diakun anda.**"
 autoread_6: "{} **Silahkan masukkan query dengan benar!!**"
-  
+
+# afk
+afk_1: "{} **Tidak dapat menggunakan akun channel.**")
+afk_2: "{} **Sekarang Afk!!**"
+afk_3: "**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**"
+afk_4: "**{a} Online kembali!\n{b} Durasi AFK! : `{c}` yang lalu.**\n**Alasan : `{d}`**"
+afk_5: "**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu."
+afk_6: "**{a} Sedang AFK!!**\n**Dari :** `{c}` yang lalu.\n{b} **Alasan:** `{d}`"
+
+# carbon
+crbn_1: "{} **Teks tidak boleh kosong!!**"
+crbn_2: "{} **Carbonara oleh: {}**"
