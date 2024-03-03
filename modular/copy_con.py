@@ -15,7 +15,7 @@ from time import time
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import Emojik, bot, ky, progress, user, cgr
+from Mix import Emojik, bot, cgr, ky, progress, user
 
 COPY_ID = {}
 
@@ -256,8 +256,7 @@ async def _(c, iq):
                             ],
                         ]
                     ),
-                    input_message_content=InputTexxxessageContent(cgr("cpy_3")
-                    ),
+                    input_message_content=InputTexxxessageContent(cgr("cpy_3")),
                 )
             )
         ],
