@@ -149,7 +149,7 @@ async def _(c: user, m):
     pp = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.chat.id
     blacklist = udB.get_chat(c.me.id)
-    if str(chat_id) in blacklist:
+    if chat_id in blacklist:
         return await pp.edit(cgr("gcs_4").format(em.sukses))
     add_blacklist = udB.add_chat(c.me.id, chat_id)
     if add_blacklist:
