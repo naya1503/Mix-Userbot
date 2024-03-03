@@ -8,8 +8,16 @@ err: "{} **Error:** {}"
 err_1: "**Error:** {}"
 proses: "{} **Sedang Diproses...**"
 proses_1: "**Sedang Diproses...**"
-upload: "{} **Menunggah...**"
+upload: "{} **Mengunggah...**"
 klk_1: "Klik Disini"
+
+# assisten
+
+asst_1: "Halo 👋 {} !! Saya adalah asisten bot Anda.\n\nPengaturan apa yang ingin kamu ubah ?"
+asst_2: "Halo 👋 {} !! Saya adalah asisten milik {}\nApa yang kamu cari ?"
+asst_3: "Bahasa"
+asst_4:
+asst_5:
 
 # autoread 
 
