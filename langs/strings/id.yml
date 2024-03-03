@@ -39,3 +39,11 @@ cpy_3: "**🔒 Konten Bersifat Private!!**"
 
 # database
 dbs_1: "{} **Gunakan Format : `setdb variable value`.**"
+dbs_2: "{} **PMPermit Dihidupkan.**"
+dbs_3: "{} **PMPic Diatur ke : `{value}`.**"
+dbs_4: "{} **Alive Pic Diatur ke : `{value}`.**"
+dbs_5: "{} **PM Text diatur ke default.**"
+dbs_6: "{} **Silahkan lihat query database!!**"
+dbs_7: "{} **Gunakan format : `{}` [query].**"
+dbs_8: "{} **Ini {} anda : `{}`.**"
+dbs_9: "{} **{} Berhasil dihapus!!**"
