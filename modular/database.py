@@ -96,18 +96,18 @@ async def _(c: user, m):
             except Exception as e:
                 await jing.edit(f"Error {e}")
         else:
-            await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb)
+            await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb))
             return
     elif variable.lower() == "pmlimit":
         bb = udB.get_var(c.me.id, "PMLIMIT")
-        await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb)
+        await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb))
         return
     elif variable.lower() == "pmpic":
         bb = udB.get_var(c.me.id, "PMPIC")
-        await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb)
+        await jing.edit(cgr("dbs_8").format(em.sukses, variable, bb))
         return
     else:
-        await jing.edit(cgr("dbs_6").format(em.gagal)
+        await jing.edit(cgr("dbs_6").format(em.gagal))
         return
 
 
