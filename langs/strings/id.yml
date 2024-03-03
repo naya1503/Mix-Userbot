@@ -4,7 +4,10 @@ penulis:
   
   
 cmds: "Bantuan Perintah"
+err: "{} **Error:** {}"
+err_1: "**Error:** {}"
 proses: "{} **Sedang Diproses...**"
+proses_1: "**Sedang Diproses...**"
 upload: "{} **Menunggah...**"
 klk_1: "Klik Disini"
 
@@ -33,3 +36,6 @@ crbn_2: "{} **Carbonara oleh: {}.**"
 cpy_1: "{} **Gunakan format : `{}` [link].**"
 cpy_2: "{} **Nyolong dihentikan.**"
 cpy_3: "**🔒 Konten Bersifat Private!!**"
+
+# database
+dbs_1: "{} **Gunakan Format : `setdb variable value`.**"
