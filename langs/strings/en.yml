@@ -1,12 +1,64 @@
-nama: English
-penulis:
+name: English
+author:
   - Keenan
   
 cmds: "Command Help"
-proses: "{} **Processing...**"
-autoread_1: "{} **Usage: `autoread` [`gc` or `us` or `ch` or `all`]**"
+err: "{} **Error:** {}"
+err_1: "**Error:** {}"
+process: "{} **Processing...**"
+process_1: "**Processing...**"
+upload: "{} **Uploading...**"
+click_1: "Click Here"
+
+# autoread 
+
+autoread_1: "{} **Usage: `autoread` [`gc` or `us` or `ch` or `all`].**"
 autoread_2: "{} **Successfully read {} group messages.**"
 autoread_3: "{} **Successfully read {} user messages.**"
 autoread_4: "{} **Successfully read {} channel messages.**"
 autoread_5: "{} **Successfully read {} messages in your account.**"
 autoread_6: "{} **Please enter the query correctly!!**"
+
+# afk
+afk_1: "{} **Cannot use channel account.**")
+afk_2: "{} **Now AFK!!**"
+afk_3: "**{a} Online again!\n{b} AFK Duration: `{c}` ago.**"
+afk_4: "**{a} Online again!\n{b} AFK Duration: `{c}` ago.**\n**Reason: `{d}`.**"
+afk_5: "**{a} is AFK!!**\n**Since:** `{c}` ago."
+afk_6: "**{a} is AFK!!**\n**Since:** `{c}` ago.\n{b} **Reason:** `{d}`."
+
+# carbon
+crbn_1: "{} **Text cannot be empty!!**"
+crbn_2: "{} **Carbonized by: {}.**"
+
+# copy
+cpy_1: "{} **Usage: `{}` [link].**"
+cpy_2: "{} **Copying stopped.**"
+cpy_3: "**🔒 Content is Private!!**"
+
+# database
+dbs_1: "{} **Usage: `setdb variable value`.**"
+dbs_2: "{} **PMPermit Enabled.**"
+dbs_3: "{} **PMPic set to: `{value}`.**"
+dbs_4: "{} **Alive Pic set to: `{value}`.**"
+dbs_5: "{} **PM Text set to default.**"
+dbs_6: "{} **Please check the database query!!**"
+dbs_7: "{} **Usage: `{}` [query].**"
+dbs_8: "{} **This is your {} : `{}`.**"
+dbs_9: "{} **{} Successfully deleted!!**"
+
+# gcast
+gcs_1: "{} **Please reply to a message or provide a message.**"
+gcs_2: "{} **Gcast Message Results:\n{} Successfully in `{}` Groups.\n{} Failed in `{}` Groups.**"
+gcs_3: "{} **Gcast Message Results:\n{} Successfully in `{}` Users.\n{} Failed in `{}` Users.**"
+gcs_4: "{} **This group is already in the blacklist!!**"
+gcs_5: "{} **`{}` | `{}` Successfully added to the blacklist.**"
+gcs_6: "{} **Group `{}` is already in the blacklist!!**"
+gcs_7: "{} **`{}` | `{}` is not in the blacklist.**"
+gcs_8: "{} **Group `{}` successfully removed from the blacklist!!**"
+gcs_9: "{} **Group `{}` is no longer in the blacklist!!**"
+gcs_10: "{} **• Gcast blacklist `{}`!!**\n\n"
+gcs_11: "**• `{}` | `{}`**\n"
+gcs_12: "**• `{}`**\n"
+gcs_13: "{} **The blacklist is empty!!**"
+gcs_14: "{} **All blacklists have been successfully removed.**"
