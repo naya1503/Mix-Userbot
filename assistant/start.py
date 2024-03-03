@@ -19,7 +19,8 @@ def clbk_strt():
         False,
         "close_asst",
     )
-    
+
+
 def clbk_strto():
     return okb(
         [
@@ -30,6 +31,7 @@ def clbk_strto():
         False,
         "close_asst",
     )
+
 
 @ky.bots("start")
 async def _(c, m):
