@@ -43,14 +43,12 @@ async def _(c, m):
     if m.reply_to_message:
         text = m.reply_to_message.text or m.reply_to_message.caption
     if not text:
-        return await m.reply(f"{em.gagal} Teks tidak boleh kosong!")
-    ex = await m.reply(f"{em.proses} Processing...")
+        return await m.reply(cgr("crbn_1").format(em.gagal))
+    ex = await m.reply(cgr("proses").format(em.proses))
     carbon = await make_carbon(text)
-    await ex.edit(f"{em.proses} Uploading...")
+    await ex.edit(cgr("upload").format(em.proses))
     await asyncio.gather(
         ex.delete(),
         c.send_photo(
-            m.chat.id, carbon, caption=f"**{em.sukses} Carbonara by {user.me.mention}**"
-        ),
-    )
+            m.chat.id, carbon, caption=cgr("crbn_2").format(em.sukses, user.me.mention)))
     carbon.close()
