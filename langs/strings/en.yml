@@ -6,10 +6,10 @@ penulis:
 cmds: "Command Help"
 err: "{} **Error:** {}"
 err_1: "**Error:** {}"
-process: "{} **Processing...**"
-process_1: "**Processing...**"
+proses: "{} **Processing...**"
+proses_1: "**Processing...**"
 upload: "{} **Uploading...**"
-click_1: "Click Here"
+klk_1: "Click Here"
 
 # autoread 
 
