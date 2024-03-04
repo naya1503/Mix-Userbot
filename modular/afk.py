@@ -12,15 +12,7 @@ from Mix import Emojik, cgr, ky, udB, user
 from Mix.core.waktu import get_time, put_cleanmode
 
 __modles__ = "Afk"
-__help__ = """
- Help Command Afk
-
-• Perintah : <code>{0}afk</code> [reason]
-• Penjelasan : Untuk mengaktifkan mode afk.
-
-• Perintah : <code>{0}unafk</code> [reason]
-• Penjelasan : Untuk menonaktifkan mode afk.
-"""
+__help__ = get_cgr("help_afk")
 
 
 @ky.ubot("afk", sudo=True)
