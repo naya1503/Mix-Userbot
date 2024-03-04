@@ -52,6 +52,7 @@ help_markd: " Markdown\n\n• Perintah: `{0}markdown`\n• Penjelasan: Untuk mel
 help_logo: " Logo\n\n• Perintah: `{0}logo` [text]\n• Penjelasan: Untuk membuat sebuah logo dengan background random ."
 help_lokk: " Locks \n\n• Perintah: `{0}locktypes` \n• Penjelasan: Untuk melihat argumen kunci.\n\n• Perintah: `{0}lock` \n• Penjelasan: Untuk mengunci izin.\n\n• Perintah: `{0}unlock` \n• Penjelasan: Untuk membuka izin.\n\n• Perintah: `{0}locks` \n• Penjelasan: Untuk melihat semua izin."
 help_limt: " Spambot\n\n• Perintah: `{0}limit`\n• Penjelasan: Untuk melihat status akun anda dibatasi atau tidak."
+help_butt: " Button\n\n• Perintah: <code>{0}button</code> [balas pesan]\n• Penjelasan: Untuk membuat teks button.\n\n• Silahkan ketik <code>{0}markdown</code> untuk melihat format button."
 
 
 # assisten
