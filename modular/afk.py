@@ -8,9 +8,10 @@
 
 import time
 
+from pyrogram import filters
+
 from Mix import Emojik, cgr, get_cgr, ky, udB, user
 from Mix.core.waktu import get_time, put_cleanmode
-from pyrogram import filters
 
 __modles__ = "Afk"
 __help__ = get_cgr("help_afk")
@@ -22,8 +23,10 @@ async def isAfk_(f, c, m):
         return bool(True)
     else:
         return bool(False)
-        
+
+
 isAfk = filters.create(isAfk_)
+
 
 @ky.ubot("afk", sudo=True)
 async def _(c: user, m):
@@ -159,8 +162,9 @@ async def _(c: user, m):
     send = await m.reply_text(cgr("afk_2").format(em.sukses))
     await put_cleanmode(c.me.id, send.id)
 
+
 @user.on_message(filters.outgoing & filters.me & isAfk)
-#@ky.ubot("unafk", sudo=True)
+# @ky.ubot("unafk", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
