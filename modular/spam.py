@@ -15,18 +15,7 @@ dispam = []
 berenti = False
 
 __modles__ = "Spam"
-__help__ = """
-Help Command Spam 
-
-• Perintah: <code>{0}dspam</code> [jumlah] [waktu delay] [balas pesan]
-• Penjelasan: Untuk melakukan delay spam.
-
-• Perintah: <code>{0}spam</code> [jumlah] [kata]
-• Penjelasan: Untuk melakukan spam.
-
-• Perintah: <code>{0}cspam</code>
-• Penjelasan: Untuk stop spam.
-"""
+__help__ = get_cgr("help_spam")
 
 
 @ky.ubot("spam", sudo=True)
