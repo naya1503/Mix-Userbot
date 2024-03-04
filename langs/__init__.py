@@ -17,6 +17,7 @@ import requests
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB
 from yaml import safe_load
+
 from config import def_bahasa
 
 cek_bahasa = ndB.get_key("bahasa") or def_bahasa
