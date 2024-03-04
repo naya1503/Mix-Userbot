@@ -6,7 +6,6 @@
 """
 ################################################################
 
-from pyrogram.types import *
 
 from Mix import *
 import asyncio
