@@ -74,7 +74,7 @@ async def _(c, cq):
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
     okb([[("Kembali", "clbk.bek")]])
-    udB.get_key("bahasa")
+    ndB.get_key("bahasa")
     bhs = get_bahasa_()
     buttons = [
         [
