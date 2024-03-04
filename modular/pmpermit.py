@@ -161,7 +161,8 @@ async def _(c: user, m):
     & ~filters.bot
     & ~filters.via_bot
     & ~filters.service,
-    group=69)
+    group=69,
+)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
