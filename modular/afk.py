@@ -163,7 +163,7 @@ async def _(c: user, m):
     await put_cleanmode(c.me.id, send.id)
 
 
-# @user.on_message(filters.outgoing & filters.me)
+
 @ky.ubot("unafk", sudo=True)
 async def _(c, m):
     em = Emojik()
