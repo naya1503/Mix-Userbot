@@ -25,7 +25,6 @@ Help Command Sticker
 import asyncio
 import os
 
-from pyrogram import enums
 from pyrogram.errors import *
 from pyrogram.file_id import *
 from pyrogram.raw.functions.messages import *
@@ -33,8 +32,6 @@ from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
 
 from Mix import Emojik, bot, ky, ndB, user
-from Mix.core.http import http
-from Mix.core.stick_tools import EMOJI_PATTERN, convert_video, resize_image
 
 LOG_ME = ndB.get_key("TAG_LOG")
 
