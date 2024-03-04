@@ -25,7 +25,7 @@ async def isAfk_(f, c, m):
         return bool(False)
 
 
-#isAfk = filters.create(isAfk_)
+# isAfk = filters.create(isAfk_)
 
 
 @ky.ubot("afk", sudo=True)
