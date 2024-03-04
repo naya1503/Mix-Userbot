@@ -6,19 +6,13 @@
 """
 ################################################################
 
-__modles__ = "Telegraph"
-__help__ = """
-Help Command Telegraph
-
-• Perintah: <code>{0}tg</code>
-• Penjelasan: Untuk mengunggah teks, video atau foto.
-"""
-
 
 from telegraph import Telegraph, exceptions, upload_file
 
 from Mix import *
 
+__modles__ = "Telegraph"
+__help__ = get_cgr("help_graph")
 
 @ky.ubot("tg", sudo=True)
 async def _(c: user, m):
