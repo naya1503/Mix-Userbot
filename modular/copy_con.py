@@ -10,7 +10,7 @@ import os
 import time
 from time import time
 
-from Mix import Emojik, bot, cgr, ky, progress, user
+from Mix import Emojik, bot, cgr, ky, progress, user, get_cgr
 
 COPY_ID = {}
 
@@ -18,12 +18,7 @@ nyolong_jalan = False
 
 
 __modles__ = "Content"
-__help__ = """
- Bantuan Untuk Copy
-
-• Perintah : <code>{0}copy</code> [link]
-• Penjelasan : Untuk mengambil pesan melalui link telegram.
-  """
+__help__ = get_cgr("help_copy")
 
 #### TomiXtomi
 
