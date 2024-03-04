@@ -85,6 +85,7 @@ async def _(c, m):
                 caption=teks,
                 reply_markup=donut,
             )
+            os.remove(pat)
         elif m.video:
             media = m.video.file_id
             pat = await c.download_media(media, file_name=f"{m.from_user.id}.mp4")
@@ -94,11 +95,12 @@ async def _(c, m):
                 caption=teks,
                 reply_markup=donut,
             )
+            os.remove(pat)
         else:
             ret = await bot.send_message(
                 db, teks, disable_web_page_preview=True, reply_markup=donut
             )
-        os.remove(pat)
+        
     except FloodWait as e:
         await asyncio.sleep(e.value)
         ret = await bot.send_message(
@@ -116,22 +118,24 @@ async def _(c: user, m):
         try:
             if m.photo:
                 media = m.photo.file_id
-                pat = await c.dl_pic(media)
+                pat = await c.download_media(media, file_name=f"{m.from_user.id}.jpg")
                 await c.send_photo(
                     chat,
                     photo=pat,
                     caption=m.text or m.caption,
                     reply_to_message_id=msg,
                 )
+                os.remove(pat)
             elif m.video:
                 media = reply_.video.file_id
-                pat = await c.dl_pic(media)
+                pat = await c.download_media(media, file_name=f"{m.from_user.id}.mp4")
                 await c.send_video(
                     chat,
                     video=pat,
                     caption=m.text or m.caption,
                     reply_to_message_id=msg,
                 )
+                os.remove(pat)
             else:
                 await c.send_message(chat, m.text, reply_to_message_id=msg)
         except Exception as e:
