@@ -30,6 +30,16 @@ def markdown_help():
         "help_back",
     )
 
+def sini_croot():
+    keyboard = InlineKeyboard(row_width=1)
+    keyboard.row(
+        InlineKeyboardButton(text="English", callback_data=f"bahasa_:en"),
+        InlineKeyboardButton(text="Indonesia", callback_data=f"bahasa_:id"),
+    )
+    keyboard.row(
+        InlineKeyboardButton(cgr("balik"), callback_data="clbk.bek"),
+    )
+    return keyboard
 
 @ky.inline("^dibikin_button")
 async def _(c, iq):
@@ -74,23 +84,17 @@ async def _(c, cq):
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
     okb([[("Kembali", "clbk.bek")]])
-    ndB.get_key("bahasa")
-    bhsk = get_bahasa_()
-    mmfg = bhsk[arn]["nama"]
-    buttons = [
-        [InlineKeyboardButton(f"{mmfg}", callback_data=f"set_{arn}")] for arn in bhsk
-    ]
-    buttons.append([InlineKeyboardButton(cgr("balik"), callback_data="clbk.bek")])
+    
     if cmd == "bhsa":
-        teks = cgr("asst_4").format(bhs["nama"])
-        await cq.edit_message_text(text=teks, reply_markup=buttons)
+        teks = cgr("asst_4")
+        await cq.edit_message_text(text=teks, reply_markup=lanuages_keyboard)
     elif cmd == "bek":
         txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
 
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
 
 
-@ky.callback("^set_(.*)$")
+@ky.callback("^languages:(.*?)")
 async def _(c, cq):
     lang = query.matches[0].group(1)
     bhs = get_bahasa_()
