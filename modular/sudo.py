@@ -9,18 +9,7 @@
 from Mix import *
 
 __modles__ = "Sudo"
-__help__ = """
- Help Command Sudo
-
-• Perintah: <code>{0}addsudo</code> [reply user]
-• Penjelasan: Untuk menambahkan pengguna sudo.
-
-• Perintah: <code>{0}delsudo</code> [reply user]
-• Penjelasan: Untuk menghapus pengguna sudo.
-
-• Perintah: <code>{0}sudolist</code>
-• Penjelasan: Untuk melihat daftar sudo.
-"""
+__help__ = get_cgr("help_sudo")
 
 
 @ky.ubot("addsudo", sudo=True)
