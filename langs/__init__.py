@@ -118,6 +118,6 @@ def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
     for file in glob("langs/strings/*yml"):
         load(file)
     try:
-        return bahasa_["name"]
+        return bahasa_["natively"]
     except KeyError as e:
         LOGGER.error(f"KeyError: {e} not found in language file")
