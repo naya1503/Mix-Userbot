@@ -6,15 +6,17 @@
 """
 ################################################################
 
-from pyrogram.types import *
-from pyrogram import *
 from gc import get_objects
+
+from pyrogram import *
+from pyrogram.types import *
+
 from Mix import *
 
 from .start import clbk_strt
 
-@ky.inline("^dibikin_button")
 
+@ky.inline("^dibikin_button")
 async def _(c, iq):
 
     # iq.from_user.id
@@ -46,6 +48,7 @@ async def _(_, cq):
             True,
         )
         return
+
 
 @ky.callback("close_asst")
 async def _(c, cq):

@@ -6,7 +6,6 @@
 """
 ################################################################
 
-from gc import get_objects
 
 from pyrogram import *
 from pyrogram.types import *
@@ -57,6 +56,3 @@ async def _(c: user, m):
             f"{em.gagal} Silahkan ketik `help markdown` untuk melihat format button!"
         )
     await babi.delete()
-
-
-
