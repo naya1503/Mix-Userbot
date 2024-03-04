@@ -8,30 +8,7 @@
 
 
 __modles__ = "Broadcast"
-__help__ = """
- Help Command Gcast
-
-• Perintah : <code>{0}gucast</code> [balas pesan/kirim pesan]
-• Penjelasan : Untuk pengirim pesan ke semua pengguna.
-
-• Perintah : <code>{0}gcast</code> [balas pesan/kirim pesan]
-• Penjelasan : Untuk pengirim pesan ke semua grup.
-
-• Perintah: <code>{0}addbl</code>
-• Penjelasan: Menambahkan grup kedalam anti Gcast.
-
-• Perintah: <code>{0}delbl</code>
-• Penjelasan: Menghapus grup dari daftar anti Gcast.
-
-• Perintah: <code>{0}rmall</code>
-• Penjelasan: Menghapus semua grup dari daftar anti Gcast.
-
-• Perintah: <code>{0}listbl</code>
-• Penjelasan: Melihat daftar grup anti Gcast.
-
-• Perintah : <code>{0}send</code> [username/user_id - teks/reply]
-• Penjelasan : Untuk mengirim pesan ke pengguna/grup/channel.
-"""
+__help__ = get_cgr("help_gcast")
 
 import asyncio
 
