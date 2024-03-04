@@ -149,7 +149,6 @@ async def _(c: user, m):
     & ~filters.bot
     & ~filters.via_bot
     & ~filters.service,
-    group=11,
 )
 async def _(_, m):
     await user.forward_private(m)
