@@ -49,14 +49,6 @@ async def _(c: user, m):
         )
 
 
-@user.on_message(
-    filters.group
-    & filters.mentioned
-    & filters.incoming
-    & ~filters.bot
-    & ~filters.via_bot,
-    group=99,
-)
 async def _(c, m):
 
     db = udB.get_logger(user.me.id)
