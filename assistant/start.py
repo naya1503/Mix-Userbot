@@ -27,7 +27,7 @@ def clbk_strto():
     return okb(
         [
             [
-                (cgr("asst_3"), "clbk.info"),
+                (cgr("ttup"), "clbk.info"),
             ],
         ],
         False,
@@ -39,7 +39,9 @@ def clbk_strto():
 async def _(c, m):
     udB.add_served_user(m.from_user.id)
     owner_nih = user.me.id
+    ts_1 = cgr("asst_1").format(<a href=tg://user?id=m.from_user.id>m.from_user.first_name m.from_user.last_name or ''</a>)
+    ts_2 = cgr("asst_2").format(<a href=tg://user?id=m.from_user.id>m.from_user.first_name m.from_user.last_name or ''</a>, user.me.mention)
     if m.from_user.id == owner_nih:
-        await m.reply(cgr("asst_1"), reply_markup=clbk_strt())
+        await m.reply(ts_1, reply_markup=clbk_strt())
     else:
-        await m.reply(cgr("asst_2"), reply_markup=clbk_strto())
+        await m.reply(ts_2, reply_markup=clbk_strto())
