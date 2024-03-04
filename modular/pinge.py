@@ -14,12 +14,7 @@ from Mix import *
 from Mix.core.waktu import get_time, start_time
 
 __modles__ = "Ping"
-__help__ = """
- Help Command Ping
-
-• Perintah : <code>{0}ping</code>
-• Penjelasan : Untuk mengecek userbot anda.
-"""
+__help__ = get_cgr("help_ping")
 
 
 @ky.ubot("ping", sudo=True)
