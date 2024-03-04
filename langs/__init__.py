@@ -73,6 +73,7 @@ def load(file):
     except Exception as er:
         LOGGER.info(f"Error in {file[:-4]}\n\n{er} language file")
 
+
 load(loc_lang.format(cek_bahasa))
 
 
