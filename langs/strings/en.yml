@@ -14,6 +14,10 @@ klk_1: "Click Here"
 balik: "Back"
 ttup: "Close"
 
+# help_for
+help_afk: "Help Command Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
+help_alive: ""
+
 # assisten
 asst_1: "Hello 👋 {} !! I'm your assistant bot.\n\nWhat settings do you want to change?"
 asst_2: "Hello 👋 {} !! I'm {}'s assistant\nWhat are you looking for ?"
@@ -74,25 +78,45 @@ gcs_13: "{} **The blacklist is empty!!**"
 gcs_14: "{} **All blacklists have been successfully removed.**"
 
 # alive
+alv: " **Help Command Alive**\n\n• Command : `{0}alive`\n• Description : Alive."
 alv_1: "**Author**"
 alv_2: "**Connoisseur**"
+alv_3: "**Mix-Userbot**\n    **stats:** {}\n    **dc_id:** {}\n    **ping_dc:** {str(pink).replace('.', ',')} ms\n    **pmpermit:** {}\n    **peer_users:** {len(apa)}\n    **peer_groups:** {len(ape)}\n    **bot_uptime:** {}"
 alv_4: "Support"
 
 # global
+glbl: " **Help Command Global**\n\n• Command : `{0}gban` [user_id/username/reply message]\n• Description : For Global Banning Users.\n• Command : `{0}ungban` [user_id/username/reply message]\n• Description : For Global Un-ban.\n• Command : `{0}listgban` [user_id/username/reply message]\n• Description : For check list of users Global Banned.\n• Command : `{0}gmute` [user_id/username/reply message]\n• Desription : For Global Mutting Users.\n• Command : `{0}ungmute` [user_id/username/reply message]\n• Description : For Global Un-Mute.\n• Command : `{0}listgmute` [user_id/username/reply message]\n• Description : For check Global Muted Users."
 glbl_2: "{} **User not found!.**"
 glbl_3: "{} **Are you Kidding me? hah? He is a Developers of Mix-Userbot.**"
 glbl_4: "{} **Give me a reason before do a Global Banning!**"
 glbl_5: "{} **User Already Global Banned!**"
+glbl_6: "{} **Warning Global Banned\n\n{} Success: `{bs}` Chat\n{} Failed: `{}` Chat\n{} User: `{}`**\n{} Reason: `{}`**"
 glbl_7: "{} **User not in list Global Banned!**"
+glbl_8: "{} **Warning Global Unbanned\n\n{} Success: `{bs}` Chat\n{} Failed: `{}` Chat\n{} User: `{}`**"
 glbl_9: "{} **Give me a reason before do a Global Mutting!**"
 glbl_10: "{} **User Already Global Mutted.**"
+glbl_11: "{} **Warning Global Gmute\n\n{} Success: `{bs}` Chat\n{} Failed: `{}` Chat\n{} User: `{}`**\n{} Reason: `{Reason}`**"
 glbl_12: "{} **User never Global Mutted.**"
+glbl_13: "{} **Warning Global Ungmute\n\n{} Success: `{bs}` Chat\n{} Failed: `{}` Chat\n{} User: `{mention}`**"
+glbl_14: "{} **List of GBanned :**\n\n"
+glbl_15: "{} **{ii['_id']}**\n"
+glbl_16: "{} **Reason: `{ii['reason']}`\n\n{} Total :`{dbgb.count_gbans()}`**\n"
+glbl_17: "{} **List of GBanned!!**\n\n"
+glbl_18: "{} **List of GMute :**\n\n"
+glbl_19: "{} **`{ii['_id']}`**\n"
+glbl_20: "{} **Reason: `{ii['reason']}`\n\n{} Total :`{dbgm.count_gmutes()}`**\n"
 glbl_21: "{} **List of GMute!!**\n\n"
 
 # graph
+grp: " Help Command Telegraph\n\n• Command: `{0}tg`\n• Desription: For Uploading text, video atau foto to Telegraph"
 grp_1: "{} **Please reply text or media!**"
+grp_2: "{} **`{r}`\n\nReport this error text to @KynanSupport!**"
+grp_3: "{} **Uploaded to : <a href='https://telegra.ph/{media_url[0]}'>Click Here</a>**"
+grp_4: "{c.me.first_name} {c.me.last_name or ''}"
+grp_5: "{} **Uploaded to : <a href='https://telegra.ph/{response['path']}'>Click Here</a>**"
 
 # grouplog
+grplog: " Help Command GroupLog\n\n• Command: `{0}gruplog` [on/off]\n• Description: For activating tag log and pm log."
 grplog_1: "{} **Log Group Successfully Activated! :\n\n{}**"
 grplog_2: "{} **Log Group Already Activated.**"
 grplog_3: "{} **Log Group Successfully Deactivated!.**"
@@ -103,3 +127,4 @@ grplog_7: "**📨 New Message\n\n• Group : {}\n• User : {}\n• Messages: {}
 grplog_8: "Replied Message"
 
 # info
+inf: "Help Command Info\n\n• Command: `{0}info`\n• Description: Check Users.\n\n• Command: `{0}cinfo`\n• Description: Check detail Group."
