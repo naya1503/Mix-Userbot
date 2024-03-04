@@ -20,8 +20,9 @@ from yaml import safe_load
 
 from config import def_bahasa
 
-cek_bahasa = ndB.get_key("bahasa") or def_bahasa
 from urllib.parse import quote, unquote
+
+cek_bahasa = ndB.get_key("bahasa") or def_bahasa
 
 bahasa_ = {}
 loc_lang = "langs/strings/{}.yml"
@@ -113,8 +114,13 @@ def get_cgr(key):
         return cgr("cmds") + doc
 
 
-def get_bahasa_():
-    xixi = bahasa_
-    for file in glob("langs/strings/*.yml"):
+def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
+    for file in glob("langs/strings/*yml"):
         load(file)
-    return xixi
+    return {
+        code: {
+            "nama": bahasa_[code]["nama"],
+            "penulis": bahasa_[code]["penulis"],
+        }
+        for code in bahasa_
+    }
