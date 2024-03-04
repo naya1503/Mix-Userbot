@@ -94,7 +94,9 @@ def cgr(key, _res: bool = True):
             return tr
         except KeyError as e:
             if not _res:
-                LOGGER.info(f"Warning: could not load any string with the key `{key}` {e}")
+                LOGGER.info(
+                    f"Warning: could not load any string with the key `{key}` {e}"
+                )
                 return
         except TypeError:
             pass
