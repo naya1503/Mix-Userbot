@@ -154,11 +154,7 @@ async def _(c: user, m):
 
 
 @user.on_message(
-    filters.private
-    & filters.incoming
-    & ~filters.me
-    & ~filters.bot
-    & ~filters.service,
+    filters.private & filters.incoming & ~filters.me & ~filters.bot & ~filters.service,
     group=99,
 )
 async def _(c: user, m):
