@@ -59,7 +59,14 @@ async def _(c: user, m):
             f"{em.gagal} **Format yang anda berikan salah. silahkan gunakan <code>gruplog on or off</code>.**"
         )
 
-
+@user.on_message(
+    filters.group
+    & filters.mentioned
+    & filters.incoming
+    & ~filters.bot
+    & ~filters.via_bot,
+    group=12,
+)
 async def _(c, m):
     db = udB.get_logger(user.me.id)
     if not db:
@@ -154,7 +161,7 @@ async def _(c: user, m):
 
 
 @ky.pc()
-async def jink_(c: user, m):
+async def _(c: user, m):
     lg = ndB.get_key("TAG_LOG")
     if lg is None:
         return
