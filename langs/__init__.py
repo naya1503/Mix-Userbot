@@ -67,9 +67,7 @@ def load(file):
         file = loc_lang.format("en")
     code = file.split("/")[-1].split("\\")[-1][:-4]
     try:
-        bahasa_[code] = safe_load(
-            open(file, encoding="UTF-8"),
-        )
+        bahasa_[code] = safe_load(open(file, encoding="UTF-8"))
     except Exception as er:
         LOGGER.info(f"Error in {file[:-4]}\n\n{er} language file")
 
@@ -116,12 +114,7 @@ def get_cgr(key):
 
 
 def get_bahasa_():
-    for file in glob("langs/strings/*yml"):
+    xixi = bahasa_
+    for file in glob("langs/strings/*.yml"):
         load(file)
-    return {
-        code: {
-            "nama": bahasa_[code]["nama"],
-            "penulis": bahasa_[code]["penulis"],
-        }
-        for code in bahasa_
-    }
+    return xixi
