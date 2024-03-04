@@ -14,24 +14,7 @@ from telegraph import upload_file
 from Mix import *
 
 __modles__ = "Notes"
-__help__ = """
-Help Command Notes
-
-• Perintah: <code>{0}save</code> [nama catatan] [balas pesan]
-• Penjelasan: Untuk menyimpan catatan.
-
-• Perintah: <code>{0}get</code> [nama catatan]
-• Penjelasan: Untuk mengambil catatan.
-
-• Perintah: <code>{0}clear</code> [nama catatan]
-• Penjelasan: Untuk menghapus catatan.
-
-• Perintah: <code>{0}notes</code>
-• Penjelasan: Untuk melihat semua catatan.
-
-• Untuk menggunakan inline button silahkan ketik :
-<code>{0}markdown</code>
-"""
+__help__ = get_cgr("help_notes")
 
 
 def kontol_siapa(xi, tipe):
