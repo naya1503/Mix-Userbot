@@ -11,5 +11,7 @@
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
     kb = okb([[("Kembali", "clbk.bek")]])
+    ck_bhs = udB.get_key("bahasa")
+    bhs = get_bahasa_()
     if cmd == "bhsa":
-        teks = 
+        teks = cgr("asst_4")
