@@ -5,12 +5,7 @@ from pyrogram.raw.functions.messages import DeleteHistory, StartBot
 from Mix import *
 
 __modles__ = "Spambot"
-__help__ = """
-Help Command Spambot
-
-• Perintah: <code>{0}limit</code>
-• Penjelasan: Untuk melihat status akun anda dibatasi atau tidak.
-"""
+__help__ = get_cgr("help_limt")
 
 
 @ky.ubot("limit", sudo=True)
