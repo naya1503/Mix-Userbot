@@ -9,24 +9,7 @@
 from Mix import *
 
 __modles__ = "PMPermit"
-__help__ = """
- Help Command PMPermit
-
-• Perintah: <code>{0}setmsg</code> [balas atau berikan pesan]
-• Penjelasan: Untuk mengatur pesan PMPERMIT.
-
-• Perintah: <code>{0}setlimit</code> [angka]
-• Penjelasan: Untuk mengatur peringatan pesan blokir.
-
-• Perintah: <code>{0}ok atau setuju</code>
-• Penjelasan: Untuk menyetujui pesan.
-
-• Perintah: <code>{0}no atau tolak</code>
-• Penjelasan: Untuk menolak pesan.
-
-• Untuk menghidupkan PMPermit Silahkan Ketik:
-<code>{0}setdb pmpermit on</code>
-"""
+__help__ = get_cgr("help_pmper")
 
 from pyrogram import *
 from pyrogram.types import *
