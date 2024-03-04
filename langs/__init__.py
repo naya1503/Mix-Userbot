@@ -119,9 +119,9 @@ def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
         load(file)
     try:
         return {
-            "name": bahasa_["name"],
-            "natively": bahasa_["natively"],
-            "authors": bahasa_["authors"],
+            bahasa_["name"],
+            bahasa_["natively"],
+            bahasa_["authors"],
         }
     except KeyError as e:
         LOGGER.error(f"KeyError: {e} not found in language file")
