@@ -8,6 +8,11 @@
 
 from Mix import *
 from pyrogram.types import *
+from .start import clbk_strt
+
+@ky.callback("close_asst")
+async def _(c, cq):
+    await cq.message.delete()
 
 @ky.callback("clbk.")
 async def _(c, cq):
@@ -28,6 +33,10 @@ async def _(c, cq):
     if cmd == "bhsa":
         teks = cgr("asst_4").format(bhs['nama'])
         await cq.edit_message_text(text=teks, reply_markup=buttons)
+    elif cmd == "bek":
+        txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
+
+        await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
         
         
 @ky.callback("^set_(.*)$")
