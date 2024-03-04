@@ -254,7 +254,7 @@ async def _(c, m):
 
 
 # @user.on_message((filters.mentioned | filters.private) & filters.incoming & ~filters.bot, group=11)
-#@ky.afk()
+# @ky.afk()
 async def _(c, m):
     em = Emojik()
     em.initialize()

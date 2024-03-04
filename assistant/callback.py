@@ -89,8 +89,7 @@ async def _(c, cq):
     languages = get_bahasa_()
     tultd = [
         InlineKeyboardButton(
-            f"{languages[mx]['natively']} [{mx.lower()}]",
-            callback_data=f"set_{mx}"
+            f"{languages[mx]['natively']} [{mx.lower()}]", callback_data=f"set_{mx}"
         )
         for mx in languages
     ]
