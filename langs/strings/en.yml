@@ -4,7 +4,7 @@ penulis:
   - Keenan
 
 
-cmds: "Command Help"
+cmds: "Help Command"
 err: "{} **Error:** {}"
 err_1: "**Error:** {}"
 proses: "{} **Processing...**"
@@ -15,7 +15,7 @@ balik: "Back"
 ttup: "Close"
 
 # help_for
-help_afk: "Help Command Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
+help_afk: " Afk\n\n• Command: `{0}afk` [reason]\n• Explanation: To activate afk mode.\n\n• Command: `{0}unafk` [reason]\n• Explanation: To deactivate afk mode."
 help_alive: ""
 
 # assisten
