@@ -160,31 +160,6 @@ async def gas_download(g, c: user, inf, m):
         os.remove(media)
         os.remove(thumbnail)
 
-
-@ky.bots("copy")
-async def _(c, m):
-    if m.from_user.id != user.me.id:
-        return
-    xx = await m.reply("Tunggu Sebentar...")
-    link = user.get_arg(m)
-    if not link:
-        return await xx.edit(f"<b><code>{m.text}</code> [link]</b>")
-    if link.startswith(("https", "t.me")):
-        msg_id = int(link.split("/")[-1])
-        if "t.me/c/" in link:
-            chat = int("-100" + str(link.split("/")[-2]))
-        else:
-            chat = str(link.split("/")[-2])
-        try:
-            g = await c.get_messages(chat, msg_id)
-            await g.copy(m.chat.id)
-            await xx.delete()
-        except Exception as error:
-            await xx.edit(error)
-    else:
-        await xx.edit("Link tidak valid.")
-
-
 @ky.ubot("copy", sudo=True)
 async def _(c: user, m):
     global nyolong_jalan
@@ -235,56 +210,6 @@ async def _(c: user, m):
 
     else:
         await inf.edit(cgr("cpy_2").format(em.sukses))
-
-
-@ky.inline("^get_msg")
-async def _(c, iq):
-    await c.answer_inline_query(
-        iq.id,
-        cache_time=0,
-        results=[
-            (
-                InlineQueryResultArticle(
-                    title="message",
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    text=cgr("klk_1"),
-                                    callback_data=f"copymsg_{int(iq.query.split()[1])}",
-                                )
-                            ],
-                        ]
-                    ),
-                    input_message_content=InputTexxxessageContent(cgr("cpy_3")),
-                )
-            )
-        ],
-    )
-
-
-@ky.callback("copymsg_")
-async def _(c, cq):
-    global nyolong_jalan
-    try:
-        q = int(cq.data.split("_", 1)[1])
-        m = [obj for obj in get_objects() if id(obj) == q][0]
-        await m._c.unblock_user(bot.me.username)
-        await cq.edit_message_text(cgr("proses_1"))
-        copy = await m._c.send_message(bot.me.username, f"/copy {m.text.split()[1]}")
-        msg = m.reply_to_message or m
-        await asyncio.sleep(1.5)
-        await copy.delete()
-        nyolong_jalan = True
-        async for g in m._c.search_messages(bot.me.username, limit=1):
-            await m._c.copy_message(
-                m.chat.id, bot.me.username, g.id, reply_to_message_id=msg.id
-            )
-            await m._c.delete_messages(m.chat.id, COPY_ID[m._c.me.id])
-            await g.delete()
-            nyolong_jalan = False
-    except Exception as e:
-        await callback_query.edit_message_text(cgr("err_1").format(e))
 
 
 @ky.ubot("cancel_copy", sudo=True)
