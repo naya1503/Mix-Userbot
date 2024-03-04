@@ -57,7 +57,6 @@ async def _(c: user, m):
 
 
 async def _(c, m):
-
     db = udB.get_logger(user.me.id)
     if not db:
         return
