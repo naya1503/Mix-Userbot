@@ -34,12 +34,10 @@ __help__ = """
 """
 
 import asyncio
-from gc import get_objects
 
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
-from telegraph import upload_file
 
 from Mix import *
 
