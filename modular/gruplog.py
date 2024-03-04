@@ -153,8 +153,7 @@ async def _(c: user, m):
             return
 
 
-@user.on_message(
-    filters.private & filters.incoming)
+@user.on_message(filters.private & filters.incoming)
 async def _(c: user, m):
     lg = ndB.get_key("TAG_LOG")
     if lg is None:
