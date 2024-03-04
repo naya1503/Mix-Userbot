@@ -12,7 +12,7 @@ from time import time
 from pyrogram.raw.functions import Ping
 from pyrogram.types import *
 
-from Mix import DEVS, bot, ky, udB, user
+from Mix import DEVS, bot, ky, udB, user, get_cgr
 from Mix.core.waktu import get_time, start_time
 
 from .gcast import refresh_dialog
