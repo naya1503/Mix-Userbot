@@ -12,6 +12,7 @@ import random
 import sys
 from glob import glob
 from typing import Any, Dict, List, Union
+from urllib.parse import quote, unquote
 
 import requests
 from team.nandev.class_log import LOGGER
@@ -19,8 +20,6 @@ from team.nandev.database import ndB
 from yaml import safe_load
 
 from config import def_bahasa
-
-from urllib.parse import quote, unquote
 
 cek_bahasa = ndB.get_key("bahasa") or def_bahasa
 
