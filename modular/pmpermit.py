@@ -154,7 +154,7 @@ async def _(c: user, m):
     )
 
 
-@ky.pm()
+@ky.permit()
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
