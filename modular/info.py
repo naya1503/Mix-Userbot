@@ -23,15 +23,7 @@ from Mix.core.sender_tools import extract_user
 gban_db = GBan()
 
 __modles__ = "Info"
-__help__ = """
-Help Command Info 
-
-• Perintah: <code>{0}info</code>
-• Penjelasan: Untuk melihat pengguna.
-
-• Perintah: <code>{0}cinfo</code>
-• Penjelasan: Untuk melihat grup.
-"""
+__help__ = get_cgr("help_info")
 
 
 async def count(c: user, chat):
