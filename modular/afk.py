@@ -150,7 +150,8 @@ async def _(c: user, m):
     await put_cleanmode(c.me.id, send.id)
 
 
-@ky.ubot("unafk", sudo=True)
+#@ky.ubot("unafk", sudo=True)
+@user.on_message(filters.me & filters.group, group=12)
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -253,7 +254,9 @@ async def _(c, m):
         return
 
 
-@ky.apk()
+@user.on_message(
+    (filters.mentioned | filters.private) & filters.incoming & ~filters.bot, group=11
+)
 async def _(c, m):
     em = Emojik()
     em.initialize()
