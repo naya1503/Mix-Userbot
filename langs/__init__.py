@@ -117,8 +117,13 @@ def get_cgr(key):
 def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
     for file in glob("langs/strings/*yml"):
         load(file)
-    return {
-        "name": bahasa_["name"],
-        "natively": bahasa_["natively"],
-        "authors": bahasa_["authors"],
-    }
+    try:
+        return {
+            "name": bahasa_["name"],
+            "natively": bahasa_["natively"],
+            "authors": bahasa_["authors"],
+        }
+    except KeyError as e:
+        LOGGER.error(f"KeyError: {e} not found in language file")
+        return {}
+
