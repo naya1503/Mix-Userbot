@@ -18,12 +18,7 @@ from .webshot import ss
 pattern = re.compile(r"^text/|json$|yaml$|xml$|toml$|x-sh$|x-shellscript$")
 
 __modles__ = "Pastebin"
-__help__ = """
- Help Command Pastebin
-
-• Perintah : <code>{0}paste</code> [balas pesan]
-• Penjelasan : Untuk mengupload teks ke pastebin.
-"""
+__help__ = get_cgr("help_paste")
 
 
 @ky.ubot("paste", sudo=True)
