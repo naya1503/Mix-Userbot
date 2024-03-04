@@ -68,12 +68,12 @@ def load(file):
         file = loc_lang.format("en")
     code = file.split("/")[-1].split("\\")[-1][:-4]
     try:
-        bahasa_[code] = safe_load(open(file, encoding="UTF-8"))
+        bahasa_data = safe_load(open(file, encoding="UTF-8"))
+        bahasa_[code] = bahasa_data
     except Exception as er:
         LOGGER.info(f"Error in {file[:-4]}\n\n{er} language file")
 
-
-load(loc_lang.format(cek_bahasa))
+#load(loc_lang.format(cek_bahasa))
 
 
 def cgr(key, _res: bool = True):
