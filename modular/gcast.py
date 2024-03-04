@@ -7,9 +7,6 @@
 ################################################################
 
 
-__modles__ = "Broadcast"
-__help__ = get_cgr("help_gcast")
-
 import asyncio
 
 from pyrogram.enums import *
@@ -18,6 +15,8 @@ from pyrogram.types import *
 
 from Mix import *
 
+__modles__ = "Broadcast"
+__help__ = get_cgr("help_gcast")
 
 async def refresh_dialog(query):
     chats = []
