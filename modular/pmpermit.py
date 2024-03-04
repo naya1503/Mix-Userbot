@@ -154,7 +154,7 @@ async def _(c: user, m):
     )
 
 
-#@ky.pc()
+# @ky.pc()
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
