@@ -59,34 +59,4 @@ async def _(c: user, m):
     await babi.delete()
 
 
-@ky.inline("^dibikin_button")
-async def _(c, iq):
-    # iq.from_user.id
-    _id = int(iq.query.split()[1])
-    m = [obj for obj in get_objects() if id(obj) == _id][0]
-    rep = m.reply_to_message
-    teks, button = nan_parse(rep.text)
-    button = build_keyboard(button)
-    duar = [
-        (
-            InlineQueryResultArticle(
-                title="Tombol Teks!",
-                input_message_content=InputTextMessageContent(teks),
-                reply_markup=InlineKeyboardMarkup(button),
-            )
-        )
-    ]
-    await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
-
-@ky.callback("^cls_hlp")
-async def _(_, cq):
-    unPacked = unpackInlineMessage(cq.inline_message_id)
-    if cq.from_user.id == user.me.id:
-        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
-    else:
-        await cq.answer(
-            f"Jangan Di Pencet Anjeng.",
-            True,
-        )
-        return
