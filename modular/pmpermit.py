@@ -154,7 +154,14 @@ async def _(c: user, m):
     )
 
 
-@ky.permit()
+@user.on_message(
+    filters.private
+    & filters.incoming
+    & ~filters.me
+    & ~filters.bot
+    & ~filters.via_bot
+    & ~filters.service,
+    group=69)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
