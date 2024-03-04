@@ -174,3 +174,129 @@ Anda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, A
 async def _(c, cq):
     txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
     await cq.edit_message_text(text=txt, reply_markup=markdown_help())
+
+
+@ky.inline("^help")
+async def _(c, iq):
+    user_id = iq.from_user.id
+    emut = await user.get_prefix(user_id)
+    msg = (
+        "<b>Commands\n      Prefixes: `{}`\n      Modules: <code>{}</code></b>".format(
+            " ".join(emut), len(CMD_HELP)
+        )
+    )
+    await c.answer_inline_query(
+        iq.id,
+        cache_time=0,
+        results=[
+            (
+                InlineQueryResultArticle(
+                    title="Help Menu!",
+                    description=f"Menu Bantuan",
+                    thumb_url="https://telegra.ph//file/57376cf2486052ffae0ad.jpg",
+                    reply_markup=InlineKeyboardMarkup(
+                        paginate_modules(0, CMD_HELP, "help")
+                    ),
+                    input_message_content=InputTextMessageContent(msg),
+                )
+            )
+        ],
+    )
+
+
+@ky.callback("help_(.*?)")
+async def _(c, cq):
+    mod_match = re.match(r"help_module\((.+?)\)", cq.data)
+    prev_match = re.match(r"help_prev\((.+?)\)", cq.data)
+    next_match = re.match(r"help_next\((.+?)\)", cq.data)
+    back_match = re.match(r"help_back", cq.data)
+    user_id = cq.from_user.id
+    prefix = await user.get_prefix(user_id)
+    if mod_match:
+        module = (mod_match.group(1)).replace(" ", "_")
+        text = f"<b>{CMD_HELP[module].__help__}</b>\n".format(next((p) for p in prefix))
+        button = [[InlineKeyboardButton("≪", callback_data="help_back")]]
+        await cq.edit_message_text(
+            text=text + f"\n<b>© Mix-Userbot - @KynanSupport</b>",
+            reply_markup=InlineKeyboardMarkup(button),
+            disable_web_page_preview=True,
+        )
+    top_text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+        " ".join(prefix), len(CMD_HELP)
+    )
+
+    if prev_match:
+        curr_page = int(prev_match.group(1))
+        await cq.edit_message_text(
+            text=top_text,
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(curr_page - 1, CMD_HELP, "help")
+            ),
+            disable_web_page_preview=True,
+        )
+    if next_match:
+        next_page = int(next_match.group(1))
+        await cq.edit_message_text(
+            text=top_text,
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(next_page + 1, CMD_HELP, "help")
+            ),
+            disable_web_page_preview=True,
+        )
+    if back_match:
+        await cq.edit_message_text(
+            text=top_text,
+            reply_markup=InlineKeyboardMarkup(paginate_modules(0, CMD_HELP, "help")),
+            disable_web_page_preview=True,
+        )
+        
+        
+
+@ky.inline("^get_msg")
+async def _(c, iq):
+    await c.answer_inline_query(
+        iq.id,
+        cache_time=0,
+        results=[
+            (
+                InlineQueryResultArticle(
+                    title="message",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    text=cgr("klk_1"),
+                                    callback_data=f"copymsg_{int(iq.query.split()[1])}",
+                                )
+                            ],
+                        ]
+                    ),
+                    input_message_content=InputTexxxessageContent(cgr("cpy_3")),
+                )
+            )
+        ],
+    )
+
+
+@ky.callback("copymsg_")
+async def _(c, cq):
+    global nyolong_jalan
+    try:
+        q = int(cq.data.split("_", 1)[1])
+        m = [obj for obj in get_objects() if id(obj) == q][0]
+        await m._c.unblock_user(bot.me.username)
+        await cq.edit_message_text(cgr("proses_1"))
+        copy = await m._c.send_message(bot.me.username, f"/copy {m.text.split()[1]}")
+        msg = m.reply_to_message or m
+        await asyncio.sleep(1.5)
+        await copy.delete()
+        nyolong_jalan = True
+        async for g in m._c.search_messages(bot.me.username, limit=1):
+            await m._c.copy_message(
+                m.chat.id, bot.me.username, g.id, reply_to_message_id=msg.id
+            )
+            await m._c.delete_messages(m.chat.id, COPY_ID[m._c.me.id])
+            await g.delete()
+            nyolong_jalan = False
+    except Exception as e:
+        await callback_query.edit_message_text(cgr("err_1").format(e))
