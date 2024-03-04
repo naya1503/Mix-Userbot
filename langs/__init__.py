@@ -68,8 +68,9 @@ def load(file):
         file = loc_lang.format("en")
     code = file.split("/")[-1].split("\\")[-1][:-4]
     try:
-        bahasa_data = safe_load(open(file, encoding="UTF-8"))
-        bahasa_[code] = bahasa_data
+        with open(file, encoding="UTF-8") as f:
+            bahasa_data = safe_load(f)
+            bahasa_[code] = bahasa_data
     except Exception as er:
         LOGGER.info(f"Error in {file[:-4]}\n\n{er} language file")
 
@@ -119,7 +120,6 @@ def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
     for file in glob("langs/strings/*yml"):
         load(file)
     try:
-        return {"natively": bahasa_["natively"]}
-
+        return {"natively": bahasa_["en"]["natively"]}
     except KeyError as e:
         LOGGER.error(f"KeyError: {e} not found in language file")
