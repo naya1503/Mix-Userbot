@@ -154,7 +154,6 @@ async def _(c: user, m):
 @user.on_message(
     filters.private
     & filters.incoming
-    & ~filters.me
     & ~filters.bot
     & ~filters.via_bot
     & ~filters.service,
