@@ -92,9 +92,9 @@ def cgr(key, _res: bool = True):
             else:
                 bahasa_.update({lang: {key: tr}})
             return tr
-        except KeyError:
+        except KeyError as e:
             if not _res:
-                LOGGER.info(f"Warning: could not load any string with the key `{key}`")
+                LOGGER.info(f"Warning: could not load any string with the key `{key}` {e}")
                 return
         except TypeError:
             pass
