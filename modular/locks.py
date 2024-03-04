@@ -6,22 +6,7 @@
 """
 ################################################################
 
-__modles__ = "Locks"
-__help__ = """
-Help Command Group 
 
-• Perintah: <code>{0}locktypes</code> 
-• Penjelasan: Untuk melihat argumen kunci.
-
-• Perintah: <code>{0}lock</code> 
-• Penjelasan: Untuk mengunci izin.
-
-• Perintah: <code>{0}unlock</code> 
-• Penjelasan: Untuk membuka izin.
-
-• Perintah: <code>{0}locks</code> 
-• Penjelasan: Untuk melihat semua izin.
-"""
 
 from asyncio import sleep
 
@@ -33,6 +18,9 @@ from pyrogram.types import ChatPermissions
 from Mix import *
 
 from .restrict import list_admins
+
+__modles__ = "Locks"
+__help__ = get_cgr("help_lokk")
 
 l_t = """
 **Lock Types:**
