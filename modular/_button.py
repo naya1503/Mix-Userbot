@@ -13,14 +13,7 @@ from pyrogram.types import *
 from Mix import *
 
 __modles__ = "Button"
-__help__ = """
- Help Command Button
-
-• Perintah: <code>{0}button</code> [balas pesan]
-• Penjelasan: Untuk membuat teks button.
-
-• Silahkan ketik <code>{0}markdown</code> untuk melihat format button.
-"""
+__help__ = get_cgr("help_butt")
 
 
 @ky.ubot("button", sudo=True)
