@@ -9,18 +9,7 @@
 ################################################################
 
 __modles__ = "Sticker"
-__help__ = """
-Help Command Sticker
-
-• Perintah: <code>{0}gstik</code> [reply sticker]
-• Penjelasan: Untuk mengambil info sticker.
-
-• Perintah: <code>{0}kang</code> [reply sticker]
-• Penjelasan: Untuk mencuri atau membuat stickerpack sendiri.
-
-• Perintah: <code>{0}unkang</code> [reply sticker]
-• Penjelasan: Untuk menghapus sticker/stickerpack yang sudah ada.
-"""
+__help__ = get_cgr("help_stick")
 
 import asyncio
 import os
