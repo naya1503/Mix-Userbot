@@ -120,7 +120,7 @@ async def _(c, m):
     tag_add(ret.id, m.chat.id, m.id)
 
 
-# @ky.replog()
+@ky.replog()
 async def _(c: user, m):
     reply_ = m.reply_to_message
     chat, msg = who_tag(reply_.id)
