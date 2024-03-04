@@ -5,19 +5,15 @@
 """
 ################################################################
 
-__modles__ = "Webshot"
-__help__ = """
- Help Command Webshot
-
-• Perintah : <code>{0}webss or ss</code>
-• Penjelasan : Untuk mengambil tangkapan layar link.
-"""
 
 from base64 import b64decode
 from io import BytesIO
 
 from Mix import *
 from Mix.core.http import post
+
+__modles__ = "Webshot"
+__help__ = get_cgr("help_webss")
 
 
 async def ss(url, full: bool = False):
