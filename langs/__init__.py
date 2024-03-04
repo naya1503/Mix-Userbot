@@ -118,8 +118,8 @@ def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
         load(file)
     return {
         code: {
-            "nama": bahasa_[code]["nama"],
-            "penulis": bahasa_[code]["penulis"],
+            "nama": bahasa_[code]['nama'],
+            "penulis": bahasa_[code]['penulis'],
         }
         for code in bahasa_
     }
