@@ -123,5 +123,5 @@ def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
             "natively": bahasa_[code]["natively"],
             "authors": bahasa_[code]["authors"],
         }
-        for code in languages
+        for code in bahasa_
     }
