@@ -8,27 +8,14 @@
 ################################################################
 
 
-__modles__ = "AutoRead"
-__help__ = """
- Help Command AutoRead
-
-• Perintah : <code>{0}autoread</code> [query]
-• Penjelasan : Untuk membaca semua pesan diakun anda.
-
-**Notes Optional:**
-- `gc` untuk membaca semua pesan grup diakun anda.
-- `ch` untuk membaca semua pesan channel diakun anda.
-- `us` untuk membaca semua pesan pengguna diakun anda.
-- `all` untuk membaca semua pesan gc, ch, us diakun anda.
-"""
-
-
 from pyrogram.errors import *
 
 from Mix import *
 
 from .gcast import refresh_dialog
 
+__modles__ = "AutoRead"
+__help__ = get_cgr("help_autoread")
 
 @ky.ubot("autoread", sudo=True)
 async def _(_, m):
