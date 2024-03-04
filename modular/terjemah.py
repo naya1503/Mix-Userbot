@@ -15,21 +15,7 @@ from Mix import *
 from Mix.core.parser import kode_bahasa
 
 __modles__ = "Translate"
-__help__ = """
- Help Command Translate
-
-• Perintah : <code>{0}tts</code>
-• Penjelasan : Untuk membuat teks menjadi voice.
-
-• Perintah : <code>{0}tr</code>
-• Penjelasan : Untuk menerjemahkan teks bahasa.
-
-• Perintah : <code>{0}lang</code>
-• Penjelasan : Untuk melihat daftar dan kode bahasa.
-
-• Perintah : <code>{0}setlang</code>
-• Penjelasan : Untuk mengatur kode bahasa menyangkut tts dan tr.
-"""
+__help__ = get_cgr("help_transmart")
 
 
 @ky.ubot("tts", sudo=True)
