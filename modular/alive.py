@@ -18,12 +18,7 @@ from Mix.core.waktu import get_time, start_time
 from .gcast import refresh_dialog
 
 __modles__ = "Alive"
-__help__ = """
- Help Command Alive
-
-• Perintah : <code>{0}alive</code>
-• Penjelasan : Alive.
-"""
+__help__ = get_cgr("help_alive")
 
 
 @ky.ubot("alive", sudo=True)
