@@ -41,7 +41,7 @@ crbn_1: "{} **Text cannot be empty!!**"
 crbn_2: "{} **Carbonized by: {}.**"
 
 # copy
-cpy: " Help for Copy\n\n• Command : <code>{0}copy</code> [link]\n• Description : To retrieve messages or media via a Telegram link."
+#cpy: " Help for Copy\n\n• Command : <code>{0}copy</code> [link]\n• Description : To retrieve messages or media via a Telegram link."
 cpy_1: "{} **Usage: `{}` [link].**"
 cpy_2: "{} **Copying stopped.**"
 cpy_3: "**🔒 Content is Private!!**"
