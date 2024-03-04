@@ -7,27 +7,7 @@
 ################################################################
 
 __modles__ = "Global"
-__help__ = """
- Help Command Global
-
-• Perintah : <code>{0}gban</code> [user_id/username/bales pesan]
-• Penjelasan : Untuk melakukan global banned.
-
-• Perintah : <code>{0}ungban</code> [user_id/username/bales pesan]
-• Penjelasan : Untuk melakukan global ubanned.
-
-• Perintah : <code>{0}listgban</code> [user_id/username/bales pesan]
-• Penjelasan : Untuk melihat daftar pengguna gban.
-
-• Perintah : <code>{0}gmute</code> [user_id/username/bales pesan]
-• Penjelasan : Untuk melakukan global mute.
-
-• Perintah : <code>{0}ungmute</code> [user_id/username/bales pesan]
-• Penjelasan : Untuk melakukan global unmute.
-
-• Perintah : <code>{0}listgmute</code> [user_id/username/bales pesan]
-• Penjelasan : Untuk melihat daftar pengguna gmute.
-"""
+__help__ = get_cgr("help_global")
 
 
 import asyncio
