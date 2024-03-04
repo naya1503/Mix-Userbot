@@ -18,6 +18,7 @@ import requests
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB
 from yaml import safe_load
+import yaml
 
 from config import def_bahasa
 
@@ -113,13 +114,21 @@ def get_cgr(key):
         return cgr("cmds") + doc
 
 
-def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
-    for file in glob("langs/strings/*yml"):
-        load(file)
-    return {
-        code: {
-            "aren": bahasa_[code]["nama"],
-            "kacang": bahasa_[code]["penulis"],
-        }
-        for code in bahasa_
-    }
+def get_bahasa_(l):
+    return bahasa_[l]
+    
+for filename in os.listdir(r"lang//strings/"):
+    if "en" not in bahasa_:
+        bahasa_["en"] = yaml.safe_load(
+            open(r"langs/strings/en.yml", encoding="utf8")
+        )
+    if filename.endswith(".yml"):
+        language_name = filename[:-4]
+        if language_name == "en":
+            continue
+        bahasa_[language_name] = yaml.safe_load(
+            open(r"langs/strings/" + filename, encoding="utf8")
+        )
+        for item in bahasa_["en"]:
+            if item not in bahasa_[language_name]:
+                bahasa_[language_name][item] = bahasa_["en"][item]
