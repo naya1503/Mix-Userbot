@@ -74,14 +74,14 @@ gcs_13: "{} **The blacklist is empty!!**"
 gcs_14: "{} **All blacklists have been successfully removed.**"
 
 # alive
-alv: " <b>Help Command Alive</b>\n\n• Command : <code>{0}alive</code>\n• Description : Alive."
+#alv: " <b>Help Command Alive</b>\n\n• Command : <code>{0}alive</code>\n• Description : Alive."
 alv_1: "<b>Author</b>"
 alv_2: "<b>Connoisseur</b>"
-alv_3: "<b>Mix-Userbot</b>\n    <b>stats:</b> {}\n    <b>dc_id:</b> {}\n    <b>ping_dc:</b> {str(pink).replace('.', ',')} ms\n    <b>pmpermit:</b> {}\n    <b>peer_users:</b> {len(apa)}\n    <b>peer_groups:</b> {len(ape)}\n    <b>bot_uptime:</b> {}"
+#alv_3: "<b>Mix-Userbot</b>\n    <b>stats:</b> {}\n    <b>dc_id:</b> {}\n    <b>ping_dc:</b> {str(pink).replace('.', ',')} ms\n    <b>pmpermit:</b> {}\n    <b>peer_users:</b> {len(apa)}\n    <b>peer_groups:</b> {len(ape)}\n    <b>bot_uptime:</b> {}"
 alv_4: "Support"
 
 # global
-glbl: " <b>Help Command Global</b>\n\n• Command : <code>{0}gban</code> [user_id/username/reply message]\n• Description : For Global Banning Users.\n• Command : <code>{0}ungban</code> [user_id/username/reply message]\n• Description : For Global Un-ban.\n• Command : <code>{0}listgban</code> [user_id/username/reply message]\n• Description : For check list of users Global Banned.\n• Command : <code>{0}gmute</code> [user_id/username/reply message]\n• Desription : For Global Mutting Users.\n• Command : <code>{0}ungmute</code> [user_id/username/reply message]\n• Description : For Global Un-Mute.\n• Command : <code>{0}listgmute</code> [user_id/username/reply message]\n• Description : For check Global Muted Users."
+#glbl: " <b>Help Command Global</b>\n\n• Command : <code>{0}gban</code> [user_id/username/reply message]\n• Description : For Global Banning Users.\n• Command : <code>{0}ungban</code> [user_id/username/reply message]\n• Description : For Global Un-ban.\n• Command : <code>{0}listgban</code> [user_id/username/reply message]\n• Description : For check list of users Global Banned.\n• Command : <code>{0}gmute</code> [user_id/username/reply message]\n• Desription : For Global Mutting Users.\n• Command : <code>{0}ungmute</code> [user_id/username/reply message]\n• Description : For Global Un-Mute.\n• Command : <code>{0}listgmute</code> [user_id/username/reply message]\n• Description : For check Global Muted Users."
 glbl_2: "{} <b>User not found!.</b>"
 glbl_3: "{} <b>Are you Kidding me? hah? He is a Developers of Mix-Userbot.</b>"
 glbl_4: "{} <b>Give me a reason before do a Global Banning!</b>"
@@ -95,21 +95,21 @@ glbl_11: "{} <b>Warning Global Gmute\n\n{} Success: <code>{bs}</code> Chat\n{} F
 glbl_12: "{} <b>User never Global Mutted.</b>"
 glbl_13: "{} <b>Warning Global Ungmute\n\n{} Success: <code>{bs}</code> Chat\n{} Failed: <code>{}</code> Chat\n{} User: <code>{mention}</code></b>"
 glbl_14: "{} <b>List of GBanned :</b>\n\n"
-glbl_15: "{} <b>{ii['_id']}</b>\n"
-glbl_16: "{} <b>Reason: <code>{ii['reason']}</code>\n\n{} Total :<code>{dbgb.count_gbans()}</code></b>\n"
+#glbl_15: "{} <b>{ii['_id']}</b>\n"
+#glbl_16: "{} <b>Reason: <code>{ii['reason']}</code>\n\n{} Total :<code>{dbgb.count_gbans()}</code></b>\n"
 glbl_17: "{} <b>List of GBanned!!</b>\n\n"
 glbl_18: "{} <b>List of GMute :</b>\n\n"
-glbl_19: "{} <b><code>{ii['_id']}</code></b>\n"
-glbl_20: "{} <b>Reason: <code>{ii['reason']}</code>\n\n{} Total :<code>{dbgm.count_gmutes()}</code></b>\n"
+#glbl_19: "{} <b><code>{ii['_id']}</code></b>\n"
+#glbl_20: "{} <b>Reason: <code>{ii['reason']}</code>\n\n{} Total :<code>{dbgm.count_gmutes()}</code></b>\n"
 glbl_21: "{} <b>List of GMute!!</b>\n\n"
 
 # graph
-grp: " Help Command Telegraph\n\n• Command: <code>{0}tg</code>\n• Desription: For Uploading text, video atau foto to Telegraph"
+#grp: " Help Command Telegraph\n\n• Command: <code>{0}tg</code>\n• Desription: For Uploading text, video atau foto to Telegraph"
 grp_1: "{} <b>Please reply text or media!</b>"
-grp_2: "{} <b><code>{r}</code>\n\nReport this error text to @KynanSupport!</b>"
-grp_3: "{} <b>Uploaded to : <a href='https://telegra.ph/{media_url[0]}'>Click Here</a></b>"
-grp_4: "{c.me.first_name} {c.me.last_name or ''}"
-grp_5: "{} <b>Uploaded to : <a href='https://telegra.ph/{response['path']}'>Click Here</a></b>"
+#grp_2: "{} <b><code>{r}</code>\n\nReport this error text to @KynanSupport!</b>"
+#grp_3: "{} <b>Uploaded to : <a href='https://telegra.ph/{media_url[0]}'>Click Here</a></b>"
+#grp_4: "{c.me.first_name} {c.me.last_name or ''}"
+#grp_5: "{} <b>Uploaded to : <a href='https://telegra.ph/{response['path']}'>Click Here</a></b>"
 
 # grouplog
 grplog: " Help Command GroupLog\n\n• Command: <code>{0}gruplog</code> [on/off]\n• Description: For activating tag log and pm log."
@@ -123,4 +123,4 @@ grplog_7: "<b>📨 New Message\n\n• Group : {}\n• User : {}\n• Messages: {
 grplog_8: "Replied Message"
 
 # info
-inf: "Help Command Info\n\n• Command: <code>{0}info</code>\n• Description: Check Users.\n\n• Command: <code>{0}cinfo</code>\n• Description: Check detail Group."
+#inf: "Help Command Info\n\n• Command: <code>{0}info</code>\n• Description: Check Users.\n\n• Command: <code>{0}cinfo</code>\n• Description: Check detail Group."
