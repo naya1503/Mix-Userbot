@@ -30,6 +30,7 @@ def markdown_help():
         "help_back",
     )
 
+
 def sini_croot():
     keyboard = InlineKeyboard(row_width=1)
     keyboard.row(
@@ -40,6 +41,7 @@ def sini_croot():
         InlineKeyboardButton(cgr("balik"), callback_data="clbk.bek"),
     )
     return keyboard
+
 
 @ky.inline("^dibikin_button")
 async def _(c, iq):
@@ -84,7 +86,7 @@ async def _(c, cq):
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
     okb([[("Kembali", "clbk.bek")]])
-    
+
     if cmd == "bhsa":
         teks = cgr("asst_4")
         await cq.edit_message_text(text=teks, reply_markup=lanuages_keyboard)
