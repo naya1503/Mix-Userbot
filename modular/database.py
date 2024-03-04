@@ -14,25 +14,7 @@ from Mix import *
 from .pmpermit import DEFAULT_TEXT
 
 __modles__ = "Settings"
-__help__ = """
- Help Command Settings
-
-• Perintah: <code>{0}setdb</code> [variable] [value]
-• Penjelasan: Untuk mengubah tampilan emoji.
-
-• Perintah: <code>{0}getdb</code>
-• Penjelasan: Untuk melihat variabel dan value anda.
-
-• Perintah: <code>{0}deldb</code>
-• Penjelasan: Untuk menghapus variabel dan value anda.
-
-• Variabel Yang Bisa Digunakan :
-
-<code>pmtext</code>
-<code>pmpic</code>
-<code>pmpermit</code>
-<code>alivepic</code>
-"""
+__help__ = get_cgr("help_dtbs")
 
 
 @ky.ubot("setdb", sudo=True)
