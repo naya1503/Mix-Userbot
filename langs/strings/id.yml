@@ -10,12 +10,13 @@ proses: "{} **Sedang Diproses...**"
 proses_1: "**Sedang Diproses...**"
 upload: "{} **Menunggah...**"
 klk_1: "Klik Disini"
+balik: "kembali"
 
 # assisten
 asst_1: "Halo 👋 {} !! Saya adalah asisten bot Anda.\n\nPengaturan apa yang ingin kamu ubah ?"
 asst_2: "Halo 👋 {} !! Saya adalah asisten milik {}\nApa yang kamu cari ?"
 asst_3: "Bahasa"
-asst_4:
+asst_4: "Bahasa yang kamu gunakan saat ini adalah : {}\nSilahkan pilih jika ingin mengganti bahasa."
 asst_5:
 
 # autoread 
