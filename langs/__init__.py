@@ -125,4 +125,3 @@ def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
         }
     except KeyError as e:
         LOGGER.error(f"KeyError: {e} not found in language file")
-        return {}
