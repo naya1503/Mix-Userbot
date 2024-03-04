@@ -6,7 +6,6 @@
 """
 ################################################################
 
-import re
 
 from pyrogram.types import *
 
@@ -32,5 +31,3 @@ async def _(c: user, m):
             )
         else:
             await m.reply(f"<b>Tidak ada modul bernama <code>{nama}</code></b>")
-
-
