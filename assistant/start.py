@@ -11,21 +11,22 @@ import os
 from gc import get_objects
 
 from pyrogram import *
-from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.file_id import *
 from pyrogram.raw.functions.messages import *
 from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
+from pyrogram.enums import *
+from pyrogram.errors import *
 from pyrogram.types import *
 from telegraph import upload_file
 
 from Mix import *
+from Mix.core.http import http
+from Mix.core.stick_tools import EMOJI_PATTERN, convert_video, resize_image
 
 COPY_ID = {}
-
 nyolong_jalan = False
-
 LOG_ME = ndB.get_key("TAG_LOG")
 
 
@@ -383,8 +384,8 @@ async def _(self: bot, message):
             os.remove(filename)
         except OSError:
             pass
-
-
+          
+          
 @ky.bots("unkang")
 async def _(self, m):
     rep = m.reply_to_message.sticker
