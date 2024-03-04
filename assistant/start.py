@@ -7,18 +7,15 @@
 ################################################################
 
 
-from Mix import *
-import asyncio
 import os
-import time
 from gc import get_objects
-from time import time
-
 
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 from telegraph import upload_file
+
+from Mix import *
 
 COPY_ID = {}
 
@@ -33,11 +30,10 @@ from pyrogram.raw.functions.messages import *
 from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
 
-from Mix import Emojik, bot, ky, ndB, user
-from Mix.core.http import http
-from Mix.core.stick_tools import EMOJI_PATTERN, convert_video, resize_image
+from Mix import bot, ky, ndB, user
 
 LOG_ME = ndB.get_key("TAG_LOG")
+
 
 def clbk_strt():
     return okb(
