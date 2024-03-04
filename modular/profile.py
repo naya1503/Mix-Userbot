@@ -1,28 +1,5 @@
-__modles__ = "Profile"
-__help__ = """
-Help Command Profile
 
-• Perintah: <code>{0}adminlist</code>
-• Penjelasan: Untuk melihat status admin grup anda.
 
-• Perintah: <code>{0}setbio</code>
-• Penjelasan: Untuk mengubah bio Anda.
-
-• Perintah: <code>{0}setname</code>
-• Penjelasan: Untuk mengubah Nama Anda.
-
-• Perintah: <code>{0}setpp</code>
-• Penjelasan: Untuk mengubah Foto Akun Anda.
-
-• Perintah: <code>{0}block</code>
-• Penjelasan: Untuk blokir pengguna.
-
-• Perintah: <code>{0}unblock</code>
-• Penjelasan: Untuk buka blokir pengguna.
-
-• Perintah: <code>{0}purgeme</code>
-• Penjelasan: Untuk buka blokir pengguna.
-"""
 
 
 import os
@@ -32,6 +9,8 @@ from pyrogram import *
 
 from Mix import *
 
+__modles__ = "Profile"
+__help__ = get_cgr("help_prof")
 
 @ky.ubot("unblock", sudo=True)
 async def _(c: user, m):
