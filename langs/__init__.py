@@ -17,8 +17,9 @@ import requests
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB
 from yaml import safe_load
+from config import def_bahasa
 
-cek_bahasa = ndB.get_key("bahasa")
+cek_bahasa = ndB.get_key("bahasa") or def_bahasa
 from urllib.parse import quote, unquote
 
 bahasa_ = {}
@@ -94,6 +95,8 @@ def cgr(key, _res: bool = True):
             if not _res:
                 LOGGER.info(f"Warning: could not load any string with the key `{key}`")
                 return
+        except TypeError:
+            pass
         except Exception as er:
             LOGGER.info(f"Warning: could not load any string with the key `{er}`")
         if not _res:
