@@ -7,15 +7,10 @@ from PIL import Image, ImageDraw, ImageFont
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import Emojik, ky, user
+from Mix import Emojik, ky, user, get_cgr
 
 __modles__ = "Logo"
-__help__ = """
-Help Command Logo
-
-• Perintah: <code>{0}logo</code> [text]
-• Penjelasan: Untuk membuat sebuah logo dengan background random .
-"""
+__help__ = get_cgr("help_logo")
 
 
 async def dl_font():
