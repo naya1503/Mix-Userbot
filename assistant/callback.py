@@ -86,10 +86,20 @@ async def _(c, cq):
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
     okb([[("Kembali", "clbk.bek")]])
-
+    languages = get_bahasa_()
+    tultd = [
+        InlineKeyboardButton(
+            f"{languages[mx]['natively']} [{mx.lower()}]",
+            callback_data=f"set_{mx}"
+        )
+        for mx in languages
+    ]
+    buttons = list(zip(tultd[::2], tultd[1::2]))
+    if len(tultd) % 2 == 1:
+        buttons.append((tultd[-1],))
     if cmd == "bhsa":
         teks = cgr("asst_4")
-        await cq.edit_message_text(text=teks, reply_markup=sini_croot)
+        await cq.edit_message_text(text=teks, reply_markup=InlineKeyboardMarkup(tultd))
     elif cmd == "bek":
         txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
 
