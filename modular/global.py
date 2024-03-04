@@ -6,9 +6,6 @@
 """
 ################################################################
 
-__modles__ = "Global"
-__help__ = get_cgr("help_global")
-
 
 import asyncio
 from io import BytesIO
@@ -24,6 +21,8 @@ from Mix.core.parser import remove_markdown_and_html
 dbgb = GBan()
 dbgm = GMute()
 
+__modles__ = "Global"
+__help__ = get_cgr("help_global")
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
