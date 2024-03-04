@@ -14,6 +14,10 @@ klk_1: "Klik Disini"
 balik: "Kembali"
 ttup: "Tutup"
 
+# help_for
+help_afk: "Help Command Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
+help_alive: ""
+
 # assisten
 asst_1: "Halo 👋 {} !! Saya adalah asisten bot Anda.\n\nPengaturan apa yang ingin kamu ubah ?"
 asst_2: "Halo 👋 {} !! Saya adalah asisten milik {}\nApa yang kamu cari ?"
@@ -74,28 +78,45 @@ gcs_13: "{} **Daftar blacklist kosong!!**"
 gcs_14: "{} **Semua daftar hitam telah berhasil dihapus.**"
 
 # alive
+alv: " **Bantuan Perintah Alive**\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
 alv_1: "**Author**"
 alv_2: "**Connoisseur**"
+alv_3: "**Mix-Userbot**\n    **status:** {}\n    **dc_id:** {}\n    **ping_dc:** {str(pink).replace('.', ',')} ms\n    **antipm:** {}\n    **pengguna:** {len(apa)}\n    **grup:** {len(ape)}\n    **durasi_bot:** {}"
 alv_4: "Support"
 
 # global
+glbl: " **Bantuan Perintah Global**\n\n• Perintah : `{0}gban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global banned.\n• Perintah : `{0}ungban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global ubanned.\n• Perintah : `{0}listgban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melihat daftar pengguna gban.\n• Perintah : `{0}gmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global mute.\n• Perintah : `{0}ungmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global unmute.\n• Perintah : `{0}listgmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melihat daftar pengguna gmute."
 glbl_2: "{} **Pengguna tidak ditemukan.**"
 glbl_3: "{} **Dia adalah Developer Mix-Userbot.**"
 glbl_4: "{} **Silahkan berikan alasan untuk diGban!**"
 glbl_5: "{} **Pengguna sudah digban.**"
+glbl_6: "{} **Warning Global Banned\n\n{} Berhasil: `{bs}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**\n{} Alasan: `{}`**"
 glbl_7: "{} **Pengguna belum digban.**"
+glbl_8: "{} **Warning Global Unbanned\n\n{} Berhasil: `{bs}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**"
 glbl_9: "{} **Silahkan berikan alasan untuk diGMute!**"
 glbl_10: "{} **Pengguna sudah digmute.**"
+glbl_11: "{} **Warning Global Gmute\n\n{} Berhasil: `{bs}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**\n{} Alasan: `{alasan}`**"
 glbl_12: "{} **Pengguna belum pernah diGMute.**"
+glbl_13: "{} **Warning Global Ungmute\n\n{} Berhasil: `{bs}` Chat\n{} Gagal: `{}` Chat\n{} User: `{mention}`**"
 glbl_14: "{} **Daftar GBanned :**\n\n"
+glbl_15: "{} **{ii['_id']}**\n"
+glbl_16: "{} **Alasan: `{ii['reason']}`\n\n{} Total :`{dbgb.count_gbans()}`**\n"
 glbl_17: "{} **Daftar GBanned!!**\n\n"
 glbl_18: "{} **Daftar GMute :**\n\n"
+glbl_19: "{} **`{ii['_id']}`**\n"
+glbl_20: "{} **Alasan: `{ii['reason']}`\n\n{} Total :`{dbgm.count_gmutes()}`**\n"
 glbl_21: "{} **Daftar GMute!!**\n\n"
 
 # graph
+grp: " Bantuan Perintah Telegraph\n\n• Perintah: `{0}tg`\n• Penjelasan: Untuk mengunggah teks, video atau foto."
 grp_1: "{} **Silakan balas ke pesan teks atau media!**"
+grp_2: "{} **`{r}`\n\nLapor ke @KynanSupport!**"
+grp_3: "{} **Diupload ke : <a href='https://telegra.ph/{media_url[0]}'>Klik Disini</a>**"
+grp_4: "{c.me.first_name} {c.me.last_name or ''}"
+grp_5: "{} **Diupload ke : <a href='https://telegra.ph/{response['path']}'>Klik Disini</a>**"
 
 # grouplog
+grplog: " Bantuan Perintah GrupLog\n\n• Perintah: `{0}gruplog` [on/off]\n• Penjelasan: Aktifkan tag log dan pm log."
 grplog_1: "{} **Log Group Berhasil Diaktifkan :\n\n{}**"
 grplog_2: "{} **Log Group Anda Sudah Aktif.**"
 grplog_3: "{} **Log Group Berhasil Dinonaktifkan.**"
@@ -106,3 +127,4 @@ grplog_7: "**📨 Pesan Baru\n\n• Grup : {}\n• Pengguna : {}\n• Pesan: {}*
 grplog_8: "Jawab Pesan"
 
 # info
+inf: "Bantuan Perintah Info\n\n• Perintah: `{0}info`\n• Penjelasan: Untuk melihat pengguna.\n\n• Perintah: `{0}cinfo`\n• Penjelasan: Untuk melihat grup."
