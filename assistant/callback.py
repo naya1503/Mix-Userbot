@@ -249,8 +249,7 @@ async def _(c, cq):
             reply_markup=InlineKeyboardMarkup(paginate_modules(0, CMD_HELP, "help")),
             disable_web_page_preview=True,
         )
-        
-        
+
 
 @ky.inline("^get_msg")
 async def _(c, iq):
