@@ -7,7 +7,7 @@
 ################################################################
 
 import os
-
+import asyncio
 from pyrogram import *
 from pyrogram.errors import *
 
@@ -16,6 +16,13 @@ from Mix import *
 __modles__ = "Gruplog"
 __help__ = get_cgr("help_gruplog")
 
+class LOG_CHATS:
+    def __init__(self):
+        self.RECENT_USER = None
+        self.NEWPM = None
+        self.COUNT = 0
+
+LOG_CHATS_ = LOG_CHATS()
 
 @ky.ubot("gruplog", sudo=True)
 async def _(c: user, m):
@@ -143,12 +150,28 @@ async def _(c: user, m):
             return
 
 
-@user.on_message(
-    filters.private
-    & filters.incoming
-    & ~filters.bot
-    & ~filters.via_bot
-    & ~filters.service,
-)
-async def _(_, m):
-    await user.forward_private(m)
+@user.on_message(filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot)
+async def _(c: user, m):
+    lg = ndB.get_key("TAG_LOG")
+    if lg is None:
+        return
+    if m.chat.id == 777000:
+        return
+    if LOG_CHATS_.RECENT_USER != m.chat.id:
+        LOG_CHATS_.RECENT_USER = m.chat.id
+        if LOG_CHATS_.NEWPM:
+            await LOG_CHATS_.NEWPM.edit(
+                LOG_CHATS_.NEWPM.text.replace(
+                    "**💌 #NEW_MESSAGE**",
+                    f" • `{LOG_CHATS_.COUNT}` **Pesan**"))
+                LOG_CHATS_.COUNT = 0
+        LOG_CHATS_.NEWPM = await c.send_message
+          lg,
+          f"💌 <b>#MENERUSKAN #PESAN_BARU</b>\n<b> • Dari :</b> {m.from_user.mention}\n<b> • User ID :</b> <code>{m.from_user.id}</code>",
+          parse_mode=enums.ParseMode.HTML)
+    try:
+        async for oiu in c.search_messages(m.chat.id, limit=1):
+            await oiu.forward(lg)
+        LOG_CHATS_.COUNT += 1
+    except BaseException:
+        pass
