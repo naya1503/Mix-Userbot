@@ -150,9 +150,7 @@ async def _(c: user, m):
     await put_cleanmode(c.me.id, send.id)
 
 
-# @ky.ubot("unafk", sudo=True)
-# @user.on_message(filters.me & filters.group, group=12)
-@ky.unafk()
+@ky.ubot("unafk", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
