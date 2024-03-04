@@ -8,9 +8,6 @@
 """
 ################################################################
 
-__modles__ = "Sticker"
-__help__ = get_cgr("help_stick")
-
 import asyncio
 import os
 
@@ -20,7 +17,10 @@ from pyrogram.raw.functions.messages import *
 from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
 
-from Mix import Emojik, bot, ky, ndB, user
+from Mix import Emojik, bot, ky, ndB, user, get_cgr
+
+__modles__ = "Sticker"
+__help__ = get_cgr("help_stick")
 
 LOG_ME = ndB.get_key("TAG_LOG")
 
