@@ -1,8 +1,8 @@
 nama: English
 penulis:
   - Keenan
-  
-  
+
+
 cmds: "Command Help"
 err: "{} **Error:** {}"
 err_1: "**Error:** {}"
