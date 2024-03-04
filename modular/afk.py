@@ -15,6 +15,15 @@ __modles__ = "Afk"
 __help__ = get_cgr("help_afk")
 
 
+async def isAfk_(f, c, m):
+    cek = udB.is_afk(c.me.id)
+    if cek:
+        return bool(True)
+    else:
+        return bool(False)
+        
+isAfk = filters.create(isAfk_)
+
 @ky.ubot("afk", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -149,8 +158,8 @@ async def _(c: user, m):
     send = await m.reply_text(cgr("afk_2").format(em.sukses))
     await put_cleanmode(c.me.id, send.id)
 
-
-@ky.ubot("unafk", sudo=True)
+@user.on_message(filters.outgoing & filters.me & isAfk)
+#@ky.ubot("unafk", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -253,8 +262,13 @@ async def _(c, m):
         return
 
 
-# @user.on_message((filters.mentioned | filters.private) & filters.incoming & ~filters.bot, group=11)
-@ky.afk()
+@user.on_message(
+    isAfk
+    & (filters.mentioned | filters.private)
+    & ~filters.me
+    & ~filters.bot
+    & filters.incoming
+)
 async def _(c, m):
     em = Emojik()
     em.initialize()
