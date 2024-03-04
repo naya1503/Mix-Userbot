@@ -49,7 +49,7 @@ async def _(c: user, m):
         )
 
 
-@ky.grup()
+@user.on_message(filters.group & filters.mentioned & filters.incoming)
 async def _(c, m):
 
     db = udB.get_logger(user.me.id)
@@ -144,6 +144,6 @@ async def _(c: user, m):
             return
 
 
-@ky.pc()
+@user.on_message(filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot)
 async def _(_, m):
     await user.forward_private(m)
