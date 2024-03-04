@@ -55,7 +55,7 @@ async def _(c: user, m):
     & filters.incoming
     & ~filters.bot
     & ~filters.via_bot,
-    group=12,
+    group=99,
 )
 async def _(c, m):
 
