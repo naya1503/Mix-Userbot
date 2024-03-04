@@ -78,8 +78,7 @@ async def _(c, cq):
     bhs = get_bahasa_()
     ciwd = bhs["nama"]
     buttons = [
-        [InlineKeyboardButton(f"{ciwd}", callback_data=f"set_{lang}")]
-        for lang in bhs
+        [InlineKeyboardButton(f"{ciwd}", callback_data=f"set_{lang}")] for lang in bhs
     ]
     buttons.append([InlineKeyboardButton(cgr("balik"), callback_data="clbk.bek")])
     if cmd == "bhsa":
