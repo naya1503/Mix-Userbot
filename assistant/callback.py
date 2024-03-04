@@ -79,7 +79,7 @@ async def _(c, cq):
     buttons = [
         [
             InlineKeyboardButton(
-                f"{bhs[lang]['nama']} [{lang.lower()}]", callback_data=f"set_{lang}"
+                f"{bhs[lang]["nama"]} [{lang.lower()}]", callback_data=f"set_{lang}"
             )
         ]
         for lang in bhs
