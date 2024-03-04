@@ -39,8 +39,9 @@ def clbk_strto():
 async def _(c, m):
     udB.add_served_user(m.from_user.id)
     owner_nih = user.me.id
-    ts_1 = cgr("asst_1").format(<a href=tg://user?id=m.from_user.id>m.from_user.first_name m.from_user.last_name or ''</a>)
-    ts_2 = cgr("asst_2").format(<a href=tg://user?id=m.from_user.id>m.from_user.first_name m.from_user.last_name or ''</a>, user.me.mention)
+    user_name = f"<a href='tg://user?id={m.from_user.id}'>{m.from_user.first_name} {m.from_user.last_name or ''}</a>"
+    ts_1 = cgr("asst_1").format(user_name)
+    ts_2 = cgr("asst_2").format(user_name, user.me.mention)
     if m.from_user.id == owner_nih:
         await m.reply(ts_1, reply_markup=clbk_strt())
     else:
