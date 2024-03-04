@@ -59,6 +59,7 @@ async def _(c: user, m):
             f"{em.gagal} **Format yang anda berikan salah. silahkan gunakan <code>gruplog on or off</code>.**"
         )
 
+
 @user.on_message(
     filters.group
     & filters.mentioned
