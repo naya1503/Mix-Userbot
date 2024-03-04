@@ -17,6 +17,7 @@ from .gcast import refresh_dialog
 __modles__ = "AutoRead"
 __help__ = get_cgr("help_autoread")
 
+
 @ky.ubot("autoread", sudo=True)
 async def _(_, m):
     em = Emojik()
