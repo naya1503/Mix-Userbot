@@ -118,10 +118,6 @@ def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
     for file in glob("langs/strings/*yml"):
         load(file)
     return {
-        code: {
             "name": bahasa_[code]["name"],
             "natively": bahasa_[code]["natively"],
-            "authors": bahasa_[code]["authors"],
-        }
-        for code in bahasa_
-    }
+            "authors": bahasa_[code]["authors"]}
