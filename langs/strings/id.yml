@@ -2,6 +2,7 @@ nama: Indonesia
 
 penulis:
   - Keenan
+  - Lucifer
 
 
 cmds: "Bantuan Perintah"
@@ -15,8 +16,11 @@ balik: "Kembali"
 ttup: "Tutup"
 
 # help_for
-help_afk: "Help Command Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
-help_alive: ""
+help_afk: " Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
+help_alive: " Alive\n\n• Perintah : <code>{0}alive</code>\n• Penjelasan : Alive."
+help_autoread: " AutoRead\n\n• Perintah : <code>{0}autoread</code> [query]\n• Penjelasan : Untuk membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` untuk membaca semua pesan grup diakun anda.\n- `ch` untuk membaca semua pesan channel diakun anda.\n- `us` untuk membaca semua pesan pengguna diakun anda.\n- `all` untuk membaca semua pesan gc, ch, us diakun anda."
+help_carbon: " Carbon\n\n• Perintah: <code>{0} carbon</code>\n• Penjelasan: Untuk membuat teks carbonara."
+
 
 # assisten
 asst_1: "Halo 👋 {} !! Saya adalah asisten bot Anda.\n\nPengaturan apa yang ingin kamu ubah ?"
@@ -77,8 +81,7 @@ gcs_12: "**• `{}`**\n"
 gcs_13: "{} **Daftar blacklist kosong!!**"
 gcs_14: "{} **Semua daftar hitam telah berhasil dihapus.**"
 
-# alive
-alv: " **Bantuan Perintah Alive**\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
+# alive 
 alv_1: "**Author**"
 alv_2: "**Connoisseur**"
 alv_3: "**Mix-Userbot**\n    **status:** {}\n    **dc_id:** {}\n    **ping_dc:** {str(pink).replace('.', ',')} ms\n    **antipm:** {}\n    **pengguna:** {len(apa)}\n    **grup:** {len(ape)}\n    **durasi_bot:** {}"
