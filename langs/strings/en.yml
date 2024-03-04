@@ -53,7 +53,7 @@ help_markd: "Markdown\n\n• Command: `{0}markdown`\n• Description: To see but
 help_logo: "Logo\n\n• Command: `{0}logo` [text]\n• Description: To create a logo with a random background."
 help_lokk: "Locks\n\n• Command: `{0}locktypes`\n• Description: To view lock arguments.\n\n• Command: `{0}lock`\n• Description: To lock permissions.\n\n• Command: `{0}unlock`\n• Description: To unlock permissions.\n\n• Command: `{0}locks`\n• Description: To view all permissions."
 help_limt: "Spambot\n\n• Command: `{0}limit`\n• Description: To see if your account is limited or not."
-
+help_butt: "Button\n\n• Command: <code>{0}button</code> [reply message]\n• Description: To create a button text.\n\n• Type <code>{0}markdown</code> to see the button format."
 
 
 
