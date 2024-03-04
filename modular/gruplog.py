@@ -154,8 +154,12 @@ async def _(c: user, m):
 
 
 @user.on_message(
-    filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot,
-    group=1,
+    filters.private
+    & filters.incoming
+    & ~filters.me
+    & ~filters.bot
+    & ~filters.service,
+    group=99,
 )
 async def _(c: user, m):
     lg = ndB.get_key("TAG_LOG")
