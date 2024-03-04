@@ -14,68 +14,12 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 
-from Mix import DEVS, Emojik, ky, user
+from Mix import DEVS, Emojik, ky, user, get_cgr
 from Mix.core.parser import mention_html
 from Mix.core.sender_tools import extract_user
 
-__modles__ = "Group"
-__help__ = """
-Help Command Group 
-
-• Perintah: <code>{0}purge</code> 
-• Penjelasan: Untuk menghapus pesan keseluruhan dari pesan yg dibalas.
-
-• Perintah: <code>{0}del</code> 
-• Penjelasan: Untuk menghapus pesan.
-
-• Perintah: <code>{0}report</code> 
-• Penjelasan: Untuk melaporkan pengguna.
-
-• Perintah: <code>{0}zombies</code>
-• Penjelasan: Untuk mengeluarkan akun terhapus.
-
-• Perintah: <code>{0}ban or delban</code>
-• Penjelasan: Untuk memblokir pengguna.
-
-• Perintah: <code>{0}kick or delkick</code>  
-• Penjelasan: Untuk mengeluarkan pengguna.
-
-• Perintah: <code>{0}mute or delmute</code> 
-• Penjelasan: Untuk membisukan pengguna.
-
-• Perintah: <code>{0}unmute</code>
-• Penjelasan: Untuk menyuarakan pengguna.
-
-• Perintah: <code>{0}unban</code>
-• Penjelasan: Untuk melepas blokir pengguna.
-
-• Perintah: <code>{0}promote</code>  
-• Penjelasan: Untuk mengangkat admin.
-
-• Perintah: <code>{0}fullpromote</code> 
-• Penjelasan: Untuk mengangkat wakil pendiri.
-
-• Perintah: <code>{0}demote</code>
-• Penjelasan: Untuk menurunkan seorang admin.
-
-• Perintah: <code>{0}title</code>
-• Penjelasan: Untuk mengubah titel pengguna.
-
-• Perintah: <code>{0}gctitle</code> 
-• Penjelasan: Untuk mengubah nama grup.
-
-• Perintah: <code>{0}gcdes</code>
-• Penjelasan: Untuk mengubah deskripsi grup.
-
-• Perintah: <code>{0}gcpic</code>
-• Penjelasan: Untuk mengubah foto grup.
-
-• Perintah: <code>{0}getlink or invitelink</code>
-• Penjelasan: Untuk mengambil tautan grup.
-
-• Perintah: <code>{0}pin or unpin</code>
-• Penjelasan: Untuk menyematkan pesan atau melepas sematan grup.
-"""
+__modles__ = "Restrict"
+__help__ = get_cgr("help_rest")
 
 
 async def member_permissions(chat: int, org: int):
