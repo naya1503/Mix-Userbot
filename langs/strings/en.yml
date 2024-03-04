@@ -73,32 +73,32 @@ gcs_13: "{} **The blacklist is empty!!**"
 gcs_14: "{} **All blacklists have been successfully removed.**"
 
 # alive
-alv_1: "<b>Author</b>"
-alv_2: "<b>Connoisseur</b>"
+alv_1: "**Author**"
+alv_2: "**Connoisseur**"
 alv_4: "Support"
 
 # global
-glbl_2: "{} <b>User not found!.</b>"
-glbl_3: "{} <b>Are you Kidding me? hah? He is a Developers of Mix-Userbot.</b>"
-glbl_4: "{} <b>Give me a reason before do a Global Banning!</b>"
-glbl_5: "{} <b>User Already Global Banned!</b>"
-glbl_7: "{} <b>User not in list Global Banned!</b>"
-glbl_9: "{} <b>Give me a reason before do a Global Mutting!</b>"
-glbl_10: "{} <b>User Already Global Mutted.</b>"
-glbl_12: "{} <b>User never Global Mutted.</b>"
-glbl_21: "{} <b>List of GMute!!</b>\n\n"
+glbl_2: "{} **User not found!.**"
+glbl_3: "{} **Are you Kidding me? hah? He is a Developers of Mix-Userbot.**"
+glbl_4: "{} **Give me a reason before do a Global Banning!**"
+glbl_5: "{} **User Already Global Banned!**"
+glbl_7: "{} **User not in list Global Banned!**"
+glbl_9: "{} **Give me a reason before do a Global Mutting!**"
+glbl_10: "{} **User Already Global Mutted.**"
+glbl_12: "{} **User never Global Mutted.**"
+glbl_21: "{} **List of GMute!!**\n\n"
 
 # graph
-grp_1: "{} <b>Please reply text or media!</b>"
+grp_1: "{} **Please reply text or media!**"
 
 # grouplog
-grplog_1: "{} <b>Log Group Successfully Activated! :\n\n{}</b>"
-grplog_2: "{} <b>Log Group Already Activated.</b>"
-grplog_3: "{} <b>Log Group Successfully Deactivated!.</b>"
-grplog_4: "{} <b>Log Group Anda Sudah Deactivated!.</b>"
-grplog_5: "{} <b>Bad Format. Commands : <code>gruplog on</code> or <code>gruplog off</code>.</b>"
-grplog_6: "<b>📨 New Message\n\n• Group : {}\n• User : {}\n• Messages: {}</b>"
-grplog_7: "<b>📨 New Message\n\n• Group : {}\n• User : {}\n• Messages: {}</b>"
+grplog_1: "{} **Log Group Successfully Activated! :\n\n{}**"
+grplog_2: "{} **Log Group Already Activated.**"
+grplog_3: "{} **Log Group Successfully Deactivated!.**"
+grplog_4: "{} **Log Group Anda Sudah Deactivated!.**"
+grplog_5: "{} **Bad Format. Commands : `gruplog on` or `gruplog off`.**"
+grplog_6: "**📨 New Message\n\n• Group : {}\n• User : {}\n• Messages: {}**"
+grplog_7: "**📨 New Message\n\n• Group : {}\n• User : {}\n• Messages: {}**"
 grplog_8: "Replied Message"
 
 # info
