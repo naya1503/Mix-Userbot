@@ -41,7 +41,7 @@ crbn_1: "{} **Teks tidak boleh kosong!!**"
 crbn_2: "{} **Carbonara oleh: {}.**"
 
 # copy
-cpy: " Bantuan Untuk Copy\n\n• Perintah : <code>{0}copy</code> [link]\n• Penjelasan : Untuk mengambil pesan melalui link telegram."
+#cpy: " Bantuan Untuk Copy\n\n• Perintah : <code>{0}copy</code> [link]\n• Penjelasan : Untuk mengambil pesan melalui link telegram."
 cpy_1: "{} **Gunakan format : `{}` [link].**"
 cpy_2: "{} **Nyolong dihentikan.**"
 cpy_3: "**🔒 Konten Bersifat Private!!**"
