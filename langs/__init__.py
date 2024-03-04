@@ -76,7 +76,7 @@ load(loc_lang.format(cek_bahasa))
 
 
 def cgr(key, _res: bool = True):
-    lang = cek_bahasa
+    lang = cek_bahasa or "en"
     try:
         return bahasa_[lang][key]
     except KeyError:
