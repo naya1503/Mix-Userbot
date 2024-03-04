@@ -10,13 +10,15 @@ proses: "{} **Processing...**"
 proses_1: "**Processing...**"
 upload: "{} **Uploading...**"
 klk_1: "Click Here"
+balik: "Back"
+ttup: "Close"
 
 # assisten
-asst_1: "Hi 👋 {} !! I'm your asisstant.\n\nWhat Should i do for you ?"
-asst_2: "Hi 👋 {} !! I'm bot asisstant of {}\nWhat do you want ?"
-asst_3: "Language"
-asst_4:
-asst_5:
+asst_1: "Hello 👋 {} !! I'm your assistant bot.\n\nWhat settings do you want to change?"
+ asst_2: "Hello 👋 {} !! I'm {}'s assistant\nWhat are you looking for ?"
+ asst_3: "Language"
+ asst_4: "The language you are currently using is: {}\nPlease select if you want to change the language."
+ asst_5: "Your language has been successfully changed to : {}"
 
 # autoread 
 autoread_1: "{} **Usage: `autoread` [`gc` or `us` or `ch` or `all`].**"
