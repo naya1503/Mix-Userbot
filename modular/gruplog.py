@@ -163,7 +163,7 @@ async def _(c: user, m):
                 LOG_CHATS_.NEWPM.text.replace(
                     "**💌 #NEW_MESSAGE**",
                     f" • `{LOG_CHATS_.COUNT}` **Pesan**"))
-                LOG_CHATS_.COUNT = 0
+            LOG_CHATS_.COUNT = 0
         LOG_CHATS_.NEWPM = await c.send_message
           lg,
           f"💌 <b>#MENERUSKAN #PESAN_BARU</b>\n<b> • Dari :</b> {m.from_user.mention}\n<b> • User ID :</b> <code>{m.from_user.id}</code>",
