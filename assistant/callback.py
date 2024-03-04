@@ -76,9 +76,9 @@ async def _(c, cq):
     okb([[("Kembali", "clbk.bek")]])
     ndB.get_key("bahasa")
     bhsk = get_bahasa_()
-    bhs["nama"]
+    mmfg = bhsk[arn]["nama"]
     buttons = [
-        [InlineKeyboardButton(f"{bhsk[arn]['nama']}", callback_data=f"set_{arn}")]
+        [InlineKeyboardButton(f"{mmfg}", callback_data=f"set_{arn}")]
         for arn in bhsk
     ]
     buttons.append([InlineKeyboardButton(cgr("balik"), callback_data="clbk.bek")])
