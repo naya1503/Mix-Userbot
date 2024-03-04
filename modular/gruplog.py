@@ -10,6 +10,7 @@ import asyncio
 import os
 
 from pyrogram import *
+from pyrogram.enums import *
 from pyrogram.errors import *
 
 from Mix import *
@@ -172,7 +173,7 @@ async def _(c: user, m):
             LOG_CHATS_.NEWPM = await c.send_message(
                 lg,
                 f"💌 <b>#MENERUSKAN #PESAN_BARU</b>\n<b> • Dari :</b> {m.from_user.mention}\n<b> • User ID :</b> <code>{m.from_user.id}</code>",
-                parse_mode=enums.ParseMode.HTML,
+                parse_mode=ParseMode.HTML,
             )
         try:
             async for oiu in c.search_messages(m.chat.id, limit=1):
