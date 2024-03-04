@@ -110,7 +110,7 @@ def cgr(key, _res: bool = True):
 
 
 def get_cgr(key):
-    doc = cgr(f"cgr_{key}", _res=False)
+    doc = cgr(f"help_{key}", _res=False)
     if doc:
         return cgr("cmds") + doc
 
