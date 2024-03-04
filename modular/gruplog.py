@@ -6,20 +6,15 @@
 """
 ################################################################
 
-__modles__ = "Gruplog"
-__help__ = """
-Help Command GrupLog
-
-• Perintah: <code>{0}gruplog</code> [on/off]
-• Penjelasan: Aktifkan tag log dan pm log.
-"""
-
 import os
 
 from pyrogram import *
 from pyrogram.errors import *
 
 from Mix import *
+
+__modles__ = "Gruplog"
+__help__ = get_cgr("help_gruplog")
 
 
 @ky.ubot("gruplog", sudo=True)
