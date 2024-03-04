@@ -12,12 +12,7 @@ from pyrogram.types import *
 from Mix import *
 
 __modles__ = "Markdown"
-__help__ = """
-Help Command Markdown
-
-• Perintah: <code>{0}markdown</code>
-• Penjelasan: Untuk melihat format button.
-"""
+__help__ = get_cgr("help_markd")
 
 
 @ky.ubot("markdown", sudo=True)
