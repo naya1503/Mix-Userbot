@@ -114,20 +114,14 @@ def get_cgr(key):
         return cgr("cmds") + doc
 
 
-def get_bahasa_(l):
-    return bahasa_[l]
-
-
-for filename in os.listdir("langs/strings/"):
-    if "en" not in bahasa_:
-        bahasa_["en"] = yaml.safe_load(open("langs/strings/en.yml", encoding="utf8"))
-    if filename.endswith(".yml"):
-        language_name = filename[:-4]
-        if language_name == "en":
-            continue
-        bahasa_[language_name] = yaml.safe_load(
-            open("langs/strings/" + filename, encoding="utf8")
-        )
-        for item in bahasa_["en"]:
-            if item not in bahasa_[language_name]:
-                bahasa_[language_name][item] = bahasa_["en"][item]
+def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
+    for file in glob("langs/strings/*yml"):
+        load(file)
+    return {
+        code: {
+            "name": bahasa_[code]["name"],
+            "natively": bahasa_[code]["natively"],
+            "authors": bahasa_[code]["authors"],
+        }
+        for code in languages
+    }
