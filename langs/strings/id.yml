@@ -41,7 +41,6 @@ crbn_1: "{} **Teks tidak boleh kosong!!**"
 crbn_2: "{} **Carbonara oleh: {}.**"
 
 # copy
-#cpy: " Bantuan Untuk Copy\n\n• Perintah : <code>{0}copy</code> [link]\n• Penjelasan : Untuk mengambil pesan melalui link telegram."
 cpy_1: "{} **Gunakan format : `{}` [link].**"
 cpy_2: "{} **Nyolong dihentikan.**"
 cpy_3: "**🔒 Konten Bersifat Private!!**"
@@ -74,45 +73,28 @@ gcs_13: "{} **Daftar blacklist kosong!!**"
 gcs_14: "{} **Semua daftar hitam telah berhasil dihapus.**"
 
 # alive
-#alv: " <b>Bantuan Perintah Alive</b>\n\n• Perintah : <code>{0}alive</code>\n• Penjelasan : Alive."
 alv_1: "<b>Author</b>"
 alv_2: "<b>Connoisseur</b>"
-#alv_3: "<b>Mix-Userbot</b>\n    <b>status:</b> {}\n    <b>dc_id:</b> {}\n    <b>ping_dc:</b> {str(pink).replace('.', ',')} ms\n    <b>antipm:</b> {}\n    <b>pengguna:</b> {len(apa)}\n    <b>grup:</b> {len(ape)}\n    <b>durasi_bot:</b> {}"
 alv_4: "Support"
 
 # global
-#glbl: " <b>Bantuan Perintah Global</b>\n\n• Perintah : <code>{0}gban</code> [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global banned.\n• Perintah : <code>{0}ungban</code> [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global ubanned.\n• Perintah : <code>{0}listgban</code> [user_id/username/bales pesan]\n• Penjelasan : Untuk melihat daftar pengguna gban.\n• Perintah : <code>{0}gmute</code> [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global mute.\n• Perintah : <code>{0}ungmute</code> [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global unmute.\n• Perintah : <code>{0}listgmute</code> [user_id/username/bales pesan]\n• Penjelasan : Untuk melihat daftar pengguna gmute."
 glbl_2: "{} <b>Pengguna tidak ditemukan.</b>"
 glbl_3: "{} <b>Dia adalah Developer Mix-Userbot.</b>"
 glbl_4: "{} <b>Silahkan berikan alasan untuk diGban!</b>"
 glbl_5: "{} <b>Pengguna sudah digban.</b>"
-#glbl_6: "{} <b>Warning Global Banned\n\n{} Berhasil: <code>{bs}</code> Chat\n{} Gagal: <code>{}</code> Chat\n{} User: <code>{}</code></b>\n{} Alasan: <code>{}</code></b>"
 glbl_7: "{} <b>Pengguna belum digban.</b>"
-#glbl_8: "{} <b>Warning Global Unbanned\n\n{} Berhasil: <code>{bs}</code> Chat\n{} Gagal: <code>{}</code> Chat\n{} User: <code>{}</code></b>"
 glbl_9: "{} <b>Silahkan berikan alasan untuk diGMute!</b>"
 glbl_10: "{} <b>Pengguna sudah digmute.</b>"
-#glbl_11: "{} <b>Warning Global Gmute\n\n{} Berhasil: <code>{bs}</code> Chat\n{} Gagal: <code>{}</code> Chat\n{} User: <code>{}</code></b>\n{} Alasan: <code>{alasan}</code></b>"
 glbl_12: "{} <b>Pengguna belum pernah diGMute.</b>"
-#glbl_13: "{} <b>Warning Global Ungmute\n\n{} Berhasil: <code>{bs}</code> Chat\n{} Gagal: <code>{}</code> Chat\n{} User: <code>{mention}</code></b>"
 glbl_14: "{} <b>Daftar GBanned :</b>\n\n"
-#glbl_15: "{} <b>{ii['_id']}</b>\n"
-#glbl_16: "{} <b>Alasan: <code>{ii['reason']}</code>\n\n{} Total :<code>{dbgb.count_gbans()}</code></b>\n"
 glbl_17: "{} <b>Daftar GBanned!!</b>\n\n"
 glbl_18: "{} <b>Daftar GMute :</b>\n\n"
-#glbl_19: "{} <b><code>{ii['_id']}</code></b>\n"
-#glbl_20: "{} <b>Alasan: <code>{ii['reason']}</code>\n\n{} Total :<code>{dbgm.count_gmutes()}</code></b>\n"
 glbl_21: "{} <b>Daftar GMute!!</b>\n\n"
 
 # graph
-#grp: " Bantuan Perintah Telegraph\n\n• Perintah: <code>{0}tg</code>\n• Penjelasan: Untuk mengunggah teks, video atau foto."
 grp_1: "{} <b>Silakan balas ke pesan teks atau media!</b>"
-#grp_2: "{} <b><code>{r}</code>\n\nLapor ke @KynanSupport!</b>"
-#grp_3: "{} <b>Diupload ke : <a href='https://telegra.ph/{media_url[0]}'>Klik Disini</a></b>"
-#grp_4: "{c.me.first_name} {c.me.last_name or ''}"
-#grp_5: "{} <b>Diupload ke : <a href='https://telegra.ph/{response['path']}'>Klik Disini</a></b>"
 
 # grouplog
-#grplog: " Bantuan Perintah GrupLog\n\n• Perintah: <code>{0}gruplog</code> [on/off]\n• Penjelasan: Aktifkan tag log dan pm log."
 grplog_1: "{} <b>Log Group Berhasil Diaktifkan :\n\n{}</b>"
 grplog_2: "{} <b>Log Group Anda Sudah Aktif.</b>"
 grplog_3: "{} <b>Log Group Berhasil Dinonaktifkan.</b>"
@@ -123,5 +105,3 @@ grplog_7: "<b>📨 Pesan Baru\n\n• Grup : {}\n• Pengguna : {}\n• Pesan: {}
 grplog_8: "Jawab Pesan"
 
 # info
-#inf: "Bantuan Perintah Info\n\n• Perintah: <code>{0}info</code>\n• Penjelasan: Untuk melihat pengguna.\n\n• Perintah: <code>{0}cinfo</code>\n• Penjelasan: Untuk melihat grup."
-
