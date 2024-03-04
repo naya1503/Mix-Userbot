@@ -100,7 +100,7 @@ async def _(c, m):
             ret = await bot.send_message(
                 db, teks, disable_web_page_preview=True, reply_markup=donut
             )
-        
+
     except FloodWait as e:
         await asyncio.sleep(e.value)
         ret = await bot.send_message(
