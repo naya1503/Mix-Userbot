@@ -15,10 +15,10 @@ from typing import Any, Dict, List, Union
 from urllib.parse import quote, unquote
 
 import requests
+import yaml
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB
 from yaml import safe_load
-import yaml
 
 from config import def_bahasa
 
@@ -116,12 +116,11 @@ def get_cgr(key):
 
 def get_bahasa_(l):
     return bahasa_[l]
-    
+
+
 for filename in os.listdir(r"lang//strings/"):
     if "en" not in bahasa_:
-        bahasa_["en"] = yaml.safe_load(
-            open(r"langs/strings/en.yml", encoding="utf8")
-        )
+        bahasa_["en"] = yaml.safe_load(open(r"langs/strings/en.yml", encoding="utf8"))
     if filename.endswith(".yml"):
         language_name = filename[:-4]
         if language_name == "en":
