@@ -7,20 +7,17 @@
 ################################################################
 
 
-from Mix import *
-import asyncio
-import os
-import time
-from gc import get_objects
-from time import time
 
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
 
+from Mix import *
+
 COPY_ID = {}
 
 nyolong_jalan = False
+
 
 def clbk_strt():
     return okb(

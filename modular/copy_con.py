@@ -6,14 +6,10 @@
 """
 ################################################################
 
-import asyncio
 import os
 import time
-from gc import get_objects
 from time import time
 
-from pyrogram import *
-from pyrogram.types import *
 
 from Mix import Emojik, bot, cgr, ky, progress, user
 
@@ -159,6 +155,7 @@ async def gas_download(g, c: user, inf, m):
         await inf.delete()
         os.remove(media)
         os.remove(thumbnail)
+
 
 @ky.ubot("copy", sudo=True)
 async def _(c: user, m):
