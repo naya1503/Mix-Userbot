@@ -82,7 +82,7 @@ async def _(c, cq):
     ]
     buttons.append([InlineKeyboardButton(cgr("balik"), callback_data="clbk.bek")])
     if cmd == "bhsa":
-        teks = cgr("asst_4").format(bhs['nama'])
+        teks = cgr("asst_4").format(bhs["nama"])
         await cq.edit_message_text(text=teks, reply_markup=buttons)
     elif cmd == "bek":
         txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
@@ -99,9 +99,7 @@ async def _(c, cq):
         ndB.del_key("bahasa")
     else:
         ndB.set_key("bahasa", lang)
-    await cq.edit_message_text(
-        cgr("asst_5").format(bhs['nama']), reply_markup=kb
-    )
+    await cq.edit_message_text(cgr("asst_5").format(bhs["nama"]), reply_markup=kb)
 
 
 @ky.inline("^mark_in")
