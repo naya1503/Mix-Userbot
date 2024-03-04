@@ -89,7 +89,7 @@ async def _(c, cq):
 
     if cmd == "bhsa":
         teks = cgr("asst_4")
-        await cq.edit_message_text(text=teks, reply_markup=lanuages_keyboard)
+        await cq.edit_message_text(text=teks, reply_markup=sini_croot)
     elif cmd == "bek":
         txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
 
