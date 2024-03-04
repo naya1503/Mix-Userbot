@@ -14,23 +14,6 @@
 #
 ################################################################
 
-__modles__ = "Heroku"
-__help__ = """
- Help Command Heroku
-
-• Perintah : <code>{0}getlog</code>
-• Penjelasan : Get logs heroku.
-
-• Perintah : <code>{0}getvar</code>
-• Penjelasan : Get value for variabel.
-
-• Perintah : <code>{0}delvar</code>
-• Penjelasan : Delete variabel 
-
-• Perintah : <code>{0}setvar</code>
-• Penjelasan : Set variabel and value 
-"""
-
 
 import asyncio
 import importlib
@@ -55,6 +38,8 @@ from . import import_modular
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+__modles__ = "Heroku"
+__help__ = get_cgr("help_heroko")
 
 @ky.ubot("getlog", sudo=True)
 async def _(c: user, m):
