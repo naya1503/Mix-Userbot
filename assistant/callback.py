@@ -79,7 +79,7 @@ async def _(c, cq):
     buttons = [
         [
             InlineKeyboardButton(
-                f"{bhs[lang]['penulis']} [{lang.lower()}]", callback_data=f"set_{lang}"
+                f"{bhs[lang]['nama']} [{lang.lower()}]", callback_data=f"set_{lang}"
             )
         ]
         for lang in bhs
@@ -104,7 +104,7 @@ async def _(c, cq):
     else:
         ndB.set_key("bahasa", lang)
     await cq.edit_message_text(
-        cgr("asst_5").format(bhs[lang]["penulis"][lang]), reply_markup=kb
+        cgr("asst_5").format(bhs[lang]["nama"][lang]), reply_markup=kb
     )
 
 
