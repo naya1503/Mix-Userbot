@@ -10,12 +10,7 @@
 from Mix import *
 
 __modles__ = "Prefixes"
-__help__ = """
- Help Command Prefixes
-
-• Perintah: <code>{0}setprefix</code> [trigger]
-• Penjelasan: Untuk mengatur handler userbot anda.
-"""
+__help__ = get_cgr("help_pref")
 
 
 @ky.ubot("setprefix", sudo=True)
