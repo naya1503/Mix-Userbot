@@ -24,6 +24,7 @@ dbgm = GMute()
 __modles__ = "Global"
 __help__ = get_cgr("help_global")
 
+
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
 async def _(c: user, m):

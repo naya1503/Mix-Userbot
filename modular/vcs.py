@@ -1,5 +1,3 @@
-
-
 from asyncio import sleep
 from contextlib import suppress
 from random import randint
@@ -22,6 +20,7 @@ turun_dewek = False
 __modles__ = "Voicechat"
 
 __help__ = get_cgr("help_vcs")
+
 
 async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCall]:
     chat_peer = await c.resolve_peer(m.chat.id)

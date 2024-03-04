@@ -1,7 +1,3 @@
-
-
-
-
 import os
 from io import BytesIO
 
@@ -11,6 +7,7 @@ from Mix import *
 
 __modles__ = "Profile"
 __help__ = get_cgr("help_prof")
+
 
 @ky.ubot("unblock", sudo=True)
 async def _(c: user, m):

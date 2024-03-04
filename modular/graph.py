@@ -14,6 +14,7 @@ from Mix import *
 __modles__ = "Telegraph"
 __help__ = get_cgr("help_graph")
 
+
 @ky.ubot("tg", sudo=True)
 async def _(c: user, m):
     em = Emojik()

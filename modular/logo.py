@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import Emojik, ky, user, get_cgr
+from Mix import Emojik, get_cgr, ky, user
 
 __modles__ = "Logo"
 __help__ = get_cgr("help_logo")

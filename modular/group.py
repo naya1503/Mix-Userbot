@@ -1,4 +1,3 @@
-
 from Mix import get_cgr
 
 __modles__ = "Group"
