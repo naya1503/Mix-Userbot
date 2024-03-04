@@ -12,12 +12,7 @@ from io import BytesIO
 from Mix import *
 
 __modles__ = "Carbon"
-__help__ = """
- Help Command Carbon
-
-• Perintah: <code>{0} carbon</code>
-• Penjelasan: Untuk membuat teks carbonara.
-"""
+__help__ = get_cgr("help_carbon")
 
 
 async def make_carbon(code):
