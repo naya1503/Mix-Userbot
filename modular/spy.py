@@ -6,18 +6,13 @@
 """
 ################################################################
 
-__modles__ = "Curi"
-__help__ = """
-Help Command Curi
-
-• Perintah: <code>{0}curi or spy</code>
-• Penjelasan: Untuk mencuri pap timer (bukan sekali lihat).
-"""
-
 
 import os
 
 from Mix import *
+
+__modles__ = "Curi"
+__help__ = get_cgr("help_spy")
 
 
 @ky.ubot("curi|spy", sudo=True)
