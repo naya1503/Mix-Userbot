@@ -1,8 +1,8 @@
 nama: Indonesia
 penulis:
   - Keenan
-  
-  
+
+
 cmds: "Bantuan Perintah"
 err: "{} **Error:** {}"
 err_1: "**Error:** {}"
