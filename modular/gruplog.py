@@ -144,6 +144,8 @@ async def _(c: user, m):
             return
 
 
-@user.on_message(filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot)
+@user.on_message(
+    filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot
+)
 async def _(_, m):
     await user.forward_private(m)
