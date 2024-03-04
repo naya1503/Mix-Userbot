@@ -14,15 +14,7 @@ from Mix.core.parser import mention_html
 from Mix.core.sender_tools import extract_user
 
 __modles__ = "ShowID"
-__help__ = """
-Help Command ShowID 
-
-• Perintah: <code>{0}id</code>
-• Penjelasan: Untuk melihat id pengguna atau grup/channel.
-
-• Perintah: <code>{0}gifid</code>
-• Penjelasan: Untuk melihat id gif.
-"""
+__help__ = get_cgr("help_sid")
 
 
 @ky.ubot("id", sudo=True)
