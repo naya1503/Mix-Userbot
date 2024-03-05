@@ -49,7 +49,7 @@ async def _(c, cq):
     if cmd == "bhsa":
         meki = f"{op[0]['natively']}"
         teks = cgr("asst_4").format(meki)
-        await cq.edit_message_text(text=teks, reply_markup=st_lang(languages))
+        await cq.edit_message_text(text=teks, reply_markup=st_lang(op))
     elif cmd == "bek":
         txt = "<b>To view markdown format please click the button below.</b>"
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
