@@ -17,12 +17,12 @@ from urllib.parse import quote, unquote
 import requests
 import yaml
 from team.nandev.class_log import LOGGER
-from team.nandev.database import ndB
+from team.nandev.database import udB
 from yaml import safe_load
 
 from config import def_bahasa
 
-cek_bahasa = ndB.get_key("bahasa") or def_bahasa
+cek_bahasa = udB.get_lang() or def_bahasa
 
 bahasa_ = {}
 loc_lang = "langs/strings/{}.yml"
