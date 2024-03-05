@@ -50,7 +50,6 @@ async def _(c, cq):
     op = get_bahasa_()
     okb([[("Back", "clbk.bek")]])
     user_name = f"<a href='tg://user?id={cq.from_user.id}'>{cq.from_user.first_name} {cq.from_user.last_name or ''}</a>"
-    cgr("asst_1").format(user_name)
     if cmd == "bhsa":
         meki = f"{op[0]['natively']}"
         teks = cgr("asst_4").format(meki)
@@ -61,8 +60,8 @@ async def _(c, cq):
         )
         os.execl(sys.executable, sys.executable, "-m", "Mix")
     elif cmd == "bek":
-        txt = "<b>To view markdown format please click the button below.</b>"
-        await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
+        ts_1 = cgr("asst_1").format(user_name)
+        await cq.edit_message_text(text=ts_1, reply_markup=clbk_strt())
 
 
 @ky.callback("^set_(.*?)")
