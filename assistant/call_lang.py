@@ -59,7 +59,9 @@ async def _(c, cq):
 @ky.callback("^set_(.*?)")
 async def _(c, cq):
     lang_code = cq.matches[0].group(1)
-    get_bahasa_()
+    languages = get_bahasa_()
+    for op in languages:
+        meki = f"{op['natively']}"
     kb = okb([[(cgr("balik"), "clbk.bek")]])
     ndB.set_key("bahasa", lang_code)
-    await cq.edit_message_text(cgr("asst_5").format(lang_name), reply_markup=kb)
+    await cq.edit_message_text(cgr("asst_5").format(meki), reply_markup=kb)
