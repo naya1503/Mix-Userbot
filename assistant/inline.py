@@ -5,7 +5,6 @@
  @ CREDIT : NAN-DEV
 """
 ################################################################
-import os
 from gc import get_objects
 
 from pyrogram import *
@@ -13,12 +12,11 @@ from pyrogram.enums import *
 from pyrogram.types import *
 
 from Mix import *
-from modular.pmpermit import *
 from modular.copy_con import *
-from telegraph import upload_file
-
+from modular.pmpermit import *
 
 # button
+
 
 @ky.inline("^dibikin_button")
 async def _(c, iq):
@@ -37,9 +35,10 @@ async def _(c, iq):
         )
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
-    
-    
+
+
 # markdown
+
 
 @ky.inline("^mark_in")
 async def _(c, iq):
@@ -57,6 +56,7 @@ async def _(c, iq):
             )
         ],
     )
+
 
 # help
 
@@ -87,7 +87,8 @@ async def _(c, iq):
             )
         ],
     )
-    
+
+
 # copy
 
 
@@ -115,6 +116,6 @@ async def _(c, iq):
             )
         ],
     )
-    
+
 
 # pmpermit
