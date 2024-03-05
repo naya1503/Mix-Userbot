@@ -23,7 +23,7 @@ __help__ = get_cgr("help_gruplog")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.reply(f"{em.proses} Processing...")
+    xx = await m.reply(cgr("proses").format(em.proses))
     cek = c.get_arg(m)
     logs = udB.get_logger(c.me.id)
     if cek.lower() == "on":
@@ -31,24 +31,22 @@ async def _(c: user, m):
             await c.logger_grup()
             xx = await c.get_grup()
             ff = await c.export_chat_invite_link(int(xx.id))
-            return await xx.edit(
-                f"{em.sukses} **Log Group Berhasil Diaktifkan :\n\n{ff}**"
-            )
+            return await xx.edit(cgr("grplog_1").format(em.sukses, ff))
             udB.set_logger(c.me.id, int(xx.id))
+            ndB.set_key("TAG_LOG", int(xx.id))
         else:
-            return await xx.edit(f"{em.sukses} **Log Group Anda Sudah Aktif.**")
+            return await xx.edit(cgr("grplog_2").format(em.sukses))
     if cek.lower() == "off":
         if logs:
             udB.rem_logger(c.me.id)
+            ndB.del_key("TAG_LOG")
             xx = await c.get_grup()
             await c.delete_supergroup(int(xx.id))
-            return await xx.edit(f"{em.gagal} **Log Group Berhasil Dinonaktifkan.**")
+            return await xx.edit(cgr("grplog_3").format(em.gagal))
         else:
-            return await xx.edit(f"{em.gagal} **Log Group Anda Sudah Dinonaktifkan.**")
+            return await xx.edit(cgr("grplog_4").format(em.gagal))
     else:
-        return await xx.edit(
-            f"{em.gagal} **Format yang anda berikan salah. silahkan gunakan <code>gruplog on or off</code>.**"
-        )
+        return await xx.edit(cgr("grplog_5").format(em.gagal))
 
 
 @ky.gc()
@@ -61,18 +59,13 @@ async def _(c, m):
     media = None
     teks = None
     if m.caption:
-        teks = f"**📨 New Message\n\n• Grup : {m.chat.title}\n• Pengguna : {org}\n• Pesan: {m.caption}**"
+        teks = cgr("grplog_6").format(m.chat.title, org, m.caption)
     else:
-        teks = f"""
-**📨 New Message
-• Grup : {m.chat.title}
-• Pengguna : {org}
-• Pesan: {m.text}**
-"""
+        teks = cgr("grplog_6").format(m.chat.title, org, m.text)
     donut = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("Replied Message", url=lenk),
+                InlineKeyboardButton(cgr("grplog_7"), url=lenk),
             ],
         ]
     )
