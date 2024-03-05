@@ -15,6 +15,8 @@ upload: "{} **Uploading...**"
 klk_1: "Click Here"
 balik: "Back"
 ttup: "Close"
+reboot: "{} Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
+reboot_1: "Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
 
 # help_for
 help_afk: "Afk\n\n• Command: `{0}afk` [reason]\n• Description: To activate afk mode.\n\n• Command: `{0}unafk` [reason]\n• Description: To deactivate afk mode."
