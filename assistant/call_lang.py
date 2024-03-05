@@ -44,9 +44,8 @@ async def _(c, cq):
 @ky.callback("clbk.")
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
-    languages = get_bahasa_()
-    for op in languages:
-        meki = f"{op['natively']}"
+    op = get_bahasa_()
+    meki = f"{op['natively']}"
     okb([[("Back", "clbk.bek")]])
     if cmd == "bhsa":
         teks = cgr("asst_4").format(meki)
@@ -59,9 +58,8 @@ async def _(c, cq):
 @ky.callback("^set_(.*?)")
 async def _(c, cq):
     lang_code = cq.matches[0].group(1)
-    languages = get_bahasa_()
-    for op in languages:
-        meki = f"{op['natively']}"
+    op = get_bahasa_()
+    meki = f"{op['natively']}"
     kb = okb([[(cgr("balik"), "clbk.bek")]])
     udB.set_lang(lang_code)
     await cq.edit_message_text(cgr("asst_5").format(meki), reply_markup=kb)
