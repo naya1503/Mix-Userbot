@@ -47,7 +47,7 @@ async def _(c, cq):
     languages = get_bahasa_()
     okb([[("Back", "clbk.bek")]])
     if cmd == "bhsa":
-        teks = cgr("asst_4").format(languages['natively'])
+        teks = cgr("asst_4").format(languages["natively"])
         await cq.edit_message_text(text=teks, reply_markup=st_lang(languages))
     elif cmd == "bek":
         txt = "<b>To view markdown format please click the button below.</b>"
