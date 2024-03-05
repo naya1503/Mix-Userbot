@@ -55,9 +55,7 @@ async def _(c, cq):
         teks = cgr("asst_4").format(meki)
         await cq.edit_message_text(text=teks, reply_markup=st_lang(op))
     elif cmd == "rebot":
-        await cq.edit_message_text(
-            text="Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
-        )
+        await cq.edit_message_text(cgr("reboot_1"))
         os.execl(sys.executable, sys.executable, "-m", "Mix")
     elif cmd == "bek":
         ts_1 = cgr("asst_1").format(user_name)
