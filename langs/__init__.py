@@ -22,7 +22,7 @@ from yaml import safe_load
 
 from config import def_bahasa
 
-cek_bahasa = ndB.get_key("bahasa")
+cek_bahasa = ndB.get_key("bahasa") or def_bahasa
 
 bahasa_ = {}
 loc_lang = "langs/strings/{}.yml"
