@@ -6,24 +6,21 @@
 """
 ################################################################
 import os
+from datetime import datetime
 from gc import get_objects
+from time import time
 
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
+from pyrogram.raw.functions import Ping
 from pyrogram.types import *
 from telegraph import upload_file
 
-from datetime import datetime
-from time import time
-
-from pyrogram.raw.functions import Ping
-from Mix.core.waktu import get_time, start_time
-
-from modular.gcast import refresh_dialog
-
 from Mix import *
+from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
+from modular.gcast import refresh_dialog
 from modular.pmpermit import *
 
 # button
@@ -298,7 +295,8 @@ async def _(c, iq):
         await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
 
-#notes
+# notes
+
 
 @ky.inline("^get_note_")
 async def _(c, iq):

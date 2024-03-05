@@ -7,9 +7,7 @@
 ################################################################
 
 
-
 from Mix import bot, get_cgr, ky, user
-
 
 __modles__ = "Alive"
 __help__ = get_cgr("help_alive")
