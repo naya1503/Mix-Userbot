@@ -6,7 +6,6 @@
 """
 ################################################################
 
-from gc import get_objects
 
 from pykeyboard import InlineKeyboard
 from pyrogram import *
@@ -24,8 +23,8 @@ def st_lang(languages):
     for lang in languages:
         buttons = [
             InlineKeyboardButton(
-            f"{lang['natively']} [{lang['code'].lower()}]",
-            callback_data=f"set_{lang['code']}",
+                f"{lang['natively']} [{lang['code'].lower()}]",
+                callback_data=f"set_{lang['code']}",
             )
         ]
     for button in buttons:
@@ -35,7 +34,8 @@ def st_lang(languages):
         InlineKeyboardButton(text="Close", callback_data="close_asst"),
     )
     return keyboard
-    
+
+
 @ky.callback("close_asst")
 async def _(c, cq):
     await cq.message.delete()
@@ -57,7 +57,7 @@ async def _(c, cq):
 @ky.callback("^set_(.*?)")
 async def _(c, cq):
     lang_code = cq.matches[0].group(1)
-    bhs = get_bahasa_()
+    get_bahasa_()
     kb = okb([[(cgr("balik"), "clbk.bek")]])
     ndB.set_key("bahasa", lang_code)
     await cq.edit_message_text(cgr("asst_5").format(lang_name), reply_markup=kb)
