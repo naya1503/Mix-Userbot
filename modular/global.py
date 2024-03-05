@@ -31,15 +31,15 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     nyet, _ = await c.extract_user_and_reason(m)
-    xx = await m.reply(f"{em.proses} Processing...")
+    xx = await m.reply(cgr("proses").format(em.proses))
     if len(m.text.split()) == 1:
-        await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
+        await xx.edit(cgr("glbl_2").format(em.gagal))
         return
     if nyet in DEVS:
-        await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
+        await xx.edit(cgr("glbl_3").format(em.gagal))
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
-        await xx.edit(f"{em.gagal} Silahkan berikan alasan untuk diGban!")
+        await xx.edit(cgr("glbl_4").format(em.gagal))
         return
     if m.reply_to_message:
         alasan = m.text.split(None, 1)[1]
@@ -54,7 +54,7 @@ async def _(c: user, m):
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
         if dbgb.check_gban(nyet):
-            await xx.edit(f"{em.gagal} Pengguna sudah digban.")
+            await xx.edit(cgr("glbl_5").format(em.gagal))
             return
         try:
             await c.ban_chat_member(chat, nyet)
@@ -69,7 +69,7 @@ async def _(c: user, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgb.add_gban(nyet, alasan, c.me.id)
-    mmg = f"{em.warn} <b>Warning Global Banned\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n{em.block} **Alasan: `{alasan}`**"
+    mmg = cgr("glbl_6").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan)
     await m.reply(mmg)
     await xx.delete()
 
@@ -80,10 +80,10 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     nyet, _ = await c.extract_user_and_reason(m)
-    xx = await m.reply(f"{em.proses} Processing...")
+    xx = await m.reply(cgr("proses").format(em.proses))
     await c.get_users(nyet)
     if len(m.text.split()) == 1:
-        await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
+        await xx.edit(cgr("glbl_2").format(em.gagal))
         return
     bs = 0
     gg = 0
@@ -94,7 +94,7 @@ async def _(c: user, m):
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
         if not dbgb.check_gban(nyet):
-            await xx.edit(f"{em.gagal} Pengguna belum digban.")
+            await xx.edit(cgr("glbl_7").format(em.gagal))
             return
         try:
             await c.unban_chat_member(chat, nyet)
@@ -104,7 +104,7 @@ async def _(c: user, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgb.remove_gban(nyet)
-    mmg = f"{em.warn} <b>Warning Global Unbanned\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
+    mmg = cgr("glbl_8").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
     await m.reply(mmg)
     await xx.delete()
 
@@ -115,16 +115,16 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     nyet, _ = await c.extract_user_and_reason(m)
-    xx = await m.reply(f"{em.proses} Processing...")
+    xx = await m.reply(cgr("proses").format(em.proses))
     await c.get_users(nyet)
     if len(m.text.split()) == 1:
-        await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
+        await xx.edit(cgr("glbl_2").format(em.gagal))
         return
     if nyet in DEVS:
-        await xx.edit(f"{em.gagal} Dia adalah Developer Mix-Userbot.")
+        await xx.edit(cgr("glbl_3").format(em.gagal))
         return
     if len(m.text.split()) == 2 and not m.reply_to_message:
-        await xx.edit(f"{em.gagal} Silahkan berikan alasan untuk diGMute!")
+        await xx.edit(cgr("glbl_9").format(em.gagal))
         return
     if m.reply_to_message:
         alasan = m.text.split(None, 1)[1]
@@ -140,7 +140,7 @@ async def _(c: user, m):
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
         if dbgm.check_gmute(nyet):
-            await xx.edit(f"{em.gagal} Pengguna sudah digmute.")
+            await xx.edit(cgr("glbl_10").format(em.gagal))
             return
         try:
             await c.restrict_chat_member(chat, nyet, ChatPermissions())
@@ -150,7 +150,7 @@ async def _(c: user, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgm.add_gmute(nyet, alasan, c.me.id)
-    mmg = f"{em.warn} <b>Warning Global Gmute\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n{em.block} **Alasan: `{alasan}`**"
+    mmg = cgr("glbl_11").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan)
     await m.reply(mmg)
     await xx.delete()
 
@@ -161,10 +161,10 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     nyet, _ = await c.extract_user_and_reason(m)
-    xx = await m.reply(f"{em.proses} Processing...")
+    xx = await m.reply(cgr("proses").format(em.proses))
     await c.get_users(nyet)
     if len(m.text.split()) == 1:
-        await xx.edit(f"{em.gagal} Pengguna tidak ditemukan.")
+        await xx.edit(cgr("glbl_2").format(em.gagal))
         return
     bs = 0
     gg = 0
@@ -175,7 +175,7 @@ async def _(c: user, m):
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
         if not dbgm.check_gmute(nyet):
-            await xx.edit(f"{em.gagal} Pengguna belum pernah diGMute.")
+            await xx.edit(cgr("glbl_12").format(em.gagal))
             return
         try:
             await c.unban_member(chat, nyet, ChatPermissions())
