@@ -87,7 +87,7 @@ async def _(c, cq):
     cmd = cq.data.split(".")[1]
     okb([[("Kembali", "clbk.bek")]])
     languages = get_bahasa_()
-    chs = f"{languages[mx]['natively']} [{mx.lower()}]
+    chs = f"{languages[mx]['natively']} [{mx.lower()}]"
     tultd = [
         InlineKeyboardButton(
             f"{chs}", callback_data=f"set_{mx}")
