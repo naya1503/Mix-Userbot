@@ -7,7 +7,7 @@
 ################################################################
 
 from gc import get_objects
-
+from pykeyboard import InlineKeyboard
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
@@ -33,7 +33,7 @@ def markdown_help():
 
 def st_lang():
     languages = get_bahasa_()
-    keyboard = InlineKeyboardMarkup(row_width=2)
+    keyboard = InlineKeyboard(row_width=2)
     buttons = [
         InlineKeyboardButton(
             f"{lang['natively']} [{lang['code'].lower()}]",
