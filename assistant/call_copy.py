@@ -1,4 +1,3 @@
-
 ################################################################
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
@@ -14,7 +13,7 @@ from pyrogram.enums import *
 from pyrogram.types import *
 
 from Mix import *
-from modular.copy_con import nyolong_jalan
+
 
 @ky.callback("copymsg_")
 async def _(c, cq):
@@ -38,4 +37,3 @@ async def _(c, cq):
             nyolong_jalan = False
     except Exception as e:
         await callback_query.edit_message_text(cgr("err_1").format(e))
-        
