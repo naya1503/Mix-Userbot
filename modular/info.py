@@ -134,28 +134,8 @@ async def user_info(c, sus, already=False):
         except Exception:
             last_date = cgr("info_13")
 
-    caption = f"""
-<b>User Info</b>
+    caption = cgr("info_14").format(user_id, user_id, mention, first_name, last_name, ("@" + username) if username else "NA", about, is_support, omp, gban, reason, dc_id, is_restricted, is_verified, is_fake, is_scam, is_bot, last_date)
 
-<b>🆔 User ID</b>: <code>{user_id}</code>
-<b>📎 Link To Profile</b>: <a href='tg://user?id={user_id}'>Click Here🚪</a>
-<b>🫵 Mention</b>: {mention}
-<b>🗣 First Name</b>: <code>{first_name}</code>
-<b>🔅 Second Name</b>: <code>{last_name}</code>
-<b>🔍 Username</b>: {("@" + username) if username else "NA"}
-<b>✍️ Bio</b>: `{about}`
-<b>🧑‍💻 Support</b>: {is_support}
-<b>🥷 Support user type</b>: <code>{omp}</code>
-<b>💣 Gbanned</b>: {gban}
-<b>☠️ Gban reason</b>: <code>{reason}</code>
-<b>🌐 DC ID</b>: {dc_id}
-<b>✋ RESTRICTED</b>: {is_restricted}
-<b>✅ VERIFIED</b>: {is_verified}
-<b>❌ FAKE</b> : {is_fake}
-<b>⚠️ SCAM</b> : {is_scam} 
-<b>🤖 BOT</b>: {is_bot}
-<b>👀 Last seen</b>: <code>{last_date}</code>
-"""
 
     return caption, photo_id
 
@@ -277,11 +257,9 @@ async def _(c: user, m):
             if chat.startswith("https://"):
                 chat = "@" + chat.split("/")[-1]
         else:
-            return await m.reply_text(
-                f"{em.gagal} Silahkan gunakan : <code>.cinfo</code> @username/id grup."
-            )
+            return await m.reply_text(cgr("info_17").format(em.gagal, m.command))
 
-    m = await m.reply_text(f"{em.proses} Fetching chat info...")
+    m = await m.reply_text(cgr("proses").format(em.proses))
 
     try:
         info_caption, photo_id = await chat_info(c, chat=chat)
@@ -291,7 +269,7 @@ async def _(c: user, m):
     except Exception as e:
         await m.delete()
         await sleep(0.5)
-        return await m.reply_text(f"{em.gagal} Error Laporkan ke @kynansupport\n {e}")
+        return await m.reply_text(cgr("err").format(em.gagal, e))
     if not photo_id:
         await m.delete()
         await sleep(2)
