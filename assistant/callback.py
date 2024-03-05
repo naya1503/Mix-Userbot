@@ -91,19 +91,17 @@ async def _(c, cq):
         InlineKeyboardButton(
             f"{languages[mx]['natively']} [{mx.lower()}]", callback_data=f"set_{mx}"
         )
-        for mx in languages
+        for mx in languages.keys()
     ]
     buttons = list(zip(tultd[::2], tultd[1::2]))
     if len(tultd) % 2 == 1:
         buttons.append((tultd[-1],))
     if cmd == "bhsa":
         teks = cgr("asst_4")
-        await cq.edit_message_text(text=teks, reply_markup=InlineKeyboardMarkup(tultd))
+        await cq.edit_message_text(text=teks, reply_markup=InlineKeyboardMarkup(buttons))
     elif cmd == "bek":
         txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
-
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
-
 
 @ky.callback("^languages:(.*?)")
 async def _(c, cq):
@@ -114,7 +112,7 @@ async def _(c, cq):
         ndB.del_key("bahasa")
     else:
         ndB.set_key("bahasa", lang)
-    await cq.edit_message_text(cgr("asst_5").format(bhs["nama"]), reply_markup=kb)
+    await cq.edit_message_text(cgr("asst_5").format(bhs["name"]), reply_markup=kb)
 
 
 @ky.inline("^mark_in")
