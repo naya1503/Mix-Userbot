@@ -22,7 +22,7 @@ from yaml import safe_load
 
 from config import def_bahasa
 
-cek_bahasa = udB.get_lang() or def_bahasa
+cek_bahasa = udB.get_lang()
 
 bahasa_ = {}
 loc_lang = "langs/strings/{}.yml"
