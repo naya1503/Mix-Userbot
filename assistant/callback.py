@@ -106,7 +106,6 @@ async def _(c, cq):
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
 
 
-
 @ky.callback("^set_:(.*?)")
 async def _(c, cq):
     lang_code = query.matches[0].group(1)
