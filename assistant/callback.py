@@ -32,8 +32,7 @@ def markdown_help():
     )
 
 
-def st_lang():
-    languages = get_bahasa_()
+def st_lang(languages):
     keyboard = InlineKeyboard(row_width=2)
     buttons = [
         InlineKeyboardButton(
@@ -93,10 +92,11 @@ async def _(c, cq):
 @ky.callback("clbk.")
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
+    languages = get_bahasa_()
     okb([[("Back", "clbk.bek")]])
     if cmd == "bhsa":
         teks = cgr("asst_4")
-        await cq.edit_message_text(text=teks, reply_markup=st_lang())
+        await cq.edit_message_text(text=teks, reply_markup=st_lang(languages))
     elif cmd == "bek":
         txt = "<b>To view markdown format please click the button below.</b>"
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
@@ -104,7 +104,7 @@ async def _(c, cq):
 
 @ky.callback("^set_(.*?)")
 async def _(c, cq):
-    lang_code = query.matches[0].group(1)
+    lang_code = cq.matches[0].group(1)
     bhs = get_bahasa_()
     kb = okb([[(cgr("balik"), "clbk.bek")]])
     for lang in bhs:
