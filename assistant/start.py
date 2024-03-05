@@ -7,8 +7,6 @@
 ################################################################
 
 
-import os
-from gc import get_objects
 
 from pyrogram import *
 from pyrogram.enums import *
@@ -18,9 +16,9 @@ from pyrogram.raw.functions.messages import *
 from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
 from pyrogram.types import *
-from telegraph import upload_file
 
 from Mix import *
+
 
 def clbk_strt():
     return okb(
