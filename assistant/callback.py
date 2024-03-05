@@ -88,10 +88,7 @@ async def _(c, cq):
     okb([[("Kembali", "clbk.bek")]])
     languages = get_bahasa_()
     chs = f"{languages[mx]['natively']} [{mx.lower()}]"
-    tultd = [
-        InlineKeyboardButton(
-            f"{chs}", callback_data=f"set_{mx}")
-    ]
+    tultd = [InlineKeyboardButton(f"{chs}", callback_data=f"set_{mx}")]
     buttons = list(zip(tultd[::2], tultd[1::2]))
     if len(tultd) % 2 == 1:
         buttons.append((tultd[-1],))
