@@ -58,9 +58,7 @@ async def count(c: user, chat):
         total_banned = len(total_banned)
         return total_bot, total_admin, bot_admin, total_banned
     except Exception:
-        total_bot = total_admin = bot_admin = total_banned = (
-            f"{em.gagal} Saya tidak berada digrup itu?"
-        )
+        total_bot = total_admin = bot_admin = total_banned = cgr("info_1").format(em.gagal)
 
     return total_bot, total_admin, bot_admin, total_banned
 
@@ -79,7 +77,7 @@ async def user_info(c, sus, already=False):
         reason = reason_gban
     else:
         gban = False
-        reason = f"{em.warn} Pengguna belum diGban!"
+        reason = cgr("glbl_7").format(em.warn)
 
     user_id = susu.id
     userrr = await c.resolve_peer(user_id)
@@ -99,42 +97,42 @@ async def user_info(c, sus, already=False):
     photo_id = susu.photo.big_file_id if susu.photo else None
     is_support = True if user_id in DEVS else False
     if user_id == bot.me.id:
-        is_support = "I'm Bot"
-    omp = "Tidak Diketahui"
+        is_support = "Bot"
+    omp = cgr("info_2")
     if is_support or bot.me.id:
         if user_id in DEVS:
-            omp = "Developer"
+            omp = cgr("info_2")
         elif user_id == bot.me.id:
-            omp = "I'm Bot"
+            omp = "Bot"
         elif user_id == c.me.id:
-            omp = "Owner of the bot"
+            omp = cgr("info_4")
         if user_id in DEVS and user_id == c.me.id:
-            omp = "Developer and Owner"
+            omp = cgr("info_5")
 
     is_scam = susu.is_scam
     is_bot = susu.is_bot
     is_fake = susu.is_fake
     status = susu.status
-    last_date = "Unable to fetch"
+    last_date = cgr("info_6")
     if is_bot is True:
-        last_date = "Targeted user is a bot"
+        last_date = cgr("info_7")
     if status == UserStatus.RECENTLY:
-        last_date = "User was seen recently"
+        last_date = cgr("info_8")
     if status == UserStatus.LAST_WEEK:
-        last_date = "User was seen last week"
+        last_date = cgr("info_9")
     if status == UserStatus.LAST_MONTH:
-        last_date = "User was seen last month"
+        last_date = cgr("info_10")
     if status == UserStatus.LONG_AGO:
-        last_date = "User was seen long ago or may be I am blocked by the user  :("
+        last_date = cgr("info_11")
     if status == UserStatus.ONLINE:
-        last_date = "User is online"
+        last_date = cgr("info_12")
     if status == UserStatus.OFFLINE:
         try:
             last_date = datetime.fromtimestamp(susu.status.date).strftime(
                 "%Y-%m-%d %H:%M:%S"
             )
         except Exception:
-            last_date = "User is offline"
+            last_date = cgr("info_13")
 
     caption = f"""
 <b>User Info</b>
