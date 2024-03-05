@@ -6,16 +6,10 @@
 """
 ################################################################
 
-from datetime import datetime
-from time import time
 
-from pyrogram.raw.functions import Ping
-from pyrogram.types import *
 
-from Mix import DEVS, bot, get_cgr, ky, udB, user
-from Mix.core.waktu import get_time, start_time
+from Mix import bot, get_cgr, ky, user
 
-from .gcast import refresh_dialog
 
 __modles__ = "Alive"
 __help__ = get_cgr("help_alive")
