@@ -113,24 +113,23 @@ glbl_22: "**Tidak ada pengguna ditemukan.**"
 
 # graph
 grp_1: "{} **Silakan balas ke pesan teks atau media!**"
-grp_2: "{} **`{r}`\n\nLapor ke @KynanSupport!**"
-grp_3: "{} **Diupload ke : <a href='https://telegra.ph/{media_url[0]}'>Klik Disini</a>**"
-grp_4: "{c.me.first_name} {c.me.last_name or ''}"
-grp_5: "{} **Diupload ke : <a href='https://telegra.ph/{response['path']}'>Klik Disini</a>**"
+grp_3: "{} **Diupload ke : <a href='https://telegra.ph/{}'>Klik Disini</a>**"
+grp_5: "{} **Diupload ke : <a href='https://telegra.ph/{}'>Klik Disini</a>**"
 
 # grouplog
-grplog: " Bantuan Perintah GrupLog\n\n• Perintah: `{0}gruplog` [on/off]\n• Penjelasan: Aktifkan tag log dan pm log."
 grplog_1: "{} **Log Group Berhasil Diaktifkan :\n\n{}**"
 grplog_2: "{} **Log Group Anda Sudah Aktif.**"
 grplog_3: "{} **Log Group Berhasil Dinonaktifkan.**"
 grplog_4: "{} **Log Group Anda Sudah Dinonaktifkan.**"
 grplog_5: "{} **Format yang anda berikan salah. silahkan gunakan `gruplog on` atau `gruplog off`.**"
 grplog_6: "**📨 Pesan Baru\n\n• Grup : {}\n• Pengguna : {}\n• Pesan: {}**"
-grplog_7: "**📨 Pesan Baru\n\n• Grup : {}\n• Pengguna : {}\n• Pesan: {}**"
-grplog_8: "Jawab Pesan"
+grplog_7: "Jawab Pesan"
+
+# help
+hlp_1: "{} **Tidak ada modul bernama `{}`.**"
 
 # info
-inf: "Bantuan Perintah Info\n\n• Perintah: `{0}info`\n• Penjelasan: Untuk melihat pengguna.\n\n• Perintah: `{0}cinfo`\n• Penjelasan: Untuk melihat grup."
+
 
 # limit
 lmt: "{emoji} **{result}**\n\n ~ {em.alive} **{c.me.first_name}**"
