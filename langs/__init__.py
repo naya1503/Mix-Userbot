@@ -123,14 +123,14 @@ def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
     try:
         for code, data in bahasa_.items():
             if data is not None:
-                bahasa_list.append({
-                    "code": code,
-                    "name": data.get("name", ""),
-                    "natively": data.get("natively", ""),
-                    "authors": data.get("authors", [])
-                })
+                bahasa_list.append(
+                    {
+                        "code": code,
+                        "name": data.get("name", ""),
+                        "natively": data.get("natively", ""),
+                        "authors": data.get("authors", []),
+                    }
+                )
         return bahasa_list
     except KeyError as e:
         LOGGER.error(f"KeyError: {e} not found in language file")
-
-
