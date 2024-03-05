@@ -26,6 +26,9 @@ def clbk_strt():
                 (cgr("asst_3"), "clbk.bhsa"),
                 (cgr("asst_6"), "clbk.rebot"),
             ],
+            [
+                cgr("ttup"), "close_asst"),
+            ],
         ],
         False,
         "close_asst",
