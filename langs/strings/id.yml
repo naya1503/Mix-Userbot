@@ -7,7 +7,7 @@ authors:
 
 
 cmds: "Bantuan Perintah"
-err: "{} **Error:** {}"
+err: "{} **Error:** {} \n\n**Silahkan laporkan ke @KynanSupport**"
 err_1: "**Error:** {}"
 proses: "{} **Sedang Diproses...**"
 proses_1: "**Sedang Diproses...**"
@@ -34,6 +34,9 @@ autoread_3: "{} **Berhasil membaca `{}` pesan pengguna.**"
 autoread_4: "{} **Berhasil membaca `{}` pesan channel.**"
 autoread_5: "{} **Berhasil membaca `{}` pesan diakun anda.**"
 autoread_6: "{} **Silahkan masukkan query dengan benar!!**"
+
+# button
+butt_1: "{} **Silahkan ketik `help markdown` untuk melihat format button!**"
 
 # afk
 afk_1: "{} **Tidak dapat menggunakan akun channel.**"
@@ -86,26 +89,25 @@ alv_3: "**Mix-Userbot**\n    **status:** {}\n      **dc_id:** {}\n      **ping_d
 alv_4: "Support"
 
 # global
-glbl: " **Bantuan Perintah Global**\n\n• Perintah : `{0}gban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global banned.\n• Perintah : `{0}ungban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global ubanned.\n• Perintah : `{0}listgban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melihat daftar pengguna gban.\n• Perintah : `{0}gmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global mute.\n• Perintah : `{0}ungmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global unmute.\n• Perintah : `{0}listgmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melihat daftar pengguna gmute."
 glbl_2: "{} **Pengguna tidak ditemukan.**"
 glbl_3: "{} **Dia adalah Developer Mix-Userbot.**"
 glbl_4: "{} **Silahkan berikan alasan untuk diGban!**"
 glbl_5: "{} **Pengguna sudah digban.**"
-glbl_6: "{} **Warning Global Banned\n\n{} Berhasil: `{bs}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**\n{} Alasan: `{}`**"
+glbl_6: "{} **Warning Global Banned\n\n{} Berhasil: `{}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**\n{} Alasan: `{}`**"
 glbl_7: "{} **Pengguna belum digban.**"
-glbl_8: "{} **Warning Global Unbanned\n\n{} Berhasil: `{bs}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**"
+glbl_8: "{} **Warning Global Unbanned\n\n{} Berhasil: `{}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**"
 glbl_9: "{} **Silahkan berikan alasan untuk diGMute!**"
 glbl_10: "{} **Pengguna sudah digmute.**"
-glbl_11: "{} **Warning Global Gmute\n\n{} Berhasil: `{bs}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**\n{} Alasan: `{alasan}`**"
+glbl_11: "{} **Warning Global Gmute\n\n{} Berhasil: `{}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**\n{} Alasan: `{}`**"
 glbl_12: "{} **Pengguna belum pernah diGMute.**"
-glbl_13: "{} **Warning Global Ungmute\n\n{} Berhasil: `{bs}` Chat\n{} Gagal: `{}` Chat\n{} User: `{mention}`**"
+glbl_13: "{} **Warning Global Ungmute\n\n{} Berhasil: `{}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**"
 glbl_14: "{} **Daftar GBanned :**\n\n"
-glbl_15: "{} **{ii['_id']}**\n"
-glbl_16: "{} **Alasan: `{ii['reason']}`\n\n{} Total :`{dbgb.count_gbans()}`**\n"
+glbl_15: "{} **{}**\n"
+glbl_16: "{} **Alasan: `{}`\n\n{} Total :`{}`**\n"
 glbl_17: "{} **Daftar GBanned!!**\n\n"
 glbl_18: "{} **Daftar GMute :**\n\n"
-glbl_19: "{} **`{ii['_id']}`**\n"
-glbl_20: "{} **Alasan: `{ii['reason']}`\n\n{} Total :`{dbgm.count_gmutes()}`**\n"
+glbl_19: "{} **`{}`**\n"
+glbl_20: "{} **Alasan: `{}`\n\n{} Total :`{}`**\n"
 glbl_21: "{} **Daftar GMute!!**\n\n"
 
 # graph
