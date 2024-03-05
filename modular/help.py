@@ -30,4 +30,5 @@ async def _(c: user, m):
                 quote=True,
             )
         else:
-            await m.reply(f"<b>Tidak ada modul bernama <code>{nama}</code></b>")
+            await m.reply(cgr("hlp_1").format(em.gagal, nama))
+
