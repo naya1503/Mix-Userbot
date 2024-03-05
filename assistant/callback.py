@@ -8,14 +8,12 @@
 
 from gc import get_objects
 
-from pykeyboard import InlineKeyboard
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
 
 from Mix import *
 
-from .start import clbk_strt
 
 
 def markdown_help():
@@ -30,7 +28,6 @@ def markdown_help():
         True,
         "help_back",
     )
-
 
 
 @ky.inline("^dibikin_button")
