@@ -63,5 +63,5 @@ async def _(c, cq):
     for op in languages:
         meki = f"{op['natively']}"
     kb = okb([[(cgr("balik"), "clbk.bek")]])
-    ndB.set_key("bahasa", lang_code)
+    udB.set_lang(lang_code)
     await cq.edit_message_text(cgr("asst_5").format(meki), reply_markup=kb)
