@@ -47,7 +47,7 @@ def clbk_strto():
     )
 
 
-@ky.bots("start", filter=filters.private)
+@ky.bots("start", filters.private)
 async def _(c, m):
     udB.add_served_user(m.from_user.id)
     owner_nih = user.me.id
