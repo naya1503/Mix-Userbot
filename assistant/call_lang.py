@@ -66,11 +66,10 @@ async def _(c, cq):
 async def _(c, cq):
     lang_code = cq.data.split("_")[1]
     op = get_bahasa_()
-    sl = next((ox for ox in op if ox['code'] == lang_code), None)
+    sl = next((ox for ox in op if ox["code"] == lang_code), None)
     kb = okb([[(cgr("balik"), "clbk.bek")]])
     if sl:
         ndB.set_key("bahasa", lang_code)
         await cq.edit_message_text(cgr("asst_5").format(meki), reply_markup=kb)
     else:
         LOGGER.error(f"Language with code '{lang_code}' not found.")
-    
