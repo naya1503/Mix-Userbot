@@ -60,6 +60,7 @@ async def _(c, cq):
             disable_web_page_preview=True,
         )
 
+
 @ky.callback("^cls_hlp")
 async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
