@@ -70,6 +70,6 @@ async def _(c, cq):
     kb = okb([[(cgr("balik"), "clbk.bek")]])
     if sl:
         ndB.set_key("bahasa", lang_code)
-        await cq.edit_message_text(cgr("asst_5").format(meki), reply_markup=kb)
+        await cq.edit_message_text(cgr("asst_5").format(sl['natively']), reply_markup=kb)
     else:
         LOGGER.error(f"Language with code '{lang_code}' not found.")
