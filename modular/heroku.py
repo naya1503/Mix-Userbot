@@ -32,7 +32,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 from team.nandev.class_log import LOGGER
 
 from config import *
-from Mix import XCB, Emojik, get_cgr, in_heroku, ky, on_heroku, paste, user
+from Mix import XCB, Emojik, get_cgr, in_heroku, ky, on_heroku, paste, user, cgr
 
 from . import import_modular
 
@@ -69,18 +69,18 @@ async def _(c: user, m):
                 return await m.reply_text(link)
             else:
                 return await m.reply_text(
-                    f"{em.gagal} Anda hanya bisa mendapatkan log dari Heroku."
+                    f"{em.gagal} "
                 )
     except Exception as e:
         print(e)
-        await m.reply_text(f"{em.gagal} Anda hanya bisa mendapatkan log dari Heroku")
+        await m.reply_text(cgr("hero_1").format(em.gagal))
 
 
 @ky.ubot("getvar", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    usage = f"{em.gagal} Usage command : `getvar variabel`."
+    usage = cgr("hero_2").format(em.gagal, m.command)
     if len(m.command) != 2:
         return await m.reply_text(usage)
     check_var = m.text.split(None, 2)[1]
@@ -90,29 +90,25 @@ async def _(c: user, m):
             haha = Heroku.app(heroku_app_name)
         heroku_config = haha.config()
         if check_var in heroku_config:
-            return await m.reply_text(
-                f"{em.sukses} **{check_var}:** `{heroku_config[check_var]}`"
-            )
+            return await m.reply_text(cgr("hero_3").format(em.sukses, check_var, heroku_config[check_var]))
         else:
-            return await m.reply_text(
-                f"{em.gagal} Tidak dapat menemukan var seperti itu."
-            )
+            return await m.reply_text(cgr("hero_4").format(em.gagal))
     else:
         path = dotenv.find_dotenv()
         if not path:
-            return await m.reply_text(f"{em.gagal} env file tidak ditemukan.")
+            return await m.reply_text(cgr("hero_5").format(em.gagal))
         output = dotenv.get_key(path, check_var)
         if not output:
-            await m.reply_text(f"{em.gagal} Tidak dapat menemukan var seperti itu.")
+            await m.reply_text(cgr("hero_4").format(em.gagal))
         else:
-            return await m.reply_text(f"{em.sukses} **{check_var}:** `{str(output)}`")
+            return await m.reply_text(cgr("hero_3").format(em.sukses, check_var, str(output)))
 
 
 @ky.ubot("delvar", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    usage = f"{em.gagal} Usage command : `delvar` [variabel]."
+    usage = cgr("hero_2").format(em.gagal)
     if len(m.command) != 2:
         return await m.reply_text(usage)
     check_var = m.text.split(None, 2)[1]
@@ -122,21 +118,19 @@ async def _(c: user, m):
             haha = Heroku.app(heroku_app_name)
         heroku_config = haha.config()
         if check_var in heroku_config:
-            await m.reply_text(f"{em.sukses} {check_var} Dihapus.")
+            await m.reply_text(cgr("hero_6").format(em.sukses, check_var))
             del heroku_config[check_var]
         else:
-            return await m.reply_text(
-                f"{em.gagal} Tidak dapat menemukan var seperti itu."
-            )
+            return await m.reply_text(cgr("hero_4").format(em.gagal))
     else:
         path = dotenv.find_dotenv()
         if not path:
-            return await m.reply_text(f"{em.gagal} env file tidak ditemukan.")
+            return await m.reply_text(cgr("hero_5").format(em.gagal))
         output = dotenv.unset_key(path, check_var)
         if not output[0]:
-            await m.reply_text(f"{em.gagal} Tidak dapat menemukan var seperti itu.")
+            await m.reply_text(cgr("hero_4").format(em.gagal))
         else:
-            await m.reply_text(f"{em.sukses} {check_var} Dihapus.")
+            await m.reply_text(cgr("hero_6").format(em.sukses, check_var))
             os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
@@ -144,7 +138,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    usage = f"{em.gagal} **Penggunaan:**\n`setvar` [variabel] [value]"
+    usage = cgr("hero_7").format(em.gagal, m.command)
     if len(m.command) < 3:
         return await m.reply_text(usage)
     to_set = m.text.split(None, 2)[1].strip()
@@ -155,19 +149,19 @@ async def _(c: user, m):
             haha = Heroku.app(heroku_app_name)
         heroku_config = haha.config()
         if to_set in heroku_config:
-            await m.reply_text(f"{em.sukses} {to_set} telah berhasil diperbarui")
+            await m.reply_text(cgr("hero_8").format(em.sukses, to_set))
         else:
-            await m.reply_text(f"{em.sukses} {to_set} telah berhasil ditambahkan")
+            await m.reply_text(cgr("hero_9").format(em.sukses, to_set))
         heroku_config[to_set] = value
     else:
         path = dotenv.find_dotenv()
         if not path:
-            return await m.reply_text(f"{em.gagal} env file tidak ditemukan.")
+            return await m.reply_text(cgr("hero_5").format(em.gagal))
         dotenv.set_key(path, to_set, value)
         if dotenv.get_key(path, to_set):
-            await m.reply_text(f"{em.sukses} {to_set} telah berhasil diperbarui")
+            await m.reply_text(cgr("hero_8").format(em.sukses, to_set))
         else:
-            await m.reply_text(f"{em.sukses} {to_set} telah berhasil ditambahkan")
+            await m.reply_text(cgr("hero_9").format(em.sukses, to_set))
         os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
@@ -181,10 +175,8 @@ async def _(c: user, m):
             hehe = heroku3.from_key(heroku_api)
             hehe.app(heroku_app_name)
     else:
-        return await m.reply_text(f"{em.gagal} Hanya untuk Heroku.")
-    dyno = await m.reply_text(
-        f"{em.proses} Memeriksa Penggunaan Heroku. Mohon Tunggu.."
-    )
+        return await m.reply_text(cgr("hero_10").format(em.gagal))
+    dyno = await m.reply_text(cgr("proses").format(em.proses))
     Heroku = heroku3.from_key(heroku_api)
     account_id = Heroku.account().id
     useragent = (
@@ -221,14 +213,7 @@ async def _(c: user, m):
     AppHours = math.floor(AppQuotaUsed / 60)
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
-    text = f"""
-{em.sukses} **DYNO USAGE**
-
-{em.sukses} <u>Usage:</u>
-**Total Used: `{AppHours}h`  `{AppMinutes}m` [`{AppPercentage}%`**]
-
-{em.sukses} <u>Remaining Quota:</u>
-**Total Left: `{hours}h`  `{minutes}m`  [`{percentage}%`**]"""
+    text = cgr("hero_11").format(em.sukses, em.sukses, AppHours, AppMinutes, AppPercentage, em.sukses, hours, minutes, percentage)
     return await dyno.edit(text)
 
 
@@ -241,13 +226,13 @@ async def _(c: user, m):
         if heroku_api and heroku_app_name:
             hehe = heroku3.from_key(heroku_api)
             hehe.app(heroku_app_name)
-    jj = await m.reply_text(f"{em.proses} Memeriksa pembaruan yang tersedia...")
+    jj = await m.reply_text(cgr("proses").format(em.proses))
     try:
         repo = Repo()
     except GitCommandError:
-        return await jj.edit(f"{em.gagal} Kesalahan Perintah Git")
+        return await jj.edit(cgr("hero_12").format(em.gagal))
     except InvalidGitRepositoryError:
-        return await jj.edit(f"{em.gagal} Repositori Git Tidak Valid")
+        return await jj.edit(cgr("hero_13").format(em.gagal))
     to_exc = f"git fetch origin {upstream_branch} &> /dev/null"
     os.system(to_exc)
     await asyncio.sleep(7)
@@ -256,7 +241,7 @@ async def _(c: user, m):
     for checks in repo.iter_commits(f"HEAD..origin/{upstream_branch}"):
         verification = str(checks.count())
     if verification == "":
-        return await jj.edit(f"{em.alive} Mix-Userbot is up-to-date!")
+        return await jj.edit(cgr("hero_14").format(em.alive))
     updates = ""
     ordinal = lambda format: "%d%s" % (
         format,
@@ -264,39 +249,27 @@ async def _(c: user, m):
     )
     for info in repo.iter_commits(f"HEAD..origin/{upstream_branch}"):
         updates += f"<b>➣ #{info.count()}: [{info.summary}]({REPO_}/commit/{info}) by -> {info.author}</b>\n\t\t\t\t<b>➥ Commited on:</b> {ordinal(int(datetime.fromtimestamp(info.committed_date).strftime('%d')))} {datetime.fromtimestamp(info.committed_date).strftime('%b')}, {datetime.fromtimestamp(info.committed_date).strftime('%Y')}\n\n"
-    _update_response_ = "<b>A new update is available for the Mix-Userbot !</b>\n\n<code>➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n"
+    _update_response_ = cgr("hero_15").format(em.sukses)
     _final_updates_ = _update_response_ + updates
     if len(_final_updates_) > 4096:
         url = await paste(updates)
-        nrs = await jj.edit(
-            f"<b>A new update is available for the Mix-Userbot!</b>\n\n<code>➣ Pushing Updates Now</code>\n\n**<u>Updates:</u>**\n\n[Click Here to checkout Updates]({url})",
-            disable_web_page_preview=True,
-        )
+        nrs = await jj.edit(cgr("hero_16").format(em.sukses, url))
     else:
         nrs = await jj.edit(_final_updates_, disable_web_page_preview=True)
     os.system("git stash &> /dev/null && git pull")
     if await in_heroku():
         try:
-            await jj.edit(
-                f"<b>{nrs.text}\n\nMix-Userbot was updated successfully! Now, wait for 2 - 3 mins until the bot restarts!</b>"
-            )
+            await jj.edit(cgr("hero_17").format(em.sukses, nrs.text))
             os.system(
                 f"{XCB[5]} {XCB[7]} {XCB[9]}{XCB[4]}{XCB[0]*2}{XCB[6]}{XCB[4]}{XCB[8]}{XCB[1]}{XCB[5]}{XCB[2]}{XCB[6]}{XCB[2]}{XCB[3]}{XCB[0]}{XCB[10]}{XCB[2]}{XCB[5]} {XCB[11]}{XCB[4]}{XCB[12]}"
             )
             os.execl(sys.executable, sys.executable, "-m", "Mix")
         except Exception as err:
-            await jj.edit(
-                f"{nrs.text}\n\nSomething went wrong while initiating reboot! Please try again later or check logs for more info."
-            )
-            return await bot.send_message(
-                udB.get_logger(c.me.id),
-                f"AN EXCEPTION OCCURRED AT #UPDATER DUE TO: <code>{err}</code>\n\nLaporkan Ke @KynanSupport.",
-            )
+            await jj.edit(cgr("err").format(nrs.text, err))
+            return
     else:
 
-        await jj.edit(
-            f"<b>{nrs.text}\n\nMix-Userbot was updated successfully! Now, wait for 2 - 3 mins until the bot restarts!</b>"
-        )
+        await jj.edit(cgr("hero_17").format(em.sukses, nrs.text))
         os.system("git pull")
         os.system("pip3 install -r requirements.txt")
         os.execl(sys.executable, sys.executable, "-m", "Mix")
@@ -306,10 +279,8 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    jj = await m.reply_text(f"{em.proses} Restarting....")
-    await jj.edit(
-        f"{em.sukses} Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts."
-    )
+    jj = await m.reply_text(cgr("proses").format(em.proses))
+    await jj.edit(cgr("reboot").format(em.sukses))
     os.system("git pull")
     os.execl(sys.executable, sys.executable, "-m", "Mix")
 
