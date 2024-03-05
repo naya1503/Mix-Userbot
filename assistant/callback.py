@@ -93,17 +93,18 @@ async def _(c, cq):
         tultd.append(
             InlineKeyboardButton(f"{chs}", callback_data=f"set_{lang['code']}")
         )
-    buttons = list(zip(tultd[::2], tultd[1::2]))
+    zipped_buttons = list(zip(tultd[::2], tultd[1::2]))  # Mengganti nama variabel zip
     if len(tultd) % 2 == 1:
-        buttons.append((tultd[-1],))
+        zipped_buttons.append((tultd[-1],))
     if cmd == "bhsa":
         teks = cgr("asst_4")
         await cq.edit_message_text(
-            text=teks, reply_markup=InlineKeyboardMarkup(buttons)
+            text=teks, reply_markup=InlineKeyboardMarkup(zipped_buttons)
         )
     elif cmd == "bek":
         txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
+
 
 
 @ky.callback("^set_:(.*?)")
