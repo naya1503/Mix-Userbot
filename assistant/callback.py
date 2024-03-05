@@ -105,7 +105,7 @@ async def _(c, cq):
 @ky.callback("^set_(.*?)")
 async def _(c, cq):
     lang_code = cq.matches[0].group(1)
-    bhs = get_bahasa_()
+    get_bahasa_()
     kb = okb([[(cgr("balik"), "clbk.bek")]])
     ndB.set_key("bahasa", lang_code)
     await cq.edit_message_text(cgr("asst_5").format(lang_name), reply_markup=kb)
