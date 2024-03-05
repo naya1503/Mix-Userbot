@@ -45,8 +45,8 @@ def st_lang():
     for button in buttons:
         keyboard.add(button)
     keyboard.row(
-        InlineKeyboardButton(text="Back", callback_data="settingsback_helper"),
-        InlineKeyboardButton(text="Close", callback_data="close"),
+        InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
+        InlineKeyboardButton(text="Close", callback_data="close_asst"),
     )
     return keyboard
 
@@ -102,7 +102,7 @@ async def _(c, cq):
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
 
 
-@ky.callback("^set_:(.*?)")
+@ky.callback("^set_(.*?)")
 async def _(c, cq):
     lang_code = query.matches[0].group(1)
     bhs = get_bahasa_()
