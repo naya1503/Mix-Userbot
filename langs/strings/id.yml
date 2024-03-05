@@ -149,6 +149,20 @@ hero_17: "{} {}\n\n**Mix-Userbot berhasil diperbarui! Sekarang, tunggu 2 - 3 men
 
 
 # info
+info_1: "{} **Saya tidak berada digrup itu!**"
+info_2: "**Tidak Diketahui**"
+info_3: "**Developer**"
+info_4: "**Pemilik Bot**"
+info_5: "**Developer & Owner**"
+info_6: "**Tidak dapat mengambil**"
+info_7: "**Pengguna adalah bot**"
+info_8: "**Pengguna terlihat belakangan ini**"
+info_9: "**Pengguna terlihat seminggu yang lalu**"
+info_10: "**Pengguna terlihat sebulan yang lalu**"
+info_11: "**Pengguna sudah lama tak terlihat atau mungkin Saya diblokir oleh pengguna tersebut**"
+info_12: "**Pengguna sedang Online**"
+info_13: "**Pengguna sedang Offline**"
+info_14: "User Info\n\n🆔 User ID: {}\n📎 Link To Profile: <a href='tg://user?id={}'>Click Here🚪</a>\n🫵 Mention: {}\n🗣 First Name: {}\n🔅 Second Name: {}\n🔍 Username: {}\n✍️ Bio: `{}`\n🧑‍💻 Support: {}\n🥷 Support User Type: {}\n💣 Gbanned: {}\n☠️ Gban Reason: {}\n🌐 DC ID: {}\n✋ Restricted: {}\n✅ Verified: {}\n❌ Fake : {}\n⚠️ Scam : {} \n🤖 Bot: {}\n👀 Last seen: {}"
 
 
 # limit
@@ -231,4 +245,4 @@ help_markd: " Markdown\n\n• Perintah: `{0}markdown`\n• Penjelasan: Untuk mel
 help_logo: " Logo\n\n• Perintah: `{0}logo` [text]\n• Penjelasan: Untuk membuat sebuah logo dengan background random ."
 help_lokk: " Locks \n\n• Perintah: `{0}locktypes` \n• Penjelasan: Untuk melihat argumen kunci.\n\n• Perintah: `{0}lock` \n• Penjelasan: Untuk mengunci izin.\n\n• Perintah: `{0}unlock` \n• Penjelasan: Untuk membuka izin.\n\n• Perintah: `{0}locks` \n• Penjelasan: Untuk melihat semua izin."
 help_limt: " Spambot\n\n• Perintah: `{0}limit`\n• Penjelasan: Untuk melihat status akun anda dibatasi atau tidak."
-help_butt: " Button\n\n• Perintah: <code>{0}button</code> [balas pesan]\n• Penjelasan: Untuk membuat teks button.\n\n• Silahkan ketik <code>{0}markdown</code> untuk melihat format button."
+help_butt: " Button\n\n• Perintah: {0}button [balas pesan]\n• Penjelasan: Untuk membuat teks button.\n\n• Silahkan ketik {0}markdown untuk melihat format button."
