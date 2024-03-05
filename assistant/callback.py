@@ -29,18 +29,22 @@ def markdown_help():
         True,
         "help_back",
     )
-
-
-def sini_croot():
-    keyboard = InlineKeyboard(row_width=1)
+    
+def st_lang():
+    languages = get_bahasa_()
+    keyboard = InlineKeyboardMarkup(row_width=2)
+    buttons = [
+        InlineKeyboardButton(f"{lang['natively']} [{lang['code'].lower()}]", callback_data=f"set_{lang['code']}")
+        for lang in languages
+    ]
+    for button in buttons:
+        keyboard.add(button)
     keyboard.row(
-        InlineKeyboardButton(text="English", callback_data=f"bahasa_:en"),
-        InlineKeyboardButton(text="Indonesia", callback_data=f"bahasa_:id"),
-    )
-    keyboard.row(
-        InlineKeyboardButton(cgr("balik"), callback_data="clbk.bek"),
+        InlineKeyboardButton(text="Back", callback_data="settingsback_helper"),
+        InlineKeyboardButton(text="Close", callback_data="close"),
     )
     return keyboard
+
 
 
 @ky.inline("^dibikin_button")
@@ -85,24 +89,14 @@ async def _(c, cq):
 @ky.callback("clbk.")
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
-    okb([[("Kembali", "clbk.bek")]])
-    languages = get_bahasa_()
-    tultd = []
-    for lang in languages:
-        chs = f"{lang['natively']} [{lang['code'].lower()}]"
-        tultd.append(
-            InlineKeyboardButton(f"{chs}", callback_data=f"set_{lang['code']}")
-        )
-    zipped_buttons = list(zip(tultd[::2], tultd[1::2]))  # Mengganti nama variabel zip
-    if len(tultd) % 2 == 1:
-        zipped_buttons.append((tultd[-1],))
+    okb([[("Back", "clbk.bek")]])
     if cmd == "bhsa":
         teks = cgr("asst_4")
         await cq.edit_message_text(
-            text=teks, reply_markup=InlineKeyboardMarkup(zipped_buttons)
+            text=teks, reply_markup=st_lang()
         )
     elif cmd == "bek":
-        txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
+        txt = "<b>To view markdown format please click the button below.</b>"
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
 
 
