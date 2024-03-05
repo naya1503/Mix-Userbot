@@ -185,7 +185,7 @@ async def _(c: user, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgm.remove_gmute(nyet)
-    mmg = f"{em.warn} <b>Warning Global Ungmute\n\n{em.sukses} Berhasil: `{bs}` Chat\n{em.gagal} Gagal: `{gg}` Chat\n{em.profil} User: `{mention}`</b>\n"
+    mmg = cgr("glbl_13").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
     await m.reply(mmg)
     await xx.delete()
 
@@ -195,23 +195,22 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     gbanu = dbgb.load_from_db()
-    msg = await m.reply(f"{em.proses} <b>Processing...</b>")
+    msg = await m.reply(cgr("proses").format(em.proses))
 
     if not gbanu:
-        return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
-    dftr = f"{em.profil} **Daftar GBanned :**\n\n"
+        return await msg.edit(cgr("glbl_22").format(em.gagal)
+    dftr = cgr("glbl_14").format(em.profil)
     for ii in gbanu:
-        dftr += f"{em.block} <b>{ii['_id']}</b>\n"
+        dftr += cgr("glbl_15").format(em.block, ii['_id'])
         if ii["reason"]:
-            dftr += f"{em.warn} <b>Alasan:</b> {ii['reason']}\n\n{em.sukses} **Total :`{dbgb.count_gbans()}`**\n"
+            dftr += cgr("glbl_16").format(em.warn, ii['reason'], em.sukses, dbgb.count_gbans())
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
         with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
             f.name = "gbanlist.txt"
             await m.reply_document(
-                document=f, caption=f"{em.profil} **Daftar GBanned!!**\n\n"
-            )
+                document=f, caption=cgr("glbl_17").format(em.profil))
     await msg.delete()
     return
 
@@ -221,22 +220,21 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     gmnu = dbgm.load_from_db()
-    msg = await m.reply(f"{em.proses} <b>Processing...</b>")
+    msg = await m.reply(cgr("proses").format(em.proses)
     if not gmnu:
-        await msg.edit(f"{em.gagal} <b>Tidak ada pengguna ditemukan.</b>")
+        await msg.edit(cgr("glbl_2").format(em.gagal)
         return
-    dftr = f"{em.profil} **Daftar GMute :**\n\n"
+    dftr = cgr("glbl_18").format(em.profil)
     for ii in gmnu:
-        dftr += f"{em.warn} <b>{ii['_id']}</b>\n"
+        dftr += cgr("glbl_19").format(em.warn, ii['_id'])
         if ii["reason"]:
-            dftr += f"{em.warn} <b>Alasan:</b> {ii['reason']}\n\n{em.sukses} **Total :`{dbgm.count_gmutes()}`**\n"
+            dftr += cgr("glbl_20").format(em.warn, ii['reason'], em.sukses, dbgm.count_gmutes())
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
         with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
             f.name = "gmutelist.txt"
             await m.reply_document(
-                document=f, caption=f"{em.profil} **Daftar GMute!!**\n\n"
-            )
+                document=f, caption=cgr("glbl_21").format(em.profil))
     await msg.delete()
     return
