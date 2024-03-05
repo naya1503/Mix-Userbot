@@ -116,15 +116,19 @@ def get_cgr(key):
         return cgr("cmds") + doc
 
 
-def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
+def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
+    bahasa_list = []
     for file in glob("langs/strings/*yml"):
         load(file)
     try:
-        return {
-            {
-                "natively": bahasa_["en"]["natively"],
-                "natively": bahasa_["id"]["natively"],
-            }
-        }
+        for code, data in bahasa_.items():
+            bahasa_list.append({
+                "code": code,
+                "name": data["name"],
+                "natively": data["natively"],
+                "authors": data["authors"]
+            })
+        return bahasa_list
     except KeyError as e:
         LOGGER.error(f"KeyError: {e} not found in language file")
+
