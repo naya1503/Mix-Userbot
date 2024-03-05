@@ -61,6 +61,8 @@ asst_2: "Halo 👋 {} !! Saya adalah asisten milik {}\nApa yang kamu cari ?"
 asst_3: "Bahasa"
 asst_4: "Bahasa yang kamu gunakan saat ini adalah : **{}**\nSilahkan pilih jika ingin mengganti bahasa."
 asst_5: "Bahasa kamu berhasil diubah menjadi : **{}**\n\nKamu membutuhkan Restart Userbot untuk menerapkan perubahan."
+asst_6: "Reboot"
+asst_7: "Update"
 
 # autoread 
 autoread_1: "{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`].**"
