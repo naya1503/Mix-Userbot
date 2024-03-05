@@ -109,6 +109,7 @@ glbl_18: "{} **Daftar GMute :**\n\n"
 glbl_19: "{} **`{}`**\n"
 glbl_20: "{} **Alasan: `{}`\n\n{} Total :`{}`**\n"
 glbl_21: "{} **Daftar GMute!!**\n\n"
+glbl_22: "**Tidak ada pengguna ditemukan.**"
 
 # graph
 grp: " Bantuan Perintah Telegraph\n\n• Perintah: `{0}tg`\n• Penjelasan: Untuk mengunggah teks, video atau foto."
