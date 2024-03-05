@@ -14,7 +14,7 @@ async def _(c: user, m):
     em.initialize()
     await c.unblock_user("SpamBot")
     xin = await c.resolve_peer("SpamBot")
-    msg = await m.reply(f"{em.proses} <b>Processing...</b>")
+    msg = await m.reply(cgr("proses").format(em.proses))
     rsp = await c.invoke(
         StartBot(
             bot=xin,
@@ -35,8 +35,7 @@ async def _(c: user, m):
             emoji = f"{em.warn}"
         await c.send_message(
             m.chat.id,
-            f"{emoji} <b>{result}</b>\n\n ~ {em.alive} <b>{c.me.first_name}</b>",
-        )
+            cgr("lmt_1").format(emoji, result, em.alive, c.me.first_name))
         await c.invoke(DeleteHistory(peer=xin, max_id=0, revoke=True))
         await msg.delete()
         return
