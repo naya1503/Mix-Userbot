@@ -112,7 +112,6 @@ glbl_21: "{} **Daftar GMute!!**\n\n"
 glbl_22: "**Tidak ada pengguna ditemukan.**"
 
 # graph
-grp: " Bantuan Perintah Telegraph\n\n• Perintah: `{0}tg`\n• Penjelasan: Untuk mengunggah teks, video atau foto."
 grp_1: "{} **Silakan balas ke pesan teks atau media!**"
 grp_2: "{} **`{r}`\n\nLapor ke @KynanSupport!**"
 grp_3: "{} **Diupload ke : <a href='https://telegra.ph/{media_url[0]}'>Klik Disini</a>**"
