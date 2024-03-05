@@ -122,8 +122,8 @@ def get_bahasa_() -> Dict[str, Union[str, List[str]]]:
     try:
         return {
             {
-              "natively": bahasa_["en"]["natively"],
-              "natively": bahasa_["id"]["natively"],
+                "natively": bahasa_["en"]["natively"],
+                "natively": bahasa_["id"]["natively"],
             }
         }
     except KeyError as e:
