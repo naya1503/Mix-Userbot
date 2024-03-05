@@ -98,10 +98,13 @@ async def _(c, cq):
         buttons.append((tultd[-1],))
     if cmd == "bhsa":
         teks = cgr("asst_4")
-        await cq.edit_message_text(text=teks, reply_markup=InlineKeyboardMarkup(buttons))
+        await cq.edit_message_text(
+            text=teks, reply_markup=InlineKeyboardMarkup(buttons)
+        )
     elif cmd == "bek":
         txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
+
 
 @ky.callback("^languages:(.*?)")
 async def _(c, cq):
