@@ -45,9 +45,9 @@ async def _(c, cq):
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
     op = get_bahasa_()
-    meki = f"{op['natively']}"
     okb([[("Back", "clbk.bek")]])
     if cmd == "bhsa":
+        meki = f"{op[0]['natively']}"
         teks = cgr("asst_4").format(meki)
         await cq.edit_message_text(text=teks, reply_markup=st_lang(languages))
     elif cmd == "bek":
@@ -59,7 +59,7 @@ async def _(c, cq):
 async def _(c, cq):
     lang_code = cq.matches[0].group(1)
     op = get_bahasa_()
-    meki = f"{op['natively']}"
+    meki = f"{op[0]['natively']}"
     kb = okb([[(cgr("balik"), "clbk.bek")]])
     udB.set_lang(lang_code)
     await cq.edit_message_text(cgr("asst_5").format(meki), reply_markup=kb)
