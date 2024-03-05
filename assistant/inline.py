@@ -178,25 +178,16 @@ async def _(c, iq):
     ape = await refresh_dialog("group")
     apa = await refresh_dialog("users")
     if user.me.id in DEVS:
-        stutas = "<b>Author</b>"
+        stutas = cgr("alv_1")
     else:
-        stutas = "<b>Connoisseur</b>"
+        stutas = cgr("alv_2")
     cekpr = udB.get_var(user.me.id, "PMPERMIT")
     if cekpr:
         pmper = "enable"
     else:
         pmper = "disable"
-    txt = f"""
-<b>Mix-Userbot</b>
-    <b>status:</b> {stutas}
-      <b>dc_id:</b> {user.me.dc_id}
-      <b>ping_dc:</b> {str(pink).replace('.', ',')} ms
-      <b>pmpermit:</b> {pmper}
-      <b>peer_users:</b> {len(apa)}
-      <b>peer_groups:</b> {len(ape)}
-      <b>bot_uptime:</b> {upnya}
-"""
-    bo_ol = [[InlineKeyboardButton(text="Support", url="t.me/kynansupport")]]
+    txt = cgr("alv_3").format(stutas, user.me.dc_id, str(pink).replace('.', ','), pmper, len(apa), len(ape), upnya)
+    bo_ol = [[InlineKeyboardButton(cgr("alv_4"), url="t.me/kynansupport")]]
     cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
