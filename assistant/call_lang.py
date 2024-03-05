@@ -23,7 +23,7 @@ def st_lang(languages):
     for lang in languages:
         buttons = [
             InlineKeyboardButton(
-                f"{lang['natively']} [{lang['code'].lower()}]",
+                f"{lang['natively']}",
                 callback_data=f"set_{lang['code']}",
             )
         ]
@@ -45,9 +45,11 @@ async def _(c, cq):
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
     languages = get_bahasa_()
+    for op in languages:
+        meki = f"{op['natively']}"
     okb([[("Back", "clbk.bek")]])
     if cmd == "bhsa":
-        teks = cgr("asst_4").format(languages["natively"])
+        teks = cgr("asst_4").format(meki)
         await cq.edit_message_text(text=teks, reply_markup=st_lang(languages))
     elif cmd == "bek":
         txt = "<b>To view markdown format please click the button below.</b>"
