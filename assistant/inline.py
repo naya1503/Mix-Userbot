@@ -5,11 +5,18 @@
  @ CREDIT : NAN-DEV
 """
 ################################################################
+import os
 from gc import get_objects
 
 from pyrogram import *
 from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.file_id import *
+from pyrogram.raw.functions.messages import *
+from pyrogram.raw.functions.stickers import *
+from pyrogram.raw.types import *
 from pyrogram.types import *
+from telegraph import upload_file
 
 from Mix import *
 from modular.copy_con import *
@@ -118,4 +125,41 @@ async def _(c, iq):
     )
 
 
-# pmpermit
+# send
+@ky.inline("^_send_")
+async def send_inline(c, iq):
+    try:
+        _id = int(iq.query.split()[1])
+        m = [obj for obj in get_objects() if id(obj) == _id][0]
+
+        if m.reply_to_message.photo:
+            m_d = await m.reply_to_message.download()
+            photo_tg = upload_file(m_d)
+            cp = m.reply_to_message.caption
+            text = cp if cp else ""
+            hasil = [
+                InlineQueryResultPhoto(
+                    photo_url=f"https://telegra.ph/{photo_tg[0]}",
+                    title="kon",
+                    reply_markup=m.reply_to_message.reply_markup,
+                    caption=text,
+                ),
+            ]
+            os.remove(m_d)
+        else:
+            hasil = [
+                InlineQueryResultArticle(
+                    title="kon",
+                    reply_markup=m.reply_to_message.reply_markup,
+                    input_message_content=InputTextMessageContent(
+                        m.reply_to_message.text
+                    ),
+                )
+            ]
+        await c.answer_inline_query(
+            iq.id,
+            cache_time=0,
+            results=hasil,
+        )
+    except Exception as e:
+        LOGGER.info(f"Error: {e}")
