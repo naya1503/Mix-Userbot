@@ -6,14 +6,12 @@
 """
 ################################################################
 
-from gc import get_objects
 
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
 
 from Mix import *
-
 
 
 @ky.callback("help_(.*?)")
