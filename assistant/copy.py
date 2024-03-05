@@ -8,6 +8,7 @@
 
 from modular.copy_con import *
 
+
 @ky.bots("copy")
 async def _(c, m):
     if m.from_user.id != user.me.id:
