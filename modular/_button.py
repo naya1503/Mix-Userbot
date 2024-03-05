@@ -22,7 +22,7 @@ async def _(c: user, m):
     em.initialize()
     xx = m.reply_to_message
 
-    babi = await m.reply(f"{em.proses} <b>Processing...</b>")
+    babi = await m.reply(cgr("proses").format(em.proses)
     teks, button = parse_button(xx.text)
     button = build_keyboard(button)
     if button:
@@ -42,10 +42,8 @@ async def _(c: user, m):
             )
 
         except Exception as e:
-            await babi.edit(f"Error {e}")
+            await babi.edit(cgr("err").format(em.gagal, e))
             return
     else:
-        await m.reply(
-            f"{em.gagal} Silahkan ketik `help markdown` untuk melihat format button!"
-        )
+        await m.reply(cgr("butt_1").format(em.gagal)
     await babi.delete()
