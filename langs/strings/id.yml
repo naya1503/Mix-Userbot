@@ -121,7 +121,7 @@ gcs_14: "{} **Semua daftar hitam telah berhasil dihapus.**"
 # alive 
 alv_1: "**Author**"
 alv_2: "**Connoisseur**"
-alv_3: "**Mix-Userbot**\n    **status:** {}\n    **dc_id:** {}\n    **ping_dc:** {str(pink).replace('.', ',')} ms\n    **antipm:** {}\n    **pengguna:** {len(apa)}\n    **grup:** {len(ape)}\n    **durasi_bot:** {}"
+alv_3: "**Mix-Userbot**\n    **status:** {}\n      **dc_id:** {}\n      **ping_dc:** {} ms\n      **antipm:** {}\n      **pengguna:** {}\n      **grup:** {}\n      **durasi_bot:** {}"
 alv_4: "Support"
 
 # global
