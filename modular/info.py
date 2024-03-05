@@ -213,18 +213,14 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if m.reply_to_message and m.reply_to_message.sender_chat:
-        await m.reply_text(
-            f"{em.gagal} Ini bukan pengguna, tetapi Grup! Silahkan gunakan <code>.cinfo</code>."
-        )
+        await m.reply_text(cgr("info_16").format(em.gagal))
         return
     sus, _, user_name = await extract_user(c, m)
 
     if not sus:
-        await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna!")
+        await m.reply_text(cgr("glbl_2").format(em.gagal))
 
-    m = await m.reply_text(
-        f"{em.proses} Fetching {('@' + user_name) if user_name else 'pengguna'} info..."
-    )
+    m = await m.reply_text(cgr("proses").format(em.proses))
 
     try:
         info_caption, photo_id = await user_info(c, sus)
