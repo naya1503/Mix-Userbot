@@ -6,7 +6,6 @@
 """
 ################################################################
 
-from gc import get_objects
 
 from pyrogram import *
 from pyrogram.enums import *
@@ -27,7 +26,7 @@ def markdown_help():
         True,
         "help_back",
     )
-    
+
 
 @ky.callback("markd.")
 async def _(c, cq):
