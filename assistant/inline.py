@@ -186,7 +186,15 @@ async def _(c, iq):
         pmper = "enable"
     else:
         pmper = "disable"
-    txt = cgr("alv_3").format(stutas, user.me.dc_id, str(pink).replace('.', ','), pmper, len(apa), len(ape), upnya)
+    txt = cgr("alv_3").format(
+        stutas,
+        user.me.dc_id,
+        str(pink).replace(".", ","),
+        pmper,
+        len(apa),
+        len(ape),
+        upnya,
+    )
     bo_ol = [[InlineKeyboardButton(cgr("alv_4"), url="t.me/kynansupport")]]
     cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
