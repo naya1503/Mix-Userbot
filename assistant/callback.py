@@ -38,11 +38,11 @@ def st_lang(languages):
         InlineKeyboardButton(
             f"{lang['natively']} [{lang['code'].lower()}]",
             callback_data=f"set_{lang['code']}",
-        )
+        ),
         InlineKeyboardButton(
             f"{lang['natively']} [{lang['code'].lower()}]",
             callback_data=f"set_{lang['code']}",
-        )
+        ),
         for lang in languages
     ]
     for button in buttons:
