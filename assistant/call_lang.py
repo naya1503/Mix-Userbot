@@ -11,7 +11,8 @@ from pykeyboard import InlineKeyboard
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
-
+import os
+import sys
 from Mix import *
 
 from .start import clbk_strt
@@ -46,10 +47,15 @@ async def _(c, cq):
     cmd = cq.data.split(".")[1]
     op = get_bahasa_()
     okb([[("Back", "clbk.bek")]])
+    user_name = f"<a href='tg://user?id={cq.from_user.id}'>{cq.from_user.first_name} {cq.from_user.last_name or ''}</a>"
+    ts_1 = cgr("asst_1").format(user_name)
     if cmd == "bhsa":
         meki = f"{op[0]['natively']}"
         teks = cgr("asst_4").format(meki)
         await cq.edit_message_text(text=teks, reply_markup=st_lang(op))
+    elif cmd == "rebot":
+        await cq.edit_message_text(text="Reboot has been initiated successfully! Wait for 1 - 2 minutes until the bot restarts.")
+        os.execl(sys.executable, sys.executable, "-m", "Mix")
     elif cmd == "bek":
         txt = "<b>To view markdown format please click the button below.</b>"
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
