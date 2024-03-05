@@ -107,16 +107,7 @@ async def _(c, cq):
     lang_code = cq.matches[0].group(1)
     bhs = get_bahasa_()
     kb = okb([[(cgr("balik"), "clbk.bek")]])
-    for lang in bhs:
-        if lang["code"] == lang_code:
-            lang_name = lang["name"]
-            break
-    else:
-        lang_name = ""
-    if lang_code == "en":
-        ndB.del_key("bahasa")
-    else:
-        ndB.set_key("bahasa", lang_code)
+    ndB.set_key("bahasa", lang_code)
     await cq.edit_message_text(cgr("asst_5").format(lang_name), reply_markup=kb)
 
 
