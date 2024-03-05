@@ -66,7 +66,7 @@ async def _(c, cq):
 
 @ky.callback("^set_(.*?)")
 async def _(c, cq):
-    lang_code = cq.data.split[1]
+    lang_code = cq.data.split(".")[1]
     op = get_bahasa_()
     meki = f"{op[0]['natively']}"
     kb = okb([[(cgr("balik"), "clbk.bek")]])
