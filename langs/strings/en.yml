@@ -59,8 +59,8 @@ help_butt: "Button\n\n• Command: `{0}button` [reply message]\n• Description:
 asst_1: "Hello 👋 {} !! I'm your assistant bot.\n\nWhat settings do you want to change?"
 asst_2: "Hello 👋 {} !! I'm {}'s assistant\nWhat are you looking for ?"
 asst_3: "Language"
-asst_4: "The language you are currently using is: ini {}\nPlease select if you want to change the language."
-asst_5: "Your language has been successfully changed to : {}"
+asst_4: "The language you are currently using is: **{}**\nPlease select if you want to change the language."
+asst_5: "Your language has been successfully changed to : **{}**"
 
 # autoread 
 autoread_1: "{} **Usage: `autoread` [`gc` or `us` or `ch` or `all`].**"
