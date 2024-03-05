@@ -161,6 +161,8 @@ async def user_info(c, sus, already=False):
 
 
 async def chat_info(c: user, chat, already=False):
+    em = Emojik()
+    em.initialize()
     u_name = False
     if not already:
         try:
@@ -181,7 +183,7 @@ async def chat_info(c: user, chat, already=False):
                 except Exception:
                     pass
             except KeyError as e:
-                caption = f"Failed to find the chat due to\n{e}"
+                caption = cgr("err").format(em.gagal, r)
                 return caption, None
     chat_id = chat.id
     if u_name:
@@ -201,27 +203,7 @@ async def chat_info(c: user, chat, already=False):
     can_save = chat.has_protected_content
     linked_chat = chat.linked_chat
 
-    caption = f"""
-<b>CHAT INFO</b>
-
-<b>🆔 ID</b>: <code>{chat_id}</code>
-<b>🚀 Chat Title</b>: {title}
-<b>✨ Chat Type</b>: {type_}
-<b>🌐 DataCentre ID</b>: {dc_id}
-<b>🔍 Username</b>: {("@" + username) if username else "NA"}
-<b>⚜️ Administrators</b>: {total_admin}
-<b>🤖 Bots</b>: {total_bot}
-<b>🚫 Banned</b>: {total_banned}
-<b>⚜️ Admin 🤖 Bots</b>: {total_bot_admin}
-<b>⁉️ Scam</b>: {is_scam}
-<b>❌ Fake</b>: {is_fake}
-<b>✋ Restricted</b>: {is_restricted}
-<b>👨🏿‍💻 Description</b>: <code>{description}</code>
-<b>👪 Total members</b>: {members}
-<b>🚫 Has Protected Content</b>: {can_save}
-<b>🔗 Linked Chat</b>: <code>{linked_chat.id if linked_chat else "Not Linked"}</code>
-
-"""
+    caption = cgr("info_15").format(chat_id, title, type_, dc_id, ("@" + username) if username else "NA"}, total_admin, total_bot, total_banned, total_bot_admin, is_scam, is_fake, is_restricted, description, members, can_save, linked_chat.id if linked_chat else "Not Linked")
 
     return caption, photo_id
 
