@@ -35,8 +35,11 @@ def clbk_strt():
             [
                 (cgr("asst_3"), "clbk.bhsa"),
             ],
+            [
+                (cgr("asst_6"), "clbk.rebot"),
+            ],
         ],
-        False,
+        True,
         "close_asst",
     )
 
