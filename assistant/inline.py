@@ -6,21 +6,24 @@
 """
 ################################################################
 import os
-from datetime import datetime
 from gc import get_objects
-from time import time
 
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
-from pyrogram.raw.functions import Ping
 from pyrogram.types import *
 from telegraph import upload_file
 
-from Mix import *
+from datetime import datetime
+from time import time
+
+from pyrogram.raw.functions import Ping
 from Mix.core.waktu import get_time, start_time
-from modular.copy_con import *
+
 from modular.gcast import refresh_dialog
+
+from Mix import *
+from modular.copy_con import *
 from modular.pmpermit import *
 
 # button
@@ -229,3 +232,122 @@ async def _(c, iq):
             )
         ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
+
+
+# pmpermit
+@ky.inline("^ambil_tombolpc")
+async def _(c, iq):
+    org = iq.query.split()
+    gw = iq.from_user.id
+    getpm_txt = udB.get_var(gw, "PMTEXT")
+    getpm_warns = udB.get_var(gw, "PMLIMIT")
+    pm_warns = getpm_warns if getpm_warns else LIMIT
+    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
+    teks, button = parse_button(pm_text)
+    button = build_keyboard(button)
+    kiki = None
+    if user.me.id == gw:
+        if int(org[1]) in flood2:
+            flood2[int(org[1])] += 1
+        else:
+            flood2[int(org[1])] = 1
+        async for m in user.get_chat_history(int(org[1]), limit=pm_warns):
+            if m.reply_markup:
+                await m.delete()
+        kiki = PM_WARN.format(
+            user.me.first_name,
+            flood2[int(org[1])],
+            pm_warns,
+            teks.format(bot.me.first_name),
+        )
+        if flood2[int(org[1])] > pm_warns:
+            await user.send_message(int(org[1]), "Spam Terdeteksi !!! Blokir.")
+            del flood2[int(org[1])]
+            await user.block_user(int(org[1]))
+            return
+        lah = udB.get_var(gw, "PMPIC")
+        if lah:
+            filem = (
+                InlineQueryResultVideo
+                if lah.endswith(".mp4")
+                else InlineQueryResultPhoto
+            )
+            url_ling = (
+                {"video_url": lah, "thumb_url": lah}
+                if lah.endswith(".mp4")
+                else {"photo_url": lah}
+            )
+            duar = [
+                filem(
+                    **url_ling,
+                    title="PIC Buttons !",
+                    caption=kiki,
+                    reply_markup=InlineKeyboardMarkup(button),
+                )
+            ]
+        else:
+            duar = [
+                (
+                    InlineQueryResultArticle(
+                        title="Tombol PM!",
+                        input_message_content=InputTextMessageContent(kiki),
+                        reply_markup=InlineKeyboardMarkup(button),
+                    )
+                )
+            ]
+        await c.answer_inline_query(iq.id, cache_time=0, results=duar)
+
+
+#notes
+
+@ky.inline("^get_note_")
+async def _(c, iq):
+    q = iq.query.split(None, 1)
+    notetag = q[1]
+    noteval = udB.get_note(user.me.id, notetag)
+    if not noteval:
+        return
+    note, button = parse_button(noteval.get("value"))
+    button = build_keyboard(button)
+    if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
+        file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
+        biji = noteval.get("file")
+
+        if noteval["type"] == Types.PHOTO:
+            await c.answer_inline_query(
+                iq.id,
+                cache_time=0,
+                results=[
+                    InlineQueryResultPhoto(
+                        title="Note Photo",
+                        photo_url=biji,
+                        caption=note,
+                        reply_markup=InlineKeyboardMarkup(button),
+                    )
+                ],
+            )
+        elif noteval["type"] == Types.VIDEO:
+            await c.answer_inline_query(
+                iq.id,
+                cache_time=0,
+                results=[
+                    InlineQueryResultVideo(
+                        title="Note Video",
+                        video_url=biji,
+                        caption=note,
+                        reply_markup=InlineKeyboardMarkup(button),
+                    )
+                ],
+            )
+    elif noteval["type"] == Types.TEXT:
+        await c.answer_inline_query(
+            iq.id,
+            cache_time=0,
+            results=[
+                InlineQueryResultArticle(
+                    title="Tombol Notes!",
+                    input_message_content=InputTextMessageContent(note),
+                    reply_markup=InlineKeyboardMarkup(button),
+                )
+            ],
+        )
