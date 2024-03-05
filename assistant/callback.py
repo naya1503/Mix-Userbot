@@ -90,7 +90,9 @@ async def _(c, cq):
     tultd = []
     for lang in languages:
         chs = f"{lang['natively']} [{lang['code'].lower()}]"
-        tultd.append(InlineKeyboardButton(f"{chs}", callback_data=f"set_{lang['code']}"))
+        tultd.append(
+            InlineKeyboardButton(f"{chs}", callback_data=f"set_{lang['code']}")
+        )
     buttons = list(zip(tultd[::2], tultd[1::2]))
     if len(tultd) % 2 == 1:
         buttons.append((tultd[-1],))
@@ -102,6 +104,7 @@ async def _(c, cq):
     elif cmd == "bek":
         txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
+
 
 @ky.callback("^set_:(.*?)")
 async def _(c, cq):
@@ -119,7 +122,6 @@ async def _(c, cq):
     else:
         ndB.set_key("bahasa", lang_code)
     await cq.edit_message_text(cgr("asst_5").format(lang_name), reply_markup=kb)
-
 
 
 @ky.inline("^mark_in")
