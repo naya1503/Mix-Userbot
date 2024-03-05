@@ -158,8 +158,6 @@ async def _(c: user, m):
     filters.private
     & filters.incoming
     & ~filters.service
-    & ~filters.bot
-    & ~filters.via_bot
 )
 async def _(c: user, m):
     em = Emojik()
@@ -290,66 +288,3 @@ async def _(c: user, m):
                     ),
                 )
             flood2[chat_id] = rplied_msg.id
-
-
-@ky.inline("^ambil_tombolpc")
-async def _(c, iq):
-    org = iq.query.split()
-    gw = iq.from_user.id
-    getpm_txt = udB.get_var(gw, "PMTEXT")
-    getpm_warns = udB.get_var(gw, "PMLIMIT")
-    pm_warns = getpm_warns if getpm_warns else LIMIT
-    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
-    teks, button = parse_button(pm_text)
-    button = build_keyboard(button)
-    kiki = None
-    if user.me.id == gw:
-        if int(org[1]) in flood2:
-            flood2[int(org[1])] += 1
-        else:
-            flood2[int(org[1])] = 1
-        async for m in user.get_chat_history(int(org[1]), limit=pm_warns):
-            if m.reply_markup:
-                await m.delete()
-        kiki = PM_WARN.format(
-            user.me.first_name,
-            flood2[int(org[1])],
-            pm_warns,
-            teks.format(bot.me.first_name),
-        )
-        if flood2[int(org[1])] > pm_warns:
-            await user.send_message(int(org[1]), "Spam Terdeteksi !!! Blokir.")
-            del flood2[int(org[1])]
-            await user.block_user(int(org[1]))
-            return
-        lah = udB.get_var(gw, "PMPIC")
-        if lah:
-            filem = (
-                InlineQueryResultVideo
-                if lah.endswith(".mp4")
-                else InlineQueryResultPhoto
-            )
-            url_ling = (
-                {"video_url": lah, "thumb_url": lah}
-                if lah.endswith(".mp4")
-                else {"photo_url": lah}
-            )
-            duar = [
-                filem(
-                    **url_ling,
-                    title="PIC Buttons !",
-                    caption=kiki,
-                    reply_markup=InlineKeyboardMarkup(button),
-                )
-            ]
-        else:
-            duar = [
-                (
-                    InlineQueryResultArticle(
-                        title="Tombol PM!",
-                        input_message_content=InputTextMessageContent(kiki),
-                        reply_markup=InlineKeyboardMarkup(button),
-                    )
-                )
-            ]
-        await c.answer_inline_query(iq.id, cache_time=0, results=duar)
