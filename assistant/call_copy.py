@@ -12,7 +12,7 @@ from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
 
-from Mix import *
+from modular.copy_con import *
 
 
 @ky.callback("copymsg_")
