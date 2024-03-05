@@ -87,11 +87,10 @@ async def _(c, cq):
     cmd = cq.data.split(".")[1]
     okb([[("Kembali", "clbk.bek")]])
     languages = get_bahasa_()
+    chs = f"{languages[mx]['natively']} [{mx.lower()}]
     tultd = [
         InlineKeyboardButton(
-            f"{languages[mx]['natively']} [{mx.lower()}]", callback_data=f"set_{mx}"
-        )
-        for mx in languages.keys()
+            f"{chs}", callback_data=f"set_{mx}")
     ]
     buttons = list(zip(tultd[::2], tultd[1::2]))
     if len(tultd) % 2 == 1:
@@ -106,7 +105,7 @@ async def _(c, cq):
         await cq.edit_message_text(text=txt, reply_markup=clbk_strt())
 
 
-@ky.callback("^languages:(.*?)")
+@ky.callback("^set_:(.*?)")
 async def _(c, cq):
     lang = query.matches[0].group(1)
     bhs = get_bahasa_()
