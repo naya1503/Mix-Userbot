@@ -45,7 +45,7 @@ def clbk_strto():
     return okb(
         [
             [
-                (cgr("ttup"), "clbk.info"),
+                (cgr("ttup"), "close_asst"),
             ],
         ],
         False,
