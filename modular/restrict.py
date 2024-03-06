@@ -299,7 +299,7 @@ async def _(c: user, m):
         link = (await c.get_chat(m.chat.id)).invite_link
         if not link:
             link = await c.export_chat_invite_link(m.chat.id)
-        text = f"{em.sukses} **Ini adalah link invite grup :**\n\n{link}"
+        text = cgr("res_17").format(em.sukses, link)
         if m.reply_to_message:
             await m.reply_to_message.reply_text(text, disable_web_page_preview=True)
         else:
@@ -311,29 +311,27 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(
-            f"{em.gagal} Silahkan balas ke pesan untuk dilaporkan ke admin!"
-        )
+        return await m.reply_text(cgr("res_18").format(em.gagal))
 
     reply = m.reply_to_message
     reply_id = reply.from_user.id if reply.from_user else reply.sender_chat.id
     user_id = m.from_user.id if m.from_user else m.sender_chat.id
     if reply_id == user_id:
-        return await m.reply_text(f"{em.gagal} Kenapa harus melaporkan diri sendiri?")
+        return await m.reply_text(cgr("res_19").format(em.gagal))
 
     list_of_admins = await member_permissions(m.chat.id, user_id)
     linked_chat = (await c.get_chat(m.chat.id)).linked_chat
     if linked_chat is not None:
         if list_of_admins or reply_id == m.chat.id or reply_id == linked_chat.id:
-            return await m.reply_text(f"{em.gagal} Dia adalah admin!")
+            return await m.reply_text(cgr("res_20").format(em.gagal))
     else:
         if list_of_admins or reply_id == m.chat.id:
-            return await m.reply_text(f"{em.gagal} Dia adalah admin!")
+            return await m.reply_text(cgr("res_20").format(em.gagal))
 
     user_mention = (
         reply.from_user.mention if reply.from_user else reply.sender_chat.title
     )
-    text = f"{em.warn} **Dilaporkan {user_mention} ke admin!**"
+    text = cgr("res_21").format(em.warn, user_mention)
     admin_data = [
         i
         async for i in c.get_chat_members(
@@ -354,7 +352,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(cgr("glbl_2").format(em.gagal))
         return
     try:
         user_id, user_first_name, user_name = await extract_user(c, m)
@@ -362,10 +360,10 @@ async def _(c: user, m):
         return
     bot = await c.get_chat_member(m.chat.id, c.me.id)
     if user_id == c.me.id:
-        await m.reply_text(f"{em.gagal} Anda sudah admin!")
+        await m.reply_text(cgr("res_22").format(em.gagal))
         return
     if not bot.privileges.can_promote_members:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_13").format(em.gagal))
         return
     try:
         await m.chat.promote_member(user_id=user_id, privileges=bot.privileges)
@@ -380,20 +378,16 @@ async def _(c: user, m):
             await c.set_administrator_title(m.chat.id, user_id, title)
         promoter = await mention_html(m.from_user.first_name, m.from_user.id)
         promoted = await mention_html(user_first_name, user_id)
-        await m.reply_text(
-            f"{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi wakil pendiri!"
-        )
+        await m.reply_text(cgr("res_23").format(em.profil, promoter, em.warn, promoted))
 
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
+        await m.reply_text(cgr("res_3").format(em.gagal))
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal), e)
     return
 
 
@@ -402,7 +396,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(cgr("glbl_2").format(em.gagal))
         return
     try:
         user_id, user_first_name, user_name = await extract_user(c, m)
@@ -410,10 +404,10 @@ async def _(c: user, m):
         return
     bot = await c.get_chat_member(m.chat.id, c.me.id)
     if user_id == c.me.id:
-        await m.reply_text(f"{em.gagal} Anda sudah admin!")
+        await m.reply_text(cgr("res_22").format(em.gagal))
         return
     if not bot.privileges.can_promote_members:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_13").format(em.gagal))
         return
     try:
         await m.chat.promote_member(
@@ -436,19 +430,16 @@ async def _(c: user, m):
             await c.set_administrator_title(m.chat.id, user_id, title)
         promoter = await mention_html(m.from_user.first_name, m.from_user.id)
         promoted = await mention_html(user_first_name, user_id)
-        await m.reply_text(
-            f"{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi admin!"
-        )
+        await m.reply_text(cgr("res_24").format(em.profil, promoter, em.warn, promoted))
+
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
+        await m.reply_text(cgr("res_3").format(em.gagal))
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal), e)
     return
 
 
