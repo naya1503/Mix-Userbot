@@ -166,9 +166,12 @@ async def _(c: user, message):
 
     for _ in range(count):
         try:
-            await asyncio.sleep(delay)
             forwarded_message = await c.get_messages(chat_id, message_id)
-            await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
+            await c.forward_messages(
+                message.chat.id, chat_id, message_ids=message_id
+            )
+            await reply.delete()
+            await asyncio.sleep(delay)
         except (MessageNotModified, MediaEmpty, BadRequest) as e:
             continue
         except Exception as e:
@@ -177,6 +180,7 @@ async def _(c: user, message):
 
         if forwarded_message.media:
             await reply.edit("Tidak bisa mengekstrak pesan yang berisi media.")
+            await reply.delete()
         else:
             text = forwarded_message.text
             await reply.edit(text)
