@@ -138,7 +138,9 @@ async def _(c: user, m):
     em.initialize()
     global berenti
     if not berenti:
-        return await m.reply(f"{em.gagal} Sedang tidak ada perintah {m.command} di sini.")
+        return await m.reply(
+            f"{em.gagal} Sedang tidak ada perintah {m.command} di sini."
+        )
     berenti = False
     await m.reply(f"{em.sukses} {m.command} berhasil diberhentikan.")
     return
@@ -148,7 +150,9 @@ async def _(c: user, m):
         count = int(count_str)
         duration = int(duration_str)
     except ValueError:
-        await message.reply("Format perintah tidak valid. Gunakan: /dspam <jumlah> <durasi> <link>")
+        await message.reply(
+            "Format perintah tidak valid. Gunakan: /dspam <jumlah> <durasi> <link>"
+        )
         return
 
     try:
