@@ -239,6 +239,9 @@ pmper_8: "{} **Gunakan format : `{}` [angka].**"
 pmper_9: "{} **Pesan Limit berhasil diatur menjadi : `{}`.**"
 pmper_10: "{} **Saya sudah memberi tahu `{}` peringatan\nTunggu Owner Saya menyetujui pesan anda, atau anda akan diblokir !**"
 
+# quote
+qot_1: "{} **Daftar Warna Quote :\n\n**"
+
 # profile
 prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
 prof_2: "{} **Berhasil membuka blokir {}!**"
