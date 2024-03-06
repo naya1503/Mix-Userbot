@@ -100,4 +100,4 @@ async def _(c, iq):
         await c.answer_inline_query(iq.id, results=duar, cache_time=0)
 
     except Exception as e:
-        await proses.reply(f"Gagal menangani permintaan: {str(e)}")
+        await c.reply(f"Gagal menangani permintaan: {str(e)}")
