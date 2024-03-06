@@ -120,6 +120,7 @@ async def _(c: user, m):
     await m.reply_text(msg)
     await asyncio.sleep(1)
     await m.chat.unban_member(user_id)
+    return
 
 
 @ky.ubot("ban|delban", sudo=True)
@@ -148,6 +149,7 @@ async def _(c: user, m):
     except UserAdminInvalid:
         return await m.reply_text(cgr("res_3").format(em.gagal))
     await m.reply_text(msg)
+    return
 
 
 @ky.ubot("unban", sudo=True)
@@ -157,16 +159,17 @@ async def _(c: user, m):
     reply = m.reply_to_message
 
     if reply and reply.sender_chat and reply.sender_chat != m.chat.id:
-        return await m.reply_text(f"{em.gagal} Pengguna tidak diketahui!")
+        return await m.reply_text(cgr("res_3").format(em.gagal))
     if len(m.command) == 2:
         user = m.text.split(None, 1)[1]
     elif len(m.command) == 1 and reply:
         user = m.reply_to_message.from_user.id
     else:
-        return await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        return await m.reply_text(cgr("prof_1").format(em.gagal))
     await m.chat.unban_member(user)
     umention = (await c.get_users(user)).mention
-    await m.reply_text(f"{em.sukses} Unbanned! {umention}")
+    await m.reply_text(cgr("res_6").format(em.sukses, umention))
+    return
 
 
 async def delete_reply(c, message):
@@ -197,19 +200,13 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan!")
+        return await m.reply_text(cgr("res_7").format(em.gagal))
     r = m.reply_to_message
     if m.command[0][0] == "u":
         await r.unpin()
-        return await m.reply_text(
-            f"{em.sukses} **Sematan dilepas [pesan]({r.link}).**",
-            disable_web_page_preview=True,
-        )
+        return await m.reply_text(cgr("res_8").format(em.sukses, r.link), disable_web_page_preview=True)
     await r.pin(disable_notification=True)
-    await m.reply(
-        f"{em.sukses} **Berhasil disematkan [pesan]({r.link}) m.**",
-        disable_web_page_preview=True,
-    )
+    await m.reply(cgr("res_9").format(em.sukses, r.link), disable_web_page_preview=True)
 
 
 @ky.ubot("mute|delmute", sudo=True)
@@ -220,36 +217,27 @@ async def _(c: user, m):
     if not user_id:
         return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(f"{em.gagal} Oh anda ingin membisukan diri sendiri ?")
+        return await m.reply_text(cgr("res_10").format(em.gagal))
     if user_id in DEVS:
-        return await m.reply_text(
-            f"{em.gagal} Oh anda ingin membisukan Developer Mix-Userbot ?"
-        )
+        return await m.reply_text(cgr("glbl_3").format(em.gagal))
     mention = (await c.get_users(user_id)).mention
-    msg = (
-        f"{em.profil} **Muted User:** {mention}\n"
-        f"{em.block} **Muted By:** {m.from_user.mention if m.from_user else 'Anon'}\n"
-    )
+    msg = cgr("res_11").format(em.profil, mention, em.warn, m.from_user.mention if m.from_user else 'Anon', em.block, reason or 'No Reason Provided.')
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
-    if reason:
-        msg += f"{em.warn} **Reason:** {reason}"
     try:
         await m.chat.restrict_member(user_id, permissions=ChatPermissions())
         await m.reply_text(msg)
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except RightForbidden:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_13").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
+        return await m.reply_text(cgr("res_3").format(em.gagal))
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal, e))
     return
 
 
@@ -263,19 +251,17 @@ async def _(c: user, m):
     try:
         await m.chat.unban_member(user_id)
         umention = (await c.get_users(user_id)).mention
-        await m.reply_text(f"Unmuted! {umention}")
+        await m.reply_text(cgr("res_14").format(em.sukses, umention))
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except RightForbidden:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_13").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
+        return await m.reply_text(cgr("res_3").format(em.gagal))
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal, e))
     return
 
 
@@ -286,7 +272,7 @@ async def _(c: user, m):
     chat_id = m.chat.id
     deleted_users = []
     banned_users = 0
-    m = await m.reply(f"{em.proses} Mencari akun terhapus...")
+    m = await m.reply(cgr("proses").format(em.proses))
 
     async for i in c.get_chat_members(chat_id):
         if i.user.is_deleted:
@@ -298,11 +284,11 @@ async def _(c: user, m):
             except Exception:
                 pass
             banned_users += 1
-        await m.edit(
-            f"{em.sukses} Berhasil mengeluarkan `{banned_users}` akun terhapus."
-        )
+        await m.edit(cgr("res_15").format(em.sukses, banned_users))
+        return
     else:
-        await m.edit(f"{em.gagal} Tidak ada akun terhapus disini!")
+        await m.edit(cgr("res_16").format(em.gagal))
+        return
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
