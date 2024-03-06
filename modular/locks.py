@@ -145,13 +145,13 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) < 2:
-        await m.reply_text(f"{em.gagal} Gunakan format : `lock` type!")
+        await m.reply_text(cgr("lck_1").format(em.gagal))
         return
     lock_type = m.text.split(None, 1)[1]
     chat_id = m.chat.id
 
     if not lock_type:
-        await m.reply_text(f"{em.gagal} Berikan argumen untuk dikunci!")
+        await m.reply_text(cgr("lck_2").format(em.gagal))
         return
 
     get_perm = m.chat.permissions
@@ -171,10 +171,8 @@ async def _(c: user, m):
         except ChatNotModified:
             pass
         except ChatAdminRequired:
-            await m.reply_text(
-                f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!"
-            )
-        await m.reply_text(f"{em.sukses}" + "Terkunci <b>all</b> untuk grup ini!")
+            await m.reply_text(cgr("lck_3").format(em.gagal))
+        await m.reply_text(cgr("lck_4").format(em.sukses))
         ##await prevent_approved(m)
         return
 
@@ -227,37 +225,37 @@ async def _(c: user, m):
     elif lock_type == "url":
         curr = lock.insert_lock_channel(m.chat.id, "anti_links")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Kirim link dikunci digrup ini!")
+        await m.reply_text(cgr("lck_6").format(em.sukses))
         return
     elif lock_type == "anonchannel":
         curr = lock.insert_lock_channel(m.chat.id, "anti_c_send")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Kirim sebagai channel dikunci digrup ini!")
+        await m.reply_text(cgr("lck_8").format(em.sukses))
         return
     elif lock_type == "forwardall":
         curr = lock.insert_lock_channel(m.chat.id, "anti_fwd")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Pesan terusan dikunci digrup ini!")
+        await m.reply_text(cgr("lck_9").format(em.sukses))
         return
     elif lock_type == "forwardu":
         curr = lock.insert_lock_channel(m.chat.id, "anti_fwd_u")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Pesan terusan pengguna dikunci digrup ini!")
+        await m.reply_text(cgr("lck_10").format(em.sukses))
         return
     elif lock_type == "forwardc":
         curr = lock.insert_lock_channel(m.chat.id, "anti_fwd_c")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Pesan terusan channel dikunci digrup ini!")
+        await m.reply_text(cgr("lck_11").format(em.sukses))
         return
     else:
         await m.reply_text(
