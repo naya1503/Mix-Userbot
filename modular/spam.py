@@ -137,15 +137,17 @@ async def _(c: user, message):
     em = Emojik()
     em.initialize()
 
-    reply = message.reply_to_message
-    msg = await message.reply(f"{em.proses} Processing...")
+    message.reply_to_message
+    await message.reply(f"{em.proses} Processing...")
 
     try:
         _, count_str, delay_str, link = message.text.split(maxsplit=3)
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
-        await message.reply("Format perintah tidak valid. Gunakan: /ldlpm <jumlah> <delay> <link>")
+        await message.reply(
+            "Format perintah tidak valid. Gunakan: /ldlpm <jumlah> <delay> <link>"
+        )
         return
 
     chat_id, message_id = link.split("/")[-2:]
@@ -157,7 +159,9 @@ async def _(c: user, message):
         await asyncio.sleep(delay)
         try:
             forwarded_message = await client.get_messages(chat_id, message_id)
-            await client.forward_messages(message.chat.id, chat_id, message_ids=message_id)
+            await client.forward_messages(
+                message.chat.id, chat_id, message_ids=message_id
+            )
         except Exception as e:
             await message.reply(f"Gagal meneruskan pesan: {str(e)}")
             break
