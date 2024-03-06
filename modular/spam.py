@@ -167,12 +167,12 @@ async def _(c: user, message):
     for _ in range(count):
         try:
             await asyncio.sleep(delay)
-            forwarded_message = await client.get_messages(chat_id, message_id)
-            await client.forward_messages(
+            forwarded_message = await c.get_messages(chat_id, message_id)
+            await c.forward_messages(
                 message.chat.id, chat_id, message_ids=message_id
             )
         except (MessageNotModified, MediaEmpty, BadRequest) as e:
-            continue  # Lanjutkan iterasi jika pesan tidak dapat diubah atau tidak dapat mengirim media
+            continue
         except Exception as e:
             await reply.edit(f"Gagal meneruskan pesan: {str(e)}")
             break
