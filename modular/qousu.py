@@ -10,22 +10,6 @@
 ################################################################
 
 
-__modles__ = "Quote"
-__help__ = """
-Help Command Quote
-
-• Perintah: <code>{0}q</code> [reply message]
-• Penjelasan: Untuk membuat quote teks.
-
-• Perintah: <code>{0}qcolor</code>
-• Penjelasan: Untuk melihat format warna latar belakang quote.
-
-**Notes Optional:**
-`q @username` - Menjadi fake quote.
-`q warna` - Kostum latar belakang quote.
-`q @username warna` Menjadi fake quote dengan latar belakang kostum.
-"""
-
 import os
 import random
 from io import BytesIO
@@ -34,6 +18,9 @@ from pyrogram.types import *
 
 from Mix import *
 from Mix.core.tools_quote import *
+
+__modles__ = "Quote"
+__help__ = get_cgr("help_qot")
 
 
 @ky.ubot("qcolor", sudo=True)
