@@ -28,7 +28,7 @@ async def _(c: user, m):
     gua = c.me.id
     cek = m.reply_to_message
     note_name, text, data_type, content = get_note_type(m)
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
+    xx = await m.reply(cgr("proses").format(em.proses))
     if not note_name:
         return await xx.edit(
             f"{em.gagal} <b>Gunakan format :</b> <code>save</code> [nama catatan] [balas ke pesan]."
