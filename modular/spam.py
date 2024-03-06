@@ -130,3 +130,31 @@ async def _(c: user, m):
     berenti = False
     await m.reply(f"{em.sukses} Ok spam berhasil dihentikan.")
     return
+
+
+@ky.ubot("dlpm", sudo=True)
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
+    global berenti
+    if not berenti:
+        return await m.reply(f"{em.gagal} Sedang tidak ada perintah {m.command} di sini.")
+    berenti = False
+    await m.reply(f"{em.sukses} {m.command} berhasil diberhentikan.")
+    return
+
+    try:
+        _, count_str, duration_str, link = message.text.split(None, 3)
+        count = int(count_str)
+        duration = int(duration_str)
+    except ValueError:
+        await message.reply("Format perintah tidak valid. Gunakan: /dspam <jumlah> <durasi> <link>")
+        return
+
+    try:
+        # Meneruskan pesan sesuai dengan jumlah yang ditentukan
+        for _ in range(count):
+            await client.send_message(chat_id=message.chat.id, text=link)
+            await asyncio.sleep(duration)
+    except Exception as e:
+        await message.reply(f"Terjadi kesalahan: {str(e)}")
