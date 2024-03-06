@@ -29,7 +29,7 @@ Help Command Spam
 • Perintah: <code>{0}cspam</code>
 • Penjelasan: Untuk stop spam.
 
-• Perintah: <code>{0}dspamfw [jumlah] [waktu delay] [link channel public]</code>
+• Perintah: <code>{0}dspamfw</code> [jumlah] [waktu delay] [link channel public]
 • Penjelasan: Untuk melakukan delay spam forward link channel.
 """
 
