@@ -136,14 +136,14 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    global berenti
-    if not berenti:
-        return await m.reply(
-            f"{em.gagal} Sedang tidak ada perintah {m.command} di sini."
-        )
-    berenti = False
-    await m.reply(f"{em.sukses} {m.command} berhasil diberhentikan.")
-    return
+    #global berenti
+    #if not berenti:
+    #    return await m.reply(
+    #        f"{em.gagal} Sedang tidak ada perintah {m.command} di sini."
+    #    )
+    #berenti = False
+    #await m.reply(f"{em.sukses} {m.command} berhasil diberhentikan.")
+    #return
 
     try:
         _, count_str, duration_str, link = message.text.split(None, 3)
