@@ -270,6 +270,12 @@ res_21: "{} **Dilaporkan {} ke admin!**"
 res_22: "{} **Anda admin!**"
 res_23: "{} **{}\n{} Pengguna {} berhasil diangkat menjadi wakil pendiri!**"
 res_24: "{} **{}\n{} Pengguna {} berhasil diangkat menjadi admin!**"
+res_25: "{} **Pengguna bukan admin!**"
+res_26: "{} {} {}\n{} Pengguna {} berhasil diturunkan dari admin!"
+res_27: "{} **Pengguna tidak diangkat oleh saya!**"
+res_28: "{} **Berhasil mengubah nama Grup : {} menjadi {}.**"
+res_29: "{} **Berhasil mengubah deskripsi Grup : {} menjadi {}.**"
+
 
 
 # profile
