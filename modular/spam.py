@@ -181,7 +181,8 @@ async def _(c: user, message):
             elif isinstance(e, Forbidden) and "can't send photos" in str(e):
                 await reply.reply("Anda tidak dapat mengirim foto.")
             else:
-                continue
+                reply.delete()
+                break
         except Exception as e:
             await reply.reply(f"Gagal meneruskan pesan: {str(e)}")
             break
@@ -191,3 +192,4 @@ async def _(c: user, message):
         text = forwarded_message.text
         await reply.edit(text)
     berenti = False
+    reply.delete()
