@@ -144,7 +144,7 @@ async def _(c: user, message):
     reply = await message.reply(f"{em.proses} Processing...")
 
     try:
-        count_str, delay_str, link = message.text.split(maxsplit=3)
+        _, count_str, delay_str, link = message.text.split(maxsplit=3)
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
