@@ -173,7 +173,13 @@ async def _(c: user, message):
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
             await proses.delete()
             await asyncio.sleep(delay)
-        except (CHAT_SEND_MEDIA_FORBIDDEN, CHAT_FORBIDDEN, CHANNEL_PUBLIC_GROUP_NA, CHAT_SEND_STICKERS_FORBIDDEN, USER_RESTRICTED):
+        except (
+            CHAT_SEND_MEDIA_FORBIDDEN,
+            CHAT_FORBIDDEN,
+            CHANNEL_PUBLIC_GROUP_NA,
+            CHAT_SEND_STICKERS_FORBIDDEN,
+            USER_RESTRICTED,
+        ):
             await message.reply(
                 f"{em.gagal} Anda tidak bisa menggunakan perinta itu di sini, karna group chat ini melarangnya!"
             )
