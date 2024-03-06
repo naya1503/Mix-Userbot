@@ -179,7 +179,7 @@ async def _(c: user, message):
                 await message.reply(
                     f"{em.gagal} Anda tidak bisa menggunakan perinta itu di sini, karna group chat ini melarangnya!"
                 )
-                
+
             await proses.reply(f"Gagal meneruskan pesan: {str(e)}")
             await proses.delete()
             break
