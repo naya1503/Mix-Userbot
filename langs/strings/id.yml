@@ -208,6 +208,11 @@ mark_3: "**Untuk melihat format markdown silahkan klik tombol dibawah.**"
 
 # notes
 nts_1: "{} **Gunakan format : `{}` [nama catatan] [balas ke pesan].**"
+nts_2: "{} **Teks tidak dapat kosong.**"
+nts_3: "{} **Catatan `{}` berhasil disimpan.**"
+nts_4: "{} **Berikan nama catatan!**"
+nts_5: "{} **Catatan `{}` tidak ditemukan!**"
+
 
 
 # help_for
