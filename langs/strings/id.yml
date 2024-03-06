@@ -67,7 +67,7 @@ dbs_8: "{} **Ini {} anda : `{}`.**"
 dbs_9: "{} **{} Berhasil dihapus!!**"
 
 # gcast
-gcs_1: "{} **Silakan balas ke pesan atau berikan pesan.**"
+gcs_1: "{} **Silahkan balas ke pesan atau berikan pesan.**"
 gcs_2: "{} **Hasil Pesan Gcast :\n{} Berhasil di `{}` Grup.\n{} Gagal di `{}` Grup.**"
 gcs_3: "{} **Hasil Pesan Gcast :\n{} Berhasil di `{}` Pengguna.\n{} Gagal di `{}` Pengguna.**"
 gcs_4: "{} **Grup ini sudah ada dalam blacklist!!**"
@@ -230,6 +230,14 @@ ping_1: "**{} Pong `{}ms`**\n\n**{} Uptime !! `{}`**"
 # pmpermit
 pmper_1: "**Hey {} 👋 . Jangan spam atau anda akan diblokir!!**"
 pmper_2: "**Pesan Keamanan {} . Anda mendapat peringatan {}/{} !!\n\n{}**"
+pmper_3: "{} **Pengguna sudah disetujui!**"
+pmper_4: "{} **Baiklah, pengguna disetujui untuk mengirim pesan.**"
+pmper_5: "{} **Pengguna memang belum disetujui untuk mengirim pesan.**"
+pmper_6: "{} **Baiklah, pengguna ditolak untuk mengirim pesan.**"
+pmper_7: "{} **Pesan PMPermit berhasil diatur menjadi :\n\n` {}`"
+pmper_8: "{} **Gunakan format : `{}` [angka].**"
+pmper_9: "{} **Pesan Limit berhasil diatur menjadi : `{}`.**"
+pmper_10: "{} **Saya sudah memberi tahu `{}` peringatan\nTunggu Owner Saya menyetujui pesan anda, atau anda akan diblokir !**"
 
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
