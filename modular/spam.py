@@ -137,7 +137,8 @@ async def _(c: user, m):
     return
 
 
-async def dpsamfw_command(client, message):
+@ky.ubot("dspamfw", sudo=True)
+async def _(c: user, message):
     em = Emojik()
     em.initialize()
 
