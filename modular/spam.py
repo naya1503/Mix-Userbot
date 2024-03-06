@@ -169,7 +169,7 @@ async def _(c: user, message):
         try:
             if not berenti:
                 break
-            forwarded_message = await c.get_messages(chat_id, message_id)
+            await c.get_messages(chat_id, message_id)
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
             await reply.delete()
             await asyncio.sleep(delay)
@@ -189,7 +189,7 @@ async def _(c: user, message):
             break
 
         # if forwarded_message.media:
-        #   
+        #
         # text = forwarded_message.text
         # await reply.edit(text)
     berenti = False
