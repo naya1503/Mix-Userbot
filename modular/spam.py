@@ -133,7 +133,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("dlpm", sudo=True)
-async def _(c: client, message):
+async def _(c: user, message):
     em = Emojik()
     em.initialize()
 
