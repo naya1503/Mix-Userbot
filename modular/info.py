@@ -10,7 +10,7 @@ import os
 from asyncio import sleep
 from datetime import datetime
 from traceback import format_exc
-
+from pyrogram import enums
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
@@ -31,6 +31,9 @@ Help Command Info
 
 • Perintah: <code>{0}cinfo</code>
 • Penjelasan: Untuk melihat grup.
+
+• Perintah: <code>{0}me</code>
+• Penjelasan: Untuk melihat stats user.
 """
 
 
@@ -347,3 +350,48 @@ async def _(c: user, m):
         await m.reply_text(text=e)
     os.remove(photo)
     return
+
+@ky.ubot("me|userstats", sudo=True)
+async def _(c, m):
+ em = Emojik()
+ em.initialize()
+    Nan = await m.reply_text(f"{em.proses}`Collecting stats...`")
+    start = datetime.now()
+    zz = 0
+    nanki = 0
+    luci = 0
+    tgr = 0
+    ceger = 0
+    kntl = 0
+    xenn = await c.get_me()
+    async for dialog in c.get_dialogs():
+        if dialog.chat.type == enums.ChatType.PRIVATE:
+            zz += 1
+        elif dialog.chat.type == enums.ChatType.BOT:
+            ceger += 1
+        elif dialog.chat.type == enums.ChatType.GROUP:
+            nanki += 1
+        elif dialog.chat.type == enums.ChatType.SUPERGROUP:
+            luci += 1
+            user_s = await dialog.chat.get_member(int(xenn.id))
+            if user_s.status in (
+                enums.ChatMemberStatus.OWNER,
+                enums.ChatMemberStatus.ADMINISTRATOR,
+            ):
+                kntl += 1
+        elif dialog.chat.type == enums.ChatType.CHANNEL:
+            tgr += 1
+
+    end = datetime.now()
+    ms = (end - start).seconds
+    await Nan.edit_text(
+        """`Your Stats Obtained in {} seconds`
+`You have {} Private Messages.`
+`You are in {} Groups.`
+`You are in {} Super Groups.`
+`You Are in {} Channels.`
+`You Are Admin in {} Chats.`
+`Bots = {}`""".format(
+            ms, zz, nanki, luci, tgr, kntl, ceger
+        )
+    )
