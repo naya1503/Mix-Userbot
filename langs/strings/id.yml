@@ -245,6 +245,11 @@ qot_2: "{} **Ini adalah list warna untuk latar belakang quote.**"
 qot_3: "{} **Si anjing mengatasnamakan Developer!**"
 qot_4: "{} **Batas pesan adalah 10!**"
 
+# restrict
+res_1: "{} **Oh anda ingin menendang diri sendiri ?**"
+res_2: "{} **Kicked User:**\n\n{} **Kicked By:** {}\n{} **Reason:** {}"
+
+
 # profile
 prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
 prof_2: "{} **Berhasil membuka blokir {}!**"
