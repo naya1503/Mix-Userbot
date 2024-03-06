@@ -103,13 +103,11 @@ async def _(c: user, m):
     em.initialize()
     user_id, reason = await c.extract_user_and_reason(m)
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(f"{em.gagal} Oh anda ingin menendang diri sendiri ?")
+        return await m.reply_text(cgr("res_1").format(em.gagal}))
     if user_id in DEVS:
-        return await m.reply_text(
-            f"{em.gagal} Oh anda ingin menendang Developer Mix-Userbot ?"
-        )
+        return await m.reply_text(cgr("glbl_3").format(em.gagal))
     mention = (await c.get_users(user_id)).mention
     msg = f"""
 {em.profil} **Kicked User:** {mention}
