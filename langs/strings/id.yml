@@ -171,7 +171,7 @@ info_17: "{} **Gunakan format '{}` @username/id grup.**"
 lmt_1: "{} **{}**\n\n ~ {} **{}**"
 
 # locks
-lck_1: "{} **Gunakan format : `lock` type!**"
+lck_1: "{} **Gunakan format : `{}` type!**"
 lck_2: "{} **Berikan argumen untuk dikunci!**"
 lck_3: "{} **Sepertinya saya tidak mempunyai izin lebih untuk melakukan {}!**"
 lck_4: "{} ** Terkunci `all` untuk grup ini!**"
@@ -183,10 +183,8 @@ lck_10: "{} **Pesan terusan pengguna dikunci digrup ini!**"
 lck_11: "{} **Pesan terusan channel dikunci digrup ini!**"
 lck_12: "{} **Invalid Lock Tipe!**\n\n**Silahkan ketik `locktypes` untuk melihat format lock!**"
 lck_13: "{} **Sepertinya saya tidak mempunyai izin lebih!**"
-lck_14: "{} Terkunci **{perm}** dalam grup ini."
-lck_15: "{} **Gunakan format : `lock` type!**"
+lck_14: "{} Terkunci **{}** dalam grup ini."
 lck_16: "{} **Berikan argumen untuk dibuka!**"
-lck_17: "{} **Sepertinya saya tidak mempunyai izin lebih!**"
 lck_18: "{} Dibuka **all** untuk grup ini!**"
 lck_19: "{} **Sudah dibuka!**"
 lck_20: "{} **Kirim sebagai channel dibuka digrup ini!**"
@@ -195,15 +193,18 @@ lck_22: "{} **Semua pesan terusan dibuka digrup ini!**"
 lck_23: "{} **Pesan terusan pengguna dibuka digrup ini!**"
 lck_24: "{} **Pesan terusan channel dibuka digrup ini!**"
 lck_25: "{} **Invalid Unlock Tipe!**\n\n{} **Silahkan ketik `locktypes` untuk melihat format lock!**"
-lck_26: "{} **Sepertinya saya tidak mempunyai izin lebih!**"
 lck_27: "{} Dibuka **{}** dalam grup ini.**"
 lck_28: "{} **Terjadi kesalahan!**"
 lck_29: "{} **Lapor ke @kynansupport :\n\n`{}`**"
 
+# logo
+logo_1: "{} **Gunakan format : `{}` [text]**"
+logo_2: "{} **Dibuat oleh : {}**"
 
-
-
-
+# markdown
+mark_1: "<b>Markdown Formatting</b>\n<b>Anda dapat memformat pesan Anda menggunakan <b>tebal</b>, <i>miring</i>, <u>garis bawah</u>, <strike>coret</strike>, dan banyak lagi.</b>\n\n<code>`kata kode`</code>: Tanda kutip terbalik digunakan untuk font monospace. Ditampilkan sebagai: <code>kata kode</code>.\n\n<code>__miring__</code>: Garis bawah digunakan untuk font miring. Ditampilkan sebagai: <i>kata miring</i>.\n\n<code>**tebal**</code>: Asterisk digunakan untuk font tebal. Ditampilkan sebagai: <b>kata tebal</b>.\n\n<code>--garis bawah--</code>: Untuk membuat teks <u>garis bawah</u>.\n\n<code>~~coret~~</code>: Tilda digunakan untuk strikethrough. Ditampilkan sebagai: <strike>coret</strike>.\n\n<code>||spoiler||</code>: Garis vertikal ganda digunakan untuk spoiler. Ditampilkan sebagai: <spoiler>Spoiler</spoiler>.\n\n<code>[hyperlink](contoh)</code>: Ini adalah pemformatan yang digunakan untuk hyperlink.\n\n<code>[Tombol Saya](buttonurl://contoh)</code>: Ini adalah pemformatan yang digunakan untuk membuat tombol.\nJika Anda ingin mengirimkan tombol dalam satu baris yang sama, gunakan pemformatan <code>:same</code>.\n\n<b>Contoh:</b>\n<code>[tombol 1](buttonurl://1)</code>\n<code>[tombol 2](buttonurl://2:same)</code>\n<code>[tombol 3](buttonurl://3)</code>\nIni akan menampilkan tombol 1 dan 2 di baris yang sama, sementara 3 akan berada di bawahnya."
+mark_2: "<b>Fillings</b>\n\nAnda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, Anda bisa menyebut nama pengguna dalam pesan selamat datang, atau menyebutnya dalam filter!\n\n<b>Isian yang didukung:</b>\n\n<code>{first}</code>: Nama depan pengguna.\n<code>{last}</code>: Nama belakang pengguna.\n<code>{fullname}</code>: Nama lengkap pengguna.\n<code>{username}</code>: Nama pengguna pengguna. Jika mereka tidak memiliki satu, akan menyebutkan pengguna tersebut.\n<code>{mention}</code>: Menyebutkan pengguna dengan nama depan mereka.\n<code>{id}</code>: ID pengguna.\n<code>{chatname}</code>: Nama obrolan."
+mark_3: "**Untuk melihat format markdown silahkan klik tombol dibawah.**"
 
 
 
