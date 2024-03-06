@@ -207,7 +207,7 @@ mark_2: "<b>Fillings</b>\n\nAnda juga dapat menyesuaikan isi pesan Anda dengan d
 mark_3: "**Untuk melihat format markdown silahkan klik tombol dibawah.**"
 
 # notes
-nts_1: 
+nts_1: "{} **Gunakan format : `{}` [nama catatan] [balas ke pesan].**"
 
 
 # help_for
