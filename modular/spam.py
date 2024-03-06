@@ -9,6 +9,7 @@
 import asyncio
 
 from pyrogram.errors import *
+from pyrogram.types import ChatPermissions
 
 from Mix import *
 
@@ -143,7 +144,7 @@ async def _(c: user, message):
     em.initialize()
     global berenti
     message.reply_to_message
-    reply = await message.reply(f"{em.proses} Processing...")
+    proses = await message.reply(f"{em.proses} Processing...")
     berenti = True
 
     try:
@@ -151,8 +152,8 @@ async def _(c: user, message):
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
-        await reply.reply(
-            "Format perintah tidak valid. Gunakan: dspamfw <jumlah> <delay> <link>"
+        await proses.reply(
+            f"{em.gagal} Format perintah tidak valid. Gunakan: dspamfw <jumlah> <delay> <link>"
         )
         return
 
@@ -171,21 +172,22 @@ async def _(c: user, message):
                 break
             await c.get_messages(chat_id, message_id)
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
-            await reply.delete()
+            await proses.delete()
             await asyncio.sleep(delay)
-        except (MessageNotModified, MediaEmpty, BadRequest, Forbidden) as e:
-            if isinstance(e, Forbidden) and "is restricted" in str(e):
-                await reply.reply("Anda dibatasi untuk melakukan tindakan ini.")
-            elif isinstance(e, Forbidden) and "can't send media messages" in str(e):
-                await reply.reply("Anda tidak dapat mengirim pesan media.")
-            elif isinstance(e, Forbidden) and "can't send photos" in str(e):
-                await reply.reply("Anda tidak dapat mengirim foto.")
-            else:
-                await reply.delete()
-                break
         except Exception as e:
-            await reply.reply(f"Gagal meneruskan pesan: {str(e)}")
-            await reply.delete()
+            await message.reply(f"Error : {e}")
+            # if isinstance(e, Forbidden) and "is restricted" in str(e):
+            #     await proses.reply("Anda dibatasi untuk melakukan tindakan ini.")
+            # elif isinstance(e, Forbidden) and "can't send media messages" in str(e):
+            #    await proses.reply("Anda tidak dapat mengirim pesan media.")
+            # elif isinstance(e, Forbidden) and "can't send photos" in str(e):
+            #     await proses.reply("Anda tidak dapat mengirim foto.")
+            # else:
+            #     await reply.delete()
+            break
+        except Exception as e:
+            await proses.reply(f"Gagal meneruskan pesan: {str(e)}")
+            await proses.delete()
             break
 
         # if forwarded_message.media:
@@ -193,4 +195,4 @@ async def _(c: user, message):
         # text = forwarded_message.text
         # await reply.edit(text)
     berenti = False
-    await reply.delete()
+    await proses.delete()
