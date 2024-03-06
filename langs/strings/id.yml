@@ -247,7 +247,10 @@ qot_4: "{} **Batas pesan adalah 10!**"
 
 # restrict
 res_1: "{} **Oh anda ingin menendang diri sendiri ?**"
-res_2: "{} **Kicked User:**\n\n{} **Kicked By:** {}\n{} **Reason:** {}"
+res_2: "{} **Tendang Pengguna:** {}\n{} **Admin:** {}\n{} **Alasan:** {}"
+res_3: "{} Anda tidak berhak mengeluarkan dia!"
+res_4: "{} Oh anda ingin memblokir diri sendiri ?"
+res_5: "{} **Blokir Pengguna:** {}\n{} **Admin:** {}\n{} **Alasan:** {}"
 
 
 # profile
