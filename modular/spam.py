@@ -9,7 +9,6 @@
 import asyncio
 
 from pyrogram.errors import *
-from pyrogram.types import ChatPermissions
 
 from Mix import *
 
