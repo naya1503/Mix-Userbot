@@ -140,90 +140,31 @@ async def _(c: user, message):
     reply = message.reply_to_message
     msg = await message.reply(f"{em.proses} Processing...")
 
-    if reply:
+    try:
+        _, count_str, delay_str, link = message.text.split(maxsplit=3)
+        count = int(count_str)
+        delay = int(delay_str)
+    except ValueError:
+        await message.reply("Format perintah tidak valid. Gunakan: /ldlpm <jumlah> <delay> <link>")
+        return
+
+    chat_id, message_id = link.split("/")[-2:]
+    chat_id = int(chat_id)
+    message_id = int(message_id)
+
+    # Forward pesan dari tautan
+    for _ in range(count):
+        await asyncio.sleep(delay)
         try:
-            count_message = int(message.command[1])
-            count_delay = int(message.command[2])
-            link = message.text.split(None, 3)[3]
-        except Exception as error:
-            return await msg.edit(str(error))
+            forwarded_message = await client.get_messages(chat_id, message_id)
+            await client.forward_messages(message.chat.id, chat_id, message_ids=message_id)
+        except Exception as e:
+            await message.reply(f"Gagal meneruskan pesan: {str(e)}")
+            break
 
-        for i in range(count_message):
-            try:
-                await reply.copy(message.chat.id, text=link)
-                await asyncio.sleep(count_delay)
-            except:
-                pass
-    else:
-        if len(message.command) < 4:
-            return await msg.edit(
-                f"{em.gagal} Please type <code>{message.command}</code> for command help."
-            )
+        # Mengekstrak pesan dari tautan
+        if forwarded_message.media:
+            await message.reply_text("Tidak bisa mengekstrak pesan yang berisi media.")
         else:
-            try:
-                count_message = int(message.command[1])
-                count_delay = int(message.command[2])
-                link = message.text.split(None, 3)[3]
-            except Exception as error:
-                return await msg.edit(str(error))
-
-            for i in range(count_message):
-                try:
-                    await message.reply(link)
-                    await asyncio.sleep(count_delay)
-                except:
-                    pass
-
-    await msg.delete()
-
-
-"""
-async def _(c: user, m):
-    em = Emojik()
-    em.initialize()
-    global berenti
-
-    reply = m.reply_to_message
-    msg = await m.reply(f"{em.proses} Processing...")
-    berenti = True
-    if reply:
-        try:
-            count_message = int(m.command[1])
-            count_delay = int(m.command[2])
-            link = m.text.split(None, [3])
-        except Exception as error:
-            return await msg.edit(str(error))
-        for i in range(count_message):
-            if not berenti:
-                break
-            try:
-                await reply.copy(m.chat.id, text=link)
-                await asyncio.sleep(count_delay)
-            except:
-                pass
-    else:
-        if len(m.command) < 4:
-            return await msg.edit(
-                f"{em.gagal} Silakan ketik <code>{m.command}</code> untuk bantuan perintah."
-            )
-        else:
-            try:
-                count_message = int(m.command[1])
-                count_delay = int(m.command[2])
-                link = m.text.split(m.command[3])
-            except Exception as error:
-                return await msg.edit(str(error))
-            for i in range(count_message):
-                if not berenti:
-                    break
-                try:
-                    await m.reply(m.text.split(None, 3)[3])
-                    await asyncio.sleep(count_delay)
-                except:
-                    pass
-
-    berenti = False
-
-    await msg.delete()
-    await m.delete()
-"""
+            text = forwarded_message.text
+            await message.reply_text(text)
