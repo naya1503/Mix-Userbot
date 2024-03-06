@@ -26,7 +26,6 @@ __help__ = """
 """
 
 
-
 @ky.ubot("alive", sudo=True)
 async def _(c: user, m):
     try:
@@ -34,8 +33,6 @@ async def _(c: user, m):
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
         await m.reply(error)
-
-
 
 
 @ky.inline("^alive")
