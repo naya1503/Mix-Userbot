@@ -152,7 +152,7 @@ async def _(c: user, message):
         delay = int(delay_str)
     except ValueError:
         await reply.reply(
-            "Format perintah tidak valid. Gunakan: /ldlpm <jumlah> <delay> <link>"
+            "Format perintah tidak valid. Gunakan: dspamfw <jumlah> <delay> <link>"
         )
         return
 
