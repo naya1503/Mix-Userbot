@@ -26,6 +26,9 @@ Help Command Spam
 
 • Perintah: <code>{0}cspam</code>
 • Penjelasan: Untuk stop spam.
+
+• Perintah: <code>{0}dspamfw [jumlah] [waktu delay] [link channel public]</code>
+• Penjelasan: Untuk melakukan delay spam forward link channel.
 """
 
 
@@ -132,7 +135,7 @@ async def _(c: user, m):
     return
 
 
-@ky.ubot("dlpm", sudo=True)
+@ky.ubot("dpsamfw", sudo=True)
 async def _(c: user, message):
     em = Emojik()
     em.initialize()
@@ -141,7 +144,7 @@ async def _(c: user, message):
     reply = await message.reply(f"{em.proses} Processing...")
 
     try:
-        _, count_str, delay_str, link = message.text.split(maxsplit=3)
+        count_str, delay_str, link = message.text.split(maxsplit=3)
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
@@ -153,23 +156,23 @@ async def _(c: user, message):
     chat_id, message_id = link.split("/")[-2:]
 
     try:
-        chat_id = int(chat_id)  # Coba ubah ke integer
+        chat_id = int(chat_id)
     except ValueError:
-        pass  # Biarkan chat_id tetap string jika tidak dapat diubah menjadi integer
+        pass
 
     message_id = int(message_id)
 
-    # Forward pesan dari tautan
     for _ in range(count):
-        await asyncio.sleep(delay)
         try:
+            await asyncio.sleep(delay)
             forwarded_message = await c.get_messages(chat_id, message_id)
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
+        except MessageNotModified:
+            continue
         except Exception as e:
             await reply.edit(f"Gagal meneruskan pesan: {str(e)}")
             break
 
-        # Mengekstrak pesan dari tautan
         if forwarded_message.media:
             await reply.edit("Tidak bisa mengekstrak pesan yang berisi media.")
         else:
