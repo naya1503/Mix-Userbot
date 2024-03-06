@@ -151,7 +151,7 @@ async def _(c: user, message):
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
-        await reply.edit(
+        await reply.reply(
             "Format perintah tidak valid. Gunakan: /ldlpm <jumlah> <delay> <link>"
         )
         return
@@ -176,13 +176,11 @@ async def _(c: user, message):
         except (MessageNotModified, MediaEmpty, BadRequest) as e:
             continue
         except Exception as e:
-            await reply.edit(f"Gagal meneruskan pesan: {str(e)}")
+            await reply.reply(f"Gagal meneruskan pesan: {str(e)}")
             break
 
         if forwarded_message.media:
-            await reply.edit("Tidak bisa mengekstrak pesan yang berisi media.")
-            await reply.delete()
-        else:
-            text = forwarded_message.text
+            continue
+        text = forwarded_message.text
             await reply.edit(text)
     berenti = False
