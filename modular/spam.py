@@ -180,7 +180,7 @@ async def _(c: user, message):
                 or "USER_RESTRICTED" in str(e)
             ):
                 await message.reply(
-                    f"{em.gagal} Anda tidak bisa menggunakan perintaH itu di sini, karena group chat ini melarangnya!"
+                    f"{em.gagal} Anda tidak bisa menggunakan perintah itu di sini, karena group chat ini melarangnya!"
                 )
             else:
                 await proses.reply(f"Gagal meneruskan pesan: {str(e)}")
