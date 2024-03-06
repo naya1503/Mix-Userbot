@@ -214,6 +214,15 @@ nts_4: "{} **Berikan nama catatan!**"
 nts_5: "{} **Catatan `{}` tidak ditemukan!**"
 nts_6: "{} **Tidak ada catatan satupun!**"
 nts_7: "{} **Daftar Catatan :**\n\n"
+nts_8: "**• `{}`**\n"
+nts_9: "{} **Catatan apa yang ingin dihapus ?**"
+nts_10: "{} **Catatan `{}` tidak ada!**"
+nts_11: "{} **Catatan `{}` berhasil dihapus.**"
+
+# pastebin
+paste_1: "{} **Gunakan format : `{}` [balas pesan text atau dokumen]**"
+paste_2: "{} **Ukuran dokumen harus dibawah 40KB!**"
+paste_3: "{} **Berhasil! [Tautan Disini]({})**"
 
 
 # help_for
