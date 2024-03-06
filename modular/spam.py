@@ -133,6 +133,50 @@ async def _(c: user, m):
 
 
 @ky.ubot("dlpm", sudo=True)
+async def _(c: client, message):
+    em = Emojik()
+    em.initialize()
+
+    reply = message.reply_to_message
+    msg = await message.reply(f"{em.proses} Processing...")
+
+    if reply:
+        try:
+            count_message = int(message.command[1])
+            count_delay = int(message.command[2])
+            link = message.text.split(None, 3)[3]
+        except Exception as error:
+            return await msg.edit(str(error))
+
+        for i in range(count_message):
+            try:
+                await reply.copy(message.chat.id, text=link)
+                await asyncio.sleep(count_delay)
+            except:
+                pass
+    else:
+        if len(message.command) < 4:
+            return await msg.edit(
+                f"{em.gagal} Please type <code>{message.command}</code> for command help."
+            )
+        else:
+            try:
+                count_message = int(message.command[1])
+                count_delay = int(message.command[2])
+                link = message.text.split(None, 3)[3]
+            except Exception as error:
+                return await msg.edit(str(error))
+
+            for i in range(count_message):
+                try:
+                    await message.reply(link)
+                    await asyncio.sleep(count_delay)
+                except:
+                    pass
+
+    await msg.delete()
+
+"""
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -165,7 +209,7 @@ async def _(c: user, m):
             try:
                 count_message = int(m.command[1])
                 count_delay = int(m.command[2])
-                link = m.text.split(None, [3])
+                link = m.text.split(m.command[3])
             except Exception as error:
                 return await msg.edit(str(error))
             for i in range(count_message):
@@ -181,3 +225,5 @@ async def _(c: user, m):
 
     await msg.delete()
     await m.delete()
+"""
+
