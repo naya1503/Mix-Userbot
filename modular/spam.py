@@ -8,8 +8,9 @@
 
 import asyncio
 
-from Mix import *
 from pyrogram.errors import *
+
+from Mix import *
 
 dispam = []
 
@@ -140,7 +141,7 @@ async def dpsamfw_command(client, message):
     em = Emojik()
     em.initialize()
 
-    reply_to_message = message.reply_to_message
+    message.reply_to_message
     reply = await message.reply(f"{em.proses} Processing...")
 
     try:
@@ -166,7 +167,9 @@ async def dpsamfw_command(client, message):
         try:
             await asyncio.sleep(delay)
             forwarded_message = await client.get_messages(chat_id, message_id)
-            await client.forward_messages(message.chat.id, chat_id, message_ids=message_id)
+            await client.forward_messages(
+                message.chat.id, chat_id, message_ids=message_id
+            )
         except (MessageNotModified, MediaEmpty, BadRequest) as e:
             continue  # Lanjutkan iterasi jika pesan tidak dapat diubah atau tidak dapat mengirim media
         except Exception as e:
