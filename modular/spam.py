@@ -137,8 +137,8 @@ async def _(c: user, message):
     em = Emojik()
     em.initialize()
 
-    message.reply_to_message
-    await message.reply(f"{em.proses} Processing...")
+    reply_to_message = message.reply_to_message
+    reply = await message.reply(f"{em.proses} Processing...")
 
     try:
         _, count_str, delay_str, link = message.text.split(maxsplit=3)
@@ -151,7 +151,12 @@ async def _(c: user, message):
         return
 
     chat_id, message_id = link.split("/")[-2:]
-    chat_id = int(chat_id)
+    
+    try:
+        chat_id = int(chat_id)  # Coba ubah ke integer
+    except ValueError:
+        pass  # Biarkan chat_id tetap string jika tidak dapat diubah menjadi integer
+
     message_id = int(message_id)
 
     # Forward pesan dari tautan
