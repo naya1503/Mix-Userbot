@@ -188,9 +188,9 @@ async def _(c: user, message):
             await reply.delete()
             break
 
-        if forwarded_message.media:
-            continue
-        text = forwarded_message.text
-        await reply.edit(text)
+        # if forwarded_message.media:
+        #   
+        # text = forwarded_message.text
+        # await reply.edit(text)
     berenti = False
     await reply.delete()
