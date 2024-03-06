@@ -174,7 +174,9 @@ async def _(c: user, message):
             await proses.delete()
             await asyncio.sleep(delay)
         except ForwardMessages:
-            await message.reply(f"{em.gagal} Anda tidak bisa menggunakan perinta itu di sini, karna group chat ini melarangnya!")
+            await message.reply(
+                f"{em.gagal} Anda tidak bisa menggunakan perinta itu di sini, karna group chat ini melarangnya!"
+            )
             # if isinstance(e, Forbidden) and "is restricted" in str(e):
             #     await proses.reply("Anda dibatasi untuk melakukan tindakan ini.")
             # elif isinstance(e, Forbidden) and "can't send media messages" in str(e):
