@@ -28,7 +28,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     iymek = f"\n• ".join(loanjing)
-    jadi = f"{em.sukses} **Daftar Warna Quote :\n\n**"
+    jadi = cgr("qot_1").format(em.proses)
     if len(iymek) > 4096:
         with open("qcolor.txt", "w") as file:
             file.write(iymek)
