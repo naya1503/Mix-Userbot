@@ -109,17 +109,14 @@ async def _(c: user, m):
     if user_id in DEVS:
         return await m.reply_text(cgr("glbl_3").format(em.gagal))
     mention = (await c.get_users(user_id)).mention
-    msg = f"""
-{em.profil} **Kicked User:** {mention}
-{em.warn} **Kicked By:** {m.from_user.mention if m.from_user else 'Anon'}
-{em.block} **Reason:** {reason or 'No Reason Provided.'}"""
+    msg = cgr("res_2").format(em.profil, mention, em.warn, m.from_user.mention if m.from_user else 'Anon', em.block, reason or 'No Reason Provided.')
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
     try:
         await m.chat.ban_member(user_id)
     except UserAdminInvalid:
-        return await m.reply_text(f"{em.gagal} Anda tidak berhak mengeluarkan dia!")
+        return await m.reply_text(cgr("res_3").format(em.gagal))
     await m.reply_text(msg)
     await asyncio.sleep(1)
     await m.chat.unban_member(user_id)
@@ -132,30 +129,24 @@ async def _(c: user, m):
     user_id, reason = await c.extract_user_and_reason(m)
 
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(f"{em.gagal} Oh anda ingin memblokir diri sendiri ?")
+        return await m.reply_text(cgr("res_4").format(em.gagal))
     if user_id in DEVS:
         return await m.reply_text(
-            f"{em.gagal} Oh anda ingin memblokir Developer Mix-Userbot ?"
-        )
+            cgr("glbl_3").format(em.gagal))
     try:
         mention = (await c.get_users(user_id)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
-    msg = (
-        f"{em.profil} **Banned User:** {mention}\n"
-        f"{em.block} **Banned By:** {m.from_user.mention if m.from_user else 'Anon'}\n"
-    )
+    msg = cgr("res_5").format(em.profil, mention, em.warn, m.from_user.mention if m.from_user else 'Anon', em.block, reason or 'No Reason Provided.')
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
-    if reason:
-        msg += f"{em.warn} **Reason:** {reason}"
     try:
         await m.chat.ban_member(user_id)
     except UserAdminInvalid:
-        return await m.reply_text(f"{em.gagal} Anda tidak berhak mengeluarkan dia!")
+        return await m.reply_text(cgr("res_3").format(em.gagal))
     await m.reply_text(msg)
 
 
@@ -227,7 +218,7 @@ async def _(c: user, m):
     em.initialize()
     user_id, reason = await c.extract_user_and_reason(m)
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
         return await m.reply_text(f"{em.gagal} Oh anda ingin membisukan diri sendiri ?")
     if user_id in DEVS:
@@ -268,7 +259,7 @@ async def _(c: user, m):
     em.initialize()
     user_id = await c.extract_user(m)
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     try:
         await m.chat.unban_member(user_id)
         umention = (await c.get_users(user_id)).mention
