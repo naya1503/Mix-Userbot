@@ -213,6 +213,7 @@ nts_3: "{} **Catatan `{}` berhasil disimpan.**"
 nts_4: "{} **Berikan nama catatan!**"
 nts_5: "{} **Catatan `{}` tidak ditemukan!**"
 nts_6: "{} **Tidak ada catatan satupun!**"
+nts_7: "{} **Daftar Catatan :**\n\n"
 
 
 # help_for
