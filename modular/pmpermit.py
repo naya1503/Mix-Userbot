@@ -22,15 +22,9 @@ PM_GUARD_MSGS_DB = {}
 flood = {}
 flood2 = {}
 
-DEFAULT_TEXT = """
-I am {} maintains this Chat Room . Don't spam or You will be auto blocked.
-"""
+DEFAULT_TEXT = cgr("pmper_1")
 
-PM_WARN = """
-<b>Security Message of {} . You have <code>{}/{}</code> warnings !! </b>
-
-<b>{}</b>
-"""
+PM_WARN = cgr("pmper_2")
 
 LIMIT = 5
 
@@ -39,7 +33,7 @@ LIMIT = 5
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    babi = await m.reply(f"{em.proses} <b>Processing...</b>")
+    babi = await m.reply(cgr("proses").format(em.proses))
     chat_type = m.chat.type
     getc_pm_warns = udB.get_var(c.me.id, "PMLIMIT")
     pm_text = udB.get_var(c.me.id, "PMTEXT")
