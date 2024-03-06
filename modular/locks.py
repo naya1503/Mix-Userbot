@@ -258,9 +258,7 @@ async def _(c: user, m):
         await m.reply_text(cgr("lck_11").format(em.sukses))
         return
     else:
-        await m.reply_text(
-            f"{em.gagal} Invalid Lock Tipe!\n\n{em.sukses} Silahkan ketik <code>locktypes</code> untuk melihat format lock!"
-        )
+        await m.reply_text(cgr("lck_12").format(em.gagal))
         return
 
     try:
