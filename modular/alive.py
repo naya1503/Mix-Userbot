@@ -12,7 +12,7 @@ from time import time
 from pyrogram.raw.functions import Ping
 from pyrogram.types import *
 
-from Mix import DEVS, bot, ky, udB, user
+from Mix import DEVS, ky, udB, user
 from Mix.core.waktu import get_time, start_time
 
 from .gcast import refresh_dialog
@@ -147,7 +147,9 @@ async def _(c, iq):
 
         else:
             file_type = (
-                InlineQueryResultVideo if cekpic.endswith(".mp4") else InlineQueryResultPhoto
+                InlineQueryResultVideo
+                if cekpic.endswith(".mp4")
+                else InlineQueryResultPhoto
             )
             url_link = (
                 {"video_url": cekpic, "thumb_url": cekpic}
