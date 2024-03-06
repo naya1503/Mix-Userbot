@@ -353,9 +353,9 @@ async def _(c: user, m):
 
 @ky.ubot("me|userstats", sudo=True)
 async def _(c, m):
- em = Emojik()
- em.initialize()
-    Nan = await m.reply_text(f"{em.proses}`Collecting stats...`")
+    em = Emojik()
+    em.initialize()
+    Nan = await m.reply_text(f"{em.proses} <code>Collecting stats...</code>")
     start = datetime.now()
     zz = 0
     nanki = 0
