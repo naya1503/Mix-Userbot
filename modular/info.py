@@ -386,13 +386,13 @@ async def _(c, m):
     end = datetime.now()
     ms = (end - start).seconds
     await Nan.edit_text(
-        """`Your Stats Obtained in {} seconds`
-`You have {} Private Messages.`
-`You are in {} Groups.`
-`You are in {} Super Groups.`
-`You Are in {} Channels.`
-`You Are Admin in {} Chats.`
-`Bots = {}`""".format(
+        """**succesful extract your data in `{}` seconds
+`{}` Private Messages.
+`{}` Groups.
+`{}` Super Groups.
+`{}` Channels.
+`Admin in {}` Chats.
+`{}` Bots**""".format(
             ms, zz, nanki, luci, tgr, kntl, ceger
         )
     )
