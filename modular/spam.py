@@ -145,7 +145,7 @@ async def _(c: user, message):
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
-        await message.reply(
+        await reply.edit(
             "Format perintah tidak valid. Gunakan: /ldlpm <jumlah> <delay> <link>"
         )
         return
@@ -163,12 +163,12 @@ async def _(c: user, message):
                 message.chat.id, chat_id, message_ids=message_id
             )
         except Exception as e:
-            await message.reply(f"Gagal meneruskan pesan: {str(e)}")
+            await reply.edit(f"Gagal meneruskan pesan: {str(e)}")
             break
 
         # Mengekstrak pesan dari tautan
         if forwarded_message.media:
-            await message.reply_text("Tidak bisa mengekstrak pesan yang berisi media.")
+            await reply.edit("Tidak bisa mengekstrak pesan yang berisi media.")
         else:
             text = forwarded_message.text
-            await message.reply_text(text)
+            await reply.edit(text)
