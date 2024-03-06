@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import Emojik, get_cgr, ky, user
+from Mix import Emojik, get_cgr, ky, user, cgr
 
 __modles__ = "Logo"
 __help__ = get_cgr("help_logo")
@@ -25,13 +25,13 @@ async def _(c: user, m):
     em.initialize()
     await dl_font()
     name = c.get_arg(m)
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
+    xx = await m.reply(cgr("proses").format(em.proses))
     if not name:
-        await xx.edit(f"{em.gagal} <b>Contoh :</b><code>{m.text}</code> [text]")
+        await xx.edit(cgr("logo_1").format(em.gagal, m.command))
         return
     bg_, font_ = "", ""
     if m.reply_to_message:
-        temp = m.reply_to_message
+        temp = m.reply_to_message 
         if temp.media:
             if temp.document:
                 if "font" in temp.document.mime_type:
@@ -93,13 +93,13 @@ async def _(c: user, m):
     )
     flnme = f"logo.png"
     img.save(flnme, "png")
-    await xx.edit(f"{em.proses} <b>Uploading</b>")
+    await xx.edit(cgr("upload").format(em.proses))
     if os.path.exists(flnme):
         await c.send_photo(
             chat_id=m.chat.id,
             photo=flnme,
-            caption=f"{em.sukses} <b>Maker by :{c.me.mention}</b>",
-        )
+            caption=cgr("logo_2").format(em.sukses, c.me.mention))
+        
         os.remove(flnme)
         await xx.delete()
     if os.path.exists(bg_):
