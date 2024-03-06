@@ -34,7 +34,7 @@ async def _(c: user, m):
             file.write(iymek)
         await m.reply_document(
             "qcolor.txt",
-            caption=f"{em.sukses} Ini adalah list warna untuk latar belakang quote.",
+            caption=cgr("qot_2").format(em.sukses)
         )
         os.remove("qcolor.txt")
     else:
@@ -55,15 +55,13 @@ async def _(c: user, m):
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
-                    await m.reply(
-                        f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
-                    )
+                    await m.reply(cgr(qot_3).format(em.gagal))
                     return
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=0)
                 rep.from_user = org
                 messages = [rep]
             except Exception as e:
-                return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+                return await m.reply(cgr("err").format(em.gagal, e))
             warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
             if warna:
                 acak = warna
@@ -82,7 +80,7 @@ async def _(c: user, m):
     else:
         if tag.isnumeric():
             if int(tag) > 10:
-                return await m.reply(f"{em.gagal} Batas pesan adalah 10")
+                return await m.reply(cgr("qot_4").format(em.gagal))
             warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
             if warna:
                 acak = warna
@@ -111,4 +109,4 @@ async def _(c: user, m):
         bs.name = "mix.webp"
         await m.reply_sticker(bs)
     except Exception as e:
-        return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+        return await m.reply(cgr("err").format(em.gagal, e))
