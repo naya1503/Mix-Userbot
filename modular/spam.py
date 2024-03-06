@@ -181,4 +181,3 @@ async def _(c: user, m):
 
     await msg.delete()
     await m.delete()
-    
