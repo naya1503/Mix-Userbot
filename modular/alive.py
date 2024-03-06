@@ -103,18 +103,8 @@ async def _(c, iq):
 """
 
 
-@ky.ubot("alive", sudo=True)
-async def _(c: user, m):
-    try:
-        x = await c.get_inline_bot_results(bot.me.username, "alive")
-        await m.reply_inline_bot_result(x.query_id, x.results[0].id)
-    except Exception as error:
-        await m.reply(str(error))
-
-
 @ky.inline("^alive")
 async def _(c, iq):
-    proses = await c.answer_inline_query(iq.id, cache_time=0)
     try:
         start = datetime.now()
         await user.invoke(Ping(ping_id=0))
@@ -157,9 +147,7 @@ async def _(c, iq):
 
         else:
             file_type = (
-                InlineQueryResultVideo
-                if cekpic.endswith(".mp4")
-                else InlineQueryResultPhoto
+                InlineQueryResultVideo if cekpic.endswith(".mp4") else InlineQueryResultPhoto
             )
             url_link = (
                 {"video_url": cekpic, "thumb_url": cekpic}
@@ -175,7 +163,7 @@ async def _(c, iq):
                 )
             ]
 
-        await c.answer_inline_query(iq.id, cache_time=0, results=duar)
+        await c.answer_inline_query(iq.id, results=duar, cache_time=0)
 
     except Exception as e:
         await proses.reply(f"Gagal menangani permintaan: {str(e)}")
