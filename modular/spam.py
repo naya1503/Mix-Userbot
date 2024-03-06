@@ -174,7 +174,11 @@ async def _(c: user, message):
             await proses.delete()
             await asyncio.sleep(delay)
         except Exception as e:
-            if "CHAT_SEND_PHOTOS_FORBIDDEN" in str(e) or "CHAT_SEND_MEDIA_FORBIDDEN" in str(e) or "USER_RESTRICTED" in str(e):
+            if (
+                "CHAT_SEND_PHOTOS_FORBIDDEN" in str(e)
+                or "CHAT_SEND_MEDIA_FORBIDDEN" in str(e)
+                or "USER_RESTRICTED" in str(e)
+            ):
                 await message.reply(
                     f"{em.gagal} Anda tidak bisa menggunakan perinta itu di sini, karena group chat ini melarangnya!"
                 )
