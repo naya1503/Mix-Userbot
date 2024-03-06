@@ -141,9 +141,10 @@ async def _(c: user, m):
 async def _(c: user, message):
     em = Emojik()
     em.initialize()
-
+    global berenti
     message.reply_to_message
     reply = await message.reply(f"{em.proses} Processing...")
+    berenti = True
 
     try:
         _, count_str, delay_str, link = message.text.split(maxsplit=3)
@@ -166,6 +167,8 @@ async def _(c: user, message):
 
     for _ in range(count):
         try:
+            if not berenti:
+                break
             forwarded_message = await c.get_messages(chat_id, message_id)
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
             await reply.delete()
@@ -182,3 +185,4 @@ async def _(c: user, message):
         else:
             text = forwarded_message.text
             await reply.edit(text)
+    berenti = False
