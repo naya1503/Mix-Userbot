@@ -167,9 +167,7 @@ async def _(c: user, message):
     for _ in range(count):
         try:
             forwarded_message = await c.get_messages(chat_id, message_id)
-            await c.forward_messages(
-                message.chat.id, chat_id, message_ids=message_id
-            )
+            await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
             await reply.delete()
             await asyncio.sleep(delay)
         except (MessageNotModified, MediaEmpty, BadRequest) as e:
