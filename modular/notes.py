@@ -35,7 +35,7 @@ async def _(c: user, m):
     if data_type == Types.TEXT:
         teks, _ = parse_button(text)
         if not teks:
-            return await xx.edit(f"{em.gagal} <b>Teks tidak dapat kosong.</b>")
+            return await xx.edit(cgr("nts_2").format(em.gagal))
         udB.save_note(c.me.id, note_name, text, data_type, content)
     elif data_type in [Types.PHOTO, Types.VIDEO]:
         teks, _ = parse_button(text)
@@ -53,27 +53,25 @@ async def _(c: user, m):
         Types.VOICE,
     ]:
         udB.save_note(c.me.id, note_name, text, data_type, content)
-    await xx.edit(
-        f"{em.sukses} <b>Catatan <code>{note_name}</code> berhasil disimpan.</b>"
-    )
+    await xx.edit(cgr("nts_3").format(em.sukses, note_name))
 
 
 @ky.ubot("get", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
+    xx = await m.reply(cgr("proses").format(em.proses))
     note = None
     if len(m.text.split()) >= 2:
         note = m.text.split()[1]
     else:
-        await xx.edit(f"{em.gagal} <b>Berikan nama catatan !</b>")
+        await xx.edit(cgr("nts_4").format(em.gagal))
         return
 
     getnotes = udB.get_note(c.me.id, note)
     teks = None
     if not getnotes:
-        return await xx.edit(f"{em.gagal} <b>{note} tidak ada dalam catatan.</b>")
+        return await xx.edit(cgr("nts_5").format(em.gagal, note))
 
     if getnotes["type"] == Types.TEXT:
         teks, button = parse_button(getnotes.get("value"))
@@ -95,7 +93,7 @@ async def _(c: user, m):
                     reply_to_message_id=ReplyCheck(m),
                 )
             except Exception as e:
-                return await xx.edit(f"Error {e}")
+                return await xx.edit(cgr("err").format(em.gagal, e))
         else:
             await m.reply(teks)
 
@@ -119,7 +117,7 @@ async def _(c: user, m):
                     reply_to_message_id=ReplyCheck(m),
                 )
             except Exception as e:
-                return await xx.edit(f"Error {e}")
+                return await xx.edit(cgr("err").format(em.gagal, e))
         else:
             await c.send_photo(
                 m.chat.id,
@@ -147,7 +145,7 @@ async def _(c: user, m):
                     reply_to_message_id=ReplyCheck(m),
                 )
             except Exception as e:
-                return await xx.edit(f"Error {e}")
+                return await xx.edit(cgr("err").format(em.gagal, e))
         else:
             await c.send_video(
                 m.chat.id,
@@ -204,9 +202,7 @@ async def _(c: user, m):
                     reply_to_message_id=ReplyCheck(m),
                 )
             except Exception as e:
-                await m.edit(
-                    f"{e} An error has accured! Check your assistant for more information!"
-                )
+                await m.edit(cgr("err").format(em.gagal, e))
                 return
         else:
             await c.send_media_group(
