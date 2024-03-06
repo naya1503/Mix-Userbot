@@ -187,4 +187,5 @@ async def _(c: user, message):
                 await proses.delete()
             break
     berenti = False
+    await message.delete()
     await proses.delete()
