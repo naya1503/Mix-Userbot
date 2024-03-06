@@ -176,6 +176,7 @@ async def _(c: client, message):
 
     await msg.delete()
 
+
 """
 async def _(c: user, m):
     em = Emojik()
@@ -226,4 +227,3 @@ async def _(c: user, m):
     await msg.delete()
     await m.delete()
 """
-
