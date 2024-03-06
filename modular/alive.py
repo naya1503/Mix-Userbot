@@ -8,12 +8,15 @@
 
 from datetime import datetime
 from time import time
+
 from pyrogram import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.raw.functions import Ping
-from pyrogram.types import InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultPhoto, InlineQueryResultVideo
+from pyrogram.types import (InlineQueryResultArticle, InlineQueryResultPhoto,
+                            InlineQueryResultVideo, InputTextMessageContent)
 
 from Mix import DEVS, bot, ky, udB, user
 from Mix.core.waktu import get_time, start_time
+
 from .gcast import refresh_dialog
 
 __modules__ = "Alive"
@@ -72,7 +75,9 @@ async def _(c, iq):
             ]
         else:
             file_type = (
-                InlineQueryResultVideo if cekpic.endswith(".mp4") else InlineQueryResultPhoto
+                InlineQueryResultVideo
+                if cekpic.endswith(".mp4")
+                else InlineQueryResultPhoto
             )
             url_link = (
                 {"video_url": cekpic, "thumb_url": cekpic}
