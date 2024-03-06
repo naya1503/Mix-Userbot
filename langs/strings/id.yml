@@ -163,10 +163,12 @@ info_11: "**Pengguna sudah lama tak terlihat atau mungkin Saya diblokir oleh pen
 info_12: "**Pengguna sedang Online**"
 info_13: "**Pengguna sedang Offline**"
 info_14: "User Info\n\n🆔 User ID: {}\n📎 Link To Profile: <a href='tg://user?id={}'>Click Here🚪</a>\n🫵 Mention: {}\n🗣 First Name: {}\n🔅 Second Name: {}\n🔍 Username: {}\n✍️ Bio: `{}`\n🧑‍💻 Support: {}\n🥷 Support User Type: {}\n💣 Gbanned: {}\n☠️ Gban Reason: {}\n🌐 DC ID: {}\n✋ Restricted: {}\n✅ Verified: {}\n❌ Fake : {}\n⚠️ Scam : {} \n🤖 Bot: {}\n👀 Last seen: {}"
-
+info_15: "CHAT INFO\n\n🆔 ID: {}\n🚀 Chat Title: {}\n✨ Chat Type: {}\n🌐 DataCentre ID: {}\n🔍 Username: {}\n⚜️ Administrators: {}\n🤖 Bots: {}\n🚫 Banned: {}\n⚜️ Admin 🤖 Bots: {}\n⁉️ Scam: {}\n❌ Fake: {}\n✋ Restricted: {}\n👨🏿‍💻 Description: {}\n👪 Total members: {}\n🚫 Has Protected Content: {}\n🔗 Linked Chat: {}"
+info_16: "{} Ini bukan pengguna, tetapi Grup! Silahkan gunakan `cinfo`."
+info_17: "{} **Gunakan format '{}` @username/id grup.**"
 
 # limit
-lmt: "{emoji} **{result}**\n\n ~ {em.alive} **{c.me.first_name}**"
+lmt_1: "{} **{}**\n\n ~ {} **{}**"
 
 # locks
 lck_1: "{} **Gunakan format : `lock` type!**"
@@ -175,7 +177,6 @@ lck_3: "{} **Sepertinya saya tidak mempunyai izin lebih untuk melakukan {}!**"
 lck_4: "{} ** Terkunci `all` untuk grup ini!**"
 lck_5: "{} **Sudah hidup!**"
 lck_6: "{} **Kirim link dikunci digrup ini!**"
-lck_7: "{} **Sudah hidup!**"
 lck_8: "{} **Kirim sebagai channel dikunci digrup ini!**"
 lck_9: "{} **Pesan terusan dikunci digrup ini!**"
 lck_10: "{} **Pesan terusan pengguna dikunci digrup ini!**"
