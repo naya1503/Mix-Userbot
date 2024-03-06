@@ -241,6 +241,9 @@ pmper_10: "{} **Saya sudah memberi tahu `{}` peringatan\nTunggu Owner Saya menye
 
 # quote
 qot_1: "{} **Daftar Warna Quote :\n\n**"
+qot_2: "{} **Ini adalah list warna untuk latar belakang quote.**"
+qot_3: "{} **Si anjing mengatasnamakan Developer!**"
+qot_4: "{} **Batas pesan adalah 10!**"
 
 # profile
 prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
