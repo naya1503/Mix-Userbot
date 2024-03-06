@@ -218,10 +218,10 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
+    xx = await m.reply(cgr("proses").format(em.proses))
     getnotes = udB.get_all_notes(c.me.id)
     if not getnotes:
-        await xx.edit(f"{em.gagal} <b>Tidak ada catatan satupun!</b>")
+        await xx.edit(cgr("nts_6").format(em.gagal))
         return
     rply = f"{em.alive} <b>Daftar Catatan:</b>\n"
     for x in getnotes:
