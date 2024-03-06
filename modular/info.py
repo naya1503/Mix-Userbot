@@ -11,7 +11,6 @@ from asyncio import sleep
 from datetime import datetime
 from traceback import format_exc
 
-from pyrogram import enums
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
@@ -367,21 +366,21 @@ async def _(c, m):
     kntl = 0
     xenn = await c.get_me()
     async for dialog in c.get_dialogs():
-        if dialog.chat.type == enums.ChatType.PRIVATE:
+        if dialog.chat.type == ChatType.PRIVATE:
             zz += 1
-        elif dialog.chat.type == enums.ChatType.BOT:
+        elif dialog.chat.type == ChatType.BOT:
             ceger += 1
-        elif dialog.chat.type == enums.ChatType.GROUP:
+        elif dialog.chat.type == ChatType.GROUP:
             nanki += 1
-        elif dialog.chat.type == enums.ChatType.SUPERGROUP:
+        elif dialog.chat.type == ChatType.SUPERGROUP:
             luci += 1
             user_s = await dialog.chat.get_member(int(xenn.id))
             if user_s.status in (
-                enums.ChatMemberStatus.OWNER,
-                enums.ChatMemberStatus.ADMINISTRATOR,
+                ChatMemberStatus.OWNER,
+                ChatMemberStatus.ADMINISTRATOR,
             ):
                 kntl += 1
-        elif dialog.chat.type == enums.ChatType.CHANNEL:
+        elif dialog.chat.type == ChatType.CHANNEL:
             tgr += 1
 
     end = datetime.now()
