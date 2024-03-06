@@ -182,5 +182,5 @@ async def _(c: user, message):
         if forwarded_message.media:
             continue
         text = forwarded_message.text
-            await reply.edit(text)
+        await reply.edit(text)
     berenti = False
