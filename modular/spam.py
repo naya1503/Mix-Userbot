@@ -164,9 +164,7 @@ async def _(c: user, message):
         await asyncio.sleep(delay)
         try:
             forwarded_message = await c.get_messages(chat_id, message_id)
-            await c.forward_messages(
-                message.chat.id, chat_id, message_ids=message_id
-            )
+            await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
         except Exception as e:
             await reply.edit(f"Gagal meneruskan pesan: {str(e)}")
             break
