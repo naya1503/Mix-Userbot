@@ -239,6 +239,18 @@ pmper_8: "{} **Gunakan format : `{}` [angka].**"
 pmper_9: "{} **Pesan Limit berhasil diatur menjadi : `{}`.**"
 pmper_10: "{} **Saya sudah memberi tahu `{}` peringatan\nTunggu Owner Saya menyetujui pesan anda, atau anda akan diblokir !**"
 
+# profile
+prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
+prof_2: "{} **Berhasil membuka blokir {}!**"
+prof_3: "{} {} **Berhasil memblokir {}!**"
+prof_4: "{} Berhasil mengganti nama menjadi `{}`."
+prof_5: "{} Berhasil mengganti nama depan `{}` nama belakang `{}`."
+prof_6: "{} Berhasil mengganti bio menjadi : `{}`."
+prof_7: "{} **Kamu tidak menjadi admin di grup manapun!**"
+prof_8: "{} **Kamu admin di `{}` grup :**\n\n**{}**"
+prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
+
+
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
