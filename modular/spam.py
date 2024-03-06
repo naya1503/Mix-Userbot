@@ -173,8 +173,15 @@ async def _(c: user, message):
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
             await reply.delete()
             await asyncio.sleep(delay)
-        except (MessageNotModified, MediaEmpty, BadRequest) as e:
-            continue
+        except (MessageNotModified, MediaEmpty, BadRequest, Forbidden) as e:
+            if isinstance(e, Forbidden) and "is restricted" in str(e):
+                await reply.reply("Anda dibatasi untuk melakukan tindakan ini.")
+            elif isinstance(e, Forbidden) and "can't send media messages" in str(e):
+                await reply.reply("Anda tidak dapat mengirim pesan media.")
+            elif isinstance(e, Forbidden) and "can't send photos" in str(e):
+                await reply.reply("Anda tidak dapat mengirim foto.")
+            else:
+                continue
         except Exception as e:
             await reply.reply(f"Gagal meneruskan pesan: {str(e)}")
             break
