@@ -26,7 +26,6 @@ __help__ = """
 """
 
 
-
 """
 @ky.ubot("alive", sudo=True)
 async def _(c: user, m):
@@ -158,7 +157,9 @@ async def _(c, iq):
 
         else:
             file_type = (
-                InlineQueryResultVideo if cekpic.endswith(".mp4") else InlineQueryResultPhoto
+                InlineQueryResultVideo
+                if cekpic.endswith(".mp4")
+                else InlineQueryResultPhoto
             )
             url_link = (
                 {"video_url": cekpic, "thumb_url": cekpic}
