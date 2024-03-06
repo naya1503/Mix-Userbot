@@ -137,7 +137,7 @@ async def _(c: user, message):
     em = Emojik()
     em.initialize()
 
-    reply_to_message = message.reply_to_message
+    message.reply_to_message
     reply = await message.reply(f"{em.proses} Processing...")
 
     try:
@@ -151,7 +151,7 @@ async def _(c: user, message):
         return
 
     chat_id, message_id = link.split("/")[-2:]
-    
+
     try:
         chat_id = int(chat_id)  # Coba ubah ke integer
     except ValueError:
