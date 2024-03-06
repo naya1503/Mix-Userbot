@@ -30,9 +30,7 @@ async def _(c: user, m):
     note_name, text, data_type, content = get_note_type(m)
     xx = await m.reply(cgr("proses").format(em.proses))
     if not note_name:
-        return await xx.edit(
-            f"{em.gagal} <b>Gunakan format :</b> <code>save</code> [nama catatan] [balas ke pesan]."
-        )
+        return await xx.edit(cgr("nts_1").format(em.gagal, m.command))
 
     if data_type == Types.TEXT:
         teks, _ = parse_button(text)
