@@ -9,7 +9,6 @@
 import asyncio
 
 from pyrogram.errors import *
-from pyrogram.errors.RPCError import *
 
 from Mix import *
 
@@ -175,18 +174,13 @@ async def _(c: user, message):
             await proses.delete()
             await asyncio.sleep(delay)
         except Exception as e:
-            if "CHAT_SEND_PHOTOS_FORBIDDEN" in str(e):
+            if "CHAT_SEND_PHOTOS_FORBIDDEN" in str(e) or "CHAT_SEND_MEDIA_FORBIDDEN" in str(e) or "USER_RESTRICTED" in str(e):
                 await message.reply(
-                    f"{em.gagal} Anda tidak bisa menggunakan perinta itu di sini, karna group chat ini melarangnya!"
+                    f"{em.gagal} Anda tidak bisa menggunakan perinta itu di sini, karena group chat ini melarangnya!"
                 )
-
-            await proses.reply(f"Gagal meneruskan pesan: {str(e)}")
-            await proses.delete()
+            else:
+                await proses.reply(f"Gagal meneruskan pesan: {str(e)}")
+                await proses.delete()
             break
-
-        # if forwarded_message.media:
-        #
-        # text = forwarded_message.text
-        # await reply.edit(text)
     berenti = False
     await proses.delete()
