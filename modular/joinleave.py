@@ -36,7 +36,9 @@ async def _(c, m):
     lus = m.command[1] if len(m.command) > 1 else m.chat.id
     ceger = await m.reply_text(f"{em.proses} <code>Processing...</code>")
     if m.chat.id in blacklist:
-        return await ceger.edit(f"{em.gagal} <b>Perintah ini Dilarang digunakan di Group ini</b>")
+        return await ceger.edit(
+            f"{em.gagal} <b>Perintah ini Dilarang digunakan di Group ini</b>"
+        )
     try:
         await ceger.edit_text(f"{em.sukses} {c.me.mention} has left this group, bye!!")
         await c.leave_chat(lus)
