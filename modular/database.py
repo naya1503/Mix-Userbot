@@ -124,19 +124,19 @@ async def _(c, m):
     command, variable = m.command[:2]
     if variable.lower() == "pmpermit":
         udB.remove_var(c.me.id, "PMPERMIT")
-        await jing.edit(cgr("dbs_9").format(em.sukses, variabel))
+        await jing.edit(cgr("dbs_9").format(em.sukses, variable))
         return
     elif variable.lower() == "pmpic":
         udB.remove_var(c.me.id, "PMPIC")
-        await jing.edit(cgr("dbs_9").format(em.sukses, variabel))
+        await jing.edit(cgr("dbs_9").format(em.sukses, variable))
         return
     elif variable.lower() == "alivepic":
         udB.remove_var(c.me.id, "ALIVEPIC")
-        await jing.edit(cgr("dbs_9").format(em.sukses, variabel))
+        await jing.edit(cgr("dbs_9").format(em.sukses, variable))
         return
     elif variable.lower() == "pmtext":
         udB.remove_var(c.me.id, "PMTEXT")
-        await jing.edit(cgr("dbs_9").format(em.sukses, variabel))
+        await jing.edit(cgr("dbs_9").format(em.sukses, variable))
         return
     else:
         await jing.edit(cgr("dbs_6").format(em.gagal))
