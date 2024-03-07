@@ -1,5 +1,6 @@
-from pyrogram.types import *
 from pyrogram.errors import *
+from pyrogram.types import *
+
 from Mix import *
 
 __modles__ = "Join"
@@ -51,7 +52,9 @@ async def _(c, m):
                 f"{em.sukses} {c.me.mention} Berhasil keluar dari {namagece} <b>"
             )
     except pyrogram.errors.exceptions.bad_request_400.UserNotParticipant:
-        await c.edit(f"{em.gagal} <b>Anda bukan anggota atau member di <code>{lus}</code>")
+        await c.edit(
+            f"{em.gagal} <b>Anda bukan anggota atau member di <code>{lus}</code>"
+        )
     # try:
     #     await ceger.edit_text(
     #         f"{em.sukses} {c.me.mention} <b>has left this group, bye!!</b>"
