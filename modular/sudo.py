@@ -76,9 +76,7 @@ async def _(c: user, m):
     for user_id in sudo_users:
         try:
             org = await c.get_users(int(user_id))
-            sudo_list.append(
-                f"{em.profil} • [{org.first_name} {org.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>"
-            )
+            sudo_list.append(f"[{org.first_name} {org.last_name or ''}](tg://user?id={org.id})")
             mmfe = " ".join(sudo_list)
         except:
             continue
