@@ -19,8 +19,20 @@ reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimul
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
 # uprefixies
-upref_1: "{em.gagal} <b>Silahkan gunakan symbol atau abjad.</b>"
-upref_2: "{em.sukses} <b>Prefix diatur ke : <code>{parsed}</code></b>"
+upref_2: "{} **Prefix diatur ke : `{}`**"
+upref_1: "{} **Gunakan format : `{}` [query]**"
+
+# vcs
+vc_1: "{} **Tidak ada obrolan suara ditemukan!**"
+vc_2: "{} **Memulai obrolan suara.**"
+vc_3: "{} **Mengakhiri obrolan suara.**"
+vc_4: "{} **Gunakan format : `{}` [judul obrolan suara].**"
+vc_5: "{} **Anda bukan admin!!**"
+vc_6: "{} **Berhasil mengubah judul obrolan suara:\n`{}`.**"
+vc_7: "{} **Bergabung dengan obrolan suara:\n`{}`.**"
+vc_8: "{} **Akun anda sudah bergabung dengan obrolan suara!!**"
+vc_9: "{} **Meninggalkan obrolan suara:\n`{}`.**"
+vc_10: "{} **Akun anda tidak berada di obrolan suara manapun!**"
 
 # webshot
 webs_1: "{em.gagal} Silahkan berikan link tautan!"
