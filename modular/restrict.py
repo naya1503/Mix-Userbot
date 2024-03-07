@@ -554,12 +554,10 @@ async def _(c: user, m):
     try:
         await c.set_administrator_title(m.chat.id, from_user.id, title)
     except Exception as e:
-        return await m.reply_text(f"{em.gagal} Error: {e}")
+        return await m.reply_text(cgr("err").format(em.gagal), e)
     except UserCreator:
-        return await m.reply_text(f"{em.gagal} Dia adalah pemilik grup ini!")
-    return await m.reply_text(
-        f"{em.sukses} Berhasil mengubah title pengguna {from_user.mention} menjadi {title}",
-    )
+        return await m.reply_text(cgr("res_31").format(em.gagal))
+    return await m.reply_text(cgr(res_32).format(em.sukses, from_user.mention, title))
 
 
 @ky.ubot("gcpic", sudo=True)
@@ -567,18 +565,18 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(f"{em.gagal} Balas ke media!")
+        return await m.reply_text(cgr("res_33").format(em.gagal))
     if (
         not m.reply_to_message.photo
         and not m.reply_to_message.document
         and not m.reply_to_message.video
     ):
-        return await m.reply_text(f"{em.gagal} Balas ke media!")
+        return await m.reply_text(cgr("res_33").format(em.gagal))
 
     if m.reply_to_message:
         if m.reply_to_message.photo:
             await c.set_chat_photo(m.chat.id, photo=m.reply_to_message.photo.file_id)
-            await m.reply_text(f"{em.sukses} Foto grup berhasil diubah!")
+            await m.reply_text(em.sukses}))
         if m.reply_to_message.document:
             await c.set_chat_photo(m.chat.id, photo=m.reply_to_message.document.file_id)
             await m.reply_text(
