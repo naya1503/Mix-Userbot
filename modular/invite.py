@@ -37,10 +37,13 @@ async def _(c, m):
     except BaseException as e:
         await mg.edit(f"{em.gagal} Tidak Dapat Menambahkan Pengguna! \nTraceBack : {e}")
         return
-    users_mention = ' '.join([f"{user.split('|')[0]}|<a href='tg://user?id={user.split('|')[0]}'>{user.split('|')[1]}</a>" for user in user_list])
-    await mg.edit(
-        f"{em.sukses} Berhasil Menambahkan {users_mention} ke {m.chat.title}")
-
+    users_mention = " ".join(
+        [
+            f"{user.split('|')[0]}|<a href='tg://user?id={user.split('|')[0]}'>{user.split('|')[1]}</a>"
+            for user in user_list
+        ]
+    )
+    await mg.edit(f"{em.sukses} Berhasil Menambahkan {users_mention} ke {m.chat.title}")
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
