@@ -62,7 +62,7 @@ async def _(c, cq):
         module = (mod_match.group(1)).replace(" ", "_")
         text = f"<b>{CMD_HELP[module].__help__}</b>\n".format(next((p) for p in prefix))
         button = okb([[("≪", "help_back")]])
-        if "animasi" in text:
+        if "Animasi" in CMD_HELP:
             text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
                 " ".join(prefix), len(CMD_HELP)
             )
@@ -81,6 +81,10 @@ async def _(c, cq):
                     ],
                 ]
             )
+            await cq.edit_message_text(
+                text=text,
+                reply_markup=button,
+                disable_web_page_preview=True)
         await cq.edit_message_text(
             text=text + f"\n<b>© Mix-Userbot - @KynanSupport</b>",
             reply_markup=button,
@@ -122,6 +126,7 @@ async def _(c, cq):
     kemem = okb([[("Kembali", "anim.bc")]])
     user_id = cq.from_user.id
     prefix = await user.get_prefix(user_id)
+    txt = None
     if colmek == "anim_1":
         txt = get_cgr("help_anm1")
     elif colmek == "anim_2":
