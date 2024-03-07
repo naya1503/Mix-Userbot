@@ -316,6 +316,14 @@ st_5: "{} **Sticker gagal dihapus!**"
 st_6: "{} **Silahkan balas ke sticker paket anda!!**"
 st_7: "{} **Silahkan balas ke sticker atau media!**"
 
+# Sudo
+sud_1: "{} **{} Sudah menjadi sudo!**"
+sud_2: "{} **Ditambakan ke pengguna sudo : {}**"
+sud_3: "{} **{} Bukan pengguna sudo!**"
+sud_4: "{} **Dihapus dari pengguna sudo : {}**"
+sud_5: "{} **Tidak ada pengguna sudo satupun!**"
+sud_6: "{} **Anggota Sudo :**\n\n{}\n\n{} {}"
+
 # profile
 prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
 prof_2: "{} **Berhasil membuka blokir {}!**"
