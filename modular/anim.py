@@ -3,4 +3,4 @@
 from Mix import *
 
 __modles__ = "Animasi"
-__help__ " "
+__help__ "  "
