@@ -77,13 +77,13 @@ async def _(c: user, m):
         try:
             org = await c.get_users(int(user_id))
             sudo_list.append(
-                f"{em.profil} **•** [{org.first_name} {org.last_name or ''}](tg://user?id={org.id}) | {org.id}"
+                f"{em.profil} • [{org.first_name} {org.last_name or ''}](tg://user?id={org.id}) | <code>{org.id}</code>"
             )
+            mmfe = " ".join(sudo_list)
         except:
             continue
 
     if sudo_list:
-        response = cgr("sud_6").format(em.profil, "\n".join(sudo_list))
-        return await msg.edit(response)
+        return await msg.edit(cgr("sud_6").format(em.sukses, mmfe))
     else:
         return await msg.edit("<b>Eror</b>")
