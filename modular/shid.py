@@ -31,7 +31,9 @@ async def _(c: user, m):
             m.chat.type in [ChatType.SUPERGROUP, ChatType.GROUP]
             and not m.reply_to_message
         ):
-            await m.reply_text(cgr("shid_2").format(em.sukses, m.chat.id, em.profil, m.from_user.id))
+            await m.reply_text(
+                cgr("shid_2").format(em.sukses, m.chat.id, em.profil, m.from_user.id)
+            )
             return
 
         elif m.chat.type == ChatType.PRIVATE and not m.reply_to_message:
@@ -48,7 +50,10 @@ async def _(c: user, m):
             orig_id = f"<code>{user2.id}</code>"
             fwd_sender = await mention_html(user1.first_name, user1.id)
             fwd_id = f"<code>{user1.id}</code>"
-            await m.reply_text(cgr("shid_4").format(em.sukses, orig_sender, orig_id, em.warn, fwd_sender, fwd_id),
+            await m.reply_text(
+                cgr("shid_4").format(
+                    em.sukses, orig_sender, orig_id, em.warn, fwd_sender, fwd_id
+                ),
                 parse_mode=ParseMode.HTML,
             )
         else:
@@ -58,7 +63,10 @@ async def _(c: user, m):
                 await m.reply_text(cgr("shid_5").format(em.gagal))
                 return
 
-            await m.reply_text(cgr("shid_7").format(em.sukses, (await mention_html(user.first_name, user.id)), user.id),
+            await m.reply_text(
+                cgr("shid_7").format(
+                    em.sukses, (await mention_html(user.first_name, user.id)), user.id
+                ),
                 parse_mode=ParseMode.HTML,
             )
     elif m.chat.type == ChatType.PRIVATE:
@@ -80,7 +88,8 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if m.reply_to_message and m.reply_to_message.animation:
-        await m.reply_text(cgr("shid_9").format(em.sukses, m.reply_to_message.animation.file_id),
+        await m.reply_text(
+            cgr("shid_9").format(em.sukses, m.reply_to_message.animation.file_id),
             parse_mode=ParseMode.HTML,
         )
     else:
