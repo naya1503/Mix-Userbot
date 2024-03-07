@@ -62,7 +62,7 @@ async def _(c, cq):
         module = (mod_match.group(1)).replace(" ", "_")
         text = f"<b>{CMD_HELP[module].__help__}</b>\n".format(next((p) for p in prefix))
         button = okb([[("≪", "help_back")]])
-        if "Animasi" in text:
+        if "animasi" in text:
             text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
                 " ".join(prefix), len(CMD_HELP)
             )
