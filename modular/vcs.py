@@ -98,6 +98,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("joinvc", sudo=True)
+@ky.devs("Jvcs")
 async def _(c: user, m):
     # global turun_dewek
     em = Emojik()
@@ -133,6 +134,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("leavevc", sudo=True)
+@ky.devs("Lvcs")
 async def _(c: user, m):
     # global turun_dewek
     em = Emojik()
