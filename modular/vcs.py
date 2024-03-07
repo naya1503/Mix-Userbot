@@ -23,6 +23,8 @@ __help__ = get_cgr("help_vcs")
 
 
 async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCall]:
+    em = Emojik()
+    em.initialize()
     chat_peer = await c.resolve_peer(m.chat.id)
     if isinstance(chat_peer, (InputPeerChannel, InputPeerChat)):
         if isinstance(chat_peer, InputPeerChannel):
@@ -33,7 +35,7 @@ async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCa
             ).full_chat
         if full_chat is not None:
             return full_chat.call
-    await m.reply_text(f"**No group call Found** {err_msg}")
+    await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
     return False
 
 
@@ -42,12 +44,12 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     flags = " ".join(m.command[1:])
-    ky = await m.reply(f"{em.proses} <b>Processing....</b>")
+    ky = await m.reply(cgr("proses").format(em.proses))
     if flags == enums.ChatType.CHANNEL:
         chat_id = m.chat.title
     else:
         chat_id = m.chat.id
-    args = f"{em.sukses} <b>Obrolan Suara Aktif</b>\n<b> Chat : </b><code>{m.chat.title}</code>"
+    args = cgr("vc_2").format(em.sukses)
     try:
         await c.invoke(
             CreateGroupCall(
@@ -56,21 +58,22 @@ async def _(c: user, m):
             )
         )
         await ky.edit(args)
+        return
     except Exception as e:
-        await ky.edit(f"{em.gagal} <b>INFO:</b> `{e}`")
+        await ky.edit(cgr("err").format(em.gagal, e))
+        return
 
 
 @ky.ubot("stopvc", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    ky = await m.reply(f"{em.proses} <b>Processing....</b>")
+    ky = await m.reply(cgr("proses").format(em.proses))
     if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
         return
     await c.invoke(DiscardGroupCall(call=group_call))
-    await ky.edit(
-        f"{em.gagal} <b>Obrolan Suara Diakhiri</b>\n<b> Chat : </b><code>{m.chat.title}</code>"
-    )
+    await ky.edit(cgr("vc_3").format(em.sukses))
+    return
 
 
 """
@@ -83,18 +86,19 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     txt = c.get_arg(m)
-    ky = await m.reply(f"{em.proses} <b>Processing....</b>")
+    ky = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 2:
-        await ky.edit(f"{em.gagal} <b>Berikan judul voice chat grup.</b>")
+        await ky.edit(cgr("vc_4").format(em.gagal, m.command))
         return
     if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
         return
     try:
         await c.send(EditGroupCallTitle(call=group_call, title=f"{txt}"))
     except Forbidden:
-        await ky.edit(f"{em.gagal} <b>Anda bukan admin digrup ini.</b>")
+        await ky.edit(cgr("vc_5").format(em.gagal))
         return
-    await ky.edit(f"{em.sukses} <b>Judul Voice Chat :</b> <code>{txt}</code>")
+    await ky.edit(cgr("vc_6").format(em.sukses, txt))
+    return
 
 
 @ky.ubot("joinvc", sudo=True)
@@ -104,7 +108,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
 
-    ky = await m.reply(f"{em.proses} <b>Processing....</b>")
+    ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
         chat_id = int(chat_id)
@@ -122,15 +126,13 @@ async def _(c: user, m):
                     ),
                 ),
             )
-            await sleep(2)
-            await ky.edit(
-                f"{em.sukses} <b>Berhasil Join Voice Chat</b>\n <b>Chat :</b><code>{m.chat.title}</code>"
-            )
-            await sleep(1)
+            await ky.edit(cgr("vc_7").format(em.sukses))
+            return
         except AlreadyJoinedError:
-            await ky.edit(f"{em.gagal} Akun anda sudah diatas.")
+            await ky.edit(cgr("vc_8").format(em.gagal))
+            return
         except Exception as e:
-            return await ky.edit(f"{em.gagal} ERROR: {e}")
+            return await ky.edit(cgr("err").format(em.gagal, e))
 
 
 @ky.ubot("leavevc", sudo=True)
@@ -140,7 +142,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
 
-    ky = await m.reply(f"{em.proses} <b>Processing....</b>")
+    ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
         chat_id = int(chat_id)
@@ -149,12 +151,10 @@ async def _(c: user, m):
 
             await c.call_py.leave_group_call(chat_id)
             # turun_dewek = True
-            await ky.edit(
-                f"{em.sukses} <b>Berhasil Meninggalkan Voice Chat</b>\n <b>Chat :</b><code>{m.chat.title}</code>"
-            )
+            await ky.edit(cgr("vc_9").format(em.sukses))
+            return
         except Exception as e:
-            await ky.edit(f"{em.gagal} <b>ERROR:</b> {e}")
+            await ky.edit(cgr("err").format(em.gagal, e))
+            return
     else:
-        return ky.edit(
-            f"{em.gagal} Akun anda sedang tidak berada dalam obrolan {chat_id}."
-        )
+        return ky.edit(cgr("vc_10").format(em.gagal))
