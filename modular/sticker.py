@@ -32,27 +32,23 @@ async def _(c: user, m):
     rep = m.reply_to_message
     stick = rep.sticker
     if not rep:
-        await m.reply(f"{em.gagal} <b>Silahkan balas ke sticker!</b>")
+        await m.reply(cgr("st_1").format(em.gagal))
         return
     else:
         if stick.is_video == True:
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.mp4")
             await rep.reply_document(
                 document=pat,
-                caption=f"<b>Emoji:</b> {stick.emoji}\n"
-                f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
-            )
+                caption=cgr("st_2").format(em.sukses, stick.emoji, em.alive, stick.file_id))
         elif stick.is_animated == True:
-            await m.reply(f"{em.gagal} <b>Silahkan balas ke sticker non animasi!</b>")
+            await m.reply(cgr("st_1").format(em.gagal))
             return
 
         else:
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
             await rep.reply_document(
                 document=pat,
-                caption=f"<b>Emoji:</b> {stick.emoji}\n"
-                f"<b>Sticker ID:</b> <code>{stick.file_id}</code>",
-            )
+                caption=cgr("st_2").format(em.sukses, stick.emoji, em.alive, stick.file_id))
         return
     os.remove(pat)
 
@@ -64,23 +60,21 @@ async def _(self: user, m):
     rep = m.reply_to_message
     await user.unblock_user(bot.me.username)
     if not rep:
-        await m.reply(f"{em.gagal} <b>Harap balas sticker yang ingin dihapus!</b>")
+        await m.reply(cgr("st_3").format(em.gagal))
         return
     if rep.sticker:
-        pros = await m.reply(f"{em.proses} Mencoba menghapus stickers...")
+        pros = await m.reply(cgr("proses").format(em.proses))
         ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
         await user.send_message(bot.me.username, "/unkang", reply_to_message_id=ai.id)
         await asyncio.sleep(0.5)
         if await resleting(m) == "Stiker berhasil dihapus dari paket Anda.":
-            await pros.edit(f"{em.sukses} Sticker berhasil dihapus!")
+            await pros.edit(cgr("st_4").format(em.sukses))
             return
         else:
-            await pros.edit(f"{em.gagal} Sticker gagal dihapus!")
+            await pros.edit(cgr("st_5").format(em.gagal))
             return
     else:
-        await m.reply(
-            f"{em.gagal} <b>Tolong balas stiker yang dibuat oleh Anda untuk menghapus stiker dari paket Anda.</b>"
-        )
+        await m.reply(cgr("st_6").format(em.gagal))
 
 
 @ky.ubot("kang", sudo=False)
@@ -90,10 +84,10 @@ async def _(self: user, m):
     rep = m.reply_to_message
     await user.unblock_user(bot.me.username)
     if not rep:
-        await m.reply(f"{em.gagal} <b>Harap balas media atau sticker!</b>")
+        await m.reply(cgr("st_7").format(em.gagal))
         return
     await user.send_message(bot.me.username, "/kang")
-    pros = await m.reply(f"{em.proses} **Mencoba membuat stickers...**")
+    pros = await m.reply(cgr("proses").format(em.proses))
     ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
     await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
     await asyncio.sleep(5)
