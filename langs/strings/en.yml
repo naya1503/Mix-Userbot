@@ -146,7 +146,7 @@ hero_12: "{} **Git Command Error.**"
 hero_13: "{} **Invalid Git Repository.**"
 hero_14: "{} **Mix-Userbot is already up to date.**"
 hero_15: "{} **New update available for Mix-Userbot!\n\n➣ Push Update Now\n\nUpdate:**\n\n"
-hero_16: "{} **New update available for Mix-Userbot!\n\n➣ Push Update Now\n\nUpdate:\n\n[Click Here to Check Update]({})**"
+hero_16: "**New update available for Mix-Userbot!\n\n➣ Push Update Now\n\nUpdate:\n\n[Click Here to Check Update]({})**"
 hero_17: "{} {}\n\n**Mix-Userbot successfully updated! Now, wait 2 - 3 minutes for the bot to restart!**"
 
 # info
