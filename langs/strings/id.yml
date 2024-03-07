@@ -285,7 +285,7 @@ res_36: "{} Berhasil mengubah video menjadi foto grup!**"
 
 # showid
 shid_1: "{} **ID Pengguna : `{}`.**"
-shid_2: "{} **ID Grup : `{}`\n{} **ID Anda : `{}`**"
+shid_2: "{} **ID Grup : `{}`\n{} ID Anda : `{}`**"
 shid_3: "{} ID Anda : `{}`**"
 shid_4: "{} **ID Pengirim {} : `{}`\n{} ID Pesan Terusan {} : `{}`**"
 shid_5: "{} **Gagal mendapatkan ID Pengguna.**"
