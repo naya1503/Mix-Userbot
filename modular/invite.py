@@ -20,18 +20,18 @@ Help Command Invite
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    mg = await reply_text(f"{em.proses}<code>Adding Users!</code>")
+    mg = await reply_text(f"{em.proses} <code>Adding Users!</code>")
     user_s_to_add = m.text.split(" ", 1)[1]
     if not user_s_to_add:
-        await mg.edit(f"{em.gagal}Give me User's Id/Username")
+        await mg.edit(f"{em.gagal} Give me User's Id/Username")
         return
     user_list = user_s_to_add.split(" ")
     try:
         await c.add_chat_members(message.chat.id, user_list, forward_limit=100)
     except BaseException as e:
-        await mg.edit(f"{em.gagal}Unable To Add Users! \nTraceBack : {e}")
+        await mg.edit(f"{em.gagal} Unable To Add Users! \nTraceBack : {e}")
         return
-    await mg.edit(f"{em.sukses}Sucessfully Added {len(user_list)} To {mg.chat.title}")
+    await mg.edit(f"{em.sukses} Sucessfully Added {len(user_list)} To {mg.chat.title}")
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
