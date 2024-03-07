@@ -83,7 +83,7 @@ async def _(c: user, m):
             continue
 
     if sudo_list:
-        response = cgr("sud_6").format(em.profil, sudo_list, em.sukses, len(sudo_list))
+        response = cgr("sud_6").format(em.profil, "\n".join(sudo_list))
         return await msg.edit(response)
     else:
         return await msg.edit("<b>Eror</b>")
