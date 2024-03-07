@@ -30,9 +30,9 @@ async def _(c: user, m):
         if os.path.getsize(anu) == 0:
             os.remove(anu)
             if logs:
-                await c.send_message(logs, "Gagal mengunduh file. File kosong.")
+                await c.send_message(logs, cgr("spy_1").format(em.gagal))
             else:
-                await c.send_message("me", "Gagal mengunduh file. File kosong.")
+                await c.send_message("me", cgr("spy_1").format(em.gagal))
             return
 
         try:
@@ -62,11 +62,14 @@ async def _(c: user, m):
                 else:
                     await c.send_document("me", anu, anjing)
         except Exception as e:
-            print(f"Error saat mengirim media: {e}")
+            if logs:
+                await c.send_message(logs, cgr("err").format(em.gagal, e))
+            else:
+                await c.send_message("me", cgr("err").format(em.gagal, e))
         finally:
             os.remove(anu)
     else:
         if logs:
-            await c.send_message(logs, "Hasil Curi!")
+            await c.send_message(logs, cgr("spy_2").format(em.sukses))
         else:
-            await c.send_message("me", "Hasil Curi!")
+            await c.send_message("me", cgr("spy_2").format(em.sukses))
