@@ -1,4 +1,5 @@
 from pyrogram.types import *
+
 from Mix import *
 
 __modles__ = "Join"
@@ -8,6 +9,8 @@ Help Command Join
 • Perintah: <code>{0}Join</code>
 • Penjelasan: Untuk Join ke chat.
 """
+
+
 @ky.ubot("join|masuk", sudo=True)
 @ky.devs("Cjoin")
 async def _(c, m):
