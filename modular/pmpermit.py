@@ -143,7 +143,7 @@ async def _(c: user, m):
     & ~filters.me,
     group=69,
 )
-async def pm(c, m):
+async def (c, m):
     em = Emojik()
     em.initialize()
     user_id = c.me.id
