@@ -222,7 +222,7 @@ async def _(c: user, m):
     gmnu = dbgm.load_from_db()
     msg = await m.reply(cgr("proses").format(em.proses))
     if not gmnu:
-        await msg.edit(cgr("glbl_2").format(em.gagal)
+        await msg.edit(cgr("glbl_2").format(em.gagal))
         return
     dftr = cgr("glbl_18").format(em.profil)
     for ii in gmnu:
