@@ -39,12 +39,12 @@ async def _(c, cq):
     disk = psutil.disk_usage("/").percent
     process = psutil.Process(os.getpid())
     stats = f"""
-Uptime: {uptime}
-Bot: {round(process.memory_info()[0] / 1024 ** 2)} MB
-Cpu: {cpu}%
-Ram: {mem}%
-Disk: {disk}%
-Modules: {len(CMD_HELP)}
+**Uptime:** `{uptime}`
+**Bot:** `{round(process.memory_info()[0] / 1024 ** 2)} MB`
+**Cpus:** `{cpu}%`
+**Ram:** `{mem}%`
+**Disk:** `{disk}%`
+**Modules:** `{len(CMD_HELP)}`
 """
     await cq.edit_message_text(stats, reply_markup=clbk_stasm())
 
