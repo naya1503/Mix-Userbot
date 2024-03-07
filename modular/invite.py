@@ -18,7 +18,7 @@ Help Command Info
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    Nan = await m.edit_text(f"{em.proses}<code>Processing...</code>")
+    Nan = await m.reply_text(f"{em.proses}<code>Processing...</code>")
 
     if m.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
         m.chat.title
