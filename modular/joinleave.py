@@ -50,7 +50,7 @@ async def _(c, m):
             f"{em.sukses} {c.me.mention} Berhasil keluar dari {namagece} <b>"
         )
 
-    #try:
+    # try:
     #     await ceger.edit_text(
     #         f"{em.sukses} {c.me.mention} <b>has left this group, bye!!</b>"
     #     )
