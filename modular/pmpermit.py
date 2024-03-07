@@ -137,11 +137,7 @@ async def _(c: user, m):
 
 
 @user.on_message(
-    filters.private
-    & filters.incoming
-    & ~filters.bot
-    & ~filters.me,
-    group=69,
+    filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot
 )
 async def (c, m):
     em = Emojik()
