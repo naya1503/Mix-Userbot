@@ -82,9 +82,8 @@ async def _(c, cq):
                 ]
             )
             await cq.edit_message_text(
-                text=text1,
-                reply_markup=button,
-                disable_web_page_preview=True)
+                text=text1, reply_markup=button, disable_web_page_preview=True
+            )
         else:
             await cq.edit_message_text(
                 text=text + f"\n<b>© Mix-Userbot - @KynanSupport</b>",
