@@ -32,7 +32,6 @@ async def _(c, m):
     if not user_list:
         await mg.edit(f"{em.gagal} Berikan ID/Nama Pengguna")
         return
-
     try:
         await c.add_chat_members(m.chat.id, user_list, forward_limit=100)
     except errors.BadRequest as e:
@@ -40,24 +39,9 @@ async def _(c, m):
             f"{em.gagal} Gagal menambahkan pengguna. Alasan: <code>{str(e)}</code>"
         )
         return
-
-    user_mentions = []
-    for user_id in user_list:
-        try:
-            user_info = await c.get_users(int(user_id))
-            user_mention = (
-                f"<a href='tg://user?id={user_info.id}'>{user_info.first_name}</a>"
-            )
-            if user_info.last_name:
-                user_mention += f" {user_info.last_name}"
-        except errors.UserNotFound:
-            user_mention = user_id
-        user_mentions.append(user_mention)
-
+    mention = (await c.get_users(user_id)).mention
     await mg.edit(
-        f"{em.sukses} Berhasil Menambahkan {' '.join(user_mentions)} ke {m.chat.title}",
-        parse_mode="html",
-    )
+        f"{em.sukses} Berhasil Menambahkan {mention} ke {m.chat.title}")
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
