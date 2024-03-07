@@ -56,4 +56,6 @@ async def _(c, m):
             f"{em.gagal} <b>Anda bukan anggota atau member di <code>{namagece}</code>"
         )
     except pyrogram.errors.exceptions.bad_request_400.UsernameInvalid:
-        await ceger.edit(f"{em.gagal} <b>Tolong berikan Username atau User_ID Group/Channel yang valid!\nMohon periksa kembali dan pastikan username berawalan dengan symbol <code>@</code> dan User_ID berawalan <code>-100</code>!</b>")
+        await ceger.edit(
+            f"{em.gagal} <b>Tolong berikan Username atau User_ID Group/Channel yang valid!\nMohon periksa kembali dan pastikan username berawalan dengan symbol <code>@</code> dan User_ID berawalan <code>-100</code>!</b>"
+        )
