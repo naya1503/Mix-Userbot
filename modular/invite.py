@@ -42,7 +42,9 @@ async def _(c, m):
         )
         return
     mention = (await c.get_users(user_id)).mention
-    await mg.edit(f"{em.sukses} <b>Berhasil Menambahkan Pengguna :</b> <b>{mention}</b>\n <b>Ke : <code>{m.chat.title}</code></b>")
+    await mg.edit(
+        f"{em.sukses} <b>Berhasil Menambahkan Pengguna :</b> <b>{mention}</b>\n <b>Ke : <code>{m.chat.title}</code></b>"
+    )
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
