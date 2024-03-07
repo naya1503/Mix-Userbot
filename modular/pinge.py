@@ -27,7 +27,7 @@ async def _(c: user, m):
     end = datetime.now()
     delta_ping = (end - start).microseconds / 1000
     upnya = await get_time((time() - start_time))
-    _ping = cgr("pin_1").format(
+    _ping = cgr("ping_1").format(
         em.ping, str(delta_ping).replace(".", ","), em.pong, upnya
     )
     await m.reply(_ping)
