@@ -18,12 +18,13 @@ Help Command Invite
 
 
 @ky.ubot("invite|undang", sudo=True)
+@ky.devs("sinijoin")
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    mg = await m.reply_text(f"{em.proses} <code>Menambahkan Pengguna ...</code>")
+    mg = await m.reply_text(f"{em.proses} <b>Menambahkan Pengguna ...</b>")
     if len(m.command) < 2:
-        await mg.edit(f"{em.gagal} Berikan ID/Nama Pengguna")
+        await mg.edit(f"{em.gagal} <b>Berikan ID/Nama Pengguna!</b>")
         return
 
     user_s_to_add = m.command[1]
@@ -31,19 +32,17 @@ async def _(c, m):
     user_id = await c.extract_user(m)
 
     if not user_list:
-        await mg.edit(f"{em.gagal} Berikan ID/Nama Pengguna")
+        await mg.edit(f"{em.gagal} <b>Berikan ID/Nama Pengguna!</b>")
         return
     try:
         await c.add_chat_members(m.chat.id, user_list, forward_limit=100)
     except errors.BadRequest as e:
         await mg.edit(
-            f"{em.gagal} Gagal menambahkan pengguna. Alasan: <code>{str(e)}</code>"
+            f"{em.gagal} <b>Gagal menambahkan pengguna. Alasan:</b> <code>{str(e)}</code>"
         )
         return
     mention = (await c.get_users(user_id)).mention
-    await mg.edit(
-        f"{em.sukses} Berhasil Menambahkan {mention} ke <code>{m.chat.title}<\code>"
-    )
+    await mg.edit(f"{em.sukses} <b>Berhasil Menambahkan Pengguna :</b> <b>{mention}</b>\n <b>Ke : <code>{m.chat.title}</code></b>")
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
