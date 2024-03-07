@@ -55,6 +55,7 @@ async def _(c, m):
         await ceger.reply(
             f"{em.gagal} <b>Anda bukan anggota atau member di <code>{lus}</code>"
         )
+    await ceger.delete()
     # try:
     #     await ceger.edit_text(
     #         f"{em.sukses} {c.me.mention} <b>has left this group, bye!!</b>"
