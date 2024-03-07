@@ -576,16 +576,12 @@ async def _(c: user, m):
     if m.reply_to_message:
         if m.reply_to_message.photo:
             await c.set_chat_photo(m.chat.id, photo=m.reply_to_message.photo.file_id)
-            await m.reply_text(em.sukses}))
+            await m.reply_text(cgr("res_34").format(em.sukses))
         if m.reply_to_message.document:
             await c.set_chat_photo(m.chat.id, photo=m.reply_to_message.document.file_id)
-            await m.reply_text(
-                f"{em.sukses} Berhasil mengubah dokumen menjadi foto grup!"
-            )
+            await m.reply_text(cgr("res_35").format(em.sukses))
         elif m.reply_to_message.video:
             await c.set_chat_photo(m.chat.id, video=m.reply_to_message.video.file_id)
-            await m.reply_text(
-                f"{em.sukses} Berhasil mengubah video menjadi foto grup!"
-            )
+            await m.reply_text(cgr("res_36").format(em.sukses))
     else:
-        return await m.reply_text(f"{em.gagal} Balas ke media!")
+        return await m.reply_text(cgr("res_33").format(em.gagal))
