@@ -123,7 +123,7 @@ async def _(c, cq):
 @ky.callback("^anim.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
-    kemem = okb([[("Kembali", "anim.bc")]])
+    kemem = okb([[("≪", "anim.bc")]])
     user_id = cq.from_user.id
     prefix = await user.get_prefix(user_id)
     txt = None
