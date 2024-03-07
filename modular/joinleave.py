@@ -49,10 +49,10 @@ async def _(c, m):
             namagece = inpogc.title
             await c.leave_chat(lus)
             await ceger.edit(
-                f"{em.sukses} {c.me.mention} Berhasil keluar dari {namagece} <b>"
+                f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code><b>"
             )
     except pyrogram.errors.exceptions.bad_request_400.UserNotParticipant:
-        await c.edit(
+        await ceger.reply(
             f"{em.gagal} <b>Anda bukan anggota atau member di <code>{lus}</code>"
         )
     # try:
