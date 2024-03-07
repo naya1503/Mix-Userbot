@@ -15,25 +15,25 @@ async def get_time(seconds):
 
     if lng == "en":
         time_suffix_list = [
-            "seconds",
-            "minutes",
-            "hours",
-            "days",
-            "weeks",
-            "months",
-            "years",
+            "s",
+            "m",
+            "H",
+            "D",
+            "W",
+            "M",
+            "Y",
         ]
     elif lng == "id":
-        time_suffix_list = ["detik", "menit", "jam", "hari", "minggu", "bulan", "tahun"]
+        time_suffix_list = ["d", "m", "J", "H", "M", "B", "T"]
     else:
         time_suffix_list = [
-            "seconds",
-            "minutes",
-            "hours",
-            "days",
-            "weeks",
-            "months",
-            "years",
+            "s",
+            "m",
+            "H",
+            "D",
+            "W",
+            "M",
+            "Y",
         ]
 
     while count < 4:
