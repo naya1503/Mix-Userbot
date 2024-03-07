@@ -59,22 +59,26 @@ async def _(c, cq):
     if mod_match:
         module = (mod_match.group(1)).replace(" ", "_")
         text = f"<b>{CMD_HELP[module].__help__}</b>\n".format(next((p) for p in prefix))
-        button = [[InlineKeyboardButton("≪", callback_data="help_back")]]
+        button = okb([[("≪", "help_back")]])
         if "Animasi" in text:
             text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(" ".join(prefix), len(CMD_HELP))
-            button = [
+            button = okb(
                 [
-                    InlineKeyboardButton("Animasi 1", callback_data="anim anim_1"),
-                    InlineKeyboardButton("Animasi 2", callback_data="anim anim_2"),
-                ],
-                InlineKeyboardButton("Animasi 3", callback_data="anim anim_3"),
-                    InlineKeyboardButton("Animasi 4", callback_data="anim anim_4"),
-                ],
-                [InlineKeyboardButton("≪", callback_data="help_back")],
-            ]
+                  [
+                    ("Animasi 1", "anim.anm1"),
+                    ("Animasi 2", "anim.anm2"),
+                  ],
+                  [
+                    ("Animasi 3", "anim.anm3"),
+                    ("Animasi 4", "anim.anm4"),
+                  ],
+                  [
+                    ("≪", "help_back"),
+                  ],
+                ])
         await cq.edit_message_text(
             text=text + f"\n<b>© Mix-Userbot - @KynanSupport</b>",
-            reply_markup=InlineKeyboardMarkup(button),
+            reply_markup=button,
             disable_web_page_preview=True,
         )
     
@@ -105,6 +109,23 @@ async def _(c, cq):
             reply_markup=InlineKeyboardMarkup(paginate_modules(0, CMD_HELP, "help")),
             disable_web_page_preview=True,
         )
+
+@ky.callback("^anim.")
+async def _(c, cq):
+    colmek = cq.data.split(".")[1]
+    kb = okb([[("Kembali", "anim.bc")]])
+    user_id = cq.from_user.id
+    prefix = await user.get_prefix(user_id)
+    if colmek == "anim_1":
+        txt = get_cgr("help_anm1")
+    elif colmek == "anim_2":
+        txt = get_cgr("help_anm2")
+    elif colmek == "anim_3":
+        txt = get_cgr("help_anm3")
+    elif colmek == "anim_4":
+        txt = get_cgr("help_anm4")
+    elif colmek == "anim.bc":
+        txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(" ".join(prefix), len(CMD_HELP))
 
 
 @ky.callback("^cls_hlp")
