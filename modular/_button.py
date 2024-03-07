@@ -22,7 +22,7 @@ async def _(c: user, m):
     em.initialize()
     xx = m.reply_to_message
 
-    babi = await m.reply(cgr("proses").format(em.proses)
+    babi = await m.reply(cgr("proses").format(em.proses))
     teks, button = parse_button(xx.text)
     button = build_keyboard(button)
     if button:
