@@ -275,6 +275,7 @@ res_26: "{} {} {}\n{} Pengguna {} berhasil diturunkan dari admin!"
 res_27: "{} **Pengguna tidak diangkat oleh saya!**"
 res_28: "{} **Berhasil mengubah nama Grup : {} menjadi {}.**"
 res_29: "{} **Berhasil mengubah deskripsi Grup : {} menjadi {}.**"
+res_30: "{} **Berikan titel untuk pengguna!**"
 
 
 
