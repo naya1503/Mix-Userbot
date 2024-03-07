@@ -226,7 +226,7 @@ paste_2: "{} **Document size must be below 40KB!**"
 paste_3: "{} **Success! [Link Here]({})**"
 
 # ping
-ping_1: "**{} Pong `{}ms`**\n\n**{} Uptime !! `{}`**"
+ping_1: "**{} Pong `{}ms`**\n**{} Uptime !! `{}`**"
 
 # pmpermit
 pmper_1: "**Hey {} 👋 . Don't spam or you'll be blocked!!**"
