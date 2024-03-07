@@ -15,7 +15,6 @@ from pyrogram.types import ChatPermissions
 
 from Mix import *
 
-
 __modles__ = "Locks"
 __help__ = get_cgr("help_lokk")
 

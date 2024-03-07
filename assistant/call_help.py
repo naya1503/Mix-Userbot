@@ -7,11 +7,13 @@
 ################################################################
 
 
+from time import time
+
+import psutil
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
-import psutil
-from time import time
+
 from Mix import *
 from Mix.core.waktu import get_time, start_time
 
@@ -27,9 +29,10 @@ def clbk_stasm():
         "close_asst",
     )
 
+
 @ky.callback(("stats_mix"))
 async def _(c, cq):
-    
+
     uptime = await get_time((time() - start_time))
     cpu = psutil.cpu_percent()
     mem = psutil.virtual_memory().percent
@@ -44,7 +47,6 @@ Disk: {disk}%
 Modules: {len(CMD_HELP)}
 """
     await cq.edit_message_text(stats, reply_markup=clbk_stasm())
-
 
 
 @ky.callback("help_(.*?)")
