@@ -173,7 +173,7 @@ async def _(c: user, m):
         except ChatAdminRequired:
             await m.reply_text(cgr("lck_3").format(em.gagal))
         await m.reply_text(cgr("lck_4").format(em.sukses))
-        ##await prevent_approved(m)
+        await prevent_approved(m)
         return
 
     lock = LOCKS()
@@ -443,7 +443,7 @@ async def _(c: user, m):
     except ChatAdminRequired:
         await m.reply_text(cgr("lck_13").format(em.gagal))
     await m.reply_text(cgr("lck_27").format(em.sukses, uperm))
-    ##await prevent_approved(m)
+    await prevent_approved(m)
     return
 
 
