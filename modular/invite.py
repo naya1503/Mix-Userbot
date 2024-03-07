@@ -20,7 +20,7 @@ Help Command Invite
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    mg = await reply_text(f"{em.proses} <code>Adding Users!</code>")
+    mg = await m.reply_text(f"{em.proses} <code>Adding Users!</code>")
     user_s_to_add = m.text.split(" ", 1)[1]
     if not user_s_to_add:
         await mg.edit(f"{em.gagal} Give me User's Id/Username")
