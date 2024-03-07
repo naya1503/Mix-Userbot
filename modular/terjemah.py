@@ -22,7 +22,7 @@ __help__ = get_cgr("help_transmart")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    pros = await m.reply(f"{em.proses} Processing...")
+    pros = await m.reply(cgr("proses").format(em.proses))
     if m.reply_to_message:
         bhs = c._translate[c.me.id]["negara"]
         kata = m.reply_to_message.text or m.reply_to_message.caption
