@@ -136,9 +136,7 @@ async def _(c: user, m):
     await babi.edit(cgr("pmper_9").format(em.sukses, pm_warns))
 
 
-@user.on_message(
-    filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot
-)
+@user.on_message(filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot)
 async def (c, m):
     em = Emojik()
     em.initialize()
