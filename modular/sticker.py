@@ -39,7 +39,10 @@ async def _(c: user, m):
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.mp4")
             await rep.reply_document(
                 document=pat,
-                caption=cgr("st_2").format(em.sukses, stick.emoji, em.alive, stick.file_id))
+                caption=cgr("st_2").format(
+                    em.sukses, stick.emoji, em.alive, stick.file_id
+                ),
+            )
         elif stick.is_animated == True:
             await m.reply(cgr("st_1").format(em.gagal))
             return
@@ -48,7 +51,10 @@ async def _(c: user, m):
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
             await rep.reply_document(
                 document=pat,
-                caption=cgr("st_2").format(em.sukses, stick.emoji, em.alive, stick.file_id))
+                caption=cgr("st_2").format(
+                    em.sukses, stick.emoji, em.alive, stick.file_id
+                ),
+            )
         return
     os.remove(pat)
 
