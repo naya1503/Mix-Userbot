@@ -195,7 +195,7 @@ async def _(c, iq):
         len(ape),
         upnya,
     )
-    bo_ol = [[InlineKeyboardButton(cgr("alv_4"), url="t.me/kynansupport")]]
+    bo_ol = [[InlineKeyboardButton(cgr("alv_4"), url="t.me/kynansupport"), InlineKeyboardButton("Stats", callback_data="stats_mix")]]
     cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
