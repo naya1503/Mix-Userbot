@@ -6,7 +6,6 @@ authors:
   - Lucifer
 
 
-
 cmds: "Command Help"
 err: "{} **Error:** {} \n\n**Please report to @KynanSupport**"
 err_1: "**Error:** {}"
@@ -19,6 +18,16 @@ ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 
+# uprefixies
+upref_1: "{em.gagal} <b>Silahkan gunakan symbol atau abjad.</b>"
+upref_2: "{em.sukses} <b>Prefix diatur ke : <code>{parsed}</code></b>"
+
+# webshot
+webs_1: "{em.gagal} Silahkan berikan link tautan!"
+webs_2: "{em.gagal} Berikan link yang valid!"
+webs_3: "{em.gagal} Gagal mendapatkan gambar!"
+webs_4: "{em.proses} Uploading..."
+
 # assistant
 asst_1: "Hello 👋 {} !! I'm your bot assistant.\n\nWhat settings would you like to change?"
 asst_2: "Hello 👋 {} !! I'm {}'s assistant.\nWhat are you looking for?"
@@ -27,7 +36,6 @@ asst_4: "The language you are currently using is: **{}**\nPlease select if you w
 asst_5: "Your language has been changed to: **{}**\n\nYou need to Restart Userbot to apply the changes."
 asst_6: "Restart"
 asst_7: "Update"
-
 
 # autoread 
 autoread_1: "{} **Use Format : `autoread` [`gc` or `us` or `ch` or `all`].**"
@@ -94,7 +102,6 @@ em_22: "{} **Emoji Block set to: <emoji id={}>{}</emoji>**"
 em_23: "{} **Emoji Block set to: {}**"
 em_24: "{} **Custom Emoji:**\n\n- Ping: {}\n- Pong: {}\n- Process: {}\n- Success: {}\n- Failed: {}\n- Profile: {}\n- Alive: {}\n- Warning: {}\n- Block: {}**"
 em_25: "{} **Emoji status set to: <emoji id={}>😭</emoji>.**"
-
 
 # gcast
 gcs_1: "{} **Please reply to a message or give a message.**"
@@ -352,7 +359,7 @@ sud_3: "{} **{} is not a sudo user!**"
 sud_4: "{} **Removed from sudo users : {}**"
 sud_5: "{} **There are no sudo users!**"
 sud_6: "{} **Sudo Members :**\n\n**{}**"
-
+sud_7 : "{} **There's no Sudoers!**"
 
 # transfer
 tr_1: "{} **Use the format : `{}` [reply to message/give message].**"

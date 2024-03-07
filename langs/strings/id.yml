@@ -18,6 +18,16 @@ ttup: "Tutup"
 reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
+# uprefixies
+upref_1: "{em.gagal} <b>Silahkan gunakan symbol atau abjad.</b>"
+upref_2: "{em.sukses} <b>Prefix diatur ke : <code>{parsed}</code></b>"
+
+# webshot
+webs_1: "{em.gagal} Silahkan berikan link tautan!"
+webs_2: "{em.gagal} Berikan link yang valid!"
+webs_3: "{em.gagal} Gagal mendapatkan gambar!"
+webs_4: "{em.proses} Uploading..."
+
 # assisten
 asst_1: "Halo 👋 {} !! Saya adalah asisten bot Anda.\n\nPengaturan apa yang ingin kamu ubah ?"
 asst_2: "Halo 👋 {} !! Saya adalah asisten milik {}\nApa yang kamu cari ?"
@@ -92,8 +102,6 @@ em_22: "{} **Emoji Block diatur ke : <emoji id={}>{}</emoji>**"
 em_23: "{} **Emoji Block diatur ke : {}**"
 em_24: "{} **Costum Emoji :**\n\n- Ping: {}\n- Pong: {}\n- Proses: {}\n- Sukses: {}\n- Gagal: {}\n- Profil: {}\n- Alive: {}\n- Warning: {}\n- Block: {}**"
 em_25: "{} **Emoji status diatur ke : <emoji id={}>😭</emoji>.**"
-
-
 
 # gcast
 gcs_1: "{} **Silahkan balas ke pesan atau berikan pesan.**"
@@ -175,7 +183,6 @@ hero_14: "**Mix-Userbot sudah versi paling terbaru.**"
 hero_15: "**Pembaruan baru tersedia untuk Mix-Userbot !\n\n➣ Mendorong Pembaruan Sekarang\n\nPembaruan:**\n\n"
 hero_16: "**Pembaruan baru tersedia untuk Mix-Userbot!\n\n➣ Mendorong Pembaruan Sekarang\n\nPembaruan:\n\n[Klik Di Sini untuk memeriksa Pembaruan]({})**"
 hero_17: "{} {}\n\n**Mix-Userbot berhasil diperbarui! Sekarang, tunggu 2 - 3 menit hingga bot dimulai ulang!**"
-
 
 # info
 info_1: "{} **Saya tidak berada digrup itu!**"
@@ -352,7 +359,7 @@ sud_3: "{} **{} Bukan pengguna sudo!**"
 sud_4: "{} **Dihapus dari pengguna sudo : {}**"
 sud_5: "{} **Tidak ada pengguna sudo satupun!**"
 sud_6: "{} **Anggota Sudo :**\n\n**{}**"
-sud_7 : "{} **Tidak ada pengguna sudo"
+sud_7 : "{} **Tidak ada pengguna sudo**"
 
 # transfer
 tr_1: "{} **Gunakan format : `{}` [balas pesan/berikan pesan].**"
@@ -372,7 +379,6 @@ prof_6: "{} Berhasil mengganti bio menjadi : `{}`."
 prof_7: "{} **Kamu tidak menjadi admin di grup manapun!**"
 prof_8: "{} **Kamu admin di `{}` grup :**\n\n**{}**"
 prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
-
 
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
