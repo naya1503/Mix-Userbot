@@ -154,6 +154,7 @@ async def _(c: user, message):
             await c.get_messages(chat_id, message_id)
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
             await proses.delete()
+            await message.delete()
             await asyncio.sleep(delay)
         except Exception as e:
             if (
