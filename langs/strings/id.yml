@@ -36,7 +36,7 @@ vc_10: "{} **Akun anda tidak berada di obrolan suara manapun!**"
 
 # webshot
 webs_1: "{} **Gunakan format: `{}` [link].**"
-webs_2: "{} Gagal mendapatkan gambar!"
+webs_2: "{} **Gagal mendapatkan gambar!**"
 
 # assisten
 asst_1: "Halo 👋 {} !! Saya adalah asisten bot Anda.\n\nPengaturan apa yang ingin kamu ubah ?"
@@ -76,7 +76,7 @@ cpy_2: "{} **Nyolong dihentikan.**"
 cpy_3: "**🔒 Konten Bersifat Private!!**"
 
 # database
-dbs_1: "{} **Gunakan Format : `setdb variable value`.**"
+dbs_1: "{} **Gunakan Format : `{}` [variable] [value].**"
 dbs_2: "{} **PMPermit Dihidupkan.**"
 dbs_3: "{} **PMPic Diatur ke : `{}`.**"
 dbs_4: "{} **Alive Pic Diatur ke : `{}`.**"
