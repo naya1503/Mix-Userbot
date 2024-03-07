@@ -134,7 +134,8 @@ async def _(c: user, message):
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
-        await proses.reply(cgr("spm_5").format(em.gagal, m.command))
+        await proses.reply(cgr("spm_5").format(em.gagal, message.command))
+        await proses.delete()
         return
 
     chat_id, message_id = link.split("/")[-2:]
@@ -161,8 +162,10 @@ async def _(c: user, message):
                 or "USER_RESTRICTED" in str(e)
             ):
                 await message.reply(cgr("spm_6").format(em.gagal))
+                await proses.delete()
             else:
                 await proses.reply(cgr("err").format(em.gagal, e))
+                await proses.delete()
             break
     berenti = False
     await message.delete()
