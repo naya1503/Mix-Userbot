@@ -23,7 +23,7 @@ upref_2: "{} **Prefix diatur ke : `{}`**"
 upref_1: "{} **Gunakan format : `{}` [query]**"
 
 # vcs
-vc_1: "{} **Tidak ada obrolan suara ditemukan!**"
+vc_1: "{} **Tidak ada obrolan suara ditemukan!\n`{}`**"
 vc_2: "{} **Memulai obrolan suara.**"
 vc_3: "{} **Mengakhiri obrolan suara.**"
 vc_4: "{} **Gunakan format : `{}` [judul obrolan suara].**"
@@ -35,10 +35,8 @@ vc_9: "{} **Meninggalkan obrolan suara:\n`{}`.**"
 vc_10: "{} **Akun anda tidak berada di obrolan suara manapun!**"
 
 # webshot
-webs_1: "{em.gagal} Silahkan berikan link tautan!"
-webs_2: "{em.gagal} Berikan link yang valid!"
-webs_3: "{em.gagal} Gagal mendapatkan gambar!"
-webs_4: "{em.proses} Uploading..."
+webs_1: "{} **Gunakan format: `{}` [link].**"
+webs_2: "{} Gagal mendapatkan gambar!"
 
 # assisten
 asst_1: "Halo 👋 {} !! Saya adalah asisten bot Anda.\n\nPengaturan apa yang ingin kamu ubah ?"
