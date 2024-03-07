@@ -41,7 +41,7 @@ async def _(c, m):
     namagece = inpogc.title
     ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
     try:
-        if lus or inpogc in NO_GCAST:
+        if str(lus) in NO_GCAST or inpogc.id in NO_GCAST:
             await ceger.edit(
                 f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
             )
