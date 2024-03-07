@@ -17,7 +17,7 @@ from pyrogram.raw.functions.messages import *
 from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
 
-from Mix import Emojik, bot, get_cgr, ky, ndB, user
+from Mix import Emojik, bot, get_cgr, ky, ndB, user, cgr
 
 __modles__ = "Sticker"
 __help__ = get_cgr("help_stick")
