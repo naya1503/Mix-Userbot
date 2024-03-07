@@ -28,6 +28,7 @@ async def _(c, m):
 
     user_s_to_add = m.command[1]
     user_list = user_s_to_add.split(" ")
+    user_id = await c.extract_user_and_reason
 
     if not user_list:
         await mg.edit(f"{em.gagal} Berikan ID/Nama Pengguna")
