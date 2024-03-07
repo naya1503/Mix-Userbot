@@ -1,2 +1,7 @@
 __modles__ = "Animasi"
-__help__ = "animasi"
+__help__ = "Animasi"
+
+
+
+
+
