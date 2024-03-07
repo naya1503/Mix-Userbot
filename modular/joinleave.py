@@ -7,7 +7,7 @@ __help__ = """
 Help Command Join 
 
 • Perintah: <code>{0}join</code>
-• Penjelasan: Untuk join ke chat.
+• Penjelasan: Untuk join ke Group atau Channel.
 """
 
 
