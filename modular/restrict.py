@@ -14,7 +14,7 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 
-from Mix import DEVS, Emojik, get_cgr, ky, user
+from Mix import DEVS, Emojik, get_cgr, ky, user, cgr
 from Mix.core.parser import mention_html
 from Mix.core.sender_tools import extract_user
 
