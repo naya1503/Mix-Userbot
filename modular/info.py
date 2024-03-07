@@ -183,7 +183,7 @@ async def chat_info(c: user, chat, already=False):
     can_save = chat.has_protected_content
     linked_chat = chat.linked_chat
 
-    caption = cgr("info_15").format(chat_id, title, type_, dc_id, ("@" + username) if username else "NA"}, total_admin, total_bot, total_banned, total_bot_admin, is_scam, is_fake, is_restricted, description, members, can_save, linked_chat.id if linked_chat else "Not Linked")
+    caption = cgr("info_15").format(chat_id, title, type_, dc_id, ("@" + username) if username else "NA", total_admin, total_bot, total_banned, total_bot_admin, is_scam, is_fake, is_restricted, description, members, can_save, linked_chat.id if linked_chat else "Not Linked")
 
     return caption, photo_id
 
