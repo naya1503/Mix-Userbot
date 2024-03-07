@@ -295,6 +295,14 @@ shid_8: "{} **ID Pesan Terusan : `{}`**"
 shid_9: "{} **ID Gif : `{}`**"
 shid_10: "{} **Silahkan balas ke gif!**"
 
+# spam
+spm_1: "{} **Gunakan format : `{}` [jumlah] [pesan atau balas pesan].**"
+spm_2: "{} **Gunakan format : `{}` [jumlah] [waktu delay] [balas pesan].**"
+spm_3: "{} **Tidak ada proses spam berlangsung!**"
+spm_4: "{} **Spam Dihentikan!!**"
+spm_5: "{} **Gunakan format :`{}` [jumlah] [waktu delay] [link].**"
+spm_6: "{} Dilarang digrup ini!!"
+
 # profile
 prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
 prof_2: "{} **Berhasil membuka blokir {}!**"
@@ -330,7 +338,7 @@ help_sys: " System\n\n• Perintah : `{0}update`\n• Penjelasan : Check Updater
 help_sudo: " Sudo\n\n• Perintah: `{0}addsudo` [reply user]\n• Penjelasan: Untuk menambahkan pengguna sudo.\n\n• Perintah: `{0}delsudo` [reply user]\n• Penjelasan: Untuk menghapus pengguna sudo.\n\n• Perintah: `{0}sudolist`\n• Penjelasan: Untuk melihat daftar sudo."
 help_stick: " Sticker\n\n• Perintah: `{0}gstik` [reply sticker]\n• Penjelasan: Untuk mengambil info sticker.\n\n• Perintah: `{0}kang` [reply sticker]\n• Penjelasan: Untuk mencuri atau membuat stickerpack sendiri.\n\n• Perintah: `{0}unkang` [reply sticker]\n• Penjelasan: Untuk menghapus sticker/stickerpack yang sudah ada."
 help_spy: " Spy\n\n• Perintah: `{0}curi or spy`\n• Penjelasan: Untuk mencuri pap timer (bukan sekali lihat)."
-help_spam: " Spam \n\n• Perintah: `{0}dspam` [jumlah] [waktu delay] [balas pesan]\n• Penjelasan: Untuk melakukan delay spam.\n\n• Perintah: `{0}spam` [jumlah] [kata]\n• Penjelasan: Untuk melakukan spam.\n\n• Perintah: `{0}cspam`\n• Penjelasan: Untuk stop spam."
+help_spam: " Spam \n\n• Perintah: <code>{0}dspam</code> [jumlah] [waktu delay] [balas pesan]\n• Penjelasan: Untuk melakukan delay spam.\n\n• Perintah: <code>{0}spam</code> [jumlah] [kata]\n• Penjelasan: Untuk melakukan spam.\n\n• Perintah: <code>{0}cspam</code>\n• Penjelasan: Untuk stop spam.\n\n• Perintah: <code>{0}dspamfw</code> [jumlah] [waktu delay] [link channel public]\n• Penjelasan: Untuk melakukan delay spam forward link channel."
 help_sid: " ShowID \n\n• Perintah: `{0}id`\n• Penjelasan: Untuk melihat id pengguna atau grup/channel.\n\n• Perintah: `{0}gifid`\n• Penjelasan: Untuk melihat id gif."
 help_group: " Group \n\n• Perintah: `{0}purge` \n• Penjelasan: Untuk menghapus pesan keseluruhan dari pesan yg dibalas.\n\n• Perintah: `{0}del` \n• Penjelasan: Untuk menghapus pesan.\n\n• Perintah: `{0}report` \n• Penjelasan: Untuk melaporkan pengguna.\n\n• Perintah: `{0}gctitle` \n• Penjelasan: Untuk mengubah nama grup.\n\n• Perintah: `{0}gcdes`\n• Penjelasan: Untuk mengubah deskripsi grup.\n\n• Perintah: `{0}gcpic`\n• Penjelasan: Untuk mengubah foto grup.\n\n• Perintah: `{0}getlink or invitelink`\n• Penjelasan: Untuk mengambil tautan grup.\n\n• Perintah: `{0}pin or unpin`\n• Penjelasan: Untuk menyematkan pesan atau melepas sematan grup."
 help_rest: " Restrict\n\n• Perintah: `{0}ban or delban`\n• Penjelasan: Untuk memblokir pengguna.\n\n• Perintah: `{0}kick or delkick`\n• Penjelasan: Untuk mengeluarkan pengguna.\n\n• Perintah: `{0}mute or delmute`\n• Penjelasan: Untuk membisukan pengguna.\n\n• Perintah: `{0}unmute`\n• Penjelasan: Untuk menyuarakan pengguna.\n\n• Perintah: `{0}unban`\n• Penjelasan: Untuk melepas blokir pengguna.\n\n• Perintah: `{0}promote`\n• Penjelasan: Untuk mengangkat admin.\n\n• Perintah: `{0}fullpromote`\n• Penjelasan: Untuk mengangkat wakil pendiri.\n\n• Perintah: `{0}demote`\n• Penjelasan: Untuk menurunkan seorang admin.\n\n• Perintah: `{0}title`\n• Penjelasan: Untuk mengubah titel pengguna.\n\n• Perintah: `{0}zombies`\n• Penjelasan: Untuk mengeluarkan akun terhapus."
