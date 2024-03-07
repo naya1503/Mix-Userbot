@@ -145,7 +145,7 @@ hero_11: "{} **DYNO USAGE\n\n{} <u>Usage:</u>\nTotal Used:\n`{}h` `{}m` [`{}%`]\
 hero_12: "{} **Git Command Error.**"
 hero_13: "{} **Invalid Git Repository.**"
 hero_14: "{} **Mix-Userbot is already up to date.**"
-hero_15: "{} **New update available for Mix-Userbot!\n\n➣ Push Update Now\n\nUpdate:**\n\n"
+hero_15: "**New update available for Mix-Userbot!\n\n➣ Push Update Now\n\nUpdate:**\n\n"
 hero_16: "**New update available for Mix-Userbot!\n\n➣ Push Update Now\n\nUpdate:\n\n[Click Here to Check Update]({})**"
 hero_17: "{} {}\n\n**Mix-Userbot successfully updated! Now, wait 2 - 3 minutes for the bot to restart!**"
 
@@ -323,7 +323,7 @@ sud_2: "{} **Added to sudo users : {}**"
 sud_3: "{} **{} is not a sudo user!**"
 sud_4: "{} **Removed from sudo users : {}**"
 sud_5: "{} **There are no sudo users!**"
-sud_6: "{} **Sudo Members :**\n\n{}"
+sud_6: "{} **Sudo Members :**\n\n**{}**"
 
 
 # transfer
