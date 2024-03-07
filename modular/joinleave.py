@@ -37,7 +37,7 @@ async def _(c, m):
     em.initialize()
     lus = m.command[1] if len(m.command) > 1 else m.chat.id
     ceger = await m.reply_text(f"{em.proses} <code>Processing...</code>")
-    if m.chat.id in NO_GCAST:
+    if lus and m.chat.id in NO_GCAST:
         return await ceger.edit(
             f"{em.gagal} <b>Perintah ini Dilarang digunakan di Group ini</b>"
         )
