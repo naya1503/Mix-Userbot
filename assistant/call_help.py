@@ -113,7 +113,7 @@ async def _(c, cq):
 @ky.callback("^anim.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
-    kb = okb([[("Kembali", "anim.bc")]])
+    kemem = okb([[("Kembali", "anim.bc")]])
     user_id = cq.from_user.id
     prefix = await user.get_prefix(user_id)
     if colmek == "anim_1":
@@ -126,6 +126,22 @@ async def _(c, cq):
         txt = get_cgr("help_anm4")
     elif colmek == "anim.bc":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(" ".join(prefix), len(CMD_HELP))
+        kemem = okb(
+                [
+                  [
+                    ("Animasi 1", "anim.anm1"),
+                    ("Animasi 2", "anim.anm2"),
+                  ],
+                  [
+                    ("Animasi 3", "anim.anm3"),
+                    ("Animasi 4", "anim.anm4"),
+                  ],
+                  [
+                    ("≪", "help_back"),
+                  ],
+                ])
+    await cq.edit_message_text(
+        txt, reply_markup=kemem)
 
 
 @ky.callback("^cls_hlp")
