@@ -18,15 +18,6 @@ ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 
-# uprefixies
-upref_1: "{em.gagal} <b>Silahkan gunakan symbol atau abjad.</b>"
-upref_2: "{em.sukses} <b>Prefix diatur ke : <code>{parsed}</code></b>"
-
-# webshot
-webs_1: "{em.gagal} Silahkan berikan link tautan!"
-webs_2: "{em.gagal} Berikan link yang valid!"
-webs_3: "{em.gagal} Gagal mendapatkan gambar!"
-webs_4: "{em.proses} Uploading..."
 
 # assistant
 asst_1: "Hello 👋 {} !! I'm your bot assistant.\n\nWhat settings would you like to change?"
@@ -66,7 +57,7 @@ cpy_2: "{} **Copying stopped.**"
 cpy_3: "**🔒 Content is Private!!**"
 
 # database
-dbs_1: "{} **Use Format : `setdb variable value`.**"
+dbs_1: "{} **Use Format : `{}` [variable] [value].**"
 dbs_2: "{} **PMPermit Enabled.**"
 dbs_3: "{} **PMPic Set to : `{}`.**"
 dbs_4: "{} **Alive Pic Set to : `{}`.**"
@@ -368,6 +359,25 @@ tr_3: "{} **List of Language Codes :**\n\n{}"
 tr_4: "{} **Use the format : `{}` [language code].**"
 tr_5: "{} **Language code set to : `{}` - {}.**"
 tr_6: "{} **What kind of language code is that?**"
+
+# pref
+upref_2: "{} **Prefix set to: `{}`**"
+upref_1: "{} **Use format: `{}` [query]**"
+
+vc_1: "{} **No voice chat found!\n`{}`**"
+vc_2: "{} **Starting voice chat.**"
+vc_3: "{} **Ending voice chat.**"
+vc_4: "{} **Use format: `{}` [voice chat title].**"
+vc_5: "{} **You are not an admin!!**"
+vc_6: "{} **Successfully changed voice chat title:\n`{}`.**"
+vc_7: "{} **Joined voice chat:\n`{}`.**"
+vc_8: "{} **Your account has already joined the voice chat!!**"
+vc_9: "{} **Left voice chat:\n`{}`.**"
+vc_10: "{} **Your account is not in any voice chat!**"
+
+webs_1: "{} **Use format: `{}` [link].**"
+webs_2: "{} **Failed to fetch image!**"
+
 
 # profile
 prof_1: "{} **Please reply to the user's message or provide the username.**"
