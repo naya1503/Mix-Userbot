@@ -18,5 +18,5 @@ upstream_repo = getenv(
     "upstream_repo",
     "https://github.com/naya1503/Mix-Userbot",
 )
-upstream_branch = getenv("upstream_branch", "addlang")
+upstream_branch = getenv("upstream_branch", "dev")
 git_token = getenv("git_token", None)
