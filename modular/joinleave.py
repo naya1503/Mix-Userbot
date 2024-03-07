@@ -15,6 +15,9 @@ Help Command Join
 
 • Perintah: <code>{0}leaveallgc</code>
 • Penjelasan: Untuk Meninggalkan Semua Group Yang Ada Di Akun Anda.
+
+• Perintah: <code>{0}leaveallch</code>
+• Penjelasan: Untuk Meninggalkan Semua Channel Yang Ada Di Akun Anda.
 """
 
 
@@ -105,3 +108,33 @@ async def _(c, m):
     await xenn.edit(
         f"{em.sukses} <b>Successfully left {nan} Groups, Failed to leave {luci} Groups</b>"
     )
+
+@ky.ubot("leaveallch|kickmeallch", sudo=True)
+async def _(c, m):
+    em = Emojik()
+    em.initialize()
+    xenn = await m.reply_text(
+        f"{em.proses} <code>Global Leave from Channels...</code>"
+    )
+    luci = 0
+    nan = 0
+    ceger = [-1001713457115]
+
+    async for dialog in c.get_dialogs():
+        if dialog.chat.type in (ChatType.CHANNEL):
+            chat = dialog.chat.id
+            try:
+                chat_info = await c.get_chat_member(chat, "me")
+                user_status = chat_info.status
+                if chat not in ceger and user_status not in (
+                    ChatMemberStatus.OWNER,
+                    ChatMemberStatus.ADMINISTRATOR,
+                ):
+                    nan += 1
+                    await c.leave_chat(chat)
+            except BaseException:
+                luci += 1
+    await xenn.edit(
+        f"{em.sukses} <b>Successfully left {nan} Channels, Failed to leave {luci} Channels</b>"
+                )
+    
