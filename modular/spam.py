@@ -42,7 +42,7 @@ async def _(c: user, m):
     else:
         if len(m.command) < 2:
             return await msg.edit(cgr("spm_1").format(em.gagal, m.command))
-            
+
         else:
             try:
                 count_message = int(m.command[1])
