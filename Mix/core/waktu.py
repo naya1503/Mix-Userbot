@@ -17,23 +17,23 @@ async def get_time(seconds):
         time_suffix_list = [
             "s",
             "m",
-            "H",
-            "D",
-            "W",
-            "M",
-            "Y",
+            "h",
+            "d",
+            "w",
+            "m",
+            "y",
         ]
     elif lng == "id":
-        time_suffix_list = ["d", "m", "J", "H", "M", "B", "T"]
+        time_suffix_list = ["d", "m", "j", "h", "m", "b", "t"]
     else:
         time_suffix_list = [
             "s",
             "m",
-            "H",
-            "D",
-            "W",
-            "M",
-            "Y",
+            "h",
+            "d",
+            "w",
+            "m",
+            "y",
         ]
 
     while count < 4:
@@ -45,7 +45,7 @@ async def get_time(seconds):
         seconds = int(remainder)
 
     for i in range(len(time_list)):
-        time_list[i] = str(time_list[i]) + "" + time_suffix_list[i]
+        time_list[i] = str(time_list[i]) + time_suffix_list[i]
     if len(time_list) == 4:
         up_time += time_list.pop() + ":"
 
