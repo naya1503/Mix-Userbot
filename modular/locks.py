@@ -15,7 +15,7 @@ from pyrogram.types import ChatPermissions
 
 from Mix import *
 
-from .restrict import list_admins
+from .restrict import member_permissions
 
 __modles__ = "Locks"
 __help__ = get_cgr("help_lokk")
@@ -54,12 +54,12 @@ async def prevent_approved(m):
 
 
 async def is_approved_user(c: user, m):
-    admins_group = await list_admins(m.chat.id)
+    #admins_group = member_permissions(m.chat.id, m.from_user.id)
     if m.forward_from:
         if (
             m.from_user.id in DEVS
-            or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
+            
         ):
             return False
         return True
@@ -67,7 +67,6 @@ async def is_approved_user(c: user, m):
         x_chat = (await c.get_chat(m.forward_from_chat.id)).linked_chat
         if (
             m.from_user.id in DEVS
-            or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
         ):
             return True
@@ -78,7 +77,6 @@ async def is_approved_user(c: user, m):
     elif m.from_user:
         if (
             m.from_user.id in DEVS
-            or m.from_user.id in admins_group
             or m.from_user.id == c.me.id
         ):
             return False
