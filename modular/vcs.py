@@ -125,7 +125,7 @@ async def _(c: user, m):
                     ),
                 ),
             )
-            await ky.edit(cgr("vc_7").format(em.sukses))
+            await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
             return
         except AlreadyJoinedError:
             await ky.edit(cgr("vc_8").format(em.gagal))
@@ -150,7 +150,7 @@ async def _(c: user, m):
 
             await c.call_py.leave_group_call(chat_id)
             # turun_dewek = True
-            await ky.edit(cgr("vc_9").format(em.sukses))
+            await ky.edit(cgr("vc_9").format(em.sukses, chat_id))
             return
         except Exception as e:
             await ky.edit(cgr("err").format(em.gagal, e))
