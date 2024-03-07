@@ -105,7 +105,7 @@ async def _(c: user, m):
     if not user_id:
         return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(cgr("res_1").format(em.gagal}))
+        return await m.reply_text(cgr("res_1").format(em.gagal))
     if user_id in DEVS:
         return await m.reply_text(cgr("glbl_3").format(em.gagal))
     mention = (await c.get_users(user_id)).mention
