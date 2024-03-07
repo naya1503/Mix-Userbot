@@ -53,7 +53,7 @@ async def _(c, m):
             )
     except pyrogram.errors.exceptions.bad_request_400.UserNotParticipant:
         await ceger.reply(
-            f"{em.gagal} <b>Anda bukan anggota atau member di <code>{lus}</code>"
+            f"{em.gagal} <b>Anda bukan anggota atau member di <code>{namagece}</code>"
         )
     await ceger.delete()
     # try:
