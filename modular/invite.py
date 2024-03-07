@@ -1,4 +1,6 @@
+import asyncio
 
+from pyrogram.methods import *
 from pyrogram.enums import *
 from pyrogram.types import *
 
