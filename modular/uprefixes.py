@@ -17,9 +17,9 @@ __help__ = get_cgr("help_pref")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
+    xx = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 2:
-        return await xx.edit(f"{em.gagal} <b>Silahkan gunakan symbol atau abjad.</b>")
+        return await xx.edit(cgr("upref_1").format(em.gagal, m.command))
     else:
         mepref = []
         for x in m.command[1:]:
@@ -31,11 +31,9 @@ async def _(c: user, m):
             c.set_prefix(c.me.id, mepref)
             udB.set_pref(c.me.id, mepref)
             parsed = " ".join(f"{x}" for x in mepref)
-            return await xx.edit(
-                f"{em.sukses} <b>Prefix diatur ke : <code>{parsed}</code></b>"
-            )
-        except Exception as error:
-            await xx.edit(str(error))
+            return await xx.edit(cgr("upref_2").format(em.gagal, parsed))
+        except Exception as er:
+            await xx.edit(cgr("err").format(em.gagal, er))
 
 
 @ky.devs("batu")
