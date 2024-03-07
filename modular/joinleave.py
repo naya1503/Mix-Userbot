@@ -28,3 +28,17 @@ async def _(c, m):
         await c.join_chat(Nan)
     except Exception as ex:
         await ceger.edit(f"{em.gagal} <b>ERROR: </b>\n\n<code>{str(ex)}</code>")
+
+
+@ky.ubot("leave|kickme", sudo=True)
+@ky.devs("Cleave")
+async def _(c, m):
+    lus = m.command[1] if len(m.command) > 1 else m.chat.id
+    ceger = await m.reply_text(f"{em.proses} <code>Processing...</code>")
+    if m.chat.id in blacklist:
+        return await ceger.edit(f"{em.gagal} <b>Perintah ini Dilarang digunakan di Group ini</b>")
+    try:
+        await ceger.edit_text(f"{em.sukses} {c.me.mention} has left this group, bye!!")
+        await c.leave_chat(lus)
+    except Exception as ex:
+        await xxnx.edit_text(f"**ERROR:** \n\n{str(ex)}")
