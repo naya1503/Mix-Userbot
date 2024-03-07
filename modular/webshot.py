@@ -44,7 +44,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2:
-        await m.reply(f"{em.gagal} Silahkan berikan link tautan!")
+        await m.reply(cgr("webs_1").format(em.gagal, m.command))
         return
     if len(m.command) == 2:
         url = m.text.split(None, 1)[1]
@@ -58,19 +58,19 @@ async def _(c: user, m):
             "true",
         ]
     else:
-        await m.reply(f"{em.gagal} Berikan link yang valid!")
+        await m.reply(cgr("webs_1").format(em.gagal))
         return
 
-    tit = await m.reply(f"{em.proses} Processing...")
+    tit = await m.reply(cgr("proses").format(em.proses))
 
     try:
         photo = await ss(url, full)
         if not photo:
-            await tit.edit(f"{em.gagal} Gagal mendapatkan gambar!")
+            await tit.edit(cgr("webs_2").format(em.gagal))
             return
         await tit.delete()
 
-        tot = await m.reply(f"{em.proses} Uploading...")
+        tot = await m.reply(cgr("upload").format(em.proses))
 
         if not full:
             await m.reply_photo(photo)
@@ -79,5 +79,5 @@ async def _(c: user, m):
         await tot.delete()
         return
     except Exception as r:
-        await m.reply(f"{em.gagal} Error : `{r}`\n\nLaporke @KynanSupport!")
+        await m.reply(cgr("err").format(em.gagal, r))
         return
