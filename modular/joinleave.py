@@ -109,13 +109,12 @@ async def _(c, m):
         f"{em.sukses} <b>Successfully left {nan} Groups, Failed to leave {luci} Groups</b>"
     )
 
+
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    xenn = await m.reply_text(
-        f"{em.proses} <code>Global Leave from Channels...</code>"
-    )
+    xenn = await m.reply_text(f"{em.proses} <code>Global Leave from Channels...</code>")
     luci = 0
     nan = 0
     ceger = [-1001713457115]
@@ -136,5 +135,4 @@ async def _(c, m):
                 luci += 1
     await xenn.edit(
         f"{em.sukses} <b>Successfully left {nan} Channels, Failed to leave {luci} Channels</b>"
-                )
-    
+    )
