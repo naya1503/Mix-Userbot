@@ -138,10 +138,10 @@ async def _(c: user, m):
 
 @user.on_message(
     filters.private
-    & ~filters.me
     & filters.incoming
     & ~filters.service
     & ~filters.bot
+    & ~filters.me,
     group=99,
 )
 async def pm(c, m):
