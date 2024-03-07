@@ -323,7 +323,8 @@ sud_2: "{} **Added to sudo users : {}**"
 sud_3: "{} **{} is not a sudo user!**"
 sud_4: "{} **Removed from sudo users : {}**"
 sud_5: "{} **There are no sudo users!**"
-sud_6: "{} **Sudo Members :**\n\n{}\n\n{} {}"
+sud_6: "{} **Sudo Members :**\n\n{}"
+
 
 # transfer
 tr_1: "{} **Use the format : `{}` [reply to message/give message].**"
