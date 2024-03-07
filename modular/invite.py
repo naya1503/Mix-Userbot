@@ -42,7 +42,9 @@ async def _(c, m):
     for user_id in user_list:
         try:
             user_info = await c.get_chat_member(m.chat.id, user_id)
-            full_name = user_info.user.first_name + (" " + user_info.user.last_name if user_info.user.last_name else "")
+            full_name = user_info.user.first_name + (
+                " " + user_info.user.last_name if user_info.user.last_name else ""
+            )
             users_mention.append(full_name)
         except errors.UserNotFound:
             await mg.edit(f"{em.gagal} Pengguna dengan ID {user_id} tidak ditemukan.")
