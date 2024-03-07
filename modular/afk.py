@@ -266,12 +266,7 @@ async def _(c, m):
         return
 
 
-@user.on_message(
-    (filters.mentioned | filters.private)
-    & ~filters.me
-    & ~filters.bot
-    & filters.incoming
-)
+@ky.afk()
 async def _(c, m):
     em = Emojik()
     em.initialize()
