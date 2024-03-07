@@ -322,7 +322,8 @@ sud_2: "{} **Ditambakan ke pengguna sudo : {}**"
 sud_3: "{} **{} Bukan pengguna sudo!**"
 sud_4: "{} **Dihapus dari pengguna sudo : {}**"
 sud_5: "{} **Tidak ada pengguna sudo satupun!**"
-sud_6: "{} **Anggota Sudo :**\n\n{}\n\n{} {}"
+sud_6: "{} **Anggota Sudo :**\n\n{}"
+sud_7 : "{} **Tidak ada pengguna sudo"
 
 # transfer
 tr_1: "{} **Gunakan format : `{}` [balas pesan/berikan pesan].**"
