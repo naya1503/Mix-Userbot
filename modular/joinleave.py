@@ -28,4 +28,3 @@ async def _(c, m):
         await c.join_chat(Nan)
     except Exception as ex:
         await ceger.edit(f"{em.gagal} <b>ERROR: </b>\n\n<code>{str(ex)}</code>")
-
