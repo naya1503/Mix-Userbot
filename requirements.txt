@@ -37,4 +37,4 @@ pytimeparse
 regex
 Pillow==9.0.0
 pytz
-
+pyyaml
