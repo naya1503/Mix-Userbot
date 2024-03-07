@@ -42,7 +42,9 @@ async def _(c, m):
             f"{em.gagal} <b>Perintah ini Dilarang digunakan di Group ini</b>"
         )
     try:
-        await ceger.edit_text(f"{em.sukses} {c.me.mention} <b>has left this group, bye!!</b>")
+        await ceger.edit_text(
+            f"{em.sukses} {c.me.mention} <b>has left this group, bye!!</b>"
+        )
         await c.leave_chat(lus)
     except Exception as ex:
         await xxnx.edit_text(f"**ERROR:** \n\n<code>{str(ex)}</code>")
