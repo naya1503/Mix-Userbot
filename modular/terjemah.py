@@ -28,9 +28,7 @@ async def _(c: user, m):
         kata = m.reply_to_message.text or m.reply_to_message.caption
     else:
         if len(m.command) < 2:
-            await pros.edit(
-                f"{em.gagal} Gunakan format :`{m.command}` [berikan teks/balas pesan]"
-            )
+            await pros.edit(cgr("tr_1").format(em.gagal, m.command))
         else:
             bhs = c._translate[c.me.id]["negara"]
             kata = m.text.split(None, 1)[1]
@@ -47,7 +45,7 @@ async def _(c: user, m):
         os.remove("trs.oog")
         return
     except Exception as er:
-        await pros.edit(f"{em.gagal} Error: {er}")
+        await pros.edit(cgr("err").format(em.gagal, er))
         return
     except FileNotFoundError:
         pass
@@ -58,21 +56,21 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     trans = Translator()
-    pros = await m.reply(f"{em.proses} Processing...")
+    pros = await m.reply(cgr("proses").format(em.proses))
     if m.reply_to_message:
         bhs = c._translate[c.me.id]["negara"]
         txt = m.reply_to_message.text or m.reply_to_message.caption
         src = await trans.detect(txt)
     else:
         if len(m.command) < 2:
-            await m.reply(f"{em.gagal} `{m.command}` [balas ke pesan]")
+            await m.reply(cgr("tr_1").format(em.gagal, m.command))
             return
         else:
             bhs = c._translate[c.me.id]["negara"]
             txt = m.text.split(None, 1)[1]
             src = await trans.detect(txt)
     trsl = await trans(txt, sourcelang=src, targetlang=bhs)
-    reply = f"{em.sukses} `{trsl.text}`"
+    reply = cgr("tr_2").format(em.sukses, trsl.text)
     rep = m.reply_to_message or m
     await pros.delete()
     await c.send_message(m.chat.id, reply, reply_to_message_id=rep.id)
@@ -86,10 +84,10 @@ async def _(c: user, m):
         bhs_list = "\n".join(
             f"- **{lang}**: `{code}`" for lang, code in kode_bahasa.items()
         )
-        await m.reply(f"{em.sukses} **Daftar Kode Bahasa:**\n{bhs_list}")
+        await m.reply(cgr("tr_3").format(em.sukses, bhs_list))
         return
     except Exception as e:
-        await m.reply(f"{em.gagal} Error: {e}")
+        await m.reply(cgr("err").format(em.gagal, e))
         return
 
 
@@ -97,17 +95,15 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    pros = await m.reply(f"{em.proses} Processing...")
+    pros = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 2:
-        await pros.edit(
-            f"{em.gagal} Silahkan berikan kode bahasa!\nContoh : `{m.command}` id."
-        )
+        await pros.edit(cgr("tr_4").format(em.gagal, m.command))
         return
     for lang, code in kode_bahasa.items():
         kd = m.text.split(None, 1)[1]
         if kd.lower() == code.lower():
             c._translate[c.me.id] = {"negara": kd}
-            await pros.edit(f"{em.sukses} Kode bahasa diganti ke : `{kd}` - **{lang}**")
+            await pros.edit(cgr("tr_4").format(em.gagal, kd, lang))
             return
-    await pros.edit(f"{em.gagal} Kode bahasa tidak valid atau tidak ditemukan.")
+    await pros.edit(cgr("tr_6").format(em.gagal))
     return
