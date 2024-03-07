@@ -31,7 +31,7 @@ async def _(c: user, m):
             c.set_prefix(c.me.id, mepref)
             udB.set_pref(c.me.id, mepref)
             parsed = " ".join(f"{x}" for x in mepref)
-            return await xx.edit(cgr("upref_2").format(em.gagal, parsed))
+            return await xx.edit(cgr("upref_2").format(em.sukses, parsed))
         except Exception as er:
             await xx.edit(cgr("err").format(em.gagal, er))
 
