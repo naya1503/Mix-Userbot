@@ -55,7 +55,7 @@ async def _(c: user, m):
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
-                    await m.reply(cgr(qot_3).format(em.gagal))
+                    await m.reply(cgr("qot_3").format(em.gagal))
                     return
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=0)
                 rep.from_user = org
