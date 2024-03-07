@@ -2,6 +2,7 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.methods import *
 from pyrogram.types import *
+from Mix.core.sender_tools import extract_user
 
 from Mix import *
 
@@ -28,7 +29,7 @@ async def _(c, m):
 
     user_s_to_add = m.command[1]
     user_list = user_s_to_add.split(" ")
-    user_id = await c.extract_user_and_reason
+    user_id = await c.extract_user(m)
 
     if not user_list:
         await mg.edit(f"{em.gagal} Berikan ID/Nama Pengguna")
