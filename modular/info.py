@@ -376,4 +376,3 @@ async def _(c, m):
             ms, zz, nanki, luci, tgr, kntl, ceger
         )
     )
-    
