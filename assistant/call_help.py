@@ -81,9 +81,6 @@ async def _(c, cq):
                     ],
                 ]
             )
-            await cq.edit_message_text(
-                text=text, reply_markup=button, disable_web_page_preview=True
-            )
         await cq.edit_message_text(
             text=text + f"\n<b>© Mix-Userbot - @KynanSupport</b>",
             reply_markup=button,
@@ -126,13 +123,13 @@ async def _(c, cq):
     user_id = cq.from_user.id
     prefix = await user.get_prefix(user_id)
     txt = None
-    if colmek == "anim_1":
+    if colmek == "anm1":
         txt = get_cgr("help_anm1")
-    elif colmek == "anim_2":
+    elif colmek == "anm2":
         txt = get_cgr("help_anm2")
-    elif colmek == "anim_3":
+    elif colmek == "anm3":
         txt = get_cgr("help_anm3")
-    elif colmek == "anim_4":
+    elif colmek == "anm4":
         txt = get_cgr("help_anm4")
     elif colmek == "anim.bc":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
