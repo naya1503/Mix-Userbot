@@ -42,8 +42,7 @@ async def _(c: user, m):
     link = await paste(content)
     photo = await ss(link, True)
     try:
-        await m.reply_document(
-            photo, caption=cgr("paste_3").format(em.sukses, link))
+        await m.reply_document(photo, caption=cgr("paste_3").format(em.sukses, link))
     except Exception:
         await m.reply(cgr("paste_3").format(em.sukses, link))
         return

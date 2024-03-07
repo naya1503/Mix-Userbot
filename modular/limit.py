@@ -34,8 +34,8 @@ async def _(c: user, m):
         if "We afraid" in result or "Kami khawatir" in result:
             emoji = f"{em.warn}"
         await c.send_message(
-            m.chat.id,
-            cgr("lmt_1").format(emoji, result, em.alive, c.me.first_name))
+            m.chat.id, cgr("lmt_1").format(emoji, result, em.alive, c.me.first_name)
+        )
         await c.invoke(DeleteHistory(peer=xin, max_id=0, revoke=True))
         await msg.delete()
         return

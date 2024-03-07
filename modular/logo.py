@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pyrogram import *
 from pyrogram.types import *
 
-from Mix import Emojik, get_cgr, ky, user, cgr
+from Mix import Emojik, cgr, get_cgr, ky, user
 
 __modles__ = "Logo"
 __help__ = get_cgr("help_logo")
@@ -31,7 +31,7 @@ async def _(c: user, m):
         return
     bg_, font_ = "", ""
     if m.reply_to_message:
-        temp = m.reply_to_message 
+        temp = m.reply_to_message
         if temp.media:
             if temp.document:
                 if "font" in temp.document.mime_type:
@@ -98,8 +98,9 @@ async def _(c: user, m):
         await c.send_photo(
             chat_id=m.chat.id,
             photo=flnme,
-            caption=cgr("logo_2").format(em.sukses, c.me.mention))
-        
+            caption=cgr("logo_2").format(em.sukses, c.me.mention),
+        )
+
         os.remove(flnme)
         await xx.delete()
     if os.path.exists(bg_):

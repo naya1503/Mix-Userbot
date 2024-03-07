@@ -3,6 +3,7 @@ from io import BytesIO
 
 from pyrogram import *
 from pyrogram.enums import *
+
 from Mix import *
 
 __modles__ = "Profile"
@@ -21,7 +22,7 @@ async def _(c: user, m):
         await tex.delete()
         return
     await c.unblock_user(user_id)
-    umention = (await c.get_users(user_id)).mention
+    (await c.get_users(user_id)).mention
     await tex.edit(cgr("prof_2").format(em.sukses, mention))
     return
 
@@ -124,12 +125,14 @@ async def _(c: user, m):
     elif len(text) > 4096:
         with BytesIO(str.encode(text)) as out_file:
             out_file.name = "adminlist.text"
-            await m.reply_document(
-                document=out_file)
+            await m.reply_document(document=out_file)
             await bacot.delete()
             return
     else:
-        await bacot.edit_text(cgr("prof_8").format(em.sukses, len(a_chats), text), disable_web_page_preview=True)
+        await bacot.edit_text(
+            cgr("prof_8").format(em.sukses, len(a_chats), text),
+            disable_web_page_preview=True,
+        )
         return
 
 

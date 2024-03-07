@@ -31,4 +31,3 @@ async def _(c: user, m):
             )
         else:
             await m.reply(cgr("hlp_1").format(em.gagal, nama))
-

@@ -39,5 +39,5 @@ async def _(c: user, m):
             response = telegraph.create_page(page_title, html_content=page_text)
         except exceptions.TelegraphException as r:
             return await xx.edit(cgr("err").format(em.gagal, r))
-        ybg = cgr("grp_5").format(em.sukses, response['path'])
+        ybg = cgr("grp_5").format(em.sukses, response["path"])
         await xx.edit(ybg)

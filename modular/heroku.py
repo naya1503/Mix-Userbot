@@ -32,7 +32,8 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 from team.nandev.class_log import LOGGER
 
 from config import *
-from Mix import XCB, Emojik, get_cgr, in_heroku, ky, on_heroku, paste, user, cgr
+from Mix import (XCB, Emojik, cgr, get_cgr, in_heroku, ky, on_heroku, paste,
+                 user)
 
 from . import import_modular
 
@@ -68,9 +69,7 @@ async def _(c: user, m):
                 link = await paste(data)
                 return await m.reply_text(link)
             else:
-                return await m.reply_text(
-                    f"{em.gagal} "
-                )
+                return await m.reply_text(f"{em.gagal} ")
     except Exception as e:
         print(e)
         await m.reply_text(cgr("hero_1").format(em.gagal))
@@ -90,7 +89,9 @@ async def _(c: user, m):
             haha = Heroku.app(heroku_app_name)
         heroku_config = haha.config()
         if check_var in heroku_config:
-            return await m.reply_text(cgr("hero_3").format(em.sukses, check_var, heroku_config[check_var]))
+            return await m.reply_text(
+                cgr("hero_3").format(em.sukses, check_var, heroku_config[check_var])
+            )
         else:
             return await m.reply_text(cgr("hero_4").format(em.gagal))
     else:
@@ -101,7 +102,9 @@ async def _(c: user, m):
         if not output:
             await m.reply_text(cgr("hero_4").format(em.gagal))
         else:
-            return await m.reply_text(cgr("hero_3").format(em.sukses, check_var, str(output)))
+            return await m.reply_text(
+                cgr("hero_3").format(em.sukses, check_var, str(output))
+            )
 
 
 @ky.ubot("delvar", sudo=True)
@@ -213,7 +216,17 @@ async def _(c: user, m):
     AppHours = math.floor(AppQuotaUsed / 60)
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
-    text = cgr("hero_11").format(em.sukses, em.sukses, AppHours, AppMinutes, AppPercentage, em.sukses, hours, minutes, percentage)
+    text = cgr("hero_11").format(
+        em.sukses,
+        em.sukses,
+        AppHours,
+        AppMinutes,
+        AppPercentage,
+        em.sukses,
+        hours,
+        minutes,
+        percentage,
+    )
     return await dyno.edit(text)
 
 

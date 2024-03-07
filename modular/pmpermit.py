@@ -12,8 +12,8 @@ __modles__ = "PMPermit"
 __help__ = get_cgr("help_pmper")
 
 from pyrogram import *
-from pyrogram.types import *
 from pyrogram.enums import *
+from pyrogram.types import *
 
 from Mix import *
 
@@ -136,7 +136,13 @@ async def _(c: user, m):
     await babi.edit(cgr("pmper_9").format(em.sukses, pm_warns))
 
 
-@user.on_message(filters.private & filters.incoming & ~filters.service & ~filters.bot & ~filters.via_bot)
+@user.on_message(
+    filters.private
+    & filters.incoming
+    & ~filters.service
+    & ~filters.bot
+    & ~filters.via_bot
+)
 async def pm(c, m):
     em = Emojik()
     em.initialize()

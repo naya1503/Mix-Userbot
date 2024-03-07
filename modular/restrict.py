@@ -109,7 +109,14 @@ async def _(c: user, m):
     if user_id in DEVS:
         return await m.reply_text(cgr("glbl_3").format(em.gagal))
     mention = (await c.get_users(user_id)).mention
-    msg = cgr("res_2").format(em.profil, mention, em.warn, m.from_user.mention if m.from_user else 'Anon', em.block, reason or 'No Reason Provided.')
+    msg = cgr("res_2").format(
+        em.profil,
+        mention,
+        em.warn,
+        m.from_user.mention if m.from_user else "Anon",
+        em.block,
+        reason or "No Reason Provided.",
+    )
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
@@ -134,13 +141,19 @@ async def _(c: user, m):
     if user_id == c.me.id:
         return await m.reply_text(cgr("res_4").format(em.gagal))
     if user_id in DEVS:
-        return await m.reply_text(
-            cgr("glbl_3").format(em.gagal))
+        return await m.reply_text(cgr("glbl_3").format(em.gagal))
     try:
         mention = (await c.get_users(user_id)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
-    msg = cgr("res_5").format(em.profil, mention, em.warn, m.from_user.mention if m.from_user else 'Anon', em.block, reason or 'No Reason Provided.')
+    msg = cgr("res_5").format(
+        em.profil,
+        mention,
+        em.warn,
+        m.from_user.mention if m.from_user else "Anon",
+        em.block,
+        reason or "No Reason Provided.",
+    )
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
@@ -204,7 +217,9 @@ async def _(c: user, m):
     r = m.reply_to_message
     if m.command[0][0] == "u":
         await r.unpin()
-        return await m.reply_text(cgr("res_8").format(em.sukses, r.link), disable_web_page_preview=True)
+        return await m.reply_text(
+            cgr("res_8").format(em.sukses, r.link), disable_web_page_preview=True
+        )
     await r.pin(disable_notification=True)
     await m.reply(cgr("res_9").format(em.sukses, r.link), disable_web_page_preview=True)
 
@@ -221,7 +236,14 @@ async def _(c: user, m):
     if user_id in DEVS:
         return await m.reply_text(cgr("glbl_3").format(em.gagal))
     mention = (await c.get_users(user_id)).mention
-    msg = cgr("res_11").format(em.profil, mention, em.warn, m.from_user.mention if m.from_user else 'Anon', em.block, reason or 'No Reason Provided.')
+    msg = cgr("res_11").format(
+        em.profil,
+        mention,
+        em.warn,
+        m.from_user.mention if m.from_user else "Anon",
+        em.block,
+        reason or "No Reason Provided.",
+    )
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
@@ -234,7 +256,7 @@ async def _(c: user, m):
         await m.reply_text(cgr("res_13").format(em.gagal))
     except UserAdminInvalid:
         return await m.reply_text(cgr("res_3").format(em.gagal))
-    except RPCError as e:
+    except RPCError:
         pass
     except Exception as e:
         await m.reply_text(cgr("err").format(em.gagal, e))
@@ -258,7 +280,7 @@ async def _(c: user, m):
         await m.reply_text(cgr("res_13").format(em.gagal))
     except UserAdminInvalid:
         return await m.reply_text(cgr("res_3").format(em.gagal))
-    except RPCError as e:
+    except RPCError:
         pass
     except Exception as e:
         await m.reply_text(cgr("err").format(em.gagal, e))
@@ -384,7 +406,7 @@ async def _(c: user, m):
         await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
         await m.reply_text(cgr("res_3").format(em.gagal))
-    except RPCError as e:
+    except RPCError:
         pass
     except Exception as e:
         await m.reply_text(cgr("err").format(em.gagal), e)
@@ -436,7 +458,7 @@ async def _(c: user, m):
         await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
         await m.reply_text(cgr("res_3").format(em.gagal))
-    except RPCError as e:
+    except RPCError:
         pass
     except Exception as e:
         await m.reply_text(cgr("err").format(em.gagal), e)
@@ -484,7 +506,7 @@ async def _(c: user, m):
         await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
         await m.reply_text(cgr("res_3").format(em.gagal))
-    except RPCError as e:
+    except RPCError:
         pass
     except Exception as e:
         await m.reply_text(cgr("err").format(em.gagal), e)

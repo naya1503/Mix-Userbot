@@ -69,7 +69,9 @@ async def _(c: user, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgb.add_gban(nyet, alasan, c.me.id)
-    mmg = cgr("glbl_6").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan)
+    mmg = cgr("glbl_6").format(
+        em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan
+    )
     await m.reply(mmg)
     await xx.delete()
 
@@ -150,7 +152,9 @@ async def _(c: user, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgm.add_gmute(nyet, alasan, c.me.id)
-    mmg = cgr("glbl_11").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan)
+    mmg = cgr("glbl_11").format(
+        em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan
+    )
     await m.reply(mmg)
     await xx.delete()
 
@@ -185,7 +189,9 @@ async def _(c: user, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgm.remove_gmute(nyet)
-    mmg = cgr("glbl_13").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
+    mmg = cgr("glbl_13").format(
+        em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention
+    )
     await m.reply(mmg)
     await xx.delete()
 
@@ -201,16 +207,17 @@ async def _(c: user, m):
         return await msg.edit(cgr("glbl_22").format(em.gagal))
     dftr = cgr("glbl_14").format(em.profil)
     for ii in gbanu:
-        dftr += cgr("glbl_15").format(em.block, ii['_id'])
+        dftr += cgr("glbl_15").format(em.block, ii["_id"])
         if ii["reason"]:
-            dftr += cgr("glbl_16").format(em.warn, ii['reason'], em.sukses, dbgb.count_gbans())
+            dftr += cgr("glbl_16").format(
+                em.warn, ii["reason"], em.sukses, dbgb.count_gbans()
+            )
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
         with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
             f.name = "gbanlist.txt"
-            await m.reply_document(
-                document=f, caption=cgr("glbl_17").format(em.profil))
+            await m.reply_document(document=f, caption=cgr("glbl_17").format(em.profil))
     await msg.delete()
     return
 
@@ -226,15 +233,16 @@ async def _(c: user, m):
         return
     dftr = cgr("glbl_18").format(em.profil)
     for ii in gmnu:
-        dftr += cgr("glbl_19").format(em.warn, ii['_id'])
+        dftr += cgr("glbl_19").format(em.warn, ii["_id"])
         if ii["reason"]:
-            dftr += cgr("glbl_20").format(em.warn, ii['reason'], em.sukses, dbgm.count_gmutes())
+            dftr += cgr("glbl_20").format(
+                em.warn, ii["reason"], em.sukses, dbgm.count_gmutes()
+            )
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
         with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
             f.name = "gmutelist.txt"
-            await m.reply_document(
-                document=f, caption=cgr("glbl_21").format(em.profil))
+            await m.reply_document(document=f, caption=cgr("glbl_21").format(em.profil))
     await msg.delete()
     return

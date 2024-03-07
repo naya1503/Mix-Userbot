@@ -58,7 +58,9 @@ async def count(c: user, chat):
         total_banned = len(total_banned)
         return total_bot, total_admin, bot_admin, total_banned
     except Exception:
-        total_bot = total_admin = bot_admin = total_banned = cgr("info_1").format(em.gagal)
+        total_bot = total_admin = bot_admin = total_banned = cgr("info_1").format(
+            em.gagal
+        )
 
     return total_bot, total_admin, bot_admin, total_banned
 
@@ -134,8 +136,26 @@ async def user_info(c, sus, already=False):
         except Exception:
             last_date = cgr("info_13")
 
-    caption = cgr("info_14").format(user_id, user_id, mention, first_name, last_name, ("@" + username) if username else "NA", about, is_support, omp, gban, reason, dc_id, is_restricted, is_verified, is_fake, is_scam, is_bot, last_date)
-
+    caption = cgr("info_14").format(
+        user_id,
+        user_id,
+        mention,
+        first_name,
+        last_name,
+        ("@" + username) if username else "NA",
+        about,
+        is_support,
+        omp,
+        gban,
+        reason,
+        dc_id,
+        is_restricted,
+        is_verified,
+        is_fake,
+        is_scam,
+        is_bot,
+        last_date,
+    )
 
     return caption, photo_id
 
@@ -162,7 +182,7 @@ async def chat_info(c: user, chat, already=False):
                     u_name = ll.chats[0].usernames
                 except Exception:
                     pass
-            except KeyError as e:
+            except KeyError:
                 caption = cgr("err").format(em.gagal, r)
                 return caption, None
     chat_id = chat.id
@@ -183,7 +203,24 @@ async def chat_info(c: user, chat, already=False):
     can_save = chat.has_protected_content
     linked_chat = chat.linked_chat
 
-    caption = cgr("info_15").format(chat_id, title, type_, dc_id, ("@" + username) if username else "NA", total_admin, total_bot, total_banned, total_bot_admin, is_scam, is_fake, is_restricted, description, members, can_save, linked_chat.id if linked_chat else "Not Linked")
+    caption = cgr("info_15").format(
+        chat_id,
+        title,
+        type_,
+        dc_id,
+        ("@" + username) if username else "NA",
+        total_admin,
+        total_bot,
+        total_banned,
+        total_bot_admin,
+        is_scam,
+        is_fake,
+        is_restricted,
+        description,
+        members,
+        can_save,
+        linked_chat.id if linked_chat else "Not Linked",
+    )
 
     return caption, photo_id
 
