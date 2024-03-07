@@ -15,6 +15,7 @@ Help Command Invite
 • Penjelasan: Untuk mendapatkan link invite chat.
 """
 
+
 @ky.ubot("invite|undang", sudo=True)
 async def _(c, m):
     em = Emojik()
@@ -31,6 +32,7 @@ async def _(c, m):
         await mg.edit(f"{em.gagal}Unable To Add Users! \nTraceBack : {e}")
         return
     await mg.edit(f"{em.sukses}Sucessfully Added {len(user_list)} To {mg.chat.title}")
+
 
 @ky.ubot("getlink|invitelink", sudo=True)
 @ky.devs("getling")
