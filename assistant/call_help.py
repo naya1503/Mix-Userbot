@@ -7,11 +7,13 @@
 ################################################################
 
 
+from time import time
+
+import psutil
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
-import psutil
-from time import time
+
 from Mix import *
 from Mix.core.waktu import get_time, start_time
 
@@ -27,9 +29,10 @@ def clbk_stasm():
         "close_asst",
     )
 
+
 @ky.callback(("stats_mix"))
 async def _(c, cq):
-    
+
     uptime = await get_time((time() - start_time))
     cpu = psutil.cpu_percent()
     mem = psutil.virtual_memory().percent
@@ -46,7 +49,6 @@ Modules: {len(CMD_HELP)}
     await cq.edit_message_text(stats, reply_markup=clbk_stasm())
 
 
-
 @ky.callback("help_(.*?)")
 async def _(c, cq):
     mod_match = re.match(r"help_module\((.+?)\)", cq.data)
@@ -55,33 +57,36 @@ async def _(c, cq):
     back_match = re.match(r"help_back", cq.data)
     user_id = cq.from_user.id
     prefix = await user.get_prefix(user_id)
-    
+
     if mod_match:
         module = (mod_match.group(1)).replace(" ", "_")
         text = f"<b>{CMD_HELP[module].__help__}</b>\n".format(next((p) for p in prefix))
         button = okb([[("≪", "help_back")]])
         if "Animasi" in text:
-            text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(" ".join(prefix), len(CMD_HELP))
+            text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+                " ".join(prefix), len(CMD_HELP)
+            )
             button = okb(
                 [
-                  [
-                    ("Animasi 1", "anim.anm1"),
-                    ("Animasi 2", "anim.anm2"),
-                  ],
-                  [
-                    ("Animasi 3", "anim.anm3"),
-                    ("Animasi 4", "anim.anm4"),
-                  ],
-                  [
-                    ("≪", "help_back"),
-                  ],
-                ])
+                    [
+                        ("Animasi 1", "anim.anm1"),
+                        ("Animasi 2", "anim.anm2"),
+                    ],
+                    [
+                        ("Animasi 3", "anim.anm3"),
+                        ("Animasi 4", "anim.anm4"),
+                    ],
+                    [
+                        ("≪", "help_back"),
+                    ],
+                ]
+            )
         await cq.edit_message_text(
             text=text + f"\n<b>© Mix-Userbot - @KynanSupport</b>",
             reply_markup=button,
             disable_web_page_preview=True,
         )
-    
+
     top_text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
         " ".join(prefix), len(CMD_HELP)
     )
@@ -110,6 +115,7 @@ async def _(c, cq):
             disable_web_page_preview=True,
         )
 
+
 @ky.callback("^anim.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
@@ -125,23 +131,25 @@ async def _(c, cq):
     elif colmek == "anim_4":
         txt = get_cgr("help_anm4")
     elif colmek == "anim.bc":
-        txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(" ".join(prefix), len(CMD_HELP))
+        txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+            " ".join(prefix), len(CMD_HELP)
+        )
         kemem = okb(
+            [
                 [
-                  [
                     ("Animasi 1", "anim.anm1"),
                     ("Animasi 2", "anim.anm2"),
-                  ],
-                  [
+                ],
+                [
                     ("Animasi 3", "anim.anm3"),
                     ("Animasi 4", "anim.anm4"),
-                  ],
-                  [
+                ],
+                [
                     ("≪", "help_back"),
-                  ],
-                ])
-    await cq.edit_message_text(
-        txt, reply_markup=kemem)
+                ],
+            ]
+        )
+    await cq.edit_message_text(txt, reply_markup=kemem)
 
 
 @ky.callback("^cls_hlp")
