@@ -18,7 +18,7 @@ __help__ = get_cgr("help_emo")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.edit(f"{em.proses} <b>Processing...</b>")
+    xx = await m.edit(cgr("proses").format(em.proses))
     emoji = m.reply_to_message
     prem = c.me.is_premium
     if prem == True:
@@ -29,33 +29,33 @@ async def _(c: user, m):
                     break
             if emoji_id:
                 await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
-                await xx.edit(
-                    f"{em.sukses} <b>Emoji status diset ke :</b> <emoji id={emoji_id}>😭</emoji>"
-                )
+                await xx.edit(cgr("em_25").format(em.sukses, emoji_id))
+                return
 
     elif prem == False:
-        await xx.edit(
-            f"{em.gagal} <b>Akun Telegram Lo bukan pengguna Premium Goblok!!</b>"
-        )
+        await xx.edit(cgr("em_2").format(em.gagal))
+        return
     else:
-        await xx.edit(f"{em.gagal} <b>Silahkan balas ke emoji premium!!</b>")
+        await xx.edit(cgr("em_3").format(em.gagal))
+        return
 
 
 @ky.ubot("emoid", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.edit(f"{em.proses} <b>Processing...</b>")
+    xx = await m.edit(cgr("proses").format(em.proses))
     emoji = m.reply_to_message
     if emoji.entities:
         for entot in emoji.entities:
             if entot.custom_emoji_id:
                 emoid = entot.custom_emoji_id
-                await xx.edit(
-                    f"{em.sukses} <b>Custom Emoji ID : <code>{emoid}</code>.</b>"
-                )
+                await xx.edit(cgr("em_4").format(em.sukses, emoid))
+                return
             else:
-                await xx.edit(f"{em.gagal} <b>Reply ke Custom Emoji.</b>")
+                await xx.edit(cgr("em_3").format(em.gagal))
+                return
+
 
 
 @ky.ubot("emoji", sudo=True)
