@@ -1,5 +1,5 @@
 from pyrogram.types import *
-
+from pyrogram.errors import *
 from Mix import *
 
 __modles__ = "Join"
@@ -37,19 +37,21 @@ async def _(c, m):
     em.initialize()
     lus = m.command[1] if len(m.command) > 1 else m.chat.id
     ceger = await m.reply_text(f"{em.proses} <code>Processing...</code>")
-    if lus in NO_GCAST:
-        await ceger.edit(
-            f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
-        )
+    try:
+        if lus in NO_GCAST:
+            await ceger.edit(
+                f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
+            )
 
-    else:
-        inpogc = await c.get_chat(lus)
-        namagece = inpogc.title
-        await c.leave_chat(lus)
-        await ceger.edit(
-            f"{em.sukses} {c.me.mention} Berhasil keluar dari {namagece} <b>"
-        )
-
+        else:
+            inpogc = await c.get_chat(lus)
+            namagece = inpogc.title
+            await c.leave_chat(lus)
+            await ceger.edit(
+                f"{em.sukses} {c.me.mention} Berhasil keluar dari {namagece} <b>"
+            )
+    except pyrogram.errors.exceptions.bad_request_400.UserNotParticipant:
+        await c.edit(f"{em.gagal} <b>Anda bukan anggota atau member di <code>{lus}</code>")
     # try:
     #     await ceger.edit_text(
     #         f"{em.sukses} {c.me.mention} <b>has left this group, bye!!</b>"
