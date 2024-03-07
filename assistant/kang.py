@@ -20,8 +20,6 @@ from Mix import *
 from Mix.core.http import http
 from Mix.core.stick_tools import EMOJI_PATTERN, convert_video, resize_image
 
-LOG_ME = ndB.get_key("TAG_LOG")
-
 
 @ky.bots("kang")
 async def _(self: bot, message):
@@ -161,7 +159,7 @@ async def _(self: bot, message):
         file = await self.save_file(filename)
         media = await self.invoke(
             SendMedia(
-                peer=(await self.resolve_peer(LOG_ME)),
+                peer=(await self.resolve_peer(TAG_LOG)),
                 media=InputMediaUploadedDocument(
                     file=file,
                     mime_type=self.guess_mime_type(filename),
@@ -233,7 +231,7 @@ async def _(self: bot, message):
         await prog_msg.edit_text(
             f"<b>Sticker Anda Berhasil Dibuat!</b>\n<b><a href=https://t.me/addstickers/{packname}>👀 Lihat Paket Sticker Disini</a></b>\n<b>Emoji:</b> {sticker_emoji}"
         )
-        await self.delete_messages(chat_id=LOG_ME, message_ids=msg_.id, revoke=True)
+        await self.delete_messages(chat_id=TAG_LOG, message_ids=msg_.id, revoke=True)
         try:
             os.remove(filename)
         except OSError:

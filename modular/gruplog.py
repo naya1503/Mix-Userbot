@@ -25,9 +25,8 @@ async def _(c: user, m):
     em.initialize()
     xx = await m.reply(cgr("proses").format(em.proses))
     cek = c.get_arg(m)
-    logs = udB.get_logger(c.me.id)
     if cek.lower() == "on":
-        if not logs:
+        if not TAG_LOG:
             await c.logger_grup()
             xx = await c.get_grup()
             ff = await c.export_chat_invite_link(int(xx.id))
@@ -37,7 +36,7 @@ async def _(c: user, m):
         else:
             return await xx.edit(cgr("grplog_2").format(em.sukses))
     if cek.lower() == "off":
-        if logs:
+        if TAG_LOG:
             udB.rem_logger(c.me.id)
             ndB.del_key("TAG_LOG")
             xx = await c.get_grup()
@@ -51,8 +50,7 @@ async def _(c: user, m):
 
 @ky.gc()
 async def _(c, m):
-    db = udB.get_logger(user.me.id)
-    if not db:
+    if not TAG_LOG:
         return
     org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     lenk = m.link
@@ -74,7 +72,7 @@ async def _(c, m):
             media = m.photo.file_id
             pat = await c.download_media(media, file_name=f"{m.from_user.id}.jpg")
             ret = await bot.send_photo(
-                db,
+                TAG_LOG,
                 photo=pat,
                 caption=teks,
                 reply_markup=donut,
@@ -84,7 +82,7 @@ async def _(c, m):
             media = m.video.file_id
             pat = await c.download_media(media, file_name=f"{m.from_user.id}.mp4")
             ret = await bot.send_video(
-                db,
+                TAG_LOG,
                 video=pat,
                 caption=teks,
                 reply_markup=donut,
@@ -92,13 +90,13 @@ async def _(c, m):
             os.remove(pat)
         else:
             ret = await bot.send_message(
-                db, teks, disable_web_page_preview=True, reply_markup=donut
+                TAG_LOG, teks, disable_web_page_preview=True, reply_markup=donut
             )
 
     except FloodWait as e:
         await asyncio.sleep(e.value)
         ret = await bot.send_message(
-            db, teks, disable_web_page_preview=True, reply_markup=donut
+            TAG_LOG, teks, disable_web_page_preview=True, reply_markup=donut
         )
     tag_add(ret.id, m.chat.id, m.id)
 
@@ -140,13 +138,12 @@ async def _(c: user, m):
 
 @ky.pc()
 async def _(c: user, m):
-    lg = ndB.get_key("TAG_LOG")
-    if lg is None:
+    if TAG_LOG is None:
         return
     if m.chat.id != 777000:
         try:
             async for oiu in c.search_messages(m.chat.id, limit=1):
-                await oiu.forward(lg)
+                await oiu.forward(TAG_LOG)
         except FloodWait as e:
             await asyncio.sleep(e.value)
-            await oiu.forward(lg)
+            await oiu.forward(TAG_LOG)
