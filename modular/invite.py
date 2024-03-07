@@ -20,7 +20,7 @@ Help Command Invite
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    mg = await m.reply_text(f"{em.proses} <code>Menambahkan Pengguna!</code>")
+    mg = await m.reply_text(f"{em.proses} <code>Menambahkan Pengguna ...</code>")
     if len(m.command) < 2:
         await mg.edit(f"{em.gagal} Berikan ID/Nama Pengguna")
         return
@@ -33,13 +33,13 @@ async def _(c, m):
         return
 
     try:
-        await c.add_chat_members(message.chat.id, user_list, forward_limit=100)
+        await c.add_chat_members(m.chat.id, user_list, forward_limit=100)
     except BaseException as e:
         await mg.edit(f"{em.gagal} Tidak Dapat Menambahkan Pengguna! \nTraceBack : {e}")
         return
 
     await mg.edit(
-        f"{em.sukses} Berhasil Menambahkan {len(user_list)} Ke {mg.chat.title}"
+        f"{em.sukses} Berhasil Menambahkan {len(user_list)} Ke {m.chat.title}"
     )
 
 
