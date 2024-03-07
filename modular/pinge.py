@@ -4,9 +4,8 @@
  
  @ CREDIT : NAN-DEV
 """
-
-from datetime import datetime
 ################################################################
+from datetime import datetime
 from time import time
 
 from pyrogram.raw.functions import Ping
@@ -15,12 +14,7 @@ from Mix import *
 from Mix.core.waktu import get_time, start_time
 
 __modles__ = "Ping"
-__help__ = """
- Help Command Ping
-
-• Perintah : <code>{0}ping</code>
-• Penjelasan : Untuk mengecek userbot anda.
-"""
+__help__ = get_cgr("help_ping")
 
 
 @ky.ubot("ping", sudo=True)
@@ -33,15 +27,7 @@ async def _(c: user, m):
     end = datetime.now()
     delta_ping = (end - start).microseconds / 1000
     upnya = await get_time((time() - start_time))
-    _ping = f"""
-**{em.ping} Pong `{str(delta_ping).replace('.', ',')}ms`**
-**{em.pong} Uptime !! `{upnya}`**
-**{em.alive} Mix-Userbot**
-**{em.profil} {c.me.first_name} **
-"""
+    _ping = cgr("pin_1").format(
+        em.ping, str(delta_ping).replace(".", ","), em.pong, upnya
+    )
     await m.reply(_ping)
-
-
-@bot.on_message(filters.command("ping"))
-async def _(u, m):
-    await m.reply_text("<b> Mix Userbot Tes</b>")

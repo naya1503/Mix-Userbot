@@ -1,36 +1,13 @@
-__modles__ = "Profile"
-__help__ = """
-Help Command Profile
-
-• Perintah: <code>{0}adminlist</code>
-• Penjelasan: Untuk melihat status admin grup anda.
-
-• Perintah: <code>{0}setbio</code>
-• Penjelasan: Untuk mengubah bio Anda.
-
-• Perintah: <code>{0}setname</code>
-• Penjelasan: Untuk mengubah Nama Anda.
-
-• Perintah: <code>{0}setpp</code>
-• Penjelasan: Untuk mengubah Foto Akun Anda.
-
-• Perintah: <code>{0}block</code>
-• Penjelasan: Untuk blokir pengguna.
-
-• Perintah: <code>{0}unblock</code>
-• Penjelasan: Untuk buka blokir pengguna.
-
-• Perintah: <code>{0}purgeme</code>
-• Penjelasan: Untuk buka blokir pengguna.
-"""
-
-
 import os
 from io import BytesIO
 
 from pyrogram import *
+from pyrogram.enums import *
 
 from Mix import *
+
+__modles__ = "Profile"
+__help__ = get_cgr("help_prof")
 
 
 @ky.ubot("unblock", sudo=True)
@@ -38,16 +15,15 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     user_id = await c.extract_user(m)
-    tex = await m.reply(f"{em.proses} Processing...")
+    tex = await m.reply(cgr("proses").format(em.proses))
     if not user_id:
-        return await tex.edit(
-            f"{em.gagal} Silahkan balas pesan pengguna atau berikan username."
-        )
+        return await tex.edit(cgr("prof_1").format(em.gagal))
     if user_id == c.me.id:
-        return await tex.edit(f"{em.gagal} Ya anda gile.")
+        await tex.delete()
+        return
     await c.unblock_user(user_id)
-    umention = (await c.get_users(user_id)).mention
-    await tex.edit(f"{em.sukses} Berhasil membuka blokir {umention}")
+    (await c.get_users(user_id)).mention
+    await tex.edit(cgr("prof_2").format(em.sukses, mention))
     return
 
 
@@ -56,44 +32,42 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     user_id = await c.extract_user(m)
-    tex = await m.reply(f"{em.proses} Processing...")
+    tex = await m.reply(cgr("proses").format(em.proses))
     if not user_id:
-        return await tex.edit(
-            f"{em.gagal} Silahkan balas pesan pengguna atau berikan username."
-        )
+        return await tex.edit(cgr("prof_1").format(em.gagal))
     if user_id == c.me.id:
-        return await tex.edit(f"{em.gagal} Ya anda gile.")
+        await tex.delete()
+        return
     await c.block_user(user_id)
     umention = (await c.get_users(user_id)).mention
-    await tex.edit(f"{em.sukses} Berhasil memblokir {umention}")
+    await tex.edit(cgr("prof_3").format(em.sukses, umention))
+    return
 
 
 @ky.ubot("setname", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    tex = await m.reply(f"{em.proses} Processing...")
+    tex = await m.reply(cgr("proses").format(em.proses))
     direp = m.reply_to_message
     if direp:
         name = direp.text
         await c.update_profile(first_name=name)
-        await tex.edit(f"{em.sukses} Berhasil mengganti nama menjadi {name}.")
+        await tex.edit(cgr("prof_4").format(em.sukses, name))
         return
     if len(m.command) == 2:
         name = m.text.split(None, 1)[1]
         await c.update_profile(first_name=name)
-        await tex.edit(f"{em.sukses} Berhasil mengganti nama menjadi {name}.")
+        await tex.edit(cgr("prof_4").format(em.sukses, name))
         return
     elif len(m.command) == 3:
         name = m.text.split(None, 2)[1]
         last = m.text.split(None, 2)[2]
         await c.update_profile(first_name=name, last_name=last)
-        await tex.edit(
-            f"{em.sukses} Berhasil mengganti nama depan `{name}` nama belakang `{last}."
-        )
+        await tex.edit(cgr("prof_5").format(em.sukses, name, last))
         return
     else:
-        await tex.edit(f"{em.gagal} Silahkan berikan teks atau balas teks!")
+        await tex.edit(cgr("gcs_1").format(em.gagal))
         return
 
 
@@ -101,7 +75,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    tex = await m.reply("Processing...")
+    tex = await m.reply(cgr("proses").format(em.proses))
     direp = m.reply_to_message
     if direp:
         bio = direp.text
@@ -109,10 +83,10 @@ async def _(c: user, m):
         bio = m.text.split(None, 1)[1]
     try:
         await c.update_profile(bio=bio)
-        await tex.edit(f"{em.sukses} Berhasil mengganti bio menjadi {bio}.")
+        await tex.edit(cgr("prof_6").format(em.sukses, bio))
         return
     except Exception as e:
-        await tex.edit(f"{em.gagal} Error : `{e}`\n\nLaporke @KynanSupport!")
+        await tex.edit(cgr("err").format(em.gagal, e))
         return
 
 
@@ -120,15 +94,15 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    bacot = await m.reply(f"{em.proses} Processing...")
+    bacot = await m.reply(cgr("proses").format(em.proses))
     a_chats = []
     me = await c.get_me()
     async for dialog in c.get_dialogs():
-        if dialog.chat.type == enums.ChatType.SUPERGROUP:
+        if dialog.chat.type == ChatType.SUPERGROUP:
             gua = await dialog.chat.get_member(int(me.id))
             if gua.status in (
-                enums.ChatMemberStatus.OWNER,
-                enums.ChatMemberStatus.ADMINISTRATOR,
+                ChatMemberStatus.OWNER,
+                ChatMemberStatus.ADMINISTRATOR,
             ):
                 a_chats.append(dialog.chat)
 
@@ -146,21 +120,20 @@ async def _(c: user, m):
         j += 1
 
     if not text:
-        await bacot.edit_text(f"{em.gagal} Kamu tidak menjadi admin di grup manapun.")
+        await bacot.edit_text(cgr("prof_7").format(em.gagal))
+        return
     elif len(text) > 4096:
         with BytesIO(str.encode(text)) as out_file:
             out_file.name = "adminlist.text"
-            await m.reply_document(
-                document=out_file,
-                disable_notification=True,
-                quote=True,
-            )
+            await m.reply_document(document=out_file)
             await bacot.delete()
+            return
     else:
         await bacot.edit_text(
-            f"{em.sukses} **Kamu admin di `{len(a_chats)}` group:\n\n{text}**",
+            cgr("prof_8").format(em.sukses, len(a_chats), text),
             disable_web_page_preview=True,
         )
+        return
 
 
 @ky.ubot("setpp", sudo=True)
@@ -178,10 +151,10 @@ async def _(c: user, m):
             media = replied.video.file_id
             pat = await c.download_media(media, file_name=f"{user.me.id}.mp4")
             await c.set_profile_photo(video=pat)
-        await m.reply("**Foto Profil anda Berhasil Diubah.**")
+        await m.reply(cgr("prof_9").format(em.sukses))
         os.remove(pat)
     except Exception as e:
-        return await m.reply(f"{em.gagal} Errror : `{e}`")
+        return await m.reply(cgr("err").format(em.gagal, e))
 
 
 @ky.ubot("purgeme", sudo=True)

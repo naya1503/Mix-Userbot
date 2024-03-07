@@ -16,21 +16,7 @@ from Mix import *
 from Mix.core.pytgcalls import queues
 
 __modles__ = "Music"
-__help__ = """
-Help Command Music
-
-• Perintah: <code>{0}play</code>
-• Penjelasan: Untuk memutar lagu.
-
-• Perintah: <code>{0}end</code>
-• Penjelasan: Untuk mengakhiri lagu.
-
-• Perintah: <code>{0}skip</code>
-• Penjelasan: Untuk melewati trek.
-
-• Perintah: <code>{0}pause</code>
-• Penjelasan: Untuk menjeda trek.
-"""
+__help__ = get_cgr("help_mus")
 
 daftar_join = []
 

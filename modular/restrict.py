@@ -14,68 +14,12 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 
-from Mix import DEVS, Emojik, ky, user
+from Mix import DEVS, Emojik, get_cgr, ky, user
 from Mix.core.parser import mention_html
 from Mix.core.sender_tools import extract_user
 
-__modles__ = "Group"
-__help__ = """
-Help Command Group 
-
-• Perintah: <code>{0}purge</code> 
-• Penjelasan: Untuk menghapus pesan keseluruhan dari pesan yg dibalas.
-
-• Perintah: <code>{0}del</code> 
-• Penjelasan: Untuk menghapus pesan.
-
-• Perintah: <code>{0}report</code> 
-• Penjelasan: Untuk melaporkan pengguna.
-
-• Perintah: <code>{0}zombies</code>
-• Penjelasan: Untuk mengeluarkan akun terhapus.
-
-• Perintah: <code>{0}ban or delban</code>
-• Penjelasan: Untuk memblokir pengguna.
-
-• Perintah: <code>{0}kick or delkick</code>  
-• Penjelasan: Untuk mengeluarkan pengguna.
-
-• Perintah: <code>{0}mute or delmute</code> 
-• Penjelasan: Untuk membisukan pengguna.
-
-• Perintah: <code>{0}unmute</code>
-• Penjelasan: Untuk menyuarakan pengguna.
-
-• Perintah: <code>{0}unban</code>
-• Penjelasan: Untuk melepas blokir pengguna.
-
-• Perintah: <code>{0}promote</code>  
-• Penjelasan: Untuk mengangkat admin.
-
-• Perintah: <code>{0}fullpromote</code> 
-• Penjelasan: Untuk mengangkat wakil pendiri.
-
-• Perintah: <code>{0}demote</code>
-• Penjelasan: Untuk menurunkan seorang admin.
-
-• Perintah: <code>{0}title</code>
-• Penjelasan: Untuk mengubah titel pengguna.
-
-• Perintah: <code>{0}gctitle</code> 
-• Penjelasan: Untuk mengubah nama grup.
-
-• Perintah: <code>{0}gcdes</code>
-• Penjelasan: Untuk mengubah deskripsi grup.
-
-• Perintah: <code>{0}gcpic</code>
-• Penjelasan: Untuk mengubah foto grup.
-
-• Perintah: <code>{0}getlink or invitelink</code>
-• Penjelasan: Untuk mengambil tautan grup.
-
-• Perintah: <code>{0}pin or unpin</code>
-• Penjelasan: Untuk menyematkan pesan atau melepas sematan grup.
-"""
+__modles__ = "Restrict"
+__help__ = get_cgr("help_rest")
 
 
 async def member_permissions(chat: int, org: int):
@@ -159,28 +103,31 @@ async def _(c: user, m):
     em.initialize()
     user_id, reason = await c.extract_user_and_reason(m)
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(f"{em.gagal} Oh anda ingin menendang diri sendiri ?")
+        return await m.reply_text(cgr("res_1").format(em.gagal))
     if user_id in DEVS:
-        return await m.reply_text(
-            f"{em.gagal} Oh anda ingin menendang Developer Mix-Userbot ?"
-        )
+        return await m.reply_text(cgr("glbl_3").format(em.gagal))
     mention = (await c.get_users(user_id)).mention
-    msg = f"""
-{em.profil} **Kicked User:** {mention}
-{em.warn} **Kicked By:** {m.from_user.mention if m.from_user else 'Anon'}
-{em.block} **Reason:** {reason or 'No Reason Provided.'}"""
+    msg = cgr("res_2").format(
+        em.profil,
+        mention,
+        em.warn,
+        m.from_user.mention if m.from_user else "Anon",
+        em.block,
+        reason or "No Reason Provided.",
+    )
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
     try:
         await m.chat.ban_member(user_id)
     except UserAdminInvalid:
-        return await m.reply_text(f"{em.gagal} Anda tidak berhak mengeluarkan dia!")
+        return await m.reply_text(cgr("res_3").format(em.gagal))
     await m.reply_text(msg)
     await asyncio.sleep(1)
     await m.chat.unban_member(user_id)
+    return
 
 
 @ky.ubot("ban|delban", sudo=True)
@@ -190,31 +137,32 @@ async def _(c: user, m):
     user_id, reason = await c.extract_user_and_reason(m)
 
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(f"{em.gagal} Oh anda ingin memblokir diri sendiri ?")
+        return await m.reply_text(cgr("res_4").format(em.gagal))
     if user_id in DEVS:
-        return await m.reply_text(
-            f"{em.gagal} Oh anda ingin memblokir Developer Mix-Userbot ?"
-        )
+        return await m.reply_text(cgr("glbl_3").format(em.gagal))
     try:
         mention = (await c.get_users(user_id)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
-    msg = (
-        f"{em.profil} **Banned User:** {mention}\n"
-        f"{em.block} **Banned By:** {m.from_user.mention if m.from_user else 'Anon'}\n"
+    msg = cgr("res_5").format(
+        em.profil,
+        mention,
+        em.warn,
+        m.from_user.mention if m.from_user else "Anon",
+        em.block,
+        reason or "No Reason Provided.",
     )
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
-    if reason:
-        msg += f"{em.warn} **Reason:** {reason}"
     try:
         await m.chat.ban_member(user_id)
     except UserAdminInvalid:
-        return await m.reply_text(f"{em.gagal} Anda tidak berhak mengeluarkan dia!")
+        return await m.reply_text(cgr("res_3").format(em.gagal))
     await m.reply_text(msg)
+    return
 
 
 @ky.ubot("unban", sudo=True)
@@ -224,16 +172,17 @@ async def _(c: user, m):
     reply = m.reply_to_message
 
     if reply and reply.sender_chat and reply.sender_chat != m.chat.id:
-        return await m.reply_text(f"{em.gagal} Pengguna tidak diketahui!")
+        return await m.reply_text(cgr("res_3").format(em.gagal))
     if len(m.command) == 2:
         user = m.text.split(None, 1)[1]
     elif len(m.command) == 1 and reply:
         user = m.reply_to_message.from_user.id
     else:
-        return await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        return await m.reply_text(cgr("prof_1").format(em.gagal))
     await m.chat.unban_member(user)
     umention = (await c.get_users(user)).mention
-    await m.reply_text(f"{em.sukses} Unbanned! {umention}")
+    await m.reply_text(cgr("res_6").format(em.sukses, umention))
+    return
 
 
 async def delete_reply(c, message):
@@ -264,19 +213,15 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan!")
+        return await m.reply_text(cgr("res_7").format(em.gagal))
     r = m.reply_to_message
     if m.command[0][0] == "u":
         await r.unpin()
         return await m.reply_text(
-            f"{em.sukses} **Sematan dilepas [pesan]({r.link}).**",
-            disable_web_page_preview=True,
+            cgr("res_8").format(em.sukses, r.link), disable_web_page_preview=True
         )
     await r.pin(disable_notification=True)
-    await m.reply(
-        f"{em.sukses} **Berhasil disematkan [pesan]({r.link}) m.**",
-        disable_web_page_preview=True,
-    )
+    await m.reply(cgr("res_9").format(em.sukses, r.link), disable_web_page_preview=True)
 
 
 @ky.ubot("mute|delmute", sudo=True)
@@ -285,38 +230,36 @@ async def _(c: user, m):
     em.initialize()
     user_id, reason = await c.extract_user_and_reason(m)
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(f"{em.gagal} Oh anda ingin membisukan diri sendiri ?")
+        return await m.reply_text(cgr("res_10").format(em.gagal))
     if user_id in DEVS:
-        return await m.reply_text(
-            f"{em.gagal} Oh anda ingin membisukan Developer Mix-Userbot ?"
-        )
+        return await m.reply_text(cgr("glbl_3").format(em.gagal))
     mention = (await c.get_users(user_id)).mention
-    msg = (
-        f"{em.profil} **Muted User:** {mention}\n"
-        f"{em.block} **Muted By:** {m.from_user.mention if m.from_user else 'Anon'}\n"
+    msg = cgr("res_11").format(
+        em.profil,
+        mention,
+        em.warn,
+        m.from_user.mention if m.from_user else "Anon",
+        em.block,
+        reason or "No Reason Provided.",
     )
     if m.command[0][0] == "d":
         await m.reply_to_message.delete()
         await m.delete()
-    if reason:
-        msg += f"{em.warn} **Reason:** {reason}"
     try:
         await m.chat.restrict_member(user_id, permissions=ChatPermissions())
         await m.reply_text(msg)
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except RightForbidden:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_13").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
-    except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        return await m.reply_text(cgr("res_3").format(em.gagal))
+    except RPCError:
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal, e))
     return
 
 
@@ -326,23 +269,21 @@ async def _(c: user, m):
     em.initialize()
     user_id = await c.extract_user(m)
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna.")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     try:
         await m.chat.unban_member(user_id)
         umention = (await c.get_users(user_id)).mention
-        await m.reply_text(f"Unmuted! {umention}")
+        await m.reply_text(cgr("res_14").format(em.sukses, umention))
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except RightForbidden:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_13").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
-    except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        return await m.reply_text(cgr("res_3").format(em.gagal))
+    except RPCError:
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal, e))
     return
 
 
@@ -353,7 +294,7 @@ async def _(c: user, m):
     chat_id = m.chat.id
     deleted_users = []
     banned_users = 0
-    m = await m.reply(f"{em.proses} Mencari akun terhapus...")
+    m = await m.reply(cgr("proses").format(em.proses))
 
     async for i in c.get_chat_members(chat_id):
         if i.user.is_deleted:
@@ -365,11 +306,11 @@ async def _(c: user, m):
             except Exception:
                 pass
             banned_users += 1
-        await m.edit(
-            f"{em.sukses} Berhasil mengeluarkan `{banned_users}` akun terhapus."
-        )
+        await m.edit(cgr("res_15").format(em.sukses, banned_users))
+        return
     else:
-        await m.edit(f"{em.gagal} Tidak ada akun terhapus disini!")
+        await m.edit(cgr("res_16").format(em.gagal))
+        return
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
@@ -380,7 +321,7 @@ async def _(c: user, m):
         link = (await c.get_chat(m.chat.id)).invite_link
         if not link:
             link = await c.export_chat_invite_link(m.chat.id)
-        text = f"{em.sukses} **Ini adalah link invite grup :**\n\n{link}"
+        text = cgr("res_17").format(em.sukses, link)
         if m.reply_to_message:
             await m.reply_to_message.reply_text(text, disable_web_page_preview=True)
         else:
@@ -392,29 +333,27 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(
-            f"{em.gagal} Silahkan balas ke pesan untuk dilaporkan ke admin!"
-        )
+        return await m.reply_text(cgr("res_18").format(em.gagal))
 
     reply = m.reply_to_message
     reply_id = reply.from_user.id if reply.from_user else reply.sender_chat.id
     user_id = m.from_user.id if m.from_user else m.sender_chat.id
     if reply_id == user_id:
-        return await m.reply_text(f"{em.gagal} Kenapa harus melaporkan diri sendiri?")
+        return await m.reply_text(cgr("res_19").format(em.gagal))
 
     list_of_admins = await member_permissions(m.chat.id, user_id)
     linked_chat = (await c.get_chat(m.chat.id)).linked_chat
     if linked_chat is not None:
         if list_of_admins or reply_id == m.chat.id or reply_id == linked_chat.id:
-            return await m.reply_text(f"{em.gagal} Dia adalah admin!")
+            return await m.reply_text(cgr("res_20").format(em.gagal))
     else:
         if list_of_admins or reply_id == m.chat.id:
-            return await m.reply_text(f"{em.gagal} Dia adalah admin!")
+            return await m.reply_text(cgr("res_20").format(em.gagal))
 
     user_mention = (
         reply.from_user.mention if reply.from_user else reply.sender_chat.title
     )
-    text = f"{em.warn} **Dilaporkan {user_mention} ke admin!**"
+    text = cgr("res_21").format(em.warn, user_mention)
     admin_data = [
         i
         async for i in c.get_chat_members(
@@ -435,7 +374,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
         user_id, user_first_name, user_name = await extract_user(c, m)
@@ -443,10 +382,10 @@ async def _(c: user, m):
         return
     bot = await c.get_chat_member(m.chat.id, c.me.id)
     if user_id == c.me.id:
-        await m.reply_text(f"{em.gagal} Anda sudah admin!")
+        await m.reply_text(cgr("res_22").format(em.gagal))
         return
     if not bot.privileges.can_promote_members:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_13").format(em.gagal))
         return
     try:
         await m.chat.promote_member(user_id=user_id, privileges=bot.privileges)
@@ -461,20 +400,16 @@ async def _(c: user, m):
             await c.set_administrator_title(m.chat.id, user_id, title)
         promoter = await mention_html(m.from_user.first_name, m.from_user.id)
         promoted = await mention_html(user_first_name, user_id)
-        await m.reply_text(
-            f"{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi wakil pendiri!"
-        )
+        await m.reply_text(cgr("res_23").format(em.profil, promoter, em.warn, promoted))
 
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
-    except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        await m.reply_text(cgr("res_3").format(em.gagal))
+    except RPCError:
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal), e)
     return
 
 
@@ -483,7 +418,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
         user_id, user_first_name, user_name = await extract_user(c, m)
@@ -491,10 +426,10 @@ async def _(c: user, m):
         return
     bot = await c.get_chat_member(m.chat.id, c.me.id)
     if user_id == c.me.id:
-        await m.reply_text(f"{em.gagal} Anda sudah admin!")
+        await m.reply_text(cgr("res_22").format(em.gagal))
         return
     if not bot.privileges.can_promote_members:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_13").format(em.gagal))
         return
     try:
         await m.chat.promote_member(
@@ -517,19 +452,16 @@ async def _(c: user, m):
             await c.set_administrator_title(m.chat.id, user_id, title)
         promoter = await mention_html(m.from_user.first_name, m.from_user.id)
         promoted = await mention_html(user_first_name, user_id)
-        await m.reply_text(
-            f"{em.profil} {promoter}\n{em.warn} Pengguna {promoted} berhasil diangkat menjadi admin!"
-        )
+        await m.reply_text(cgr("res_24").format(em.profil, promoter, em.warn, promoted))
+
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
-    except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        await m.reply_text(cgr("res_3").format(em.gagal))
+    except RPCError:
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal), e)
     return
 
 
@@ -538,18 +470,18 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(cgr("pro_1").format(em.gagal))
         return
     try:
         user_id, user_first_name, _ = await extract_user(c, m)
     except Exception:
         return
     if user_id == c.me.id:
-        await m.reply_text(f"{em.gagal} Cari pendiri grup dan turunkan anda.")
+        await m.reply_text(cgr("res_19").format(em.gagal))
         return
     botol = await member_permissions(m.chat.id, user_id)
     if not botol:
-        await m.reply_text(f"{em.gagal} Pengguna bukan admin!")
+        await m.reply_text(cgr("res_25").format(em.gagal))
         return
     try:
         await m.chat.promote_member(
@@ -567,23 +499,17 @@ async def _(c: user, m):
         )
         demoter = await mention_html(m.from_user.first_name, m.from_user.id)
         demoted = await mention_html(user_first_name, user_id)
-        await m.reply_text(
-            f"{em.profil} {demoter}\n{em.warn} Pengguna {demoted} berhasil diturunkan admin!"
-        )
+        await m.reply_text(cgr("res_26").format(em.profil, demoter, em.warn, demoted))
     except BotChannelsNa:
-        await m.reply_text(f"{em.gagal} Pengguna tidak diangkat oleh saya!")
+        await m.reply_text(cgr("res_27").format(em.gagal))
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
-    except RightForbidden:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
-    except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        await m.reply_text(cgr("res_3").format(em.gagal))
+    except RPCError:
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal), e)
     return
 
 
@@ -592,7 +518,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan teks atau balas pesan!")
+        await m.reply_text(cgr("gcs_1").format(em.gagal))
         return
     if m.reply_to_message:
         gtit = m.reply_to_message.text
@@ -601,10 +527,8 @@ async def _(c: user, m):
     try:
         await m.chat.set_title(gtit)
     except Exception as e:
-        return await m.reply_text(f"{em.gagal} Error: {e}")
-    return await m.reply_text(
-        f"{em.sukses} Berhasil mengubah nama Grup {m.chat.title} menjadi {gtit}",
-    )
+        return await m.reply_text(cgr("err").format(em.gagal), e)
+    return await m.reply_text(cgr("res_28").format(em.sukses, m.chat.title, gtit))
 
 
 @ky.ubot("gcdes", sudo=True)
@@ -612,7 +536,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan teks atau balas pesan!")
+        await m.reply_text(cgr("gcs_1").format(em.gagal))
         return
     if m.reply_to_message:
         desp = m.reply_to_message.text
@@ -621,10 +545,8 @@ async def _(c: user, m):
     try:
         await m.chat.set_description(desp)
     except Exception as e:
-        return await m.reply_text(f"{em.gagal} Error: {e}")
-    return await m.reply_text(
-        f"{em.sukses} Berhasil mengubah deskripsi grup {m.chat.description} menjadi {desp}!",
-    )
+        return await m.reply_text(cgr("err").format(em.gagal), e)
+    return await m.reply_text(cgr("res_29").format(em.sukses, m.chat.description, desp))
 
 
 @ky.ubot("title", sudo=True)
@@ -632,9 +554,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        return await m.reply_text(
-            f"{em.gagal} Balas pengguna atau berikan username pengguna!"
-        )
+        return await m.reply_text(cgr("prof_1").format(em.gagal))
     if m.reply_to_message:
         if len(m.text.split()) >= 2:
             reason = m.text.split(None, 1)[1]
@@ -646,22 +566,20 @@ async def _(c: user, m):
     except Exception:
         return
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Tidak dapat menemukan pengguna!")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(f"{em.gagal} Kenapa harus saya?")
+        return await m.reply_text(cgr("res_19").format(em.gagal))
     if not reason:
-        return await m.reply_text(f"{em.gagal} Berikan title untuk pengguna!")
+        return await m.reply_text(cgr("res_30").format(em.gagal))
     from_user = await c.get_users(user_id)
     title = reason
     try:
         await c.set_administrator_title(m.chat.id, from_user.id, title)
     except Exception as e:
-        return await m.reply_text(f"{em.gagal} Error: {e}")
+        return await m.reply_text(cgr("err").format(em.gagal), e)
     except UserCreator:
-        return await m.reply_text(f"{em.gagal} Dia adalah pemilik grup ini!")
-    return await m.reply_text(
-        f"{em.sukses} Berhasil mengubah title pengguna {from_user.mention} menjadi {title}",
-    )
+        return await m.reply_text(cgr("res_31").format(em.gagal))
+    return await m.reply_text(cgr(res_32).format(em.sukses, from_user.mention, title))
 
 
 @ky.ubot("gcpic", sudo=True)
@@ -669,27 +587,23 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(f"{em.gagal} Balas ke media!")
+        return await m.reply_text(cgr("res_33").format(em.gagal))
     if (
         not m.reply_to_message.photo
         and not m.reply_to_message.document
         and not m.reply_to_message.video
     ):
-        return await m.reply_text(f"{em.gagal} Balas ke media!")
+        return await m.reply_text(cgr("res_33").format(em.gagal))
 
     if m.reply_to_message:
         if m.reply_to_message.photo:
             await c.set_chat_photo(m.chat.id, photo=m.reply_to_message.photo.file_id)
-            await m.reply_text(f"{em.sukses} Foto grup berhasil diubah!")
+            await m.reply_text(cgr("res_34").format(em.sukses))
         if m.reply_to_message.document:
             await c.set_chat_photo(m.chat.id, photo=m.reply_to_message.document.file_id)
-            await m.reply_text(
-                f"{em.sukses} Berhasil mengubah dokumen menjadi foto grup!"
-            )
+            await m.reply_text(cgr("res_35").format(em.sukses))
         elif m.reply_to_message.video:
             await c.set_chat_photo(m.chat.id, video=m.reply_to_message.video.file_id)
-            await m.reply_text(
-                f"{em.sukses} Berhasil mengubah video menjadi foto grup!"
-            )
+            await m.reply_text(cgr("res_36").format(em.sukses))
     else:
-        return await m.reply_text(f"{em.gagal} Balas ke media!")
+        return await m.reply_text(cgr("res_33").format(em.gagal))

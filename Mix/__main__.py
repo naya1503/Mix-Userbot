@@ -4,6 +4,7 @@ import sys
 from pyrogram import *
 from pyrogram.errors import *
 
+from assistant import bot_plugins
 from Mix import *
 
 
@@ -17,6 +18,7 @@ async def test():
     try:
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
+
     except SessionExpired:
         LOGGER.info("Session Expired . Create New Session")
         sys.exit(1)
@@ -31,6 +33,7 @@ async def test():
         await asyncio.sleep(1)
     try:
         await bot.start()
+        await bot_plugins()
         await asyncio.sleep(1)
     except AccessTokenExpired:
         LOGGER.info("Token Expired.")

@@ -9,47 +9,29 @@
 from Mix import *
 
 __modles__ = "Sudo"
-__help__ = """
- Help Command Sudo
-
-• Perintah: <code>{0}addsudo</code> [reply user]
-• Penjelasan: Untuk menambahkan pengguna sudo.
-
-• Perintah: <code>{0}delsudo</code> [reply user]
-• Penjelasan: Untuk menghapus pengguna sudo.
-
-• Perintah: <code>{0}sudolist</code>
-• Penjelasan: Untuk melihat daftar sudo.
-"""
+__help__ = get_cgr("help_sudo")
 
 
 @ky.ubot("addsudo", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    msg = await m.reply(f"{em.proses} <b>Processing...</b>")
+    msg = await m.reply(cgr("proses").format(em.proses))
     user_id = await c.extract_user(m)
     if not user_id:
-        return await msg.edit(
-            f"{em.gagal} <b>Silakan balas pesan pengguna/username/user id</b>"
-        )
+        return await msg.edit(cgr("prof_1").format(em.gagal))
     try:
         user = await c.get_users(user_id)
     except Exception as error:
         return await msg.edit(error)
 
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
-
+    usro = f"[{user.first_name} {user.last_name or ''}](tg://user?id={user.id})"
     if user.id in sudo_users:
-        return await msg.edit(
-            f"{em.sukses} <b>[{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) Sudah menjadi pengguna sudo.</b>"
-        )
-
+        return await msg.edit(cgr("sud_1").format(em.sukses, usro))
     try:
         udB.add_to_var(c.me.id, "SUDO_USER", user.id, "ID_NYA")
-        return await msg.edit(
-            f"{em.sukses} <b>[{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) Ditambahkan ke pengguna sudo.</b>"
-        )
+        return await msg.edit(cgr("sud_2").format(em.sukses, usro))
     except Exception as error:
         return await msg.edit(error)
 
@@ -58,12 +40,10 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    msg = await m.reply(f"{em.proses} <b>Processing...</b>")
+    msg = await m.reply(cgr("proses").format(em.proses))
     user_id = await c.extract_user(m)
     if not user_id:
-        return await m.reply(
-            f"{em.gagal} <b>Silakan balas pesan penggjna/username/user id.</b>"
-        )
+        return await m.reply(cgr("prof_1").format(em.sukses))
 
     try:
         user = await c.get_users(user_id)
@@ -71,47 +51,39 @@ async def _(c: user, m):
         return await msg.edit(error)
 
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
-
+    usro = f"[{user.first_name} {user.last_name or ''}](tg://user?id={user.id})"
     if user.id not in sudo_users:
-        return await msg.edit(
-            f"{em.gagal} <b>{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) Bukan bagian pengguna sudo.</b>"
-        )
+        return await msg.edit(cgr("sud_3").format(em.sukses, usro))
 
     try:
         udB.remove_from_var(c.me.id, "SUDO_USER", user.id, "ID_NYA")
-        return await msg.edit(
-            f"{em.sukses} <b>[{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) Dihapus dari pengguna sudo.</b>"
-        )
+        return await msg.edit(cgr("sud_4").format(em.sukses, usro))
     except Exception as error:
-        return await msg.edit(error)
+        return await msg.edit(cgr("err").format(em.gagal, error))
 
 
 @ky.ubot("sudolist", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    msg = await m.reply(f"{em.proses} <b>Processing...</b>")
+    msg = await m.reply(cgr("proses").format(em.proses))
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
 
     if not sudo_users:
-        return await msg.edit(f"{em.gagal} <b>Tidak ada pengguna sudo ditemukan.</b>")
+        return await msg.edit(cgr("sudo_5").format(em.gagal))
 
     sudo_list = []
     for user_id in sudo_users:
         try:
             user = await c.get_users(int(user_id))
             sudo_list.append(
-                f" {em.profil} • [{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) | <code>{user.id}</code>"
+                f"{em.profil} **•** [{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) | <code>{user.id}"
             )
         except:
             continue
 
     if sudo_list:
-        response = (
-            f"{em.profil} <b>Daftar Pengguna:</b>\n"
-            + "\n".join(sudo_list)
-            + f"\n{em.sukses} <code>{len(sudo_list)}</code>"
-        )
+        response = cgr("sud_6").format(em.profil, sudo_list, em.sukses, len(sudo_list))
         return await msg.edit(response)
     else:
         return await msg.edit("<b>Eror</b>")

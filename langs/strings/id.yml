@@ -1,0 +1,385 @@
+name: Indonesia
+natively: Indonesia
+
+authors:
+  - Keenan
+  - Lucifer
+
+
+cmds: "Bantuan Perintah"
+err: "{} **Error:** {} \n\n**Silahkan laporkan ke @KynanSupport**"
+err_1: "**Error:** {}"
+proses: "{} **Sedang Diproses...**"
+proses_1: "**Sedang Diproses...**"
+upload: "{} **Menunggah...**"
+klk_1: "Klik Disini"
+balik: "Kembali"
+ttup: "Tutup"
+reboot: "{} Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
+reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
+
+# assisten
+asst_1: "Halo 👋 {} !! Saya adalah asisten bot Anda.\n\nPengaturan apa yang ingin kamu ubah ?"
+asst_2: "Halo 👋 {} !! Saya adalah asisten milik {}\nApa yang kamu cari ?"
+asst_3: "Bahasa"
+asst_4: "Bahasa yang kamu gunakan saat ini adalah : **{}**\nSilahkan pilih jika ingin mengganti bahasa."
+asst_5: "Bahasa kamu berhasil diubah menjadi : **{}**\n\nKamu membutuhkan Restart Userbot untuk menerapkan perubahan."
+asst_6: "Reboot"
+asst_7: "Update"
+
+# autoread 
+autoread_1: "{} **Gunakan Format : `autoread` [`gc` or `us` or `ch` or `all`].**"
+autoread_2: "{} **Berhasil membaca `{}` pesan group.**"
+autoread_3: "{} **Berhasil membaca `{}` pesan pengguna.**"
+autoread_4: "{} **Berhasil membaca `{}` pesan channel.**"
+autoread_5: "{} **Berhasil membaca `{}` pesan diakun anda.**"
+autoread_6: "{} **Silahkan masukkan query dengan benar!!**"
+
+# button
+butt_1: "{} **Silahkan ketik `help markdown` untuk melihat format button!**"
+
+# afk
+afk_1: "{} **Tidak dapat menggunakan akun channel.**"
+afk_2: "{} **Sekarang Afk!!**"
+afk_3: "**{} Online kembali!\n{} Durasi AFK! : `{}` yang lalu.**"
+afk_4: "**{} Online kembali!\n{} Durasi AFK! : `{}` yang lalu.**\n{}**Alasan : `{}`.**"
+afk_5: "**{} Sedang AFK!!**\n{} **Dari :** `{}` yang lalu."
+afk_6: "**{} Sedang AFK!!**\n{} **Dari :** `{}` yang lalu.\n{} **Alasan:** `{}`."
+
+# carbon
+crbn_1: "{} **Teks tidak boleh kosong!!**"
+crbn_2: "{} **Carbonara oleh: {}.**"
+
+# copy
+cpy_1: "{} **Gunakan format : `{}` [link].**"
+cpy_2: "{} **Nyolong dihentikan.**"
+cpy_3: "**🔒 Konten Bersifat Private!!**"
+
+# database
+dbs_1: "{} **Gunakan Format : `setdb variable value`.**"
+dbs_2: "{} **PMPermit Dihidupkan.**"
+dbs_3: "{} **PMPic Diatur ke : `{}`.**"
+dbs_4: "{} **Alive Pic Diatur ke : `{}`.**"
+dbs_5: "{} **PM Text diatur ke default.**"
+dbs_6: "{} **Silahkan lihat query database!!**"
+dbs_7: "{} **Gunakan format : `{}` [query].**"
+dbs_8: "{} **Ini {} anda : `{}`.**"
+dbs_9: "{} **{} Berhasil dihapus!!**"
+
+# gcast
+gcs_1: "{} **Silahkan balas ke pesan atau berikan pesan.**"
+gcs_2: "{} **Hasil Pesan Gcast :\n{} Berhasil di `{}` Grup.\n{} Gagal di `{}` Grup.**"
+gcs_3: "{} **Hasil Pesan Gcast :\n{} Berhasil di `{}` Pengguna.\n{} Gagal di `{}` Pengguna.**"
+gcs_4: "{} **Grup ini sudah ada dalam blacklist!!**"
+gcs_5: "{} **`{}` | `{}` Berhasil ditambahkan ke dalam blacklist.**"
+gcs_6: "{} **Grup `{}` sudah ada dalam blacklist!!**"
+gcs_7: "{} **`{}` | `{}` Tidak ada dalam blacklist.**"
+gcs_8: "{} **Grup `{}` berhasil dihapus dalam blacklist!!**"
+gcs_9: "{} **Grup `{}` sudah tidak ada dalam blacklist!!**"
+gcs_10: "{}} **• Daftar blacklist gcast `{}`!!**\n\n"
+gcs_11: "**• `{}` | `{}`**\n"
+gcs_12: "**• `{}`**\n"
+gcs_13: "{} **Daftar blacklist kosong!!**"
+gcs_14: "{} **Semua daftar hitam telah berhasil dihapus.**"
+
+# alive 
+alv_1: "**Author**"
+alv_2: "**Connoisseur**"
+alv_3: "**Mix-Userbot**\n    **status:** {}\n      **dc_id:** {}\n      **ping_dc:** {} ms\n      **antipm:** {}\n      **pengguna:** {}\n      **grup:** {}\n      **durasi_bot:** {}"
+alv_4: "Support"
+
+# global
+glbl_2: "{} **Pengguna tidak ditemukan.**"
+glbl_3: "{} **Dia adalah Developer Mix-Userbot.**"
+glbl_4: "{} **Silahkan berikan alasan untuk diGban!**"
+glbl_5: "{} **Pengguna sudah digban.**"
+glbl_6: "{} **Warning Global Banned\n\n{} Berhasil: `{}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**\n{} Alasan: `{}`**"
+glbl_7: "{} **Pengguna belum digban.**"
+glbl_8: "{} **Warning Global Unbanned\n\n{} Berhasil: `{}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**"
+glbl_9: "{} **Silahkan berikan alasan untuk diGMute!**"
+glbl_10: "{} **Pengguna sudah digmute.**"
+glbl_11: "{} **Warning Global Gmute\n\n{} Berhasil: `{}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**\n{} Alasan: `{}`**"
+glbl_12: "{} **Pengguna belum pernah diGMute.**"
+glbl_13: "{} **Warning Global Ungmute\n\n{} Berhasil: `{}` Chat\n{} Gagal: `{}` Chat\n{} User: `{}`**"
+glbl_14: "{} **Daftar GBanned :**\n\n"
+glbl_15: "{} **{}**\n"
+glbl_16: "{} **Alasan: `{}`\n\n{} Total :`{}`**\n"
+glbl_17: "{} **Daftar GBanned!!**\n\n"
+glbl_18: "{} **Daftar GMute :**\n\n"
+glbl_19: "{} **`{}`**\n"
+glbl_20: "{} **Alasan: `{}`\n\n{} Total :`{}`**\n"
+glbl_21: "{} **Daftar GMute!!**\n\n"
+glbl_22: "**Tidak ada pengguna ditemukan.**"
+
+# graph
+grp_1: "{} **Silakan balas ke pesan teks atau media!**"
+grp_3: "{} **Diupload ke : <a href='https://telegra.ph/{}'>Klik Disini</a>**"
+grp_5: "{} **Diupload ke : <a href='https://telegra.ph/{}'>Klik Disini</a>**"
+
+# grouplog
+grplog_1: "{} **Log Group Berhasil Diaktifkan :\n\n{}**"
+grplog_2: "{} **Log Group Anda Sudah Aktif.**"
+grplog_3: "{} **Log Group Berhasil Dinonaktifkan.**"
+grplog_4: "{} **Log Group Anda Sudah Dinonaktifkan.**"
+grplog_5: "{} **Format yang anda berikan salah. silahkan gunakan `gruplog on` atau `gruplog off`.**"
+grplog_6: "**📨 Pesan Baru\n\n• Grup : {}\n• Pengguna : {}\n• Pesan: {}**"
+grplog_7: "Jawab Pesan"
+
+# help
+hlp_1: "{} **Tidak ada modul bernama `{}`.**"
+
+# heroku
+hero_1: "{} **Anda hanya bisa mendapatkan log dari Heroku.**"
+hero_2: "{} **Gunakan format : `{}` variabel.**"
+hero_3: "{} **{} `{}`.**"
+hero_4: "{} **Tidak dapat menemukan var seperti itu.**"
+hero_5: "{} **env file tidak ditemukan.**"
+hero_6: "{} **`{}` berhasil dihapus.**"
+hero_7: "{} **Gunakan format : `{}` [variabel] [value].**"
+hero_8: "{} **`{}` berhasil diperbarui.**"
+hero_9: "{} **`{}` berhasil ditambahkan.**"
+hero_10: "{} **Hanya untuk pengguna Heroku.**"
+hero_11: "{} **DYNO USAGE\n\n{} <u>Usage:</u>\nTotal Used:\n`{}h` `{}m` [`{}%`]\n\n{} <u>Remaining Quota:</u>\nTotal Left: `{}h` `{}m` [`{}%`]"
+hero_12: "{} **Kesalahan Perintah Git.**"
+hero_13: "{} **Repositori Git Tidak Valid.**"
+hero_14: "{} **Mix-Userbot sudah versi paling terbaru.**"
+hero_15: "{} **Pembaruan baru tersedia untuk Mix-Userbot !\n\n➣ Mendorong Pembaruan Sekarang\n\nPembaruan:**\n\n"
+hero_16: "{} **Pembaruan baru tersedia untuk Mix-Userbot!\n\n➣ Mendorong Pembaruan Sekarang\n\nPembaruan:\n\n[Klik Di Sini untuk memeriksa Pembaruan]({})**"
+hero_17: "{} {}\n\n**Mix-Userbot berhasil diperbarui! Sekarang, tunggu 2 - 3 menit hingga bot dimulai ulang!**"
+
+
+# info
+info_1: "{} **Saya tidak berada digrup itu!**"
+info_2: "**Tidak Diketahui**"
+info_3: "**Developer**"
+info_4: "**Pemilik Bot**"
+info_5: "**Developer & Owner**"
+info_6: "**Tidak dapat mengambil**"
+info_7: "**Pengguna adalah bot**"
+info_8: "**Pengguna terlihat belakangan ini**"
+info_9: "**Pengguna terlihat seminggu yang lalu**"
+info_10: "**Pengguna terlihat sebulan yang lalu**"
+info_11: "**Pengguna sudah lama tak terlihat atau mungkin Saya diblokir oleh pengguna tersebut**"
+info_12: "**Pengguna sedang Online**"
+info_13: "**Pengguna sedang Offline**"
+info_14: "User Info\n\n🆔 User ID: {}\n📎 Link To Profile: <a href='tg://user?id={}'>Click Here🚪</a>\n🫵 Mention: {}\n🗣 First Name: {}\n🔅 Second Name: {}\n🔍 Username: {}\n✍️ Bio: `{}`\n🧑‍💻 Support: {}\n🥷 Support User Type: {}\n💣 Gbanned: {}\n☠️ Gban Reason: {}\n🌐 DC ID: {}\n✋ Restricted: {}\n✅ Verified: {}\n❌ Fake : {}\n⚠️ Scam : {} \n🤖 Bot: {}\n👀 Last seen: {}"
+info_15: "CHAT INFO\n\n🆔 ID: {}\n🚀 Chat Title: {}\n✨ Chat Type: {}\n🌐 DataCentre ID: {}\n🔍 Username: {}\n⚜️ Administrators: {}\n🤖 Bots: {}\n🚫 Banned: {}\n⚜️ Admin 🤖 Bots: {}\n⁉️ Scam: {}\n❌ Fake: {}\n✋ Restricted: {}\n👨🏿‍💻 Description: {}\n👪 Total members: {}\n🚫 Has Protected Content: {}\n🔗 Linked Chat: {}"
+info_16: "{} Ini bukan pengguna, tetapi Grup! Silahkan gunakan `cinfo`."
+info_17: "{} **Gunakan format '{}` @username/id grup.**"
+
+# limit
+lmt_1: "{} **{}**\n\n ~ {} **{}**"
+
+# locks
+lck_1: "{} **Gunakan format : `{}` type!**"
+lck_2: "{} **Berikan argumen untuk dikunci!**"
+lck_3: "{} **Sepertinya saya tidak mempunyai izin lebih untuk melakukan {}!**"
+lck_4: "{} ** Terkunci `all` untuk grup ini!**"
+lck_5: "{} **Sudah hidup!**"
+lck_6: "{} **Kirim link dikunci digrup ini!**"
+lck_8: "{} **Kirim sebagai channel dikunci digrup ini!**"
+lck_9: "{} **Pesan terusan dikunci digrup ini!**"
+lck_10: "{} **Pesan terusan pengguna dikunci digrup ini!**"
+lck_11: "{} **Pesan terusan channel dikunci digrup ini!**"
+lck_12: "{} **Invalid Lock Tipe!**\n\n**Silahkan ketik `locktypes` untuk melihat format lock!**"
+lck_13: "{} **Sepertinya saya tidak mempunyai izin lebih!**"
+lck_14: "{} Terkunci **{}** dalam grup ini."
+lck_16: "{} **Berikan argumen untuk dibuka!**"
+lck_18: "{} Dibuka **all** untuk grup ini!**"
+lck_19: "{} **Sudah dibuka!**"
+lck_20: "{} **Kirim sebagai channel dibuka digrup ini!**"
+lck_21: "{} **Kirim link dibuka digrup ini!**"
+lck_22: "{} **Semua pesan terusan dibuka digrup ini!**"
+lck_23: "{} **Pesan terusan pengguna dibuka digrup ini!**"
+lck_24: "{} **Pesan terusan channel dibuka digrup ini!**"
+lck_25: "{} **Invalid Unlock Tipe!**\n\n{} **Silahkan ketik `locktypes` untuk melihat format lock!**"
+lck_27: "{} Dibuka **{}** dalam grup ini.**"
+lck_28: "{} **Terjadi kesalahan!**"
+lck_29: "{} **Lapor ke @kynansupport :\n\n`{}`**"
+
+# logo
+logo_1: "{} **Gunakan format : `{}` [text]**"
+logo_2: "{} **Dibuat oleh : {}**"
+
+# markdown
+mark_1: "<b>Markdown Formatting</b>\n<b>Anda dapat memformat pesan Anda menggunakan <b>tebal</b>, <i>miring</i>, <u>garis bawah</u>, <strike>coret</strike>, dan banyak lagi.</b>\n\n<code>`kata kode`</code>: Tanda kutip terbalik digunakan untuk font monospace. Ditampilkan sebagai: <code>kata kode</code>.\n\n<code>__miring__</code>: Garis bawah digunakan untuk font miring. Ditampilkan sebagai: <i>kata miring</i>.\n\n<code>**tebal**</code>: Asterisk digunakan untuk font tebal. Ditampilkan sebagai: <b>kata tebal</b>.\n\n<code>--garis bawah--</code>: Untuk membuat teks <u>garis bawah</u>.\n\n<code>~~coret~~</code>: Tilda digunakan untuk strikethrough. Ditampilkan sebagai: <strike>coret</strike>.\n\n<code>||spoiler||</code>: Garis vertikal ganda digunakan untuk spoiler. Ditampilkan sebagai: <spoiler>Spoiler</spoiler>.\n\n<code>[hyperlink](contoh)</code>: Ini adalah pemformatan yang digunakan untuk hyperlink.\n\n<code>[Tombol Saya](buttonurl://contoh)</code>: Ini adalah pemformatan yang digunakan untuk membuat tombol.\nJika Anda ingin mengirimkan tombol dalam satu baris yang sama, gunakan pemformatan <code>:same</code>.\n\n<b>Contoh:</b>\n<code>[tombol 1](buttonurl://1)</code>\n<code>[tombol 2](buttonurl://2:same)</code>\n<code>[tombol 3](buttonurl://3)</code>\nIni akan menampilkan tombol 1 dan 2 di baris yang sama, sementara 3 akan berada di bawahnya."
+mark_2: "<b>Fillings</b>\n\nAnda juga dapat menyesuaikan isi pesan Anda dengan data kontekstual. Misalnya, Anda bisa menyebut nama pengguna dalam pesan selamat datang, atau menyebutnya dalam filter!\n\n<b>Isian yang didukung:</b>\n\n<code>{first}</code>: Nama depan pengguna.\n<code>{last}</code>: Nama belakang pengguna.\n<code>{fullname}</code>: Nama lengkap pengguna.\n<code>{username}</code>: Nama pengguna pengguna. Jika mereka tidak memiliki satu, akan menyebutkan pengguna tersebut.\n<code>{mention}</code>: Menyebutkan pengguna dengan nama depan mereka.\n<code>{id}</code>: ID pengguna.\n<code>{chatname}</code>: Nama obrolan."
+mark_3: "**Untuk melihat format markdown silahkan klik tombol dibawah.**"
+
+# notes
+nts_1: "{} **Gunakan format : `{}` [nama catatan] [balas ke pesan].**"
+nts_2: "{} **Teks tidak dapat kosong.**"
+nts_3: "{} **Catatan `{}` berhasil disimpan.**"
+nts_4: "{} **Berikan nama catatan!**"
+nts_5: "{} **Catatan `{}` tidak ditemukan!**"
+nts_6: "{} **Tidak ada catatan satupun!**"
+nts_7: "{} **Daftar Catatan :**\n\n"
+nts_8: "**• `{}`**\n"
+nts_9: "{} **Catatan apa yang ingin dihapus ?**"
+nts_10: "{} **Catatan `{}` tidak ada!**"
+nts_11: "{} **Catatan `{}` berhasil dihapus.**"
+
+# pastebin
+paste_1: "{} **Gunakan format : `{}` [balas pesan text atau dokumen]**"
+paste_2: "{} **Ukuran dokumen harus dibawah 40KB!**"
+paste_3: "{} **Berhasil! [Tautan Disini]({})**"
+
+# ping
+ping_1: "**{} Pong `{}ms`**\n\n**{} Uptime !! `{}`**"
+
+# pmpermit
+pmper_1: "**Hey {} 👋 . Jangan spam atau anda akan diblokir!!**"
+pmper_2: "**Pesan Keamanan {} . Anda mendapat peringatan {}/{} !!\n\n{}**"
+pmper_3: "{} **Pengguna sudah disetujui!**"
+pmper_4: "{} **Baiklah, pengguna disetujui untuk mengirim pesan.**"
+pmper_5: "{} **Pengguna memang belum disetujui untuk mengirim pesan.**"
+pmper_6: "{} **Baiklah, pengguna ditolak untuk mengirim pesan.**"
+pmper_7: "{} **Pesan PMPermit berhasil diatur menjadi :\n\n` {}`"
+pmper_8: "{} **Gunakan format : `{}` [angka].**"
+pmper_9: "{} **Pesan Limit berhasil diatur menjadi : `{}`.**"
+pmper_10: "{} **Saya sudah memberi tahu `{}` peringatan\nTunggu Owner Saya menyetujui pesan anda, atau anda akan diblokir !**"
+
+# quote
+qot_1: "{} **Daftar Warna Quote :\n\n**"
+qot_2: "{} **Ini adalah list warna untuk latar belakang quote.**"
+qot_3: "{} **Si anjing mengatasnamakan Developer!**"
+qot_4: "{} **Batas pesan adalah 10!**"
+
+# restrict
+res_1: "{} **Oh anda ingin menendang diri sendiri ?**"
+res_2: "{} **Tendang Pengguna:** {}\n{} **Admin:** {}\n{} **Alasan:** {}"
+res_3: "{} Anda tidak berhak mengeluarkan dia!"
+res_4: "{} Oh anda ingin memblokir diri sendiri ?"
+res_5: "{} **Blokir Pengguna:** {}\n{} **Admin:** {}\n{} **Alasan:** {}"
+res_6: "{} **Dibuka blokir {}**"
+res_7: "{} **Silahkan balas ke pesan!**"
+res_8: "{} **Sematan dilepas [pesan]({})!**"
+res_9: "{} **Berhasil sematkan [pesan]({})!**"
+res_10: "{} **Oh anda ingin membisukan diri sendiri ?**"
+res_11: "{} **Bisukan Pengguna:** {}\n{} **Admin:** {}\n{} **Alasan:** {}"
+res_12: "{} **Saya bukan admin!**"
+res_13: "{} **Saya tidak mempunyai izin!**"
+res_14: "{} **Izin mengirim pesan {}.**"
+res_15: "{} **Berhasil mengeluarkan `{}` akun terhapus.**"
+res_16: "{} **Tidak ada akun terhapus disini!**"
+res_17: "{} **Tautan Grup :**\n\n{}"
+res_18: "{} **Silahkan balas ke pesan untuk dilaporkan ke admin!**"
+res_19: "{} **Ya benar**"
+res_20: "{} **Dia adalah admin!**"
+res_21: "{} **Dilaporkan {} ke admin!**"
+res_22: "{} **Anda admin!**"
+res_23: "{} **{}\n{} Pengguna {} berhasil diangkat menjadi wakil pendiri!**"
+res_24: "{} **{}\n{} Pengguna {} berhasil diangkat menjadi admin!**"
+res_25: "{} **Pengguna bukan admin!**"
+res_26: "{} {} {}\n{} Pengguna {} berhasil diturunkan dari admin!"
+res_27: "{} **Pengguna tidak diangkat oleh saya!**"
+res_28: "{} **Berhasil mengubah nama Grup : {} menjadi {}.**"
+res_29: "{} **Berhasil mengubah deskripsi Grup : {} menjadi {}.**"
+res_30: "{} **Berikan titel untuk pengguna!**"
+res_31: "{} Dia adalah pemilik grup ini!"
+res_32: "{} **Berhasil mengubah titel pengguna {} menjadi {}.**"
+res_33: "{} **Balas ke media!**"
+res_34: "{} **Foto grup berhasil diubah!**"
+res_35: "{} **Berhasil mengubah dokumen menjadi foto grup!**"
+res_36: "{} Berhasil mengubah video menjadi foto grup!**"
+
+# showid
+shid_1: "{} **ID Pengguna : `{}`.**"
+shid_2: "{} **ID Grup : `{}`\n{} **ID Anda : `{}`**"
+shid_3: "{} ID Anda : `{}`**"
+shid_4: "{} **ID Pengirim {} : `{}`\n{} ID Pesan Terusan {} : `{}`**"
+shid_5: "{} **Gagal mendapatkan ID Pengguna.**"
+shid_6: "{} ID Pesan Terusan : `{}`\nID Pesan Terusan Dari : `{}`**"
+shid_7: "{} **ID Pengguna {} : `{}`**"
+shid_8: "{} **ID Pesan Terusan : `{}`**"
+shid_9: "{} **ID Gif : `{}`**"
+shid_10: "{} **Silahkan balas ke gif!**"
+
+# spam
+spm_1: "{} **Gunakan format : `{}` [jumlah] [pesan atau balas pesan].**"
+spm_2: "{} **Gunakan format : `{}` [jumlah] [waktu delay] [balas pesan].**"
+spm_3: "{} **Tidak ada proses spam berlangsung!**"
+spm_4: "{} **Spam Dihentikan!!**"
+spm_5: "{} **Gunakan format :`{}` [jumlah] [waktu delay] [link].**"
+spm_6: "{} Dilarang digrup ini!!"
+
+# spy
+spy_1: "{} Gagal!!"
+spy_2: "{} Hasil Curi!!"
+
+# sticker
+st_1: "{} **Silahkan balas ke sticker non animasi!**"
+st_2: "{} **Emoji : {}\n{} Sticker ID : `{}`**"
+st_3: "{} **Silahkan balas ke sticker yang ingin dihapus!**"
+st_4: "{} **Sticker berhasil dihapus dari paket Anda!**"
+st_5: "{} **Sticker gagal dihapus!**"
+st_6: "{} **Silahkan balas ke sticker paket anda!!**"
+st_7: "{} **Silahkan balas ke sticker atau media!**"
+
+# Sudo
+sud_1: "{} **{} Sudah menjadi sudo!**"
+sud_2: "{} **Ditambakan ke pengguna sudo : {}**"
+sud_3: "{} **{} Bukan pengguna sudo!**"
+sud_4: "{} **Dihapus dari pengguna sudo : {}**"
+sud_5: "{} **Tidak ada pengguna sudo satupun!**"
+sud_6: "{} **Anggota Sudo :**\n\n{}\n\n{} {}"
+
+# transfer
+tr_1: "{} **Gunakan format : `{}` [balas pesan/berikan pesan].**"
+tr_2: "{} **Sukses\n\n`{}`**"
+tr_3: "{} **Daftar kode Bahasa :**\n\n{}"
+tr_4: "{} **Gunakan format : `{}` [kode bahasa].**"
+tr_5: "{} **Kode Bahasa diatur menjadi : `{}` - {}.**"
+tr_6: "{} **Kode bahasa macam apa itu?**"
+
+# profile
+prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
+prof_2: "{} **Berhasil membuka blokir {}!**"
+prof_3: "{} {} **Berhasil memblokir {}!**"
+prof_4: "{} Berhasil mengganti nama menjadi `{}`."
+prof_5: "{} Berhasil mengganti nama depan `{}` nama belakang `{}`."
+prof_6: "{} Berhasil mengganti bio menjadi : `{}`."
+prof_7: "{} **Kamu tidak menjadi admin di grup manapun!**"
+prof_8: "{} **Kamu admin di `{}` grup :**\n\n**{}**"
+prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
+
+
+# help_for
+help_afk: " Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
+help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
+help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query]\n• Penjelasan : Untuk membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` untuk membaca semua pesan grup diakun anda.\n- `ch` untuk membaca semua pesan channel diakun anda.\n- `us` untuk membaca semua pesan pengguna diakun anda.\n- `all` untuk membaca semua pesan gc, ch, us diakun anda."
+help_carbon: " Carbon\n\n• Perintah: `{0} carbon`\n• Penjelasan: Untuk membuat teks carbonara."
+help_copy: " Copy\n\n• Perintah : `{0}copy` [link]\n• Penjelasan : Untuk mengambil pesan melalui link telegram."
+help_dtbs: " Settings\n\n• Perintah: `{0}setdb` [variable] [value]\n• Penjelasan: Untuk mengubah tampilan emoji.\n\n• Perintah: `{0}getdb`\n• Penjelasan: Untuk melihat variabel dan value anda.\n\n• Perintah: `{0}deldb`\n• Penjelasan: Untuk menghapus variabel dan value anda.\n\n• Variabel Yang Bisa Digunakan : -`pmtext`\n- `pmpic`\n- `pmpermit`\n- `alivepic`"
+help_dev: " Developer\n\n• Perintah : `{0}sh`\n• Penjelasan : Execute code.\n\n• Perintah : `{0}eval`\n• Penjelasan : Execute code.\n\n• Perintah : `{0}trash`\n• Penjelasan : Dump message."
+help_gcast: " Broadcast\n\n• Perintah : `{0}gucast` [balas pesan/kirim pesan]\n• Penjelasan : Untuk pengirim pesan ke semua pengguna.\n\n• Perintah : `{0}gcast` [balas pesan/kirim pesan]\n• Penjelasan : Untuk pengirim pesan ke semua grup.\n\n• Perintah: `{0}addbl`\n• Penjelasan: Menambahkan grup kedalam anti Gcast.\n\n• Perintah: `{0}delbl`\n• Penjelasan: Menghapus grup dari daftar anti Gcast.\n\n• Perintah: `{0}rmall`\n• Penjelasan: Menghapus semua grup dari daftar anti Gcast.\n\n• Perintah: `{0}listbl`\n• Penjelasan: Melihat daftar grup anti Gcast.\n\n• Perintah : `{0}send` [username/user_id - teks/reply]\n• Penjelasan : Untuk mengirim pesan ke pengguna/grup/channel."
+help_global: " Global\n\n• Perintah : `{0}gban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global banned.\n\n• Perintah : `{0}ungban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global unbanned.\n\n• Perintah : `{0}listgban` [user_id/username/bales pesan]\n• Penjelasan : Untuk melihat daftar pengguna gban.\n\n• Perintah : `{0}gmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global mute.\n\n• Perintah : `{0}ungmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melakukan global unmute.\n\n• Perintah : `{0}listgmute` [user_id/username/bales pesan]\n• Penjelasan : Untuk melihat daftar pengguna gmute."
+help_graph: " Telegraph\n\n• Perintah: `{0}tg`\n• Penjelasan: Untuk mengunggah teks, video atau foto."
+help_gruplog: " GrupLog\n\n• Perintah: `{0}gruplog` [on/off]\n• Penjelasan: Aktifkan tag log dan pm log."
+help_heroku: " Heroku\n\n• Perintah : `{0}getlog`\n• Penjelasan : Melihat log heroku.\n\n• Perintah : `{0}getvar`\n• Penjelasan : Melihat variabel diheroku.\n\n• Perintah : `{0}delvar`\n• Penjelasan : Menghapus variabel diheroku .\n\n• Perintah : `{0}setvar`\n• Penjelasan : Mengatur variabel dan value diheroku."
+help_info: " Info \n\n• Perintah: `{0}info`\n• Penjelasan: Untuk melihat info pengguna.\n\n• Perintah: `{0}cinfo`\n• Penjelasan: Untuk melihat info grup."
+help_webss: " Webshot\n\n• Perintah : `{0}webss or ss`\n• Penjelasan : Untuk mengambil tangkapan layar link."
+help_vcs: " Voice Chat\n\n• Perintah: `{0}startvc`\n• Penjelasan: Untuk memulai voice chat grup.\n\n• Perintah: `{0}stopvc`\n• Penjelasan: Untuk mengakhiri voice chat grup.\n\n• Perintah: `{0}joinvc`\n• Penjelasan: Untuk bergabung voice chat grup.\n\n• Perintah: `{0}leavevc`\n• Penjelasan: Untuk meninggalkan voice chat grup.\n\n• Perintah: `{0}vctitle`\n• Penjelasan: Untuk mengubah voice chat grup."
+help_pref: " Prefixes\n\n• Perintah: `{0}setprefix` [trigger]\n• Penjelasan: Untuk mengatur handler userbot anda."
+help_emo: " Emoji\n\n• Perintah: `{0}emoji` [variable] [value]\n• Penjelasan: Untuk mengubah tampilan emoji.\n\n• Perintah: `{0}emoid` [reply emoji]\n• Penjelasan: Untuk mengubah tampilan emoji.\n\n• Perintah: `{0}getemo`\n• Penjelasan: Untuk melihat tampilan emoji.\n\n• Perintah: `{0}setemo`\n• Penjelasan: Untuk mengatur status emoji.\n\n• Contoh pengunaan set emoji :\n- `{0}emoji ping 🏓`\n- `{0}emoji pong 🥵`\n- `{0}emoji proses 🔄`\n- `{0}emoji sukses ✅`\n- `{0}emoji gagal ❌`\n- `{0}emoji profil 👤`\n- `{0}emoji alive ⭐`\n- `{0}emoji warn !`\n- `{0}emoji block ?`"
+help_transmart: " Translate\n\n• Perintah : `{0}tts`\n• Penjelasan : Untuk membuat teks menjadi voice.\n\n• Perintah : `{0}tr`\n• Penjelasan : Untuk menerjemahkan teks bahasa.\n\n• Perintah : `{0}lang`\n• Penjelasan : Untuk melihat daftar dan kode bahasa.\n\n• Perintah : `{0}setlang`\n• Penjelasan : Untuk mengatur kode bahasa menyangkut tts dan tr."
+help_sys: " System\n\n• Perintah : `{0}update`\n• Penjelasan : Check Updater.\n\n• Perintah : `{0}reboot`\n• Penjelasan : Reboot userbot.\n\n• Perintah : `{0}host`\n• Penjelasan : System host.\n\n• Perintah : `{0}stats`\n• Penjelasan : System stats."
+help_sudo: " Sudo\n\n• Perintah: `{0}addsudo` [reply user]\n• Penjelasan: Untuk menambahkan pengguna sudo.\n\n• Perintah: `{0}delsudo` [reply user]\n• Penjelasan: Untuk menghapus pengguna sudo.\n\n• Perintah: `{0}sudolist`\n• Penjelasan: Untuk melihat daftar sudo."
+help_stick: " Sticker\n\n• Perintah: `{0}gstik` [reply sticker]\n• Penjelasan: Untuk mengambil info sticker.\n\n• Perintah: `{0}kang` [reply sticker]\n• Penjelasan: Untuk mencuri atau membuat stickerpack sendiri.\n\n• Perintah: `{0}unkang` [reply sticker]\n• Penjelasan: Untuk menghapus sticker/stickerpack yang sudah ada."
+help_spy: " Spy\n\n• Perintah: `{0}curi or spy`\n• Penjelasan: Untuk mencuri pap timer (bukan sekali lihat)."
+help_spam: " Spam \n\n• Perintah: <code>{0}dspam</code> [jumlah] [waktu delay] [balas pesan]\n• Penjelasan: Untuk melakukan delay spam.\n\n• Perintah: <code>{0}spam</code> [jumlah] [kata]\n• Penjelasan: Untuk melakukan spam.\n\n• Perintah: <code>{0}cspam</code>\n• Penjelasan: Untuk stop spam.\n\n• Perintah: <code>{0}dspamfw</code> [jumlah] [waktu delay] [link channel public]\n• Penjelasan: Untuk melakukan delay spam forward link channel."
+help_sid: " ShowID \n\n• Perintah: `{0}id`\n• Penjelasan: Untuk melihat id pengguna atau grup/channel.\n\n• Perintah: `{0}gifid`\n• Penjelasan: Untuk melihat id gif."
+help_group: " Group \n\n• Perintah: `{0}purge` \n• Penjelasan: Untuk menghapus pesan keseluruhan dari pesan yg dibalas.\n\n• Perintah: `{0}del` \n• Penjelasan: Untuk menghapus pesan.\n\n• Perintah: `{0}report` \n• Penjelasan: Untuk melaporkan pengguna.\n\n• Perintah: `{0}gctitle` \n• Penjelasan: Untuk mengubah nama grup.\n\n• Perintah: `{0}gcdes`\n• Penjelasan: Untuk mengubah deskripsi grup.\n\n• Perintah: `{0}gcpic`\n• Penjelasan: Untuk mengubah foto grup.\n\n• Perintah: `{0}getlink or invitelink`\n• Penjelasan: Untuk mengambil tautan grup.\n\n• Perintah: `{0}pin or unpin`\n• Penjelasan: Untuk menyematkan pesan atau melepas sematan grup."
+help_rest: " Restrict\n\n• Perintah: `{0}ban or delban`\n• Penjelasan: Untuk memblokir pengguna.\n\n• Perintah: `{0}kick or delkick`\n• Penjelasan: Untuk mengeluarkan pengguna.\n\n• Perintah: `{0}mute or delmute`\n• Penjelasan: Untuk membisukan pengguna.\n\n• Perintah: `{0}unmute`\n• Penjelasan: Untuk menyuarakan pengguna.\n\n• Perintah: `{0}unban`\n• Penjelasan: Untuk melepas blokir pengguna.\n\n• Perintah: `{0}promote`\n• Penjelasan: Untuk mengangkat admin.\n\n• Perintah: `{0}fullpromote`\n• Penjelasan: Untuk mengangkat wakil pendiri.\n\n• Perintah: `{0}demote`\n• Penjelasan: Untuk menurunkan seorang admin.\n\n• Perintah: `{0}title`\n• Penjelasan: Untuk mengubah titel pengguna.\n\n• Perintah: `{0}zombies`\n• Penjelasan: Untuk mengeluarkan akun terhapus."
+help_prof: " Profile\n\n• Perintah: `{0}adminlist`\n• Penjelasan: Untuk melihat status admin grup anda.\n\n• Perintah: `{0}setbio`\n• Penjelasan: Untuk mengubah bio Anda.\n\n• Perintah: `{0}setname`\n• Penjelasan: Untuk mengubah Nama Anda.\n\n• Perintah: `{0}setpp`\n• Penjelasan: Untuk mengubah Foto Akun Anda.\n\n• Perintah: `{0}block`\n• Penjelasan: Untuk blokir pengguna.\n\n• Perintah: `{0}unblock`\n• Penjelasan: Untuk buka blokir pengguna.\n\n• Perintah: `{0}purgeme`\n• Penjelasan: Untuk buka blokir pengguna."
+help_pmper: " PMPermit\n\n• Perintah: `{0}setmsg` [balas atau berikan pesan]\n• Penjelasan: Untuk mengatur pesan PMPERMIT.\n\n• Perintah: `{0}setlimit` [angka]\n• Penjelasan: Untuk mengatur peringatan pesan blokir.\n\n• Perintah: `{0}ok atau setuju`\n• Penjelasan: Untuk menyetujui pesan.\n\n• Perintah: `{0}no atau tolak`\n• Penjelasan: Untuk menolak pesan.\n\n• Untuk menghidupkan PMPermit Silahkan Ketik: `{0}setdb pmpermit on`"
+help_ping: " Ping\n\n• Perintah : `{0}ping`\n• Penjelasan : Untuk mengecek userbot anda."
+help_paste: " Pastebin\n\n• Perintah : `{0}paste` [balas pesan]\n• Penjelasan : Untuk mengupload teks ke pastebin."
+help_notes: " Notes\n\n• Perintah: `{0}save` [nama catatan] [balas pesan]\n• Penjelasan: Untuk menyimpan catatan.\n\n• Perintah: `{0}get` [nama catatan]\n• Penjelasan: Untuk mengambil catatan.\n\n• Perintah: `{0}clear` [nama catatan]\n• Penjelasan: Untuk menghapus catatan.\n\n• Perintah: `{0}notes`\n• Penjelasan: Untuk melihat semua catatan.\n\n• Untuk menggunakan inline button silahkan ketik : `{0}markdown`"
+help_mus: " Music\n\n• Perintah: `{0}play`\n• Penjelasan: Untuk memutar lagu.\n\n• Perintah: `{0}end`\n• Penjelasan: Untuk mengakhiri lagu.\n\n• Perintah: `{0}skip`\n• Penjelasan: Untuk melewati trek.\n\n• Perintah: `{0}pause`\n• Penjelasan: Untuk menjeda trek."
+help_markd: " Markdown\n\n• Perintah: `{0}markdown`\n• Penjelasan: Untuk melihat format button."
+help_logo: " Logo\n\n• Perintah: `{0}logo` [text]\n• Penjelasan: Untuk membuat sebuah logo dengan background random ."
+help_lokk: " Locks \n\n• Perintah: `{0}locktypes` \n• Penjelasan: Untuk melihat argumen kunci.\n\n• Perintah: `{0}lock` \n• Penjelasan: Untuk mengunci izin.\n\n• Perintah: `{0}unlock` \n• Penjelasan: Untuk membuka izin.\n\n• Perintah: `{0}locks` \n• Penjelasan: Untuk melihat semua izin."
+help_limt: " Spambot\n\n• Perintah: `{0}limit`\n• Penjelasan: Untuk melihat status akun anda dibatasi atau tidak."
+help_butt: " Button\n\n• Perintah: {0}button [balas pesan]\n• Penjelasan: Untuk membuat teks button.\n\n• Silahkan ketik {0}markdown untuk melihat format button."
+help_qot: " Quote\n\n• Perintah: <code>{0}q</code> [reply message]\n• Penjelasan: Untuk membuat quote teks.\n\n• Perintah: <code>{0}qcolor</code>\n• Penjelasan: Untuk melihat format warna latar belakang quote.\n\n**Notes Optional:**\n`{0}q @username` - Menjadi fake quote.\n`{0}q warna` - Kostum latar belakang quote.\n`{0}q @username warna` Menjadi fake quote dengan latar belakang kostum."

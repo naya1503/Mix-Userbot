@@ -14,24 +14,7 @@ from telegraph import upload_file
 from Mix import *
 
 __modles__ = "Notes"
-__help__ = """
-Help Command Notes
-
-• Perintah: <code>{0}save</code> [nama catatan] [balas pesan]
-• Penjelasan: Untuk menyimpan catatan.
-
-• Perintah: <code>{0}get</code> [nama catatan]
-• Penjelasan: Untuk mengambil catatan.
-
-• Perintah: <code>{0}clear</code> [nama catatan]
-• Penjelasan: Untuk menghapus catatan.
-
-• Perintah: <code>{0}notes</code>
-• Penjelasan: Untuk melihat semua catatan.
-
-• Untuk menggunakan inline button silahkan ketik :
-<code>{0}markdown</code>
-"""
+__help__ = get_cgr("help_notes")
 
 
 def kontol_siapa(xi, tipe):
@@ -45,16 +28,14 @@ async def _(c: user, m):
     gua = c.me.id
     cek = m.reply_to_message
     note_name, text, data_type, content = get_note_type(m)
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
+    xx = await m.reply(cgr("proses").format(em.proses))
     if not note_name:
-        return await xx.edit(
-            f"{em.gagal} <b>Gunakan format :</b> <code>save</code> [nama catatan] [balas ke pesan]."
-        )
+        return await xx.edit(cgr("nts_1").format(em.gagal, m.command))
 
     if data_type == Types.TEXT:
         teks, _ = parse_button(text)
         if not teks:
-            return await xx.edit(f"{em.gagal} <b>Teks tidak dapat kosong.</b>")
+            return await xx.edit(cgr("nts_2").format(em.gagal))
         udB.save_note(c.me.id, note_name, text, data_type, content)
     elif data_type in [Types.PHOTO, Types.VIDEO]:
         teks, _ = parse_button(text)
@@ -72,27 +53,25 @@ async def _(c: user, m):
         Types.VOICE,
     ]:
         udB.save_note(c.me.id, note_name, text, data_type, content)
-    await xx.edit(
-        f"{em.sukses} <b>Catatan <code>{note_name}</code> berhasil disimpan.</b>"
-    )
+    await xx.edit(cgr("nts_3").format(em.sukses, note_name))
 
 
 @ky.ubot("get", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
+    xx = await m.reply(cgr("proses").format(em.proses))
     note = None
     if len(m.text.split()) >= 2:
         note = m.text.split()[1]
     else:
-        await xx.edit(f"{em.gagal} <b>Berikan nama catatan !</b>")
+        await xx.edit(cgr("nts_4").format(em.gagal))
         return
 
     getnotes = udB.get_note(c.me.id, note)
     teks = None
     if not getnotes:
-        return await xx.edit(f"{em.gagal} <b>{note} tidak ada dalam catatan.</b>")
+        return await xx.edit(cgr("nts_5").format(em.gagal, note))
 
     if getnotes["type"] == Types.TEXT:
         teks, button = parse_button(getnotes.get("value"))
@@ -114,7 +93,7 @@ async def _(c: user, m):
                     reply_to_message_id=ReplyCheck(m),
                 )
             except Exception as e:
-                return await xx.edit(f"Error {e}")
+                return await xx.edit(cgr("err").format(em.gagal, e))
         else:
             await m.reply(teks)
 
@@ -138,7 +117,7 @@ async def _(c: user, m):
                     reply_to_message_id=ReplyCheck(m),
                 )
             except Exception as e:
-                return await xx.edit(f"Error {e}")
+                return await xx.edit(cgr("err").format(em.gagal, e))
         else:
             await c.send_photo(
                 m.chat.id,
@@ -166,7 +145,7 @@ async def _(c: user, m):
                     reply_to_message_id=ReplyCheck(m),
                 )
             except Exception as e:
-                return await xx.edit(f"Error {e}")
+                return await xx.edit(cgr("err").format(em.gagal, e))
         else:
             await c.send_video(
                 m.chat.id,
@@ -223,9 +202,7 @@ async def _(c: user, m):
                     reply_to_message_id=ReplyCheck(m),
                 )
             except Exception as e:
-                await m.edit(
-                    f"{e} An error has accured! Check your assistant for more information!"
-                )
+                await m.edit(cgr("err").format(em.gagal, e))
                 return
         else:
             await c.send_media_group(
@@ -241,17 +218,16 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
+    xx = await m.reply(cgr("proses").format(em.proses))
     getnotes = udB.get_all_notes(c.me.id)
     if not getnotes:
-        await xx.edit(f"{em.gagal} <b>Tidak ada catatan satupun!</b>")
+        await xx.edit(cgr("nts_6").format(em.gagal))
         return
-    rply = f"{em.alive} <b>Daftar Catatan:</b>\n"
+    rply = cgr("nts_7").format(em.sukses)
     for x in getnotes:
         if len(rply) >= 1800:
             await xx.edit(rply)
-            rply = f"{em.alive} <b>Daftar Catatan:</b>\n"
-        rply += f"{em.sukses} <code>{x}</code>\n"
+        rply += cgr("nts_8").format(x)
 
     await xx.edit(rply)
 
@@ -260,82 +236,21 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = await m.reply(f"{em.proses} <b>Processing...</b>")
-
+    xx = await m.reply(cgr("proses").format(em.proses))
     if len(m.text.split()) <= 1:
-        return await xx.edit(f"{em.gagal} <b>Catatan apa yang perlu dihapus ?</b>")
+        return await xx.edit(cgr("nts_9").format(em.gagal))
 
     note = m.text.split()[1]
     getnotes = udB.get_all_notes(c.me.id)
     getnote = udB.get_note(c.me.id, note)
 
     if note not in getnotes:
-        await xx.edit(
-            f"{em.gagal} <b>Catatan <code>{note}</code> tidak ada dalam daftar catatan.</b>"
-        )
+        await xx.edit(cgr("nts_10").format(em.gagal, note))
         return
 
     if not getnote:
-        await xx.edit(f"{em.gagal} <b>Catatan <code>{note}</code> tidak ditemukan!</b>")
+        await xx.edit(cgr("nts_6").format(em.gagal))
         return
 
-    if not udB.rm_note(c.me.id, note):
-        await xx.edit(
-            f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>"
-        )
-        return
-
-    await xx.edit(f"{em.sukses} <b>Catatan <code>{note}</code> berhasil dihapus!</b>")
-
-
-@ky.inline("^get_note_")
-async def _(c, iq):
-    q = iq.query.split(None, 1)
-    notetag = q[1]
-    noteval = udB.get_note(user.me.id, notetag)
-    if not noteval:
-        return
-    note, button = parse_button(noteval.get("value"))
-    button = build_keyboard(button)
-    if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
-        file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
-        biji = noteval.get("file")
-
-        if noteval["type"] == Types.PHOTO:
-            await c.answer_inline_query(
-                iq.id,
-                cache_time=0,
-                results=[
-                    InlineQueryResultPhoto(
-                        title="Note Photo",
-                        photo_url=biji,
-                        caption=note,
-                        reply_markup=InlineKeyboardMarkup(button),
-                    )
-                ],
-            )
-        elif noteval["type"] == Types.VIDEO:
-            await c.answer_inline_query(
-                iq.id,
-                cache_time=0,
-                results=[
-                    InlineQueryResultVideo(
-                        title="Note Video",
-                        video_url=biji,
-                        caption=note,
-                        reply_markup=InlineKeyboardMarkup(button),
-                    )
-                ],
-            )
-    elif noteval["type"] == Types.TEXT:
-        await c.answer_inline_query(
-            iq.id,
-            cache_time=0,
-            results=[
-                InlineQueryResultArticle(
-                    title="Tombol Notes!",
-                    input_message_content=InputTextMessageContent(note),
-                    reply_markup=InlineKeyboardMarkup(button),
-                )
-            ],
-        )
+    await xx.edit(cgr("nts_11").format(em.sukses, note))
+    return

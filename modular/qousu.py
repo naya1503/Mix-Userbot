@@ -10,22 +10,6 @@
 ################################################################
 
 
-__modles__ = "Quote"
-__help__ = """
-Help Command Quote
-
-• Perintah: <code>{0}q</code> [reply message]
-• Penjelasan: Untuk membuat quote teks.
-
-• Perintah: <code>{0}qcolor</code>
-• Penjelasan: Untuk melihat format warna latar belakang quote.
-
-**Notes Optional:**
-`q @username` - Menjadi fake quote.
-`q warna` - Kostum latar belakang quote.
-`q @username warna` Menjadi fake quote dengan latar belakang kostum.
-"""
-
 import os
 import random
 from io import BytesIO
@@ -35,20 +19,20 @@ from pyrogram.types import *
 from Mix import *
 from Mix.core.tools_quote import *
 
+__modles__ = "Quote"
+__help__ = get_cgr("help_qot")
+
 
 @ky.ubot("qcolor", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
     iymek = f"\n• ".join(loanjing)
-    jadi = f"{em.sukses} **Daftar Warna Quote :\n\n**"
+    jadi = cgr("qot_1").format(em.proses)
     if len(iymek) > 4096:
         with open("qcolor.txt", "w") as file:
             file.write(iymek)
-        await m.reply_document(
-            "qcolor.txt",
-            caption=f"{em.sukses} Ini adalah list warna untuk latar belakang quote.",
-        )
+        await m.reply_document("qcolor.txt", caption=cgr("qot_2").format(em.sukses))
         os.remove("qcolor.txt")
     else:
         await m.reply(jadi + iymek)
@@ -68,15 +52,13 @@ async def _(c: user, m):
             try:
                 org = await c.get_users(user_id)
                 if org.id in DEVS:
-                    await m.reply(
-                        f"{em.gagal} **Si anjing mengatasnamakan Developer!**"
-                    )
+                    await m.reply(cgr("qot_3").format(em.gagal))
                     return
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=0)
                 rep.from_user = org
                 messages = [rep]
             except Exception as e:
-                return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+                return await m.reply(cgr("err").format(em.gagal, e))
             warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
             if warna:
                 acak = warna
@@ -95,7 +77,7 @@ async def _(c: user, m):
     else:
         if tag.isnumeric():
             if int(tag) > 10:
-                return await m.reply(f"{em.gagal} Batas pesan adalah 10")
+                return await m.reply(cgr("qot_4").format(em.gagal))
             warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
             if warna:
                 acak = warna
@@ -124,4 +106,4 @@ async def _(c: user, m):
         bs.name = "mix.webp"
         await m.reply_sticker(bs)
     except Exception as e:
-        return await m.reply(f"{em.gagal} Error : <code>{e}</code>")
+        return await m.reply(cgr("err").format(em.gagal, e))

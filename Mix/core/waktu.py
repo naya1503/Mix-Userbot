@@ -4,14 +4,37 @@ from datetime import datetime, timedelta
 from time import time as waktunya
 
 start_time = waktunya()
-from team.nandev.database import cleanmode
+from team.nandev.database import cleanmode, ndB
 
 
 async def get_time(seconds):
+    lng = ndB.get_key("bahasa")
     count = 0
     up_time = ""
     time_list = []
-    time_suffix_list = ["detik", "menit", "jam", "hari", "minggi", "bulan", "tahun"]
+
+    if lng == "en":
+        time_suffix_list = [
+            "seconds",
+            "minutes",
+            "hours",
+            "days",
+            "weeks",
+            "months",
+            "years",
+        ]
+    elif lng == "id":
+        time_suffix_list = ["detik", "menit", "jam", "hari", "minggu", "bulan", "tahun"]
+    else:
+        time_suffix_list = [
+            "seconds",
+            "minutes",
+            "hours",
+            "days",
+            "weeks",
+            "months",
+            "years",
+        ]
 
     while count < 4:
         count += 1
@@ -22,7 +45,7 @@ async def get_time(seconds):
         seconds = int(remainder)
 
     for i in range(len(time_list)):
-        time_list[i] = str(time_list[i]) + time_suffix_list[i]
+        time_list[i] = str(time_list[i]) + " " + time_suffix_list[i]
     if len(time_list) == 4:
         up_time += time_list.pop() + ":"
 

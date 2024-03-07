@@ -1,23 +1,3 @@
-__modles__ = "Voicechat"
-__help__ = """
- Help Command Voice Chat
-
-• Perintah: <code>{0}startvc</code>
-• Penjelasan: Untuk memulai voice chat grup.
-
-• Perintah: <code>{0}stopvc</code>
-• Penjelasan: Untuk mengakhiri voice chat grup.
-
-• Perintah: <code>{0}joinvc</code>
-• Penjelasan: Untuk bergabung voice chat grup.
-
-• Perintah: <code>{0}leavevc</code>
-• Penjelasan: Untuk meninggalkan voice chat grup.
-
-• Perintah: <code>{0}vctitle</code>
-• Penjelasan: Untuk mengubah voice chat grup.
-"""
-
 from asyncio import sleep
 from contextlib import suppress
 from random import randint
@@ -36,6 +16,10 @@ from pytgcalls.types.input_stream import InputAudioStream, InputStream
 from Mix import *
 
 turun_dewek = False
+
+__modles__ = "Voicechat"
+
+__help__ = get_cgr("help_vcs")
 
 
 async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCall]:
@@ -90,7 +74,7 @@ async def _(c: user, m):
 
 
 """
-Ini Gw Bikin Dewek Ya Anj, Kalo Masih Dikata Copas Coba Cari Jing.
+Ini Gw Bikin Dewek Ya Anj, Kalo Masih Dikata Copas Coba Cari Jing. ANAK KONTOL EMANG LOE PADA !!
 """
 
 

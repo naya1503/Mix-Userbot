@@ -6,7 +6,6 @@
 """
 ################################################################
 
-from gc import get_objects
 
 from pyrogram import *
 from pyrogram.types import *
@@ -14,14 +13,7 @@ from pyrogram.types import *
 from Mix import *
 
 __modles__ = "Button"
-__help__ = """
- Help Command Button
-
-• Perintah: <code>{0}button</code> [balas pesan]
-• Penjelasan: Untuk membuat teks button.
-
-• Silahkan ketik <code>{0}markdown</code> untuk melihat format button.
-"""
+__help__ = get_cgr("help_butt")
 
 
 @ky.ubot("button", sudo=True)
@@ -30,8 +22,8 @@ async def _(c: user, m):
     em.initialize()
     xx = m.reply_to_message
 
-    babi = await m.reply(f"{em.proses} <b>Processing...</b>")
-    teks, button = nan_parse(xx.text)
+    babi = await m.reply(cgr("proses").format(em.proses))
+    teks, button = parse_button(xx.text)
     button = build_keyboard(button)
     if button:
         button = InlineKeyboardMarkup(button)
@@ -50,43 +42,8 @@ async def _(c: user, m):
             )
 
         except Exception as e:
-            await babi.edit(f"Error {e}")
+            await babi.edit(cgr("err").format(em.gagal, e))
             return
     else:
-        await m.reply(
-            f"{em.gagal} Silahkan ketik `help markdown` untuk melihat format button!"
-        )
+        await m.reply(cgr("butt_1").format(em.gagal))
     await babi.delete()
-
-
-@ky.inline("^dibikin_button")
-async def _(c, iq):
-    # iq.from_user.id
-    _id = int(iq.query.split()[1])
-    m = [obj for obj in get_objects() if id(obj) == _id][0]
-    rep = m.reply_to_message
-    teks, button = nan_parse(rep.text)
-    button = build_keyboard(button)
-    duar = [
-        (
-            InlineQueryResultArticle(
-                title="Tombol Teks!",
-                input_message_content=InputTextMessageContent(teks),
-                reply_markup=InlineKeyboardMarkup(button),
-            )
-        )
-    ]
-    await c.answer_inline_query(iq.id, cache_time=0, results=duar)
-
-
-@ky.callback("^cls_hlp")
-async def _(_, cq):
-    unPacked = unpackInlineMessage(cq.inline_message_id)
-    if cq.from_user.id == user.me.id:
-        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
-    else:
-        await cq.answer(
-            f"Jangan Di Pencet Anjeng.",
-            True,
-        )
-        return

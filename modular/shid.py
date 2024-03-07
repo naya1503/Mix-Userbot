@@ -14,15 +14,7 @@ from Mix.core.parser import mention_html
 from Mix.core.sender_tools import extract_user
 
 __modles__ = "ShowID"
-__help__ = """
-Help Command ShowID 
-
-• Perintah: <code>{0}id</code>
-• Penjelasan: Untuk melihat id pengguna atau grup/channel.
-
-• Perintah: <code>{0}gifid</code>
-• Penjelasan: Untuk melihat id gif.
-"""
+__help__ = get_cgr("help_sid")
 
 
 @ky.ubot("id", sudo=True)
@@ -32,7 +24,7 @@ async def _(c: user, m):
     user_id, _, _ = await extract_user(c, m)
     try:
         if user_id and len(m.text.split()) == 2:
-            txt = f"{em.sukses} ID pengguna <code>{user_id}</code>"
+            txt = cgr("shid_1").format(em.sukses, user_id)
             await m.reply_text(txt, parse_mode=ParseMode.HTML)
             return
         elif (
@@ -40,12 +32,12 @@ async def _(c: user, m):
             and not m.reply_to_message
         ):
             await m.reply_text(
-                text=f"{em.sukses} ID Group <code>{m.chat.id}</code>\n{em.profil} Your ID <code>{m.from_user.id}</code>"
+                cgr("shid_2").format(em.sukses, m.chat.id, em.profil, m.from_user.id)
             )
             return
 
         elif m.chat.type == ChatType.PRIVATE and not m.reply_to_message:
-            await m.reply_text(text=f"{em.profil} Your ID is <code>{m.chat.id}</code>.")
+            await m.reply_text(cgr("shid_3").format(em.profil, m.chat.id))
             return
     except Exception as e:
         await m.reply_text(e)
@@ -59,35 +51,34 @@ async def _(c: user, m):
             fwd_sender = await mention_html(user1.first_name, user1.id)
             fwd_id = f"<code>{user1.id}</code>"
             await m.reply_text(
-                text=f"""
-{em.sukses} Original Sender - {orig_sender} <code>{orig_id}</code>
-{em.warn} Forwarder - {fwd_sender} <code>{fwd_id}</code>
-""",
+                cgr("shid_4").format(
+                    em.sukses, orig_sender, orig_id, em.warn, fwd_sender, fwd_id
+                ),
                 parse_mode=ParseMode.HTML,
             )
         else:
             try:
                 user = await c.get_users(user_id)
             except PeerIdInvalid:
-                await m.reply_text(
-                    text=f"{em.gagal} Gagal mendapatkan ID pengguna.\nMungkin anda belum pernah berinteraksi!!"
-                )
+                await m.reply_text(cgr("shid_5").format(em.gagal))
                 return
 
             await m.reply_text(
-                f"{em.sukses} {(await mention_html(user.first_name, user.id))} ID is <code>{user.id}</code>.",
+                cgr("shid_7").format(
+                    em.sukses, (await mention_html(user.first_name, user.id)), user.id
+                ),
                 parse_mode=ParseMode.HTML,
             )
     elif m.chat.type == ChatType.PRIVATE:
-        text = f"{em.sukses} Your ID is <code>{m.chat.id}</code>."
+        text = cgr("shid_3").format(em.sukses, m.chat.id)
         if m.reply_to_message:
             if m.forward_from:
-                text += f"{em.sukses} Forwarded from user ID <code>{m.forward_from.id}</code>."
+                text += cgr("shid_8").format(em.sukses, m.forward_from.id)
             elif m.forward_from_chat:
-                text += f"{em.sukses} Forwarded from user ID <code>{m.forward_from_chat.id}</code>."
+                text += cgr("shid_8").format(em.sukses, m.forward_from_chat.id)
         await m.reply_text(text)
     else:
-        text = f"{em.sukses} Chat ID <code>{m.chat.id}</code>\n{em.profil} Your ID <code>{m.from_user.id}</code>"
+        text = cgr("shid_8").format(em.sukses, m.chat.id, em.profil, m.from_user.id)
         await m.reply_text(text)
     return
 
@@ -98,9 +89,9 @@ async def _(c: user, m):
     em.initialize()
     if m.reply_to_message and m.reply_to_message.animation:
         await m.reply_text(
-            f"{em.sukses} Gif ID:\n<code>{m.reply_to_message.animation.file_id}</code>",
+            cgr("shid_9").format(em.sukses, m.reply_to_message.animation.file_id),
             parse_mode=ParseMode.HTML,
         )
     else:
-        await m.reply_text(text=f"{em.gagal} Silahkan balas ke gif.")
+        await m.reply_text(cgr("shid_10").format(em.gagal))
     return

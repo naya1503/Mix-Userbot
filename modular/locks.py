@@ -6,26 +6,9 @@
 """
 ################################################################
 
-__modles__ = "Locks"
-__help__ = """
-Help Command Group 
-
-• Perintah: <code>{0}locktypes</code> 
-• Penjelasan: Untuk melihat argumen kunci.
-
-• Perintah: <code>{0}lock</code> 
-• Penjelasan: Untuk mengunci izin.
-
-• Perintah: <code>{0}unlock</code> 
-• Penjelasan: Untuk membuka izin.
-
-• Perintah: <code>{0}locks</code> 
-• Penjelasan: Untuk melihat semua izin.
-"""
 
 from asyncio import sleep
 
-from pyrogram import filters
 from pyrogram.enums import MessageEntityType as MET
 from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
 from pyrogram.types import ChatPermissions
@@ -33,6 +16,9 @@ from pyrogram.types import ChatPermissions
 from Mix import *
 
 from .restrict import list_admins
+
+__modles__ = "Locks"
+__help__ = get_cgr("help_lokk")
 
 l_t = """
 **Lock Types:**
@@ -107,7 +93,7 @@ async def delete_messages(c: user, m):
         await m.reply(f"{e}")
 
 
-@user.on_message(filters.forwarded & filters.group, group=69)
+# @user.on_message(filters.forwarded & filters.group, group=69)
 async def _(c: user, m):
     lock = LOCKS()
     all_chats = lock.get_lock_channel()
@@ -159,13 +145,13 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) < 2:
-        await m.reply_text(f"{em.gagal} Gunakan format : `lock` type!")
+        await m.reply_text(cgr("lck_1").format(em.gagal, m.command))
         return
     lock_type = m.text.split(None, 1)[1]
     chat_id = m.chat.id
 
     if not lock_type:
-        await m.reply_text(f"{em.gagal} Berikan argumen untuk dikunci!")
+        await m.reply_text(cgr("lck_2").format(em.gagal))
         return
 
     get_perm = m.chat.permissions
@@ -185,10 +171,8 @@ async def _(c: user, m):
         except ChatNotModified:
             pass
         except ChatAdminRequired:
-            await m.reply_text(
-                f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!"
-            )
-        await m.reply_text(f"{em.sukses}" + "Terkunci <b>all</b> untuk grup ini!")
+            await m.reply_text(cgr("lck_3").format(em.gagal))
+        await m.reply_text(cgr("lck_4").format(em.sukses))
         ##await prevent_approved(m)
         return
 
@@ -241,42 +225,40 @@ async def _(c: user, m):
     elif lock_type == "url":
         curr = lock.insert_lock_channel(m.chat.id, "anti_links")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Kirim link dikunci digrup ini!")
+        await m.reply_text(cgr("lck_6").format(em.sukses))
         return
     elif lock_type == "anonchannel":
         curr = lock.insert_lock_channel(m.chat.id, "anti_c_send")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Kirim sebagai channel dikunci digrup ini!")
+        await m.reply_text(cgr("lck_8").format(em.sukses))
         return
     elif lock_type == "forwardall":
         curr = lock.insert_lock_channel(m.chat.id, "anti_fwd")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Pesan terusan dikunci digrup ini!")
+        await m.reply_text(cgr("lck_9").format(em.sukses))
         return
     elif lock_type == "forwardu":
         curr = lock.insert_lock_channel(m.chat.id, "anti_fwd_u")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Pesan terusan pengguna dikunci digrup ini!")
+        await m.reply_text(cgr("lck_10").format(em.sukses))
         return
     elif lock_type == "forwardc":
         curr = lock.insert_lock_channel(m.chat.id, "anti_fwd_c")
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah hidup!")
+            await m.reply_text(cgr("lck_5").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Pesan terusan channel dikunci digrup ini!")
+        await m.reply_text(cgr("lck_11").format(em.sukses))
         return
     else:
-        await m.reply_text(
-            f"{em.gagal} Invalid Lock Tipe!\n\n{em.sukses} Silahkan ketik <code>locktypes</code> untuk melihat format lock!"
-        )
+        await m.reply_text(cgr("lck_12").format(em.gagal))
         return
 
     try:
@@ -296,10 +278,8 @@ async def _(c: user, m):
     except ChatNotModified:
         pass
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!")
-    await m.reply_text(
-        f"{em.sukses}" + f"Terkunci <b>{perm}</b> dalam grup ini.",
-    )
+        await m.reply_text(cgr("lck_13").format(em.gagal))
+    await m.reply_text(cgr("lck_14").format(em.sukses, perm))
     ##await prevent_approved(m)
     return
 
@@ -309,13 +289,13 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) < 2:
-        await m.reply_text(f"{em.gagal} Gunakan format : `lock` type!")
+        await m.reply_text(cgr("lck_1").format(em.gagal, m.command))
         return
     unlock_type = m.text.split(None, 1)[1]
     chat_id = m.chat.id
 
     if not unlock_type:
-        await m.reply_text(f"{em.gagal} Berikan argumen untuk dibuka!")
+        await m.reply_text(cgr("lck_16").format(em.gagal))
         return
 
     if unlock_type == "all":
@@ -336,11 +316,8 @@ async def _(c: user, m):
         except ChatNotModified:
             pass
         except ChatAdminRequired:
-            await m.reply_text(
-                f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!"
-            )
-        await m.reply_text(f"{em.sukses}" + "Dibuka <b>all</b> untuk grup ini!")
-        ##await prevent_approved(m)
+            await m.reply_text(cgr("lck_13").format(em.gagal))
+        await m.reply_text(cgr("lck_18").format(em.sukses))
         return
 
     get_uperm = m.chat.permissions
@@ -403,48 +380,46 @@ async def _(c: user, m):
         curr = lock.remove_lock_channel(m.chat.id, "anti_c_send")
 
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah dibuka!")
+            await m.reply_text(cgr("lck_19").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Kirim sebagai channel dibuka digrup ini!")
+        await m.reply_text(cgr("lck_20").format(em.sukses))
         return
     elif unlock_type == "url":
         curr = lock.remove_lock_channel(m.chat.id, "anti_links")
         if curr:
-            await m.reply_text(f"{em.sukses} Sudah dibuka!")
+            await m.reply_text(cgr("lck_19").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Kirim link dibuka digrup ini!")
+        await m.reply_text(cgr("lck_21").format(em.sukses))
         return
     elif unlock_type == "forwardall":
         curr = lock.remove_lock_channel(m.chat.id, "anti_fwd")
 
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah dibuka!")
+            await m.reply_text(cgr("lck_19").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Semua pesan terusan dibuka digrup ini!")
+        await m.reply_text(cgr("lck_22").format(em.sukses))
         return
 
     elif unlock_type == "forwardu":
         curr = lock.remove_lock_channel(m.chat.id, "anti_fwd_u")
 
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah dibuka!")
+            await m.reply_text(cgr("lck_19").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Pesan terusan pengguna dibuka digrup ini!")
+        await m.reply_text(cgr("lck_23").format(em.sukses))
         return
 
     elif unlock_type == "forwardc":
         curr = lock.remove_lock_channel(m.chat.id, "anti_fwd_c")
 
         if not curr:
-            await m.reply_text(f"{em.sukses} Sudah dibuka!")
+            await m.reply_text(cgr("lck_19").format(em.sukses))
             return
-        await m.reply_text(f"{em.sukses} Pesan terusan channel dibuka digrup ini!")
+        await m.reply_text(cgr("lck_24").format(em.sukses))
         return
 
     else:
-        await m.reply_text(
-            f"{em.gagal} Invalid Unlock Tipe!\n\n{em.sukses} Silahkan ketik <code>locktypes</code> untuk melihat format lock!"
-        )
+        await m.reply_text(cgr("lck_25").format(em.gagal))
 
     try:
 
@@ -466,10 +441,8 @@ async def _(c: user, m):
     except ChatNotModified:
         pass
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Sepertinya saya tidak mempunyai izin lebih!")
-    await m.reply_text(
-        f"{em.sukses}" + f"Dibuka <b>{uperm}</b> dalam grup ini.",
-    )
+        await m.reply_text(cgr("lck_13").format(em.gagal))
+    await m.reply_text(cgr("lck_27").format(em.sukses, uperm))
     ##await prevent_approved(m)
     return
 
@@ -478,7 +451,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    chkmsg = await m.reply_text(f"{em.proses} Processing...")
+    chkmsg = await m.reply_text(cgr("proses").format(em.proses))
     v_perm = m.chat.permissions
 
     async def convert_to_emoji(val: bool):
@@ -546,6 +519,6 @@ async def _(c: user, m):
             await chkmsg.edit_text(permission_view_str)
 
         except RPCError as e_f:
-            await chkmsg.edit_text(f"{em.gagal} Terjadi kesalahan!")
-            await m.reply_text(f"{em.gagal} Lapor ke @kynansupport :\n\n{e_f}")
+            await chkmsg.edit_text(cgr("lck_28").format(em.gagal))
+            await m.reply_text(cgr("err").format(em.gagal, e_f))
     return

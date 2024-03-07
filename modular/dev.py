@@ -21,18 +21,7 @@ from psutil._common import bytes2human
 from Mix import *
 
 __modles__ = "Devs"
-__help__ = """
- Help Command Developer
-
-• Perintah : <code>{0}sh</code>
-• Penjelasan : Execute code.
-
-• Perintah : <code>{0}eval</code>
-• Penjelasan : Execute code.
-
-• Perintah : <code>{0}trash</code>
-• Penjelasan : Dump message.
-"""
+__help__ = get_cgr("help_dev")
 
 
 @ky.ubot("sh", sudo=True)

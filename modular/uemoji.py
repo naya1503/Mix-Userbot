@@ -11,33 +11,7 @@ from pyrogram.types import *
 from Mix import *
 
 __modles__ = "Emoji"
-__help__ = """
- Help Command Emoji
-
-• Perintah: <code>{0}emoji</code> [variable] [value]
-• Penjelasan: Untuk mengubah tampilan emoji.
-
-• Perintah: <code>{0}emoid</code> [reply emoji]
-• Penjelasan: Untuk mengubah tampilan emoji.
-
-• Perintah: <code>{0}getemo</code>
-• Penjelasan: Untuk melihat tampilan emoji.
-
-• Perintah: <code>{0}setemo</code>
-• Penjelasan: Untuk mengatur status emoji.
-
-• Contoh pengunaan set emoji :
-
-<code>{0}emoji ping 🏓</code>
-<code>{0}emoji pong 🥵</code>
-<code>{0}emoji proses 🔄</code>
-<code>{0}emoji sukses ✅</code>
-<code>{0}emoji gagal ❌</code>
-<code>{0}emoji profil 👤</code>
-<code>{0}emoji alive ⭐</code>
-<code>{0}emoji warn !</code>
-code>{0}emoji block ?</code>
-"""
+__help__ = get_cgr("help_emo")
 
 
 @ky.ubot("setemo", sudo=True)

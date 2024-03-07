@@ -18,12 +18,7 @@ from .webshot import ss
 pattern = re.compile(r"^text/|json$|yaml$|xml$|toml$|x-sh$|x-shellscript$")
 
 __modles__ = "Pastebin"
-__help__ = """
- Help Command Pastebin
-
-• Perintah : <code>{0}paste</code> [balas pesan]
-• Penjelasan : Untuk mengupload teks ke pastebin.
-"""
+__help__ = get_cgr("help_paste")
 
 
 @ky.ubot("paste", sudo=True)
@@ -31,17 +26,15 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
-        return await m.reply_text(f"{em.gagal} Silahkan balas ke pesan.")
+        return await m.reply_text(cgr("paste_1").format(em.gagal))
     r = m.reply_to_message
     if not r.text and not r.document:
-        return await m.reply_text(
-            f"{em.gagal} Silahkan balas ke pesan teks atau dokumen teks?"
-        )
+        return await m.reply_text(cgr("paste_1").format(em.gagal))
     if r.text:
         content = str(r.text)
     else:
         if r.document.file_size > 40000:
-            return await m.reply(f"{em.gagal} Ukuran file harus dibawah 40kb")
+            return await m.reply(cgr("paste_2").format(em.gagal))
         doc = await m.reply_to_message.download()
         async with aiofiles.open(doc, mode="r") as f:
             content = await f.read()
@@ -49,8 +42,7 @@ async def _(c: user, m):
     link = await paste(content)
     photo = await ss(link, True)
     try:
-        await m.reply_document(
-            photo, caption=f"{em.sukses} **Paste Link:** [Klik Disini]({link})"
-        )
+        await m.reply_document(photo, caption=cgr("paste_3").format(em.sukses, link))
     except Exception:
-        await m.reply(f"{em.sukses} **Paste Link:** [Klik Disini]({link})")
+        await m.reply(cgr("paste_3").format(em.sukses, link))
+        return
