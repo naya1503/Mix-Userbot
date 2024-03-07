@@ -429,3 +429,7 @@ help_lokk: " Locks \n\n• Command: `{0}locktypes` \n• Explanation: View lock 
 help_limt: " Spambot\n\n• Command: `{0}limit`\n• Explanation: Check if your account is limited or not."
 help_butt: " Button\n\n• Command: {0}button [reply to message]\n• Explanation: Create text buttons.\n\n• Type {0}markdown to see button formatting."
 help_qot: " Quote\n\n• Command: <code>{0}q</code> [reply to message]\n• Explanation: Create text quotes.\n\n• Command: <code>{0}qcolor</code>\n• Explanation: View background color format for quotes.\n\n**Optional Notes:**\n`{0}q @username` - Generate a fake quote.\n`{0}q color` - Customize the background color of the quote.\n`{0}q @username color` - Generate a fake quote with customized background."
+help_anm1: " Animasi 1\n\nPerintah: `{0}`dino"
+help_anm2: " Animasi 2\n\nPerintah: `{0}`dino"
+help_anm3: " Animasi 3\n\nPerintah: `{0}`dino"
+help_anm4: " Animasi 4\n\nPerintah: `{0}`dino"
