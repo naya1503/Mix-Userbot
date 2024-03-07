@@ -57,9 +57,7 @@ async def leave_chat(c, m):
             f"{em.gagal} <b>Saya tidak memiliki izin untuk meninggalkan obrolan ini!</b>"
         )
     except ChatNotFound:
-        await ceger.edit(
-            f"{em.gagal} <b>Obrolan tidak ditemukan!</b>"
-        )
+        await ceger.edit(f"{em.gagal} <b>Obrolan tidak ditemukan!</b>")
     except UserNotParticipant:
         await ceger.edit(
             f"{em.gagal} <b>Anda bukan anggota atau member di <code>{namagece}</code></b>"
