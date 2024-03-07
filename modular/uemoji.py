@@ -57,7 +57,6 @@ async def _(c: user, m):
                 return
 
 
-
 @ky.ubot("emoji", sudo=True)
 async def _(c: user, m):
     em = Emojik()
