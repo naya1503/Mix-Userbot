@@ -134,18 +134,3 @@ async def _(c: user, m):
             await m.reply(f"{e}")
             await c.send_message(chat, m.text, reply_to_message_id=msg)
             return
-
-
-"""
-@ky.pc()
-async def _(c: user, m):
-    if TAG_LOG is None:
-        return
-    if m.chat.id != 777000:
-        try:
-            async for oiu in c.search_messages(m.chat.id, limit=1):
-                await oiu.forward(TAG_LOG)
-        except FloodWait as e:
-            await asyncio.sleep(e.value)
-            await oiu.forward(TAG_LOG)
-"""
