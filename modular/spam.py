@@ -8,6 +8,8 @@
 
 import asyncio
 
+from pyrogram.errors import *
+
 from Mix import *
 
 dispam = []
@@ -24,7 +26,7 @@ async def _(c: user, m):
     em.initialize()
     global berenti
     reply = m.reply_to_message
-    msg = await m.reply(f"{em.proses} Processing...")
+    msg = await m.reply(cgr("proses").format(em.proses))
     berenti = True
 
     if reply:
@@ -39,9 +41,8 @@ async def _(c: user, m):
             return await msg.edit(str(error))
     else:
         if len(m.command) < 2:
-            return await msg.edit(
-                f"{em.gagal} Silakan ketik <code>{m.command}</code> untuk bantuan perintah."
-            )
+            return await msg.edit(cgr("spm_1").format(em.gagal, m.command))
+            
         else:
             try:
                 count_message = int(m.command[1])
@@ -67,7 +68,7 @@ async def _(c: user, m):
     global berenti
 
     reply = m.reply_to_message
-    msg = await m.reply(f"{em.proses} Processing...")
+    msg = await m.reply(cgr("proses").format(em.proses))
     berenti = True
     if reply:
         try:
@@ -85,9 +86,7 @@ async def _(c: user, m):
                 pass
     else:
         if len(m.command) < 4:
-            return await msg.edit(
-                f"{em.gagal} Silakan ketik <code>{m.command}</code> untuk bantuan perintah."
-            )
+            return await msg.edit(cgr("spm_2").format(em.gagal, m.command))
         else:
             try:
                 count_message = int(m.command[1])
@@ -115,7 +114,56 @@ async def _(c: user, m):
     em.initialize()
     global berenti
     if not berenti:
-        return await m.reply(f"{em.gagal} Sedang tidak ada perintah spam disini.")
+        return await m.reply(cgr("spm_3").format(em.gagal))
     berenti = False
-    await m.reply(f"{em.sukses} Ok spam berhasil dihentikan.")
+    await m.reply(cgr("spm_4").format(em.sukses))
     return
+
+
+@ky.ubot("dspamfw", sudo=True)
+async def _(c: user, message):
+    em = Emojik()
+    em.initialize()
+    global berenti
+    message.reply_to_message
+    proses = await message.reply(cgr("proses").format(em.proses))
+    berenti = True
+
+    try:
+        _, count_str, delay_str, link = message.text.split(maxsplit=3)
+        count = int(count_str)
+        delay = int(delay_str)
+    except ValueError:
+        await proses.reply(cgr("spm_5").format(em.gagal, m.command))
+        return
+
+    chat_id, message_id = link.split("/")[-2:]
+
+    try:
+        chat_id = int(chat_id)
+    except ValueError:
+        pass
+
+    message_id = int(message_id)
+
+    for _ in range(count):
+        try:
+            if not berenti:
+                break
+            await c.get_messages(chat_id, message_id)
+            await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
+            await proses.delete()
+            await asyncio.sleep(delay)
+        except Exception as e:
+            if (
+                "CHAT_SEND_PHOTOS_FORBIDDEN" in str(e)
+                or "CHAT_SEND_MEDIA_FORBIDDEN" in str(e)
+                or "USER_RESTRICTED" in str(e)
+            ):
+                await message.reply(cgr("spm_6").format(em.gagal))
+            else:
+                await proses.reply(cgr("err").format(em.gagal, e))
+            break
+    berenti = False
+    await message.delete()
+    await proses.delete()
