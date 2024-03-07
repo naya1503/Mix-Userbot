@@ -12,6 +12,9 @@ Help Command Join
 
 • Perintah: <code>{0}leave</code> [username gc/ch atau id gc/ch atau link gc/ch]
 • Penjelasan: Untuk Meninggalkan Group atau Channel.
+
+• Perintah: <code>{0}leaveallgc</code>
+• Penjelasan: Untuk Meninggalkan Semua Group Yang Ada Di Akun Anda.
 """
 
 
@@ -72,3 +75,27 @@ async def leave_chat(c, m):
         await ceger.edit(
             f"{em.gagal} <b>Terjadi kesalahan saat mencoba meninggalkan obrolan:</b> <code>{str(e)}</code>"
         )
+@ky.ubot("leaveallgc|kickmeallgc", sudo=True)    
+async def _(c, m):
+    em = Emojik()
+    em.initialize()
+    xenn = await m.reply_text(f"{em.proses} <code>Global Leave from group chats...</code>")
+    luci = 0
+    nan = 0
+    ceger = [-1001986858575, -1001876092598, -1001812143750]  
+
+    async for dialog in c.get_dialogs():
+        if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
+            chat = dialog.chat.id
+            try:
+                chat_info = await c.get_chat_member(chat, 'me')
+                user_status = chat_info.status
+                if chat not in ceger and user_status not in (ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR):
+                    nan += 1
+                    await c.leave_chat(chat)
+            except BaseException:
+                luci += 1
+    await xenn.edit(
+        f"{em.sukses} <b>Successfully left {nan} Groups, Failed to leave {luci} Groups</b>"
+    )
+    
