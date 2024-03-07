@@ -196,7 +196,7 @@ async def _(c, iq):
         upnya,
     )
     bo_ol = [[InlineKeyboardButton(cgr("alv_4"), url="t.me/kynansupport")]]
-    cekpic = udB.get_var(user.me.id, "ALIVEPIC") or alive_pic
+    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
             (
