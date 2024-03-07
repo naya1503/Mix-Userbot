@@ -128,14 +128,14 @@ async def _(c, cq):
     prefix = await user.get_prefix(user_id)
     txt = None
     if colmek == "anm1":
-        txt = get_cgr("help_anm1")
+        txt = get_cgr("help_anm1").format(next((p) for p in prefix))
     elif colmek == "anm2":
-        txt = get_cgr("help_anm2")
+        txt = get_cgr("help_anm2").format(next((p) for p in prefix))
     elif colmek == "anm3":
-        txt = get_cgr("help_anm3")
+        txt = get_cgr("help_anm3").format(next((p) for p in prefix))
     elif colmek == "anm4":
-        txt = get_cgr("help_anm4")
-    elif colmek == "anim.bc":
+        txt = get_cgr("help_anm4").format(next((p) for p in prefix))
+    elif colmek == "bc":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
