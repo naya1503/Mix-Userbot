@@ -12,7 +12,6 @@ __modles__ = "PMPermit"
 __help__ = get_cgr("help_pmper")
 
 from pyrogram import *
-from pyrogram.enums import *
 from pyrogram.types import *
 
 from Mix import *
@@ -23,9 +22,15 @@ PM_GUARD_MSGS_DB = {}
 flood = {}
 flood2 = {}
 
-DEFAULT_TEXT = cgr("pmper_1")
+DEFAULT_TEXT = """
+I am {} maintains this Chat Room . Don't spam or You will be auto blocked.
+"""
 
-PM_WARN = cgr("pmper_2")
+PM_WARN = """
+<b>Security Message of {} . You have <code>{}/{}</code> warnings !! </b>
+
+<b>{}</b>
+"""
 
 LIMIT = 5
 
@@ -34,22 +39,20 @@ LIMIT = 5
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    babi = await m.reply(cgr("proses").format(em.proses))
+    babi = await m.reply(f"{em.proses} <b>Processing...</b>")
     chat_type = m.chat.type
     getc_pm_warns = udB.get_var(c.me.id, "PMLIMIT")
     pm_text = udB.get_var(c.me.id, "PMTEXT")
     custom_pm_txt = pm_text if pm_text else DEFAULT_TEXT
     custom_pm_warns = getc_pm_warns if getc_pm_warns else LIMIT
     if chat_type == "me":
-        await babi.delete()
         return
     elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        await babi.delete()
         return
     dia = m.chat.id
     ok_tak = udB.dicek_pc(dia)
     if ok_tak:
-        await babi.edit(cgr("pmper_3").format(em.sukses))
+        await babi.edit(f"{em.sukses} <b>Pengguna ini sudah disetujui.</b>")
         return
     teks, button = parse_button(custom_pm_txt)
     button = build_keyboard(button)
@@ -67,7 +70,9 @@ async def _(c: user, m):
         except KeyError:
             pass
     udB.oke_pc(dia)
-    await babi.edit(cgr("pmper_4").format(em.sukses))
+    await babi.edit(
+        f"{em.sukses} <b>Baiklah, pengguna ini disetujui untuk mengirim pesan.</b>"
+    )
     return
 
 
@@ -75,19 +80,22 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    babi = await m.reply(cgr("proses").format(em.proses))
+    babi = await m.reply(f"{em.proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     chat_type = m.chat.type
     if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        await babi.delete()
         return
     user_id = m.chat.id
     ok_tak = udB.dicek_pc(user_id)
     if not ok_tak:
-        await babi.edit(cgr("pmper_5").format(em.sukses))
+        await babi.edit(
+            f"{em.gagal} <b>Pengguna ini memang belum disetujui untuk mengirim pesan.</b>"
+        )
         return
     udB.tolak_pc(user_id)
-    await babi.edit(cgr("pmper_6").format(em.sukses))
+    await babi.edit(
+        f"{em.sukses} <b>Baiklah, pengguna ini ditolak untuk mengirim pesan.</b>"
+    )
     return
 
 
@@ -95,7 +103,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    babi = await m.reply(cgr("proses").format(em.proses))
+    babi = await m.reply(f"{em.proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     user_id = c.me.id
     direp = m.reply_to_message
@@ -110,10 +118,14 @@ async def _(c: user, m):
         pm_txt = args_txt
 
     if not pm_txt:
-        return await babi.edit(cgr("gcs_1").format(em.gagal))
+        return await babi.edit(
+            f"{em.gagal} <b>Silakan balas ke pesan atau berikan pesan untuk dijadikan teks PMPermit !\nContoh :<code>{m.command} Halo saya anuan.</code></b>"
+        )
 
     udB.set_var(user_id, "PMTEXT", pm_txt)
-    await babi.edit(cgr("pmper_7").format(em.sukses, pm_txt))
+    await babi.edit(
+        f"{em.sukses} <b>Pesan PMPermit berhasil diatur menjadi : <code>{pm_txt}</code>.</b>"
+    )
     return
 
 
@@ -121,7 +133,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    babi = await m.reply(cgr("proses").format(em.proses))
+    babi = await m.reply(f"{em.proses} <b>Processing...</b>")
     await asyncio.sleep(2)
     user_id = c.me.id
     args_txt = c.get_arg(m)
@@ -129,21 +141,25 @@ async def _(c: user, m):
         if args_txt.isnumeric():
             pm_warns = int(args_txt)
         else:
-            return await babi.edit(cgr("pmper_8").format(em.gagal, m.command))
+            return await babi.edit(
+                f"{em.gagal} <b>Silakan berikan untuk angka limit !</b>"
+            )
     else:
-        return await babi.edit(cgr("pmper_8").format(em.gagal, m.command))
+        return await babi.edit(
+            f"{em.gagal} <b>Silakan berikan pesan untuk dijadikan angka limit !\nContoh :<code> {m.command}setlimit 5.</code></b>"
+        )
     udB.set_var(user_id, "PMLIMIT", pm_warns)
-    await babi.edit(cgr("pmper_9").format(em.sukses, pm_warns))
+    await babi.edit(
+        f"{em.sukses} <b>Pesan Limit berhasil diatur menjadi : <code>{args_txt}</code>.</b>"
+    )
 
 
 @user.on_message(
     filters.private
     & filters.incoming
     & ~filters.service
-    & ~filters.bot
-    & ~filters.via_bot
 )
-async def pm(c, m):
+async def _(c: user, m):
     em = Emojik()
     em.initialize()
     user_id = c.me.id
@@ -165,6 +181,7 @@ async def pm(c, m):
         return
 
     if in_user.is_fake or in_user.is_scam:
+        await m.reply("Sepertinya anda mencurigakan...")
         return await c.block_user(in_user.id)
     if in_user.is_support or in_user.is_verified or in_user.is_self:
         return
@@ -173,7 +190,7 @@ async def pm(c, m):
             await c.send_message(
                 in_user.id,
                 f"<b>Menerima Pesan Dari {biji} !!\nTerdeteksi Developer Dari Mix-Userbot.</b>",
-                parse_mode=ParseMode.HTML,
+                parse_mode=enums.ParseMode.HTML,
             )
             udB.oke_pc(chat_id)
         except BaseException:
@@ -211,7 +228,9 @@ async def pm(c, m):
                 flood[in_user.id] += 1
                 if flood[in_user.id] >= custom_pm_warns:
                     del flood[in_user.id]
-                    await m.reply(cgr("pmper_5").format(em.block, custom_pm_warns))
+                    await m.reply(
+                        f"{em.gagal} <b>Saya sudah memberi tahu `{custom_pm_warns}` peringatan\nTunggu tuan saya menyetujui pesan anda, atau anda akan diblokir !</b>"
+                    )
                     return await c.block_user(in_user.id)
                 else:
                     rplied_msg = await kok_poto(
@@ -245,7 +264,9 @@ async def pm(c, m):
                 flood[in_user.id] += 1
                 if flood[in_user.id] >= custom_pm_warns:
                     del flood[in_user.id]
-                    await m.reply(cgr("pmper_5").format(em.block, custom_pm_warns))
+                    await m.reply(
+                        f"{em.gagal} <b>Saya sudah memberi tahu `{custom_pm_warns}` peringatan\nTunggu tuan saya menyetujui pesan anda, atau anda akan diblokir !</b>"
+                    )
                     return await c.block_user(in_user.id)
                 else:
                     rplied_msg = await m.reply(
