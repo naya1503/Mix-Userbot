@@ -135,9 +135,20 @@ async def _(c: user, m):
     udB.set_var(user_id, "PMLIMIT", pm_warns)
     await babi.edit(cgr("pmper_9").format(em.sukses, pm_warns))
 
+async def formula(c: user, m):
+    if TAG_LOG is None:
+        return
+    if m.chat.id != 777000:
+        try:
+            async for oiu in c.search_messages(m.chat.id, limit=1):
+                await oiu.forward(TAG_LOG)
+        except FloodWait as e:
+            await asyncio.sleep(e.value)
+            await oiu.forward(TAG_LOG)
 
 @ky.permit()
 async def _(c, m):
+    await formula(c, m)
     em = Emojik()
     em.initialize()
     user_id = c.me.id
