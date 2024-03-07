@@ -212,4 +212,17 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(cgr("proses").format(em.proses))
-    await xx.edit(cgr("em_24").format(em.sukses, em.ping, em.pong, em.proses, em.sukses, em.gagal, em.profil, em.alive, em.warn, em.block))
+    await xx.edit(
+        cgr("em_24").format(
+            em.sukses,
+            em.ping,
+            em.pong,
+            em.proses,
+            em.sukses,
+            em.gagal,
+            em.profil,
+            em.alive,
+            em.warn,
+            em.block,
+        )
+    )
