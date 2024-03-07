@@ -324,6 +324,9 @@ sud_4: "{} **Dihapus dari pengguna sudo : {}**"
 sud_5: "{} **Tidak ada pengguna sudo satupun!**"
 sud_6: "{} **Anggota Sudo :**\n\n{}\n\n{} {}"
 
+# transfer
+tr_1: ""
+
 # profile
 prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
 prof_2: "{} **Berhasil membuka blokir {}!**"
