@@ -15,7 +15,7 @@ upload: "{} **Menunggah...**"
 klk_1: "Klik Disini"
 balik: "Kembali"
 ttup: "Tutup"
-reboot: "{} Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
+reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
 # assisten
