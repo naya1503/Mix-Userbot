@@ -2,7 +2,6 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.methods import *
 from pyrogram.types import *
-from Mix.core.sender_tools import extract_user
 
 from Mix import *
 
