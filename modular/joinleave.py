@@ -33,29 +33,38 @@ async def _(c, m):
 
 @ky.ubot("leave|kickme", sudo=True)
 @ky.devs("Cleave")
-async def _(c, m):
+async def leave_chat(c, m):
     em = Emojik()
     em.initialize()
-    lus = m.command[1] if len(m.command) > 1 else m.chat.id
-    inpogc = await c.get_chat(lus)
-    namagece = inpogc.title
-    ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
     try:
-        if str(lus) in NO_GCAST or inpogc.id in NO_GCAST:
+        chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
+        if chat_id.startswith("https://t.me/"):
+            chat_id = chat_id.split("/")[-1]
+        inpogc = await c.get_chat(chat_id)
+        namagece = inpogc.title
+        ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
+        if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
             await ceger.edit(
                 f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
             )
-
         else:
-            await c.leave_chat(lus)
+            await c.leave_chat(chat_id)
             await ceger.edit(
-                f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code><b>"
+                f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code>"
             )
-    except pyrogram.errors.exceptions.bad_request_400.UserNotParticipant:
+    except ChatAdminRequired:
         await ceger.edit(
-            f"{em.gagal} <b>Anda bukan anggota atau member di <code>{namagece}</code>"
+            f"{em.gagal} <b>Saya tidak memiliki izin untuk meninggalkan obrolan ini!</b>"
         )
-    except pyrogram.errors.exceptions.bad_request_400.UsernameInvalid:
+    except ChatNotFound:
         await ceger.edit(
-            f"{em.gagal} <b>Tolong berikan Username atau User_ID Group/Channel yang valid!\nMohon periksa kembali dan pastikan username berawalan dengan symbol <code>@</code> dan User_ID berawalan <code>-100</code>!</b>"
+            f"{em.gagal} <b>Obrolan tidak ditemukan!</b>"
+        )
+    except UserNotParticipant:
+        await ceger.edit(
+            f"{em.gagal} <b>Anda bukan anggota atau member di <code>{namagece}</code></b>"
+        )
+    except Exception as e:
+        await ceger.edit(
+            f"{em.gagal} <b>Terjadi kesalahan saat mencoba meninggalkan obrolan:</b> <code>{str(e)}</code>"
         )
