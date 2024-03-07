@@ -227,7 +227,7 @@ async def _(c, iq):
                 reply_markup=InlineKeyboardMarkup(bo_ol),
             )
         ]
-    await c.answer_inline_query(iq.id, cache_time=0, results=duar)
+    await c.answer_inline_query(iq.id, cache_time=300, results=duar)
 
 
 # pmpermit
