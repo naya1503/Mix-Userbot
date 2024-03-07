@@ -23,7 +23,7 @@ async def _(c: user, m):
     em.initialize()
     jing = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 3:
-        return await jing.edit(cgr("dbs_1").format(em.gagal))
+        return await jing.edit(cgr("dbs_1").format(em.gagal, m.command))
     command, variable, value = m.command[:3]
     if variable.lower() == "pmpermit":
         if value.lower() == "on":
