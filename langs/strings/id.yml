@@ -303,6 +303,10 @@ spm_4: "{} **Spam Dihentikan!!**"
 spm_5: "{} **Gunakan format :`{}` [jumlah] [waktu delay] [link].**"
 spm_6: "{} Dilarang digrup ini!!"
 
+# spy
+spy_1: "{} Gagal!!"
+spy_2: "{} Hasil Curi!!"
+
 # profile
 prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
 prof_2: "{} **Berhasil membuka blokir {}!**"
