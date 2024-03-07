@@ -7,8 +7,11 @@ __modles__ = "Join"
 __help__ = """
 Help Command Join 
 
-• Perintah: <code>{0}join</code>
-• Penjelasan: Untuk join ke Group atau Channel.
+• Perintah: <code>{0}join</code> [username gc/ch atau id gc/ch atau link gc/ch]
+• Penjelasan: Untuk Bergabung ke Group atau Channel.
+
+• Perintah: <code>{0}leave</code> [username gc/ch atau id gc/ch atau link gc/ch]
+• Penjelasan: Untuk Meninggalkan Group atau Channel.
 """
 
 
@@ -20,6 +23,9 @@ async def _(c, m):
     Nan = m.command[1] if len(m.command) > 1 else m.chat.id
     ceger = await m.reply_text(f"{em.proses} <b>Processing...</b>")
     try:
+        chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
+        if chat_id.startswith("https://t.me/"):
+            chat_id = chat_id.split("/")[-1]
         inpogc = await c.get_chat(Nan)
         namagece = inpogc.title
 
