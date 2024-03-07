@@ -17,21 +17,7 @@ dispam = []
 berenti = False
 
 __modles__ = "Spam"
-__help__ = """
-Help Command Spam 
-
-• Perintah: <code>{0}dspam</code> [jumlah] [waktu delay] [balas pesan]
-• Penjelasan: Untuk melakukan delay spam.
-
-• Perintah: <code>{0}spam</code> [jumlah] [kata]
-• Penjelasan: Untuk melakukan spam.
-
-• Perintah: <code>{0}cspam</code>
-• Penjelasan: Untuk stop spam.
-
-• Perintah: <code>{0}dspamfw</code> [jumlah] [waktu delay] [link channel public]
-• Penjelasan: Untuk melakukan delay spam forward link channel.
-"""
+__help__ = get_cgr("help_spam")
 
 
 @ky.ubot("spam", sudo=True)
@@ -40,7 +26,7 @@ async def _(c: user, m):
     em.initialize()
     global berenti
     reply = m.reply_to_message
-    msg = await m.reply(f"{em.proses} Processing...")
+    msg = await m.reply(cgr("proses").format(em.proses))
     berenti = True
 
     if reply:
@@ -55,9 +41,8 @@ async def _(c: user, m):
             return await msg.edit(str(error))
     else:
         if len(m.command) < 2:
-            return await msg.edit(
-                f"{em.gagal} Silakan ketik <code>{m.command}</code> untuk bantuan perintah."
-            )
+            return await msg.edit(cgr("spm_1").format(em.gagal, m.command))
+
         else:
             try:
                 count_message = int(m.command[1])
@@ -83,7 +68,7 @@ async def _(c: user, m):
     global berenti
 
     reply = m.reply_to_message
-    msg = await m.reply(f"{em.proses} Processing...")
+    msg = await m.reply(cgr("proses").format(em.proses))
     berenti = True
     if reply:
         try:
@@ -101,9 +86,7 @@ async def _(c: user, m):
                 pass
     else:
         if len(m.command) < 4:
-            return await msg.edit(
-                f"{em.gagal} Silakan ketik <code>{m.command}</code> untuk bantuan perintah."
-            )
+            return await msg.edit(cgr("spm_2").format(em.gagal, m.command))
         else:
             try:
                 count_message = int(m.command[1])
@@ -131,9 +114,9 @@ async def _(c: user, m):
     em.initialize()
     global berenti
     if not berenti:
-        return await m.reply(f"{em.gagal} Sedang tidak ada perintah spam disini.")
+        return await m.reply(cgr("spm_3").format(em.gagal))
     berenti = False
-    await m.reply(f"{em.sukses} Ok spam berhasil dihentikan.")
+    await m.reply(cgr("spm_4").format(em.sukses))
     return
 
 
@@ -143,7 +126,7 @@ async def _(c: user, message):
     em.initialize()
     global berenti
     message.reply_to_message
-    proses = await message.reply(f"{em.proses} Processing...")
+    proses = await message.reply(cgr("proses").format(em.proses))
     berenti = True
 
     try:
@@ -151,9 +134,7 @@ async def _(c: user, message):
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
-        await proses.reply(
-            f"{em.gagal} Format perintah tidak valid. Gunakan: dspamfw <jumlah> <delay> <link>"
-        )
+        await proses.reply(cgr("spm_5").format(em.gagal, m.command))
         return
 
     chat_id, message_id = link.split("/")[-2:]
@@ -179,12 +160,9 @@ async def _(c: user, message):
                 or "CHAT_SEND_MEDIA_FORBIDDEN" in str(e)
                 or "USER_RESTRICTED" in str(e)
             ):
-                await message.reply(
-                    f"{em.gagal} Anda tidak bisa menggunakan perintah itu di sini, karena group chat ini melarangnya!"
-                )
+                await message.reply(cgr("spm_6").format(em.gagal))
             else:
-                await proses.reply(f"Gagal meneruskan pesan: {str(e)}")
-                await proses.delete()
+                await proses.reply(cgr("err").format(em.gagal, e))
             break
     berenti = False
     await message.delete()
