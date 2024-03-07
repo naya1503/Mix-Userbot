@@ -23,18 +23,7 @@ from Mix.core.sender_tools import extract_user
 gban_db = GBan()
 
 __modles__ = "Info"
-__help__ = """
-Help Command Info 
-
-• Perintah: <code>{0}info</code>
-• Penjelasan: Untuk melihat pengguna.
-
-• Perintah: <code>{0}cinfo</code>
-• Penjelasan: Untuk melihat grup.
-
-• Perintah: <code>{0}me</code>
-• Penjelasan: Untuk melihat stats user.
-"""
+__help__ = get_cgr("help_info")
 
 
 async def count(c: user, chat):
@@ -69,8 +58,8 @@ async def count(c: user, chat):
         total_banned = len(total_banned)
         return total_bot, total_admin, bot_admin, total_banned
     except Exception:
-        total_bot = total_admin = bot_admin = total_banned = (
-            f"{em.gagal} Saya tidak berada digrup itu?"
+        total_bot = total_admin = bot_admin = total_banned = cgr("info_1").format(
+            em.gagal
         )
 
     return total_bot, total_admin, bot_admin, total_banned
@@ -90,7 +79,7 @@ async def user_info(c, sus, already=False):
         reason = reason_gban
     else:
         gban = False
-        reason = f"{em.warn} Pengguna belum diGban!"
+        reason = cgr("glbl_7").format(em.warn)
 
     user_id = susu.id
     userrr = await c.resolve_peer(user_id)
@@ -110,70 +99,70 @@ async def user_info(c, sus, already=False):
     photo_id = susu.photo.big_file_id if susu.photo else None
     is_support = True if user_id in DEVS else False
     if user_id == bot.me.id:
-        is_support = "I'm Bot"
-    omp = "Tidak Diketahui"
+        is_support = "Bot"
+    omp = cgr("info_2")
     if is_support or bot.me.id:
         if user_id in DEVS:
-            omp = "Developer"
+            omp = cgr("info_2")
         elif user_id == bot.me.id:
-            omp = "I'm Bot"
+            omp = "Bot"
         elif user_id == c.me.id:
-            omp = "Owner of the bot"
+            omp = cgr("info_4")
         if user_id in DEVS and user_id == c.me.id:
-            omp = "Developer and Owner"
+            omp = cgr("info_5")
 
     is_scam = susu.is_scam
     is_bot = susu.is_bot
     is_fake = susu.is_fake
     status = susu.status
-    last_date = "Unable to fetch"
+    last_date = cgr("info_6")
     if is_bot is True:
-        last_date = "Targeted user is a bot"
+        last_date = cgr("info_7")
     if status == UserStatus.RECENTLY:
-        last_date = "User was seen recently"
+        last_date = cgr("info_8")
     if status == UserStatus.LAST_WEEK:
-        last_date = "User was seen last week"
+        last_date = cgr("info_9")
     if status == UserStatus.LAST_MONTH:
-        last_date = "User was seen last month"
+        last_date = cgr("info_10")
     if status == UserStatus.LONG_AGO:
-        last_date = "User was seen long ago or may be I am blocked by the user  :("
+        last_date = cgr("info_11")
     if status == UserStatus.ONLINE:
-        last_date = "User is online"
+        last_date = cgr("info_12")
     if status == UserStatus.OFFLINE:
         try:
             last_date = datetime.fromtimestamp(susu.status.date).strftime(
                 "%Y-%m-%d %H:%M:%S"
             )
         except Exception:
-            last_date = "User is offline"
+            last_date = cgr("info_13")
 
-    caption = f"""
-<b>User Info</b>
-
-<b>🆔 User ID</b>: <code>{user_id}</code>
-<b>📎 Link To Profile</b>: <a href='tg://user?id={user_id}'>Click Here🚪</a>
-<b>🫵 Mention</b>: {mention}
-<b>🗣 First Name</b>: <code>{first_name}</code>
-<b>🔅 Second Name</b>: <code>{last_name}</code>
-<b>🔍 Username</b>: {("@" + username) if username else "NA"}
-<b>✍️ Bio</b>: `{about}`
-<b>🧑‍💻 Support</b>: {is_support}
-<b>🥷 Support user type</b>: <code>{omp}</code>
-<b>💣 Gbanned</b>: {gban}
-<b>☠️ Gban reason</b>: <code>{reason}</code>
-<b>🌐 DC ID</b>: {dc_id}
-<b>✋ RESTRICTED</b>: {is_restricted}
-<b>✅ VERIFIED</b>: {is_verified}
-<b>❌ FAKE</b> : {is_fake}
-<b>⚠️ SCAM</b> : {is_scam} 
-<b>🤖 BOT</b>: {is_bot}
-<b>👀 Last seen</b>: <code>{last_date}</code>
-"""
+    caption = cgr("info_14").format(
+        user_id,
+        user_id,
+        mention,
+        first_name,
+        last_name,
+        ("@" + username) if username else "NA",
+        about,
+        is_support,
+        omp,
+        gban,
+        reason,
+        dc_id,
+        is_restricted,
+        is_verified,
+        is_fake,
+        is_scam,
+        is_bot,
+        last_date,
+    )
 
     return caption, photo_id
 
 
 async def chat_info(c: user, chat, already=False):
+    em = Emojik()
+    em.initialize()
     u_name = False
     if not already:
         try:
@@ -193,8 +182,8 @@ async def chat_info(c: user, chat, already=False):
                     u_name = ll.chats[0].usernames
                 except Exception:
                     pass
-            except KeyError as e:
-                caption = f"Failed to find the chat due to\n{e}"
+            except KeyError:
+                caption = cgr("err").format(em.gagal, r)
                 return caption, None
     chat_id = chat.id
     if u_name:
@@ -214,27 +203,24 @@ async def chat_info(c: user, chat, already=False):
     can_save = chat.has_protected_content
     linked_chat = chat.linked_chat
 
-    caption = f"""
-<b>CHAT INFO</b>
-
-<b>🆔 ID</b>: <code>{chat_id}</code>
-<b>🚀 Chat Title</b>: {title}
-<b>✨ Chat Type</b>: {type_}
-<b>🌐 DataCentre ID</b>: {dc_id}
-<b>🔍 Username</b>: {("@" + username) if username else "NA"}
-<b>⚜️ Administrators</b>: {total_admin}
-<b>🤖 Bots</b>: {total_bot}
-<b>🚫 Banned</b>: {total_banned}
-<b>⚜️ Admin 🤖 Bots</b>: {total_bot_admin}
-<b>⁉️ Scam</b>: {is_scam}
-<b>❌ Fake</b>: {is_fake}
-<b>✋ Restricted</b>: {is_restricted}
-<b>👨🏿‍💻 Description</b>: <code>{description}</code>
-<b>👪 Total members</b>: {members}
-<b>🚫 Has Protected Content</b>: {can_save}
-<b>🔗 Linked Chat</b>: <code>{linked_chat.id if linked_chat else "Not Linked"}</code>
-
-"""
+    caption = cgr("info_15").format(
+        chat_id,
+        title,
+        type_,
+        dc_id,
+        ("@" + username) if username else "NA",
+        total_admin,
+        total_bot,
+        total_banned,
+        total_bot_admin,
+        is_scam,
+        is_fake,
+        is_restricted,
+        description,
+        members,
+        can_save,
+        linked_chat.id if linked_chat else "Not Linked",
+    )
 
     return caption, photo_id
 
@@ -244,18 +230,14 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if m.reply_to_message and m.reply_to_message.sender_chat:
-        await m.reply_text(
-            f"{em.gagal} Ini bukan pengguna, tetapi Grup! Silahkan gunakan <code>.cinfo</code>."
-        )
+        await m.reply_text(cgr("info_16").format(em.gagal))
         return
     sus, _, user_name = await extract_user(c, m)
 
     if not sus:
-        await m.reply_text(f"{em.gagal} Saya tidak dapat menemukan pengguna!")
+        await m.reply_text(cgr("glbl_2").format(em.gagal))
 
-    m = await m.reply_text(
-        f"{em.proses} Fetching {('@' + user_name) if user_name else 'pengguna'} info..."
-    )
+    m = await m.reply_text(cgr("proses").format(em.proses))
 
     try:
         info_caption, photo_id = await user_info(c, sus)
@@ -312,11 +294,9 @@ async def _(c: user, m):
             if chat.startswith("https://"):
                 chat = "@" + chat.split("/")[-1]
         else:
-            return await m.reply_text(
-                f"{em.gagal} Silahkan gunakan : <code>.cinfo</code> @username/id grup."
-            )
+            return await m.reply_text(cgr("info_17").format(em.gagal, m.command))
 
-    m = await m.reply_text(f"{em.proses} Fetching chat info...")
+    m = await m.reply_text(cgr("proses").format(em.proses))
 
     try:
         info_caption, photo_id = await chat_info(c, chat=chat)
@@ -326,7 +306,7 @@ async def _(c: user, m):
     except Exception as e:
         await m.delete()
         await sleep(0.5)
-        return await m.reply_text(f"{em.gagal} Error Laporkan ke @kynansupport\n {e}")
+        return await m.reply_text(cgr("err").format(em.gagal, e))
     if not photo_id:
         await m.delete()
         await sleep(2)
