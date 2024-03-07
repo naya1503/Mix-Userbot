@@ -10,8 +10,41 @@
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
-
+import psutil
+from time import time
 from Mix import *
+from Mix.core.waktu import get_time, start_time
+
+
+def clbk_stasm():
+    return okb(
+        [
+            [
+                (cgr("ttup"), "cls_hlp"),
+            ],
+        ],
+        False,
+        "close_asst",
+    )
+
+@ky.callback(("stats_mix"))
+async def _(c, cq):
+    
+    uptime = await get_time((time() - start_time))
+    cpu = psutil.cpu_percent()
+    mem = psutil.virtual_memory().percent
+    disk = psutil.disk_usage("/").percent
+    process = psutil.Process(os.getpid())
+    stats = f"""
+Uptime: {uptime}
+Bot: {round(process.memory_info()[0] / 1024 ** 2)} MB
+Cpu: {cpu}%
+Ram: {mem}%
+Disk: {disk}%
+Modules: {len(CMD_HELP)}
+"""
+    await cq.edit_message_text(stats, reply_markup=clbk_stasm())
+
 
 
 @ky.callback("help_(.*?)")
