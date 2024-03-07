@@ -352,7 +352,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(cgr("glbl_2").format(em.gagal))
+        await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
         user_id, user_first_name, user_name = await extract_user(c, m)
@@ -396,7 +396,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(cgr("glbl_2").format(em.gagal))
+        await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
         user_id, user_first_name, user_name = await extract_user(c, m)
@@ -448,18 +448,18 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan username atau userid pengguna!")
+        await m.reply_text(cgr("pro_1").format(em.gagal))
         return
     try:
         user_id, user_first_name, _ = await extract_user(c, m)
     except Exception:
         return
     if user_id == c.me.id:
-        await m.reply_text(f"{em.gagal} Cari pendiri grup dan turunkan anda.")
+        await m.reply_text(cgr("res_19").format(em.gagal))
         return
     botol = await member_permissions(m.chat.id, user_id)
     if not botol:
-        await m.reply_text(f"{em.gagal} Pengguna bukan admin!")
+        await m.reply_text(cgr("res_25").format(em.gagal))
         return
     try:
         await m.chat.promote_member(
@@ -477,23 +477,17 @@ async def _(c: user, m):
         )
         demoter = await mention_html(m.from_user.first_name, m.from_user.id)
         demoted = await mention_html(user_first_name, user_id)
-        await m.reply_text(
-            f"{em.profil} {demoter}\n{em.warn} Pengguna {demoted} berhasil diturunkan admin!"
-        )
+        await m.reply_text(cgr("res_26").format(em.profil, demoter, em.warn, demoted))
     except BotChannelsNa:
-        await m.reply_text(f"{em.gagal} Pengguna tidak diangkat oleh saya!")
+        await m.reply_text(cgr("res_27").format(em.gagal))
     except ChatAdminRequired:
-        await m.reply_text(f"{em.gagal} Saya bukan admin!")
-    except RightForbidden:
-        await m.reply_text(f"{em.gagal} Saya tidak mempunyai izin!")
+        await m.reply_text(cgr("res_12").format(em.gagal))
     except UserAdminInvalid:
-        await m.reply_text(f"{em.gagal} Pengguna invalid!")
+        await m.reply_text(cgr("res_3").format(em.gagal))
     except RPCError as e:
-        await m.reply_text(
-            f"{em.gagal} Pengguna tidak pernah berinteraksi dengan anda!\n\n Laporke @KynanSupport : {e}"
-        )
+        pass
     except Exception as e:
-        await m.reply_text(f"{em.gagal} Laporke @KynanSupport : {e}")
+        await m.reply_text(cgr("err").format(em.gagal), e)
     return
 
 
@@ -502,7 +496,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan teks atau balas pesan!")
+        await m.reply_text(cgr("gcs_1").format(em.gagal))
         return
     if m.reply_to_message:
         gtit = m.reply_to_message.text
@@ -511,10 +505,8 @@ async def _(c: user, m):
     try:
         await m.chat.set_title(gtit)
     except Exception as e:
-        return await m.reply_text(f"{em.gagal} Error: {e}")
-    return await m.reply_text(
-        f"{em.sukses} Berhasil mengubah nama Grup {m.chat.title} menjadi {gtit}",
-    )
+        return await m.reply_text(cgr("err").format(em.gagal), e)
+    return await m.reply_text(cgr("res_28").format(em.sukses, m.chat.title, gtit))
 
 
 @ky.ubot("gcdes", sudo=True)
@@ -522,7 +514,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(f"{em.gagal} Berikan teks atau balas pesan!")
+        await m.reply_text(cgr("gcs_1").format(em.gagal))
         return
     if m.reply_to_message:
         desp = m.reply_to_message.text
@@ -531,10 +523,8 @@ async def _(c: user, m):
     try:
         await m.chat.set_description(desp)
     except Exception as e:
-        return await m.reply_text(f"{em.gagal} Error: {e}")
-    return await m.reply_text(
-        f"{em.sukses} Berhasil mengubah deskripsi grup {m.chat.description} menjadi {desp}!",
-    )
+        return await m.reply_text(cgr("err").format(em.gagal), e)
+    return await m.reply_text(cgr("res_29").format(em.sukses, m.chat.description, desp))
 
 
 @ky.ubot("title", sudo=True)
@@ -542,9 +532,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        return await m.reply_text(
-            f"{em.gagal} Balas pengguna atau berikan username pengguna!"
-        )
+        return await m.reply_text(cgr("prof_1").format(em.gagal))
     if m.reply_to_message:
         if len(m.text.split()) >= 2:
             reason = m.text.split(None, 1)[1]
@@ -556,11 +544,11 @@ async def _(c: user, m):
     except Exception:
         return
     if not user_id:
-        return await m.reply_text(f"{em.gagal} Tidak dapat menemukan pengguna!")
+        return await m.reply_text(cgr("glbl_2").format(em.gagal))
     if user_id == c.me.id:
-        return await m.reply_text(f"{em.gagal} Kenapa harus saya?")
+        return await m.reply_text(cgr("res_19").format(em.gagal))
     if not reason:
-        return await m.reply_text(f"{em.gagal} Berikan title untuk pengguna!")
+        return await m.reply_text(cgr("res_30").format(em.gagal))
     from_user = await c.get_users(user_id)
     title = reason
     try:
