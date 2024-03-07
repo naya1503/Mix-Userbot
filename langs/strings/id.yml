@@ -208,9 +208,9 @@ info_10: "**Pengguna terlihat sebulan yang lalu**"
 info_11: "**Pengguna sudah lama tak terlihat atau mungkin Saya diblokir oleh pengguna tersebut**"
 info_12: "**Pengguna sedang Online**"
 info_13: "**Pengguna sedang Offline**"
-info_14: "User Info\n\n🆔 User ID: {}\n📎 Link To Profile: <a href='tg://user?id={}'>Click Here🚪</a>\n🫵 Mention: {}\n🗣 First Name: {}\n🔅 Second Name: {}\n🔍 Username: {}\n✍️ Bio: `{}`\n🧑‍💻 Support: {}\n🥷 Support User Type: {}\n💣 Gbanned: {}\n☠️ Gban Reason: {}\n🌐 DC ID: {}\n✋ Restricted: {}\n✅ Verified: {}\n❌ Fake : {}\n⚠️ Scam : {} \n🤖 Bot: {}\n👀 Last seen: {}"
-info_15: "CHAT INFO\n\n🆔 ID: {}\n🚀 Chat Title: {}\n✨ Chat Type: {}\n🌐 DataCentre ID: {}\n🔍 Username: {}\n⚜️ Administrators: {}\n🤖 Bots: {}\n🚫 Banned: {}\n⚜️ Admin 🤖 Bots: {}\n⁉️ Scam: {}\n❌ Fake: {}\n✋ Restricted: {}\n👨🏿‍💻 Description: {}\n👪 Total members: {}\n🚫 Has Protected Content: {}\n🔗 Linked Chat: {}"
-info_16: "{} Ini bukan pengguna, tetapi Grup! Silahkan gunakan `cinfo`."
+info_14: "**User Info\n\n🆔 User ID: `{}`\n📎 Link To Profile: <a href='tg://user?id={}'>Click Here🚪</a>\n🫵 Mention: {}\n🗣 First Name: {}\n🔅 Second Name: {}\n🔍 Username: {}\n✍️ Bio: `{}`\n🧑‍💻 Support: {}\n🥷 Support User Type: {}\n💣 Gbanned: {}\n☠️ Gban Reason: {}\n🌐 DC ID: {}\n✋ Restricted: {}\n✅ Verified: {}\n❌ Fake : {}\n⚠️ Scam : {} \n🤖 Bot: {}\n👀 Last seen: {}**"
+info_15: "**Chat Info\n\n🆔 ID: `{}`\n🚀 Chat Title: {}\n✨ Chat Type: {}\n🌐 DataCentre ID: {}\n🔍 Username: {}\n⚜️ Administrators: {}\n🤖 Bots: {}\n🚫 Banned: {}\n⚜️ Admin 🤖 Bots: {}\n⁉️ Scam: {}\n❌ Fake: {}\n✋ Restricted: {}\n👨🏿‍💻 Description: {}\n👪 Total members: {}\n🚫 Has Protected Content: {}\n🔗 Linked Chat: {}**"
+info_16: "{} **Ini bukan pengguna, tetapi Grup! Silahkan gunakan `cinfo`.**"
 info_17: "{} **Gunakan format '{}` @username/id grup.**"
 
 # limit
