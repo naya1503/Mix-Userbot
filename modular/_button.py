@@ -45,5 +45,5 @@ async def _(c: user, m):
             await babi.edit(cgr("err").format(em.gagal, e))
             return
     else:
-        await m.reply(cgr("butt_1").format(em.gagal)
+        await m.reply(cgr("butt_1").format(em.gagal))
     await babi.delete()
