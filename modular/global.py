@@ -220,7 +220,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     gmnu = dbgm.load_from_db()
-    msg = await m.reply(cgr("proses").format(em.proses)
+    msg = await m.reply(cgr("proses").format(em.proses))
     if not gmnu:
         await msg.edit(cgr("glbl_2").format(em.gagal)
         return
