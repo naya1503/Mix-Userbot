@@ -22,8 +22,9 @@ async def _(c, m):
         inpogc = await c.get_chat(Nan)
         namagece = inpogc["title"]
 
-        await ceger.edit(f"{em.sukses} <b>Berhasil Bergabung ke</b> <code>{namagece}</code>")
+        await ceger.edit(
+            f"{em.sukses} <b>Berhasil Bergabung ke</b> <code>{namagece}</code>"
+        )
         await c.join_chat(Nan)
     except Exception as ex:
         await ceger.edit(f"{em.gagal} <b>ERROR: </b>\n\n<code>{str(ex)}</code>")
-

@@ -1,4 +1,3 @@
-from asyncio import sleep
 from contextlib import suppress
 from random import randint
 from typing import Optional
