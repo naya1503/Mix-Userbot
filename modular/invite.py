@@ -24,22 +24,23 @@ async def _(c, m):
     if len(m.command) < 2:
         await mg.edit(f"{em.gagal} Berikan ID/Nama Pengguna")
         return
-    
+
     user_s_to_add = m.command[1]
     user_list = user_s_to_add.split(" ")
-    
+
     if not user_list:
         await mg.edit(f"{em.gagal} Berikan ID/Nama Pengguna")
         return
-    
+
     try:
         await c.add_chat_members(message.chat.id, user_list, forward_limit=100)
     except BaseException as e:
         await mg.edit(f"{em.gagal} Tidak Dapat Menambahkan Pengguna! \nTraceBack : {e}")
         return
-    
-    await mg.edit(f"{em.sukses} Berhasil Menambahkan {len(user_list)} Ke {mg.chat.title}")
 
+    await mg.edit(
+        f"{em.sukses} Berhasil Menambahkan {len(user_list)} Ke {mg.chat.title}"
+    )
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
