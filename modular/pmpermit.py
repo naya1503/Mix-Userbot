@@ -142,7 +142,7 @@ async def _(c: user, m):
     & ~filters.service
     & ~filters.bot
     & ~filters.via_bot,
-    group=-1,
+    group=99,
 )
 async def pm(c, m):
     em = Emojik()
