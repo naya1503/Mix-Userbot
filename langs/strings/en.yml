@@ -1,0 +1,373 @@
+name: English
+natively: English
+
+authors:
+  - Keenan
+  - Lucifer
+
+
+
+cmds: "Command Help"
+err: "{} **Error:** {} \n\n**Please report to @KynanSupport**"
+err_1: "**Error:** {}"
+proses: "{} **Being Processed...**"
+proses_1: "**Being Processed...**"
+upload: "{} **Uploading...**"
+klk_1: "Click Here"
+balik: "Back"
+ttup: "Close"
+reboot: "{} Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
+reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
+
+# assistant
+asst_1: "Hello 👋 {} !! I'm your bot assistant.\n\nWhat settings would you like to change?"
+asst_2: "Hello 👋 {} !! I'm {}'s assistant.\nWhat are you looking for?"
+asst_3: "Language"
+asst_4: "The language you are currently using is: **{}**\nPlease select if you want to change the language."
+asst_5: "Your language has been changed to: **{}**\n\nYou need to Restart Userbot to apply the changes."
+asst_6: "Restart"
+asst_7: "Update"
+
+
+# autoread 
+autoread_1: "{} **Use Format : `autoread` [`gc` or `us` or `ch` or `all`].**"
+autoread_2: "{} **Successfully read `{}` group message.**"
+autoread_3: "{} **Successfully read `{}` user message.**"
+autoread_4: "{} **Successfully read `{}` channel message.**"
+autoread_5: "{} **Successfully read `{}` message from your account.**"
+autoread_6: "{} **Please enter the query correctly!!**"
+
+# button
+butt_1: "{} **Please type `help markdown` to see button format!**"
+
+# afk
+afk_1: "{} **Cannot use channel account.**"
+afk_2: "{} **Now Afk!!**"
+afk_3: "**{} Back Online!\n{} AFK Duration! : `{}` ago.**"
+afk_4: "**{} Back Online!\n{} AFK Duration! : `{}` ago.**\n{}**Reason : `{}`.**"
+afk_5: "**{} is AFK!!**\n{} **From:** `{}` ago."
+afk_6: "**{} is AFK!!**\n{} **From:** `{}` ago.\n{} **Reason:** `{}`."
+
+# carbon
+crbn_1: "{} **Text cannot be empty!!**"
+crbn_2: "{} **Carbonated by: {}.**"
+
+# copy
+cpy_1: "{} **Use format : `{}` [link].**"
+cpy_2: "{} **Copying stopped.**"
+cpy_3: "**🔒 Content is Private!!**"
+
+# database
+dbs_1: "{} **Use Format : `setdb variable value`.**"
+dbs_2: "{} **PMPermit Enabled.**"
+dbs_3: "{} **PMPic Set to : `{}`.**"
+dbs_4: "{} **Alive Pic Set to : `{}`.**"
+dbs_5: "{} **PM Text set to default.**"
+dbs_6: "{} **Please see database query!!**"
+dbs_7: "{} **Use format : `{}` [query].**"
+dbs_8: "{} **This is your {} : `{}`.**"
+dbs_9: "{} **{} Successfully deleted!!**"
+
+# gcast
+gcs_1: "{} **Please reply to a message or give a message.**"
+gcs_2: "{} **Gcast Message Result:\n{} Succeeded in `{}` Groups.\n{} Failed in `{}` Groups.**"
+gcs_3: "{} **Gcast Message Result:\n{} Succeeded in `{}` Users.\n{} Failed in `{}` Users.**"
+gcs_4: "{} **This group is already in the blacklist!!**"
+gcs_5: "{} **`{}` | `{}` Added to the blacklist successfully.**"
+gcs_6: "{} **Group `{}` is already in the blacklist!!**"
+gcs_7: "{} **`{}` | `{}` Not in the blacklist.**"
+gcs_8: "{} **Group `{}` successfully removed from the blacklist!!**"
+gcs_9: "{} **Group `{}` is no longer in the blacklist!!**"
+gcs_10: "{} **• Gcast blacklist list `{}`!!**\n\n"
+gcs_11: "**• `{}` | `{}`**\n"
+gcs_12: "**• `{}`**\n"
+gcs_13: "{} **The blacklist list is empty!!**"
+gcs_14: "{} **All blacklist lists have been successfully deleted.**"
+
+# alive 
+alv_1: "**Author**"
+alv_2: "**Connoisseur**"
+alv_3: "**Mix-Userbot**\n    **status:** {}\n      **dc_id:** {}\n      **ping_dc:** {} ms\n      **antipm:** {}\n      **users:** {}\n      **groups:** {}\n      **bot_duration:** {}"
+alv_4: "Support"
+
+# global
+glbl_2: "{} **User not found.**"
+glbl_3: "{} **He is a Developer of Mix-Userbot.**"
+glbl_4: "{} **Please provide a reason for the Gban!**"
+glbl_5: "{} **User is already Gbanned.**"
+glbl_6: "{} **Global Ban Warning\n\n{} Success: `{}` Chats\n{} Failed: `{}` Chats\n{} Users: `{}`**\n{} Reason: `{}`**"
+glbl_7: "{} **User is not yet Gbanned.**"
+glbl_8: "{} **Global Unban Warning\n\n{} Success: `{}` Chats\n{} Failed: `{}` Chats\n{} Users: `{}`**"
+glbl_9: "{} **Please provide a reason for the GMute!**"
+glbl_10: "{} **User is already Gmuted.**"
+glbl_11: "{} **Global Mute Warning\n\n{} Success: `{}` Chats\n{} Failed: `{}` Chats\n{} Users: `{}`**\n{} Reason: `{}`**"
+glbl_12: "{} **User has never been GMuted before.**"
+glbl_13: "{} **Global Unmute Warning\n\n{} Success: `{}` Chats\n{} Failed: `{}` Chats\n{} Users: `{}`**"
+glbl_14: "{} **List of GBanned Users:**\n\n"
+glbl_15: "{} **{}**\n"
+glbl_16: "{} **Reason: `{}`\n\nTotal :`{}`**\n"
+glbl_17: "{} **List of GBanned Users!!**\n\n"
+glbl_18: "{} **List of GMuted Users:**\n\n"
+glbl_19: "{} **`{}`**\n"
+glbl_20: "{} **Reason: `{}`\n\nTotal :`{}`**\n"
+glbl_21: "{} **List of GMuted Users!!**\n\n"
+glbl_22: "**No user found.**"
+
+# graph
+grp_1: "{} **Please reply to a text or media message!**"
+grp_3: "{} **Uploaded to: <a href='https://telegra.ph/{}'>Click Here</a>**"
+grp_5: "{} **Uploaded to: <a href='https://telegra.ph/{}'>Click Here</a>**"
+
+# grouplog
+grplog_1: "{} **Group Log Successfully Activated:\n\n{}**"
+grplog_2: "{} **Your Group Log is Already Active.**"
+grplog_3: "{} **Group Log Successfully Deactivated.**"
+grplog_4: "{} **Your Group Log is Already Deactivated.**"
+grplog_5: "{} **Incorrect format provided. Please use `grouplog on` or `grouplog off`.**"
+grplog_6: "**📨 New Message\n\n• Group: {}\n• User: {}\n• Message: {}**"
+grplog_7: "Reply Message"
+
+# help
+hlp_1: "{} **No module named `{}`.**"
+
+# heroku
+hero_1: "{} **You can only fetch logs from Heroku.**"
+hero_2: "{} **Use format: `{}` variable.**"
+hero_3: "{} **{} `{}`.**"
+hero_4: "{} **Cannot find such variable.**"
+hero_5: "{} **env file not found.**"
+hero_6: "{} **`{}` successfully deleted.**"
+hero_7: "{} **Use format: `{}` [variable] [value].**"
+hero_8: "{} **`{}` successfully updated.**"
+hero_9: "{} **`{}` successfully added.**"
+hero_10: "{} **Only for Heroku users.**"
+hero_11: "{} **DYNO USAGE\n\n{} <u>Usage:</u>\nTotal Used:\n`{}h` `{}m` [`{}%`]\n\n{} <u>Remaining Quota:</u>\nTotal Left: `{}h` `{}m` [`{}%`]"
+hero_12: "{} **Git Command Error.**"
+hero_13: "{} **Invalid Git Repository.**"
+hero_14: "{} **Mix-Userbot is already up to date.**"
+hero_15: "{} **New update available for Mix-Userbot!\n\n➣ Push Update Now\n\nUpdate:**\n\n"
+hero_16: "{} **New update available for Mix-Userbot!\n\n➣ Push Update Now\n\nUpdate:\n\n[Click Here to Check Update]({})**"
+hero_17: "{} {}\n\n**Mix-Userbot successfully updated! Now, wait 2 - 3 minutes for the bot to restart!**"
+
+# info
+info_1: "{} **I'm not in that group!**"
+info_2: "**Unknown**"
+info_3: "**Developer**"
+info_4: "**Bot Owner**"
+info_5: "**Developer & Owner**"
+info_6: "**Cannot fetch**"
+info_7: "**User is a bot**"
+info_8: "**User was seen recently**"
+info_9: "**User was seen a week ago**"
+info_10: "**User was seen a month ago**"
+info_11: "**User has been unseen for a long time or perhaps I am blocked by the user**"
+info_12: "**User is currently online**"
+info_13: "**User is currently offline**"
+info_14: "User Info\n\n🆔 User ID: {}\n📎 Link To Profile: <a href='tg://user?id={}'>Click Here🚪</a>\n🫵 Mention: {}\n🗣 First Name: {}\n🔅 Second Name: {}\n🔍 Username: {}\n✍️ Bio: `{}`\n🧑‍💻 Support: {}\n🥷 Support User Type: {}\n💣 Gbanned: {}\n☠️ Gban Reason: {}\n🌐 DC ID: {}\n✋ Restricted: {}\n✅ Verified: {}\n❌ Fake : {}\n⚠️ Scam : {} \n🤖 Bot: {}\n👀 Last seen: {}"
+info_15: "CHAT INFO\n\n🆔 ID: {}\n🚀 Chat Title: {}\n✨ Chat Type: {}\n🌐 DataCentre ID: {}\n🔍 Username: {}\n⚜️ Administrators: {}\n🤖 Bots: {}\n🚫 Banned: {}\n⚜️ Admin 🤖 Bots: {}\n⁉️ Scam: {}\n❌ Fake: {}\n✋ Restricted: {}\n👨🏿‍💻 Description: {}\n👪 Total members: {}\n🚫 Has Protected Content: {}\n🔗 Linked Chat: {}"
+info_16: "{} This is not a user, but a group! Please use `cinfo`."
+info_17: "{} **Use format '{}` @username/group_id.**"
+
+# limit
+lmt_1: "{} **{}**\n\n ~ {} **{}**"
+
+# locks
+lck_1: "{} **Use the format: `{}` type!**"
+lck_2: "{} **Provide arguments to lock!**"
+lck_3: "{} **Looks like I don't have enough permission to perform {}!**"
+lck_4: "{} **Locked `all` for this group!**"
+lck_5: "{} **Already on!**"
+lck_6: "{} **Send the link to be locked in this group!**"
+lck_8: "{} **Send as channel to be locked in this group!**"
+lck_9: "{} **Forwarded messages locked in this group!**"
+lck_10: "{} **User forwarded messages locked in this group!**"
+lck_11: "{} **Channel forwarded messages locked in this group!**"
+lck_12: "{} **Invalid Lock Type!**\n\n**Please type `locktypes` to see lock format!**"
+lck_13: "{} **Looks like I don't have enough permission!**"
+lck_14: "{} **{}** locked in this group."
+lck_16: "{} **Provide arguments to unlock!**"
+lck_18: "{} **Unlocked `all` for this group!**"
+lck_19: "{} **Already off!**"
+lck_20: "{} **Send as channel to be unlocked in this group!**"
+lck_21: "{} **Send the link to be unlocked in this group!**"
+lck_22: "{} **All forwarded messages unlocked in this group!**"
+lck_23: "{} **User forwarded messages unlocked in this group!**"
+lck_24: "{} **Channel forwarded messages unlocked in this group!**"
+lck_25: "{} **Invalid Unlock Type!**\n\n**Please type `locktypes` to see lock format!**"
+lck_27: "{} **{}** unlocked in this group!**"
+lck_28: "{} **An error occurred!**"
+lck_29: "{} **Report to @kynansupport:\n\n`{}`**"
+
+# logo
+logo_1: "{} **Use the format: `{}` [text]**"
+logo_2: "{} **Created by: {}**"
+
+# markdown
+mark_1: "<b>Markdown Formatting</b>\n<b>You can format your message using <b>bold</b>, <i>italic</i>, <u>underline</u>, <strike>strikethrough</strike>, and more.</b>\n\n<code>`code word`</code>: Backtick is used for monospace font. Displayed as: <code>code word</code>.\n\n<code>__italic__</code>: Double underscore is used for italic font. Displayed as: <i>italic word</i>.\n\n<code>**bold**</code>: Asterisks are used for bold font. Displayed as: <b>bold word</b>.\n\n<code>--underline--</code>: Double hyphen is used for underline font. Displayed as: <u>underline word</u>.\n\n<code>~~strikethrough~~</code>: Tilde is used for strikethrough font. Displayed as: <strike>strikethrough word</strike>.\n\n<code>||spoiler||</code>: Double vertical bar is used for spoiler. Displayed as: <spoiler>spoiler</spoiler>.\n\n<code>[hyperlink](example)</code>: This is the formatting used for hyperlink.\n\n<code>[My Button](buttonurl://example)</code>: This is the formatting used for creating a button.\nIf you want to send buttons in the same line, use the <code>:same</code> format.\n\n<b>Example:</b>\n<code>[button 1](buttonurl://1)</code>\n<code>[button 2](buttonurl://2:same)</code>\n<code>[button 3](buttonurl://3)</code>\nThis will display button 1 and 2 in the same line, while 3 will be below."
+mark_2: "<b>Fillings</b>\n\nYou can also customize the content of your message with contextual data. For example, you can mention the username in a welcome message, or reference it in a filter!\n\n<b>Supported Fillings:</b>\n\n<code>{first}</code>: User's first name.\n<code>{last}</code>: User's last name.\n<code>{fullname}</code>: User's full name.\n<code>{username}</code>: User's username. If they don't have one, it will mention the user.\n<code>{mention}</code>: Mentions the user with their first name.\n<code>{id}</code>: User's ID.\n<code>{chatname}</code>: Chat's name."
+mark_3: "**To view markdown format please click on the button below.**"
+
+# notes
+nts_1: "{} **Use the format: `{}` [note name] [reply to message].**"
+nts_2: "{} **Text cannot be empty.**"
+nts_3: "{} **Note `{}` successfully saved.**"
+nts_4: "{} **Provide a note name!**"
+nts_5: "{} **Note `{}` not found!**"
+nts_6: "{} **No notes found!**"
+nts_7: "{} **List of Notes:**\n\n"
+nts_8: "**• `{}`**\n"
+nts_9: "{} **Which note do you want to delete?**"
+nts_10: "{} **Note `{}` not found!**"
+nts_11: "{} **Note `{}` successfully deleted.**"
+
+# pastebin
+paste_1: "{} **Use the format: `{}` [reply to text or document message]**"
+paste_2: "{} **Document size must be below 40KB!**"
+paste_3: "{} **Success! [Link Here]({})**"
+
+# ping
+ping_1: "**{} Pong `{}ms`**\n\n**{} Uptime !! `{}`**"
+
+# pmpermit
+pmper_1: "**Hey {} 👋 . Don't spam or you'll be blocked!!**"
+pmper_2: "**Security Alert {} . You've got {}/{} warnings !!\n\n{}**"
+pmper_3: "{} **User approved!**"
+pmper_4: "{} **Alright, user approved to send messages.**"
+pmper_5: "{} **User is not yet approved to send messages.**"
+pmper_6: "{} **Alright, user rejected from sending messages.**"
+pmper_7: "{} **PMPermit message successfully set to :\n\n`{}`**"
+pmper_8: "{} **Use the format: `{}` [number].**"
+pmper_9: "{} **Message Limit successfully set to: `{}`.**"
+pmper_10: "{} **I've informed `{}` warning\nWait for my Owner to approve your message, or you'll be blocked!**"
+
+# quote
+qot_1: "{} **List of Quote Background Colors:\n\n**"
+qot_2: "{} **These are the color options for the quote background.**"
+qot_3: "{} **The dog pretending to be a Developer!**"
+qot_4: "{} **Message limit is 10!**"
+
+# restrict
+res_1: "{} **Oh, you want to kick yourself?**"
+res_2: "{} **Kick User:** {}\n{} **Admin:** {}\n{} **Reason:** {}"
+res_3: "{} You don't have the authority to kick him!"
+res_4: "{} Oh, you want to ban yourself?"
+res_5: "{} **Ban User:** {}\n{} **Admin:** {}\n{} **Reason:** {}"
+res_6: "{} **Unbanned {}**"
+res_7: "{} **Please reply to the message!**"
+res_8: "{} **Pin removed [message]({})!**"
+res_9: "{} **Successfully pinned [message]({})!**"
+res_10: "{} **Oh, you want to mute yourself?**"
+res_11: "{} **Mute User:** {}\n{} **Admin:** {}\n{} **Reason:** {}"
+res_12: "{} **I'm not an admin!**"
+res_13: "{} **I don't have permission!**"
+res_14: "{} **Permission to send messages {}.**"
+res_15: "{} **Successfully kicked `{}` account deleted.**"
+res_16: "{} **No deleted accounts here!**"
+res_17: "{} **Group Links:**\n\n{}"
+res_18: "{} **Please reply to the message to report to admin!**"
+res_19: "{} **Yes, correct**"
+res_20: "{} **He's an admin!**"
+res_21: "{} **Reported {} to admin!**"
+res_22: "{} **You're an admin!**"
+res_23: "{} **{}\n{} User {} successfully promoted to co-founder!**"
+res_24: "{} **{}\n{} User {} successfully promoted to admin!**"
+res_25: "{} **User is not an admin!**"
+res_26: "{} {} {}\n{} User {} successfully demoted from admin!"
+res_27: "{} **User was not appointed by me!**"
+res_28: "{} **Successfully changed Group name: {} to {}.**"
+res_29: "{} **Successfully changed Group description: {} to {}.**"
+res_30: "{} **Provide a title for the user!**"
+res_31: "{} He is the owner of this group!"
+res_32: "{} **Successfully changed the title of user {} to {}.**"
+res_33: "{} **Reply to media!**"
+res_34: "{} **Group photo successfully changed!**"
+res_35: "{} **Successfully changed document to group photo!**"
+res_36: "{} Successfully changed video to group photo!**"
+
+# showid
+shid_1: "{} **User ID: `{}`.**"
+shid_2: "{} **Group ID: `{}`\n{} **Your ID: `{}`**"
+shid_3: "{} Your ID: `{}`**"
+shid_4: "{} **Sender ID {} : `{}`\n{} Forwarded Message ID {} : `{}`**"
+shid_5: "{} **Failed to fetch User ID.**"
+shid_6: "{} Forwarded Message ID : `{}`\nForwarded Message From : `{}`**"
+shid_7: "{} **User ID {} : `{}`**"
+shid_8: "{} **Forwarded Message ID : `{}`**"
+shid_9: "{} **Gif ID : `{}`**"
+shid_10: "{} **Please reply to the gif!**"
+
+# spam
+spm_1: "{} **Use the format: `{}` [count] [message or reply to message].**"
+spm_2: "{} **Use the format: `{}` [count] [delay time] [reply to message].**"
+spm_3: "{} **No ongoing spam process!**"
+spm_4: "{} **Spam stopped!!**"
+spm_5: "{} **Use the format:`{}` [count] [delay time] [link].**"
+spm_6: "{} Prohibited in this group!!"
+
+# spy
+spy_1: "{} Failed!!"
+spy_2: "{} Theft Result!!"
+
+# sticker
+st_1: "{} **Please reply to a non-animated sticker!**"
+st_2: "{} **Emoji : {}\n{} Sticker ID : `{}`**"
+st_3: "{} **Please reply to the sticker you want to delete!**"
+st_4: "{} **Sticker successfully removed from your pack!**"
+st_5: "{} **Sticker deletion failed!**"
+st_6: "{} **Please reply to your sticker pack!!**"
+st_7: "{} **Please reply to a sticker or media!**"
+
+# Sudo
+sud_1: "{} **{} is already a sudo!**"
+sud_2: "{} **Added to sudo users : {}**"
+sud_3: "{} **{} is not a sudo user!**"
+sud_4: "{} **Removed from sudo users : {}**"
+sud_5: "{} **There are no sudo users!**"
+sud_6: "{} **Sudo Members :**\n\n{}\n\n{} {}"
+
+# transfer
+tr_1: "{} **Use the format : `{}` [reply to message/give message].**"
+tr_2: "{} **Success\n\n`{}`**"
+tr_3: "{} **List of Language Codes :**\n\n{}"
+tr_4: "{} **Use the format : `{}` [language code].**"
+tr_5: "{} **Language code set to : `{}` - {}.**"
+tr_6: "{} **What kind of language code is that?**"
+
+# profile
+prof_1: "{} **Please reply to the user's message or provide the username.**"
+prof_2: "{} **Successfully unblocked {}!**"
+prof_3: "{} {} **Successfully blocked {}!**"
+prof_4: "{} Successfully changed the name to `{}`."
+prof_5: "{} Successfully changed the first name to `{}` and the last name to `{}`."
+prof_6: "{} Successfully changed the bio to: `{}`."
+prof_7: "{} **You're not an admin in any group!**"
+prof_8: "{} **You're an admin in `{}` group(s) :**\n\n**{}**"
+prof_9: "{} **Your Profile Picture has been successfully changed.**"
+
+# help_for
+help_afk: "Afk\n\n• Command: `{0}afk` [reason]\n• Explanation: To activate afk mode.\n\n• Command: `{0}unafk` [reason]\n• Explanation: To deactivate afk mode."
+help_alive: "Alive\n\n• Command: `{0}alive`\n• Explanation: Alive."
+help_autoread: "AutoRead\n\n• Command: `{0}autoread` [query]\n• Explanation: To read all messages on your account.\n\n**Optional Notes:**\n- `gc` to read all group messages on your account.\n- `ch` to read all channel messages on your account.\n- `us` to read all user messages on your account.\n- `all` to read all gc, ch, us messages on your account."
+help_carbon: "Carbon\n\n• Command: `{0}carbon`\n• Explanation: To create carbonara text."
+help_copy: "Copy\n\n• Command: `{0}copy` [link]\n• Explanation: To fetch messages via Telegram link."
+help_dtbs: "Settings\n\n• Command: `{0}setdb` [variable] [value]\n• Explanation: To change emoji display.\n\n• Command: `{0}getdb`\n• Explanation: To view your variables and values.\n\n• Command: `{0}deldb`\n• Explanation: To delete your variables and values.\n\n• Variables That Can Be Used: -`pmtext`\n- `pmpic`\n- `pmpermit`\n- `alivepic`"
+help_dev: "Developer\n\n• Command: `{0}sh`\n• Explanation: Execute code.\n\n• Command: `{0}eval`\n• Explanation: Execute code.\n\n• Command: `{0}trash`\n• Explanation: Dump message."
+help_gcast: "Broadcast\n\n• Command: `{0}gucast` [reply to message/send message]\n• Explanation: To broadcast messages to all users.\n\n• Command: `{0}gcast` [reply to message/send message]\n• Explanation: To broadcast messages to all groups.\n\n• Command: `{0}addbl`\n• Explanation: Add a group to the anti-Gcast list.\n\n• Command: `{0}delbl`\n• Explanation: Remove a group from the anti-Gcast list.\n\n• Command: `{0}rmall`\n• Explanation: Remove all groups from the anti-Gcast list.\n\n• Command: `{0}listbl`\n• Explanation: View the list of anti-Gcast groups.\n\n• Command: `{0}send` [username/user_id - text/reply]\n• Explanation: To send a message to a user/group/channel."
+help_global: "Global\n\n• Command: `{0}gban` [user_id/username/reply to message]\n• Explanation: To perform a global ban.\n\n• Command: `{0}ungban` [user_id/username/reply to message]\n• Explanation: To perform a global unban.\n\n• Command: `{0}listgban` [user_id/username/reply to message]\n• Explanation: To view the list of gban users.\n\n• Command: `{0}gmute` [user_id/username/reply to message]\n• Explanation: To perform a global mute.\n\n• Command: `{0}ungmute` [user_id/username/reply to message]\n• Explanation: To perform a global unmute.\n\n• Command: `{0}listgmute` [user_id/username/reply to message]\n• Explanation: To view the list of gmute users."
+help_graph: "Telegraph\n\n• Command: `{0}tg`\n• Explanation: To upload text, video, or photo."
+help_gruplog: "GroupLog\n\n• Command: `{0}gruplog` [on/off]\n• Explanation: Activate tag log and pm log."
+help_heroku: "Heroku\n\n• Command: `{0}getlog`\n• Explanation: View Heroku logs.\n\n• Command: `{0}getvar`\n• Explanation: View variables on Heroku.\n\n• Command: `{0}delvar`\n• Explanation: Delete variables on Heroku.\n\n• Command: `{0}setvar`\n• Explanation: Set variables and values on Heroku."
+help_info: "Info\n\n• Command: `{0}info`\n• Explanation: To view user info.\n\n• Command: `{0}cinfo`\n• Explanation: To view group info."
+help_webss: "Webshot\n\n• Command: `{0}webss or ss`\n• Explanation: To take a screenshot of a link."
+help_vcs: "Voice Chat\n\n• Command: `{0}startvc`\n• Explanation: To start a group voice chat.\n\n• Command: `{0}stopvc`\n• Explanation: To end a group voice chat.\n\n• Command: `{0}joinvc`\n• Explanation: To join a group voice chat.\n\n• Command: `{0}leavevc`\n• Explanation: To leave a group voice chat.\n\n• Command: `{0}vctitle`\n• Explanation: To change group voice chat title."
+help_pref: "Prefixes\n\n• Command: `{0}setprefix` [trigger]\n• Explanation: To set your userbot handler."
+help_emo: " Emoji\n\n• Perintah: `{0}emoji` [variabel] [nilai]\n• Penjelasan: Mengubah tampilan emoji.\n\n• Perintah: `{0}emoid` [reply emoji]\n• Penjelasan: Mengubah tampilan emoji.\n\n• Perintah: `{0}getemo`\n• Penjelasan: Melihat tampilan emoji.\n\n• Perintah: `{0}setemo`\n• Penjelasan: Mengatur status emoji.\n\n• Contoh penggunaan set emoji :\n- `{0}emoji ping 🏓`\n- `{0}emoji pong 🥵`\n- `{0}emoji proses 🔄`\n- `{0}emoji sukses ✅`\n- `{0}emoji gagal ❌`\n- `{0}emoji profil 👤`\n- `{0}emoji alive ⭐`\n- `{0}emoji warn !`\n- `{0}emoji block ?`"
+help_transmart: " Translate\n\n• Perintah: `{0}tts`\n• Penjelasan: Membuat teks menjadi suara.\n\n• Perintah: `{0}tr`\n• Penjelasan: Menerjemahkan teks bahasa.\n\n• Perintah: `{0}lang`\n• Penjelasan: Melihat daftar dan kode bahasa.\n\n• Perintah: `{0}setlang`\n• Penjelasan: Mengatur kode bahasa untuk tts dan tr."
+help_sys: " System\n\n• Perintah: `{0}update`\n• Penjelasan: Memeriksa pembaruan.\n\n• Perintah: `{0}reboot`\n• Penjelasan: Me-reboot userbot.\n\n• Perintah: `{0}host`\n• Penjelasan: Host sistem.\n\n• Perintah: `{0}stats`\n• Penjelasan: Statistik sistem."
+help_sudo: " Sudo\n\n• Perintah: `{0}addsudo` [reply pengguna]\n• Penjelasan: Menambahkan pengguna sudo.\n\n• Perintah: `{0}delsudo` [reply pengguna]\n• Penjelasan: Menghapus pengguna sudo.\n\n• Perintah: `{0}sudolist`\n• Penjelasan: Melihat daftar sudo."
+help_stick: " Sticker\n\n• Perintah: `{0}gstik` [reply sticker]\n• Penjelasan: Mengambil info sticker.\n\n• Perintah: `{0}kang` [reply sticker]\n• Penjelasan: Mencuri atau membuat stickerpack sendiri.\n\n• Perintah: `{0}unkang` [reply sticker]\n• Penjelasan: Menghapus sticker/stickerpack yang sudah ada."
+help_spy: " Spy\n\n• Perintah: `{0}curi or spy`\n• Penjelasan: Mencuri pap timer (bukan sekali lihat)."
+help_spam: " Spam \n\n• Perintah: <code>{0}dspam</code> [jumlah] [waktu delay] [balas pesan]\n• Penjelasan: Melakukan spam dengan penundaan.\n\n• Perintah: <code>{0}spam</code> [jumlah] [kata]\n• Penjelasan: Melakukan spam.\n\n• Perintah: <code>{0}cspam</code>\n• Penjelasan: Menghentikan spam.\n\n• Perintah: <code>{0}dspamfw</code> [jumlah] [waktu delay] [link channel publik]\n• Penjelasan: Melakukan spam dengan penundaan dan meneruskan link channel."
+help_sid: " ShowID \n\n• Perintah: `{0}id`\n• Penjelasan: Melihat ID pengguna atau grup/channel.\n\n• Perintah: `{0}gifid`\n• Penjelasan: Melihat ID gif."
+help_group: " Group \n\n• Perintah: `{0}purge` \n• Penjelasan: Menghapus semua pesan yang dibalas.\n\n• Perintah: `{0}del` \n• Penjelasan: Menghapus pesan.\n\n• Perintah: `{0}report` \n• Penjelasan: Melaporkan pengguna.\n\n• Perintah: `{0}gctitle` \n• Penjelasan: Mengubah nama grup.\n\n• Perintah: `{0}gcdes`\n• Penjelasan: Mengubah deskripsi grup.\n\n• Perintah: `{0}gcpic`\n• Penjelasan: Mengubah foto grup.\n\n• Perintah: `{0}getlink or invitelink`\n• Penjelasan: Mengambil tautan grup.\n\n• Perintah: `{0}pin or unpin`\n• Penjelasan: Menyematkan atau melepas sematan pesan grup."
+
