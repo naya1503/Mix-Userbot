@@ -6,8 +6,8 @@ __modles__ = "Join"
 __help__ = """
 Help Command Join 
 
-• Perintah: <code>{0}Join</code>
-• Penjelasan: Untuk Join ke chat.
+• Perintah: <code>{0}join</code>
+• Penjelasan: Untuk join ke chat.
 """
 
 
@@ -22,4 +22,4 @@ async def _(c, m):
         await ceger.edit(f"{em.sukses} <b>Berhasil Bergabung ke</b> {Nan}")
         await c.join_chat(Nan)
     except Exception as ex:
-        await ceger.edit(f"ERROR: \n\n{str(ex)}")
+        await ceger.edit(f"{em.gagal} <b>ERROR: </b>\n\n<code>{str(ex)}</code>")
