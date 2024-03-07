@@ -33,6 +33,8 @@ async def _(c, m):
 @ky.ubot("leave|kickme", sudo=True)
 @ky.devs("Cleave")
 async def _(c, m):
+    em = Emojik()
+    em.initialize()
     lus = m.command[1] if len(m.command) > 1 else m.chat.id
     ceger = await m.reply_text(f"{em.proses} <code>Processing...</code>")
     if m.chat.id in blacklist:
