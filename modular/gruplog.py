@@ -135,7 +135,7 @@ async def _(c: user, m):
             await c.send_message(chat, m.text, reply_to_message_id=msg)
             return
 
-
+"""
 @ky.pc()
 async def _(c: user, m):
     if TAG_LOG is None:
@@ -147,3 +147,4 @@ async def _(c: user, m):
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await oiu.forward(TAG_LOG)
+"""
