@@ -16,7 +16,7 @@ upload: "{} **Uploading...**"
 klk_1: "Click Here"
 balik: "Back"
 ttup: "Close"
-reboot: "{} Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
+reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 
 # assistant
