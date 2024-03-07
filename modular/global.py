@@ -198,7 +198,7 @@ async def _(c: user, m):
     msg = await m.reply(cgr("proses").format(em.proses))
 
     if not gbanu:
-        return await msg.edit(cgr("glbl_22").format(em.gagal)
+        return await msg.edit(cgr("glbl_22").format(em.gagal))
     dftr = cgr("glbl_14").format(em.profil)
     for ii in gbanu:
         dftr += cgr("glbl_15").format(em.block, ii['_id'])
