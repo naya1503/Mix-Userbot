@@ -23,13 +23,14 @@ from .start import clbk_strt
 def st_lang(languages):
     keyboard = InlineKeyboard(row_width=2)
     languages = get_bahasa_()
+    buttons = []
     for lang in languages:
-        buttons = [
-            InlineKeyboardButton(
-                f"{lang['natively']}",
-                callback_data=f"set_{lang['code']}",
-            )
-        ]
+        buttons.append(
+        InlineKeyboardButton(
+            f"{lang['natively']}",
+            callback_data=f"set_{lang['code']}",
+        )
+    )
     for button in buttons:
         keyboard.add(button)
     keyboard.row(
