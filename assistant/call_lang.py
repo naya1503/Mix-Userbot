@@ -23,12 +23,17 @@ from .start import clbk_strt
 def st_lang():
     keyboard = InlineKeyboard(row_width=2)
     languages = get_bahasa_()
-    buttons = [
-        InlineKeyboardButton(f"{lang['natively']}", callback_data=f"set_{lang['code']}")
-        for lang in languages
-    ]
-    for button in buttons:
-        keyboard.add(button)
+    keyboard.add(
+        *[
+           (
+              InlineKeyboardButton(
+                  f"{lang['natively']}",
+                  callback_data=f"set_{lang['code']}",
+              )
+           )
+           for lang in languages
+        ]
+    )
     keyboard.row(
         InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
         InlineKeyboardButton(text="Close", callback_data="close_asst"),
@@ -43,6 +48,8 @@ async def _(c, cq):
 
 @ky.callback("clbk.")
 async def _(c, cq):
+    if cq.from_user.id != user.me.id:
+        return
     cmd = cq.data.split(".")[1]
     op = get_bahasa_()
     okb([[("Back", "clbk.bek")]])
