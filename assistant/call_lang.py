@@ -24,14 +24,13 @@ def st_lang(languages):
     keyboard = InlineKeyboard(row_width=2)
     languages = get_bahasa_()
     lest = []
-    for lang in languages:
-        lest.append(
-            InlineKeyboardButton(
-                f"{lang['natively']}", callback_data=f"set_{lang['code']}"
-            )
-        )
-        for lost in lest:
-            keyboard.add(lost)
+    meki = [
+          (
+            InlineKeyboardButton(f"{lang['natively']}", callback_data=f"set_{lang['code']}")
+          )
+        ]
+        for lang in languages
+    keyboard.add(meki)
     keyboard.row(
         InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
         InlineKeyboardButton(text="Close", callback_data="close_asst"),
