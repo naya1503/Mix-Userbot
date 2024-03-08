@@ -91,30 +91,30 @@ async def _(c, cq):
                 disable_web_page_preview=True,
             )
 
-    top_text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
-        " ".join(prefix), len(CMD_HELP)
-    )
     if prev_match:
+        t1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(" ".join(prefix), len(CMD_HELP))
         curr_page = int(prev_match.group(1))
         await cq.edit_message_text(
-            text=top_text,
+            text=t1,
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(curr_page - 1, CMD_HELP, "help")
             ),
             disable_web_page_preview=True,
         )
     if next_match:
+        t2 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(" ".join(prefix), len(CMD_HELP))
         next_page = int(next_match.group(1))
         await cq.edit_message_text(
-            text=top_text,
+            text=t2,
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(next_page + 1, CMD_HELP, "help")
             ),
             disable_web_page_preview=True,
         )
     if back_match:
+        t3 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(" ".join(prefix), len(CMD_HELP))
         await cq.edit_message_text(
-            text=top_text,
+            text=t3,
             reply_markup=InlineKeyboardMarkup(paginate_modules(0, CMD_HELP, "help")),
             disable_web_page_preview=True,
         )
