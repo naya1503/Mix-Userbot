@@ -5,7 +5,9 @@
   <b>Mix Userbot</b>
 </h1>
 
-<b>A stable pluggable Telegram userbot + Voice & Video Call music bot, based on Pyrogram</b>
+<b>A stable pluggable Telegram userbot + Voice & Video Call music bot, based on Pyrogram
+
+Support Multi Language, If You want more language Contact Me On Telegram.</b>
 
 
 [![Last Commit](https://img.shields.io/github/last-commit/naya1503/Mix-Userbot?color=red&logo=github&logoColor=blue&style=for-the-badge)](https://github.com/naya1503/Mix-Userbot/commits)
