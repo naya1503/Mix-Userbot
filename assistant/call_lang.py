@@ -28,8 +28,8 @@ def st_lang(languages):
           (
             InlineKeyboardButton(f"{lang['natively']}", callback_data=f"set_{lang['code']}")
           )
-        ]
         for lang in languages
+    ]
     keyboard.add(meki)
     keyboard.row(
         InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
