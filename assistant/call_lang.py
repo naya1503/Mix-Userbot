@@ -20,7 +20,7 @@ from Mix import *
 from .start import clbk_strt
 
 
-def st_lang(languages):
+def st_lang():
     keyboard = InlineKeyboard(row_width=2)
     languages = get_bahasa_()
     buttons = [
@@ -50,7 +50,7 @@ async def _(c, cq):
     if cmd == "bhsa":
         meki = f"{op[0]['natively']}"
         teks = cgr("asst_4").format(meki)
-        await cq.edit_message_text(text=teks, reply_markup=st_lang(op))
+        await cq.edit_message_text(text=teks, reply_markup=st_lang())
     elif cmd == "rebot":
         await cq.edit_message_text(cgr("reboot_1"))
         os.execl(sys.executable, sys.executable, "-m", "Mix")
