@@ -81,6 +81,7 @@ async def _(c: user, m):
             )
             mmfe = " ".join(sudo_list)
         except:
+            org = await c.get_users(int(user_id))
             sudo_list.append(f"**•** {org.id}")
 
     if sudo_list:
