@@ -351,7 +351,7 @@ sud_2: "{} **Added to sudo users : {}**"
 sud_3: "{} **{} is not a sudo user!**"
 sud_4: "{} **Removed from sudo users : {}**"
 sud_5: "{} **There are no sudo users!**"
-sud_6: "{} **Sudo Members :**\n\n**{}**"
+sud_6: "{} **Sudo Members :**\n\n"
 sud_7 : "{} **There's no Sudoers!**"
 
 # transfer
