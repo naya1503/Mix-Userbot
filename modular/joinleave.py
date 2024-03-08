@@ -49,11 +49,13 @@ async def leave_chat(c, m):
     em = Emojik()
     em.initialize()
     try:
-        if len(m.command) < 2:
+        if len(m.command) in NO_GCAST < 2:
             chat_id = m.chat.id
-            await c.leave_chat(chat_id)
+            return await m.reply(f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>")
         else:
             chat_id = int(m.text.split()[1])
+            await m.reply(f"{em.sukses} <b>BYE!</b>")
+            c.leave_chat(chat_id)
 
             if chat_id.startswith("https://t.me/"):
                 chat_id = chat_id.split("/")[-1]
