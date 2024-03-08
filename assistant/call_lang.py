@@ -25,13 +25,13 @@ def st_lang():
     languages = get_bahasa_()
     keyboard.add(
         *[
-           (
-              InlineKeyboardButton(
-                  f"{lang['natively']}",
-                  callback_data=f"set_{lang['code']}",
-              )
-           )
-           for lang in languages
+            (
+                InlineKeyboardButton(
+                    f"{lang['natively']}",
+                    callback_data=f"set_{lang['code']}",
+                )
+            )
+            for lang in languages
         ]
     )
     keyboard.row(
