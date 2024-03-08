@@ -28,7 +28,7 @@ async def _(c: user, m):
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
     usro = f"[{user.first_name} {user.last_name or ''}](tg://user?id={user.id})"
     if user.id in sudo_users:
-        return await msg.edit(cgr("sud_1").format(em.sukses, usro))
+        return await msg.edit(cgr("1").format(em.sukses, usro))
     try:
         udB.add_to_var(c.me.id, "SUDO_USER", user.id, "ID_NYA")
         return await msg.edit(cgr("sud_2").format(em.sukses, usro))
@@ -81,7 +81,7 @@ async def _(c: user, m):
             )
             mmfe = " ".join(sudo_list)
         except:
-            continue
+            sudo_list.append(f"**•** {org.id}")
 
     if sudo_list:
         return await msg.edit(cgr("sud_6").format(em.sukses, mmfe))
