@@ -66,7 +66,6 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    msg = await m.reply(cgr("proses").format(em.proses))
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
     sd = 0
     hsl = cgr("sudo_6").format(em.sukses)
@@ -80,7 +79,7 @@ async def _(c: user, m):
             continue
 
     if not sudo_users:
-        return await msg.edit(cgr("sudo_5").format(em.gagal))
+        return await m.reply(cgr("sudo_5").format(em.gagal))
     else:
-        await msg.edit(hsl("sud_6").format(em.sukses))
+        await m.reply(hsl("sud_6").format(em.sukses))
     return
