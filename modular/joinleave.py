@@ -1,6 +1,6 @@
+from pyrogram.enums import *
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant
 from pyrogram.types import *
-from pyrogram.enums import * 
 
 from Mix import *
 
@@ -141,10 +141,11 @@ async def _(c: user, m):
                     luci += 1
                     await c.leave_chat(chat)
             except BaseException:
-                    nan += 1
+                nan += 1
     await xenn.edit(
         f"{em.sukses} **Berhasil keluar dari `{luci}` channel\n{em.gagal} **Gagal keluar dari `{nan}` channel.**"
     )
+
 
 """    
 async def _(c: user, m):
