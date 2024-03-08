@@ -69,18 +69,18 @@ async def _(c: user, m):
     msg = await m.reply(cgr("proses").format(em.proses))
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
     sudo_list = []
+    sd = 0
     for user_id in sudo_users:
         try:
             org = await c.get_users(int(user_id))
             org = org.first_name if not org.mention else org.mention
-            sudo_list.append(f"**•** {org}")
-
+            sd += 1
         except:
             continue
 
     if not sudo_users:
         return await msg.edit(cgr("sudo_5").format(em.gagal))
     else:
-        mmfe = " ".join(sudo_list)
-        await msg.edit(cgr("sud_6").format(em.sukses, mmfe))
+        tll = f"**{sd} - {org}**"
+        await msg.edit(cgr("sud_6").format(em.sukses, tll))
     return
