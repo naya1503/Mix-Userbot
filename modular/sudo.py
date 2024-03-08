@@ -68,7 +68,7 @@ async def _(c: user, m):
     em.initialize()
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
     sd = 0
-    hsl = cgr("sudo_6").format(em.sukses)
+    hsl = cgr("sud_6").format(em.sukses)
     for user_id in sudo_users:
         try:
             org = await c.get_users(int(user_id))
