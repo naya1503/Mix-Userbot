@@ -63,9 +63,9 @@ async def leave_chat(c, m):
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
                 await ceger.edit(
                     f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
-                    )
+                )
             else:
-                    await c.leave_chat(chat_id)
+                await c.leave_chat(chat_id)
             await ceger.edit(
                 f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code>"
             )
