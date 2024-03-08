@@ -120,6 +120,8 @@ async def _(c, m):
     )
 
 
+from pyrogram import ChatMemberStatus, ChatType
+
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -128,8 +130,9 @@ async def _(c: user, m):
     luci = 0
     nan = 0
     ceger = [-1001713457115, -1001818398503, -1001697717236]
+    
     async for dialog in c.get_dialogs():
-        if dialog.chat.type in (enums.ChatType.CHANNEL):
+        if dialog.chat.type == ChatType.CHANNEL:
             chat = dialog.chat.id
             try:
                 chat_info = await c.get_chat_member(chat, "me")
@@ -140,11 +143,13 @@ async def _(c: user, m):
                 ):
                     luci += 1
                     await c.leave_chat(chat)
-            except BaseException:
+            except Exception:
                 nan += 1
+                
     await xenn.edit(
         f"{em.sukses} **Berhasil keluar dari `{luci}` channel\n{em.gagal} **Gagal keluar dari `{nan}` channel.**"
     )
+
 
 
 """    
