@@ -21,7 +21,7 @@ Help Command Join
 """
 
 
-@ky.ubot("join|masuk", sudo=True)
+@ky.ubot("join", sudo=True)
 @ky.devs("Cjoin")
 async def _(c, m):
     em = Emojik()
