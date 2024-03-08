@@ -30,8 +30,8 @@ def st_lang(languages):
                 f"{lang['natively']}", callback_data=f"set_{lang['code']}"
             )
         )
-    #for button in buttons:
-        #keyboard.add(button)
+    # for button in buttons:
+    # keyboard.add(button)
     keyboard.row(
         InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
         InlineKeyboardButton(text="Close", callback_data="close_asst"),
