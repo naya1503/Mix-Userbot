@@ -56,9 +56,9 @@ async def leave_chat(c, m):
         else:
             await m.reply(f"{em.sukses} <b>Bye!</b>")
             await c.leave_chat(chat_id)
-            
+
             chat_id = m.chat.id
-        
+
             if str(chat_id).startswith("https://t.me/"):
                 chat_id = chat_id.split("/")[-1]
                 inpogc = await c.get_chat(chat_id)
