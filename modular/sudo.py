@@ -68,7 +68,6 @@ async def _(c: user, m):
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
-    sudo_list = []
     sd = 0
     for user_id in sudo_users:
         try:
