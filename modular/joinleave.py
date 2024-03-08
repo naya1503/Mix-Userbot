@@ -1,4 +1,4 @@
-from pyrogram.errors import *
+from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatNotFound
 from pyrogram.types import *
 
 from Mix import *
