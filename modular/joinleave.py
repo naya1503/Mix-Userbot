@@ -62,7 +62,7 @@ async def leave_chat(c, m):
             ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
         if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
             await ceger.edit(
-            f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
+                f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
             )
         else:
             await c.leave_chat(chat_id)
