@@ -51,7 +51,9 @@ async def leave_chat(c, m):
     try:
         if len(m.command) in NO_GCAST < 2:
             chat_id = m.chat.id
-            return await m.reply(f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>")
+            return await m.reply(
+                f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
+            )
         else:
             chat_id = int(m.text.split()[1])
             await m.reply(f"{em.sukses} <b>BYE!</b>")
