@@ -71,7 +71,7 @@ async def _(c: user, m):
     hsl = "\n"
     for user_id in sudo_users:
         try:
-            org = await c.get_users(int(user_id))
+            org = await user.get_users(int(user_id))
             org = org.first_name if not org.mention else org.mention
             sd += 1
             hsl += f"**{em.profil} {sd} - {org}**\n"
