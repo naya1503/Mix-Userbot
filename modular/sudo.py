@@ -68,12 +68,13 @@ async def _(c: user, m):
     em.initialize()
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
     sd = 0
+    hsl = "\n"
     for user_id in sudo_users:
         try:
             org = await c.get_users(int(user_id))
             org = org.first_name if not org.mention else org.mention
             sd += 1
-            hsl = f"**{em.profil} {sd} - {org}**\n"
+            hsl += f"**{em.profil} {sd} - {org}**\n"
         except:
             continue
 
