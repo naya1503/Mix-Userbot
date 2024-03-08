@@ -25,7 +25,7 @@ from config import def_bahasa
 cek_bahasa = ndB.get_key("bahasa") or def_bahasa
 
 bahasa_ = {}
-bahasa__present = {}
+bahasa_present = {}
 loc_lang = "langs/strings/{}.yml"
 
 
@@ -142,7 +142,7 @@ for filename in os.listdir(r"./langs/strings/"):
         bahasa_["toxic"] = yaml.safe_load(
             open(r"./langs/strings/toxic.yml", encoding="utf8")
         )
-        bahasa__present["toxic"] = bahasa_["toxic"]["name"]
+        bahasa_present["toxic"] = bahasa_["toxic"]["name"]
     if filename.endswith(".yml"):
         language_name = filename[:-4]
         if language_name == "toxic":
@@ -154,7 +154,7 @@ for filename in os.listdir(r"./langs/strings/"):
             if item not in bahasa_[language_name]:
                 bahasa_[language_name][item] = bahasa_["toxic"][item]
     try:
-        bahasa__present[language_name] = bahasa_[language_name]["name"]
+        bahasa_present[language_name] = bahasa_[language_name]["name"]
     except:
         print("There is some issue with the language file inside bot.")
         sys.exit(1)
