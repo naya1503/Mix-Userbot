@@ -70,7 +70,7 @@ async def _(c: user, m):
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
 
     if not sudo_users:
-        return await msg.edit(cgr("sudo_5").format(em.gagal))
+        
 
     sudo_list = []
     for user_id in sudo_users:
@@ -81,8 +81,10 @@ async def _(c: user, m):
             mmfe = " ".join(sudo_list)
         except:
             continue
-
-    if sudo_list:
-        return await msg.edit(cgr("sud_6").format(em.sukses, mmfe))
+    
+    
+    if not sudo_users:
+        return await msg.edit(cgr("sudo_5").format(em.gagal))
     else:
-        return await msg.edit("<b>Eror</b>")
+        await msg.edit(cgr("sud_6").format(em.sukses, mmfe))
+    return
