@@ -120,13 +120,13 @@ async def _(c, m):
 
 
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
-async def _(c, m):
+async def _(c: user, m):
     em = Emojik()
     em.initialize()
     xenn = await m.reply_text(f"{em.proses} <code>Global Leave from Channels...</code>")
     luci = 0
     nan = 0
-    ceger = [-1001713457115 - 1001818398503 - 1001697717236]
+    ceger = [-1001713457115 -1001818398503 -1001697717236]
 
     async for dialog in c.iter_dialogs():
         if dialog.chat.type == ChatType.CHANNEL:
