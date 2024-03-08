@@ -49,40 +49,42 @@ async def leave_chat(c, m):
     em = Emojik()
     em.initialize()
     try:
-        if len(m.command) < 1 and str(len(m.command)) in NO_GCAST:
-            chat_id = m.chat.id
+        if m.chat.id in NO_GCAST:
             return await m.reply(
                 f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
             )
+
+        chat_id = m.chat.id
 
         if str(chat_id).startswith("https://t.me/"):
             chat_id = chat_id.split("/")[-1]
             inpogc = await c.get_chat(chat_id)
             namagece = inpogc.title
             ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
-        if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
-            await ceger.edit(
-                f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
-            )
-        else:
-            await c.leave_chat(chat_id)
-            await ceger.edit(
-                f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code>"
-            )
+            if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
+                await ceger.edit(
+                    f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
+                )
+            else:
+                await c.leave_chat(chat_id)
+                await ceger.edit(
+                    f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code>"
+                )
     except ChatAdminRequired:
-        await ceger.edit(
+        await m.reply(
             f"{em.gagal} <b>Saya tidak memiliki izin untuk meninggalkan obrolan ini!</b>"
         )
     except ChatNotFound:
-        await ceger.edit(f"{em.gagal} <b>Obrolan tidak ditemukan!</b>")
+        await m.reply(f"{em.gagal} <b>Obrolan tidak ditemukan!</b>")
     except UserNotParticipant:
-        await ceger.edit(
+        await m.reply(
             f"{em.gagal} <b>Anda bukan anggota atau member di <code>{namagece}</code></b>"
         )
     except Exception as e:
-        await ceger.edit(
+        await m.reply(
             f"{em.gagal} <b>Terjadi kesalahan saat mencoba meninggalkan obrolan:</b> <code>{str(e)}</code>"
         )
+
 
 
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
