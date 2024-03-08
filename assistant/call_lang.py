@@ -49,6 +49,7 @@ async def _(c, cq):
 @ky.callback("clbk.")
 async def _(c, cq):
     if cq.from_user.id != user.me.id:
+        await cq.answer("Lu Siapa Si Memeg??", True)
         return
     cmd = cq.data.split(".")[1]
     op = get_bahasa_()
