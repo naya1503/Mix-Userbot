@@ -82,4 +82,4 @@ async def _(c: user, m):
         return await m.reply(cgr("sudo_5").format(em.gagal))
     else:
         await m.reply(hsl("sud_6").format(em.sukses))
-    return
+        return
