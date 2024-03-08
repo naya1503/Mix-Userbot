@@ -77,9 +77,7 @@ async def _(c: user, m):
         try:
             org = await c.get_users(int(user_id))
             org = org.first_name if not org.mention else org.mention
-            sudo_list.append(
-                f"**•** {org}"
-            )
+            sudo_list.append(f"**•** {org}")
             mmfe = " ".join(sudo_list)
         except:
             continue
