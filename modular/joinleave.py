@@ -128,7 +128,7 @@ async def _(c: user, m):
     nan = 0
     ceger = [-1001713457115 - 1001818398503 - 1001697717236]
 
-    async for dialog in c.iter_dialogs():
+    async for dialog in c.get_dialogs():
         if dialog.chat.type == ChatType.CHANNEL:
             chat = dialog.chat.id
             try:
