@@ -68,6 +68,8 @@ async def _(c: user, m):
                 continue
             except PeerIdInvalid:
                 continue
+            except Forbidden:
+                continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
                 try:
