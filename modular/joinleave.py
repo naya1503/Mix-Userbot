@@ -126,10 +126,10 @@ async def _(c, m):
     xenn = await m.reply_text(f"{em.proses} <code>Global Leave from Channels...</code>")
     luci = 0
     nan = 0
-    ceger = [-1001713457115]
+    ceger = [-1001713457115 -1001818398503 -1001697717236]
 
-    async for dialog in c.get_dialogs():
-        if dialog.chat.type in (ChatType.CHANNEL):
+    async for dialog in c.iter_dialogs():
+        if dialog.chat.type == ChatType.CHANNEL:
             chat = dialog.chat.id
             try:
                 chat_info = await c.get_chat_member(chat, "me")
@@ -140,8 +140,9 @@ async def _(c, m):
                 ):
                     nan += 1
                     await c.leave_chat(chat)
-            except BaseException:
+            except Exception:
                 luci += 1
+
     await xenn.edit(
         f"{em.sukses} <b>Successfully left {nan} Channels, Failed to leave {luci} Channels</b>"
     )
