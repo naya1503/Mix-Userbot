@@ -76,14 +76,13 @@ async def _(c: user, m):
     for user_id in sudo_users:
         try:
             org = await c.get_users(int(user_id))
+            org = org.first_name if not org.mention else org.mention
             sudo_list.append(
-                f"**•** [{org.first_name} {org.last_name or ''}](tg://user?id={org.id})"
+                f"**•** {org}"
             )
             mmfe = " ".join(sudo_list)
         except:
-            org = await c.get_users(int(user_id))
-            sudo_list.append(f"**•** {org.id}")
-            mmfe = " ".join(sudo_list)
+            continue
 
     if sudo_list:
         return await msg.edit(cgr("sud_6").format(em.sukses, mmfe))
