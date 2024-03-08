@@ -49,18 +49,23 @@ async def leave_chat(c, m):
     em = Emojik()
     em.initialize()
     try:
-        chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
-        if chat_id.startswith("https://t.me/"):
-            chat_id = chat_id.split("/")[-1]
-        inpogc = await c.get_chat(chat_id)
-        namagece = inpogc.title
-        ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
-        if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
-            await ceger.edit(
-                f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
-            )
-        else:
+        if len(m.command) < 2:
+            chat_id = m.chat.id
             await c.leave_chat(chat_id)
+        else:
+            chat_id = int(m.text.split()[1])
+
+            if chat_id.startswith("https://t.me/"):
+                chat_id = chat_id.split("/")[-1]
+                inpogc = await c.get_chat(chat_id)
+                namagece = inpogc.title
+                ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
+            if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
+                await ceger.edit(
+                    f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
+                    )
+            else:
+                    await c.leave_chat(chat_id)
             await ceger.edit(
                 f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code>"
             )
