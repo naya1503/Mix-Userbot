@@ -1,5 +1,6 @@
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant
 from pyrogram.types import *
+from pyrogram.enums import * 
 
 from Mix import *
 
@@ -123,6 +124,32 @@ async def _(c, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
+    xenn = await m.reply(f"{em.proses} <b>Proses Pengeluaran Global Channel...</b>")
+    luci = 0
+    nan = 0
+    ceger = [-1001713457115, -1001818398503, -1001697717236]
+    async for dialog in c.get_dialogs():
+        if dialog.chat.type in (enums.ChatType.CHANNEL):
+            chat = dialog.chat.id
+            try:
+                chat_info = await c.get_chat_member(chat, "me")
+                user_status = chat_info.status
+                if chat not in ceger and user_status not in (
+                    ChatMemberStatus.OWNER,
+                    ChatMemberStatus.ADMINISTRATOR,
+                ):
+                    luci += 1
+                    await c.leave_chat(chat)
+            except BaseException:
+                    nan += 1
+    await xenn.edit(
+        f"{em.sukses} **Berhasil keluar dari `{luci}` channel\n{em.gagal} **Gagal keluar dari `{nan}` channel.**"
+    )
+
+"""    
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
     xenn = await m.reply_text(f"{em.proses} <code>Global Leave from Channels...</code>")
     luci = 0
     nan = 0
@@ -146,3 +173,4 @@ async def _(c: user, m):
     await xenn.edit(
         f"{em.sukses} <b>Successfully left {nan} Channels, Failed to leave {luci} Channels</b>"
     )
+"""
