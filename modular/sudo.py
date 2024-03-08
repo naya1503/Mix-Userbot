@@ -77,8 +77,7 @@ async def _(c: user, m):
             mmfe = " ".join(sudo_list)
         except:
             continue
-    
-    
+
     if not sudo_users:
         return await msg.edit(cgr("sudo_5").format(em.gagal))
     else:
