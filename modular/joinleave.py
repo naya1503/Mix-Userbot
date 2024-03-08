@@ -49,7 +49,7 @@ async def leave_chat(c, m):
     em = Emojik()
     em.initialize()
     try:
-        if len(m.command) in NO_GCAST < 2:
+        if len(m.command) < 2 and str(len(m.command)) in NO_GCAST:
             chat_id = m.chat.id
             return await m.reply(
                 f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
@@ -59,20 +59,20 @@ async def leave_chat(c, m):
             await m.reply(f"{em.sukses} <b>BYE!</b>")
             c.leave_chat(chat_id)
 
-            if chat_id.startswith("https://t.me/"):
+            if str(chat_id).startswith("https://t.me/"):
                 chat_id = chat_id.split("/")[-1]
                 inpogc = await c.get_chat(chat_id)
                 namagece = inpogc.title
                 ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
-            if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
-                await ceger.edit(
-                    f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
-                )
-            else:
-                await c.leave_chat(chat_id)
-            await ceger.edit(
-                f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code>"
-            )
+                if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
+                    await ceger.edit(
+                        f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
+                    )
+                else:
+                    await c.leave_chat(chat_id)
+                    await ceger.edit(
+                        f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code>"
+                    )
     except ChatAdminRequired:
         await ceger.edit(
             f"{em.gagal} <b>Saya tidak memiliki izin untuk meninggalkan obrolan ini!</b>"
@@ -87,6 +87,7 @@ async def leave_chat(c, m):
         await ceger.edit(
             f"{em.gagal} <b>Terjadi kesalahan saat mencoba meninggalkan obrolan:</b> <code>{str(e)}</code>"
         )
+
 
 
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
