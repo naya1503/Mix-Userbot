@@ -49,7 +49,7 @@ async def leave_chat(c, m):
     em = Emojik()
     em.initialize()
     try:
-        if len(m.command) < 2 and str(len(m.command)) in NO_GCAST:
+        if len(m.command) < 1 and str(len(m.command)) in NO_GCAST:
             chat_id = m.chat.id
             return await m.reply(
                 f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
