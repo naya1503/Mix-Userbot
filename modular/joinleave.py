@@ -120,9 +120,6 @@ async def _(c, m):
     )
 
 
-from pyrogram import ChatMemberStatus, ChatType
-
-
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
 async def _(c: user, m):
     em = Emojik()
