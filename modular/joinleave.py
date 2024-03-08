@@ -86,7 +86,6 @@ async def leave_chat(c, m):
         )
 
 
-
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
 async def _(c, m):
     em = Emojik()
