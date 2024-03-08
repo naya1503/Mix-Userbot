@@ -45,7 +45,7 @@ async def _(c, m):
 
 @ky.ubot("leave|kickme", sudo=True)
 @ky.devs("Cleave")
-async def leave_chat(c, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
 
@@ -79,8 +79,6 @@ async def leave_chat(c, m):
         await m.reply(
             f"{em.gagal} <b>Saya tidak memiliki izin untuk meninggalkan obrolan ini!</b>"
         )
-    except ChatNotFound:
-        await m.reply(f"{em.gagal} <b>Obrolan tidak ditemukan!</b>")
     except UserNotParticipant:
         await m.reply(
             f"{em.gagal} <b>Anda bukan anggota atau member di <code>{namagece}</code></b>"
