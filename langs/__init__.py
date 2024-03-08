@@ -25,6 +25,7 @@ from config import def_bahasa
 cek_bahasa = ndB.get_key("bahasa") or def_bahasa
 
 bahasa_ = {}
+bahasa__present = {}
 loc_lang = "langs/strings/{}.yml"
 
 
@@ -65,7 +66,7 @@ def load(file):
     if not file.endswith(".yml"):
         return
     elif not os.path.exists(file):
-        file = loc_lang.format("en")
+        file = loc_lang.format("toxic")
     code = file.split("/")[-1].split("\\")[-1][:-4]
     try:
         with open(file, encoding="UTF-8") as f:
@@ -79,12 +80,12 @@ load(loc_lang.format(cek_bahasa))
 
 
 def cgr(key, _res: bool = True):
-    lang = cek_bahasa or "en"
+    lang = cek_bahasa or "toxic"
     try:
         return bahasa_[lang][key]
     except KeyError:
         try:
-            en_ = bahasa_["en"][key]
+            en_ = bahasa_["toxic"][key]
             tr = translate(en_, lang_tgt=lang).replace("\ N", "\n")
             if en_.count("{}") != tr.count("{}"):
                 tr = en_
@@ -105,7 +106,7 @@ def cgr(key, _res: bool = True):
             LOGGER.info(f"Warning: could not load any string with the key `{er}`")
         if not _res:
             return None
-        return bahasa_["en"].get(key) or LOGGER.info(
+        return bahasa_["toxic"].get(key) or LOGGER.info(
             f"Failed to load language string '{key}'"
         )
 
@@ -134,3 +135,26 @@ def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
         return bahasa_list
     except KeyError as e:
         LOGGER.error(f"KeyError: {e} not found in language file")
+
+
+for filename in os.listdir(r"./langs/strings/"):
+    if "toxic" not in bahasa_:
+        bahasa_["toxic"] = yaml.safe_load(
+            open(r"./langs/strings/toxic.yml", encoding="utf8")
+        )
+        bahasa__present["toxic"] = bahasa_["toxic"]["name"]
+    if filename.endswith(".yml"):
+        language_name = filename[:-4]
+        if language_name == "toxic":
+            continue
+        bahasa_[language_name] = yaml.safe_load(
+            open(r"./langs/strings/" + filename, encoding="utf8")
+        )
+        for item in bahasa_["toxic"]:
+            if item not in bahasa_[language_name]:
+                bahasa_[language_name][item] = bahasa_["toxic"][item]
+    try:
+        bahasa__present[language_name] = bahasa_[language_name]["name"]
+    except:
+        print("There is some issue with the language file inside bot.")
+        sys.exit(1)
