@@ -23,21 +23,21 @@ from .start import clbk_strt
 def st_lang(languages):
     keyboard = InlineKeyboard(row_width=2)
     languages = get_bahasa_()
-    meki = [
-        (
-            InlineKeyboardButton(
-                f"{lang['natively']}", callback_data=f"set_{lang['code']}"
-            )
+    buttons = [
+        InlineKeyboardButton(
+            f"{lang['natively']}",
+            callback_data=f"set_{lang['code']}"
         )
         for lang in languages
     ]
-    keyboard.add(meki)
-    # keyboard.row(
-    # InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
-    # InlineKeyboardButton(text="Close", callback_data="close_asst"),
-    # )
+    for button in buttons:
+        keyboard.add(button)
+    keyboard.row(
+        InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
+        InlineKeyboardButton(text="Close", callback_data="close_asst"),
+    )
     return keyboard
-
+    
 
 @ky.callback("close_asst")
 async def _(c, cq):
