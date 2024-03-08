@@ -24,10 +24,7 @@ def st_lang(languages):
     keyboard = InlineKeyboard(row_width=2)
     languages = get_bahasa_()
     buttons = [
-        InlineKeyboardButton(
-            f"{lang['natively']}",
-            callback_data=f"set_{lang['code']}"
-        )
+        InlineKeyboardButton(f"{lang['natively']}", callback_data=f"set_{lang['code']}")
         for lang in languages
     ]
     for button in buttons:
@@ -37,7 +34,7 @@ def st_lang(languages):
         InlineKeyboardButton(text="Close", callback_data="close_asst"),
     )
     return keyboard
-    
+
 
 @ky.callback("close_asst")
 async def _(c, cq):
