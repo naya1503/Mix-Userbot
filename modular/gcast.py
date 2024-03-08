@@ -45,10 +45,7 @@ async def _(c: user, m):
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
     direp = m.reply_to_message
-    if direp:
-        send = direp.text
-    else:
-        send = c.get_m(m)
+    send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
     chats = await refresh_dialog("group")
@@ -59,7 +56,10 @@ async def _(c: user, m):
 
         if chat not in blacklist and chat not in NO_GCAST:
             try:
-                await c.send_message(chat, send)
+                if m.reply_to_message:
+                    await send.copy(chat)
+                else:
+                    await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(0.2)
             except UserBannedInChannel:
@@ -75,7 +75,10 @@ async def _(c: user, m):
             except FloodWait as e:
                 await asyncio.sleep(int(e))
                 try:
-                    await c.send_message(chat, send)
+                    if m.reply_to_message:
+                        await send.copy(chat)
+                    else:
+                        await c.send_message(chat, send)
                     done += 1
                 except Exception:
                     failed += 1
@@ -91,10 +94,7 @@ async def _(c: user, m):
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
     direp = m.reply_to_message
-    if direp:
-        send = direp.text
-    else:
-        send = c.get_m(m)
+    send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
     chats = await refresh_dialog("users")
@@ -104,14 +104,20 @@ async def _(c: user, m):
     for chat in chats:
         if chat not in blacklist and chat not in DEVS:
             try:
-                await c.send_message(chat, send)
+                if m.reply_to_message:
+                    await send.copy(chat)
+                else:
+                    await c.send_message(chat, send)
                 done += 1
             except PeerIdInvalid:
                 continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
                 try:
-                    await c.send_message(chat, send)
+                    if m.reply_to_message:
+                        await send.copy(chat)
+                    else:
+                        await c.send_message(chat, send)
                     done += 1
                 except Exception:
                     failed += 1
