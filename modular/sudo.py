@@ -79,7 +79,7 @@ async def _(c: user, m):
             continue
 
     if not sudo_users:
-        return await m.reply(cgr("sudo_5").format(em.gagal))
+        return await m.reply(cgr("sud_5").format(em.gagal))
     else:
         await m.reply(hsl("sud_6").format(em.sukses))
         return
