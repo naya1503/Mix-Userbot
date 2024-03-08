@@ -55,7 +55,7 @@ async def leave_chat(c, m):
                 f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
             )
         else:
-            chat_id = int(m.text.split()[1])
+            # chat_id = int(m.text.split()[1])
             await m.reply(f"{em.sukses} <b>BYE!</b>")
             c.leave_chat(chat_id)
 
