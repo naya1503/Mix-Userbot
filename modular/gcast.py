@@ -70,6 +70,8 @@ async def _(c: user, m):
                 continue
             except Forbidden:
                 continue
+            except ChatWriteForbidden:
+                continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
                 try:
