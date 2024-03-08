@@ -28,9 +28,7 @@ def st_lang(languages):
         buttons.append(
             InlineKeyboardButton(
                 f"{lang['natively']}",
-                callback_data=f"set_{lang['code']}",
-            )
-        )
+                callback_data=f"set_{lang['code']}"))
     for button in buttons:
         keyboard.add(button)
     keyboard.row(
