@@ -83,6 +83,7 @@ async def _(c: user, m):
         except:
             org = await c.get_users(int(user_id))
             sudo_list.append(f"**•** {org.id}")
+            mmfe = " ".join(sudo_list)
 
     if sudo_list:
         return await msg.edit(cgr("sud_6").format(em.sukses, mmfe))
