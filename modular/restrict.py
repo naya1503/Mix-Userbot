@@ -579,7 +579,7 @@ async def _(c: user, m):
         return await m.reply_text(cgr("err").format(em.gagal), e)
     except UserCreator:
         return await m.reply_text(cgr("res_31").format(em.gagal))
-    return await m.reply_text(cgr(res_32).format(em.sukses, from_user.mention, title))
+    return await m.reply_text(cgr("res_32").format(em.sukses, from_user.mention, title))
 
 
 @ky.ubot("gcpic", sudo=True)
