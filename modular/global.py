@@ -118,7 +118,6 @@ async def _(c: user, m):
     em.initialize()
     nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
-    await c.get_users(nyet)
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
         return
