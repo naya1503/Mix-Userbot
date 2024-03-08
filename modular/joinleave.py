@@ -48,7 +48,7 @@ async def _(c, m):
 async def leave_chat(c, m):
     em = Emojik()
     em.initialize()
-    
+
     try:
         chat_id = m.chat.id
 
@@ -56,7 +56,7 @@ async def leave_chat(c, m):
             return await m.reply(
                 f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
             )
-        
+
         if str(chat_id).startswith("https://t.me/"):
             chat_id = chat_id.split("/")[-1]
             inpogc = await c.get_chat(chat_id)
@@ -89,7 +89,6 @@ async def leave_chat(c, m):
         await m.reply(
             f"{em.gagal} <b>Terjadi kesalahan saat mencoba meninggalkan obrolan:</b> <code>{str(e)}</code>"
         )
-
 
 
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
