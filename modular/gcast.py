@@ -44,7 +44,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
-    direp = m.reply_to_message
+    m.reply_to_message
     send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
@@ -93,7 +93,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
-    direp = m.reply_to_message
+    m.reply_to_message
     send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
