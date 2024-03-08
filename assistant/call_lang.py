@@ -32,10 +32,10 @@ def st_lang(languages):
         for lang in languages
     ]
     keyboard.add(meki)
-    keyboard.row(
-        InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
-        InlineKeyboardButton(text="Close", callback_data="close_asst"),
-    )
+    #keyboard.row(
+        #InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
+        #InlineKeyboardButton(text="Close", callback_data="close_asst"),
+    #)
     return keyboard
 
 
