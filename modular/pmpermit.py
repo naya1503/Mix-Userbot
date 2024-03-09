@@ -110,7 +110,7 @@ async def _(c: user, m):
     elif args_txt:
         pm_txt = args_txt
 
-    if not pm_txt:
+    if len(m.command) == 1 and not direp:
         return await babi.edit(cgr("gcs_1").format(em.gagal))
 
     udB.set_var(user_id, "PMTEXT", pm_txt)
