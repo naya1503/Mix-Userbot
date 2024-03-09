@@ -49,10 +49,11 @@ async def test():
 async def main():
     await test()
     try:
+        await refresh_cache()
         await check_logger()
         LOGGER.info(f"Check Finished.")
         await refresh_modules()
-        await refresh_cache()
+        
         LOGGER.info(f"Modules Imported...")
         LOGGER.info("Successfully Started Userbot.")
         await isFinish()
