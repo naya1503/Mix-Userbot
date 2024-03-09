@@ -4,6 +4,7 @@ natively: Indonesia
 authors:
   - Keenan
   - Lucifer
+  - Lumiere
 
 
 cmds: "Bantuan Perintah"
@@ -17,6 +18,14 @@ balik: "Kembali"
 ttup: "Tutup"
 reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
+
+# invite
+inv_1: "{} <b>Menambahkan Pengguna ...</b>"
+inv_2: "{} <b>Berikan ID/Nama Pengguna!</b>"
+inv_3: "{} <b>Berhasil Menambahkan Pengguna :</b> <b>{}</b>\n <b>Ke : <code>{}</code></b>"
+inv_4: "{} <b>Tautan Undangan:</b> {}"
+inv_5: "{} Anda tidak memiliki izin yang di perlukan"
+inv_6: "{} Fitur ini hanya tersedia untuk group dan channel."
 
 # join
 join_1: "{} <b>Berhasil Bergabung ke</b> <code>{}</code>"
@@ -437,3 +446,4 @@ help_anm2: " **Animasi 2\n\n• Perintah: `{0}`bomb`\n• Penjelasan: Coba aja.\
 help_anm3: " **Animasi 3\n\n• Perintah: `{0}`hack`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`kntl`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`titid`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`dino`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`syg`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`gbt`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`heli`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`tembak`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`bundir`\n• Penjelasan: Coba aja.**"
 help_anm4: " **Animasi 4\n\n• Perintah: `{0}`awk`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`y`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`tank`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`babi`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`ajg`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`nah`\n• Penjelasan: Coba aja.\n\n• Perintah: `{0}`santet`\n• Penjelasan: Coba aja.**"
 help_join: " Join\n\n• Perintah: <code>{0}join</code> [username gc/ch atau id gc/ch atau link gc/ch]\n• Penjelasan: Untuk Bergabung ke Group atau Channel.\n\n• Perintah: <code>{0}leave</code> [username gc/ch atau id gc/ch atau link gc/ch]\n• Penjelasan: Untuk Meninggalkan Group atau Channel.\n\n• Perintah: <code>{0}leaveallgc</code>\n• Penjelasan: Untuk Meninggalkan Semua Group Yang Ada Di Akun Anda (KECUALI anda owner atau admin.).\n\n• Perintah: <code>{0}leaveallch</code>\n• Penjelasan: Untuk Meninggalkan Semua Channel Yang Ada Di Akun Anda (KECUALI anda owner atau admin.)."
+help_inv: "Invite/n/n• Perintah: <code>{0}invite</code>/n• Penjelasan: Untuk mengundang seseorang ke group/channel./n/n• Perintah: <code>{0}getlink</code>/n• Penjelasan: Untuk mendapatkan link invite chat."
