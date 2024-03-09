@@ -509,7 +509,7 @@ async def _(c: user, m):
     except RPCError:
         pass
     except Exception as e:
-        await m.reply_text(cgr("err").format(em.gagal), e)
+        await m.reply_text(cgr("err").format(em.gagal, e))
     return
 
 
