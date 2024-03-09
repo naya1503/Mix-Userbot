@@ -128,6 +128,7 @@ async def _(c: user, m):
 
 @ky.ubot("eval|ev", sudo=True)
 @ky.bots("eval|ev")
+@ky.cegers("^eval")
 async def _(c, m):
     if not user.get_arg(m):
         return
