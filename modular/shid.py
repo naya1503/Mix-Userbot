@@ -10,8 +10,6 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 
 from Mix import *
-from Mix.core.parser import mention_html
-from Mix.core.sender_tools import extract_user
 
 __modles__ = "ShowID"
 __help__ = get_cgr("help_sid")
