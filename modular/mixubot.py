@@ -10,7 +10,6 @@ __modles__ = "MixUbot"
 __help__ = "MixUbot"
 
 
-
 @ky.ubot("sadboy", sudo=True)
 async def _(c: user, m):
     uputt = await m.edit("`Pertama-tama kamu cantik`")
@@ -18,6 +17,7 @@ async def _(c: user, m):
     await uputt.edit("`Kedua kamu manis`")
     await asyncio.sleep(0.2)
     await uputt.edit("`Dan yang terakhir adalah kamu bukan milikku`")
+
 
 # Create by myself @localheart
 
@@ -58,9 +58,13 @@ async def _(c: user, m):
     await asyncio.sleep(0.2)
     await uputt.edit("**Kesannya lo ngasih kita hiburan.**")
     await asyncio.sleep(0.2)
-    await uputt.edit("**Kasian badut🤡, Ga di hargain pengunjung, Eh lampiaskan nya ke Tele, Wkwkwk**")
+    await uputt.edit(
+        "**Kasian badut🤡, Ga di hargain pengunjung, Eh lampiaskan nya ke Tele, Wkwkwk**"
+    )
     await asyncio.sleep(0.2)
-    await uputt.edit("**Dah sana cabut, Makasih hiburannya, Udah bikin Gua tawa ngakak**")
+    await uputt.edit(
+        "**Dah sana cabut, Makasih hiburannya, Udah bikin Gua tawa ngakak**"
+    )
 
 
 @ky.ubot("alay", sudo=True)
@@ -113,7 +117,9 @@ async def _(c: user, m):
     await asyncio.sleep(0.2)
     await uputt.edit("**YAELAH BRO MENTAL LO CUMA DI SOSMED APA GIMANE?**")
     await asyncio.sleep(0.2)
-    await uputt.edit("**PERASAAN DULU TELEGRAM GAADA DEH BOCAH BOCAH SOK JAGO KEK GINI**")
+    await uputt.edit(
+        "**PERASAAN DULU TELEGRAM GAADA DEH BOCAH BOCAH SOK JAGO KEK GINI**"
+    )
     await asyncio.sleep(0.2)
     await uputt.edit("**GILIRAN TITLE NYA DI EJEK NGADU KE OWNER NYA**")
     await asyncio.sleep(0.2)
