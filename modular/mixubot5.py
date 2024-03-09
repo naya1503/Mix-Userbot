@@ -17,7 +17,6 @@ async def _(c: user, m):
     await uputt.edit("`Fakta Yang Belum Terbongkar Selama Ini`")
     await asyncio.sleep(0.2)
     await uputt.edit("`**GUA GANTENG FIX NO DEBAT😏**`")
-  
 
 
 @ky.ubot("wibu", sudo=True)
@@ -49,6 +48,7 @@ async def _(c: user, m):
     await uputt.edit("`ㅤ🏃🏻💨ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ`")
     await uputt.edit("`🏃🏻💨ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ`")
     await uputt.edit("`🧎🏻‍♂️ huhh... akhirnya bisa lolos dari wibu mematikan`")
+
 
 # create by ayiin
 
