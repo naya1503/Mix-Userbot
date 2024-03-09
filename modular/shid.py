@@ -24,8 +24,8 @@ async def _(c: user, m):
     message_id = m.id
     reply = m.reply_to_message
 
-    text = f"{em.alive} **[Message ID:]({m.link})** `{message_id}`\n"
-    text += f"{em.profil} **[Your ID:](tg://user?id={your_id})** `{your_id}`\n"
+    text = f"{em.alive} <b>[Message ID:]({m.link}) <code>{message_id}</code></b>\n"
+    text += f"{em.profil} <b>[Your ID:](tg://user?id={your_id}) <code>{your_id}</code></b>\n"
 
     if not m.command:
         m.command = m.text.split()
