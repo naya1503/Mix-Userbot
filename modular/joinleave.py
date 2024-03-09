@@ -116,7 +116,7 @@ async def _(c, m):
             except BaseException:
                 luci += 1
     await xenn.edit(
-        f"{em.sukses} <b>Successfully left <code>{nan}</code> Groups\nFailed to leave <code>{luci}</code> Groups</b>"
+        f"{em.sukses} <b>Successfully left <code>{nan}</code> Groups\n{em.gagal} Failed to leave <code>{luci}</code> Groups</b>"
     )
 
 
