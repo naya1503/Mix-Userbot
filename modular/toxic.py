@@ -13,9 +13,7 @@ async def _(c: user, m):
 
 @ky.ubot("e", sudo=True)
 async def _(c: user, m):
-    await m.edit(
-        "**GAK USAH SOK KERAS GOBLOK!!KENCING MASIH BERDIRI AJA BELAGU**"
-    )
+    await m.edit("**GAK USAH SOK KERAS GOBLOK!!KENCING MASIH BERDIRI AJA BELAGU**")
 
 
 @ky.ubot("f", sudo=True)
@@ -112,13 +110,9 @@ async def _(c: user, m):
 
 @ky.ubot("o", sudo=True)
 async def _(c: user, m):
-    await m.edit(
-        "**MENTANG MENTANG PUNYA BOT MAINNYA BOT!!PANTES MUKANYA KAYA BOT😁**"
-    )
+    await m.edit("**MENTANG MENTANG PUNYA BOT MAINNYA BOT!!PANTES MUKANYA KAYA BOT😁**")
 
 
 @ky.ubot("war", sudo=True)
 async def _(c: user, m):
-    await m.edit(
-        "**NORAK LU KONTOL!! MAKE USERBOT CUMAN BUAT WAR MALAH SOK KERAS**"
-    )
+    await m.edit("**NORAK LU KONTOL!! MAKE USERBOT CUMAN BUAT WAR MALAH SOK KERAS**")
