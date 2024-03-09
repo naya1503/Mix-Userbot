@@ -5,21 +5,7 @@ from pyrogram.types import *
 from Mix import *
 
 __modles__ = "Join"
-__help__ = """
-Help Command Join 
-
-• Perintah: <code>{0}join</code> [username gc/ch atau id gc/ch atau link gc/ch]
-• Penjelasan: Untuk Bergabung ke Group atau Channel.
-
-• Perintah: <code>{0}leave</code> [username gc/ch atau id gc/ch atau link gc/ch]
-• Penjelasan: Untuk Meninggalkan Group atau Channel.
-
-• Perintah: <code>{0}leaveallgc</code>
-• Penjelasan: Untuk Meninggalkan Semua Group Yang Ada Di Akun Anda (KECUALI anda owner atau admin.).
-
-• Perintah: <code>{0}leaveallch</code>
-• Penjelasan: Untuk Meninggalkan Semua Channel Yang Ada Di Akun Anda (KECUALI anda owner atau admin.).
-"""
+__help__ = get_cgr("help_join")
 
 
 @ky.ubot("join", sudo=True)
@@ -28,18 +14,16 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     Nan = m.command[1] if len(m.command) > 1 else m.chat.id
-    ceger = await m.reply_text(f"{em.proses} <b>Processing...</b>")
+    ceger = await m.reply_text(cgr("proses").format(em.proses))
     try:
         chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
-        if len(m.command) < 2:
-            await ceger.edit(f"{em.gagal} <b>Berikan username atau id group</b>")
         if chat_id.startswith("https://t.me/"):
             chat_id = chat_id.split("/")[-1]
-            inpogc = await c.get_chat(Nan)
-            namagece = inpogc.title
+        inpogc = await c.get_chat(Nan)
+        namagece = inpogc.title
 
         await ceger.edit(
-            f"{em.sukses} <b>Berhasil Bergabung ke</b> <code>{namagece}</code>"
+            cgr("join_1").format(em.sukses, namagece)
         )
         await c.join_chat(Nan)
     except Exception as ex:
@@ -57,7 +41,7 @@ async def _(c, m):
 
         if chat_id in NO_GCAST:
             return await m.reply(
-                f"{em.gagal} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
+                cgr("join_2").format(em.gagal)
             )
 
         if str(chat_id).startswith("https://t.me/"):
@@ -67,15 +51,15 @@ async def _(c, m):
             ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
                 await ceger.edit(
-                    f"{em.gagal} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
+                    cgr("join_2").format(em.gagal)"
                 )
             else:
                 await c.leave_chat(chat_id)
                 await ceger.edit(
-                    f"{em.sukses} {c.me.mention} Berhasil keluar dari <code>{namagece}</code>"
+                    cgr("join_4").format(em.sukses, c.me.mention, namagece)
                 )
         else:
-            await m.reply(f"{em.sukses} <b>Bye!</b>")
+            await m.reply(cgr("join_5").format(em.sukses))
             await c.leave_chat(chat_id)
 
     except ChatAdminRequired:
@@ -118,7 +102,7 @@ async def _(c, m):
             except BaseException:
                 luci += 1
     await xenn.edit(
-        f"{em.sukses} <b>Successfully left <code>{nan}</code> Groups\n{em.gagal} Failed to leave <code>{luci}</code> Groups</b>"
+        cgr("join_6").format(em.sukses, nan, em.gagal, luci)
     )
 
 
@@ -149,5 +133,5 @@ async def _(c: user, m):
         except Exception:
             nan += 1
     await xenn.edit_text(
-        f"{em.sukses} **Berhasil keluar dari `{luci}` channel\n{em.gagal} **Gagal keluar dari `{nan}` channel.**"
+        cgr("join_7").format(em.sukses, luci, em.gagal, nan)
     )
