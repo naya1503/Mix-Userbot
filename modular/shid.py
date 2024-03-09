@@ -6,7 +6,7 @@
 """
 ################################################################
 
-from pyrogram import *
+from pyrogram.enums import *
 from pyrogram.errors import *
 
 from Mix import *
