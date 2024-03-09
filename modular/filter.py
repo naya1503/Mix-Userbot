@@ -266,7 +266,7 @@ async def send_filter_reply(c: user, m, trigger: str):
     return msgtype
 
 
-@user.on_message(filters.group & ~filters.via_bot & ~filters.forwarded, group=11)
+@user.on_message(filters.outgoing & ~filters.me & filters.group & ~filters.via_bot & ~filters.forwarded, group=11)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
