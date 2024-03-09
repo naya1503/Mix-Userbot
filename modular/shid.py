@@ -40,7 +40,7 @@ async def _(c: user, m):
             await m.reply_text(cgr("shid_3").format(em.profil, m.chat.id))
             return
     except Exception as e:
-        await m.reply_text(e)
+        await m.reply_text(cgr("err").format(em.gagal, e))
         return
     if user_id:
         if m.reply_to_message and m.reply_to_message.forward_from:
@@ -62,11 +62,10 @@ async def _(c: user, m):
             except PeerIdInvalid:
                 await m.reply_text(cgr("shid_5").format(em.gagal))
                 return
-
+            bujet = await mention_html(user.first_name, user.id)
             await m.reply_text(
                 cgr("shid_7").format(
-                    em.sukses, (await mention_html(user.first_name, user.id)), user.id
-                ),
+                    em.sukses, bujet),
                 parse_mode=ParseMode.HTML,
             )
     elif m.chat.type == ChatType.PRIVATE:
