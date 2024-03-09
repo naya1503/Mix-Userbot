@@ -19,12 +19,12 @@ reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya mato
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
 # join
-join_1: "{em.sukses} <b>Berhasil gabung ke</b> <code>{namagece}</code>"
-join_2: "{em.gagal} <b>Kaga boleh make itu perintah di sini goblok</b>"
-join_3: "{em.sukses} <b>Sukses keluar dari <code>{namagece}</code>"
-join_4: "{em.sukses} <b>Bye!</b>"
-join_5: "{em.sukses} **Sukses keluar dari `{nan}` Grup ampas, Gagal Keluar dari `{luci}` Grup ampas</b>"
-join_6: "{em.sukses} **Berhasil keluar dari `{luci}` Channel ampas\n{em.gagal} **Gagal keluar dari `{nan}` Channel ampas.**"
+join_1: "{} <b>Berhasil gabung ke</b> <code>{}</code>"
+join_2: "{} <b>Kaga boleh make itu perintah di sini goblok</b>"
+join_3: "{} <b>Sukses keluar dari <code>{}</code>"
+join_4: "{} <b>Bye!</b>"
+join_5: "{} **Sukses keluar dari `{}` Grup ampas, Gagal Keluar dari `{}` Grup ampas</b>"
+join_6: "{} **Berhasil keluar dari `{}` Channel ampas\n{} **Gagal keluar dari `{}` Channel ampas.**"
 
 # uprefixies
 upref_2: "{} **Prefix diganti jing ke : `{}`**"
