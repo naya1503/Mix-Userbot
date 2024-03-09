@@ -24,8 +24,8 @@ async def _(c: user, m):
     message_id = m.id
     reply = m.reply_to_message
 
-    text = f"{em.alive} <b>[Message ID:]({m.link}) <code>{message_id}</code></b>\n"
-    text += f"{em.profil} <b>[Your ID:](tg://user?id={your_id}) <code>{your_id}</code></b>\n"
+    text = f" <b>[Message ID:]({m.link}) <code>{message_id}</code></b>\n"
+    text += f" <b>[Your ID:](tg://user?id={your_id}) <code>{your_id}</code></b>\n"
 
     if not m.command:
         m.command = m.text.split()
@@ -34,15 +34,15 @@ async def _(c: user, m):
         try:
             split = m.text.split(None, 1)[1].strip()
             user_id = (await client.get_users(split)).id
-            text += f"{em.profil} **[User ID:](tg://user?id={user_id})** `{user_id}`\n"
+            text += f" **[User ID:](tg://user?id={user_id})** `{user_id}`\n"
         except Exception:
             return await m.reply_text("**This user doesn't exist.**")
 
-    text += f"{em.block} **[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
+    text += f" **[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
     if not getattr(reply, "empty", True):
         id_ = reply.from_user.id if reply.from_user else reply.sender_chat.id
-        text += f"{em.warn} **[Replied Message ID:]({reply.link})** `{reply.id}`\n"
-        text += f"{em.profil} **[Replied User ID:](tg://user?id={id_})** `{id_}`"
+        text += f" **[Replied Message ID:]({reply.link})** `{reply.id}`\n"
+        text += f" **[Replied User ID:](tg://user?id={id_})** `{id_}`"
 
     await m.reply_text(
         text,
