@@ -242,7 +242,6 @@ async def _(c: user, m):
 
     note = m.text.split()[1]
     getnotes = udB.get_all_notes(c.me.id)
-    udB.get_note(c.me.id, note)
     rmnot = udB.rm_note(c.me.id, note)
 
     if note not in getnotes and not rmnot:
