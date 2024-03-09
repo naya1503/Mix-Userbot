@@ -278,10 +278,9 @@ async def _(c: user, m):
     chat_filters = db.get_all_filters(m.chat.id)
     actual_filters = {j for i in chat_filters for j in i.split("|")}
 
-    for trigger in actual_filters:
-        pattern = r"( |^|[^\w])" + re_escape(trigger) + r"(|$|[^\w])"
-        match = await regex_searcher(pattern, text)
-        if match:
+    for word in actual_filters:
+        pattern = r"( |^|[^\w])" + re.escape(word) + r"( |$|[^\w])"
+        if re.search(pattern, text, flags=re.IGNORECASE):
             try:
                 await send_filter_reply(c, m, trigger)
             except Exception as ef:
