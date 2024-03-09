@@ -252,9 +252,8 @@ async def _(c: user, m):
     if note not in getnote and not rmnot:
         await xx.edit(cgr("nts_6").format(em.gagal))
         return
-
-    await xx.edit(cgr("nts_11").format(em.sukses, note))
-    return
+    else:
+        await xx.edit(cgr("nts_11").format(em.sukses, note))
 
     """
     if note not in getnotes:
