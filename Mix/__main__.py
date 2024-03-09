@@ -55,6 +55,7 @@ async def main():
         await refresh_cache()
         LOGGER.info(f"Modules Imported...")
         LOGGER.info("Successfully Started Userbot.")
+        await isFinish()
         if "test" not in sys.argv:
             await idle()
     except KeyboardInterrupt:
