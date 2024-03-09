@@ -16,7 +16,7 @@ __help__ = get_cgr("help_sid")
 
 
 @ky.ubot("id", sudo=True)
-async def _(c: user, m):
+async def _(c, m):
     em = Emojik()
     em.initialize()
     chat = m.chat
