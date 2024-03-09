@@ -51,7 +51,7 @@ async def _(c, m):
             ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
                 await ceger.edit(
-                    cgr("join_2").format(em.gagal)"
+                    cgr("join_2").format(em.gagal)
                 )
             else:
                 await c.leave_chat(chat_id)
