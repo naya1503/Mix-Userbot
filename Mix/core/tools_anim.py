@@ -86,6 +86,7 @@ async def phase4(message):
         await _wrap_edit(message, heart_matrix)
         await asyncio.sleep(SLEEP)
 
+
 class MEMES:
     REVERSE = (
         "⠐⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠂\n"
