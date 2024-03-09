@@ -28,7 +28,7 @@ __help__ = get_cgr("help_dev")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    org, exx = await c.extract_user_and_reason(m)
+    exx = c.get_arg(m)
     if not exx:
         exx = 30
     now = datetime.now(timezone("Asia/Jakarta"))
