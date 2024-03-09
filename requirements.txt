@@ -19,7 +19,7 @@ pymediainfo
 youtube-search
 youtube-search-python
 attrify
-maling==1.6.6
+maling==1.6.7
 gitpython
 heroku3
 speedtest-cli
