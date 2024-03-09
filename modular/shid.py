@@ -21,64 +21,36 @@ __help__ = get_cgr("help_sid")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    user_id, _, _ = await extract_user(c, m)
-    try:
-        if user_id and len(m.text.split()) == 2:
-            txt = cgr("shid_1").format(em.sukses, user_id)
-            await m.reply_text(txt, parse_mode=ParseMode.HTML)
-            return
-        elif (
-            m.chat.type in [ChatType.SUPERGROUP, ChatType.GROUP]
-            and not m.reply_to_message
-        ):
-            await m.reply_text(
-                cgr("shid_2").format(em.sukses, m.chat.id, em.profil, m.from_user.id)
-            )
-            return
+    chat = m.chat
+    your_id = m.from_user.id
+    message_id = m.id
+    reply = m.reply_to_message
 
-        elif m.chat.type == ChatType.PRIVATE and not m.reply_to_message:
-            await m.reply_text(cgr("shid_3").format(em.profil, m.chat.id))
-            return
-    except Exception as e:
-        await m.reply_text(cgr("err").format(em.gagal, e))
-        return
-    if user_id:
-        if m.reply_to_message and m.reply_to_message.forward_from:
-            user1 = m.reply_to_message.from_user
-            user2 = m.reply_to_message.forward_from
-            orig_sender = await mention_html(user2.first_name, user2.id)
-            orig_id = f"<code>{user2.id}</code>"
-            fwd_sender = await mention_html(user1.first_name, user1.id)
-            fwd_id = f"<code>{user1.id}</code>"
-            await m.reply_text(
-                cgr("shid_4").format(
-                    em.sukses, orig_sender, orig_id, em.warn, fwd_sender, fwd_id
-                ),
-                parse_mode=ParseMode.HTML,
-            )
-        else:
-            try:
-                user = await c.get_users(user_id)
-            except PeerIdInvalid:
-                await m.reply_text(cgr("shid_5").format(em.gagal))
-                return
-            bujet = await mention_html(user.first_name, user.id)
-            await m.reply_text(
-                cgr("shid_7").format(em.sukses, bujet),
-                parse_mode=ParseMode.HTML,
-            )
-    elif m.chat.type == ChatType.PRIVATE:
-        text = cgr("shid_3").format(em.sukses, m.chat.id)
-        if m.reply_to_message:
-            if m.forward_from:
-                text += cgr("shid_8").format(em.sukses, m.forward_from.id)
-            elif m.forward_from_chat:
-                text += cgr("shid_8").format(em.sukses, m.forward_from_chat.id)
-        await m.reply_text(text)
-    else:
-        text = cgr("shid_8").format(em.sukses, m.chat.id, em.profil, m.from_user.id)
-        await m.reply_text(text)
-    return
+    text = f"{em.alive} **[Message ID:]({m.link})** `{message_id}`\n"
+    text += f"{em.profil} **[Your ID:](tg://user?id={your_id})** `{your_id}`\n"
+
+    if not m.command:
+        m.command = m.text.split()
+
+    if len(m.command) == 2:
+        try:
+            split = m.text.split(None, 1)[1].strip()
+            user_id = (await client.get_users(split)).id
+            text += f"{em.profil} **[User ID:](tg://user?id={user_id})** `{user_id}`\n"
+        except Exception:
+            return await m.reply_text("**This user doesn't exist.**")
+
+    text += f"{em.alive} **[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
+    if not getattr(reply, "empty", True):
+        id_ = reply.from_user.id if reply.from_user else reply.sender_chat.id
+        text += f"{em.warn} **[Replied Message ID:]({reply.link})** `{reply.id}`\n"
+        text += f"{em.profil} **[Replied User ID:](tg://user?id={id_})** `{id_}`"
+
+    await m.reply_text(
+        text,
+        disable_web_page_preview=True,
+        parse_mode=ParseMode.MARKDOWN,
+    )
 
 
 @ky.ubot("gifid", sudo=True)
