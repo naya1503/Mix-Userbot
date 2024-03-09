@@ -33,7 +33,7 @@ async def _(c, m):
     if len(m.command) == 2:
         try:
             split = m.text.split(None, 1)[1].strip()
-            user_id = (await client.get_users(split)).id
+            user_id = (await c.get_users(split)).id
             text += f" **[User ID:](tg://user?id={user_id})** `{user_id}`\n"
         except Exception:
             return await m.reply_text("**This user doesn't exist.**")
