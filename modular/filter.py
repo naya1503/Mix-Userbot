@@ -244,7 +244,7 @@ async def send_filter_reply(c: user, m, trigger: str):
     return msgtype
 
 
-@user.on_message(filters.text & ~filters.bot, group=2)
+@user.on_message(filters.text & filters.group & ~filters.bot, group=2)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
