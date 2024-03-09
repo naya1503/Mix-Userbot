@@ -230,14 +230,14 @@ async def send_filter_reply(c: user, m, trigger: str):
         elif msgtype == Types.PHOTO:
               await m.reply_photo(
                   m.chat.id,
-                  caption=textt,
-                  getfilter["fileid"])
+                  getfilter["fileid"],
+                  caption=textt)
               return
         elif msgtype == Types.VIDEO:
               await m.reply_video(
                   m.chat.id,
-                  caption=textt,
-                  getfilter["fileid"])
+                  getfilter["fileid"],
+                  caption=textt)
               return  
         elif msgtype == Types.ANIMATED_STICKER:
               await m.reply_sticker(
