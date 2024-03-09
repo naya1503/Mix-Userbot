@@ -208,6 +208,7 @@ async def send_filter_reply(c: user, m, trigger: str):
     button = await build_keyboard(button)
     button = okb(button) if button else None
     textt = teks
+    yomek = await send_cmd(c, msgtype)
     try:
         if msgtype == Types.TEXT:
             if button:
@@ -244,14 +245,14 @@ async def send_filter_reply(c: user, m, trigger: str):
             Types.CONTACT,
             Types.ANIMATED_STICKER,
         ):
-            await (await send_cmd(c, msgtype))(
+            await yomek(
                 m.chat.id,
                 getfilter["fileid"],
                 reply_markup=button,
                 reply_to_message_id=m.id,
             )
         else:
-            await (await send_cmd(c, msgtype))(
+            await yomek(
                 m.chat.id,
                 getfilter["fileid"],
                 caption=textt,
