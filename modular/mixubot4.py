@@ -42,7 +42,9 @@ async def _(c: user, m):
 
 @ky.ubot("pp", sudo=True)
 async def _(c: user, m):
-    await m.edit("**PASANG PP DULU GOBLOK,BIAR ORANG-ORANG PADA TAU BETAPA HINA NYA MUKA LU 😆**")
+    await m.edit(
+        "**PASANG PP DULU GOBLOK,BIAR ORANG-ORANG PADA TAU BETAPA HINA NYA MUKA LU 😆**"
+    )
 
 
 @ky.ubot("dp", sudo=True)
@@ -58,22 +60,28 @@ async def _(c: user, m):
 @ky.ubot("met", sudo=True)
 async def _(c: user, m):
     await m.edit("**NAMANYA JUGA JAMET CAPER SANA SINI BUAT CARI NAMA**")
-  
+
 
 @ky.ubot("war", sudo=True)
 async def _(c: user, m):
-    await m.edit("**WAR WAR PALAK BAPAK KAU WAR, SOK KERAS BANGET GOBLOK, DI TONGKRONGAN JADI BABU, DI TELE SOK JAGOAN...**")
+    await m.edit(
+        "**WAR WAR PALAK BAPAK KAU WAR, SOK KERAS BANGET GOBLOK, DI TONGKRONGAN JADI BABU, DI TELE SOK JAGOAN...**"
+    )
 
 
 @ky.ubot("wartai", sudo=True)
 async def _(c: user, m):
-    await m.edit("**WAR WAR TAI ANJING, KETRIGGER MINTA SHARELOK LU KIRA MAU COD-AN GOBLOK, BACOTAN LU AJA KGA ADA KERAS KERASNYA GOBLOK**")
+    await m.edit(
+        "**WAR WAR TAI ANJING, KETRIGGER MINTA SHARELOK LU KIRA MAU COD-AN GOBLOK, BACOTAN LU AJA KGA ADA KERAS KERASNYA GOBLOK**"
+    )
 
 
 @ky.ubot("kismin", sudo=True)
 async def _(c: user, m):
-    await m.edit("**CUIHHHH, MAKAN AJA MASIH NGEMIS LO GOBLOK, JANGAN SO NINGGI YA KONTOL GA KEREN LU KEK GITU GOBLOK!!**")
-  
+    await m.edit(
+        "**CUIHHHH, MAKAN AJA MASIH NGEMIS LO GOBLOK, JANGAN SO NINGGI YA KONTOL GA KEREN LU KEK GITU GOBLOK!!**"
+    )
+
 
 @ky.ubot("ded", sudo=True)
 async def _(c: user, m):
@@ -82,22 +90,30 @@ async def _(c: user, m):
 
 @ky.ubot("sokab", sudo=True)
 async def _(c: user, m):
-    await m.edit("**SOKAB BET LU GOBLOK, KAGA ADA ISTILAH NYA BAWAHAN TEMENAN AMA BOS!!**")
+    await m.edit(
+        "**SOKAB BET LU GOBLOK, KAGA ADA ISTILAH NYA BAWAHAN TEMENAN AMA BOS!!**"
+    )
 
 
 @ky.ubot("gembel", sudo=True)
 async def _(c: user, m):
-    await m.edit("**MUKA BAPAK LU KEK KELAPA SAWIT ANJING, GA USAH NGATAIN ORANG, MUKA LU AJA KEK GEMBEL TEXAS GOBLOK!!**")
+    await m.edit(
+        "**MUKA BAPAK LU KEK KELAPA SAWIT ANJING, GA USAH NGATAIN ORANG, MUKA LU AJA KEK GEMBEL TEXAS GOBLOK!!**"
+    )
 
 
 @ky.ubot("cuih", sudo=True)
 async def _(c: user, m):
-    await m.edit("**GAK KEREN LO KEK BEGITU GOBLOK, KELUARGA LU BAWA SINI GUA LUDAHIN SATU-SATU. CUIHH!!!**")
+    await m.edit(
+        "**GAK KEREN LO KEK BEGITU GOBLOK, KELUARGA LU BAWA SINI GUA LUDAHIN SATU-SATU. CUIHH!!!**"
+    )
 
 
 @ky.ubot("dih", sudo=True)
 async def _(c: user, m):
-    await m.edit("**DIHHH NAJISS ANAK HARAM LO GOBLOK, JANGAN BELAGU DIMARI KAGA KEREN LU KEK BGITU TOLOL!**")
+    await m.edit(
+        "**DIHHH NAJISS ANAK HARAM LO GOBLOK, JANGAN BELAGU DIMARI KAGA KEREN LU KEK BGITU TOLOL!**"
+    )
 
 
 @ky.ubot("skb", sudo=True)
@@ -122,4 +138,3 @@ async def _(c: user, m):
     await uputt.edit("**BHAHAHAHA**")
     await asyncio.sleep(0.2)
     await uputt.edit("**KASIAN MANA MASIH MUDA**")
-
