@@ -47,7 +47,7 @@ async def _(c: user, m):
     await m.reply_text(
         text,
         disable_web_page_preview=True,
-        parse_mode=enums.ParseMode.MARKDOWN,
+        parse_mode=ParseMode.MARKDOWN,
     )
 
 
