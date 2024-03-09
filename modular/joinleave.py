@@ -146,6 +146,6 @@ async def _(c: user, m):
                     nan += 1
         except Exception:
             nan += 1
-        await xenn.edit(
+        await xenn.edit_text(
             f"{em.sukses} **Berhasil keluar dari `{luci}` channel\n{em.gagal} **Gagal keluar dari `{nan}` channel.**"
         )
