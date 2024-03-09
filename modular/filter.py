@@ -211,55 +211,46 @@ async def send_filter_reply(c: user, m, trigger: str):
     yomek = await send_cmd(c, msgtype)
     try:
         if msgtype == Types.TEXT:
-            if button:
-                try:
-                    x = await c.get_inline_bot_results(
-                        bot.me.username, f"get_fil_inl {getfilter}"
-                    )
-                    # await m.delete()
-                    await c.send_inline_bot_result(
-                        m.chat.id,
-                        x.query_id,
-                        x.results[0].id,
-                        reply_to_message_id=ReplyCheck(m),
-                    )
-                except Exception as e:
-                    await xx.edit(f"Error {e}")
-                    return
-                except RPCError as ef:
-                    await m.reply_text(
-                        f"{ef} An error has occured! Cannot parse note.\n\nLaporkan ke @KynanSupport.",
-                    )
-                    return
-            else:
                 await m.reply_text(
                     textt,
                     # parse_mode=PM.MARKDOWN,
                     disable_web_page_preview=True,
                 )
                 return
-
-        elif msgtype in (
-            Types.STICKER,
-            Types.VIDEO_NOTE,
-            Types.CONTACT,
-            Types.ANIMATED_STICKER,
-        ):
-            await yomek(
-                m.chat.id,
-                getfilter["fileid"],
-                reply_markup=button,
-                reply_to_message_id=m.id,
-            )
+        elif msgtype == Types.STICKER:
+              await m.reply_sticker(
+                  m.chat.id,
+                  getfilter["fileid"])
+              return
+        elif msgtype == Types.VIDEO_NOTE:
+              await m.reply_video(
+                  m.chat.id,
+                  getfilter["fileid"])
+              return
+        elif msgtype == Types.PHOTO:
+              await m.reply_photo(
+                  m.chat.id,
+                  caption=textt,
+                  getfilter["fileid"])
+              return
+        elif msgtype == Types.VIDEO:
+              await m.reply_video(
+                  m.chat.id,
+                  caption=textt,
+                  getfilter["fileid"])
+              return  
+        elif msgtype == Types.ANIMATED_STICKER:
+              await m.reply_sticker(
+                  m.chat.id,
+                  getfilter["fileid"])
+              return
         else:
-            await yomek(
-                m.chat.id,
-                getfilter["fileid"],
-                caption=textt,
+              await c.send_media_group(
+                  m.chat.id,
+                  getfilter["fileid"],
+                  caption=textt,
                 # parse_mode=PM.MARKDOWN,
-                reply_markup=button,
-                reply_to_message_id=m.id,
-            )
+                  reply_to_message_id=m.id)
     except Exception as ef:
         await m.reply_text(cgr("err").format(em.gagal, ef))
         return msgtype
