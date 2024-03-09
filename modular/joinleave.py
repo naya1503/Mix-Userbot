@@ -130,20 +130,22 @@ async def _(c: user, m):
     ceger = [-1001713457115, -1001818398503, -1001697717236]
 
     async for dialog in c.get_dialogs():
-        if dialog.chat.type == ChatType.CHANNEL:
-            chat = dialog.chat.id
-            try:
-                chat_info = await c.get_chat_member(chat, "me")
-                user_status = chat_info.status
-                if chat not in ceger and user_status not in (
-                    ChatMemberStatus.OWNER,
-                    ChatMemberStatus.ADMINISTRATOR,
-                ):
-                    luci += 1
-                    await c.leave_chat(chat)
-            except Exception:
-                nan += 1
-
-    await xenn.edit(
-        f"{em.sukses} **Berhasil keluar dari `{luci}` channel\n{em.gagal} **Gagal keluar dari `{nan}` channel.**"
-    )
+        try:
+            if dialog.chat.type == ChatType.CHANNEL:
+                chat = dialog.chat.id
+                try:
+                    chat_info = await c.get_chat_member(chat, "me")
+                    user_status = chat_info.status
+                    if chat not in ceger and user_status not in (
+                        ChatMemberStatus.OWNER,
+                        ChatMemberStatus.ADMINISTRATOR,
+                    ):
+                        luci += 1
+                        await c.leave_chat(chat)
+                except Exception:
+                    nan += 1
+        except Exception as e:
+            nan += 1
+        await xenn.edit(
+            f"{em.sukses} **Berhasil keluar dari `{luci}` channel\n{em.gagal} **Gagal keluar dari `{nan}` channel.**"
+        )
