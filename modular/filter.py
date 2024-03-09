@@ -261,40 +261,28 @@ async def send_filter_reply(c: user, m, trigger: str):
                 reply_to_message_id=m.id,
             )
     except Exception as ef:
-        await m.reply_text(f"Error in filters: {ef}")
+        await m.reply_text(cgr("err").format(em.gagal, ef))
         return msgtype
 
     return msgtype
 
 
-async def isFilter_(filter, c, m):
-    xi = db.get_all_filters(m.chat.id)
-    tx = m.text
-    for xe in xi:
-        if tx in xi:
-            return True
-    return False
-
-
-# @user.on_message(filters.text & filters.group & ~filters.bot, group=69)
-
-isFilter = filters.create(isFilter_)
-
-
-@user.on_message(isFilter & filters.group, group=69)
+@user.on_message(filters.text & ~filters.private & ~filters.via_bot & ~filters.forwarded,group=11)
 async def _(c: user, m):
+    text = m.text.lower().strip()
+    if not text:
+        return
     chat_filters = db.get_all_filters(m.chat.id)
     actual_filters = {j for i in chat_filters for j in i.split("|")}
 
     for trigger in actual_filters:
         pattern = r"( |^|[^\w])" + re_escape(trigger) + r"(|$|[^\w])"
-        match = await regex_searcher(pattern, m.text.lower())
+        match = await regex_searcher(pattern, text)
         if match:
             try:
                 await send_filter_reply(c, m, trigger)
             except Exception as ef:
-                await m.reply_text(f"Error: {ef}")
-                LOGGER(__name__).error(format_exc())
+                await m.reply_text(cgr("err").format(em.gagal, ef))
             break
         continue
     return
