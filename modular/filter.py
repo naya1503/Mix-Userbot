@@ -14,6 +14,7 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 from Mix import *
+from Mix.core.sender_tools import send_cmd
 
 __modles__ = "Filter"
 __help__ = """
@@ -171,6 +172,8 @@ async def _(c: user, m):
 
 
 async def send_filter_reply(c: user, m, trigger: str):
+    em = Emojik()
+    em.initialize()
     """Reply with assigned filter for the trigger"""
     getfilter = db.get_filter(m.chat.id, trigger)
     if m and not m.from_user:
