@@ -10,7 +10,7 @@ from Mix import Users, user
 from .msgty import Types
 
 
-async def send_cmd(c: user, msgtype: int):
+def send_cmd(c: user, msgtype: int):
     GET_FORMAT = {
         Types.TEXT.value: c.send_message,
         Types.DOCUMENT.value: c.send_document,
