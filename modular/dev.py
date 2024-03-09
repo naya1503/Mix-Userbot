@@ -28,18 +28,11 @@ __help__ = get_cgr("help_dev")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    org, exx = await c.extract_user_and_reason(m)
-    if not org:
-        return
-    try:
-        exx = (await c.get_users(org)).id
-    except Exception as er:
-        return await m.reply(cgr("err").format(em.gagal, er))
     if not exx:
         exx = 30
     now = datetime.now(timezone("Asia/Jakarta"))
     expire_date = now + timedelta(days=int(exx))
-    udB.set_expired_date(org, expire_date)
+    udB.set_expired_date(user.me.id, expire_date)
     await m.reply(f"{em.sukses} Aktif {exx} hari.")
     return
 
@@ -48,17 +41,14 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    org = await c.extract_user(m)
-    if not org:
-        return
-    kmm = udB.get_expired_date(org)
+    kmm = udB.get_expired_date(user.me.id)
     if kmm is None:
-        await m.reply(f"{org} ga aktif!!")
+        await m.reply(f"{user.me.id} ga aktif!!")
         return
     else:
         rimen = (kmm - datetime.now()).days
         await m.reply(
-            f"{org} aktif hingga {kmm.strftime('%d-%m-%Y %H:%M:%S')}. Sisa waktu aktif {rimen} hari."
+            f"{user.me.id} aktif hingga {kmm.strftime('%d-%m-%Y %H:%M:%S')}. Sisa waktu aktif {rimen} hari."
         )
         return
 
@@ -67,15 +57,8 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    org = await c.extract_user(m)
-    if not org:
-        return
-    try:
-        uri = await c.get_users(org)
-    except Exception as er:
-        return await m.reply(cgr("err").format(em.gagal, er))
-    udB.rem_expired_date(uri.id)
-    return await message.reply(f"{em.sukses} {uri.id} expired telah dihapus")
+    udB.rem_expired_date(user.me.id)
+    return await m.reply(f"{em.sukses} {user.me.id} expired telah dihapus")
 
 
 @ky.ubot("sh", sudo=True)
