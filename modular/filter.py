@@ -282,7 +282,7 @@ async def _(c: user, m):
         pattern = r"( |^|[^\w])" + re.escape(word) + r"( |$|[^\w])"
         if re.search(pattern, text, flags=re.IGNORECASE):
             try:
-                await send_filter_reply(c, m, trigger)
+                await send_filter_reply(c, m, word)
             except Exception as ef:
                 await m.reply_text(cgr("err").format(em.gagal, ef))
             break
