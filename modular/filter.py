@@ -208,37 +208,33 @@ async def send_filter_reply(c: user, m, trigger: str):
     textt = text
     try:
         if msgtype == Types.TEXT:
-            await m.reply_text(
-                textt,
-                # parse_mode=PM.MARKDOWN,
-                disable_web_page_preview=True,
+              await m.reply_text(
+                    textt,
+                    disable_web_page_preview=True,
+                )
+              return
+
+        elif msgtype in (
+            Types.STICKER,
+            Types.VIDEO_NOTE,
+            Types.CONTACT,
+            Types.ANIMATED_STICKER,
+        ):
+            (await send_cmd(c, msgtype))(
+                m.chat.id,
+                getfilter["fileid"],
+                reply_markup=button,
+                reply_to_message_id=m.id,
             )
-            return
-        elif msgtype == Types.STICKER:
-            await m.reply_sticker(m.chat.id, getfilter["fileid"])
-            return
-        elif msgtype == Types.VIDEO_NOTE:
-            await m.reply_video(m.chat.id, getfilter["fileid"])
-            return
-        elif msgtype == Types.PHOTO:
-            await m.reply_photo(m.chat.id, getfilter["fileid"], caption=textt)
-            return
-        elif msgtype == Types.VIDEO:
-            await m.reply_video(m.chat.id, getfilter["fileid"], caption=textt)
-            return
-        elif msgtype == Types.ANIMATED_STICKER:
-            await m.reply_sticker(m.chat.id, getfilter["fileid"])
-            return
         else:
-            await c.send_media_group(
+            (await send_cmd(c, msgtype))(
                 m.chat.id,
                 getfilter["fileid"],
                 caption=textt,
-                # parse_mode=PM.MARKDOWN,
                 reply_to_message_id=m.id,
             )
     except Exception as ef:
-        await m.reply_text(cgr("err").format(em.gagal, ef))
+        await m.reply_text(f"Error in filters: {ef}")
         return msgtype
 
     return msgtype
