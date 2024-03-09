@@ -208,11 +208,11 @@ async def send_filter_reply(c: user, m, trigger: str):
     textt = text
     try:
         if msgtype == Types.TEXT:
-              await m.reply_text(
-                    textt,
-                    disable_web_page_preview=True,
-                )
-              return
+            await m.reply_text(
+                textt,
+                disable_web_page_preview=True,
+            )
+            return
 
         elif msgtype in (
             Types.STICKER,
