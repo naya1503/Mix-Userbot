@@ -12,7 +12,9 @@ __help__ = "Toxic3"
 
 @ky.ubot("ceking", sudo=True)
 async def _(c: user, m):
-    sepong = await m.edit("**GIGI KUNING MATA MERAH BADAN KURUS CEKING EMANG PANTES...**")
+    sepong = await m.edit(
+        "**GIGI KUNING MATA MERAH BADAN KURUS CEKING EMANG PANTES...**"
+    )
     await asyncio.sleep(0.2)
     await sepong.edit("**DI KENCINGIN JAHANAM**")
     await asyncio.sleep(0.2)
@@ -24,7 +26,9 @@ async def _(c: user, m):
     await asyncio.sleep(0.2)
     await sepong.edit("**KERONGKONGAN LUH ITU UDAH RUSAK TOLOL...**")
     await asyncio.sleep(0.2)
-    await sepong.edit("**MASIH AJA MAKSAIN BUAT ADU ROASTING AMA GUA BEGO BANGET SIH LUH...**")
+    await sepong.edit(
+        "**MASIH AJA MAKSAIN BUAT ADU ROASTING AMA GUA BEGO BANGET SIH LUH...**"
+    )
 
 
 @ky.ubot("hina", sudo=True)
@@ -45,7 +49,9 @@ async def _(c: user, m):
     await asyncio.sleep(0.2)
     await Kon.edit("**MANUSIA HINA YANG DI CIPTAKAN DENGAN SECARA HINA**")
     await asyncio.sleep(0.2)
-    await Kon.edit("**MANUSIA HINA YANG DI CIPTAKAN DENGAN SECARA HINA EMANG PANTES UNTUK DI HINA HINA...**")
+    await Kon.edit(
+        "**MANUSIA HINA YANG DI CIPTAKAN DENGAN SECARA HINA EMANG PANTES UNTUK DI HINA HINA...**"
+    )
 
 
 @ky.ubot("ngaca", sudo=True)
@@ -60,6 +66,8 @@ async def _(c: user, m):
     await asyncio.sleep(0.2)
     await omek.edit("**UDAH BULUK ITEM PENDEK BERPONI BAJU KEGEDEAN KAYAK JAMET**")
     await asyncio.sleep(0.2)
-    await omek.edit("**UDAH BULUK ITEM PENDEK BERPONI BAJU KEGEDEAN KAYAK JAMET SOK-SOK AN MAU NGEHINA GUA KONTOL**")
+    await omek.edit(
+        "**UDAH BULUK ITEM PENDEK BERPONI BAJU KEGEDEAN KAYAK JAMET SOK-SOK AN MAU NGEHINA GUA KONTOL**"
+    )
     await asyncio.sleep(0.2)
     await omek.edit("**KENA KAN MENTAL LU...**")
