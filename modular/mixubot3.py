@@ -18,7 +18,11 @@ async def _(c: user, m):
     sleep(2)
     await uputt.edit("**Part Of @KynanSupport... Salam Kenal yaaa ><**")
     sleep(3)
-    await uputt.edit("**Repository [Mix-Userbot](https://github.com/naya1503/Mix-Userbot)**")
+    await uputt.edit(
+        "**Repository [Mix-Userbot](https://github.com/naya1503/Mix-Userbot)**"
+    )
+
+
 # Create by myself @AyiinXd
 
 
@@ -27,6 +31,8 @@ async def _(c: user, m):
     xx = await m.edit("**Aku Cuma Mau Bilang...**")
     sleep(3)
     await xx.edit("**Aku Sayang Kamu Mwaahh** 😘❤")
+
+
 # Create by myself @AyiinXd
 
 
@@ -37,6 +43,8 @@ async def _(c: user, m):
     await uputt.edit("**Tetaplah Bernafas...**")
     await asyncio.sleep(0.2)
     await uputt.edit("**Dan Bersyukur...**")
+
+
 # Create by myself @AyiinXd
 
 
@@ -47,4 +55,6 @@ async def _(c: user, m):
     await uputt.edit("**Tetaplah Mengeluh...**")
     await asyncio.sleep(0.2)
     await uputt.edit("**Dan Putus Asa...**")
+
+
 # Create by myself @AyiinXd
