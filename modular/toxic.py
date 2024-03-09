@@ -89,7 +89,7 @@ async def _(c: user, m):
 
 @ky.ubot("z", sudo=True)
 async def _(c: user, m):
-    ea = await m.reply"**BISMILLAH SLEEP CALL!!😁**")
+    ea = await m.reply("**BISMILLAH SLEEP CALL!!😁**")
 
 
 @ky.ubot("g", sudo=True)
