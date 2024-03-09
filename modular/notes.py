@@ -249,16 +249,3 @@ async def _(c: user, m):
         return
     else:
         await xx.edit(cgr("nts_11").format(em.sukses, note))
-
-    """
-    if note not in getnotes:
-        await xx.edit(cgr("nts_10").format(em.gagal, note))
-        return
-
-    if not getnote:
-        await xx.edit(cgr("nts_6").format(em.gagal))
-        return
-
-    await xx.edit(cgr("nts_11").format(em.sukses, note))
-    return
-"""
