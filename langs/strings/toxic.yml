@@ -340,14 +340,6 @@ res_35: "{} **Berhasil mengubah dokumen menjadi foto grup!**"
 res_36: "{} **Berhasil mengubah video menjadi foto grup!**"
 
 # showid
-shid_1: "{} **ID Pengguna : `{}`.**"
-shid_2: "{} **ID Grup : `{}`\n{} ID Anda : `{}`**"
-shid_3: "{} ID Anda : `{}`**"
-shid_4: "{} **ID Pengirim {} : `{}`\n{} ID Pesan Terusan {} : `{}`**"
-shid_5: "{} **Gagal mendapatkan ID Pengguna.**"
-shid_6: "{} **ID Pesan Terusan : `{}`\nID Pesan Terusan Dari : `{}`**"
-shid_7: "{} **ID Pengguna {} : `{}`**"
-shid_8: "{} **ID Pesan Terusan : `{}`**"
 shid_9: "{} **ID Gif : `{}`**"
 shid_10: "{} **Silahkan balas ke gif!**"
 
