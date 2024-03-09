@@ -1,6 +1,7 @@
-
 import random
+
 from pyrogram.enums import MessagesFilter
+
 from Mix import *
 
 __modles__ = "Asupan"
@@ -59,7 +60,6 @@ async def _(c: user, m):
         await y.delete()
     except Exception as error:
         await y.edit(cgr("err").format(em.gagal, error))
-
 
 
 @ky.ubot("anime", sudo=True)
