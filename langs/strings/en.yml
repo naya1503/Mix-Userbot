@@ -4,6 +4,7 @@ natively: English
 authors:
   - Keenan
   - Lucifer
+  - Lumiere
 
 
 cmds: "Command Help"
@@ -17,6 +18,14 @@ balik: "Back"
 ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
+
+# invite
+inv_1: "{} <b>Adding Member ...</b>"
+inv_2: "{} <b>Give Some ID/Username!</b>"
+inv_3: "{} <b>Successful Adding Member :</b> <b>{}</b>\n <b>To : <code>{}</code></b>"
+inv_4: "{} <b>Link Invite:</b> {}"
+inv_5: "{} <b>You don't have Required permission</b>"
+inv_6: "{} <b>This feature is only available for groups and channels</b>"
 
 # join
 join_1: "{} <b>Successfully Joined</b> <code>{}</code>"
