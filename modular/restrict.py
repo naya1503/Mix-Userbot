@@ -470,7 +470,7 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
-        await m.reply_text(cgr("pro_1").format(em.gagal))
+        await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
         user_id, user_first_name, _ = await extract_user(c, m)
