@@ -46,9 +46,7 @@ async def _(c: user, m):
         await m.edit(animation_chars[i % 14])
 
 
-@user.on_message(
-    filters.me & (user.user_prefix("loveyou") | filters.regex("^loveyou "))
-)
+@ky.ubot("loveyou", sudo=True)
 async def _(c: user, m):
     noble = random.randint(1, len(NOBLE) - 2)
     reply_text = NOBLE[noble]
@@ -104,7 +102,7 @@ async def _(c: user, m):
     )
 
 
-@user.on_message(filters.me & (user.user_prefix("ahh") | filters.regex("^ahh ")))
+@ky.ubot("ahh", sudo=True)
 async def hello_world(c: user, m):
     mg = await m.reply("ahh")
     await asyncio.sleep(0.2)
