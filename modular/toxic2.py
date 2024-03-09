@@ -1,8 +1,8 @@
-import asyncio 
+import asyncio
+
 from pyrogram import *
 
 from Mix import *
-
 
 __modles__ = "Toxic2"
 __help__ = "Toxic2"
@@ -29,6 +29,8 @@ async def _(c: user, m):
     await pler.edit("**SAMA ORANG LAIN**")
     await asyncio.sleep(0.2)
     await pler.edit("**HAHAHAHA**")
+
+
 # Create by myself @localheart
 
 
@@ -53,6 +55,8 @@ async def _(c: user, m):
     await puki.edit("**EHHH SANGE NYA MAU DAPAT YANG CANTIK**")
     await asyncio.sleep(0.2)
     await puki.edit("**HAHAHAHA**")
+
+
 # Create by myself @localheart
 
 
@@ -77,6 +81,8 @@ async def _(c: user, m):
     await kon.edit("**EHHH SANGE NYA MAU DAPAT YANG CANTIK**")
     await asyncio.sleep(0.2)
     await kon.edit("**HAHAHAHA**")
+
+
 # Create by myself @localheart
 
 
@@ -101,7 +107,6 @@ async def _(c: user, m):
     await mek.edit("`MAAF YA, CANDAA BEBANNNN xixixi 🙈`")
     await asyncio.sleep(0.2)
     await mek.edit("`Tapi Bo'ong Hiyahiyahiya`")
-
 
 
 @ky.ubot("kont", sudo=True)
