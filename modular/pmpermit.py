@@ -225,7 +225,7 @@ async def _(c, m):
                     rplied_msg = await kok_poto(
                         gmbr,
                         caption=PM_WARN.format(
-                            master.first_name,
+                            master.mention,
                             flood[in_user.id],
                             custom_pm_warns,
                             custom_pm_txt.format(biji),
@@ -236,7 +236,7 @@ async def _(c, m):
                 rplied_msg = await kok_poto(
                     gmbr,
                     caption=PM_WARN.format(
-                        master.first_name,
+                        master.mention,
                         flood[in_user.id],
                         custom_pm_warns,
                         custom_pm_txt.format(biji),
@@ -258,7 +258,7 @@ async def _(c, m):
                 else:
                     rplied_msg = await m.reply(
                         PM_WARN.format(
-                            master.first_name,
+                            master.mention,
                             flood[in_user.id],
                             custom_pm_warns,
                             custom_pm_txt.format(biji),
@@ -268,7 +268,7 @@ async def _(c, m):
                 flood[in_user.id] = 1
                 rplied_msg = await m.reply(
                     PM_WARN.format(
-                        master.first_name,
+                        master.mention,
                         flood[in_user.id],
                         custom_pm_warns,
                         custom_pm_txt.format(biji),
