@@ -142,9 +142,10 @@ async def _(c: user, m):
                     ):
                         luci += 1
                         await c.leave_chat(chat)
-                except Exception:
+                except Exception as e:
                     nan += 1
-        except Exception:
+                    pass
+        except Exception as e:
             nan += 1
         await xenn.edit(
             f"{em.sukses} **Berhasil keluar dari `{luci}` channel\n{em.gagal} **Gagal keluar dari `{nan}` channel.**"
