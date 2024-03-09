@@ -24,8 +24,8 @@ async def _(c, m):
     message_id = m.id
     reply = m.reply_to_message
 
-    text = f" <b>[Message ID:]({m.link}) <code>{message_id}</code></b>\n"
-    text += f" <b>[Your ID:](tg://user?id={your_id}) <code>{your_id}</code></b>\n"
+    text = f" **[Message ID:]({m.link})** `{message_id}`\n"
+    text += f" **[Your ID:](tg://user?id={your_id})** `{your_id}`\n"
 
     if not m.command:
         m.command = m.text.split()
