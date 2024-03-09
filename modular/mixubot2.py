@@ -34,7 +34,6 @@ async def _(c: user, m):
     await uputt.edit("**Aku Gak Like Ayang** 😠")
     await asyncio.sleep(0.2)
     await uputt.edit("**Pokoknya Aku Gak Like Ih** 😠")
-  
 
 
 @ky.ubot("favboy", sudo=True)
