@@ -38,7 +38,7 @@ async def _(c: user, m):
         except Exception:
             return await m.reply_text("**This user doesn't exist.**")
 
-    text += f"{em.alive} **[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
+    text += f"{em.block} **[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
     if not getattr(reply, "empty", True):
         id_ = reply.from_user.id if reply.from_user else reply.sender_chat.id
         text += f"{em.warn} **[Replied Message ID:]({reply.link})** `{reply.id}`\n"
