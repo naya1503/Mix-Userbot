@@ -22,9 +22,7 @@ async def _(c, m):
         inpogc = await c.get_chat(Nan)
         namagece = inpogc.title
 
-        await ceger.edit(
-            cgr("join_1").format(em.sukses, namagece)
-        )
+        await ceger.edit(cgr("join_1").format(em.sukses, namagece))
         await c.join_chat(Nan)
     except Exception as ex:
         await ceger.edit(f"{em.gagal} <b>ERROR: </b>\n\n<code>{str(ex)}</code>")
@@ -40,9 +38,7 @@ async def _(c, m):
         chat_id = m.chat.id
 
         if chat_id in NO_GCAST:
-            return await m.reply(
-                cgr("join_2").format(em.gagal)
-            )
+            return await m.reply(cgr("join_2").format(em.gagal))
 
         if str(chat_id).startswith("https://t.me/"):
             chat_id = chat_id.split("/")[-1]
@@ -50,9 +46,7 @@ async def _(c, m):
             namagece = inpogc.title
             ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
-                await ceger.edit(
-                    cgr("join_2").format(em.gagal)
-                )
+                await ceger.edit(cgr("join_2").format(em.gagal))
             else:
                 await c.leave_chat(chat_id)
                 await ceger.edit(
@@ -101,9 +95,7 @@ async def _(c, m):
                     await c.leave_chat(chat)
             except BaseException:
                 luci += 1
-    await xenn.edit(
-        cgr("join_6").format(em.sukses, nan, em.gagal, luci)
-    )
+    await xenn.edit(cgr("join_6").format(em.sukses, nan, em.gagal, luci))
 
 
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
@@ -132,6 +124,4 @@ async def _(c: user, m):
                     nan += 1
         except Exception:
             nan += 1
-    await xenn.edit_text(
-        cgr("join_7").format(em.sukses, luci, em.gagal, nan)
-    )
+    await xenn.edit_text(cgr("join_7").format(em.sukses, luci, em.gagal, nan))
