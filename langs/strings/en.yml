@@ -316,14 +316,6 @@ res_35: "{} **Successfully changed document to group photo!**"
 res_36: "{} Successfully changed video to group photo!**"
 
 # showid
-shid_1: "{} **User ID: `{}`.**"
-shid_2: "{} **Group ID: `{}`\n{} Your ID: `{}`**"
-shid_3: "{} Your ID: `{}`**"
-shid_4: "{} **Sender ID {} : `{}`\n{} Forwarded Message ID {} : `{}`**"
-shid_5: "{} **Failed to fetch User ID.**"
-shid_6: "{} **Forwarded Message ID : `{}`\nForwarded Message From : `{}`**"
-shid_7: "{} **User ID {} : `{}`**"
-shid_8: "{} **Forwarded Message ID : `{}`**"
 shid_9: "{} **Gif ID : `{}`**"
 shid_10: "{} **Please reply to the gif!**"
 
