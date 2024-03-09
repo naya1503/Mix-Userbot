@@ -243,7 +243,20 @@ async def _(c: user, m):
     note = m.text.split()[1]
     getnotes = udB.get_all_notes(c.me.id)
     getnote = udB.get_note(c.me.id, note)
+    rmnot = udB.rm_note(c.me.id, note)
 
+    if note in getnotes:
+        await xx.edit(cgr("nts_10").format(em.gagal, note))
+        return
+
+    if note not in getnote and not rmnot:
+        await xx.edit(cgr("nts_6").format(em.gagal))
+        return
+
+    await xx.edit(cgr("nts_11").format(em.sukses, note))
+    return
+
+    """
     if note not in getnotes:
         await xx.edit(cgr("nts_10").format(em.gagal, note))
         return
@@ -254,3 +267,4 @@ async def _(c: user, m):
 
     await xx.edit(cgr("nts_11").format(em.sukses, note))
     return
+"""
