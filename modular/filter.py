@@ -204,8 +204,8 @@ async def send_filter_reply(c: user, m, trigger: str):
         "chatname",
     ]
     text = await escape_mentions_using_curly_brackets(m, filter_reply, parse_words)
-    teks, button = await parse_button2(text)
-    button = await build_keyboard2(button)
+    teks, button = await parse_button(text)
+    button = await build_keyboard(button)
     button = okb(button) if button else None
     textt = teks
     try:
