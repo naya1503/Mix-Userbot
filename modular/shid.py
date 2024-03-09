@@ -64,8 +64,7 @@ async def _(c: user, m):
                 return
             bujet = await mention_html(user.first_name, user.id)
             await m.reply_text(
-                cgr("shid_7").format(
-                    em.sukses, bujet),
+                cgr("shid_7").format(em.sukses, bujet),
                 parse_mode=ParseMode.HTML,
             )
     elif m.chat.type == ChatType.PRIVATE:
