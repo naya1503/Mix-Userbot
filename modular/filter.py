@@ -244,14 +244,14 @@ async def send_filter_reply(c: user, m, trigger: str):
             Types.CONTACT,
             Types.ANIMATED_STICKER,
         ):
-            (await send_cmd(c, msgtype))(
+            await send_cmd(c, msgtype)(
                 m.chat.id,
                 getfilter["fileid"],
                 reply_markup=button,
                 reply_to_message_id=m.id,
             )
         else:
-            (await send_cmd(c, msgtype))(
+            await send_cmd(c, msgtype)(
                 m.chat.id,
                 getfilter["fileid"],
                 caption=textt,
