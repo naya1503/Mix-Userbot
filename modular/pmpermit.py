@@ -261,7 +261,7 @@ async def _(c, m):
                             master.first_name,
                             flood[in_user.id],
                             custom_pm_warns,
-                            custom_pm_txt.format(bot.me.first_name),
+                            custom_pm_txt.format(biji),
                         ),
                     )
             else:
