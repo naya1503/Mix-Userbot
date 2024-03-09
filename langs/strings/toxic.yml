@@ -18,6 +18,14 @@ ttup: "Tutup"
 reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya matot bot lo.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
+# invite
+inv_1: "{} <b>sabar ya kntl lgi nambahin orangnya ...</b>"
+inv_2: "{} <b>Kasih ID/Usernamenya lah goblok!</b>"
+inv_3: "{} <b>dah tuh udah gw tambahin si :</b> <b>{}</b>\n <b>Ke : <code>{}</code> minimal makasih kntl.</b>"
+inv_4: "{} <b>Nih Link Invitenya tot:</b> {}"
+inv_5: "{} <b>LU SIAPA KNTL, KAGA PUNYA IJIN MAIN MINTA MINTA BAE</b>"
+inv_6: "{} Fitur ini cuma buat group/channel tolol mikir lah udah gede masih kaga punya otak!!."
+
 # join
 join_1: "{} <b>Berhasil gabung ke</b> <code>{}</code>"
 join_2: "{} <b>Kaga boleh make itu perintah di sini goblok</b>"
