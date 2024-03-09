@@ -1,5 +1,7 @@
 import asyncio
 
+from pyrogram.errors import *
+
 DEFAULTUSER = "Nay"
 
 NOBLE = [
