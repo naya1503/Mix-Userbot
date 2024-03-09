@@ -18,6 +18,14 @@ ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 
+# join
+join_1: "{em.sukses} <b>Successfully Joined</b> <code>{namagece}</code>"
+join_2: "{em.gagal} <b>Unable to use that command here!</b>"
+join_3: "{em.gagal} <b>Not allowed to use that command here!</b>"
+join_4: "{em.sukses} {c.me.mention} Successfully left <code>{namagece}</code>"
+join_5: "{em.sukses} <b>Bye!</b>"
+join_6: "{em.sukses} <b>Successfully left {nan} Groups, Failed to leave {luci} Groups</b>"
+join_7: "{em.sukses} **Successfully left `{luci}` channel\n{em.gagal} **Failed to leave `{nan}` channel.**"
 
 # assistant
 asst_1: "Hello 👋 {} !! I'm your bot assistant.\n\nWhat settings would you like to change?"
