@@ -14,7 +14,6 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.sender_tools import send_cmd
 
 __modles__ = "Filter"
 __help__ = """
@@ -203,7 +202,7 @@ async def send_filter_reply(c: user, m, trigger: str):
         "username",
         "chatname",
     ]
-    text = await escape_mentions_using_curly_brackets(m, filter_reply, parse_words)
+    await escape_mentions_using_curly_brackets(m, filter_reply, parse_words)
     textt = teks
     try:
         if msgtype == Types.TEXT:
