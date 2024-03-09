@@ -6,7 +6,7 @@
 """
 ################################################################
 
-from pyrogram.enums import *
+from pyrogram import *
 from pyrogram.errors import *
 
 from Mix import *
@@ -47,7 +47,7 @@ async def _(c: user, m):
     await m.reply_text(
         text,
         disable_web_page_preview=True,
-        parse_mode=ParseMode.MARKDOWN,
+        parse_mode=enums.ParseMode.MARKDOWN,
     )
 
 
