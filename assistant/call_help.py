@@ -81,6 +81,25 @@ async def _(c, cq):
                     ],
                 ]
             )
+        elif "Toxic" in text:
+            text1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+                " ".join(prefix), len(CMD_HELP)
+            )
+            button = okb(
+                [
+                    [
+                        ("Toxic 1", "to.tox1"),
+                        ("Toxic 2", "to.tox2"),
+                    ],
+                    [
+                        ("Toxic 3", "to.tox3"),
+                        ("Toxic 4", "to.tox4"),
+                    ],
+                    [
+                        ("⪼", "tox.next"),
+                    ],
+                ]
+            )
             await cq.edit_message_text(
                 text=text1, reply_markup=button, disable_web_page_preview=True
             )
