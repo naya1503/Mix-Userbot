@@ -51,7 +51,7 @@ async def _(c: user, m):
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
-    
+
     proses = await m.reply(cgr("proses").format(em.proses))
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
