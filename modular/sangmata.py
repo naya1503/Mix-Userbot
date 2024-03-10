@@ -34,9 +34,9 @@ async def _(c, m):
         )
 
     if m.command[0] == "sg" and m.command[1] in DEVS:
-            return await m.reply(
-                f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
-            )
+        return await m.reply(
+            f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
+        )
     if (
         m.command[0] == "sg"
         and m.reply_to_message
