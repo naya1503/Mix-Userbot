@@ -2,12 +2,14 @@ import asyncio
 import random
 
 from pyrogram import *
-from pyrogram.types import *
 from pyrogram.raw.functions.messages import DeleteHistory
+from pyrogram.types import *
+
 from Mix import *
 
 __modles__ = "SangMata"
 __help__ = "SangMata"
+
 
 @ky.ubot("mix", sudo=True)
 @ky.devs("siapa")
@@ -32,7 +34,7 @@ async def _(c, m):
     except Exception as e:
         return await lol.edit(e)
     await asyncio.sleep(1)
-    
+
     async for stalk in c.search_messages(a.chat.id):
         if stalk.text == None:
             continue
@@ -40,12 +42,12 @@ async def _(c, m):
             await m.reply("botnya ngambek")
         elif stalk:
             await m.reply(f"{stalk.text}")
-            break  
-    
+            break
+
     try:
         user_info = await c.resolve_peer(sg)
         await c.send(DeleteHistory(peer=user_info, max_id=0, revoke=True))
     except Exception:
         pass
-    
+
     await lol.delete()
