@@ -18,11 +18,11 @@ from Mix import *
 @ky.ubot("mix", sudo=True)
 async def _(c: user, m):
     uputt = await m.edit("**Hai... Perkenalkan Saya Adalah Mix-Userbot**")
-    sleep(3)
+    asyncio.sleep(3)
     await uputt.edit("**Userbot base on Pyrogram**")
-    sleep(2)
+    asyncio.sleep(2)
     await uputt.edit("**Part Of @KynanSupport... Salam Kenal yaaa ><**")
-    sleep(3)
+    asyncio.sleep(3)
     await uputt.edit(
         "**Repository [Mix-Userbot](https://github.com/naya1503/Mix-Userbot)**"
     )
@@ -34,7 +34,7 @@ async def _(c: user, m):
 @ky.ubot("sayang", sudo=True)
 async def _(c: user, m):
     xx = await m.edit("**Aku Cuma Mau Bilang...**")
-    sleep(3)
+    asyncio.sleep(3)
     await xx.edit("**Aku Sayang Kamu Mwaahh** 😘❤")
 
 
