@@ -186,7 +186,9 @@ async def _(c: user, m):
         return
     animation_interval = 3
     animation_ttl = range(0, 18)
-    xu = await m.reply("Calling Pavel Durov (ceo of telegram)......", reply_to_message_id=ReplyCheck(m))
+    xu = await m.reply(
+        "Calling Pavel Durov (ceo of telegram)......", reply_to_message_id=ReplyCheck(m)
+    )
     animation_chars = [
         "`Connecting To Telegram Headquarters...`",
         "`Call Connected.`",
@@ -385,7 +387,10 @@ async def _(c: user, m):
 
 @ky.ubot("hack", sudo=True)
 async def _(c: user, m):
-    re = await m.reply("Looking for WhatsApp databases in targeted person...", reply_to_message_id=ReplyCheck(m))
+    re = await m.reply(
+        "Looking for WhatsApp databases in targeted person...",
+        reply_to_message_id=ReplyCheck(m),
+    )
     await asyncio.sleep(2)
     await re.edit_text(" User online: True\nTelegram access: True\nRead Storage: True ")
     await asyncio.sleep(2)
@@ -545,7 +550,9 @@ async def _(c: user, m):
 
 @ky.ubot("gabut|gbt", sudo=True)
 async def _(c: user, m):
-    e = await m.reply("`PERNAAHHHHH KAHHH KAUUU MENGIRA`", reply_to_message_id=ReplyCheck(m))
+    e = await m.reply(
+        "`PERNAAHHHHH KAHHH KAUUU MENGIRA`", reply_to_message_id=ReplyCheck(m)
+    )
     await e.edit("`SEPEEERTIIIII APAAAA BENTUKKKKKKK CINTAAAA`")
     await e.edit("`RAMBUUUT WARNAAA WARNII`")
     await e.edit("`BAGAI GULALI`")
