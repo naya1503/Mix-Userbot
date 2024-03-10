@@ -6,8 +6,9 @@
 """
 ################################################################
 
-from secrets import choice
 from re import escape as re_escape
+from secrets import choice
+
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
