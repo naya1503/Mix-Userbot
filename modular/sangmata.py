@@ -12,6 +12,7 @@ import random
 from pyrogram import *
 from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
+from Mix.core.sender_tools import extract_user
 
 from Mix import *
 
@@ -19,6 +20,8 @@ __modles__ = "SangMata"
 __help__ = get_cgr("help_sangmata")
 
 
+@ky.ubot("sg", sudo=True)
+@ky.devs("siapa")
 async def _(c, m):
     em = Emojik()
     em.initialize()
