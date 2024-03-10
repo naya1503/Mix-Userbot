@@ -36,4 +36,4 @@ async def _(c, cq):
             await g.delete()
             nyolong_jalan = False
     except Exception as e:
-        await callback_query.edit_message_text(cgr("err_1").format(e))
+        await cq.edit_message_text(cgr("err_1").format(e))
