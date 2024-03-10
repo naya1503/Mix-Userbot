@@ -186,7 +186,7 @@ async def _(c: user, m):
         return
     animation_interval = 3
     animation_ttl = range(0, 18)
-    await m.edit("Calling Pavel Durov (ceo of telegram)......")
+    xu = await m.reply("Calling Pavel Durov (ceo of telegram)......", reply_to_message_id=ReplyCheck(m))
     animation_chars = [
         "`Connecting To Telegram Headquarters...`",
         "`Call Connected.`",
@@ -209,7 +209,7 @@ async def _(c: user, m):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await m.edit(animation_chars[i % 18])
+        await xu.edit(animation_chars[i % 18])
 
 
 @ky.ubot("kill", sudo=True)
@@ -218,7 +218,7 @@ async def _(c: user, m):
         return
     animation_interval = 0.7
     animation_ttl = range(0, 12)
-    await m.edit("ready to die dude.....")
+    xi = await m.reply("ready to die dude.....", reply_to_message_id=ReplyCheck(m))
     animation_chars = [
         "Ｆｉｉｉｉｉｒｅ",
         "(　･ิω･ิ)︻デ═一-->",
@@ -235,7 +235,7 @@ async def _(c: user, m):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await m.edit(animation_chars[i % 12])
+        await xi.edit(animation_chars[i % 12])
 
 
 @ky.ubot("wtf", sudo=True)
@@ -244,7 +244,7 @@ async def _(c: user, m):
         return
     animation_interval = 0.8
     animation_ttl = range(0, 5)
-    await m.edit("wtf")
+    ro = await m.reply("wtf", reply_to_message_id=ReplyCheck(m))
     animation_chars = [
         "What",
         "What The",
@@ -254,7 +254,7 @@ async def _(c: user, m):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await m.edit(animation_chars[i % 5])
+        await ro.edit(animation_chars[i % 5])
 
 
 @ky.ubot("ding", sudo=True)
@@ -351,7 +351,7 @@ async def _(c: user, m):
 
 @ky.ubot("kocok", sudo=True)
 async def _(c: user, m):
-    e = await m.reply("8✊===D")
+    e = await m.reply("8✊===D", reply_to_message_id=ReplyCheck(m))
     await e.edit("8=✊==D")
     await e.edit("8==✊=D")
     await e.edit("8===✊D")
@@ -385,57 +385,57 @@ async def _(c: user, m):
 
 @ky.ubot("hack", sudo=True)
 async def _(c: user, m):
-    await m.edit_text("Looking for WhatsApp databases in targeted person...")
+    re = await m.reply("Looking for WhatsApp databases in targeted person...", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(2)
-    await m.edit_text(" User online: True\nTelegram access: True\nRead Storage: True ")
+    await re.edit_text(" User online: True\nTelegram access: True\nRead Storage: True ")
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 0%\n[░░░░░░░░░░░░░░░░░░░░]\n`Looking for WhatsApp...`\nETA: 0m, 20s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 11.07%\n[██░░░░░░░░░░░░░░░░░░]\n`Looking for WhatsApp...`\nETA: 0m, 18s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 20.63%\n[███░░░░░░░░░░░░░░░░░]\n`Found folder C:/WhatsApp`\nETA: 0m, 16s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 34.42%\n[█████░░░░░░░░░░░░░░░]\n`Found folder C:/WhatsApp`\nETA: 0m, 14s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 42.17%\n[███████░░░░░░░░░░░░░]\n`Searching for databases`\nETA: 0m, 12s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 55.30%\n[█████████░░░░░░░░░░░]\n`Found msgstore.db.crypt12`\nETA: 0m, 10s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 64.86%\n[███████████░░░░░░░░░]\n`Found msgstore.db.crypt12`\nETA: 0m, 08s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 74.02%\n[█████████████░░░░░░░]\n`Trying to Decrypt...`\nETA: 0m, 06s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 86.21%\n[███████████████░░░░░]\n`Trying to Decrypt...`\nETA: 0m, 04s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 93.50%\n[█████████████████░░░]\n`Decryption successful!`\nETA: 0m, 02s"
     )
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Hacking... 100%\n[████████████████████]\n`Scanning file...`\nETA: 0m, 00s"
     )
     await asyncio.sleep(2)
-    await m.edit_text("Hacking complete!\nUploading file...")
+    await re.edit_text("Hacking complete!\nUploading file...")
     await asyncio.sleep(2)
-    await m.edit_text(
+    await re.edit_text(
         "Targeted Account Hacked...!\n\n ✅ File has been successfully uploaded to my server.\nWhatsApp Database:\n`./DOWNLOADS/msgstore.db.crypt12`"
     )
 
@@ -446,7 +446,7 @@ async def _(c: user, m):
     kontol = MEMES.GAMBAR_KONTOL
     if emoji:
         kontol = kontol.replace("⡀", emoji)
-    await m.edit(kontol)
+    await m.reply(kontol, reply_to_message_id=ReplyCheck(m))
 
 
 @ky.ubot("titit|titid", sudo=True)
@@ -455,12 +455,12 @@ async def _(c: user, m):
     titid = MEMES.GAMBAR_TITIT
     if emoji:
         titid = titid.replace("😋", emoji)
-    await m.edit(titid)
+    await m.reply(titid, reply_to_message_id=ReplyCheck(m))
 
 
 @ky.ubot("dino", sudo=True)
 async def _(c: user, m):
-    typew = await m.reply("`DIN DINNN.....`")
+    typew = await m.reply("`DIN DINNN.....`", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1)
     await typew.edit("`DINOOOOSAURUSSSSS!!`")
     await asyncio.sleep(1)
@@ -517,7 +517,7 @@ async def _(c: user, m):
 
 @ky.ubot("syg|sayang|seng", sudo=True)
 async def _(c: user, m):
-    e = await m.reply("I LOVEE YOUUU 💕")
+    e = await m.reply("I LOVEE YOUUU 💕", reply_to_message_id=ReplyCheck(m))
     await e.edit("💝💘💓💗")
     await e.edit("💞💕💗💘")
     await e.edit("💝💘💓💗")
@@ -545,7 +545,7 @@ async def _(c: user, m):
 
 @ky.ubot("gabut|gbt", sudo=True)
 async def _(c: user, m):
-    e = await m.reply("`PERNAAHHHHH KAHHH KAUUU MENGIRA`")
+    e = await m.reply("`PERNAAHHHHH KAHHH KAUUU MENGIRA`", reply_to_message_id=ReplyCheck(m))
     await e.edit("`SEPEEERTIIIII APAAAA BENTUKKKKKKK CINTAAAA`")
     await e.edit("`RAMBUUUT WARNAAA WARNII`")
     await e.edit("`BAGAI GULALI`")
