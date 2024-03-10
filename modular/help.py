@@ -14,6 +14,8 @@ from Mix import *
 
 @ky.ubot("help", sudo=True)
 async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
     if not c.get_arg(m):
         try:
             x = await c.get_inline_bot_results(bot.me.username, "help")
