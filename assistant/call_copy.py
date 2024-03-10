@@ -14,7 +14,6 @@ from pyrogram.types import *
 
 from modular.copy_con import *
 
-
 """
 @ky.callback("copymsg_")
 async def _(c, cq):
