@@ -24,7 +24,7 @@ async def _(c: user, m):
     await asyncio.sleep(1.8)
     await uputt.edit("**Najis Akunnya Cacad 😂**")
     await asyncio.sleep(1.8)
-    await uputt.edit("*Hahahaha Cacad 🤣**")
+    await uputt.edit("**Hahahaha Cacad 🤣**")
     await asyncio.sleep(1.8)
     await uputt.edit("**Canda Akun Cacad 😂🤣**")
 
