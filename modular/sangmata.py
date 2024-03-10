@@ -57,8 +57,8 @@ async def _(c, m):
     if args:
         try:
             kntl = await user.extract_user(args)
-        except Exception:
-            return await proses.edit(cgr("sangmat_2").format(em.gagal))
+        except Exception as er:
+            return await proses.edit(cgr("err").format(em.gagal, er))
 
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
