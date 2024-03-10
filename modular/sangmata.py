@@ -38,14 +38,13 @@ async def _(c: user, m):
         except Exception as err:
             return await m.reply(cgr("err").format(em.gagal, err))
     proses = await m.reply(cgr("proses").format(em.proses))
-    sg = ["sangmata_beta_bot"]
+    sg = "@SangMata_beta_bot"
     try:
         a = await c.send_message(sg, argu)
+        await asyncio.sleep(1)
         await a.delete()
     except Exception as e:
         return await proses.edit(e)
-
-    await asyncio.sleep(1)
 
     async for respon in c.search_messages(a.chat.id):
         if respon.text == None:
