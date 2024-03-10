@@ -73,7 +73,7 @@ async def _(c: user, m):
 
 @ky.ubot("pat", sudo=True)
 async def _(c: user, m):
-    hmm_s = "https://some-random-api.ml/animu/pat"
+    hmm_s = "https://some-random-api.com/animu/pat"
     try:
         r = requests.get(url=hmm_s).json()
         image_s = r["link"]
@@ -132,22 +132,22 @@ async def _(c: user, m):
         return
     animation_interval = 1
     animation_ttl = range(0, 14)
-    await m.edit("your brain")
+    await m.edit(f"<b>This is Your Brain!</b>")
     animation_chars = [
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠         <(^_^ <)🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠       <(^_^ <)  🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠     <(^_^ <)    🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠   <(^_^ <)      🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠 <(^_^ <)        🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠<(^_^ <)         🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n(> ^_^)>🧠         🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n  (> ^_^)>🧠       🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n    (> ^_^)>🧠     🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n      (> ^_^)>🧠   🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n        (> ^_^)>🧠 🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n          (> ^_^)>🧠🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n           (> ^_^)>🗑",
-        "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n           <(^_^ <)🗑",
+        "Your Brain : ➡️ 🧠\n\n🧠         <(^_^ <)🗑",
+        "Your Brain : ➡️ 🧠\n\n🧠       <(^_^ <)  🗑",
+        "Your Brain : ➡️ 🧠\n\n🧠     <(^_^ <)    🗑",
+        "Your Brain : ➡️ 🧠\n\n🧠   <(^_^ <)      🗑",
+        "Your Brain : ➡️ 🧠\n\n🧠 <(^_^ <)        🗑",
+        "Your Brain : ➡️ 🧠\n\n🧠<(^_^ <)         🗑",
+        "Your Brain : ➡️ 🧠\n\n(> ^_^)>🧠         🗑",
+        "Your Brain : ➡️ 🧠\n\n  (> ^_^)>🧠       🗑",
+        "Your Brain : ➡️ 🧠\n\n    (> ^_^)>🧠     🗑",
+        "Your Brain : ➡️ 🧠\n\n      (> ^_^)>🧠   🗑",
+        "Your Brain : ➡️ 🧠\n\n        (> ^_^)>🧠 🗑",
+        "Your Brain : ➡️ 🧠\n\n          (> ^_^)>🧠🗑",
+        "Your Brain : ➡️ 🧠\n\n           (> ^_^)>🗑",
+        "Your Brain : ➡️ 🧠\n\n           <(^_^ <)🗑",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
