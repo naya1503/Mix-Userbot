@@ -96,7 +96,7 @@ async def _(c, cq):
                         ("Toxic 4", "to.tox4"),
                     ],
                     [
-                        ("⪼", "tox.next"),
+                        ("⪼", "to.next"),
                     ],
                 ]
             )
