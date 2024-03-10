@@ -54,17 +54,17 @@ async def _(c: user, m):
 
     proses = await m.reply(cgr("proses").format(em.proses))
 
-    if argu:
-        try:
-            kntl, biji = await c.extract_user_and_reason(f"{argu}")
-        except Exception as er:
-            return await proses.edit(cgr("err").format(em.gagal, er))
+    # if argu:
+    #     try:
+    #         kntl, biji = await c.extract_user_and_reason(f"{argu}")
+    #     except Exception as er:
+    #         return await proses.edit(cgr("err").format(em.gagal, er))
 
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
 
     try:
-        a = await c.send_message(sg, f"{kntl.id}")
+        a = await c.send_message(sg, f"{argu}")
         await a.delete()
     except Exception as e:
         return await proses.edit(e)
