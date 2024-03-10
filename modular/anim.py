@@ -817,7 +817,7 @@ async def _(c: user, m):
         "▓▓▓▓▓▓█‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡█\n"
         "▓▓▓▓▓▓█████‡‡‡‡‡‡‡‡‡‡‡‡██\n"
         "█████‡‡‡‡‡‡‡██████████\n",
-        reply_to_messag_id=m.id,
+        reply_to_message_id=m.id,
     )
 
 
