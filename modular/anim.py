@@ -64,7 +64,7 @@ async def _(c: user, m):
 
 @ky.ubot("hug", sudo=True)
 async def _(c: user, m):
-    hmm_s = "https://some-random-api.ml/animu/hug"
+    hmm_s = "https://some-random-api.com/animu/hug"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
     await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
@@ -73,6 +73,7 @@ async def _(c: user, m):
 
 @ky.ubot("pat", sudo=True)
 async def _(c: user, m):
+    proses = await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
     hmm_s = "https://some-random-api.com/animu/pat"
     try:
         r = requests.get(url=hmm_s).json()
@@ -86,7 +87,7 @@ async def _(c: user, m):
 
 @ky.ubot("pikachu", sudo=True)
 async def _(c: user, m):
-    hmm_s = "https://some-random-api.ml/img/pikachu"
+    hmm_s = "https://some-random-api.com/img/pikachu"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
     await c.send_video(m.chat.id, image_s)
