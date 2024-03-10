@@ -43,12 +43,12 @@ COPY_ID = {}
 
 
 @ky.callback("copymsg_")
-async def _(c, cq):
+async def _(c: user, cq):
     global nyolong_jalan
     try:
         q = int(cq.data.split("_", 1)[1])
         m = [obj for obj in get_objects() if id(obj) == q][0]
-        await user.unblock_user(bot.me.username)
+        await c.unblock_user(bot.me.username)
         await cq.edit_message_text(cgr("proses_1"))
         copy = await c.send_message(bot.me.username, f"/copy {m.text.split()[1]}")
         msg = m.reply_to_message or m
