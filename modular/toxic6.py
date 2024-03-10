@@ -15,7 +15,6 @@ from pyrogram import *
 from Mix import *
 
 
-
 @ky.ubot("mix", sudo=True)
 async def _(c: user, m):
     uputt = await m.edit("**Hai... Perkenalkan Saya Adalah Mix-Userbot**")

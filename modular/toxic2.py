@@ -4,6 +4,7 @@ from pyrogram import *
 
 from Mix import *
 
+
 @ky.ubot("ngentot", sudo=True)
 async def _(c: user, m):
     pler = await m.edit("**WOYY NGENTOD!!**")
