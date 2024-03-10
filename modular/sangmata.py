@@ -41,9 +41,9 @@ async def _(c, m):
         if stalk.text == None:
             continue
         if not stalk:
-            await m.reply("botnya ngambek")
+            await m.reply(f"{em.gagal} <b>botnya ngambek :( </b>")
         elif stalk:
-            await m.reply(f"{stalk.text}")
+            await m.reply(f"{em.sukses} <code>{stalk.text}</code>")
             break
 
     try:
