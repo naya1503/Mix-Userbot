@@ -30,21 +30,21 @@ async def _(c: user, m):
 @ky.ubot("hancur", sudo=True)
 async def _(c: user, m):
     putt = await m.edit("**Makan semur, Masih anget..**")
-    await asyncio.seep(0.2)
+    await asyncio.sleep(0.2)
     await putt.edit("**Muka kamu hancur, Kok pakai banget.🤪**")
 
 
 @ky.ubot("kenalan", sudo=True)
 async def _(c: user, m):
     putt = await m.edit("**Barang antik, ditarik andong**")
-    await asyncio.seep(0.2)
+    await asyncio.sleep(0.2)
     await putt.edit("**Haii cantikk, kenalan donggg. 😋**")
 
 
 @ky.ubot("soms", sudo=True)
 async def _(c: user, m):
     putt = await m.edit("**Makan sambel ulek pakai kedondong**")
-    await asyncio.seep(0.2)
+    await asyncio.sleep(0.2)
     await putt.edit("**Gapapa jelekk yang penting sombong. 😋**")
 
 
