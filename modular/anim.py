@@ -261,7 +261,7 @@ async def _(c: user, m):
         return
     animation_interval = 0.8
     animation_ttl = range(0, 5)
-    ro = await proses.edit("wtf", reply_to_message_id=ReplyCheck(m))
+    ro = await m.reply("wtf", reply_to_message_id=ReplyCheck(m))
     animation_chars = [
         "What",
         "What The",
