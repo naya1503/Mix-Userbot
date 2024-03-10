@@ -9,9 +9,6 @@ from pyrogram import *
 
 from Mix import *
 
-__modles__ = "Toxic5"
-__help__ = "Toxic5"
-
 
 @ky.ubot("lipkol", sudo=True)
 async def _(c: user, m):
