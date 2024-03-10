@@ -12,7 +12,6 @@ import random
 from pyrogram import *
 from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
-from Mix.core.sender_tools import extract_user
 
 from Mix import *
 
