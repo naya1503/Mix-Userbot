@@ -39,8 +39,7 @@ async def _(c: user, m):
         except Exception as err:
             return await m.reply(cgr("err").format(em.gagal, err))
     proses = await m.reply(cgr("proses").format(em.proses))
-    bo = ["sangmata_bot", "sangmata_beta_bot"]
-    sg = random.choice(bo)
+    bo = ["sangmata_beta_bot"]
     try:
         a = await c.send_message(sg, argu)
         await a.delete()
