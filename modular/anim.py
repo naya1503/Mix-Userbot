@@ -50,7 +50,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     noble = random.randint(1, len(NOBLE) - 2)
     reply_text = NOBLE[noble]
-    await m.reply(reply_text)
+    await m.reply(reply_text, reply_to_message_id=ReplyCheck(m))
 
 
 @ky.ubot("wink", sudo=True)
@@ -58,7 +58,7 @@ async def _(c: user, m):
     hmm_s = "https://some-random-api.ml/animu/wink"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
-    await c.send_video(m.chat.id, image_s)
+    await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
     await m.delete()
 
 
@@ -67,17 +67,22 @@ async def _(c: user, m):
     hmm_s = "https://some-random-api.ml/animu/hug"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
-    await c.send_video(m.chat.id, image_s)
+    await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
     await m.delete()
 
 
 @ky.ubot("pat", sudo=True)
 async def _(c: user, m):
     hmm_s = "https://some-random-api.ml/animu/pat"
-    r = requests.get(url=hmm_s).json()
-    image_s = r["link"]
-    await c.send_video(m.chat.id, image_s)
-    await m.delete()
+    try:
+        r = requests.get(url=hmm_s).json()
+        image_s = r["link"]
+        await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
+        await m.delete()
+    except (requests.exceptions.RequestException, KeyError, ValueError) as e:
+        print("Error:", e)
+        await c.send_message(m.chat.id, "Failed to fetch pat animation.")
+
 
 
 @ky.ubot("pikachu", sudo=True)
@@ -99,12 +104,13 @@ async def _(c: user, m):
 async def _(c: user, m):
     mg = await m.reply(
         "┈┈╱▔▔▔▔▔╲┈┈┈HM┈HM\n┈╱┈┈╱▔╲╲╲▏┈┈┈HMMM\n╱┈┈╱━╱▔▔▔▔▔╲━╮┈┈\n▏┈▕┃▕╱▔╲╱▔╲▕╮┃┈┈\n▏┈▕╰━▏▊▕▕▋▕▕━╯┈┈\n╲┈┈╲╱▔╭╮▔▔┳╲╲┈┈┈\n┈╲┈┈▏╭━━━━╯▕▕┈┈┈\n┈┈╲┈╲▂▂▂▂▂▂╱╱┈┈┈\n┈┈┈┈▏┊┈┈┈┈┊┈┈┈╲\n┈┈┈┈▏┊┈┈┈┈┊▕╲┈┈╲\n┈╱▔╲▏┊┈┈┈┈┊▕╱▔╲▕\n┈▏┈┈┈╰┈┈┈┈╯┈┈┈▕▕\n┈╲┈┈┈╲┈┈┈┈╱┈┈┈╱┈╲\n┈┈╲┈┈▕▔▔▔▔▏┈┈╱╲╲╲▏\n┈╱▔┈┈▕┈┈┈┈▏┈┈▔╲▔▔\n┈╲▂▂▂╱┈┈┈┈╲▂▂▂╱┈ ",
+        reply_to_message_id=ReplyCheck(m),
     )
 
 
 @ky.ubot("ahh", sudo=True)
 async def hello_world(c: user, m):
-    mg = await m.reply("ahh")
+    mg = await m.reply("ahh", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(0.2)
     await mg.edit("aahh")
     await asyncio.sleep(0.2)
