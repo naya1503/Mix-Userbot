@@ -33,9 +33,9 @@ async def _(c: user, m):
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
     if m.reply_to_message:
-        argu = message.reply_to_message.from_user.id
+        argu = m.reply_to_message.from_user.id
     else:
-        argu = message.text.split()[1]
+        argu = m.text.split()[1]
     proses = await m.reply(cgr("proses").format(em.proses))
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
