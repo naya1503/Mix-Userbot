@@ -21,7 +21,7 @@ __help__ = get_cgr("help_sangmata")
 
 @ky.ubot("sg", sudo=True)
 @ky.devs("siapa")
-async def _(c, m):
+async def _(c: user, m):
     em = Emojik()
     em.initialize()
 
@@ -56,7 +56,7 @@ async def _(c, m):
 
     if args:
         try:
-            kntl = await c.get_users(args)
+            kntl = await c.extract_user_and_reason(args)
         except Exception as er:
             return await proses.edit(cgr("err").format(em.gagal, er))
 
