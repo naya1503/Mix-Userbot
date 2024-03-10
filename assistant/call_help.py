@@ -146,7 +146,7 @@ async def _(c, cq):
         )
 
 
-@ky.callback("^anim.")
+@ky.callback("anim.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
     kemem = okb([[("≪", "anim.bc")]])
@@ -183,7 +183,7 @@ async def _(c, cq):
     await cq.edit_message_text(txt, reply_markup=kemem)
 
 
-@ky.callback("^to.")
+@ky.callback("to.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
     kemem = okb([[("≪", "to.bc"), ("⪼", "to.next")]])
