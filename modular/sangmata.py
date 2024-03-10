@@ -48,15 +48,15 @@ async def _(c: user, m):
         )
 
     if m.reply_to_message:
-        args = m.reply_to_message.from_user.id
+        argu = m.reply_to_message.from_user.id
     else:
-        args = m.command[1]
+        argu = m.command[1]
 
     proses = await m.reply(cgr("proses").format(em.proses))
 
-    if args:
+    if argu:
         try:
-            kntl = await c.extract_user_and_reason(args)
+            kntl, biji = await c.extract_user_and_reason(args)
         except Exception as er:
             return await proses.edit(cgr("err").format(em.gagal, er))
 
