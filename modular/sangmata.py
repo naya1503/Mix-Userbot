@@ -10,6 +10,7 @@ from Mix import *
 __modles__ = "SangMata"
 __help__ = "SangMata"
 
+
 @ky.ubot("sg", sudo=True)
 @ky.devs("siapa")
 async def _(c, m):
