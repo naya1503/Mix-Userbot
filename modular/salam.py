@@ -61,3 +61,8 @@ async def _(c: user, m):
     xx = await m.edit("**Salam Dulu Biar Sopan**")
     await asyncio.sleep(1)
     await xx.edit("**السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ**")
+
+
+@ky.ubot("hai", sudo=True)
+async def _(c: user, m):
+    await m.edit("**Hai anak tidak disengaja.**")
