@@ -224,7 +224,6 @@ async def send_filter_reply(c: user, m, trigger: str):
             (await send_cmd(c, msgtype))(
                 m.chat.id,
                 getfilter["fileid"],
-                reply_markup=button,
                 reply_to_message_id=m.id,
             )
         else:
