@@ -454,4 +454,21 @@ help_join: " Join\n\n• Command: <code>{0}join</code> [group or channel usernam
 help_inv: "Invite/n/n• Command: <code>{0}invite</code>/n• Description: To invite someone to the group/channel./n/n• Command: <code>{0}getlink</code>/n• Description: To get the chat invite link."
 help_asupan: " Asupan\n\n• Command: <code>{0}asupan</code>\n• Description: To send a random asupan video.\n\n• Command: <code>{0}bokep</code>\n• Description: To send a random bokep video.\n\n• Command: <code>{0}cewe</code>\n• Description: To send a random photo of a girl.\n\n• Command: <code>{0}cowo</code>\n• Description: To send a random photo of a boy.\n\n• Command: <code>{0}anime</code>\n• Description: To send a random anime photo."
 help_filr: " Filter \n\n• Command: <code>{0}filters</code>\n• Description: To view the list of filters in the group.\n\n• Command: <code>{0}filter</code> [filter name] [reply to message]\n• Description: To add a filter to the group.\n\n• Command: <code>{0}unfilter</code> [filter name]\n• Description: To remove a filter from the group.\n\n• Command: <code>{0}unfilterall</code>\n• Description: To remove all filters from the group."
-help_sangmata: " SangMata\n\n• Command: <code>{0}sg</code> [username/user_id/reply text]\n• Explanation: To view the history of username or User's name usage."
+help_sangmata: " SangMata\n\n• Command: <code>{0}sg</code> [username/user_id/reply text]\n• Description: To view the history of username or User's name usage."
+help_tox1: " Toxic 1\n\n• Command: <code>{0}a</code> - `z`\n• Description: Try it yourself."
+
+help_tox2: " Toxic 2\n\n• Command: `{0}ngentot`\n• Description: Try it yourself.\n\n• Command: `{0}goblok`\n• Description: Try it yourself.\n\n• Command: `{0}ngatain`\n• Description: Try it yourself.\n\n• Command: `{0}yatim`\n• Description: Try it yourself.\n\n• Command: `{0}kont`\n• Description: Try it yourself."
+
+help_tox3: " Toxic 3\n\n• Command: `{0}ceking`\n• Description: Try it yourself.\n\n• Command: `{0}hina`\n• Description: Try it yourself.\n\n• Command: `{0}ngaca`\n• Description: Try it yourself."
+
+help_tox4: " Toxic 4\n\n• Command: `{0}sadboy`\n• Description: Try it yourself.\n\n• Command: `{0}lah`\n• Description: Try it yourself.\n\n• Command: `{0}sok`\n• Description: Try it yourself.\n\n• Command: `{0}wah`\n• Description: Try it yourself.\n\n• Command: `{0}alay`\n• Description: Try it yourself.\n\n• Command: `{0}erpe`\n• Description: Try it yourself.\n\n• Command: `{0}tittle`\n• Description: Try it yourself."
+
+help_tox5: " Toxic 5\n\n• Command: `{0}lipkol`\n• Description: Try it yourself.\n\n• Command: `{0}nakal`\n• Description: Try it yourself.\n\n• Command: `{0}favboy`\n• Description: Try it yourself.\n\n• Command: `{0}favgirl`\n• Description: Try it yourself.\n\n• Command: `{0}canlay`\n• Description: Try it yourself.\n\n• Command: `{0}ganlay`\n• Description: Try it yourself.\n\n• Command: `{0}ange`\n• Description: Try it yourself."
+
+help_tox6: " Toxic 6\n\n• Command: `{0}mix`\n• Description: Try it yourself.\n\n• Command: `{0}sayangg`\n• Description: Try it yourself.\n\n• Command: `{0} semangat`\n• Description: Try it yourself.\n\n• Command: `{0}mengeluh`\n• Description: Try it yourself."
+
+help_tox7: " Toxic 7\n\n• Command: `{0}ywc`\n• Description: Try it yourself.\n\n• Command: `{0}jamet`\n• Description: Try it yourself.\n\n• Command: `{0}pp`\n• Description: Try it yourself.\n\n• Command: `{0}dp`\n• Description: Try it yourself.\n\n• Command: `{0}so`\n• Description: Try it yourself.\n\n• Command: `{0}met`\n• Description: Try it yourself.\n\n• Command: `{0}war`\n• Description: Try it yourself.\n\n• Command: `{0}wartai`\n• Description: Try it yourself.\n\n• Command: `{0}kismin`\n• Description: Try it yourself.\n\n• Command: `{0}ded`\n• Description: Try it yourself.\n\n• Command: `{0}sokab`\n• Description: Try it yourself.\n\n• Command: `{0}gembel`\n• Description: Try it yourself.\n\n• Command: `{0}cuih`\n• Description: Try it yourself.\n\n• Command: `{0}dih`\n• Description: Try it yourself.\n\n• Command: `{0}skb`\n• Description: Try it yourself.\n\n• Command: `{0}virtual`\n• Description: Try it yourself."
+
+help_tox8: " Toxic 8\n\n• Command: `{0}ganteng`\n• Description: Try it yourself.\n\n• Command: `{0}wibu`\n• Description: Try it yourself.\n\n• Command: `{0}ssenggol`\n• Description: Try it yourself."
+
+help_tox9: " Toxic 9\n\n• Command: `{0}cacad`\n• Description: Try it yourself.\n\n• Command: `{0}hayo`\n• Description: Try it yourself."
