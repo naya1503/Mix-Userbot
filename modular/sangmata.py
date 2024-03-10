@@ -32,17 +32,17 @@ async def _(c: user, m):
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
     try:
-        (await c.get_users(puki)).id
+        argu = (await c.get_users(puki)).id
     except Exception:
         try:
-            int(message.command[1])
+            argu = int(m.command[1])
         except Exception as err:
             return await m.reply(cgr("err").format(em.gagal, err))
     proses = await m.reply(cgr("proses").format(em.proses))
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
     try:
-        a = await c.send_message(sg, f"{argu}")
+        a = await c.send_message(sg, argu)
         await a.delete()
     except Exception as e:
         return await proses.edit(e)
