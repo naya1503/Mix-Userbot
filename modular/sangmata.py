@@ -56,7 +56,7 @@ async def _(c: user, m):
 
     if argu:
         try:
-            kntl, biji = await c.extract_user_and_reason(argu.id)
+            kntl, biji = await c.extract_user_and_reason(f"{argu}")
         except Exception as er:
             return await proses.edit(cgr("err").format(em.gagal, er))
 
