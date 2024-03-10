@@ -14,113 +14,105 @@ __help__ = "Toxic"
 
 @ky.ubot("a", sudo=True)
 async def _(c: user, m):
-    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**")
-
-
-@ky.ubot("e", sudo=True)
-async def _(c: user, m):
-    await m.reply("**GAK USAH SOK KERAS GOBLOK!!KENCING MASIH BERDIRI AJA BELAGU**")
-
-
-@ky.ubot("f", sudo=True)
-async def _(c: user, m):
-    await m.reply("**MUKA LU SEMUA KAYA KONTOL HAHAHAHA!!**")
-
-
-@ky.ubot("i", sudo=True)
-async def _(c: user, m):
-    await m.reply("**KONTOL MASIH BENGKOK AJA BANGGA LU HAHAHAHA!!**")
-
-
-@ky.ubot("r", sudo=True)
-async def _(c: user, m):
-    await m.reply("**KONTOL KONTOL APA YANG BESAR?KONTOL LU LAH HAHAHAHA!!**")
-
-
-@ky.ubot("t", sudo=True)
-async def _(c: user, m):
-    await m.reply("**BABI!!KONTOL!!NGENTOT!!!**")
-
-
-@ky.ubot("u", sudo=True)
-async def _(c: user, m):
-    await m.reply("**BABI LU GOBLOK!!GANTENGAN JUGA GUA HAHAHAHA**")
-
-
-@ky.ubot("w", sudo=True)
-async def _(c: user, m):
-    await m.reply("**BABI LU GOBLOK!!CANTIKAN JUGA GUA HAHAHAHA**")
-
-
-@ky.ubot("bct", sudo=True)
-async def _(c: user, m):
-    await m.reply("**BACOTAN LU GAK BIKIN GUA TREMOR GOBLOK HAHAHAHA!!**")
-
-
-@ky.ubot("n", sudo=True)
-async def _(c: user, m):
-    await m.reply("**GIMANA KABAR KAMU SAYANG??APAKAH BAIK?**")
-
-
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
 @ky.ubot("b", sudo=True)
 async def _(c: user, m):
-    await m.reply("**ELEEEHHHH SOK BANGET KEPINTERAN KAMU!!**")
-
-
-@ky.ubot("m", sudo=True)
-async def _(c: user, m):
-    await m.reply("**INI GRUB APA KUBURAN SEPI BANGET ASTAGFIRULLAH!!**")
-
-
+    await m.reply("**BAJINGAN!! KEREN LOE GITU ? CUIH ANAK HASIL CLONE BELAGU**", reply_to_message_id=ReplyCheck(m)
+    )
 @ky.ubot("c", sudo=True)
 async def _(c: user, m):
-    await m.reply("**KAN UDAH GUA BILANG??MAKANYA JANGAN NGEYEL!!**")
-
-
-@ky.ubot("x", sudo=True)
+    await m.reply("**CEBOK LAH DEK MINIMAL SEBELUM TYPING!!**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("d", sudo=True)
 async def _(c: user, m):
-    await m.reply("**GAUSAH SOKAP DEH KAMU!!**")
-
-
-@ky.ubot("y", sudo=True)
+    await m.reply("**DARI KEMAREN GW LIATIN MUKA LU KAGA BENER-BENER!! KEBENGKEL LAS DULU SONO. TAMBEL ITU MUKA LOE YANH BOPAK**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("e", sudo=True)
 async def _(c: user, m):
-    await m.reply("**MACAM BAGUS AE LU BEGITU HMM!!**")
-
-
-@ky.ubot("j", sudo=True)
+    await m.reply("**EALAH INI TOH PETINGGI TELE ? JUJURLY MUKA LU KEK JAMET PASAR SENEN BANG. MENDING LOE NGADUK SEMEN!!**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("f", sudo=True)
 async def _(c: user, m):
-    await m.reply("**MAAF BUKAN JAGOAN HAHAHAHA!!**")
-
-
-@ky.ubot("z", sudo=True)
-async def _(c: user, m):
-    await m.reply("**BISMILLAH SLEEP CALL!!😁**")
-
-
+    await m.reply("**FANTAT LOE BURIK YA ? SOALNYA MUKA LU KEREMIAN!!**", reply_to_message_id=ReplyCheck(m)
+    )
 @ky.ubot("g", sudo=True)
 async def _(c: user, m):
-    await m.reply("**GANTENG LU BEGITU???**")
-
-
-@ky.ubot("yy", sudo=True)
-async def _(c: user, m):
-    await m.reply(
-        "**War War Tai anjing, Ketrigger minta sharelok, Udah di sharelok Ga nyamperin,Keras di sosmed Bhakss...**"
+    await m.reply("**GOBLOK DIPIARA!! MEMEG NOH LOE PIARA BIAR BANYAK ANAK!!**", reply_to_message_id=ReplyCheck(m)
     )
-
-
 @ky.ubot("h", sudo=True)
 async def _(c: user, m):
-    await m.reply("**CANTIK LU BEGITU???**")
-
-
-@ky.ubot("o", sudo=True)
-async def _(c: user, m):
-    await m.reply(
-        "**MENTANG MENTANG PUNYA BOT MAINNYA BOT!!PANTES MUKANYA KAYA BOT😁**"
+    await m.reply("**HAHAHAHA KOK DIEM ? BINGUNG YA LOE BACOT APAAN**", reply_to_message_id=ReplyCheck(m)
     )
-
-
-@ky.ubot("war", sudo=True)
+@ky.ubot("i", sudo=True)
 async def _(c: user, m):
-    await m.reply("**NORAK LU KONTOL!! MAKE USERBOT CUMAN BUAT WAR MALAH SOK KERAS**")
+    await m.reply("**IDIH NAJIS BET PESAN GW DIREP AMA BOCAH KEK LOE**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("j", sudo=True)
+async def _(c: user, m):
+    await m.reply("**JEMBUT LOE DAH DICUCI BELOM SI ? KOK BAU JEMBUT INI YA??**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("k", sudo=True)
+async def _(c: user, m):
+    await m.reply("**KALO TYPING YANG BENER DEK!! POTRET BOCAH KAGA PERNAH MAKAN PAPAN TULIS SEKOLAH AN**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("l", sudo=True)
+async def _(c: user, m):
+    await m.reply("**LAGI NGAPA BAE SI BOCAH ?? ETT DAH GW BANTING, GW GEDIK, GW BANDUT MATI LOE!!**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("m", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
+@ky.ubot("a", sudo=True)
+async def _(c: user, m):
+    await m.reply("**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**", reply_to_message_id=ReplyCheck(m)
+    )
