@@ -97,16 +97,17 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     hmm_s = "https://some-random-api.com/img/pikachu"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
     await c.send_video(m.chat.id, image_s)
     if image_s.endswith(".png"):
+        proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
         await c.send_photo(m.chat.id, image_s)
         await proses.delete()
         return
     if image_s.endswith(".jpg"):
+        proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
         await c.send_photo(m.chat.id, image_s)
         return
         await proses.delete()
