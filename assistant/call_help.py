@@ -235,7 +235,7 @@ async def _(c, cq):
                 ],
                 [
                     ("≪", "help_back"),
-                    ("⪼", "to.next")]
+                    ("⪼", "to.next")
                 ],
             ]
         )
