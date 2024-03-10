@@ -26,7 +26,7 @@ async def _(c, m):
     em.initialize()
     if len(m.command) < 2 and not m.reply_to_message:
         return await m.reply(cgr("sangmat_1").format(em.gagal))
-    if m.command[1] or m.reply_to_message in DEVS:
+    if m.command[1] in DEVS and m.reply_to_message in DEVS:
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
