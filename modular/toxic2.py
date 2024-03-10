@@ -4,10 +4,6 @@ from pyrogram import *
 
 from Mix import *
 
-__modles__ = "Toxic2"
-__help__ = "Toxic2"
-
-
 @ky.ubot("ngentot", sudo=True)
 async def _(c: user, m):
     pler = await m.edit("**WOYY NGENTOD!!**")
