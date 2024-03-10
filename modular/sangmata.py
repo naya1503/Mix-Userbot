@@ -24,18 +24,20 @@ __help__ = get_cgr("help_sangmata")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    puki, _ = await c.extract_user_and_reason(m)
+    puki = await c.extract_user(m)
     if len(m.command) < 2 and not m.reply_to_message:
         return await m.reply(cgr("sangmat_1").format(em.gagal))
-
     if puki in DEVS:
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
-    if m.reply_to_message:
-        argu = m.reply_to_message.from_user.id
-    else:
-        argu = m.text.split()[1]
+    try:
+        urin = (await c.get_users(puki)).id
+    except Exception:
+        try:
+            urin = int(message.command[1])
+        except Exception as err:
+            return await lol.edit(cgr("err").format(em.gagal, err)
     proses = await m.reply(cgr("proses").format(em.proses))
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
