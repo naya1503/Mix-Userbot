@@ -14,9 +14,6 @@ from pyrogram import *
 
 from Mix import *
 
-__modles__ = "Toxic8"
-__help__ = "Toxic8"
-
 
 @ky.ubot("ganteng", sudo=True)
 async def _(c: user, m):
