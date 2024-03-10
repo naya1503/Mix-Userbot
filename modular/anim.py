@@ -73,7 +73,7 @@ async def _(c: user, m):
 
 @ky.ubot("pat", sudo=True)
 async def _(c: user, m):
-    proses = await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
+    await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
     hmm_s = "https://some-random-api.com/animu/pat"
     try:
         r = requests.get(url=hmm_s).json()
