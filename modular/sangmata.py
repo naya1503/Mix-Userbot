@@ -56,7 +56,7 @@ async def _(c, m):
 
     if args:
         try:
-            user = await c.get_users(args.id)
+            kntl = await user.extract_user(args)
         except Exception:
             return await proses.edit(cgr("sangmat_2").format(em.gagal))
 
@@ -64,20 +64,20 @@ async def _(c, m):
     sg = random.choice(bo)
 
     try:
-        a = await c.send_message(sg, f"{user.id}")
+        a = await c.send_message(sg, f"{kntl.id}")
         await a.delete()
     except Exception as e:
         return await proses.edit(e)
 
     await asyncio.sleep(1)
 
-    async for stalk in c.search_messages(a.chat.id):
-        if stalk.text == None:
+    async for respon in c.search_messages(a.chat.id):
+        if respon.text == None:
             continue
-        if not stalk:
+        if not respon:
             await m.reply(cgr("sangmat_3").format(em.gagal))
-        elif stalk:
-            await m.reply(cgr("sangmat_4").format(em.sukses, stalk.text))
+        elif respon:
+            await m.reply(cgr("sangmat_4").format(em.sukses, respon.text))
             break
 
     try:
