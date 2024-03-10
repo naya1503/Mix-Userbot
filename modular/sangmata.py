@@ -1,3 +1,11 @@
+################################################################
+"""
+ Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
+ 
+ @ CREDIT : NAN-DEV || Gojo_Satoru
+"""
+################################################################
+
 import asyncio
 import random
 
@@ -8,7 +16,7 @@ from pyrogram.types import *
 from Mix import *
 
 __modles__ = "SangMata"
-__help__ = "SangMata"
+__help__ = get_cgr("help_sangmata")
 
 
 @ky.ubot("sg", sudo=True)
@@ -17,17 +25,17 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2 and not m.reply_to_message:
-        return await m.reply(f"{em.gagal} <b>sg username/id/reply</b>")
+        return await m.reply(cgr("sangmat_1").format(em.error))
     if m.reply_to_message:
         args = m.reply_to_message.from_user.id
     else:
         args = m.command[1]
-    proses = await m.reply(f"{em.proses} <b>Processing...</b>")
+    proses = await m.reply(cgr("proses").format(em.proses))
     if args:
         try:
             user = await c.get_users(f"{args}")
         except Exception:
-            return await proses.edit(f"{em.gagal} <b>Please specify a valid user!</b>")
+            return await proses.edit(cgr("sangmat_2").format(em.gagal))
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
     try:
@@ -41,14 +49,14 @@ async def _(c, m):
         if stalk.text == None:
             continue
         if not stalk:
-            await m.reply(f"{em.gagal} <b>botnya ngambek :( </b>")
+            await m.reply(cgr("sangmat_3").format(em.gagal))
         elif stalk:
-            await m.reply(f"{em.sukses} <code>{stalk.text}</code>")
+            await m.reply(cgr("sangmat_4").format(em.sukses, stalk.text))
             break
 
     try:
         user_info = await c.resolve_peer(sg)
-        await c.send(DeleteHistory(peer=user_info, max_id=0, revoke=True))
+        await c.invoke(DeleteHistory(peer=user_info, max_id=0, revoke=True))
     except Exception:
         pass
 
