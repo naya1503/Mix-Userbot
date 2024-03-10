@@ -9,7 +9,7 @@
 from Mix import *
 
 __modles__ = "Toxic"
-__help__ = get_cgr("help_tox1")
+__help__ = "Toxic"
 
 
 @ky.ubot("a", sudo=True)
