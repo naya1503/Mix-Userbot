@@ -32,10 +32,10 @@ async def _(c: user, m):
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
     try:
-        urin = (await c.get_users(puki)).id
+        (await c.get_users(puki)).id
     except Exception:
         try:
-            urin = int(message.command[1])
+            int(message.command[1])
         except Exception as err:
             return await m.reply(cgr("err").format(em.gagal, err))
     proses = await m.reply(cgr("proses").format(em.proses))
