@@ -56,7 +56,7 @@ async def _(c, m):
 
     if args:
         try:
-            kntl = await user.get_users(args)
+            kntl = await c.get_users(args)
         except Exception as er:
             return await proses.edit(cgr("err").format(em.gagal, er))
 
