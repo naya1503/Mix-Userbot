@@ -22,16 +22,20 @@ __help__ = get_cgr("help_sangmata")
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    
+
     if len(m.command) < 2 and not m.reply_to_message:
         return await m.reply(cgr("sangmat_1").format(em.gagal))
-    
+
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
 
-    if m.command[0] == "sg" and m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+    if (
+        m.command[0] == "sg"
+        and m.reply_to_message
+        and m.reply_to_message.from_user.id in DEVS
+    ):
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
@@ -40,29 +44,29 @@ async def _(c, m):
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
-    
+
     if m.reply_to_message:
         args = m.reply_to_message.from_user.id
     else:
         args = m.command[1]
-    
+
     proses = await m.reply(cgr("proses").format(em.proses))
-    
+
     if args:
         try:
             user = await c.extract_user(f"{args}")
         except Exception:
             return await proses.edit(cgr("sangmat_2").format(em.gagal))
-    
+
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
-    
+
     try:
         a = await c.send_message(sg, f"{user.id}")
         await a.delete()
     except Exception as e:
         return await proses.edit(e)
-    
+
     await asyncio.sleep(1)
 
     async for stalk in c.search_messages(a.chat.id):
