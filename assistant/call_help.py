@@ -182,6 +182,66 @@ async def _(c, cq):
     await cq.edit_message_text(txt, reply_markup=kemem)
 
 
+ky.callback("^to.")
+async def _(c, cq):
+    colmek = cq.data.split(".")[1]
+    kemem = okb([[("≪", "to.bc"), ("⪼", "to.next")]])
+    user_id = cq.from_user.id
+    prefix = await user.get_prefix(user_id)
+    txt = None
+    if colmek == "tox1":
+        txt = get_cgr("help_tox1").format(next((p) for p in prefix))
+    elif colmek == "tox2":
+        txt = get_cgr("help_tox2").format(next((p) for p in prefix))
+    elif colmek == "tox3":
+        txt = get_cgr("help_tox3").format(next((p) for p in prefix))
+    elif colmek == "tox4":
+        txt = get_cgr("help_tox4").format(next((p) for p in prefix))
+    elif colmek == "next":
+        txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+            " ".join(prefix), len(CMD_HELP)
+        )
+        kemem = okb(
+            [
+                [
+                    ("Toxic 5", "to.tox5"),
+                    ("Toxic 6", "to.tox6"),
+                ],
+                [
+                    ("Toxic 7", "to.tox7"),
+                    ("Toxic 8", "to.tox8"),
+                ],
+                [
+                    ("Toxic 9", "to.tox9"),
+                ],
+                [
+                    ("≪", "to.bc"),
+                ],
+            ]
+        )
+    elif colmek == "bc":
+        txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+            " ".join(prefix), len(CMD_HELP)
+        )
+        kemem = okb(
+            [
+                [
+                    ("Toxic 1", "to.tox1"),
+                    ("Toxic 2", "to.tox2"),
+                ],
+                [
+                    ("Toxic 3", "to.tox3"),
+                    ("Toxic 4", "to.tox4"),
+                ],
+                [
+                    ("≪", "help_back"),
+                    ("⪼", "to.next")]
+                ],
+            ]
+        )
+    await cq.edit_message_text(txt, reply_markup=kemem)
+    
+
 @ky.callback("^cls_hlp")
 async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
