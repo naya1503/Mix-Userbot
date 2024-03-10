@@ -14,8 +14,8 @@ from pyrogram import *
 
 from Mix import *
 
-__modles__ = "MixUbot"
-__help__ = "MixUbot"
+__modles__ = "Toxic4"
+__help__ = "Toxic4"
 
 
 @ky.ubot("sadboy", sudo=True)
