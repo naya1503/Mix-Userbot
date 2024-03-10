@@ -37,7 +37,7 @@ async def _(c: user, m):
         try:
             urin = int(message.command[1])
         except Exception as err:
-            return await lol.edit(cgr("err").format(em.gagal, err))
+            return await m.reply(cgr("err").format(em.gagal, err))
     proses = await m.reply(cgr("proses").format(em.proses))
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
