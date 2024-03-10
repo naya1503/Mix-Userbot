@@ -24,20 +24,15 @@ __help__ = get_cgr("help_sangmata")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-
+    puki, _ = await c.extract_user_and_reason(m)
     if len(m.command) < 2 and not m.reply_to_message:
         return await m.reply(cgr("sangmat_1").format(em.gagal))
 
-    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+    if m.reply_to_message.from_user.id in DEVS:
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
-
-    if (
-        m.command[0] == "sg"
-        and m.reply_to_message
-        and m.reply_to_message.from_user.id in DEVS
-    ):
+    if puki in DEVS:
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
