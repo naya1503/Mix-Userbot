@@ -62,7 +62,7 @@ async def _(c: user, m):
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
     await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
-    await m.delete()
+await m.delete()
 
 
 @ky.ubot("hug", sudo=True)
@@ -74,7 +74,7 @@ async def _(c: user, m):
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
     await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
-    await m.delete()
+await m.delete()
 
 
 @ky.ubot("pat", sudo=True)
@@ -87,10 +87,10 @@ async def _(c: user, m):
         r = requests.get(url=hmm_s).json()
         image_s = r["link"]
         await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
-        await m.delete()
     except (requests.exceptions.RequestException, KeyError, ValueError) as e:
         print("Error:", e)
         await c.send_message(m.chat.id, "Failed to fetch pat animation.")
+await m.delete()
 
 
 @ky.ubot("pikachu", sudo=True)
@@ -108,7 +108,7 @@ async def _(c: user, m):
     if image_s.endswith(".jpg"):
         await c.send_photo(m.chat.id, image_s)
         return
-    await m.delete()
+await m.delete()
 
 
 @ky.ubot("hmm", sudo=True)
