@@ -187,7 +187,7 @@ async def send_filter_reply(c: user, m, trigger: str):
     msgtype = getfilter["msgtype"]
     if not msgtype:
         return await m.reply_text("<b>Error:</b> Tidak dapat menemukan filter ini!!")
-
+    yoki = await send_cmd(c, msgtype)
     try:
         # support for random filter texts
         splitter = "%%%"
@@ -221,13 +221,13 @@ async def send_filter_reply(c: user, m, trigger: str):
             Types.CONTACT,
             Types.ANIMATED_STICKER,
         ):
-            (await send_cmd(c, msgtype))(
+            yoki(
                 m.chat.id,
                 getfilter["fileid"],
                 reply_to_message_id=m.id,
             )
         else:
-            (await send_cmd(c, msgtype))(
+            yoki(
                 m.chat.id,
                 getfilter["fileid"],
                 caption=textt,
