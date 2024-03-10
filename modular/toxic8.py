@@ -64,5 +64,5 @@ async def _(c: user, m):
 @ky.ubot("ssenggol", sudo=True)
 async def _(c: user, m):
     uputt = await m.edit("`Bapaknya Udin Di Makan Singkong`")
-    await asyncio.sleep(0.2)
+    await asyncio.sleep(1.8)
     await uputt.edit("`Cuma Sendiri ni Senggol Dong`")
