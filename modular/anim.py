@@ -84,7 +84,6 @@ async def _(c: user, m):
         await c.send_message(m.chat.id, "Failed to fetch pat animation.")
 
 
-
 @ky.ubot("pikachu", sudo=True)
 async def _(c: user, m):
     hmm_s = "https://some-random-api.ml/img/pikachu"
