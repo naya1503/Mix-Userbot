@@ -21,10 +21,10 @@ __help__ = "Toxic8"
 @ky.ubot("ganteng", sudo=True)
 async def _(c: user, m):
     uputt = await m.edit("`Lu Mau Tau Sebuah Fakta?`")
-    await asyncio.sleep(0.2)
+    await asyncio.sleep(1.2)
     await uputt.edit("`Fakta Yang Belum Terbongkar Selama Ini`")
-    await asyncio.sleep(0.2)
-    await uputt.edit("`**GUA GANTENG FIX NO DEBAT😏**`")
+    await asyncio.sleep(1.2)
+    await uputt.edit("**GUA GANTENG FIX NO DEBAT😏**")
 
 
 @ky.ubot("wibu", sudo=True)
