@@ -14,25 +14,27 @@ __help__ = "SangMata"
 @ky.ubot("sg", sudo=True)
 @ky.devs("siapa")
 async def _(c, m):
+    em = Emojik()
+    em.initialize()
     if len(m.command) < 1 and not m.reply_to_message:
-        return await m.reply("sg username/id/reply")
+        return await m.reply(f"{em.gagal} <b>sg username/id/reply</b>")
     if m.reply_to_message:
         args = m.reply_to_message.from_user.id
     else:
-        args = m.text.split()[1]
-    lol = await m.reply("<code>Processing...</code>")
+        args = m.command[2]
+    proses = await m.reply(f"{em.proses} <b>Processing...</b>")
     if args:
         try:
             user = await c.get_users(f"{args}")
         except Exception:
-            return await lol.edit("<code>Please specify a valid user!</code>")
+            return await proses.edit(f"{em.gagal} <b>Please specify a valid user!</b>")
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
     try:
         a = await c.send_message(sg, f"{user.id}")
         await a.delete()
     except Exception as e:
-        return await lol.edit(e)
+        return await proses.edit(e)
     await asyncio.sleep(1)
 
     async for stalk in c.search_messages(a.chat.id):
@@ -50,4 +52,4 @@ async def _(c, m):
     except Exception:
         pass
 
-    await lol.delete()
+    await proses.delete()
