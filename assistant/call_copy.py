@@ -13,6 +13,7 @@ from pyrogram.enums import *
 from pyrogram.types import *
 
 from modular.copy_con import *
+from Mix import *
 
 """
 @ky.callback("copymsg_")
@@ -38,7 +39,7 @@ async def _(c, cq):
     except Exception as e:
         await cq.edit_message_text(cgr("err_1").format(e))
 """
-
+COPY_ID = {}
 
 @ky.callback("copymsg_")
 async def _(c, cq):
@@ -46,7 +47,7 @@ async def _(c, cq):
     try:
         q = int(cq.data.split("_", 1)[1])
         m = [obj for obj in get_objects() if id(obj) == q][0]
-        await c.unblock_user(bot.me.username)
+        await user.unblock_user(bot.me.username)
         await cq.edit_message_text(cgr("proses_1"))
         copy = await c.send_message(bot.me.username, f"/copy {m.text.split()[1]}")
         msg = m.reply_to_message or m
@@ -61,4 +62,4 @@ async def _(c, cq):
             await g.delete()
             nyolong_jalan = False
     except Exception as e:
-        await cq.edit_message_text(cgr("err_1").format(e))
+        await cq.edit_message_text(cgr("err_1").format(str(e)))
