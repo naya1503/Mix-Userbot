@@ -116,7 +116,9 @@ async def _(c: user, m):
 
 @ky.ubot("o", sudo=True)
 async def _(c: user, m):
-    await m.reply("**MENTANG MENTANG PUNYA BOT MAINNYA BOT!!PANTES MUKANYA KAYA BOT😁**")
+    await m.reply(
+        "**MENTANG MENTANG PUNYA BOT MAINNYA BOT!!PANTES MUKANYA KAYA BOT😁**"
+    )
 
 
 @ky.ubot("war", sudo=True)
