@@ -20,7 +20,7 @@ __help__ = "Salam"
 
 @ky.ubot("p", sudo=True)
 async def _(c: user, m):
-    await m.edit("**Assalamualaikum Anak anjingggg**")
+    await m.edit("**Assalamualaikum Warahmatullahi Wabarakatu, Salam Sejahtera Warga Telegram Yth.**")
 
 
 @ky.ubot("pe", sudo=True)
