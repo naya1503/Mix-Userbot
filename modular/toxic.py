@@ -110,110 +110,102 @@ async def _(c: user, m):
 @ky.ubot("m", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**MEMEG EMA LO BURIK YA ? MUKA LO ITU KAYA DAKI MULU KAYA PINGGIRAN PANTAT BANYAK TAI KERING**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("n", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**NETE DULU SONO BARU NGEBACOT, LAA BOCAH NGOMONG KEK SAMBIL MAKAN PASIR. MANA TAI KUCING MULU!!**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("o", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**OHHH INI ORANG NYA? YANG SUKA NYOLONG ? PENGAMGGURAN ? MAKAN DUIT HARAM ? NGENTOT TIAP HARI ? BAHAHAHHA ORA PANTES BET MUKA-MUKA BOCAH AUTIS**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("p", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**PADA NGAPA BAE SI ? ET DAH MO JADI JAGOAN LU ? LAA BOCAH SI TIAP HARI ADA BAE KELAKUAN NYA!! AUTIS KALI MAH.**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("q", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**QONTOL QONTOL, MUKA DEKIL, ITEM, BURIK, BOPAK, RAMBUT LU KEK JEMBUT GA BERATURAN MASIH PEDE LO IDUP?**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("r", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**RAME AMAT YA, KEREN KALI MAH BEGITU? LAA BOCAH BARU LAHIR KEMAREN BANYAK GAYA. TONG TONG!! EMA LO NYESEL KEK NYA LAHIRIN MAKHLUK KE LU!!**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("s", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**SIAPA ? EMA LU SIAPA ? KAGA MIRIP EMA AMA BABA LU. ANAK BOLEH MUNGUT DI PINGGIR GOT KALI LU!!**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("t", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**TUMAN, BOCAH TUMAN. DIKASIH PANGGUNA LANTAS BAE BERTINGKAH. MENDING CAKEP LA MUKA KAYA PANTAT PENGAMEN KAGA MANDI 1 MINGGU**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("u", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**UNTUNG GW BUKAN TEMEN NYA DIA, BUNUH BAE MAKHLUK KAYA GINI. EMANYA JUGA IKHLAS KALI DIA MATI!!**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("v", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**APA KONTOL?**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("w", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**WAH BAJINGAN INI LAMA LAMA KAYA JEMBUT, GA BENER BENTUKNYA!!**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("x", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**DIEM MEMEG, MUKA JERAWATN BANYAK BACOT LU!!**",
         reply_to_message_id=ReplyCheck(m),
     )
 
 
-@ky.ubot("a", sudo=True)
+@ky.ubot("z", sudo=True)
 async def _(c: user, m):
     await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
-        reply_to_message_id=ReplyCheck(m),
-    )
-
-
-@ky.ubot("a", sudo=True)
-async def _(c: user, m):
-    await m.reply(
-        "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
+        "**DIEM BANGSAT, BACOT MULU DARI KEMAREN. JADI BEBAN DOANG BELAGU LU. GAWE TONG GAWE, LAA PUNYA AKAL SI DIDIEMIN KAGA DIPAKE**",
         reply_to_message_id=ReplyCheck(m),
     )
