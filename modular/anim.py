@@ -132,7 +132,7 @@ async def _(c: user, m):
         return
     animation_interval = 1
     animation_ttl = range(0, 14)
-    await m.edit("brain")
+    await m.edit("your brain")
     animation_chars = [
         "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠         <(^_^ <)🗑",
         "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠       <(^_^ <)  🗑",
