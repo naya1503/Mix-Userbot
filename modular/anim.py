@@ -817,7 +817,8 @@ async def _(c: user, m):
         "▓▓▓▓▓▓█‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡█\n"
         "▓▓▓▓▓▓█████‡‡‡‡‡‡‡‡‡‡‡‡██\n"
         "█████‡‡‡‡‡‡‡██████████\n",
-        reply_to_messag_id=m.id)
+        reply_to_messag_id=m.id,
+    )
 
 
 @ky.ubot("tank", sudo=True)
