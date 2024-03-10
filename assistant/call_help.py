@@ -189,15 +189,7 @@ async def _(c, cq):
     user_id = cq.from_user.id
     prefix = await user.get_prefix(user_id)
     txt = None
-    if colmek == "tox1":
-        txt = get_cgr("help_tox1").format(next((p) for p in prefix))
-    elif colmek == "tox2":
-        txt = get_cgr("help_tox2").format(next((p) for p in prefix))
-    elif colmek == "tox3":
-        txt = get_cgr("help_tox3").format(next((p) for p in prefix))
-    elif colmek == "tox4":
-        txt = get_cgr("help_tox4").format(next((p) for p in prefix))
-    elif colmek == "next":
+    if colmek == "next":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
@@ -219,6 +211,14 @@ async def _(c, cq):
                 ],
             ]
         )
+    elif colmek == "tox1":
+        txt = get_cgr("help_tox1").format(next((p) for p in prefix))
+    elif colmek == "tox2":
+        txt = get_cgr("help_tox2").format(next((p) for p in prefix))
+    elif colmek == "tox3":
+        txt = get_cgr("help_tox3").format(next((p) for p in prefix))
+    elif colmek == "tox4":
+        txt = get_cgr("help_tox4").format(next((p) for p in prefix))
     elif colmek == "bc":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
