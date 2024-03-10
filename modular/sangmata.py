@@ -50,11 +50,9 @@ async def _(c: user, m):
     await asyncio.sleep(1)
 
     async for respon in c.search_messages(a.chat.id):
-        if respon.text == None:
-            continue
-        if not respon:
+        if not respon.text:
             await m.reply(cgr("sangmat_3").format(em.gagal))
-        elif respon:
+        else:
             await m.reply(cgr("sangmat_4").format(em.sukses, respon.text))
             break
 
