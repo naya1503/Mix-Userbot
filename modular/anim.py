@@ -111,7 +111,6 @@ async def _(c: user, m):
         await c.send_photo(m.chat.id, image_s)
         await proses.delete()
         return
-    
 
 
 @ky.ubot("hmm", sudo=True)
