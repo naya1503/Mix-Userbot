@@ -221,13 +221,13 @@ async def send_filter_reply(c: user, m, trigger: str):
             Types.CONTACT,
             Types.ANIMATED_STICKER,
         ):
-            yoki(
+            await yoki(
                 m.chat.id,
                 getfilter["fileid"],
                 reply_to_message_id=m.id,
             )
         else:
-            yoki(
+            await yoki(
                 m.chat.id,
                 getfilter["fileid"],
                 caption=textt,
