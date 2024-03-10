@@ -22,8 +22,8 @@ async def _(c: user, m):
         await tex.delete()
         return
     await c.unblock_user(user_id)
-    (await c.get_users(user_id)).mention
-    await tex.edit(cgr("prof_2").format(em.sukses, mention))
+    umention = (await c.get_users(user_id)).mention
+    await tex.edit(cgr("prof_2").format(em.sukses, umention))
     return
 
 

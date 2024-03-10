@@ -400,7 +400,7 @@ tr_6: "{} **Kode bahasa macam apa itu?**"
 # profile
 prof_1: "{} **Silahkan balas pesan pengguna atau berikan username.**"
 prof_2: "{} **Berhasil membuka blokir {}!**"
-prof_3: "{} {} **Berhasil memblokir {}!**"
+prof_3: "{} **Berhasil memblokir {}!**"
 prof_4: "{} Berhasil mengganti nama menjadi `{}`."
 prof_5: "{} Berhasil mengganti nama depan `{}` nama belakang `{}`."
 prof_6: "{} Berhasil mengganti bio menjadi : `{}`."
