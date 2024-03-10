@@ -56,7 +56,7 @@ async def _(c, m):
 
     if args:
         try:
-            user = await c.extract_user(args)
+            user = await c.get_users(args.id)
         except Exception:
             return await proses.edit(cgr("sangmat_2").format(em.gagal))
 
