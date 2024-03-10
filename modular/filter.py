@@ -6,7 +6,6 @@
 """
 ################################################################
 
-import re
 from secrets import choice
 
 from pyrogram.enums import *
@@ -252,7 +251,7 @@ async def _(c: user, m):
         match = await regex_searcher(pattern, m.text.lower())
         if match:
             try:
-                msgtype = await send_filter_reply(c, m, trigger)
+                await send_filter_reply(c, m, trigger)
             except Exception as ef:
                 await m.reply_text(f"Error: {ef}")
                 LOGGER.error(ef)
@@ -260,4 +259,3 @@ async def _(c: user, m):
             break
         continue
     return
-
