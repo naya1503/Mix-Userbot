@@ -14,9 +14,6 @@ from pyrogram import *
 
 from Mix import *
 
-__modles__ = "Toxic9"
-__help__ = "Toxic9"
-
 
 @ky.ubot("cacad", sudo=True)
 async def _(c: user, m):
