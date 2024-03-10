@@ -16,12 +16,12 @@ __help__ = "SangMata"
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    if len(m.command) < 1 and not m.reply_to_message:
+    if len(m.command) < 2 and not m.reply_to_message:
         return await m.reply(f"{em.gagal} <b>sg username/id/reply</b>")
     if m.reply_to_message:
         args = m.reply_to_message.from_user.id
     else:
-        args = m.command[2]
+        args = m.command[1]
     proses = await m.reply(f"{em.proses} <b>Processing...</b>")
     if args:
         try:
