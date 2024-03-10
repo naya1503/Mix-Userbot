@@ -12,8 +12,8 @@ from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
 
-from modular.copy_con import *
 from Mix import *
+from modular.copy_con import *
 
 """
 @ky.callback("copymsg_")
@@ -40,6 +40,7 @@ async def _(c, cq):
         await cq.edit_message_text(cgr("err_1").format(e))
 """
 COPY_ID = {}
+
 
 @ky.callback("copymsg_")
 async def _(c, cq):
