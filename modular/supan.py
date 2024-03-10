@@ -26,7 +26,7 @@ async def _(c: user, m):
         await y.edit(cgr("err").format(em.gagal, error))
 
 
-@ky.ubot("cewek", sudo=True)
+@ky.ubot("cewek|cewe", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
@@ -44,7 +44,7 @@ async def _(c: user, m):
         await y.edit(cgr("err").format(em.gagal, error))
 
 
-@ky.ubot("cowok", sudo=True)
+@ky.ubot("cowok|cowo", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
