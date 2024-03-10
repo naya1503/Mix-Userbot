@@ -9,8 +9,8 @@ from pyrogram import *
 
 from Mix import *
 
-__modles__ = "MixUbot2"
-__help__ = "MixUbot2"
+__modles__ = "Toxic5"
+__help__ = "Toxic5"
 
 
 @ky.ubot("lipkol", sudo=True)
