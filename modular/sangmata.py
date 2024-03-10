@@ -42,7 +42,7 @@ async def _(c, m):
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
 
-    if m.command[0] == "sg" and m.command[1] in DEVS:
+    if m.command[1] in DEVS:
         return await m.reply(
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
@@ -56,7 +56,7 @@ async def _(c, m):
 
     if args:
         try:
-            user = await c.extract_user(f"{args}")
+            user = await c.extract_user(args)
         except Exception:
             return await proses.edit(cgr("sangmat_2").format(em.gagal))
 
