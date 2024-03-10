@@ -14,7 +14,7 @@ __help__ = "SangMata"
 @ky.ubot("sg", sudo=True)
 @ky.devs("siapa")
 async def _(c, m):
-    if len(m.text.split()) < 1 and not m.reply_to_message:
+    if len(m.command) < 1 and not m.reply_to_message:
         return await m.reply("sg username/id/reply")
     if m.reply_to_message:
         args = m.reply_to_message.from_user.id
