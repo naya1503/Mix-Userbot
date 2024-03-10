@@ -54,7 +54,7 @@ async def _(c, m):
 
     proses = await m.reply(cgr("proses").format(em.proses))
 
-    if args:
+    if int(args):
         try:
             kntl = await user.extract_user(args)
         except Exception as er:
