@@ -26,6 +26,8 @@ async def _(c, m):
     em.initialize()
     if len(m.command) < 2 and not m.reply_to_message:
         return await m.reply(cgr("sangmat_1").format(em.error))
+    if m.command[2] in DEVS:
+        return await m.reply(f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>")
     if m.reply_to_message:
         args = m.reply_to_message.from_user.id
     else:
