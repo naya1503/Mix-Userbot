@@ -43,7 +43,7 @@ COPY_ID = {}
 
 
 @ky.callback("copymsg_")
-async def _(c: user, cq):
+async def _(c, cq):
     global nyolong_jalan
     try:
         q = int(cq.data.split("_", 1)[1])
