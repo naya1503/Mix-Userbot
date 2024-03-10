@@ -57,31 +57,31 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
+    proses = await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
     hmm_s = "https://some-random-api.com/animu/wink"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
     await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
-await m.delete()
+    await proses.delete()
 
 
 @ky.ubot("hug", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
+    proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     hmm_s = "https://some-random-api.com/animu/hug"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
     await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
-await m.delete()
+    await proses.delete()
 
 
 @ky.ubot("pat", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
+    proses = await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
     hmm_s = "https://some-random-api.com/animu/pat"
     try:
         r = requests.get(url=hmm_s).json()
@@ -90,14 +90,14 @@ async def _(c: user, m):
     except (requests.exceptions.RequestException, KeyError, ValueError) as e:
         print("Error:", e)
         await c.send_message(m.chat.id, "Failed to fetch pat animation.")
-await m.delete()
+        await proses.delete()
 
 
 @ky.ubot("pikachu", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
+    proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     hmm_s = "https://some-random-api.com/img/pikachu"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
@@ -108,7 +108,7 @@ async def _(c: user, m):
     if image_s.endswith(".jpg"):
         await c.send_photo(m.chat.id, image_s)
         return
-await m.delete()
+        await proses.delete()
 
 
 @ky.ubot("hmm", sudo=True)
@@ -256,12 +256,12 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
+    proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     if m.forward_from:
         return
     animation_interval = 0.8
     animation_ttl = range(0, 5)
-    ro = await m.reply("wtf", reply_to_message_id=ReplyCheck(m))
+    ro = await proses.edit("wtf", reply_to_message_id=ReplyCheck(m))
     animation_chars = [
         "What",
         "What The",
@@ -272,7 +272,7 @@ async def _(c: user, m):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await ro.edit(animation_chars[i % 5])
-        await m.delete()
+        await proses.delete()
 
 
 @ky.ubot("ding", sudo=True)
