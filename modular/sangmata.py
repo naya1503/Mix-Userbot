@@ -42,24 +42,17 @@ async def _(c: user, m):
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
 
-    if argu in DEVS:
-        return await m.reply(
-            f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
-        )
-
     if m.reply_to_message:
         argu = m.reply_to_message.from_user.id
     else:
         argu = m.command[1]
 
+    if argu in DEVS:
+        return await m.reply(
+            f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
+        )
+    
     proses = await m.reply(cgr("proses").format(em.proses))
-
-    # if argu:
-    #     try:
-    #         kntl, biji = await c.extract_user_and_reason(f"{argu}")
-    #     except Exception as er:
-    #         return await proses.edit(cgr("err").format(em.gagal, er))
-
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
 
