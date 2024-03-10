@@ -48,9 +48,10 @@ async def _(c: user, cq):
     try:
         q = int(cq.data.split("_", 1)[1])
         m = [obj for obj in get_objects() if id(obj) == q][0]
+        bahan = m.text.split()[1] or m.command[1]
         await c.unblock_user(bot.me.username)
         await cq.edit_message_text(cgr("proses_1"))
-        copy = await c.send_message(bot.me.username, f"/copy {m.text.split()[1]}")
+        copy = await c.send_message(bot.me.username, f"/copy {bahan}")
         msg = m.reply_to_message or m
         await asyncio.sleep(1.5)
         await copy.delete()
