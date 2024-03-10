@@ -7,7 +7,7 @@ authors:
   - Lumiere
 
 
-cmds: "Command Help"
+cmds: "**Command Help**"
 err: "{} **Error:** {} \n\n**Please report to @KynanSupport**"
 err_1: "**Error:** {}"
 proses: "{} **Being Processed...**"
