@@ -7,7 +7,7 @@ authors:
   - Lumiere
 
 
-cmds: "Bantuan Perintah"
+cmds: "**Bantuan Perintah**"
 err: "{} **Error:** {} \n\n**Silahkan laporkan ke @KynanSupport**"
 err_1: "**Error:** {}"
 proses: "{} **Sedang Diproses...**"
