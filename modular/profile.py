@@ -151,7 +151,7 @@ async def _(c: user, m):
             media = replied.video.file_id
             pat = await c.download_media(media, file_name=f"{user.me.id}.mp4")
             await c.set_profile_photo(video=pat)
-        await m.reply(cgr("prof_9").format(em.sukses))
+        return await m.reply(cgr("prof_9").format(em.sukses))
         os.remove(pat)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
