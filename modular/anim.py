@@ -57,7 +57,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    proses = await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
+    await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
     hmm_s = "https://some-random-api.com/animu/wink"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
@@ -69,7 +69,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
+    await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     hmm_s = "https://some-random-api.com/animu/hug"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
@@ -81,7 +81,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    proses = await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
+    await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
     hmm_s = "https://some-random-api.com/animu/pat"
     try:
         r = requests.get(url=hmm_s).json()
@@ -97,7 +97,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
+    await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     hmm_s = "https://some-random-api.com/img/pikachu"
     r = requests.get(url=hmm_s).json()
     image_s = r["link"]
@@ -256,7 +256,7 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
+    await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     if m.forward_from:
         return
     animation_interval = 0.8
@@ -273,6 +273,7 @@ async def _(c: user, m):
         await asyncio.sleep(animation_interval)
         await ro.edit(animation_chars[i % 5])
         await m.delete()
+
 
 @ky.ubot("ding", sudo=True)
 async def _(c: user, m):
