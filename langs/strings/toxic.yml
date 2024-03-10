@@ -19,6 +19,12 @@ ttup: "Tutup"
 reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya matot bot lo.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
+# sangmata
+sangmat_1: "{} <b><code>sg</code> username/id/bales pesan</b>"
+sangmat_2: "{} <b>Yang bener aje lah anjeng, kasih username kek, atau user_id kek, goblok amat!</b>"
+sangmat_3: "{} <b>Bot nya mati njeng! :( </b>"
+sangmat_4: "{} <code>{}</code>"
+
 # invite
 inv_1: "{} <b>sabar ya kntl lgi nambahin orangnya ...</b>"
 inv_2: "{} <b>Kasih ID/Usernamenya lah goblok!</b>"

@@ -19,6 +19,12 @@ ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 
+# sangmata
+sangmat_1: "{} <b><code>sg</code> username/id/reply</b>"
+sangmat_2: "{} <b>Please specify a valid user!</b>"
+sangmat_3: "{} <b>Bot is missing :( </b>"
+sangmat_4: "{} <code>{}</code>"
+
 # invite
 inv_1: "{} <b>Adding Member ...</b>"
 inv_2: "{} <b>Give Some ID/Username!</b>"
