@@ -81,16 +81,16 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    proses = await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
     hmm_s = "https://some-random-api.com/animu/pat"
     try:
+        proses = await m.reply(f"{em.proses} <b>Sedang proses ..</b>")
         r = requests.get(url=hmm_s).json()
         image_s = r["link"]
         await c.send_video(m.chat.id, image_s, reply_to_message_id=ReplyCheck(m))
+        await proses.delete()
     except (requests.exceptions.RequestException, KeyError, ValueError) as e:
         print("Error:", e)
         await c.send_message(m.chat.id, "Failed to fetch pat animation.")
-        await proses.delete()
 
 
 @ky.ubot("pikachu", sudo=True)
@@ -104,6 +104,7 @@ async def _(c: user, m):
     await c.send_video(m.chat.id, image_s)
     if image_s.endswith(".png"):
         await c.send_photo(m.chat.id, image_s)
+        await proses.delete()
         return
     if image_s.endswith(".jpg"):
         await c.send_photo(m.chat.id, image_s)
