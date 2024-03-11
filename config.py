@@ -22,4 +22,7 @@ upstream_branch = getenv("upstream_branch", "dev")
 git_token = getenv("git_token", None)
 alive_pic = getenv("alive_pic", "https://telegra.ph//file/43cec0ae0ded594b55247.jpg")
 log_channel = getenv("log_channel", "")
-genius_api = getenv("genius_api", "zhtfIphjnawHBcLFkIi-zE7tp8B9kJqY3xGnz_BlzQM9nhJJrD7csS1upSxUE0OMmiP3c7lgabJcRaB0hwViow")
+genius_api = getenv(
+    "genius_api",
+    "zhtfIphjnawHBcLFkIi-zE7tp8B9kJqY3xGnz_BlzQM9nhJJrD7csS1upSxUE0OMmiP3c7lgabJcRaB0hwViow",
+)
