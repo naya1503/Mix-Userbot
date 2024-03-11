@@ -6,10 +6,8 @@
 """
 ################################################################
 
+import asyncio
 
-import mimetypes
-
-import aiohttp
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
@@ -20,53 +18,27 @@ __modles__ = "Download"
 __help__ = "Download"
 
 
-@ky.ubot("sosmed", sudo=True)
+async def kirim_pesan_dan_tunggu(chat_id, pesan):
+    sent_message = await user.send_message(chat_id, pesan)
+    await asyncio.sleep(10)
+    replied_message = await user.get_messages(chat_id, sent_message.message_id)
+    await user.send_message(chat_id, replied_message.text)
+
+
+@ky.ubot("sos", sudo=True)
 async def _(c, m):
-    if len(m.command) < 2:
-        await m.reply_text(
-            "Gunakan perintah `/sosmed [URL_MEDIA]` untuk mengunduh media dari sosial media."
-        )
-        return
-
-    url = m.command[1]
-
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                if resp.status == 200:
-                    content_type = resp.headers.get("content-type", "").split(";")[0]
-
-                    ext = mimetypes.guess_extension(content_type.split("/")[1])
-
-                    filename = f"media{ext}"
-                    with open(filename, "wb") as f:
-                        f.write(await resp.read())
-
-                    if content_type.startswith("image"):
-                        await c.send_photo(
-                            chat_id=m.chat.id,
-                            photo=filename,
-                            caption="Berikut adalah foto yang Anda unduh dari sosial media.",
-                        )
-                    elif content_type.startswith("video"):
-                        await c.send_video(
-                            chat_id=m.chat.id,
-                            video=filename,
-                            caption="Berikut adalah video yang Anda unduh dari sosial media.",
-                        )
-                    elif content_type.startswith("audio"):
-                        await c.send_audio(
-                            chat_id=m.chat.id,
-                            audio=filename,
-                            caption="Berikut adalah audio yang Anda unduh dari sosial media.",
-                        )
-                    else:
-                        await m.reply_text("Media yang diunduh tidak didukung.")
-
-                else:
-                    await m.reply_text(
-                        f"Gagal mengunduh media dengan status {resp.status}"
-                    )
-
-    except Exception as e:
-        await m.reply_text(f"Terjadi kesalahan: {str(e)}")
+    _, *args = m.text.split()
+    
+    if args and args[0].startswith("{") and args[0].endswith("}"):
+        command = args[0].strip("{}")
+        
+        if command == "tik":
+            if len(args) >= 2:
+                link_tiktok = args[1]
+                pesan_tiktok = f"/tiktok {link_tiktok}"
+                await kirim_pesan_dan_tunggu(m.chat.id, pesan_tiktok)
+        elif command == "tube":
+            if len(args) >= 2:
+                link_youtube = args[1]
+                pesan_youtube = f"/youtube {link_youtube}"
+                await kirim_pesan_dan_tunggu(m.chat.id, pesan_youtube)
