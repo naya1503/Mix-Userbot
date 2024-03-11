@@ -299,6 +299,41 @@ async def _(c, cq):
         except FloodWait as e:
             await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
             return
+    elif colmek == "tox5":
+        txt = get_cgr("help_tox5").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
+    elif colmek == "tox6":
+        txt = get_cgr("help_tox6").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
+    elif colmek == "tox7":
+        txt = get_cgr("help_tox7").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
+    elif colmek == "tox8":
+        txt = get_cgr("help_tox8").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
+    elif colmek == "tox9":
+        txt = get_cgr("help_tox9").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "bc":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
