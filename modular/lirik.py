@@ -1,6 +1,6 @@
 import os
 
-import lyricsgenius
+from lyricsgenius import Genius
 from pyrogram import *
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
 from pyrogram.types import *
@@ -12,10 +12,26 @@ __modles__ = "Lyric"
 __help__ = "Lyrics"
 
 
-api = lyricsgenius.Genius(genius_api, verbose=False)
+api = Genius(genius_api, verbose=False)
 
 
 @ky.ubot("lyric", sudo=True)
+async def _(c, m):
+    song_title = " ".join(m.command[1:])
+    song = api.search_song(song_title)
+    if song is not None:
+        try:
+            await m.reply_text(song.lyrics)
+        except MessageTooLong:
+            with open(f"{song.title}.txt", "w") as file:
+                file.write(song.lyrics)
+            await m.reply_document(document=f"{song.title}.txt")
+            os.remove(f"{song.title}.txt")
+    else:
+        await m.reply_text("Lirik tidak ditemukan.")
+
+
+"""
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -58,3 +74,4 @@ async def _(c, m):
         await load.delete()
 
         os.remove(f"downloads/{lyric_title}.txt")
+"""
