@@ -9,7 +9,7 @@
 import os
 
 from Mix import *
-from SafoneAPI import SafoneAPI()
+from SafoneAPI import SafoneAPI
 
 __modles__ = "Carbon"
 __help__ = get_cgr("help_carbon")
