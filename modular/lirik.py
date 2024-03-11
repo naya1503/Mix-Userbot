@@ -28,7 +28,7 @@ async def _(c, m):
 
     if lirik is None:
         return await load.edit(
-            f"{em.gagal} <b>Tidak dapat menemukan lyric untuk : </b> {m.command[1]}"
+            f"{em.gagal} <b>Tidak dapat menemukan lyric untuk : </b> {song_name}"
         )
 
     lyric_title = lirik.title
@@ -37,19 +37,19 @@ async def _(c, m):
 
     try:
         await load.edit_text(
-            f"--**{lyric_title}**--\n{lyric_artist}\n\n\n{lyrics_text}\n__Extracted by {bot.me.username}"
+            f"{em.sukses} --**{lyric_title}**--\n{lyric_artist}\n\n\n{lyrics_text}\n__Extracted by {bot.me.username}"
         )
 
     except MessageTooLong:
         with open(f"downloads/{lyric_title}.txt", "w") as f:
             f.write(f"{lyric_title}\n{lyric_artist}\n\n\n{lyrics_text}")
 
-        await load.edit_text("Lyric too long. Sending as a text file...")
+        await load.edit_text(f"{em.gagal} <b>Lyric too long. Sending as a text file...</b>")
         await m.reply_chat_action(action="upload_document")
         await m.reply_document(
             document=f"downloads/{lyric_title}.txt",
             thumb="https://telegra.ph//file/43cec0ae0ded594b55247.jpg",
-            caption=f"\n__--{lyric_title}--\n__{lyric_artist}\n\n__Extracted by {bot.me.username}",
+            caption=f"\n{em.sukses} --{lyric_title}--\n__{lyric_artist}\n\n__Extracted by {bot.me.username}",
         )
 
         await load.delete()
