@@ -15,6 +15,7 @@ __help__ = "Lyrics"
 async def _(c, m):
     em = Emojik()
     em.initialize()
+    p = m.reply(f"{em.proses} <b>Sedang mencari lirik lagu</>")
     try:
         command = " ".join(m.command[1:])
         parts = command.split("-")
@@ -34,8 +35,10 @@ async def _(c, m):
             await m.reply_text(f"{em.sukses} <code>{lyrics_text}</code>")
         else:
             await m.reply_text(f"{em.gagal} <b>Maaf, lirik lagu tidak ditemukan.</b>")
+        p.delete()
     except Exception as e:
         await m.reply(f"{em.gagal} <b>error :</b> <code>{e}</code>")
+        p.delete()
 
 
 async def search_lyrics(penyanyi, judul):
