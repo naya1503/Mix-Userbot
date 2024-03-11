@@ -18,7 +18,7 @@ async def test():
     try:
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
-
+        await refresh_modules()
     except SessionExpired:
         LOGGER.info("Session Expired . Create New Session")
         sys.exit(1)
@@ -52,11 +52,10 @@ async def main():
         await refresh_cache()
         await check_logger()
         LOGGER.info(f"Check Finished.")
-        await refresh_modules()
-
         LOGGER.info(f"Modules Imported...")
         LOGGER.info("Successfully Started Userbot.")
         await isFinish()
+        await getFinish()
         if "test" not in sys.argv:
             await idle()
     except KeyboardInterrupt:
