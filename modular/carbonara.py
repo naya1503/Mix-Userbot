@@ -2,7 +2,7 @@
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
- @ CREDIT : NAN-DEV
+ @ CREDIT : NAN-DEV || EH KONTOL KALO PUNYA AKAL DIPAKE YA ANJING GAUSAH APUS² CREDIT MODAL NYOPAS LO BAJINGAN!!
 """
 ################################################################
 
