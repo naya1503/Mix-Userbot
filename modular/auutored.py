@@ -34,6 +34,8 @@ async def _(_, m):
                 await user.read_chat_history(gc, max_id=0)
             except ChannelPrivate:
                 continue
+            except ChannelInvalid:
+                continue
         await mek.edit(cgr("autoread_2").format(em.sukses, len(bcgc)))
         return
     elif peler.lower() == "us":
@@ -49,6 +51,8 @@ async def _(_, m):
                 await user.read_chat_history(ch, max_id=0)
             except ChannelPrivate:
                 continue
+            except ChannelInvalid:
+                continue
         await mek.edit(cgr("autoread_4").format(em.sukses, len(bcch)))
         return
     elif peler.lower() == "all":
@@ -57,6 +61,8 @@ async def _(_, m):
             try:
                 await user.read_chat_history(aih, max_id=0)
             except ChannelPrivate:
+                continue
+            except ChannelInvalid:
                 continue
         await mek.edit(cgr("autoread_5").format(em.sukses, len(bcall)))
         return
