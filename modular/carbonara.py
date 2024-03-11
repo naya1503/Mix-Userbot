@@ -38,14 +38,14 @@ async def _(c, m):
         return await m.reply(cgr("crbn_1").format(em.gagal))
     ex = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) == 1 and text:
-        meg = await buat_bon(text, lague="python", tem="light")
+        meg = await buat_bon(text, "python", "light")
         await m.reply_photo(
             meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
         )
         os.remove(meg)
     elif len(m.command) == 2:
         lague = m.text.split(None, 1)[1]
-        meg = await buat_bon(text, lague, tem="light")
+        meg = await buat_bon(text, lague, "light")
         await m.reply_photo(
             meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
         )
