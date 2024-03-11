@@ -42,7 +42,6 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     rep = m.reply_to_message
-        txt = m.text.split(None, 1)[1]
     if not rep and len(m.command) < 2:
         await m.reply(f"{em.gagal} **MINIMAL KASIH QUERY BWANG!!**")
     pros = await m.reply(cgr("proses").format(em.proses))
