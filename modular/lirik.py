@@ -36,6 +36,7 @@ async def get_lyrics(c: Client, m: Message):
     except Exception as e:
         await m.reply(f"error : `{e}`")
 
+
 """
 async def _(c, m):
     em = Emojik()
