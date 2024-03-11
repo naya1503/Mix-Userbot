@@ -7,14 +7,13 @@
 ################################################################
 
 import asyncio
-import os
 import math
+import os
 import time
-import wget
 from datetime import timedelta
 from time import time
 
-from datetime import timedelta
+import wget
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.file_id import *
@@ -90,7 +89,7 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
                 await asyncio.sleep(e.x)
             except MessageNotModified:
                 pass
-            
+
 
 @ky.ubot("dtik", sudo=False)
 async def _(self: user, m):
@@ -176,6 +175,7 @@ async def _(c, message):
     for files in (thumbnail, file_name):
         if files and os.path.exists(files):
             os.remove(files)
+
 
 @ky.ubot("stube", sudo=True)
 async def _(c, message):
