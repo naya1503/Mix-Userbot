@@ -54,8 +54,8 @@ async def main():
         LOGGER.info(f"Check Finished.")
         LOGGER.info(f"Modules Imported...")
         LOGGER.info("Successfully Started Userbot.")
-        await isFinish()
         await getFinish()
+        await isFinish()
         if "test" not in sys.argv:
             await idle()
     except KeyboardInterrupt:
