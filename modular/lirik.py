@@ -34,7 +34,6 @@ async def get_lyrics(c: Client, m: Message):
                         await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
             except Exception as e:
                 return await m.reply(f"Error: `{e}`")
-                
 
 
 """
