@@ -185,12 +185,32 @@ async def _(c, cq):
     txt = None
     if colmek == "anm1":
         txt = get_cgr("help_anm1").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "anm2":
         txt = get_cgr("help_anm2").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "anm3":
         txt = get_cgr("help_anm3").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "anm4":
         txt = get_cgr("help_anm4").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "bc":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
@@ -210,11 +230,11 @@ async def _(c, cq):
                 ],
             ]
         )
-    try:
-        await cq.edit_message_text(txt, reply_markup=kemem)
-    except FloodWait as e:
-        await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
-        return
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
 
 
 @ky.callback("^to.")
@@ -228,7 +248,7 @@ async def _(c, cq):
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
-        kemem = okb(
+        kemem2 = okb(
             [
                 [
                     ("Toxic 5", "to.tox5"),
@@ -246,19 +266,44 @@ async def _(c, cq):
                 ],
             ]
         )
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem2)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "tox1":
         txt = get_cgr("help_tox1").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "tox2":
         txt = get_cgr("help_tox2").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "tox3":
         txt = get_cgr("help_tox3").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "tox4":
         txt = get_cgr("help_tox4").format(next((p) for p in prefix))
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
     elif colmek == "bc":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
-        kemem = okb(
+        kemem3 = okb(
             [
                 [
                     ("Toxic 1", "to.tox1"),
@@ -274,11 +319,12 @@ async def _(c, cq):
                 ],
             ]
         )
-    try:
-        await cq.edit_message_text(txt, reply_markup=kemem)
-    except FloodWait as e:
-        await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
-        return
+        try:
+            await cq.edit_message_text(txt, reply_markup=kemem3)
+        except FloodWait as e:
+            await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+            return
+    
 
 
 @ky.callback("^cls_hlp")
