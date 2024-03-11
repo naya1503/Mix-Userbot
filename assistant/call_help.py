@@ -13,7 +13,7 @@ import psutil
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
-
+from pyrogram.errors import *
 from Mix import *
 from Mix.core.waktu import get_time, start_time
 
@@ -101,49 +101,64 @@ async def _(c, cq):
                     ],
                 ]
             )
-            await cq.edit_message_text(
-                text=text1, reply_markup=button, disable_web_page_preview=True
-            )
+            try:
+                await cq.edit_message_text(
+                    text=text1, reply_markup=button, disable_web_page_preview=True)
+            except FloodWait as e:
+                await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+                return
         else:
-            await cq.edit_message_text(
-                text=text + f"\n<b>© Mix-Userbot - @KynanSupport</b>",
-                reply_markup=button,
-                disable_web_page_preview=True,
-            )
+            try:
+                await cq.edit_message_text(
+                    text=text + f"\n<b>© Mix-Userbot - @KynanSupport</b>",
+                    reply_markup=button,
+                  disable_web_page_preview=True)
+            except FloodWait as e:
+                await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+                return
 
     if prev_match:
         t1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
         curr_page = int(prev_match.group(1))
-        await cq.edit_message_text(
-            text=t1,
-            reply_markup=InlineKeyboardMarkup(
-                paginate_modules(curr_page - 1, CMD_HELP, "help")
-            ),
-            disable_web_page_preview=True,
-        )
+        try:
+            await cq.edit_message_text(
+                text=t1,
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(curr_page - 1, CMD_HELP, "help")), disable_web_page_preview=True)
+        except FloodWait as e:
+              await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+              return
     if next_match:
         t2 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
         next_page = int(next_match.group(1))
-        await cq.edit_message_text(
-            text=t2,
-            reply_markup=InlineKeyboardMarkup(
-                paginate_modules(next_page + 1, CMD_HELP, "help")
-            ),
-            disable_web_page_preview=True,
-        )
+        try:
+            await cq.edit_message_text(
+                text=t2,
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(next_page + 1, CMD_HELP, "help")
+                ),
+                disable_web_page_preview=True,
+            )
+        except FloodWait as e:
+              await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+              return
     if back_match:
         t3 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
-        await cq.edit_message_text(
-            text=t3,
-            reply_markup=InlineKeyboardMarkup(paginate_modules(0, CMD_HELP, "help")),
-            disable_web_page_preview=True,
-        )
+        try:
+            await cq.edit_message_text(
+                text=t3,
+                reply_markup=InlineKeyboardMarkup(paginate_modules(0, CMD_HELP, "help")),
+                disable_web_page_preview=True,
+            )
+        except FloodWait as e:
+              await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+              return
 
 
 @ky.callback("anim.")
@@ -180,7 +195,11 @@ async def _(c, cq):
                 ],
             ]
         )
-    await cq.edit_message_text(txt, reply_markup=kemem)
+    try:
+        await cq.edit_message_text(txt, reply_markup=kemem)
+    except FloodWait as e:
+        await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+        return
 
 
 @ky.callback("to.")
@@ -240,7 +259,11 @@ async def _(c, cq):
                 ],
             ]
         )
-    await cq.edit_message_text(txt, reply_markup=kemem)
+    try:
+        await cq.edit_message_text(txt, reply_markup=kemem)
+    except FloodWait as e:
+        await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+        return
 
 
 @ky.callback("^cls_hlp")
