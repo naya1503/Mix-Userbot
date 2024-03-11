@@ -116,7 +116,7 @@ async def _(c, message):
     em = Emojik()
     em.initialize()
     if len(message.command) < 2:
-        return await eor(
+        return await m.reply(
             message,
             f"{em.gagal} Masukkan judul dengan benar.",
         )
