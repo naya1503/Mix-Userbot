@@ -119,12 +119,12 @@ async def _(c, m):
         return await m.reply(
             f"{em.gagal} Masukkan judul dengan benar.",
         )
-    infomsg = await m.reply(f"{em.proses} <b>Sedang mencari . . .</b>")
+    pros = await m.reply(cgr("proses").format(em.proses))
     try:
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
     except Exception as error:
-        return await infomsg.reply_text(
+        return await pros.reply_text(
             f"{em.proses} <b>Sedang mencari . . .\n\n{error}</b>"
         )
     try:
@@ -139,7 +139,7 @@ async def _(c, m):
             data_ytp,
         ) = await YoutubeDownload(link, as_video=True)
     except Exception as error:
-        return await infomsg.reply_text(
+        return await pros.reply_text(
             f"{em.proses} <b>Sedang proses download . . .\n\n{error}</b>"
         )
     thumbnail = wget.download(thumb)
@@ -161,14 +161,14 @@ async def _(c, m):
         ),
         progress=progress,
         progress_args=(
-            infomsg,
+            pros,
             time(),
             "<b>Sedang proses download . . .</b>",
             f"{search['id']}.mp4",
         ),
         reply_to_message_id=m.id,
     )
-    await infomsg.delete()
+    await pros.delete()
     for files in (thumbnail, file_name):
         if files and os.path.exists(files):
             os.remove(files)
@@ -182,12 +182,12 @@ async def _(c, m):
         return await m.reply(
             f"{em.gagal} Masukkan judul dengan benar.",
         )
-    infomsg = await m.reply(f"{em.proses} <b>Sedang mencari . . .</b>")
+    pros = await m.reply(cgr("proses").format(em.proses))
     try:
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
     except Exception as error:
-        return await infomsg.reply_text(f"<b>Sedang mencari . . .\n\n{error}</b>")
+        return await pros.edit(cgr("err").format(em.gagal))
     try:
         (
             file_name,
@@ -200,7 +200,7 @@ async def _(c, m):
             data_ytp,
         ) = await YoutubeDownload(link, as_video=False)
     except Exception as error:
-        return await infomsg.reply_text(f"<b>Proses download . . .\n\n{error}</b>")
+        return await pros.edit(cgr("err").format(em.gagal))
     thumbnail = wget.download(thumb)
     await c.send_audio(
         m.chat.id,
@@ -220,14 +220,14 @@ async def _(c, m):
         ),
         progress=progress,
         progress_args=(
-            infomsg,
+            pros,
             time(),
             "<b>Proses Download . . .</b>",
             f"{search['id']}.mp3",
         ),
         reply_to_message_id=m.id,
     )
-    await infomsg.delete()
+    await pros.delete()
     for files in (thumbnail, file_name):
         if files and os.path.exists(files):
             os.remove(files)
