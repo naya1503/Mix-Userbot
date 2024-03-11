@@ -324,7 +324,6 @@ async def _(c, cq):
         except FloodWait as e:
             await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
             return
-    
 
 
 @ky.callback("^cls_hlp")
