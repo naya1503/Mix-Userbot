@@ -46,11 +46,14 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     rep = m.reply_to_message
-    if not rep and len(m.command) < 2:
+    if len(m.command) < 2 and not rep:
         await m.reply(f"{em.gagal} **MINIMAL KASIH QUERY BWANG!!**")
     pros = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) == 1 and rep.text:
         txt = rep.text
+        await search_image_and_reply(txt, m, 1)
+    elif if len(m.command) == 2:
+        txt = m.text.split(None, 1)[1]
         await search_image_and_reply(txt, m, 1)
     elif len(m.command) == 3:
         txt = m.text.split(None, 2)[1]
