@@ -19,7 +19,7 @@ __modles__ = "Image"
 __help__ = "Image"
 
 
-async def search_image_and_reply(query, m, lim=None):
+async def search_image_and_reply(query, m, lim):
     meki = SafoneAPI()
     results = await meki.image(query, lim)
     img_res = results.get("results", [])
