@@ -82,7 +82,7 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??")
         return
-    putt = await m.reply("**Rambut panjang di sisirin**")
+    putt = await m.reply("**Rambut panjang di sisirin**"
     , reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(2)
     await putt.edit("**Sambil seduh dua extra joss**")
