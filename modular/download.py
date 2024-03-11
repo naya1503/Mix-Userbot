@@ -29,9 +29,7 @@ async def _(self: user, m):
     ai = await user.forward_messages(hm.me.username, m.chat.id, message_ids=m.id)
     await user.send_message(hm.me.username, "/kang", reply_to_message_id=ai.id)
     await asyncio.sleep(5)
-    async for tai in user.search_messages(
-        hm.me.username, limit=1
-    ):
+    async for tai in user.search_messages(hm.me.username, limit=1):
         await asyncio.sleep(5)
         await tai.copy(m.chat.id)
     await pros.delete()
