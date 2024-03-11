@@ -71,7 +71,7 @@ asst_6: "Reboot"
 asst_7: "Update"
 
 # autoread 
-autoread_1: "{} **Goblok!! Pake format : `autoread` [`gc` or `us` or `ch` or `all`].**"
+autoread_1: "{} **Goblok!! Pake format : `autoread` [`gc` or `us` or `bot` or `ch` or `all`].**"
 autoread_2: "{} **Udah diliat `{}` pesan group.**"
 autoread_3: "{} **Udah diliat `{}` pesan pengguna.**"
 autoread_4: "{} **Udah diliat `{}` pesan channel.**"
