@@ -11,6 +11,8 @@ import asyncio
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
+from pyrogram.file_id import *
+from pyrogram.raw.functions.messages import *
 
 from Mix import *
 
