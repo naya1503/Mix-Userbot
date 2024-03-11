@@ -24,6 +24,7 @@ async def refresh_dialog(query):
     chat_types = {
         "group": [ChatType.GROUP, ChatType.SUPERGROUP],
         "users": [ChatType.PRIVATE],
+        "bot": [ChatType.BOT],
         "all": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
         "ch": [ChatType.CHANNEL],
         "allread": [
@@ -31,6 +32,7 @@ async def refresh_dialog(query):
             ChatType.SUPERGROUP,
             ChatType.CHANNEL,
             ChatType.PRIVATE,
+            ChatType.BOT,
         ],
     }
     async for xxone in user.get_dialogs():
