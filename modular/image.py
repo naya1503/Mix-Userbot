@@ -41,7 +41,7 @@ async def search_image_and_reply(query, m, lim=None):
             continue
 
 
-@ky.ubot("image", sudo=True)
+@ky.ubot("image|img", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
