@@ -16,8 +16,6 @@ api = Genius(
 
 @ky.ubot("lyric", sudo=True)
 async def get_lyrics(c, m):
-    em = Emojik()
-    em.initialize()
     song_title = " ".join(m.command[1:])
     search_url = f"https://api.genius.com/search?q={song_title}"
     headers = {
@@ -25,20 +23,23 @@ async def get_lyrics(c, m):
     }
     response = requests.get(search_url, headers=headers)
     data = response.json()
-    p = await m.reply(f"{em.proses} Bentar, sabar njing!")
-    if len(m.command) < 1:
-        return await m.reply(f"{em.gagal} Kasih tau judulnya apaan kek GOBLOK AMAT!")
+    if len(m.command) < 2:
+        await m.reply("Kasih tau judulnya apaan kek GOBLOK AMAT!")
+        return
+
     if data["response"]["hits"]:
         song_url = data["response"]["hits"][0]["result"]["url"]
         lyrics_response = requests.get(song_url)
         lyrics_text = lyrics_response.text
-        await m.reply_text(lyrics_text)
-        with open("lyrics.txt", "w", encoding="utf-8") as file:
-            file.write(lyrics_text)
-        await m.reply_document("lyrics.txt", caption=f"Lirik lagu {song_title}")
+
+        if len(lyrics_text) <= 4096:
+            await m.reply_text(lyrics_text)
+        else:
+            with open("lyrics.txt", "w", encoding="utf-8") as file:
+                file.write(lyrics_text)
+            await m.reply_document("lyrics.txt", caption=f"Lirik lagu {song_title}")
     else:
         await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
-        await p.delete()
 
 
 """
