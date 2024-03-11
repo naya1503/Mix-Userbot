@@ -23,16 +23,18 @@ async def get_lyrics(c: Client, m: Message):
 
     async with aiohttp.ClientSession() as session:
         async with session.get(search_url) as response:
-            if response.status == 200:
-                data = await response.json()
+            try:
+                if response.status == 200:
+                    data = await response.json()
 
-                if "lyrics" in data:
-                    lyrics_text = data["lyrics"]
-                    await m.reply_text(lyrics_text)
-                else:
-                    await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
-            else:
-                await m.reply_text("Maaf, ada masalah dalam memproses permintaan.")
+                    if "lyrics" in data:
+                        lyrics_text = data["lyrics"]
+                        await m.reply_text(lyrics_text)
+                    else:
+                        await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
+            except Exception as e:
+                return await m.reply(f"Error: `{e}`")
+                
 
 
 """
