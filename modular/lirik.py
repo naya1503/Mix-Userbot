@@ -1,6 +1,5 @@
 import os
 
-from lyricsgenius import genius
 from pyrogram import *
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
 from pyrogram.types import *
