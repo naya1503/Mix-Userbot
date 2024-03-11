@@ -13,40 +13,23 @@ api = Genius(
 )
 
 
-import aiohttp
+import requests
 
 
 @ky.ubot("lirik", sudo=True)
-async def get_lyrics(c, m):
-    song_title = " ".join(m.command[1:])
-    search_url = f"https://api.genius.com/search?q={song_title}"
-    headers = {
-        "Authorization": "Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
-    }
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(search_url, headers=headers) as response:
-            data = await response.json()
-
-    if len(m.command) < 2:
-        await m.reply("Kasih tau judulnya apaan kek GOBLOK AMAT!")
-        return
-
-    if data["response"]["hits"]:
-        song_url = data["response"]["hits"][0]["result"]["url"]
-        async with aiohttp.ClientSession() as session:
-            async with session.get(song_url, headers=headers) as lyrics_response:
-                lyrics_text = await lyrics_response.text()
-
-        if len(lyrics_text) <= 4096:
+async def _(c, m):
+    song_title = ' '.join(m.command[1:])
+    search_url = f"https://api.lyrics.ovh/v1/{song_title}"
+    response = requests.get(search_url)
+    if response.status_code == 200:
+        data = response.json()
+        if 'lyrics' in data:
+            lyrics_text = data['lyrics']
             await m.reply_text(lyrics_text)
         else:
-            with open("lyrics.txt", "w", encoding="utf-8") as file:
-                file.write(lyrics_text)
-            await m.reply_document("lyrics.txt", caption=f"Lirik lagu {song_title}")
+            await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
     else:
-        await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
+        await m.reply_text("Maaf, ada masalah dalam memproses permintaan.")
 
 
 """
