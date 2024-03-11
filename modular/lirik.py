@@ -28,6 +28,8 @@ async def _(c, m):
                 file.write(song.lyrics)
             await m.reply_document(document=f"{song.title}.txt")
             os.remove(f"{song.title}.txt")
+        except Exception as e:
+            return await m.reply(f"Error jink! : `{e}`")
     else:
         await m.reply_text("Lirik tidak ditemukan.")
 
