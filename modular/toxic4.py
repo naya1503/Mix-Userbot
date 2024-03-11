@@ -65,7 +65,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
-    uputt = await m.reply("**Wahh, War nya keren bang**", reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "**Wahh, War nya keren bang**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await uputt.edit("**Tapi, Yang gua liat, kok Kaya lawakan**")
     await asyncio.sleep(1.8)
