@@ -14,12 +14,15 @@ from pyrogram import *
 from Mix import *
 
 __modles__ = "Pantun"
-__help__ = "Pantun"
+__help__ = get_cgr("help_cakep")
 
 
 @ky.ubot("sepat", sudo=True)
 async def _(c: user, m):
-    putt = await m.edit("**Ikan sepat ikan tongkol**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??")
+        return
+    putt = await m.reply("**Ikan sepat ikan tongkol**")
     await asyncio.sleep(2)
     await putt.edit("**CAKEEEEPPPPP**")
     await asyncio.sleep(2)
@@ -28,7 +31,10 @@ async def _(c: user, m):
 
 @ky.ubot("ngangkang", sudo=True)
 async def _(c: user, m):
-    putt = await m.edit("**Beli batik di tanah abang..**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??")
+        return
+    putt = await m.reply("**Beli batik di tanah abang..**")
     await asyncio.sleep(2)
     await putt.edit("**Kamu cantikkk, Tapi sayang...**")
     await asyncio.sleep(2)
@@ -37,7 +43,10 @@ async def _(c: user, m):
 
 @ky.ubot("hancur", sudo=True)
 async def _(c: user, m):
-    putt = await m.edit("**Makan semur, Masih anget..**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??")
+        return
+    putt = await m.reply("**Makan semur, Masih anget..**")
     await asyncio.sleep(2)
     await putt.edit("**CAKEEEEPPPPP**")
     await asyncio.sleep(2)
@@ -46,7 +55,10 @@ async def _(c: user, m):
 
 @ky.ubot("kenalan", sudo=True)
 async def _(c: user, m):
-    putt = await m.edit("**Barang antik, ditarik andong**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??")
+        return
+    putt = await m.reply("**Barang antik, ditarik andong**")
     await asyncio.sleep(2)
     await putt.edit("**CAKEEEEPPPPP**")
     await asyncio.sleep(2)
@@ -55,7 +67,10 @@ async def _(c: user, m):
 
 @ky.ubot("soms", sudo=True)
 async def _(c: user, m):
-    putt = await m.edit("**Makan sambel ulek pakai kedondong**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??")
+        return
+    putt = await m.reply("**Makan sambel ulek pakai kedondong**")
     await asyncio.sleep(2)
     await putt.edit("**CAKEEEEPPPPP**")
     await asyncio.sleep(2)
@@ -64,7 +79,10 @@ async def _(c: user, m):
 
 @ky.ubot("sirik", sudo=True)
 async def _(c: user, m):
-    putt = await m.edit("**Rambut panjang di sisirin**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??")
+        return
+    putt = await m.reply("**Rambut panjang di sisirin**")
     await asyncio.sleep(2)
     await putt.edit("**Sambil seduh dua extra joss**")
     await asyncio.sleep(2)
@@ -75,7 +93,10 @@ async def _(c: user, m):
 
 @ky.ubot("imut", sudo=True)
 async def _(c: user, m):
-    putt = await m.edit("**Wajahmu memang imut**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??")
+        return
+    putt = await m.reply("**Wajahmu memang imut**")
     await asyncio.sleep(2)
     await putt.edit("**Bodimu kaya siput**")
     await asyncio.sleep(2)
