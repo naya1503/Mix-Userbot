@@ -39,7 +39,7 @@ async def _(c, m):
                     await c.send_message(
                         chat_id=m.chat.id,
                         text="Media berhasil diunduh!",
-                        reply_to_message_id=m.message_id,
+                        reply_to_message_id=m.message.id,
                     )
 
                     await c.send_document(
