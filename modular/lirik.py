@@ -20,7 +20,7 @@ import aiohttp
 async def get_lyrics(c: Client, m: Message):
     song_title = " ".join(m.command[1:])
     search_url = f"https://api.lyrics.ovh/v1/{song_title}"
-    
+
     async with aiohttp.ClientSession() as session:
         async with session.get(search_url) as response:
             if response.status == 200:
