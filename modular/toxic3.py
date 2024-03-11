@@ -13,8 +13,10 @@ async def _(c: user, m):
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     sepong = await m.reply(
-        "**GIGI KUNING MATA MERAH BADAN KURUS CEKING EMANG PANTES...**", reply_to_message_id=ReplyCheck(m))
-    
+        "**GIGI KUNING MATA MERAH BADAN KURUS CEKING EMANG PANTES...**",
+        reply_to_message_id=ReplyCheck(m),
+    )
+
     await asyncio.sleep(1.8)
     await sepong.edit("**DI KENCINGIN JAHANAM**")
     await asyncio.sleep(1.8)
@@ -62,7 +64,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
-    omek = await m.reply("**IZIN NUMPANG PANTUN BANG...**", reply_to_message_id=ReplyCheck(m))
+    omek = await m.reply(
+        "**IZIN NUMPANG PANTUN BANG...**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await omek.edit("**BELI SEPATU KACA KE CHINA...**")
     await asyncio.sleep(1.8)
