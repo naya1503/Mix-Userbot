@@ -1,5 +1,5 @@
 import os
-
+import requests
 from lyricsgenius import Genius
 from pyrogram import *
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
@@ -18,23 +18,16 @@ api = Genius(
 
 @ky.ubot("lyric", sudo=True)
 async def _(c, m):
-    song_title = " ".join(m.command[1:])
-    song = api.search_song(song_title)
-    proses = await m.reply(f"{em.proses} Bentar jink dicari dulu.")
-    if song is not None:
-        try:
-            await proses.edit(song.lyrics)
-        except MessageTooLong:
-            with open(f"{song.title}.txt", "w") as file:
-                file.write(song.lyrics)
-            await m.reply_document(document=f"{song.title}.txt")
-            os.remove(f"{song.title}.txt")
-            await proses.delete()
-        except Exception as e:
-            return await m.reply(f"Error jink! : `{e}`")
+    song_title = ' '.join(message.command[1:])
+    search_url = f"https://api.genius.com/search?q={song_title}"
+    headers = {'Authorization': 'Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V'}
+    response = requests.get(search_url, headers=headers)
+    data = response.json()
+    if data['response']['hits']:
+        song_url = data['response']['hits'][0]['result']['url']
+        await m.reply_text(f"Lirik lagu {song_title} bisa ditemukan di: {song_url}")
     else:
-        await m.reply_text("Lirik tidak ditemukan.")
-        await proses.delete()
+        await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
 
 
 """
