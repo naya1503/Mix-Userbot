@@ -106,6 +106,7 @@ async def _(self: user, m):
         await asyncio.sleep(5)
         await tai.copy(m.chat.id)
     await pros.delete()
+    await m.delete()
     ulat = await user.resolve_peer(hm)
     await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
     return
@@ -169,6 +170,7 @@ async def _(c, m):
         reply_to_message_id=m.id,
     )
     await pros.delete()
+    await m.delete()
     for files in (thumbnail, file_name):
         if files and os.path.exists(files):
             os.remove(files)
@@ -228,6 +230,7 @@ async def _(c, m):
         reply_to_message_id=m.id,
     )
     await pros.delete()
+    await m.delete()
     for files in (thumbnail, file_name):
         if files and os.path.exists(files):
             os.remove(files)
