@@ -8,9 +8,11 @@
 
 import os
 import random
+
 from SafoneAPI import SafoneAPI
-from Mix.core.tools_quote import *
+
 from Mix import *
+from Mix.core.tools_quote import *
 
 __modles__ = "Carbon"
 __help__ = get_cgr("help_carbon")
@@ -30,6 +32,7 @@ async def buat_bon(code, bgne, language, theme):
         file.write(img.getvalue())
     return "carbon.png"
 
+
 @ky.ubot("bglist", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -43,8 +46,8 @@ async def _(c: user, m):
         os.remove("bglist.txt")
     else:
         await m.reply(jadi + iymek)
-        
-        
+
+
 @ky.ubot("carbon|carbonara", sudo=True)
 async def _(c, m):
     em = Emojik()
