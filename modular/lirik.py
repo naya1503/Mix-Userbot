@@ -1,8 +1,7 @@
-import os
+
 import requests
 from lyricsgenius import Genius
 from pyrogram import *
-from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
 from pyrogram.types import *
 
 from Mix import *
@@ -18,13 +17,15 @@ api = Genius(
 
 @ky.ubot("lyric", sudo=True)
 async def _(c, m):
-    song_title = ' '.join(message.command[1:])
+    song_title = " ".join(message.command[1:])
     search_url = f"https://api.genius.com/search?q={song_title}"
-    headers = {'Authorization': 'Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V'}
+    headers = {
+        "Authorization": "Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V"
+    }
     response = requests.get(search_url, headers=headers)
     data = response.json()
-    if data['response']['hits']:
-        song_url = data['response']['hits'][0]['result']['url']
+    if data["response"]["hits"]:
+        song_url = data["response"]["hits"][0]["result"]["url"]
         await m.reply_text(f"Lirik lagu {song_title} bisa ditemukan di: {song_url}")
     else:
         await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
