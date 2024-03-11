@@ -39,7 +39,7 @@ async def _(c, m):
         command = " ".join(m.command[1:])
         parts = command.split("-")
         if len(parts) != 2:
-            await m.reply(
+            await pft.edit(
                 f"{em.gagal} <b>Format perintah salah. Gunakan format: /lirik nama-penyanyi - judul-lagu</b>"
             )
             return
@@ -51,13 +51,10 @@ async def _(c, m):
             lyrics_text = await search_lyrics(judul, penyanyi)
 
         if lyrics_text:
-            await m.reply(f"{em.sukses} <code>{lyrics_text}</code>")
-            await pft.delete()
+            await pft.edit(f"{em.sukses} <code>{lyrics_text}</code>")
         else:
-            await m.reply(f"{em.gagal} <b>Maaf, lirik lagu tidak ditemukan.</b>")
-            await pft.delete()
+            await pft.edit(f"{em.gagal} <b>Maaf, lirik lagu tidak ditemukan.</b>")
     except Exception as e:
-        await m.reply(
+        await pft.edit(
             f"{em.gagal} <b>Terjadi kesalahan saat mencari lirik lagu.</b> <code>{e}</code>"
         )
-        await pft.delete()
