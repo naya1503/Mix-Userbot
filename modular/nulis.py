@@ -16,7 +16,7 @@ __modles__ = "Nulis"
 __help__ = "Nulis"
 
 
-async def nulis(text, page=None, font=None, color="black"):
+async def nulis(text, page, font, color="black"):
     meki = SafoneAPI()
     img = await meki.write(text, page, font, color)
     with open("nulis.png", "wb") as file:
