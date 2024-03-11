@@ -48,7 +48,7 @@ async def _(_, m):
         bcbot = await refresh_dialog("bot")
         for bt in bcbot:
             await user.read_chat_history(bt, max_id=0)
-        await mek.edit(cgr("autoread_3").format(em.sukses, len(bcbot)))
+        await mek.edit(cgr("autoread_7").format(em.sukses, len(bcbot)))
         return
     elif peler.lower() == "ch":
         bcch = await refresh_dialog("ch")
