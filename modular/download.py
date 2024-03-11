@@ -97,7 +97,9 @@ async def _(self: user, m):
     em.initialize()
     hm = "luciferbukanrobot_bot"
     await user.unblock_user(hm)
-    await user.send_message(hm, f"/tiktok {m.command[1]}", disable_web_page_preview=True)
+    await user.send_message(
+        hm, f"/tiktok {m.command[1]}", disable_web_page_preview=True
+    )
     pros = await m.reply(cgr("proses").format(em.proses))
     ai = await user.forward_messages(hm, m.chat.id, message_ids=m.id)
     await user.send_message(hm, "/tiktok", reply_to_message_id=ai.id)
