@@ -66,7 +66,7 @@ async def _(c, m):
         )
         os.remove(meg)
     elif len(m.command) == 2:
-        warna = m.command[1] if m.command[1] else None
+        warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
         if warna:
             acak = warna
         else:
@@ -78,12 +78,12 @@ async def _(c, m):
         )
         os.remove(meg)
     elif len(m.command) == 3:
-        warna = m.command[2] if m.command[2] else None
+        warna = m.text.split(None, 2)[1] if len(m.command) > 2 else None
         if warna:
             acak = warna
         else:
             acak = random.choice(loanjing)
-        lague = m.command[3] if m.command[3] else "python"
+        lague = m.text.split(None, 2)[2] if len(m.command) > 2 else "python"
         tem = random.choice(loanjing)
         meg = await buat_bon(text, acak, lague, tem)
         await m.reply_photo(
@@ -91,13 +91,13 @@ async def _(c, m):
         )
         os.remove(meg)
     elif len(m.command) == 4:
-        warna = m.command[2] if m.command[2] else None
+        warna = m.text.split(None, 3)[1] if len(m.command) > 1 else None
         if warna:
             acak = warna
         else:
             acak = random.choice(loanjing)
-        lague = m.command[3] if m.command[3] else "python"
-        tema = m.command[4] if m.command[4] else None
+        lague = m.text.split(None, 3)[2] if len(m.command) > 3 else "python"
+        tema = m.text.split(None, 3)[3] if len(m.command) > 3 else None
         if tema:
             tem = tema
         else:
