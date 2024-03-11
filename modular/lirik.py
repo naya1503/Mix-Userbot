@@ -1,4 +1,6 @@
-from lyricsgenius import Genius
+import json
+import urllib.parse
+from urllib.request import Request, urlopen
 from pyrogram import *
 from pyrogram.types import *
 
@@ -8,55 +10,35 @@ __modles__ = "Lyric"
 __help__ = "Lyrics"
 
 
-api = Genius(
-    "mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V", verbose=False
-)
-
-
-import json
-import urllib.parse
-from urllib.request import Request, urlopen
-
-
-# Fungsi untuk menangani perintah /lirik
 @ky.ubot("lirik", sudo=True)
 async def _(c, m):
+    em = Emojik()
+    em.initialize()
     try:
-        # Mendapatkan nama penyanyi dan judul lagu dari pesan
         command = " ".join(m.command[1:])
-        # Memisahkan nama penyanyi dan judul lagu dengan tanda "-"
         parts = command.split("-")
-
-        # Memastikan bahwa terdapat tepat satu tanda "-" untuk memisahkan
         if len(parts) != 2:
-            await m.reply_text(
-                "Format perintah salah. Gunakan format: /lirik nama-penyanyi - judul-lagu"
+            await m.reply(
+                f"{em.gagal} <b>Format perintah salah. Gunakan format: /lirik nama-penyanyi - judul-lagu</b>"
             )
             return
 
-        # Menghapus spasi tambahan jika ada
         penyanyi = parts[0].strip()
         judul = parts[1].strip()
-
-        # Coba melakukan permintaan API dengan urutan nama penyanyi dan judul lagu
         lyrics_text = await search_lyrics(penyanyi, judul)
-
-        # Jika lirik tidak ditemukan, coba lagi dengan urutan judul lagu dan nama penyanyi
         if not lyrics_text:
             lyrics_text = await search_lyrics(judul, penyanyi)
 
         if lyrics_text:
-            await m.reply_text(lyrics_text)
+            await m.reply_text(f"{em.sukses} <code>{lyrics_text}</code>")
         else:
-            await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
+            await m.reply_text(f"{em.gagal} <b>Maaf, lirik lagu tidak ditemukan.</b>")
     except Exception as e:
-        await m.reply(f"error : `{e}`")
+        await m.reply(f"{em.gagal} <b>error :</b> <code>{e}</code>")
 
 
-# Fungsi untuk mencari lirik lagu
 async def search_lyrics(penyanyi, judul):
     try:
-        # Mengganti spasi dengan karakter pengganti "%20" dalam URL
         penyanyi = urllib.parse.quote(penyanyi)
         judul = urllib.parse.quote(judul)
 
@@ -72,49 +54,3 @@ async def search_lyrics(penyanyi, judul):
                 return None
     except Exception as e:
         return None
-
-
-"""
-async def _(c, m):
-    em = Emojik()
-    em.initialize()
-    if len(m.command) == 1:
-        return await m.reply(f"{em.gagal} <b> Berikan judul lagu</b>")
-
-    load = await m.reply(f"{em.proses} <b>Sedang proses...</>")
-    song_name = m.text.split(None, 1)[1]
-
-    lirik = api.search_song(song_name)
-
-    if lirik is None:
-        return await load.edit(
-            f"{em.gagal} <b>Tidak dapat menemukan lyric untuk : </b> {song_name}"
-        )
-
-    lyric_title = lirik.title
-    lyric_artist = lirik.artist
-    lyrics_text = lirik.lyrics
-
-    try:
-        await load.edit_text(
-            f"{em.sukses} --**{lyric_title}**--\n{lyric_artist}\n\n\n{lyrics_text}\nExtracted by {bot.me.username}"
-        )
-
-    except MessageTooLong:
-        with open(f"downloads/{lyric_title}.txt", "w") as f:
-            f.write(f"{lyric_title}\n{lyric_artist}\n\n\n{lyrics_text}")
-
-        await load.edit_text(
-            f"{em.gagal} <b>Lyric too long. Sending as a text file...</b>"
-        )
-        await m.reply_chat_action(action="upload_document")
-        await m.reply_document(
-            document=f"downloads/{lyric_title}.txt",
-            thumb="https://telegra.ph//file/43cec0ae0ded594b55247.jpg",
-            caption=f"\n{em.sukses} --{lyric_title}--\n{lyric_artist}\n\nExtracted by {bot.me.username}",
-        )
-
-        await load.delete()
-
-        os.remove(f"downloads/{lyric_title}.txt")
-"""
