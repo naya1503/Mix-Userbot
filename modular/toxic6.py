@@ -17,7 +17,7 @@ from Mix import *
 
 @ky.ubot("mix", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Hai... Perkenalkan Saya Adalah Mix-Userbot**")
+    uputt = await m.reply("**Hai... Perkenalkan Saya Adalah Mix-Userbot**")
     asyncio.sleep(3)
     await uputt.edit("**Userbot base on Pyrogram**")
     asyncio.sleep(2)
@@ -33,7 +33,7 @@ async def _(c: user, m):
 
 @ky.ubot("sayang", sudo=True)
 async def _(c: user, m):
-    xx = await m.edit("**Aku Cuma Mau Bilang...**")
+    xx = await m.reply("**Aku Cuma Mau Bilang...**", reply_to_message_id=ReplyCheck(m))
     asyncio.sleep(3)
     await xx.edit("**Aku Sayang Kamu Mwaahh** 😘❤")
 
@@ -43,7 +43,7 @@ async def _(c: user, m):
 
 @ky.ubot("semangat", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Apapun Yang Terjadi...**")
+    uputt = await m.reply("**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Tetaplah Bernafas...**")
     await asyncio.sleep(1.8)
@@ -55,7 +55,7 @@ async def _(c: user, m):
 
 @ky.ubot("mengeluh", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Apapun Yang Terjadi...**")
+    uputt = await m.reply("**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Tetaplah Mengeluh...**")
     await asyncio.sleep(1.8)
