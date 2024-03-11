@@ -121,9 +121,7 @@ async def _(c, m):
         )
     infomsg = await m.reply(f"{em.proses} <b>Sedang mencari . . .</b>")
     try:
-        search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()[
-            "result"
-        ][0]
+        search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
     except Exception as error:
         return await infomsg.reply_text(
@@ -186,9 +184,7 @@ async def _(c, m):
         )
     infomsg = await m.reply(f"{em.proses} <b>Sedang mencari . . .</b>")
     try:
-        search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()[
-            "result"
-        ][0]
+        search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
     except Exception as error:
         return await infomsg.reply_text(f"<b>Sedang mencari . . .\n\n{error}</b>")
