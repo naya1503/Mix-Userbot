@@ -1,4 +1,3 @@
-
 import requests
 from lyricsgenius import Genius
 from pyrogram import *
@@ -19,7 +18,7 @@ api = Genius(
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    song_title = ' '.join(m.command[1:])
+    song_title = " ".join(m.command[1:])
     search_url = f"https://api.genius.com/search?q={song_title}"
     headers = {
         "Authorization": "Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V"
