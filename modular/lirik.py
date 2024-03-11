@@ -13,9 +13,10 @@ api = Genius(
 )
 
 
-from urllib.request import Request, urlopen
 import json
 import urllib.parse
+from urllib.request import Request, urlopen
+
 
 # Fungsi untuk menangani perintah /lirik
 @ky.ubot("lirik", sudo=True)
@@ -25,30 +26,32 @@ async def _(c, m):
         command = " ".join(m.command[1:])
         # Memisahkan nama penyanyi dan judul lagu dengan tanda "-"
         parts = command.split("-")
-        
+
         # Memastikan bahwa terdapat tepat satu tanda "-" untuk memisahkan
         if len(parts) != 2:
-            await m.reply_text("Format perintah salah. Gunakan format: /lirik nama-penyanyi - judul-lagu")
+            await m.reply_text(
+                "Format perintah salah. Gunakan format: /lirik nama-penyanyi - judul-lagu"
+            )
             return
-        
+
         # Menghapus spasi tambahan jika ada
         penyanyi = parts[0].strip()
         judul = parts[1].strip()
-        
+
         # Jika posisi terbalik, tukar nama penyanyi dan judul lagu
         if judul.lower() < penyanyi.lower():
             penyanyi, judul = judul, penyanyi
-        
+
         # Mengganti spasi dengan karakter pengganti "%20" dalam URL
         penyanyi = urllib.parse.quote(penyanyi)
         judul = urllib.parse.quote(judul)
-        
+
         url = f"https://api.lyrics.ovh/v1/{penyanyi}/{judul}"
         request = Request(url)
-        
+
         with urlopen(request) as response:
             data = json.load(response)
-            
+
             if "lyrics" in data:
                 lyrics_text = data["lyrics"]
                 await m.reply_text(lyrics_text)
@@ -56,7 +59,6 @@ async def _(c, m):
                 await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
     except Exception as e:
         await m.reply(f"error : `{e}`")
-
 
 
 """
