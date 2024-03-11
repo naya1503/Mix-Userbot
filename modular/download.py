@@ -28,10 +28,10 @@ async def kirim_pesan_dan_tunggu(chat_id, pesan):
 @ky.ubot("sos", sudo=True)
 async def _(c, m):
     _, *args = m.text.split()
-    
+
     if args and args[0].startswith("{") and args[0].endswith("}"):
         command = args[0].strip("{}")
-        
+
         if command == "tik":
             if len(args) >= 2:
                 link_tiktok = args[1]
