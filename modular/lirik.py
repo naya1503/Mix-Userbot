@@ -5,14 +5,15 @@ from pyrogram import *
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
 from pyrogram.types import *
 
-from config import genius_api
 from Mix import *
 
 __modles__ = "Lyric"
 __help__ = "Lyrics"
 
 
-api = Genius("mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V", verbose=False)
+api = Genius(
+    "mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V", verbose=False
+)
 
 
 @ky.ubot("lyric", sudo=True)
