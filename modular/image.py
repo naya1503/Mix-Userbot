@@ -46,10 +46,10 @@ async def _(c: user, m):
     if not rep and len(m.command) < 2:
         await m.reply(f"{em.gagal} **MINIMAL KASIH QUERY BWANG!!**")
     pros = await m.reply(cgr("proses").format(em.proses))
-    if len(m.command) == 1 and rep.text:
+    if len(m.command) == 2 and rep.text:
         txt = rep.text
         await search_image_and_reply(txt, m, 1)
-    elif len(m.command) == 2:
+    elif len(m.command) == 3:
         txt = m.text.split(None, 2)[1]
         lim = m.text.split(None, 2)[2]
         await search_image_and_reply(txt, m, lim)
