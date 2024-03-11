@@ -7,7 +7,10 @@ from Mix import *
 
 @ky.ubot("ngentot", sudo=True)
 async def _(c: user, m):
-    pler = await m.edit("**WOYY NGENTOD!!**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    pler = await m.reply("**WOYY NGENTOD!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await pler.edit("**JANGAN SOK JAGOAN DAH LU**")
     await asyncio.sleep(1.8)
@@ -33,7 +36,10 @@ async def _(c: user, m):
 
 @ky.ubot("goblok", sudo=True)
 async def _(c: user, m):
-    puki = await m.edit("**WOYY GOBLOK!!**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    puki = await m.reply("**WOYY GOBLOK!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await puki.edit("**KO LU GOBLOK BANGET SIH**")
     await asyncio.sleep(1.8)
@@ -59,7 +65,10 @@ async def _(c: user, m):
 
 @ky.ubot("ngatain", sudo=True)
 async def _(c: user, m):
-    kon = await m.edit("**BABI!!**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    kon = await m.reply("**BABI!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await kon.edit("**MUKA LU KAYA BABI**")
     await asyncio.sleep(1.8)
@@ -85,7 +94,10 @@ async def _(c: user, m):
 
 @ky.ubot("yatim", sudo=True)
 async def _(c: user, m):
-    mek = await m.edit("`Hai Anak Kontol 🙈, Jangan Lupa Makan Yaa`")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    mek = await m.reply("`Hai Anak Kontol 🙈, Jangan Lupa Makan Yaa`", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await mek.edit("`Jangan Bilang Lu Ga Dikasih Makan Sama Ortu 😁`")
     await asyncio.sleep(1.8)
@@ -108,7 +120,10 @@ async def _(c: user, m):
 
 @ky.ubot("kont", sudo=True)
 async def _(c: user, m):
-    putt = await m.edit("**WOYY NGENTOD!!**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    putt = await m.reply("**WOYY NGENTOD!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await putt.edit("**LU ANAK KONTOLL**")
     await asyncio.sleep(1.8)
