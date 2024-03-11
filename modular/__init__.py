@@ -11,6 +11,6 @@ def import_modular():
     return all_modules
 
 
-USER_MOD = sorted(__list_all_modules())
+USER_MOD = sorted(import_modular())
 LOGGER.info("Userbot module loaded: %s", str(USER_MOD))
 __all__ = USER_MOD + ["USER_MOD"]
