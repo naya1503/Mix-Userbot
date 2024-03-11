@@ -31,8 +31,19 @@ async def _(c, m):
     rep = m.reply_to_message
     if rep:
         text = rep.text or rep.caption
+        page = m.text.split(None, 3)[1] if len(m.command) > 1 else None
+        font = m.text.split(None, 3)[2] if len(m.command) > 2 else None
+        kolor = m.text.split(None, 3)[3] if len(m.command) > 3 else None
+        meko = await nulis(text, page, font, kolor)
+    elif not rep and len(m.command) > 4:
+        text = m.text.split(None, 4)[1]
+        page = m.text.split(None, 4)[2] if len(m.command) > 2 else None
+
+        font = m.text.split(None, 4)[3] if len(m.command) > 3 else None
+
+        kolor = m.text.split(None, 4)[4] if len(m.command) > 4 else None
+        meko = await nulis(text, page, font, kolor)
     else:
-        text = m.text.split(None, 1)[1]
-    meko = await nulis(text)
+        meko = await nulis(text)
     await m.reply_photo(meko)
     os.remove(meko)
