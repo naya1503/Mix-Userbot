@@ -7,18 +7,90 @@
 ################################################################
 
 import asyncio
+import os
+import math
+import time
+import wget
+from datetime import timedelta
+from time import time
 
+from datetime import timedelta
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.file_id import *
 from pyrogram.raw.functions.messages import *
 from pyrogram.types import *
+from youtubesearchpython import VideosSearch
 
 from Mix import *
 
 __modles__ = "Download"
 __help__ = "Download"
 
+
+def humanbytes(size):
+    if not size:
+        return ""
+    power = 2**10
+    raised_to_pow = 0
+    dict_power_n = {0: "", 1: "KB", 2: "MB", 3: "GB", 4: "TB"}
+    while size > power:
+        size /= power
+        raised_to_pow += 1
+    return f"{str(round(size, 2))} {dict_power_n[raised_to_pow]}"
+
+
+def time_formatter(milliseconds: int) -> str:
+    seconds, milliseconds = divmod(milliseconds, 1000)
+    minutes, seconds = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
+    tmp = (
+        (f"{str(days)} Hari, " if days else "")
+        + (f"{str(hours)} Jam, " if hours else "")
+        + (f"{str(minutes)} Menit, " if minutes else "")
+        + (f"{str(seconds)} Detik, " if seconds else "")
+        + (f"{str(milliseconds)} Microdetik, " if milliseconds else "")
+    )
+    return tmp[:-2]
+
+
+async def progress(current, total, message, start, type_of_ps, file_name=None):
+    now = time()
+    diff = now - start
+    if round(diff % 10.00) == 0 or current == total:
+        percentage = current * 100 / total
+        speed = current / diff
+        elapsed_time = round(diff) * 1000
+        if elapsed_time == 0:
+            return
+        time_to_completion = round((total - current) / speed) * 1000
+        estimated_total_time = elapsed_time + time_to_completion
+        progress_str = "{0}{1} {2}%\n".format(
+            "".join(["▰" for i in range(math.floor(percentage / 10))]),
+            "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
+            round(percentage, 2),
+        )
+        tmp = progress_str + "{0} of {1}\nETA: {2}".format(
+            humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
+        )
+        if file_name:
+            try:
+                await message.edit(
+                    "{}\n**File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
+                )
+            except FloodWait as e:
+                await asyncio.sleep(e.x)
+            except MessageNotModified:
+                pass
+        else:
+            try:
+                await message.edit("{}\n{}".format(type_of_ps, tmp))
+            except FloodWait as e:
+                await asyncio.sleep(e.x)
+            except MessageNotModified:
+                pass
+            
 
 @ky.ubot("dtik", sudo=False)
 async def _(self: user, m):
@@ -40,21 +112,127 @@ async def _(self: user, m):
     return
 
 
-@ky.ubot("dtube", sudo=False)
-async def _(self: user, m):
+@ky.ubot("vtube", sudo=True)
+async def _(c, message):
     em = Emojik()
     em.initialize()
-    hm = "luciferbukanrobot_bot"
-    await user.unblock_user(hm)
-    await user.send_message(hm, f"/youtube {m.command[1]}")
-    pros = await m.reply(cgr("proses").format(em.proses))
-    ai = await user.forward_messages(hm, m.chat.id, message_ids=m.id)
-    await user.send_message(hm, "/youtube", reply_to_message_id=ai.id)
-    await asyncio.sleep(5)
-    async for tai in user.search_messages(hm, limit=1):
-        await asyncio.sleep(5)
-        await tai.copy(m.chat.id)
-    await pros.delete()
-    ulat = await user.resolve_peer(hm)
-    await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
-    return
+    if len(message.command) < 2:
+        return await eor(
+            message,
+            f"{em.gagal} Masukkan judul dengan benar.",
+        )
+    infomsg = await m.reply(f"{em.proses} <b>Sedang mencari . . .</b>")
+    try:
+        search = VideosSearch(message.text.split(None, 1)[1], limit=1).result()[
+            "result"
+        ][0]
+        link = f"https://youtu.be/{search['id']}"
+    except Exception as error:
+        return await infomsg.reply_text(
+            f"{em.proses} <b>Sedang mencari . . .\n\n{error}</b>"
+        )
+    try:
+        (
+            file_name,
+            title,
+            url,
+            duration,
+            views,
+            channel,
+            thumb,
+            data_ytp,
+        ) = await YoutubeDownload(link, as_video=True)
+    except Exception as error:
+        return await infomsg.reply_text(
+            f"{em.proses} <b>Sedang proses download . . .\n\n{error}</b>"
+        )
+    thumbnail = wget.download(thumb)
+    await c.send_video(
+        message.chat.id,
+        video=file_name,
+        thumb=thumbnail,
+        file_name=title,
+        duration=duration,
+        supports_streaming=True,
+        caption=data_ytp.format(
+            "VIDEO",
+            title,
+            timedelta(seconds=duration),
+            views,
+            channel,
+            url,
+            c.me.mention,
+        ),
+        progress=progress,
+        progress_args=(
+            infomsg,
+            time(),
+            "<b>Sedang proses download . . .</b>",
+            f"{search['id']}.mp4",
+        ),
+        reply_to_message_id=message.id,
+    )
+    await infomsg.delete()
+    for files in (thumbnail, file_name):
+        if files and os.path.exists(files):
+            os.remove(files)
+
+@ky.ubot("stube", sudo=True)
+async def _(c, message):
+    em = Emojik()
+    em.initialize()
+    if len(message.command) < 2:
+        return await m.reply(
+            f"{em.gagal} Masukkan judul dengan benar.",
+        )
+    infomsg = await m.reply(f"{em.proses} <b>Sedang mencari . . .</b>")
+    try:
+        search = VideosSearch(message.text.split(None, 1)[1], limit=1).result()[
+            "result"
+        ][0]
+        link = f"https://youtu.be/{search['id']}"
+    except Exception as error:
+        return await infomsg.reply_text(f"<b>Sedang mencari . . .\n\n{error}</b>")
+    try:
+        (
+            file_name,
+            title,
+            url,
+            duration,
+            views,
+            channel,
+            thumb,
+            data_ytp,
+        ) = await YoutubeDownload(link, as_video=False)
+    except Exception as error:
+        return await infomsg.reply_text(f"<b>Proses download . . .\n\n{error}</b>")
+    thumbnail = wget.download(thumb)
+    await c.send_audio(
+        message.chat.id,
+        audio=file_name,
+        thumb=thumbnail,
+        file_name=title,
+        performer=channel,
+        duration=duration,
+        caption=data_ytp.format(
+            "AUDIO",
+            title,
+            timedelta(seconds=duration),
+            views,
+            channel,
+            url,
+            c.me.mention,
+        ),
+        progress=progress,
+        progress_args=(
+            infomsg,
+            time(),
+            "<b>Proses Download . . .</b>",
+            f"{search['id']}.mp3",
+        ),
+        reply_to_message_id=message.id,
+    )
+    await infomsg.delete()
+    for files in (thumbnail, file_name):
+        if files and os.path.exists(files):
+            os.remove(files)
