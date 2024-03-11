@@ -97,7 +97,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
-    mek = await m.reply("`Hai Anak Kontol 🙈, Jangan Lupa Makan Yaa`", reply_to_message_id=ReplyCheck(m))
+    mek = await m.reply(
+        "`Hai Anak Kontol 🙈, Jangan Lupa Makan Yaa`", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await mek.edit("`Jangan Bilang Lu Ga Dikasih Makan Sama Ortu 😁`")
     await asyncio.sleep(1.8)
