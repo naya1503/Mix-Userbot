@@ -17,7 +17,8 @@ from Mix import *
 
 @ky.ubot("ganteng", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("`Lu Mau Tau Sebuah Fakta?`")
+    uputt = await m.reply("`Lu Mau Tau Sebuah Fakta?`"
+    , reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.2)
     await uputt.edit("`Fakta Yang Belum Terbongkar Selama Ini`")
     await asyncio.sleep(1.2)
@@ -26,7 +27,10 @@ async def _(c: user, m):
 
 @ky.ubot("wibu", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("`Kata Emak`")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("`Kata Emak`", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(2)
     await uputt.edit("`Kalo Ketemu Wibuu`")
     await asyncio.sleep(2)
@@ -60,6 +64,9 @@ async def _(c: user, m):
 
 @ky.ubot("ssenggol", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("`Bapaknya Udin Di Makan Singkong`")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("`Bapaknya Udin Di Makan Singkong`", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("`Cuma Sendiri ni Senggol Dong`")
