@@ -57,7 +57,7 @@ async def _(c: user, m):
         else:
             limt = 1
         await search_image_and_reply(txt, m, limt)
-    elif len(m.command) == 2:
+    elif len(m.command) == 2 and not rep:
         txt = m.text.split(None, 1)[1]
         await search_image_and_reply(txt, m, 1)
     elif len(m.command) == 3:
