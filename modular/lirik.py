@@ -20,18 +20,21 @@ api = Genius(
 async def _(c, m):
     song_title = " ".join(m.command[1:])
     song = api.search_song(song_title)
+    proses = await m.reply(f"{em.proses} Bentar jink dicari dulu.")
     if song is not None:
         try:
-            await m.reply_text(song.lyrics)
+            await proses.edit(song.lyrics)
         except MessageTooLong:
             with open(f"{song.title}.txt", "w") as file:
                 file.write(song.lyrics)
             await m.reply_document(document=f"{song.title}.txt")
             os.remove(f"{song.title}.txt")
+            await proses.delete()
         except Exception as e:
             return await m.reply(f"Error jink! : `{e}`")
     else:
         await m.reply_text("Lirik tidak ditemukan.")
+        await proses.delete()
 
 
 """
