@@ -125,6 +125,7 @@ async def _(c: user, m):
     else:
         return await m.reply("noob")
 
+
 @ky.cegers("ceval")
 @ky.ubot("eval|ev", sudo=True)
 @ky.bots("eval|ev")
