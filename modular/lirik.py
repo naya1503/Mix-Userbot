@@ -18,16 +18,18 @@ api = Genius(
 async def get_lyrics(c, m):
     em = Emojik()
     em.initialize()
-    song_title = ' '.join(m.command[1:])
+    song_title = " ".join(m.command[1:])
     search_url = f"https://api.genius.com/search?q={song_title}"
-    headers = {'Authorization': 'Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V'}
+    headers = {
+        "Authorization": "Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V"
+    }
     response = requests.get(search_url, headers=headers)
     data = response.json()
     p = await m.reply(f"{em.proses} Bentar, sabar njing!")
     if len(m.command) < 1:
         return await m.reply(f"{em.gagal} Kasih tau judulnya apaan kek GOBLOK AMAT!")
-    if data['response']['hits']:
-        song_url = data['response']['hits'][0]['result']['url']
+    if data["response"]["hits"]:
+        song_url = data["response"]["hits"][0]["result"]["url"]
         lyrics_response = requests.get(song_url)
         lyrics_text = lyrics_response.text
         await m.reply_text(lyrics_text)
@@ -37,6 +39,7 @@ async def get_lyrics(c, m):
     else:
         await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
         await p.delete()
+
 
 """
 async def _(c, m):
