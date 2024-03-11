@@ -14,23 +14,31 @@ api = Genius(
 )
 
 
-@ky.ubot("lyric", sudo=True)
+import aiohttp
+
+
+@ky.ubot("lirik", sudo=True)
 async def get_lyrics(c, m):
     song_title = " ".join(m.command[1:])
     search_url = f"https://api.genius.com/search?q={song_title}"
     headers = {
-        "Authorization": "Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V"
+        "Authorization": "Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
     }
-    response = requests.get(search_url, headers=headers)
-    data = response.json()
+    
+    async with aiohttp.ClientSession() as session:
+        async with session.get(search_url, headers=headers) as response:
+            data = await response.json()
+
     if len(m.command) < 2:
         await m.reply("Kasih tau judulnya apaan kek GOBLOK AMAT!")
         return
 
     if data["response"]["hits"]:
         song_url = data["response"]["hits"][0]["result"]["url"]
-        lyrics_response = requests.get(song_url)
-        lyrics_text = lyrics_response.text
+        async with aiohttp.ClientSession() as session:
+            async with session.get(song_url, headers=headers) as lyrics_response:
+                lyrics_text = await lyrics_response.text()
 
         if len(lyrics_text) <= 4096:
             await m.reply_text(lyrics_text)
@@ -40,6 +48,7 @@ async def get_lyrics(c, m):
             await m.reply_document("lyrics.txt", caption=f"Lirik lagu {song_title}")
     else:
         await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
+
 
 
 """
