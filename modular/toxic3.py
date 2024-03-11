@@ -9,9 +9,12 @@ from Mix import *
 
 @ky.ubot("ceking", sudo=True)
 async def _(c: user, m):
-    sepong = await m.edit(
-        "**GIGI KUNING MATA MERAH BADAN KURUS CEKING EMANG PANTES...**"
-    )
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    sepong = await m.reply(
+        "**GIGI KUNING MATA MERAH BADAN KURUS CEKING EMANG PANTES...**", reply_to_message_id=ReplyCheck(m))
+    
     await asyncio.sleep(1.8)
     await sepong.edit("**DI KENCINGIN JAHANAM**")
     await asyncio.sleep(1.8)
@@ -30,7 +33,10 @@ async def _(c: user, m):
 
 @ky.ubot("hina", sudo=True)
 async def _(c: user, m):
-    Kon = await m.edit("**IZIN PANTUN BANG...**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    Kon = await m.reply("**IZIN PANTUN BANG...**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await Kon.edit("**KETEMU SI MAMAS DIAJAKIN KE CIBINONG...**")
     await asyncio.sleep(1.8)
@@ -53,7 +59,10 @@ async def _(c: user, m):
 
 @ky.ubot("ngaca", sudo=True)
 async def _(c: user, m):
-    omek = await m.edit("**IZIN NUMPANG PANTUN BANG...**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    omek = await m.reply("**IZIN NUMPANG PANTUN BANG...**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await omek.edit("**BELI SEPATU KACA KE CHINA...**")
     await asyncio.sleep(1.8)
