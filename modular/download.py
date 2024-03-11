@@ -7,7 +7,7 @@
 ################################################################
 
 
-import asyncio
+
 import aiohttp
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -15,14 +15,16 @@ from pyrogram.types import *
 
 from Mix import *
 
-
 __modles__ = "Download"
-__help__ = ("Download")
+__help__ = "Download"
+
 
 @ky.ubot("sosmed", sudo=True)
 async def _(c, m):
     if len(m.command) < 2:
-        await m.reply_text("Gunakan perintah `/sosmed [URL_MEDIA]` untuk mengunduh media dari sosial media.")
+        await m.reply_text(
+            "Gunakan perintah `/sosmed [URL_MEDIA]` untuk mengunduh media dari sosial media."
+        )
         return
 
     url = m.command[1]
@@ -38,17 +40,19 @@ async def _(c, m):
                     await c.send_message(
                         chat_id=message.chat.id,
                         text="Media berhasil diunduh!",
-                        reply_to_message_id=message.message_id
+                        reply_to_message_id=message.message_id,
                     )
 
                     await c.send_document(
                         chat_id=message.chat.id,
                         document=filename,
-                        caption="Berikut adalah media yang Anda unduh dari sosial media."
+                        caption="Berikut adalah media yang Anda unduh dari sosial media.",
                     )
 
                 else:
-                    await m.reply_text(f"Gagal mengunduh media dengan status {resp.status}")
+                    await m.reply_text(
+                        f"Gagal mengunduh media dengan status {resp.status}"
+                    )
 
     except Exception as e:
         await m.reply_text(f"Terjadi kesalahan: {str(e)}")
