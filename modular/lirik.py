@@ -1,8 +1,10 @@
-from urllib.request import Request, urlopen
 import json
 import urllib.parse
+from urllib.request import Request, urlopen
+
 from pyrogram import *
 from pyrogram.types import *
+
 from Mix import *
 
 __modles__ = "Lyric"
@@ -55,5 +57,7 @@ async def _(c, m):
             await m.reply(f"{em.gagal} <b>Maaf, lirik lagu tidak ditemukan.</b>")
             await pft.delete()
     except Exception as e:
-        await m.reply(f"{em.gagal} <b>Terjadi kesalahan saat mencari lirik lagu.</b> <code>{e}</code>")
+        await m.reply(
+            f"{em.gagal} <b>Terjadi kesalahan saat mencari lirik lagu.</b> <code>{e}</code>"
+        )
         await pft.delete()
