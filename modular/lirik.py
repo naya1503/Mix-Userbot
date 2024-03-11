@@ -25,7 +25,7 @@ async def _(c, m):
     }
     response = requests.get(search_url, headers=headers)
     data = response.json()
-    if len(m.comman) < 1:
+    if len(m.command) < 1:
         return await m.reply(f"{em.gagal} Silahkan masukkan kata atau judul lagu.")
     if data["response"]["hits"]:
         song_url = data["response"]["hits"][0]["result"]["url"]
