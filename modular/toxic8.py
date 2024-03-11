@@ -17,8 +17,9 @@ from Mix import *
 
 @ky.ubot("ganteng", sudo=True)
 async def _(c: user, m):
-    uputt = await m.reply("`Lu Mau Tau Sebuah Fakta?`"
-    , reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "`Lu Mau Tau Sebuah Fakta?`", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.2)
     await uputt.edit("`Fakta Yang Belum Terbongkar Selama Ini`")
     await asyncio.sleep(1.2)
@@ -67,6 +68,8 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
-    uputt = await m.reply("`Bapaknya Udin Di Makan Singkong`", reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "`Bapaknya Udin Di Makan Singkong`", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await uputt.edit("`Cuma Sendiri ni Senggol Dong`")
