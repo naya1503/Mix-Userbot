@@ -31,7 +31,10 @@ async def search_image_and_reply(query, m, lim=None):
                 img = BytesIO(response.content)
                 media = InputMediaPhoto(img)
                 await m.reply_media_group([media], reply_to_message_id=ReplyCheck(m))
-                os.remove(media)
+                try:
+                    os.remove(media)
+                except:
+                    pass
             else:
                 continue
         else:
