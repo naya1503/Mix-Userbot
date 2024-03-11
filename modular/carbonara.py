@@ -8,44 +8,51 @@
 
 import asyncio
 from io import BytesIO
-
+import os
 from Mix import *
 
 __modles__ = "Carbon"
 __help__ = get_cgr("help_carbon")
 
-
-async def make_carbon(code):
-    url = "https://carbonara.solopov.dev/api/cook"
-    async with aiohttpsession.post(url, json={"code": code}) as resp:
-        image = BytesIO(await resp.read())
-    image.name = "carbon.png"
-    return image
-
+async def buat_bon(code, language="python", theme="light"):
+    meki = SafoneAPI()
+    bg = {
+        "backgroundColor": "#636363ff",
+        "fontFamily": "Roboto",
+        "fontSize": "14px",
+        "language": language,
+        "theme": theme
+    }
+    img = await meki.carbon(code, **bg)
+    with open("carbon.png", "wb") as file:
+        file.write(img.getvalue())
+    return "carbon.png"
 
 @ky.ubot("carbon|carbonara", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    text = (
-        m.text.split(None, 1)[1]
-        if len(
-            m.command,
-        )
-        != 1
-        else None
-    )
-    if m.reply_to_message:
-        text = m.reply_to_message.text or m.reply_to_message.caption
+    text = m.reply_to_message.text or m.reply_to_message.caption
     if not text:
         return await m.reply(cgr("crbn_1").format(em.gagal))
     ex = await m.reply(cgr("proses").format(em.proses))
-    carbon = await make_carbon(text)
-    await ex.edit(cgr("upload").format(em.proses))
-    await asyncio.gather(
-        ex.delete(),
-        c.send_photo(
-            m.chat.id, carbon, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
-        ),
-    )
-    carbon.close()
+    if len(m.command) == 1 and text:
+        meg = await buat_bon(text, lague="python", tem="light")
+        await m.reply_photo(meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention))
+        os.remove(meg)
+    elif len(m.command) == 2:
+        lague = m.text.split(None, 1)[1]
+        meg = await buat_bon(text, lague, tem="light")
+        await m.reply_photo(meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention))
+        os.remove(meg)
+    elif len(m.command) == 3:
+        lague = m.text.split(None, 2)[1]
+        tem = m.text.split(None, 2)[2]
+        meg = await buat_bon(text, lague, tem)
+        await m.reply_photo(meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention))
+        os.remove(meg)
+    else:
+        await m.reply(cgr("crbn_1").format(em.gagal))
+    await ex.delete()
+    return
+    
