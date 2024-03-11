@@ -37,7 +37,7 @@ async def _(c, m):
 
     try:
         await load.edit_text(
-            f"{em.sukses} --**{lyric_title}**--\n{lyric_artist}\n\n\n{lyrics_text}\n__Extracted by {bot.me.username}"
+            f"{em.sukses} --**{lyric_title}**--\n{lyric_artist}\n\n\n{lyrics_text}\nExtracted by {bot.me.username}"
         )
 
     except MessageTooLong:
@@ -51,7 +51,7 @@ async def _(c, m):
         await m.reply_document(
             document=f"downloads/{lyric_title}.txt",
             thumb="https://telegra.ph//file/43cec0ae0ded594b55247.jpg",
-            caption=f"\n{em.sukses} --{lyric_title}--\n__{lyric_artist}\n\n__Extracted by {bot.me.username}",
+            caption=f"\n{em.sukses} --{lyric_title}--\n{lyric_artist}\n\nExtracted by {bot.me.username}",
         )
 
         await load.delete()
