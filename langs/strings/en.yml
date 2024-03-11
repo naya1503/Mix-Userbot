@@ -52,12 +52,13 @@ asst_6: "Restart"
 asst_7: "Update"
 
 # autoread 
-autoread_1: "{} **Use Format : `autoread` [`gc` or `us` or `ch` or `all`].**"
+autoread_1: "{} **Use Format : `autoread` [`gc` or `us` or `bot` or `ch` or `all`].**"
 autoread_2: "{} **Successfully read `{}` group message.**"
 autoread_3: "{} **Successfully read `{}` user message.**"
 autoread_4: "{} **Successfully read `{}` channel message.**"
 autoread_5: "{} **Successfully read `{}` message from your account.**"
 autoread_6: "{} **Please enter the query correctly!!**"
+autoread_7: "{} **Successfully read `{}` bot message.**"
 
 # button
 butt_1: "{} **Please type `help markdown` to see button format!**"
