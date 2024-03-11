@@ -22,7 +22,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??")
         return
-    putt = await m.reply("**Ikan sepat ikan tongkol**", reply_to_message_id=ReplyCheck(m))
+    putt = await m.reply(
+        "**Ikan sepat ikan tongkol**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(2)
     await putt.edit("**CAKEEEEPPPPP**")
     await asyncio.sleep(2)
@@ -34,7 +36,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??")
         return
-    putt = await m.reply("**Beli batik di tanah abang..**", reply_to_message_id=ReplyCheck(m))
+    putt = await m.reply(
+        "**Beli batik di tanah abang..**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(2)
     await putt.edit("**Kamu cantikkk, Tapi sayang...**")
     await asyncio.sleep(2)
@@ -46,7 +50,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??")
         return
-    putt = await m.reply("**Makan semur, Masih anget..**", reply_to_message_id=ReplyCheck(m))
+    putt = await m.reply(
+        "**Makan semur, Masih anget..**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(2)
     await putt.edit("**CAKEEEEPPPPP**")
     await asyncio.sleep(2)
@@ -58,7 +64,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??")
         return
-    putt = await m.reply("**Barang antik, ditarik andong**", reply_to_message_id=ReplyCheck(m))
+    putt = await m.reply(
+        "**Barang antik, ditarik andong**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(2)
     await putt.edit("**CAKEEEEPPPPP**")
     await asyncio.sleep(2)
@@ -70,7 +78,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??")
         return
-    putt = await m.reply("**Makan sambel ulek pakai kedondong**", reply_to_message_id=ReplyCheck(m))
+    putt = await m.reply(
+        "**Makan sambel ulek pakai kedondong**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(2)
     await putt.edit("**CAKEEEEPPPPP**")
     await asyncio.sleep(2)
@@ -82,8 +92,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??")
         return
-    putt = await m.reply("**Rambut panjang di sisirin**"
-    , reply_to_message_id=ReplyCheck(m))
+    putt = await m.reply(
+        "**Rambut panjang di sisirin**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(2)
     await putt.edit("**Sambil seduh dua extra joss**")
     await asyncio.sleep(2)
