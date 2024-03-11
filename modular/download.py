@@ -106,7 +106,6 @@ async def _(self: user, m):
         await asyncio.sleep(5)
         await tai.copy(m.chat.id)
     await pros.delete()
-    await m.delete()
     ulat = await user.resolve_peer(hm)
     await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
     return
