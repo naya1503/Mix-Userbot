@@ -30,7 +30,7 @@ async def search_lyrics(penyanyi, judul):
         return None
 
 
-@ky.ubot("lirik|lyrics", sudo=True)
+@ky.ubot("lyrics", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -40,7 +40,7 @@ async def _(c, m):
         parts = command.split("-")
         if len(parts) != 2:
             await pft.edit(
-                f"{em.gagal} <b>Format perintah salah. Gunakan format: {m.command[0]}lirik Nama Penyanyi - Judul Lagu\nContoh : {m.command[0]}lirik Arctic Monkeys - Do i Wanna Know</b>"
+                f"{em.gagal} <b>Format perintah salah!\n{em.sukses} Gunakan format: <code>{m.command}</code> Nama Penyanyi - Judul Lagu\n\n{em.sukses} Contoh : <code>{m.command} Arctic Monkeys - Do i Wanna Know</code></b>"
             )
             return
 
