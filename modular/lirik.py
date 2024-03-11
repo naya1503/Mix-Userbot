@@ -44,7 +44,9 @@ async def _(c, m):
         with open(f"downloads/{lyric_title}.txt", "w") as f:
             f.write(f"{lyric_title}\n{lyric_artist}\n\n\n{lyrics_text}")
 
-        await load.edit_text(f"{em.gagal} <b>Lyric too long. Sending as a text file...</b>")
+        await load.edit_text(
+            f"{em.gagal} <b>Lyric too long. Sending as a text file...</b>"
+        )
         await m.reply_chat_action(action="upload_document")
         await m.reply_document(
             document=f"downloads/{lyric_title}.txt",
