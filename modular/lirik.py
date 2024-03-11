@@ -10,9 +10,8 @@ from Mix import *
 api = genius.Genius(genius_api, verbose=False)
 
 
-
 __modles__ = "Lyric"
-__help__ = ("Lyrics")
+__help__ = "Lyrics"
 
 
 @ky.ubot("lyric", sudo=True)
