@@ -83,9 +83,12 @@ async def _(c, m):
             acak = warna
         else:
             acak = random.choice(loanjing)
-        lague = m.text.split(None, 2)[2] if len(m.command) > 2 else "python"
-        tem = random.choice(loanjing)
-        meg = await buat_bon(text, acak, lague, tem)
+        tema = m.text.split(None, 2)[2] if len(m.command) > 3 else None
+        if tema:
+            tem = tema
+        else:
+            tem = random.choice(loanjing)
+        meg = await buat_bon(text, acak, "python", tem)
         await m.reply_photo(
             meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
         )
@@ -96,12 +99,12 @@ async def _(c, m):
             acak = warna
         else:
             acak = random.choice(loanjing)
-        lague = m.text.split(None, 3)[2] if len(m.command) > 3 else "python"
-        tema = m.text.split(None, 3)[3] if len(m.command) > 3 else None
+        tema = m.text.split(None, 2)[2] if len(m.command) > 2 else None
         if tema:
             tem = tema
         else:
             tem = random.choice(loanjing)
+        lague = m.text.split(None, 3)[3] if len(m.command) > 3 else "python"
         meg = await buat_bon(text, acak, lague, tem)
         await m.reply_photo(
             meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
