@@ -7,12 +7,12 @@ from pyrogram.types import *
 
 from Mix import *
 
-api = genius.Genius(genius_api, verbose=False)
-
 
 __modles__ = "Lyric"
 __help__ = "Lyrics"
 
+
+api = genius.Genius(genius_api)
 
 @ky.ubot("lyric", sudo=True)
 async def _(c, m):
