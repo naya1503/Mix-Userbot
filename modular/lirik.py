@@ -12,7 +12,7 @@ __modles__ = "Lyric"
 __help__ = "Lyrics"
 
 
-api = Genius(genius_api, verbose=False)
+api = Genius("mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V", verbose=False)
 
 
 @ky.ubot("lyric", sudo=True)
