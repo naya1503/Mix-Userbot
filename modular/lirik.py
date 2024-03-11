@@ -13,8 +13,8 @@ api = Genius(
 )
 
 
-from urllib.request import Request, urlopen
 import json
+from urllib.request import Request, urlopen
 
 
 @ky.ubot("lirik", sudo=True)
@@ -22,11 +22,11 @@ async def _(c, m):
     penyanyi = " ".join(m.command[1:])
     judul = " ".join(m.command[2:])
     request = Request(f"https://api.lyrics.ovh/v1/{penyanyi}/{judul}")
-    
+
     try:
         with urlopen(request) as response:
             data = json.load(response)
-            
+
             if "lyrics" in data:
                 lyrics_text = data["lyrics"]
                 await m.reply_text(lyrics_text)
@@ -34,7 +34,6 @@ async def _(c, m):
                 await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
     except Exception as e:
         await m.reply(f"error : `{e}`")
-
 
 
 """
