@@ -12,7 +12,10 @@ from Mix import *
 
 @ky.ubot("lipkol", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Ayaaang** 🥺")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("**Ayaaang** 🥺")
     await asyncio.sleep(1.8)
     await uputt.edit("**Kangeeen** 👉👈")
     await asyncio.sleep(1.8)
@@ -24,7 +27,10 @@ async def _(c: user, m):
 
 @ky.ubot("nakal", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Ayaaang Ih** 🥺")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("**Ayaaang Ih** 🥺", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Nakal Banget Dah Ayang** 🥺")
     await asyncio.sleep(1.8)
@@ -35,7 +41,10 @@ async def _(c: user, m):
 
 @ky.ubot("favboy", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Duuhh Ada Cowo Ganteng** 👉👈")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("**Duuhh Ada Cowo Ganteng** 👉👈", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**You Are My Favorit Boy** 😍")
     await asyncio.sleep(1.8)
@@ -48,7 +57,10 @@ async def _(c: user, m):
 
 @ky.ubot("favgirl", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Duuhh Ada Cewe Cantik** 👉👈")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("**Duuhh Ada Cewe Cantik** 👉👈", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**You Are My Favorit Girl** 😍")
     await asyncio.sleep(1.8)
@@ -61,7 +73,10 @@ async def _(c: user, m):
 
 @ky.ubot("canlay", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Eh Kamu Cantik-cantik**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("**Eh Kamu Cantik-cantik**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Kok Alay Banget**")
     await asyncio.sleep(1.8)
@@ -74,7 +89,10 @@ async def _(c: user, m):
 
 @ky.ubot("ganlay", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Eh Kamu Ganteng-ganteng**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("**Eh Kamu Ganteng-ganteng**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Kok Alay Banget**")
     await asyncio.sleep(1.8)
@@ -87,7 +105,10 @@ async def _(c: user, m):
 
 @ky.ubot("ange", sudo=True)
 async def _(c: user, m):
-    uputt = await m.edit("**Ayanggg 😖**")
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        return
+    uputt = await m.reply("**Ayanggg 😖**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Aku Ange 😫**")
     await asyncio.sleep(1.8)
