@@ -44,7 +44,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
-    uputt = await m.reply("**Duuhh Ada Cowo Ganteng** 👉👈", reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "**Duuhh Ada Cowo Ganteng** 👉👈", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await uputt.edit("**You Are My Favorit Boy** 😍")
     await asyncio.sleep(1.8)
@@ -60,7 +62,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
-    uputt = await m.reply("**Duuhh Ada Cewe Cantik** 👉👈", reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "**Duuhh Ada Cewe Cantik** 👉👈", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await uputt.edit("**You Are My Favorit Girl** 😍")
     await asyncio.sleep(1.8)
@@ -76,7 +80,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
-    uputt = await m.reply("**Eh Kamu Cantik-cantik**", reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "**Eh Kamu Cantik-cantik**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await uputt.edit("**Kok Alay Banget**")
     await asyncio.sleep(1.8)
@@ -92,7 +98,9 @@ async def _(c: user, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
-    uputt = await m.reply("**Eh Kamu Ganteng-ganteng**", reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "**Eh Kamu Ganteng-ganteng**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await uputt.edit("**Kok Alay Banget**")
     await asyncio.sleep(1.8)
