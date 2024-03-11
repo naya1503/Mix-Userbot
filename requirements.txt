@@ -38,3 +38,4 @@ regex
 Pillow==9.0.0
 pytz
 pyyaml
+lyricsgenius==3.0.1
