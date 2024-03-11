@@ -169,7 +169,7 @@ async def _(c, cq):
             return
 
 
-@ky.callback("anim.")
+@ky.callback("^anim.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
     kemem = okb([[("≪", "anim.bc")]])
@@ -210,7 +210,7 @@ async def _(c, cq):
         return
 
 
-@ky.callback("to.")
+@ky.callback("^to.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
     kemem = okb([[("≪", "to.bc"), ("⪼", "to.next")]])
