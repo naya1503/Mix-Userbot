@@ -112,17 +112,16 @@ async def _(self: user, m):
 
 
 @ky.ubot("vtube", sudo=True)
-async def _(c, message):
+async def _(c, m):
     em = Emojik()
     em.initialize()
-    if len(message.command) < 2:
+    if len(m.command) < 2:
         return await m.reply(
-            message,
             f"{em.gagal} Masukkan judul dengan benar.",
         )
     infomsg = await m.reply(f"{em.proses} <b>Sedang mencari . . .</b>")
     try:
-        search = VideosSearch(message.text.split(None, 1)[1], limit=1).result()[
+        search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()[
             "result"
         ][0]
         link = f"https://youtu.be/{search['id']}"
@@ -147,7 +146,7 @@ async def _(c, message):
         )
     thumbnail = wget.download(thumb)
     await c.send_video(
-        message.chat.id,
+        m.chat.id,
         video=file_name,
         thumb=thumbnail,
         file_name=title,
@@ -169,7 +168,7 @@ async def _(c, message):
             "<b>Sedang proses download . . .</b>",
             f"{search['id']}.mp4",
         ),
-        reply_to_message_id=message.id,
+        reply_to_message_id=m.id,
     )
     await infomsg.delete()
     for files in (thumbnail, file_name):
@@ -178,16 +177,16 @@ async def _(c, message):
 
 
 @ky.ubot("stube", sudo=True)
-async def _(c, message):
+async def _(c, m):
     em = Emojik()
     em.initialize()
-    if len(message.command) < 2:
+    if len(m.command) < 2:
         return await m.reply(
             f"{em.gagal} Masukkan judul dengan benar.",
         )
     infomsg = await m.reply(f"{em.proses} <b>Sedang mencari . . .</b>")
     try:
-        search = VideosSearch(message.text.split(None, 1)[1], limit=1).result()[
+        search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()[
             "result"
         ][0]
         link = f"https://youtu.be/{search['id']}"
@@ -208,7 +207,7 @@ async def _(c, message):
         return await infomsg.reply_text(f"<b>Proses download . . .\n\n{error}</b>")
     thumbnail = wget.download(thumb)
     await c.send_audio(
-        message.chat.id,
+        m.chat.id,
         audio=file_name,
         thumb=thumbnail,
         file_name=title,
@@ -230,7 +229,7 @@ async def _(c, message):
             "<b>Proses Download . . .</b>",
             f"{search['id']}.mp3",
         ),
-        reply_to_message_id=message.id,
+        reply_to_message_id=m.id,
     )
     await infomsg.delete()
     for files in (thumbnail, file_name):
