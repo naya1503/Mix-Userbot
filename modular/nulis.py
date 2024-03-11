@@ -12,9 +12,9 @@ from SafoneAPI import SafoneAPI
 
 from Mix import *
 
-
 __modles__ = "Nulis"
 __help__ = "Nulis"
+
 
 async def nulis(text, page=None, font=None, color="black"):
     meki = SafoneAPI()
@@ -22,7 +22,6 @@ async def nulis(text, page=None, font=None, color="black"):
     with open("nulis.png", "wb") as file:
         file.write(img.getvalue())
     return "nulis.png"
-
 
 
 @ky.ubot("nulis|write", sudo=True)
