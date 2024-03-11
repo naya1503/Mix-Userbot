@@ -14,10 +14,10 @@ __modles__ = "Carbon"
 __help__ = get_cgr("help_carbon")
 
 
-async def buat_bon(code, language="python", theme="light"):
+async def buat_bon(code, language, theme):
     meki = SafoneAPI()
     bg = {
-        "backgroundColor": "#636363ff",
+        "backgroundColor": "navy",
         "fontFamily": "Roboto",
         "fontSize": "14px",
         "language": language,
