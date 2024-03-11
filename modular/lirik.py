@@ -7,7 +7,7 @@ from pyrogram.types import *
 
 from Mix import *
 
-api = genius.Genius(genius_api, verbose=False)
+api = genius.Genius(genius_api,verbose=False)
 
 
 __modles__ = "Lyric"
