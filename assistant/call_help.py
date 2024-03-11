@@ -82,6 +82,13 @@ async def _(c, cq):
                     ],
                 ]
             )
+            try:
+                await cq.edit_message_text(
+                    text=text1, reply_markup=button, disable_web_page_preview=True
+                )
+            except FloodWait as e:
+                await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+                return
         elif "Toxic" in text:
             text1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
                 " ".join(prefix), len(CMD_HELP)
