@@ -62,8 +62,7 @@ async def _(c, m):
         tem = random.choice(loanjing)
         meg = await buat_bon(text, acak, "python", tem)
         await m.reply_photo(
-            meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
-        )
+            meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention, reply_to_message_id=ReplyCheck(m))
         os.remove(meg)
     elif len(m.command) == 2:
         warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
@@ -74,8 +73,7 @@ async def _(c, m):
         tem = random.choice(loanjing)
         meg = await buat_bon(text, acak, "python", tem)
         await m.reply_photo(
-            meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
-        )
+            meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention, reply_to_message_id=ReplyCheck(m))
         os.remove(meg)
     elif len(m.command) == 3:
         warna = m.text.split(None, 2)[1] if len(m.command) > 2 else None
@@ -90,8 +88,7 @@ async def _(c, m):
             tem = random.choice(loanjing)
         meg = await buat_bon(text, acak, "python", tem)
         await m.reply_photo(
-            meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
-        )
+            meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention, reply_to_message_id=ReplyCheck(m))
         os.remove(meg)
     elif len(m.command) == 4:
         warna = m.text.split(None, 3)[1] if len(m.command) > 1 else None
@@ -107,8 +104,7 @@ async def _(c, m):
         lague = m.text.split(None, 3)[3] if len(m.command) > 3 else "python"
         meg = await buat_bon(text, acak, lague, tem)
         await m.reply_photo(
-            meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention)
-        )
+            meg, caption=cgr("crbn_2").format(em.sukses, user.me.mention, reply_to_message_id=ReplyCheck(m))
         os.remove(meg)
     else:
         await m.reply(cgr("crbn_1").format(em.gagal))
