@@ -1,4 +1,3 @@
-import requests
 from lyricsgenius import Genius
 from pyrogram import *
 from pyrogram.types import *
@@ -23,9 +22,9 @@ async def get_lyrics(c, m):
     search_url = f"https://api.genius.com/search?q={song_title}"
     headers = {
         "Authorization": "Bearer mJIaLonIWBIhEVZrclZIGtBdrIdSKpxa2ODPwIJMp3hxYxUlAt5ZS6-Z4nXWMH6V",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
     }
-    
+
     async with aiohttp.ClientSession() as session:
         async with session.get(search_url, headers=headers) as response:
             data = await response.json()
@@ -48,7 +47,6 @@ async def get_lyrics(c, m):
             await m.reply_document("lyrics.txt", caption=f"Lirik lagu {song_title}")
     else:
         await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
-
 
 
 """
