@@ -43,7 +43,9 @@ async def _(c: user, m):
 
 @ky.ubot("semangat", sudo=True)
 async def _(c: user, m):
-    uputt = await m.reply("**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await uputt.edit("**Tetaplah Bernafas...**")
     await asyncio.sleep(1.8)
@@ -55,7 +57,9 @@ async def _(c: user, m):
 
 @ky.ubot("mengeluh", sudo=True)
 async def _(c: user, m):
-    uputt = await m.reply("**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m))
+    uputt = await m.reply(
+        "**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m)
+    )
     await asyncio.sleep(1.8)
     await uputt.edit("**Tetaplah Mengeluh...**")
     await asyncio.sleep(1.8)
