@@ -20,10 +20,10 @@ import aiohttp
 async def get_lyrics(c: Client, m: Message):
     song_title = " ".join(m.command[1:])
     search_url = f"https://api.lyrics.ovh/v1/{song_title}"
+    try:
 
-    async with aiohttp.ClientSession() as session:
-        async with session.get(search_url) as response:
-            try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(search_url) as response:
                 if response.status == 200:
                     data = await response.json()
 
@@ -32,9 +32,9 @@ async def get_lyrics(c: Client, m: Message):
                         await m.reply_text(lyrics_text)
                     else:
                         await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
-            except Exception as e:
-                return await m.reply(f"Error: `{e}`")
-
+                        return
+    except Exception as e:
+        await m.reply(f"error : `{e}`")
 
 """
 async def _(c, m):
