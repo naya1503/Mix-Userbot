@@ -18,10 +18,14 @@ __help__ = "Nulis"
 
 async def nulis(text, page, font, color="black"):
     meki = SafoneAPI()
-    img = await meki.write(text, page, font, color)
-    with open("nulis.png", "wb") as file:
-        file.write(img.getvalue())
-    return "nulis.png"
+    imgs = await meki.write(text, page, font, color)
+    img_paths = []
+    for i, img in enumerate(imgs):
+        img_path = f"img{i}.png"
+        with open(img_path, "wb") as file:
+            file.write(img.getvalue())
+        img_paths.append(img_path)
+    return img_paths
 
 
 @ky.ubot("nulis|write", sudo=True)
