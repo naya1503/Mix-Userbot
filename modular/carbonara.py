@@ -83,7 +83,7 @@ async def _(c, m):
             acak = warna
         else:
             acak = random.choice(loanjing)
-        lague = m.command[3] if m.command[3] else None
+        lague = m.command[3] if m.command[3] else "python"
         tem = random.choice(loanjing)
         meg = await buat_bon(text, acak, lague, tem)
         await m.reply_photo(
@@ -96,7 +96,7 @@ async def _(c, m):
             acak = warna
         else:
             acak = random.choice(loanjing)
-        lague = m.command[3] if m.command[3] else None
+        lague = m.command[3] if m.command[3] else "python"
         tema = m.command[4] if m.command[4] else None
         if tema:
             tem = tema
