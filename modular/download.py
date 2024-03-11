@@ -36,11 +36,11 @@ async def _(c, m):
                     with open(filename, "wb") as f:
                         f.write(await resp.read())
 
-                    await c.send_message(
-                        chat_id=m.chat.id,
-                        text="Media berhasil diunduh!",
-                        reply_to_message_id=m.message_id,
-                    )
+                    # await c.send_message(
+                    #     chat_id=m.chat.id,
+                    #     text="Media berhasil diunduh!",
+                    #     reply_to_message_id=m.message_id,
+                    # )
 
                     await c.send_document(
                         chat_id=m.chat.id,
