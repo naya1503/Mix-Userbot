@@ -24,7 +24,7 @@ from youtubesearchpython import VideosSearch
 from Mix import *
 
 __modles__ = "Download"
-__help__ = "Download"
+__help__ = get_cgr("help_download")
 
 
 def humanbytes(size):
