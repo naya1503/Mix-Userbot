@@ -77,6 +77,7 @@ autoread_3: "{} **Udah diliat `{}` pesan pengguna.**"
 autoread_4: "{} **Udah diliat `{}` pesan channel.**"
 autoread_5: "{} **Udah diliat `{}` pesan diakun anda.**"
 autoread_6: "{} **Salah query nya Tolol!! Baca format makanya Bego!!**"
+autoread_7: "{} **Udah diliat `{}` pesan bot.**"
 
 # button
 butt_1: "{} **Sigoblok ga bener!! ketik `help markdown` terus baca!!**"
