@@ -13,24 +13,26 @@ api = Genius(
 )
 
 
-import requests
+import aiohttp
 
 
 @ky.ubot("lirik", sudo=True)
-async def _(c, m):
+async def get_lyrics(c: Client, m: Message):
     song_title = " ".join(m.command[1:])
-    search_url = f"https://lyrics.ovh/{song_title}"
-    response = requests.get(search_url)
-    if response.status_code == 200:
-        data = response.json()
-        if "lyrics" in data:
-            lyrics_judul = data["lyrics"]
-            lyrics_text = data["thelyrics"]
-            await m.reply_text({lyrics_judul} + {lyrics_text})
-        else:
-            await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
-    else:
-        await m.reply_text("Maaf, ada masalah dalam memproses permintaan.")
+    search_url = f"https://api.lyrics.ovh/v1/{song_title}"
+    
+    async with aiohttp.ClientSession() as session:
+        async with session.get(search_url) as response:
+            if response.status == 200:
+                data = await response.json()
+
+                if "lyrics" in data:
+                    lyrics_text = data["lyrics"]
+                    await m.reply_text(lyrics_text)
+                else:
+                    await m.reply_text("Maaf, lirik lagu tidak ditemukan.")
+            else:
+                await m.reply_text("Maaf, ada masalah dalam memproses permintaan.")
 
 
 """
