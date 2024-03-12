@@ -30,7 +30,7 @@ async def _(_, m):
         who = rep.from_user.id
     else:
         who = m.text.split(None, 1)[1]
-    elif len(m.command) == 1 and rep:
+    if len(m.command) == 1 and rep:
         try:
             info = await user.resolve_peer(who)
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
