@@ -58,7 +58,7 @@ async def _(c, m):
     await m.reply_media_group(meko)
     await prose.delete()
     try:
-        for mm in mekk:
+        for mm in meko:
             os.remove(mm.media)
     except:
         pass
