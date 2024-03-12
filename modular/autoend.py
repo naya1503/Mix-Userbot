@@ -34,7 +34,7 @@ async def _(_, m):
             pass
         await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
     else:
-        if m.command[2].strip().lower() == "all":
+        if m.command[1].strip().lower() == "all":
             biji = await refresh_dialog("users")
             for kelot in biji:
                 try:
