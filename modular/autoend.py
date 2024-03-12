@@ -35,14 +35,6 @@ async def _(_, m):
         await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
     else:
         if len(m.command) == 2 and not rep:
-            who = m.text.split(None, 1)[1]
-            try:
-                info = await user.resolve_peer(who)
-                await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
-            except PeerIdInvalid:
-                pass
-            await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
-        elif m.command[2].lower() == "all":
             biji = await refresh_dialog("users")
             for kelot in biji:
                 try:
@@ -52,6 +44,12 @@ async def _(_, m):
                     continue
             await m.reply(f"{em.sukses} **Mampus {len(biji)} pesan Gw EndChat!!**")
         else:
-            await m.reply("**Kasih argumen Goblok**")
+            who = m.text.split(None, 1)[1]
+            try:
+                info = await user.resolve_peer(who)
+                await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+            except PeerIdInvalid:
+                pass
+            await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
     await mek.delete()
     return
