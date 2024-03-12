@@ -126,8 +126,9 @@ async def _(c: user, m):
         return await m.reply("noob")
 
 
-@ky.cegers("ceval")
+
 @ky.ubot("eval|ev", sudo=True)
+@ky.cegers("ceval")
 @ky.bots("eval|ev")
 async def _(c, m):
     if not user.get_arg(m):
