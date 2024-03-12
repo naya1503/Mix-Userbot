@@ -383,9 +383,11 @@ def cb_permit():
 async def _(c, iq):
     org = iq.query.split()
     gw = iq.from_user.id
-    udB.get_var(gw, "PMTEXT")
+    getpm_txt = udB.get_var(user.me.id, "PMTEXT")
+    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
+    teks, button = parse_button(pm_text)
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
