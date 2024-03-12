@@ -25,6 +25,7 @@ async def _(_, m):
     if len(m.command) < 2:
         await m.reply("**Kasih argumen Goblok**")
     tag = m.command[1].strip()
+    org = None
     if tag.startswith("@"):
         user_id = tag[1:]
         try:
