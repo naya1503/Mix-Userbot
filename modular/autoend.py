@@ -38,7 +38,7 @@ async def _(_, m):
             info = await user.resolve_peer(who)
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
         except PeerIdInvalid:
-                pass
+            pass
         await m.reply(f"{em.sukses} **Mampus lu jing {who.mention}!! Gw EndChat!!**")
     elif tag == "all":
         biji = await refresh_dialog("users")
