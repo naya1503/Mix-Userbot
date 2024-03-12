@@ -364,7 +364,7 @@ def cb_permit():
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     teks, button = parse_button(pm_text)
     button = build_keyboard(button)
-    
+
     return keyboard
 
 
