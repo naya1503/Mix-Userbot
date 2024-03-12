@@ -33,13 +33,14 @@ async def _(_, m):
             who = int(m.command[1])
         except Exception as err:
             return await m.reply(cgr("err").format(em.gagal, err))
+    mention = (await user.get_users(puki)).mention
     if tag.startswith("@") or tag.isnumeric():
         try:
             info = await user.resolve_peer(who)
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
         except PeerIdInvalid:
             pass
-        await m.reply(f"{em.sukses} **Mampus lu jing {who.mention}!! Gw EndChat!!**")
+        await m.reply(f"{em.sukses} **Mampus lu jing {mention}!! Gw EndChat!!**")
     elif tag == "all":
         biji = await refresh_dialog("users")
         for kelot in biji:
