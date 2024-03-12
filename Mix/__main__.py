@@ -49,7 +49,8 @@ async def starter():
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
-    await asyncio.gather(start_user(), start_bot())
+    await start_user()
+    await start_bot())
     await asyncio.gather(refresh_cache(), check_logger(), getFinish())
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(isFinish(), idle(), aiohttpsession.close())
