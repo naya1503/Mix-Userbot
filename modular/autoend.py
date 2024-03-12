@@ -36,7 +36,7 @@ async def _(_, m):
     if tag.startswith("@") or tag.isnumeric():
         info = await user.resolve_peer(who)
         await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
-        await m.reply(f"{em.sukses} **Mampus lu jing {org.mention}!! Gw EndChat!!**")
+        await m.reply(f"{em.sukses} **Mampus lu jing {who.mention}!! Gw EndChat!!**")
     elif tag == "all":
         biji = await refresh_dialog("users")
         for kelot in biji:
