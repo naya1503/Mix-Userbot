@@ -24,15 +24,7 @@ async def _(_, m):
     puki = await user.extract_user(m)
     rep = m.reply_to_message
     mek = await m.reply(cgr("proses").format(em.proses))
-    if len(m.command) < 2 and not rep:
-        await m.reply("**Kasih argumen Goblok**")
-    try:
-        who = (await user.get_users(puki)).id
-    except Exception:
-        try:
-            who = int(m.command[1])
-        except Exception as err:
-            return await m.reply(cgr("err").format(em.gagal, err))
+    who = (await user.get_users(puki)).id
     if len(m.command) == 1 and rep:
         try:
             info = await user.resolve_peer(who)
