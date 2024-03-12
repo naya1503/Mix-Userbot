@@ -302,7 +302,7 @@ mark_3: "**Untuk melihat format markdown silahkan klik tombol dibawah.**"
 
 # pmpermit
 pmper_1: "**Hey {} 👋 . Jangan spam atau anda akan diblokir!!**"
-pmper_2: "**Pesan Keamanan {} . Anda mendapat peringatan {}/{} !!\n\n{}**"
+pmper_2: "**Pesan Keamanan {}\n\n{}\n\nAnda mendapat peringatan `{}/{}` !!**"
 pmper_3: "{} **Pengguna sudah disetujui!**"
 pmper_4: "{} **Baiklah, pengguna disetujui untuk mengirim pesan.**"
 pmper_5: "{} **Pengguna memang belum disetujui untuk mengirim pesan.**"
