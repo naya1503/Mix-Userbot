@@ -52,9 +52,9 @@ async def starter():
     await start_user()
     if user.is_connected:
         await start_bot()
-    await asyncio.gather(refresh_cache(), check_logger(), getFinish())
+    await asyncio.gather(refresh_cache(), check_logger())
     LOGGER.info("Successfully Started Userbot.")
-    await asyncio.gather(isFinish(), idle(), aiohttpsession.close())
+    await asyncio.gather(getFinish(), isFinish(), idle(), aiohttpsession.close())
 
 
 if __name__ == "__main__":
