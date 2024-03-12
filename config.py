@@ -18,7 +18,7 @@ upstream_repo = getenv(
     "upstream_repo",
     "https://github.com/naya1503/Mix-Userbot",
 )
-upstream_branch = getenv("upstream_branch", "dev")
+upstream_branch = getenv("upstream_branch", "tes")
 git_token = getenv("git_token", None)
 alive_pic = getenv("alive_pic", "https://telegra.ph//file/43cec0ae0ded594b55247.jpg")
 log_channel = getenv("log_channel", "")

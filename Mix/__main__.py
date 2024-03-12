@@ -2,12 +2,16 @@ import asyncio
 import importlib
 import sys
 
+import uvloop
 from pyrogram import *
 from pyrogram.errors import *
 
 from assistant import BOT_PLUGINS
 from Mix import *
 from modular import USER_MOD
+
+loop = asyncio.get_event_loop_policy()
+event_loop = loop.get_event_loop()
 
 
 async def start_user():
@@ -58,5 +62,6 @@ async def starter():
 
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(starter())
+    uvloop.install()
+    asyncio.set_event_loop(event_loop)
+    event_loop.run_until_complete(starter())

@@ -8,7 +8,6 @@ requests
 ffmpeg-python
 pyrogram
 pymongo
-py-tgcalls==1.0.9
 uvloop
 wget
 psutil
@@ -19,7 +18,7 @@ pymediainfo
 youtube-search
 youtube-search-python
 attrify
-maling==1.7.5
+maling==1.7.8
 gitpython
 heroku3
 speedtest-cli
@@ -40,3 +39,4 @@ pytz
 pyyaml
 lyricsgenius==3.0.1
 SafoneApi
+pytgcalls==3.0.0.dev24
