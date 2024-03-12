@@ -7,10 +7,11 @@
 """
 ################################################################
 
-from Mix import *
-from pyrogram.raw.functions.messages import DeleteHistory
-from modular.gcast import refresh_dialog
 from pyrogram.errors import PeerIdInvalid
+from pyrogram.raw.functions.messages import DeleteHistory
+
+from Mix import *
+from modular.gcast import refresh_dialog
 
 __modles__ = "AutoEndChat"
 __help__ = "AutoEndChat"
