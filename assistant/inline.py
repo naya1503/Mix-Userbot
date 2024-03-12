@@ -359,25 +359,6 @@ async def _(c, iq):
         )
 
 
-def kb_permit():
-    keyboard = InlineKeyboard(row_width=2)
-    getpm_txt = udB.get_var(user.me.id, "PMTEXT")
-    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
-    teks, buttons = parse_button(pm_text)
-    for bt_txt, bt_url, _ in buttons:
-        keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
-    keyboard.row(
-        InlineKeyboardButton(
-            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
-        ),
-        InlineKeyboardButton(
-            text="Hapus + Blokir",
-            callback_data=f"pmpermit block {int(org[1])}",
-        ),
-    )
-    return keyboard
-
-
 # pmpermit
 @ky.inline("^ambil_tombolpc")
 async def _(c, iq):
@@ -388,7 +369,6 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = parse_button(pm_text)
-    #button = build_keyboard(button)
     keyboard = InlineKeyboard(row_width=2)
     for bt_txt, bt_url, _ in button:
         keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
@@ -439,7 +419,7 @@ async def _(c, iq):
                     title="PIC Buttons !",
                     caption=kiki,
                     # reply_markup=InlineKeyboardMarkup(button),
-                    reply_markup=kb_permit(),
+                    reply_markup=keyboard,
                 )
             ]
         else:
@@ -449,7 +429,7 @@ async def _(c, iq):
                         title="Tombol PM!",
                         input_message_content=InputTextMessageContent(kiki),
                         # reply_markup=InlineKeyboardMarkup(button),
-                        reply_markup=kb_permit(),
+                        reply_markup=keyboard,
                     )
                 )
             ]
