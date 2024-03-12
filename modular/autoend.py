@@ -26,11 +26,8 @@ async def _(_, m):
     mek = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 2 and not rep:
         await m.reply("**Kasih argumen Goblok**")
-    if rep:
-        who = rep.from_user.id
-    else:
-        who = m.text.split(None, 1)[1]
     if len(m.command) == 1 and rep:
+        who = rep.from_user.id
         try:
             info = await user.resolve_peer(who)
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
@@ -38,7 +35,7 @@ async def _(_, m):
             pass
         await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
     else:
-        # tag = m.command[1].strip()
+        who = m.text.split(None, 1)[1]
         if len(m.command) == 2 and not rep:
             try:
                 info = await user.resolve_peer(who)
