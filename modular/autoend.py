@@ -43,7 +43,7 @@ async def _(_, m):
             info = await user.resolve_peer(org)
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
             await m.reply(f"{em.sukses} **Mampus lu jing {org.mention}!! Gw EndChat!!")
-    elif tag == "all:
+    elif tag == "all":
         biji = await refresh_dialog("users")
         for kelot in biji:
             try:
