@@ -36,6 +36,7 @@ async def _(c: user, m):
                 if not berenti:
                     break
                 await reply.copy(m.chat.id)
+                msg.delete()
                 await asyncio.sleep(0.1)
         except Exception as error:
             return await msg.edit(str(error))
@@ -81,6 +82,7 @@ async def _(c: user, m):
                 break
             try:
                 await reply.copy(m.chat.id)
+                msg.delete()
                 await asyncio.sleep(count_delay)
             except:
                 pass
