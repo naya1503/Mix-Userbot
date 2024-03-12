@@ -389,7 +389,8 @@ async def _(c, iq):
         InlineKeyboardButton(
             text="Hapus + Blokir",
             callback_data=f"pmpermit block {int(org[1])}",
-        ))
+        ),
+    )
     teks, button = parse_button(pm_text)
     button = build_keyboard(button)
     kiki = None
