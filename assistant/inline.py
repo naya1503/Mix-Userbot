@@ -375,7 +375,7 @@ async def _(c, iq):
     keyboard.row(
         InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
         InlineKeyboardButton(
-            text="Hapus + Blokir",
+            text="Blokir",
             callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
