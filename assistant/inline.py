@@ -378,8 +378,9 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = parse_button(pm_text)
+    buttone = build_keyboard(button)
     keyboard = InlineKeyboard(row_width=2)
-    keyboard.add(button)
+    keyboard.add(buttone)
     keyboard.row(
         InlineKeyboardButton(
             text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
