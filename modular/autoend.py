@@ -32,7 +32,7 @@ async def _(_, m):
             org = await user.get_users(user_id)
         except Exception as e:
             await m.reply(cgr("err").format(em.gagal, e))
-        info = await user.resolve_peer(org)
+        info = await user.resolve_peer(user_id)
         await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
         await m.reply(f"{em.sukses} **Mampus lu jing {org.mention}!! Gw EndChat!!")
     elif tag.isnumeric():
