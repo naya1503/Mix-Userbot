@@ -54,7 +54,7 @@ async def _(c, m):
     except Exception as er:
         await m.reply(cgr("err").format(em.gagal, er))
         return
-    await m.reply_media_group(meko)
+    await m.reply_media_group(meko, reply_to_message_id=ReplyCheck(m))
     await prose.delete()
     try:
         for mm in meko:
