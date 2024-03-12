@@ -8,7 +8,6 @@ requests
 ffmpeg-python
 pyrogram
 pymongo
-py-tgcalls==1.0.9
 uvloop
 wget
 psutil
