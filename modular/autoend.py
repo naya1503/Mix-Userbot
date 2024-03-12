@@ -53,7 +53,7 @@ async def _(_, m):
                 except PeerIdInvalid:
                     continue
             await m.reply(f"{em.sukses} **Mampus {len(biji)} pesan Gw EndChat!!**")
-    else:
-        await m.reply("**Kasih argumen Goblok**")
+    #else:
+        #await m.reply("**Kasih argumen Goblok**")
     await mek.delete()
     return
