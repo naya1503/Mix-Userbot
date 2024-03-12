@@ -378,7 +378,7 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = parse_button(pm_text)
-    build_keyboard(button)
+    buttone = build_keyboard(button)
     keyboard = InlineKeyboard(row_width=2)
     keyboard.add(InlineKeyboardMarkup(buttone))
     keyboard.row(
