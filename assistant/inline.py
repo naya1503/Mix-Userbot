@@ -236,6 +236,7 @@ async def _(c, iq):
         ]
     await c.answer_inline_query(iq.id, cache_time=300, results=duar)
 
+
 """
 # pmpermit
 @ky.inline("^ambil_tombolpc")
@@ -369,6 +370,7 @@ def cb_permit():
         "close_asst",
     )
 
+
 # pmpermit
 @ky.inline("^ambil_tombolpc")
 async def _(c, iq):
@@ -419,7 +421,7 @@ async def _(c, iq):
                     **url_ling,
                     title="PIC Buttons !",
                     caption=kiki,
-                    #reply_markup=InlineKeyboardMarkup(button),
+                    # reply_markup=InlineKeyboardMarkup(button),
                     reply_markup=buttons,
                 )
             ]
@@ -429,7 +431,7 @@ async def _(c, iq):
                     InlineQueryResultArticle(
                         title="Tombol PM!",
                         input_message_content=InputTextMessageContent(kiki),
-                        #reply_markup=InlineKeyboardMarkup(button),
+                        # reply_markup=InlineKeyboardMarkup(button),
                         reply_markup=buttons,
                     )
                 )
