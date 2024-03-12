@@ -7,11 +7,10 @@
 ################################################################
 
 import os
-
-from SafoneAPI import SafoneAPI
-from pyrogram.types import InputMediaPhoto
-import os
 from io import BytesIO
+
+from pyrogram.types import InputMediaPhoto
+from SafoneAPI import SafoneAPI
 
 from Mix import *
 
@@ -51,7 +50,7 @@ async def _(c, m):
         text = m.text.split(None, 1)[1]
     prose = await m.reply(cgr("proses").format(em.proses))
     try:
-        meko = await nulis(text)
+        await nulis(text)
     except Exception as er:
         await m.reply(cgr("err").format(em.gagal, er))
         return
