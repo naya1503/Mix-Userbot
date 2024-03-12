@@ -383,7 +383,7 @@ def cb_permit():
 async def _(c, iq):
     org = iq.query.split()
     gw = iq.from_user.id
-    getpm_txt = udB.get_var(gw, "PMTEXT")
+    udB.get_var(gw, "PMTEXT")
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     kiki = None
