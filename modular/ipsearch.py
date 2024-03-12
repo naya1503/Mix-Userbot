@@ -71,7 +71,7 @@ async def _(c: user, m):
     try:
         res = await http.get(f"https://ipinfo.io/{ip_address}/json", timeout=5)
     except asyncio.TimeoutError:
-        return await msg.edit(f"{em.gagal} Timeout Error!!"
+        return await msg.edit(f"{em.gagal} Timeout Error!!")
     except Exception as e:
         return await msg.edit(cgr("err").format(em.gagal, e))
     hostname = res.get("hostname", "N/A")
