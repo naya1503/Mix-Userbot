@@ -364,17 +364,7 @@ def cb_permit():
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     teks, button = parse_button(pm_text)
     button = build_keyboard(button)
-    keyboard = InlineKeyboard(row_width=2)
-    keyboard.add(button)
-    keyboard.row(
-        InlineKeyboardButton(
-            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
-        ),
-        InlineKeyboardButton(
-            text="Hapus + Blokir",
-            callback_data=f"pmpermit block {int(org[1])}",
-        ),
-    )
+    
     return keyboard
 
 
@@ -388,6 +378,17 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = parse_button(pm_text)
+    keyboard = InlineKeyboard(row_width=2)
+    keyboard.add(button)
+    keyboard.row(
+        InlineKeyboardButton(
+            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
+        ),
+        InlineKeyboardButton(
+            text="Hapus + Blokir",
+            callback_data=f"pmpermit block {int(org[1])}",
+        ),
+    )
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
@@ -426,7 +427,7 @@ async def _(c, iq):
                     title="PIC Buttons !",
                     caption=kiki,
                     # reply_markup=InlineKeyboardMarkup(button),
-                    reply_markup=cb_permit(),
+                    reply_markup=keyboard,
                 )
             ]
         else:
@@ -436,7 +437,7 @@ async def _(c, iq):
                         title="Tombol PM!",
                         input_message_content=InputTextMessageContent(kiki),
                         # reply_markup=InlineKeyboardMarkup(button),
-                        reply_markup=cb_permit(),
+                        reply_markup=keyboard,
                     )
                 )
             ]
