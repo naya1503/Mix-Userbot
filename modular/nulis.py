@@ -38,5 +38,5 @@ async def _(c, m):
     else:
         text = m.text.split(None, 1)[1]
     meko = await nulis(text)
-    await m.reply_photo(meko)
+    await m.reply_media_group([meko], reply_to_message_id=ReplyCheck(m))
     os.remove(meko)
