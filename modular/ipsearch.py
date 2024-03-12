@@ -29,9 +29,9 @@ async def _(c: user, m):
     if len(m.command) == 1 and not rep:
         return await m.reply_text(f"{em.gagal} **Kasih kota nya Kontol!!**")
     if rep:
-        ipf = m.command[1]
-    else:
         ipf = rep.text
+    else:
+        ipf = m.command[1]
     msg = await m.reply_text(cgr("proses").format(em.proses))
     try:
         meki = SafoneAPI()
@@ -64,9 +64,9 @@ async def _(c: user, m):
     if len(m.command) == 1 and not rep:
         return await m.reply_text(f"{em.gagal} **Kasih Ip nya Kontol!!**")
     if rep:
-        ip_address = m.command[1]
-    else:
         ip_address = rep.text
+    else:
+        ip_address = m.command[1]
     msg = await m.reply_text(cgr("proses").format(em.proses))
     try:
         res = await http.get(f"https://ipinfo.io/{ip_address}/json", timeout=5)
