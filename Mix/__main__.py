@@ -10,6 +10,8 @@ from assistant import BOT_PLUGINS
 from Mix import *
 from modular import USER_MOD
 
+loop = asyncio.get_event_loop_policy()
+event_loop = loop.get_event_loop()
 
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
@@ -60,5 +62,5 @@ async def starter():
 
 if __name__ == "__main__":
     uvloop.install()
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(starter())
+    asyncio.set_event_loop(event_loop)
+    event_loop.run_until_complete(starter())
