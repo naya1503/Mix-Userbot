@@ -24,9 +24,9 @@ async def _(_, m):
     puki = await user.extract_user(m)
     rep = m.reply_to_message
     mek = await m.reply(cgr("proses").format(em.proses))
-    who = (await user.get_users(puki)).id
     if len(m.command) == 1 and rep:
         try:
+            who = (await user.get_users(puki)).id
             info = await user.resolve_peer(who)
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
         except PeerIdInvalid:
@@ -36,11 +36,11 @@ async def _(_, m):
         tag = m.command[1].strip()
         if tag.startswith("@") or tag.isnumeric() and not rep:
             try:
-                info = await user.resolve_peer(who)
+                info = await user.resolve_peer(tag)
                 await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
             except PeerIdInvalid:
                 pass
-            await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
+            await m.reply(f"{em.sukses} **Mampus lu jing {tag}!! Gw EndChat!!**")
         elif tag == "all":
             biji = await refresh_dialog("users")
             for kelot in biji:
