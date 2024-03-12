@@ -379,6 +379,7 @@ async def _(c, iq):
             callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
+    full = f"{iq.from_user.first_name} {iq.from_user.last_name or ''}"
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
@@ -390,9 +391,9 @@ async def _(c, iq):
                 await m.delete()
         kiki = PM_WARN.format(
             user.me.first_name,
+            teks.format(full),
             flood2[int(org[1])],
             pm_warns,
-            teks.format(bot.me.first_name),
         )
         if flood2[int(org[1])] > pm_warns:
             await user.send_message(int(org[1]), "Spam Terdeteksi !!! Blokir.")
