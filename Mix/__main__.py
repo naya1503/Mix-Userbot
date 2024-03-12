@@ -4,7 +4,7 @@ import sys
 
 from pyrogram import *
 from pyrogram.errors import *
-
+import uvloop
 from assistant import BOT_PLUGINS
 from Mix import *
 from modular import USER_MOD
@@ -58,5 +58,6 @@ async def starter():
 
 
 if __name__ == "__main__":
+    uvloop.install()
     loop = asyncio.get_event_loop()
     loop.run_until_complete(starter())
