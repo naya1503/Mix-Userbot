@@ -24,12 +24,12 @@ async def _(_, m):
     puki = await user.extract_user(m)
     rep = m.reply_to_message
     mek = await m.reply(cgr("proses").format(em.proses))
-    if rep:
-        who = (await user.get_users(puki)).id
-    else:
-        who = m.text.split(None, 1)[1]
     if len(m.command) < 2 and not rep:
         await m.reply("**Kasih argumen Goblok**")
+    if rep:
+        who = rep.from_user.id
+    else:
+        who = m.text.split(None, 1)[1]
     elif len(m.command) == 1 and rep:
         try:
             info = await user.resolve_peer(who)
