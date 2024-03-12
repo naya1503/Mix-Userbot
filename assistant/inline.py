@@ -380,7 +380,7 @@ async def _(c, iq):
     teks, button = parse_button(pm_text)
     buttone = build_keyboard(button)
     keyboard = InlineKeyboard(row_width=2)
-    keyboard.add(buttone)
+    #keyboard.add(buttone)
     keyboard.row(
         InlineKeyboardButton(
             text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
