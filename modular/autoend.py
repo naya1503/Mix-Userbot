@@ -43,6 +43,15 @@ async def _(_, m):
                 except PeerIdInvalid:
                     continue
             await m.reply(f"{em.sukses} **Mampus {len(biji)} pesan Gw EndChat!!**")
+        elif m.command[1].strip().lower() == "bot":
+            biji = await refresh_dialog("bot")
+            for kelot in biji:
+                try:
+                    info = await user.resolve_peer(kelot)
+                    await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+                except PeerIdInvalid:
+                    continue
+            await m.reply(f"{em.sukses} **Mampus {len(biji)} pesan Gw EndChat!!**")
         else:
             who = m.text.split(None, 1)[1]
             try:
