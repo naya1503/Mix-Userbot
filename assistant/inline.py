@@ -366,7 +366,7 @@ def kb_permit():
     teks, buttons = parse_button(pm_text)
     keyboard = InlineKeyboard(row_width=2)
     for bt_txt, bt_url, _ in buttons:
-        keyboard.add(InlineKeyboardButton(text=bt_txt, url=bt_url))
+        keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
     keyboard.row(
         InlineKeyboardButton(
             text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
