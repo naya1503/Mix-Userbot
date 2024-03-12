@@ -382,7 +382,14 @@ async def _(c, iq):
     pm_warns = getpm_warns if getpm_warns else LIMIT
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     buttons = InlineKeyboard(row_width=2)
-    buttons.add(cb_permit())
+    buttons.add(
+        InlineKeyboardButton(
+            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
+        ),
+        InlineKeyboardButton(
+            text="Hapus + Blokir",
+            callback_data=f"pmpermit block {int(org[1])}",
+        ))
     teks, button = parse_button(pm_text)
     button = build_keyboard(button)
     kiki = None
