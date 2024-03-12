@@ -431,7 +431,7 @@ async def _(c, iq):
                     title="PIC Buttons !",
                     caption=kiki,
                     # reply_markup=InlineKeyboardMarkup(button),
-                    reply_markup=InlineKeyboardMarkup(buttons),
+                    reply_markup=buttons,
                 )
             ]
         else:
@@ -441,7 +441,7 @@ async def _(c, iq):
                         title="Tombol PM!",
                         input_message_content=InputTextMessageContent(kiki),
                         # reply_markup=InlineKeyboardMarkup(button),
-                        reply_markup=InlineKeyboardMarkup(buttons),
+                        reply_markup=buttons,
                     )
                 )
             ]
