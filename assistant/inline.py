@@ -374,11 +374,11 @@ async def _(c, iq):
         keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
     keyboard.row(
         InlineKeyboardButton(
-            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
+            text="Setujui", callback_data=f"pm_ okein {int(org[1])}"
         ),
         InlineKeyboardButton(
             text="Hapus + Blokir",
-            callback_data=f"pmpermit block {int(org[1])}",
+            callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
     kiki = None
