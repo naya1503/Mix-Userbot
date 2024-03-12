@@ -360,16 +360,12 @@ async def _(c, iq):
 
 
 def cb_permit():
-    return okb(
-        [
-            [
-                ("Setujui", "pmpermit.okya"),
-                ("Blokir", "pmpermit.diblok"),
-            ],
-        ],
-        False,
-        "close_asst",
-    )
+    getpm_txt = udB.get_var(user.me.id, "PMTEXT")
+    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
+    teks, button = parse_button(pm_text)
+    button = build_keyboard(button)
+
+    return keyboard
 
 
 # pmpermit
@@ -377,14 +373,23 @@ def cb_permit():
 async def _(c, iq):
     org = iq.query.split()
     gw = iq.from_user.id
-    getpm_txt = udB.get_var(gw, "PMTEXT")
+    getpm_txt = udB.get_var(user.me.id, "PMTEXT")
+    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
-    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
-    buttons = InlineKeyboard(row_width=2)
-    buttons.add(cb_permit())
     teks, button = parse_button(pm_text)
-    button = build_keyboard(button)
+    build_keyboard(button)
+    keyboard = InlineKeyboard(row_width=2)
+    # keyboard.add(buttone)
+    keyboard.row(
+        InlineKeyboardButton(
+            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
+        ),
+        InlineKeyboardButton(
+            text="Hapus + Blokir",
+            callback_data=f"pmpermit block {int(org[1])}",
+        ),
+    )
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
@@ -423,7 +428,7 @@ async def _(c, iq):
                     title="PIC Buttons !",
                     caption=kiki,
                     # reply_markup=InlineKeyboardMarkup(button),
-                    reply_markup=buttons,
+                    reply_markup=keyboard,
                 )
             ]
         else:
@@ -433,7 +438,7 @@ async def _(c, iq):
                         title="Tombol PM!",
                         input_message_content=InputTextMessageContent(kiki),
                         # reply_markup=InlineKeyboardMarkup(button),
-                        reply_markup=buttons,
+                        reply_markup=keyboard,
                     )
                 )
             ]
