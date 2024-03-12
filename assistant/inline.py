@@ -390,7 +390,8 @@ async def _(c, iq):
     teks, button = parse_button(pm_text)
     button = build_keyboard(button)
     keyboard = InlineKeyboard(row_width=2)
-    keyboard.add(InlineKeyboardMarkup(button))
+    for bt_txt, bt_url, _ in button:
+        keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
     keyboard.row(
         InlineKeyboardButton(
             text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
@@ -438,7 +439,7 @@ async def _(c, iq):
                     title="PIC Buttons !",
                     caption=kiki,
                     # reply_markup=InlineKeyboardMarkup(button),
-                    reply_markup=kb_permit,
+                    reply_markup=kb_permit(),
                 )
             ]
         else:
@@ -448,7 +449,7 @@ async def _(c, iq):
                         title="Tombol PM!",
                         input_message_content=InputTextMessageContent(kiki),
                         # reply_markup=InlineKeyboardMarkup(button),
-                        reply_markup=kb_permit,
+                        reply_markup=kb_permit(),
                     )
                 )
             ]
