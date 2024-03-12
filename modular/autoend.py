@@ -21,11 +21,12 @@ __help__ = "AutoEndChat"
 async def _(_, m):
     em = Emojik()
     em.initialize()
-    mek = await m.reply(cgr("proses").format(em.proses))
-    if len(m.command) < 2:
-        await m.reply("**Kasih argumen Goblok**")
     tag = m.command[1].strip()
     puki = await user.extract_user(m)
+    rep = m.reply_to_message
+    mek = await m.reply(cgr("proses").format(em.proses))
+    if len(m.command) < 2 and not rep:
+        await m.reply("**Kasih argumen Goblok**")
     try:
         who = (await user.get_users(puki)).id
     except Exception:
@@ -33,14 +34,20 @@ async def _(_, m):
             who = int(m.command[1])
         except Exception as err:
             return await m.reply(cgr("err").format(em.gagal, err))
-    mention = (await user.get_users(puki)).id
-    if tag.startswith("@") or tag.isnumeric():
+    if len(m.command) == 1 and rep:
         try:
             info = await user.resolve_peer(who)
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
         except PeerIdInvalid:
             pass
-        await m.reply(f"{em.sukses} **Mampus lu jing {mention}!! Gw EndChat!!**")
+        await m.reply(f"{em.sukses} **Mampus lu jing {org}!! Gw EndChat!!**")
+    if tag.startswith("@") or tag.isnumeric() and not rep:
+        try:
+            info = await user.resolve_peer(who)
+            await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+        except PeerIdInvalid:
+            pass
+        await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
     elif tag == "all":
         biji = await refresh_dialog("users")
         for kelot in biji:
