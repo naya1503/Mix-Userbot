@@ -23,7 +23,7 @@ async def nulis(text):
     for i, img in enumerate(imgs):
         img_path = f"img{i}.png"
         with open(img_path, "wb") as file:
-            file.write(img.getvalue())
+            file.write(img)
         img_paths.append(img_path)
     return img_paths
 
