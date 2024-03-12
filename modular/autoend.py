@@ -33,7 +33,7 @@ async def _(_, m):
             who = int(m.command[1])
         except Exception as err:
             return await m.reply(cgr("err").format(em.gagal, err))
-    mention = (await user.get_users(puki)).mention
+    mention = (await user.get_users(puki)).id
     if tag.startswith("@") or tag.isnumeric():
         try:
             info = await user.resolve_peer(who)
