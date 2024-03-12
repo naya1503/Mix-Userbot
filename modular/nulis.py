@@ -7,11 +7,10 @@
 ################################################################
 
 import os
-
-from SafoneAPI import SafoneAPI
-from pyrogram.types import InputMediaPhoto
-import os
 from io import BytesIO
+
+from pyrogram.types import InputMediaPhoto
+from SafoneAPI import SafoneAPI
 
 from Mix import *
 
