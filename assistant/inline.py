@@ -373,9 +373,7 @@ async def _(c, iq):
     for bt_txt, bt_url, _ in button:
         keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
     keyboard.row(
-        InlineKeyboardButton(
-            text="Setujui", callback_data=f"pm_ okein {int(org[1])}"
-        ),
+        InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
         InlineKeyboardButton(
             text="Hapus + Blokir",
             callback_data=f"pm_ blokbae {int(org[1])}",
