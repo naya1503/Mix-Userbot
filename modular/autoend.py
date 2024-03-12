@@ -39,7 +39,7 @@ async def _(_, m):
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
         except PeerIdInvalid:
             pass
-        await m.reply(f"{em.sukses} **Mampus lu jing {org}!! Gw EndChat!!**")
+        await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
     elif len(m.command) > 2:
         tag = m.command[1].strip()
         if tag.startswith("@") or tag.isnumeric() and not rep:
