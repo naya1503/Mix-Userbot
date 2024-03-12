@@ -1,6 +1,7 @@
 import asyncio
 import sys
-
+import importlib
+from modular import USER_MOD
 from pyrogram import *
 from pyrogram.errors import *
 
