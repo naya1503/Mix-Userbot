@@ -21,7 +21,7 @@ __help__ = "AutoEndChat"
 async def _(_, m):
     em = Emojik()
     em.initialize()
-    puki = await user.extract_user(m)
+    await user.extract_user(m)
     rep = m.reply_to_message
     mek = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 2 and not rep:
