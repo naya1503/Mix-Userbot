@@ -12,14 +12,13 @@ import asyncio
 
 from pyrogram import *
 from pyrogram.types import *
+from SafoneAPI import SafoneAPI
 
 from Mix import *
 from Mix.core import http
-from SafoneAPI import SafoneAPI
 
 __modles__ = "IpSearch"
 __help__ = "IpSearch"
-
 
 
 @ky.ubot("ipf|ipfake", sudo=True)
@@ -45,7 +44,9 @@ async def _(c: user, m):
         output += f"Phone: {fkip['phone']}\n"
         output += f"Cell: {fkip['cell']}\n"
         output += f"Email: {fkip['email']}\n"
-        output += f"Location: {fkip['location']['city']}, {fkip['location']['country']}\n"
+        output += (
+            f"Location: {fkip['location']['city']}, {fkip['location']['country']}\n"
+        )
         output += f"State: {fkip['location']['state']}\n"
         output += f"Postcode: {fkip['location']['postcode']}\n"
         output += f"Timezone: {fkip['location']['timezone']['description']} ({fkip['location']['timezone']['offset']})\n"
@@ -53,7 +54,6 @@ async def _(c: user, m):
         return await msg.edit(cgr("err").format(em.gagal, er))
     await msg.edit(output)
     return
-
 
 
 @ky.ubot("ips|ipsearch|ip", sudo=True)
@@ -93,5 +93,3 @@ async def _(c: user, m):
         disable_web_page_preview=True,
     )
     return
-  
-  
