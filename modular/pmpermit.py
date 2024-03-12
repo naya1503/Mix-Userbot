@@ -150,7 +150,7 @@ async def formula(c: user, m):
 
 
 @ky.permit()
-async def _(c, m):
+async def _(c: user, m):
     await formula(c, m)
     em = Emojik()
     em.initialize()
@@ -161,14 +161,8 @@ async def _(c, m):
     in_user = m.from_user
     fsdj = udB.dicek_pc(chat_id)
     is_pm_guard_enabled = udB.get_var(user_id, "PMPERMIT")
-    getc_pm_txt = udB.get_var(user_id, "PMTEXT")
-    getc_pm_warns = udB.get_var(user_id, "PMLIMIT")
-    master = await c.get_me()
-    custom_pm_txt = getc_pm_txt if getc_pm_txt else DEFAULT_TEXT
-    custom_pm_warns = getc_pm_warns if getc_pm_warns else LIMIT
     if not is_pm_guard_enabled:
         return
-
     if fsdj:
         return
 
@@ -187,13 +181,7 @@ async def _(c, m):
         except BaseException:
             pass
         return
-    teks, button = parse_button(custom_pm_txt)
-    button = build_keyboard(button)
-    if button:
-        button = InlineKeyboardMarkup(button)
     else:
-        button = None
-    if button:
         try:
             x = await c.get_inline_bot_results(
                 bot.me.username, f"ambil_tombolpc {chat_id}"
@@ -204,8 +192,19 @@ async def _(c, m):
                 x.results[0].id,
                 reply_to_message_id=m.id,
             )
-        except:
-            pass
+        except Exception as er:
+            return await m.reply(cgr("err").format(em.gagal, er))
+      
+      
+    """
+    teks, button = parse_button(custom_pm_txt)
+    button = build_keyboard(button)
+    if button:
+        button = InlineKeyboardMarkup(button)
+    else:
+        button = None
+    if button:
+        
     else:
         gmbr = udB.get_var(user_id, "PMPIC")
         if gmbr:
@@ -275,3 +274,4 @@ async def _(c, m):
                     ),
                 )
             flood2[chat_id] = rplied_msg.id
+    """
