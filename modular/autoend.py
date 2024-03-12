@@ -36,7 +36,7 @@ async def _(_, m):
             pass
         await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
     elif len(m.command) > 2:
-        m.command[1].strip()
+        #tag = m.command[1].strip()
         if len(m.command) == 2 and not rep:
             try:
                 info = await user.resolve_peer(who)
