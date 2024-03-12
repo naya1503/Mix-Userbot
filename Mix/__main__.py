@@ -8,7 +8,7 @@ from assistant import bot_plugins
 from Mix import *
 
 
-async def test():
+async def starter():
     LOGGER.info(f"Check Updater...")
     await cek_updater()
     LOGGER.info(f"Updater Finished...")
@@ -18,16 +18,15 @@ async def test():
     try:
         LOGGER.info(f"Starting Telegram Client...")
         await user.start()
-        await refresh_modules()
-    except SessionExpired:
-        LOGGER.info("Session Expired . Create New Session")
-        sys.exit(1)
-    except ApiIdInvalid:
-        LOGGER.info("Api ID Not Valid.")
-        sys.exit(1)
-    except UserDeactivatedBan:
-        LOGGER.info("Huahahahaha Akun Lu Ke Deak Cokk.")
-        sys.exit(1)
+        LOGGER.info(f"Importing All Modules...")
+        for modul in USER_MOD:
+            imported_module = importlib.import_module(f"modular.{modul}")
+            if hasattr(imported_module, "__modles__") and imported_module.__modles__:
+                  imported_module.__modles__ = imported_module.__modles__
+                  if hasattr(imported_module, "__help__") and imported_module.__help__:
+                      CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = imported_module
+    except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
+        LOGGER.info("Check your session or api id!!")
     if bot_token is None:
         await autobot()
         await asyncio.sleep(1)
@@ -35,34 +34,17 @@ async def test():
         await bot.start()
         await bot_plugins()
         await asyncio.sleep(1)
-    except AccessTokenExpired:
+    except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
         sys.exit(1)
-    except SessionRevoked:
-        LOGGER.info("Token Revoked.")
-        sys.exit(1)
-    except AccessTokenInvalid:
-        LOGGER.info("Token Invalid, Try again.")
-        sys.exit(1)
-
-
-async def main():
-    await test()
-    try:
-        await refresh_cache()
-        await check_logger()
-        LOGGER.info(f"Check Finished.")
-        LOGGER.info(f"Modules Imported...")
-        LOGGER.info("Successfully Started Userbot.")
-        await getFinish()
-        await isFinish()
-        if "test" not in sys.argv:
-            await idle()
-    except KeyboardInterrupt:
-        LOGGER.warning("BOT STOP....")
-    finally:
-        await aiohttpsession.close()
-
+    await refresh_cache()
+    await check_logger()
+    await getFinish()
+    LOGGER.info("Successfully Started Userbot.")
+    await isFinish()
+    await idle()
+    await aiohttpsession.close()
+    
 
 if __name__ == "__main__":
-    loop.run_until_complete(main())
+    loop.run_until_complete(starter())
