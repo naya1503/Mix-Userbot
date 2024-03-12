@@ -28,7 +28,7 @@ async def _(_, m):
     if tag.startswith("@"):
         user_id = tag[1:]
         try:
-            org = await c.get_users(user_id)
+            org = await user.get_users(user_id)
         except Exception as e:
             await m.reply(cgr("err").format(em.gagal, e))
         info = await user.resolve_peer(org)
@@ -38,7 +38,7 @@ async def _(_, m):
         if int(tag):
             user_id = tag[1:]
             try:
-                org = await c.get_users(user_id)
+                org = await user.get_users(user_id)
             except Exception as e:
                 await m.reply(cgr("err").format(em.gagal, e))
             info = await user.resolve_peer(org)
