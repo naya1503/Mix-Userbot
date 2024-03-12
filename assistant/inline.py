@@ -360,16 +360,22 @@ async def _(c, iq):
 
 
 def cb_permit():
-    return okb(
-        [
-            [
-                ("Setujui", "pmpermit.okya"),
-                ("Blokir", "pmpermit.diblok"),
-            ],
-        ],
-        False,
-        "close_asst",
+    getpm_txt = udB.get_var(user.me.id, "PMTEXT")
+    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
+    teks, button = parse_button(pm_text)
+    button = build_keyboard(button)
+    keyboard = InlineKeyboard(row_width=2)
+    keyboard.add(button)
+    keyboard.row(
+        InlineKeyboardButton(
+            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
+        ),
+        InlineKeyboardButton(
+            text="Hapus + Blokir",
+            callback_data=f"pmpermit block {int(org[1])}",
+        ),
     )
+    return keyboard
 
 
 # pmpermit
@@ -380,19 +386,6 @@ async def _(c, iq):
     getpm_txt = udB.get_var(gw, "PMTEXT")
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
-    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
-    buttons = InlineKeyboard(row_width=2)
-    buttons.add(
-        InlineKeyboardButton(
-            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
-        ),
-        InlineKeyboardButton(
-            text="Hapus + Blokir",
-            callback_data=f"pmpermit block {int(org[1])}",
-        ),
-    )
-    teks, button = parse_button(pm_text)
-    button = build_keyboard(button)
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
