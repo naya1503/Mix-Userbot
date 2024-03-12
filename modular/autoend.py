@@ -17,7 +17,7 @@ __modles__ = "AutoEndChat"
 __help__ = "AutoEndChat"
 
 
-@ky.ubot("autoread", sudo=True)
+@ky.ubot("clearchat|endchat|clchat", sudo=True)
 async def _(_, m):
     em = Emojik()
     em.initialize()
