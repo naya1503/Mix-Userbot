@@ -16,9 +16,3 @@ def __list_all_modules():
 
 BOT_PLUGINS = sorted(__list_all_modules())
 __all__ = BOT_PLUGINS + ["BOT_PLUGINS"]
-
-
-async def bot_plugins():
-    for plus in BOT_PLUGINS:
-        imported_module = importlib.import_module("assistant." + plus)
-        importlib.reload(imported_module)
