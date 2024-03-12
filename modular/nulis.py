@@ -9,6 +9,9 @@
 import os
 
 from SafoneAPI import SafoneAPI
+from pyrogram.types import InputMediaPhoto
+import os
+from io import BytesIO
 
 from Mix import *
 
@@ -19,13 +22,22 @@ __help__ = "Nulis"
 async def nulis(text):
     meki = SafoneAPI()
     imgs = await meki.write(text)
-    img_paths = []
+    media = []
+
+    if isinstance(imgs, BytesIO):
+        img_paths = ["nulis.png"]
+    else:
+        img_paths = [f"nulis_{i+1}.png" for i in range(len(imgs))]
+
+    if isinstance(imgs, BytesIO):
+        imgs = [imgs]
+
     for i, img in enumerate(imgs):
-        img_path = f"img{i}.png"
+        img_path = img_paths[i]
         with open(img_path, "wb") as file:
-            file.write(img)
-        img_paths.append(img_path)
-    return img_paths
+            file.write(img.getvalue())
+        media.append(InputMediaPhoto(img_path))
+    return media
 
 
 @ky.ubot("nulis|write", sudo=True)
@@ -37,6 +49,17 @@ async def _(c, m):
         text = rep.text or rep.caption
     else:
         text = m.text.split(None, 1)[1]
-    meko = await nulis(text)
-    await m.reply_photo(photo=meko[0], reply_to_message_id=ReplyCheck(m))
-    os.remove(meko)
+    prose = await m.reply(cgr("proses").format(em.proses))
+    try:
+        meko = await nulis(text)
+    except Exception as er:
+        await m.reply(cgr"err").format(em.gagal, er))
+        return
+    await m.reply_media_group(mekk)
+    await prose.delete()
+    try:
+        for mm in mekk:
+            os.remove(mm.media)
+    except:
+        pass
+    return
