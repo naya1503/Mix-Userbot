@@ -2,9 +2,10 @@ import asyncio
 import importlib
 import sys
 
+import uvloop
 from pyrogram import *
 from pyrogram.errors import *
-import uvloop
+
 from assistant import BOT_PLUGINS
 from Mix import *
 from modular import USER_MOD
