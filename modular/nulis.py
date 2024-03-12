@@ -7,10 +7,11 @@
 ################################################################
 
 import os
-from io import BytesIO
 
-from pyrogram.types import InputMediaPhoto
 from SafoneAPI import SafoneAPI
+from pyrogram.types import InputMediaPhoto
+import os
+from io import BytesIO
 
 from Mix import *
 
@@ -50,11 +51,11 @@ async def _(c, m):
         text = m.text.split(None, 1)[1]
     prose = await m.reply(cgr("proses").format(em.proses))
     try:
-        await nulis(text)
+        meko = await nulis(text)
     except Exception as er:
         await m.reply(cgr("err").format(em.gagal, er))
         return
-    await m.reply_media_group(mekk)
+    await m.reply_media_group(meko)
     await prose.delete()
     try:
         for mm in mekk:
