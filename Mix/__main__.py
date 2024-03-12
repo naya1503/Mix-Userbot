@@ -22,9 +22,11 @@ async def starter():
         for modul in USER_MOD:
             imported_module = importlib.import_module(f"modular.{modul}")
             if hasattr(imported_module, "__modles__") and imported_module.__modles__:
-                  imported_module.__modles__ = imported_module.__modles__
-                  if hasattr(imported_module, "__help__") and imported_module.__help__:
-                      CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = imported_module
+                imported_module.__modles__ = imported_module.__modles__
+                if hasattr(imported_module, "__help__") and imported_module.__help__:
+                    CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (
+                        imported_module
+                    )
     except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
         LOGGER.info("Check your session or api id!!")
     if bot_token is None:
@@ -44,7 +46,7 @@ async def starter():
     await isFinish()
     await idle()
     await aiohttpsession.close()
-    
+
 
 if __name__ == "__main__":
     loop.run_until_complete(starter())
