@@ -364,7 +364,6 @@ def kb_permit():
     getpm_txt = udB.get_var(user.me.id, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     teks, buttons = parse_button(pm_text)
-    keyboard = InlineKeyboard(row_width=2)
     for bt_txt, bt_url, _ in buttons:
         keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
     keyboard.row(
