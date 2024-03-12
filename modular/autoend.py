@@ -43,7 +43,7 @@ async def _(_, m):
             except PeerIdInvalid:
                 pass
             await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
-        elif m.command[1] == "all":
+        elif len(m.command) == 2 and m.command[1] == "all":
             biji = await refresh_dialog("users")
             for kelot in biji:
                 try:
