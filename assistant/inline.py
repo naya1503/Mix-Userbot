@@ -359,15 +359,6 @@ async def _(c, iq):
         )
 
 
-def cb_permit():
-    getpm_txt = udB.get_var(user.me.id, "PMTEXT")
-    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
-    teks, button = parse_button(pm_text)
-    button = build_keyboard(button)
-
-    return keyboard
-
-
 # pmpermit
 @ky.inline("^ambil_tombolpc")
 async def _(c, iq):
@@ -378,18 +369,17 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = parse_button(pm_text)
-    build_keyboard(button)
     keyboard = InlineKeyboard(row_width=2)
-    # keyboard.add(buttone)
+    for bt_txt, bt_url, _ in button:
+        keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
     keyboard.row(
+        InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
         InlineKeyboardButton(
-            text="Setujui", callback_data=f"pmpermit approve {int(org[1])}"
-        ),
-        InlineKeyboardButton(
-            text="Hapus + Blokir",
-            callback_data=f"pmpermit block {int(org[1])}",
+            text="Blokir",
+            callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
+    full = f"{iq.from_user.first_name} {iq.from_user.last_name or ''}"
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
@@ -401,9 +391,9 @@ async def _(c, iq):
                 await m.delete()
         kiki = PM_WARN.format(
             user.me.first_name,
+            teks.format(full),
             flood2[int(org[1])],
             pm_warns,
-            teks.format(bot.me.first_name),
         )
         if flood2[int(org[1])] > pm_warns:
             await user.send_message(int(org[1]), "Spam Terdeteksi !!! Blokir.")

@@ -13,6 +13,7 @@ import psutil
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
+from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
 
 from Mix import *
@@ -29,6 +30,37 @@ def clbk_stasm():
         False,
         "close_asst",
     )
+
+
+@ky.callback("pm_")
+async def _(c, cq):
+    org = cq.from_user.id
+    data, sapa = (
+        cq.data.split(None, 2)[1],
+        cq.data.split(None, 2)[2],
+    )
+    if data == "okein":
+        if org != user.me.id:
+            return await cq.answer("This Button Not For You FCVK !!!!", True)
+        udB.oke_pc(int(sapa))
+        return await bot.edit_inline_text(
+            cq.inline_message_id, "User Has Been Approved To PM."
+        )
+
+    if data == "blokbae":
+        if org != user.me.id:
+            return await cq.answer("This Button Not For You FCVK !!!!", True)
+        await bot.edit_inline_text(
+            cq.inline_message_id, "Successfully blocked the user."
+        )
+        await user.block_user(int(sapa))
+        return await user.invoke(
+            DeleteHistory(
+                peer=(await user.resolve_peer(sapa)),
+                max_id=0,
+                revoke=False,
+            )
+        )
 
 
 @ky.callback(("stats_mix"))

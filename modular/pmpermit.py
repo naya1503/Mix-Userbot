@@ -181,19 +181,11 @@ async def _(c: user, m):
         except BaseException:
             pass
         return
-    else:
-        try:
-            x = await c.get_inline_bot_results(
-                bot.me.username, f"ambil_tombolpc {chat_id}"
-            )
-            await c.send_inline_bot_result(
-                m.chat.id,
-                x.query_id,
-                x.results[0].id,
-                reply_to_message_id=m.id,
-            )
-        except Exception as er:
-            return await m.reply(cgr("err").format(em.gagal, er))
+    x = await c.get_inline_bot_results(bot.me.username, f"ambil_tombolpc {chat_id}")
+    await c.send_inline_bot_result(
+        m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
+    )
+    return
 
     """
     teks, button = parse_button(custom_pm_txt)
