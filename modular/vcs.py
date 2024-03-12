@@ -1,3 +1,4 @@
+import asyncio
 from contextlib import suppress
 from random import randint
 from typing import Optional
@@ -9,12 +10,9 @@ from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
                                           EditGroupCallTitle)
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
-from pytgcalls.exceptions import AlreadyJoinedError
-from pytgcalls.types.input_stream import InputAudioStream, InputStream
 
 from Mix import *
 
-turun_dewek = False
 
 __modles__ = "Voicechat"
 
@@ -103,7 +101,6 @@ async def _(c: user, m):
 @ky.ubot("joinvc", sudo=True)
 @ky.devs("Jvcs")
 async def _(c: user, m):
-    # global turun_dewek
     em = Emojik()
     em.initialize()
 
@@ -114,21 +111,10 @@ async def _(c: user, m):
     if chat_id:
         file = "Mix/core/vc.mp3"
         try:
-            # daftar_join.append(chat_id)
-            # if turun_dewek:
-            # turun_dewek = False
-            await c.call_py.join_group_call(
-                chat_id,
-                InputStream(
-                    InputAudioStream(
-                        file,
-                    ),
-                ),
-            )
+            await c.vc.start(chat_id)
             await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
-            return
-        except AlreadyJoinedError:
-            await ky.edit(cgr("vc_8").format(em.gagal))
+            await asyncio.sleep(2)
+            await c.vc.set_is_mute(True)
             return
         except Exception as e:
             return await ky.edit(cgr("err").format(em.gagal, e))
@@ -137,7 +123,6 @@ async def _(c: user, m):
 @ky.ubot("leavevc", sudo=True)
 @ky.devs("Lvcs")
 async def _(c: user, m):
-    # global turun_dewek
     em = Emojik()
     em.initialize()
 
@@ -147,9 +132,7 @@ async def _(c: user, m):
         chat_id = int(chat_id)
     if chat_id:
         try:
-
-            await c.call_py.leave_group_call(chat_id)
-            # turun_dewek = True
+            await c.vc.stop()
             await ky.edit(cgr("vc_9").format(em.sukses, chat_id))
             return
         except Exception as e:
