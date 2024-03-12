@@ -28,7 +28,9 @@ async def _(_, m):
         who = (await user.get_users(puki)).id
     else:
         who = m.text.split(None, 1)[1]
-    if len(m.command) == 1 and rep:
+    if len(m.command) < 2 and not rep:
+        await m.reply("**Kasih argumen Goblok**")
+    elif len(m.command) == 1 and rep:
         try:
             info = await user.resolve_peer(who)
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
