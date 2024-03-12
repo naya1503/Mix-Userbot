@@ -13,7 +13,6 @@ from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 
 from Mix import *
 
-
 __modles__ = "Voicechat"
 
 __help__ = get_cgr("help_vcs")
@@ -109,7 +108,6 @@ async def _(c: user, m):
     with suppress(ValueError):
         chat_id = int(chat_id)
     if chat_id:
-        file = "Mix/core/vc.mp3"
         try:
             await c.vc.start(chat_id)
             await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
