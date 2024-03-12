@@ -35,7 +35,7 @@ async def _(_, m):
         except PeerIdInvalid:
             pass
         await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
-    elif len(m.command) > 2:
+    else:
         # tag = m.command[1].strip()
         if len(m.command) == 2 and not rep:
             try:
