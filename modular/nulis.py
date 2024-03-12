@@ -53,7 +53,7 @@ async def _(c, m):
     try:
         meko = await nulis(text)
     except Exception as er:
-        await m.reply(cgr"err").format(em.gagal, er))
+        await m.reply(cgr("err").format(em.gagal, er))
         return
     await m.reply_media_group(mekk)
     await prose.delete()
