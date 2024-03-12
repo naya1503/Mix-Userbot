@@ -34,8 +34,11 @@ async def _(_, m):
         except Exception as err:
             return await m.reply(cgr("err").format(em.gagal, err))
     if tag.startswith("@") or tag.isnumeric():
-        info = await user.resolve_peer(who)
-        await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+        try:
+            info = await user.resolve_peer(who)
+            await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+        except PeerIdInvalid:
+                pass
         await m.reply(f"{em.sukses} **Mampus lu jing {who.mention}!! Gw EndChat!!**")
     elif tag == "all":
         biji = await refresh_dialog("users")
