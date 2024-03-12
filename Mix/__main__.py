@@ -1,12 +1,13 @@
 import asyncio
-import sys
 import importlib
-from modular import USER_MOD
+import sys
+
 from pyrogram import *
 from pyrogram.errors import *
 
 from assistant import bot_plugins
 from Mix import *
+from modular import USER_MOD
 
 
 async def starter():
