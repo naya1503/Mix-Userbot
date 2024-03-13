@@ -7,10 +7,11 @@
 ################################################################
 
 
-from time import time
 import asyncio
-import speedtest
+from time import time
+
 import psutil
+import speedtest
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -406,6 +407,7 @@ async def _(_, cq):
         )
         return
 
+
 def cb_tespeed():
     def speed_convert(size):
         power = 2**10
@@ -421,6 +423,7 @@ def cb_tespeed():
     download = speed.download()
     upload = speed.upload()
     return [speed_convert(download), speed_convert(upload), info]
+
 
 @ky.callback("^gasbalap")
 async def _(c, cq):
