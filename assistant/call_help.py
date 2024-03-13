@@ -451,7 +451,7 @@ async def _(c, cq):
     all_notes = udB.get_all_notes(user.me.id)
     matched_note = None
     for note_name, note_data in all_notes.items():
-        if not note_data.get("value", "").startswith(f"https://"):
+        if not note_data.get("value", "").startswith("https://"):
             matched_note = note_data
             break
     if matched_note is None:
