@@ -8,7 +8,8 @@
 
 
 from time import time
-
+import asyncio
+import speedtest
 import psutil
 from pyrogram import *
 from pyrogram.enums import *
@@ -404,3 +405,37 @@ async def _(_, cq):
             True,
         )
         return
+
+def cb_tespeed():
+    def speed_convert(size):
+        power = 2**10
+        zero = 0
+        units = {0: "", 1: "Kb/s", 2: "Mb/s", 3: "Gb/s", 4: "Tb/s"}
+        while size > power:
+            size /= power
+            zero += 1
+        return f"{round(size, 2)} {units[zero]}"
+
+    speed = speedtest.Speedtest()
+    info = speed.get_best_server()
+    download = speed.download()
+    upload = speed.upload()
+    return [speed_convert(download), speed_convert(upload), info]
+
+@ky.callback("^gasbalap")
+async def _(c, cq):
+    if cq.from_user.id != user.me.id
+        return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
+    cq_id = cq.inline_message_id
+    await bot.edit_inline_text(cq_id, "**Processing...**")
+    loop = asyncio.get_running_loop()
+    download, upload, info = await loop.run_in_executor(None, cb_tespeed)
+    msg = f"""
+**Download:** `{download}`
+**Upload:** `{upload}`
+**Latency:** `{info['latency']} ms`
+**Country:** `{info['country']} [{info['cc']}]`
+**Latitude:** `{info['lat']}`
+**Longitude:** `{info['lon']}`
+"""
+    await bot.edit_inline_text(cq_id, msg)
