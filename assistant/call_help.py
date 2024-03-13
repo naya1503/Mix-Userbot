@@ -466,21 +466,17 @@ async def _(c, cq):
                         cq.message.chat.id,
                         photo=biji,
                         caption=note,
-                        reply_markup=button
+                        reply_markup=button,
                     )
                 elif noteval["type"] == Types.VIDEO:
                     await c.send_video(
                         cq.message.chat.id,
                         video=biji,
                         caption=note,
-                        reply_markup=button
+                        reply_markup=button,
                     )
             elif noteval["type"] == Types.TEXT:
-                await c.send_message(
-                    cq.message.chat.id,
-                    text=note,
-                    reply_markup=button
-                )
+                await c.send_message(cq.message.chat.id, text=note, reply_markup=button)
             await cq.answer()
 
     except Exception as e:
