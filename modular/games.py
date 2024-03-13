@@ -8,12 +8,12 @@ from Mix import *
 async def _(c, m):
     six = (m.from_user.id in DEVS) if m.from_user else False
 
-    c = m.chat.id
+    chat = m.chat.id
     if not six:
-        return await c.send_dice(c, "🎲")
+        return await c.send_dice(chat, "🎲")
 
-    m = await c.send_dice(c, "🎲")
+    m = await c.send_dice(chat, "🎲")
 
     while m.dice.value != 6:
         await m.delete()
-        m = await c.send_dice(c, "🎲")
+        m = await c.send_dice(chat, "🎲")
