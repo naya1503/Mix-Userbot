@@ -54,15 +54,11 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     xx = m.reply_to_message
-
+    bt = None
+    button = text_keyb(ikb, xx.text)
     babi = await m.reply(cgr("proses").format(em.proses))
-    teks, button = parse_button(xx.text)
-    button = build_keyboard(button)
     if button:
-        button = InlineKeyboardMarkup(button)
-    else:
-        button = None
-    if button:
+        teks, bt = button
         try:
             x = await c.get_inline_bot_results(
                 bot.me.username, f"dibikin_button2 {id(m)}"
