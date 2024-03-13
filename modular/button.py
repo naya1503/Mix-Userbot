@@ -54,25 +54,26 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     xx = m.reply_to_message
-    bt = None
-    button = text_keyb(ikb, xx.text)
     babi = await m.reply(cgr("proses").format(em.proses))
-    if button:
-        teks, bt = button
-        try:
-            x = await c.get_inline_bot_results(
-                bot.me.username, f"dibikin_button2 {id(m)}"
-            )
-            await c.send_inline_bot_result(
-                m.chat.id,
-                x.query_id,
-                x.results[0].id,
-                reply_to_message_id=m.id,
-            )
+    if findall(r"\[.+\,.+\]", xx.text):
+        bt = None
+        button = text_keyb(ikb, xx.text)
+        if button:
+            teks, bt = button
+            try:
+                x = await c.get_inline_bot_results(
+                    bot.me.username, f"dibikin_button2 {id(m)}"
+                )
+                await c.send_inline_bot_result(
+                    m.chat.id,
+                    x.query_id,
+                    x.results[0].id,
+                    reply_to_message_id=m.id,
+                )
 
-        except Exception as e:
-            await babi.edit(cgr("err").format(em.gagal, e))
-            return
-    else:
-        await m.reply(cgr("butt_1").format(em.gagal))
+            except Exception as e:
+                await babi.edit(cgr("err").format(em.gagal, e))
+                return
+        else:
+            await m.reply(cgr("butt_1").format(em.gagal))
     await babi.delete()
