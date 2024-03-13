@@ -62,7 +62,7 @@ async def _(c: user, m):
             teks, bt = button
             try:
                 x = await c.get_inline_bot_results(
-                    bot.me.username, f"dibikin_button2 {id(m)}"
+                    bot.me.username, f"buat_button {id(m)}"
                 )
                 await c.send_inline_bot_result(
                     m.chat.id,
