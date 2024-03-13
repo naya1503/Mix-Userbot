@@ -16,7 +16,9 @@ __help__ = "Repository"
 
 @ky.ubot("repo|repository", sudo=True)
 async def repo(c, m):
-    link = await http.get("https://api.github.com/repos/naya1503/Mix-Userbot/contributors")
+    link = await http.get(
+        "https://api.github.com/repos/naya1503/Mix-Userbot/contributors"
+    )
     orgnya = "".join(
         f"**{count}.** [{org['login']}]({org['html_url']})\n"
         for count, org in enumerate(link, start=1)
