@@ -437,7 +437,7 @@ async def _(c, iq):
 
 @ky.inline("^speed")
 async def _(c, iq):
-    msg = "**Seberapa Cepat Lo Download Bokep!!**"
+    msg = "**Seberapa Cepat Kah??\nLo Download Bokep!!**"
     kb = okb([[("Klik Disini", "gasbalap")]])
     meki = [
         (
