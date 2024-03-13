@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 from gc import get_objects
 from time import time
-from re import findall
+
 from pykeyboard import InlineKeyboard
 from pyrogram import *
 from pyrogram.enums import *
@@ -47,6 +47,7 @@ async def _(c, iq):
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
+
 @ky.inline("^buat_button")
 async def _(c, iq):
     _id = int(iq.query.split()[1])
@@ -63,6 +64,7 @@ async def _(c, iq):
         )
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
+
 
 # markdown
 

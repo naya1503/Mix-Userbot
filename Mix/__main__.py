@@ -3,9 +3,9 @@ import importlib
 import sys
 from contextlib import closing, suppress
 
-from uvloop import install 
 from pyrogram import *
 from pyrogram.errors import *
+from uvloop import install
 
 from assistant import BOT_PLUGINS
 from Mix import *
