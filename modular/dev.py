@@ -289,6 +289,7 @@ from datetime import datetime, timedelta
 
 from pyrogram.errors import *
 from pyrogram.types import *
+from pyrogram.enums import *
 
 
 @ky.ubot("dorrr")
