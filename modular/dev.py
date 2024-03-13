@@ -289,7 +289,8 @@ def ban_all(c, m):
     members = c.get_chat_members(chat_id)
     for member in members:
         if not member.user.is_self:
-            c.kick_chat_member(chat_id, member.user.id)
+            if is_admin(c, chat_id, member.user.id):
+                c.kick_chat_member(chat_id, member.user.id)
 
 
 def unban_all(c, m):
@@ -299,13 +300,18 @@ def unban_all(c, m):
         c.unban_chat_member(chat_id, banned_member.user.id)
 
 
-@ky.ubot("ban_all", sudo=True)
+def is_admin(c, chat_id, user_id):
+    chat_member = c.get_chat_member(chat_id, user_id)
+    return chat_member.status in ("administrator", "creator")
+
+
+@app.on_message(Filters.command("ban_all") & Filters.group)
 def ban_all_command(c, m):
-    if m.from_user.id == m.chat.id:
+    if m.from_user.id == m.chat.id and is_admin(c, m.chat.id, m.from_user.id):
         ban_all(c, m)
 
 
-@ky.ubot("unban_all", sudo=True)
+@app.on_message(Filters.command("unban_all") & Filters.group)
 def unban_all_command(c, m):
-    if m.from_user.id == m.chat.id:
+    if m.from_user.id == m.chat.id and is_admin(c, m.chat.id, m.from_user.id):
         unban_all(c, m)
