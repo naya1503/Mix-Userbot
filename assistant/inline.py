@@ -47,7 +47,7 @@ async def _(c, iq):
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
-@ky.inline("^dibikin_button")
+@ky.inline("^dibikin_button2")
 async def _(c, iq):
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
