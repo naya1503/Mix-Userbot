@@ -440,10 +440,12 @@ async def _(c, iq):
     msg = "**Klik Disini Seberapa Cepat Lo Download Bokep!!**"
     kb = okb([[("Klik Disini", "gasbalap")]])
     meki = [
-        InlineQueryResultArticle(
-            title="Click Here",
-            input_message_content=InputTextMessageContent(msg),
-            reply_markup=kb,
+        (
+          InlineQueryResultArticle(
+              title="Click Here",
+              input_message_content=InputTextMessageContent(msg),
+              reply_markup=kb,
+          )
         )
-    )
+    ]
     await c.answer_inline_query(iq.id, cache_time=0, results=meki)
