@@ -293,8 +293,8 @@ from pyrogram.types import *
 
 @ky.ubot("dorrr")
 async def _(c, m):
-    chat = await cl.get_chat(chat_id=m.chat.id)
-    my = await chat.get_member(cl.me.id)
+    chat = await c.get_chat(chat_id=m.chat.id)
+    my = await chat.get_member(c.me.id)
     if my.privileges:
         if my.privileges.can_manage_chat and my.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
@@ -309,7 +309,7 @@ async def _(c, m):
             members_count = chat.members_count
             if members_count <= 200:
                 async for member in chat.get_members():
-                    if member.user.id == cl.me.id:
+                    if member.user.id == c.me.id:
                         continue
                     elif (
                         member.status == ChatMemberStatus.ADMINISTRATOR
@@ -329,7 +329,7 @@ async def _(c, m):
                 loops_count = round(loops_count)
                 for loop_num in range(loops_count):
                     async for member in chat.get_members():
-                        if member.user.id == cl.me.id:
+                        if member.user.id == c.me.id:
                             continue
                         elif (
                             member.status == ChatMemberStatus.ADMINISTRATOR
