@@ -305,13 +305,13 @@ def is_admin(c, chat_id, user_id):
     return chat_member.status in ("administrator", "creator")
 
 
-@app.on_message(Filters.command("ban_all") & Filters.group)
+@ky.ubot("ban_all")
 def ban_all_command(c, m):
     if m.from_user.id == m.chat.id and is_admin(c, m.chat.id, m.from_user.id):
         ban_all(c, m)
 
 
-@app.on_message(Filters.command("unban_all") & Filters.group)
+@ky.ubot("unban_all")
 def unban_all_command(c, m):
     if m.from_user.id == m.chat.id and is_admin(c, m.chat.id, m.from_user.id):
         unban_all(c, m)
