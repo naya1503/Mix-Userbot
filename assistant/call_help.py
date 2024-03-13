@@ -447,7 +447,7 @@ async def _(c, cq):
 
 @ky.callback("^nanlusxen.")
 async def _(c, cq):
-    callback_data = cq.data.split(".")[1]
+    cq.data.split(".")[1]
     all_notes = udB.get_all_notes(user.me.id)
     matched_note = None
     for note_name, note_data in all_notes.items():
