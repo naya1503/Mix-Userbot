@@ -33,12 +33,11 @@ async def _(c: user, m):
         return await xx.edit(cgr("nts_1").format(em.gagal, m.command))
 
     if data_type == Types.TEXT:
-        teks, _ = parse_button(text)
-        if not teks:
+        teks, _ = text_keyb(ikb, text)
             return await xx.edit(cgr("nts_2").format(em.gagal))
         udB.save_note(c.me.id, note_name, text, data_type, content)
     elif data_type in [Types.PHOTO, Types.VIDEO]:
-        teks, _ = parse_button(text)
+        teks, _ = text_keyb(ikb, text)
         file_type = "jpg" if data_type == Types.PHOTO else "mp4"
         xo = kontol_siapa(gua, file_type)
         mek = await c.download_media(cek, xo)
@@ -74,12 +73,7 @@ async def _(c: user, m):
         return await xx.edit(cgr("nts_5").format(em.gagal, note))
 
     if getnotes["type"] == Types.TEXT:
-        teks, button = parse_button(getnotes.get("value"))
-        button = build_keyboard(button)
-        if button:
-            button = InlineKeyboardMarkup(button)
-        else:
-            button = None
+        teks, button = text_keyb(ikb, getnotes.get("value"))
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
@@ -98,12 +92,7 @@ async def _(c: user, m):
             await m.reply(teks)
 
     elif getnotes["type"] == Types.PHOTO:
-        teks, button = parse_button(getnotes.get("value"))
-        button = build_keyboard(button)
-        if button:
-            button = InlineKeyboardMarkup(button)
-        else:
-            button = None
+        teks, button = text_keyb(ikb, getnotes.get("value"))
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
@@ -126,12 +115,7 @@ async def _(c: user, m):
                 reply_to_message_id=ReplyCheck(m),
             )
     elif getnotes["type"] == Types.VIDEO:
-        teks, button = parse_button(getnotes.get("value"))
-        button = build_keyboard(button)
-        if button:
-            button = InlineKeyboardMarkup(button)
-        else:
-            button = None
+        teks, button = text_keyb(ikb, getnotes.get("value"))
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
@@ -179,16 +163,7 @@ async def _(c: user, m):
             reply_to_message_id=ReplyCheck(m),
         )
     else:
-        if getnotes.get("value"):
-            teks, button = parse_button(getnotes.get("value"))
-            button = build_keyboard(button)
-            if button:
-                button = InlineKeyboardMarkup(button)
-            else:
-                button = None
-        else:
-            teks = None
-            button = None
+        teks, button = text_keyb(ikb, getnotes.get("value"))
         if button:
             try:
                 xi = await c.get_inline_bot_results(
