@@ -9,7 +9,7 @@ __help__ = get_cgr("help_games")
 
 @ky.ubot("dice", sudo=True)
 async def _(c, m):
-    await c.send_dice(m, "🎲")
+    await c.send_dice(m.chat.id, "🎲")
     await m.delete()
 
 
