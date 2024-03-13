@@ -287,8 +287,8 @@ async def _(c: user, m):
 import asyncio
 from datetime import datetime, timedelta
 
-from pyrogram.errors import FloodWait
-from pyrogram.types import ChatMemberStatus, ChatType
+from pyrogram.errors import *
+from pyrogram.types import *
 
 
 @ky.ubot("dorrr")
