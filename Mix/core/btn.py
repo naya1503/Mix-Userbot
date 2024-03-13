@@ -93,7 +93,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 
         main_text = text_parts[0].strip()
         button_text = text_parts[1].strip()
-        main_text_styles = set(re.findall(r'\*{2}|\_{2}|`', main_text))
+        main_text_styles = set(re.findall(r"\*{2}|\_{2}|`", main_text))
         for style in main_text_styles:
             button_text = button_text.replace(style, "")
 
