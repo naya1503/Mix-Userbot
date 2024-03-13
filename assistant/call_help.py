@@ -424,7 +424,7 @@ def cb_tespeed():
 
 @ky.callback("^gasbalap")
 async def _(c, cq):
-    if cq.from_user.id != user.me.id
+    if cq.from_user.id != user.me.id:
         return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
     cq_id = cq.inline_message_id
     await bot.edit_inline_text(cq_id, "**Processing...**")
