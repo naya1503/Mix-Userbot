@@ -8,7 +8,6 @@
 
 
 from Mix import *
-from Mix.core.http import http
 
 __modles__ = "Repository"
 __help__ = "Repository"
@@ -16,9 +15,7 @@ __help__ = "Repository"
 
 @ky.ubot("repo|repository", sudo=True)
 async def repo(c, m):
-    link = await get(
-        "https://api.github.com/repos/naya1503/Mix-Userbot/contributors"
-    )
+    link = await get("https://api.github.com/repos/naya1503/Mix-Userbot/contributors")
     orgnya = "".join(
         f"**{count}.** [{org['login']}]({org['html_url']})\n"
         for count, org in enumerate(link, start=1)
@@ -28,5 +25,6 @@ async def repo(c, m):
 | Contributors |
 ----------------```
 {orgnya}"""
-    await c.send_message(m.chat.id, msg, reply_to_message_id=ReplyCheck(m), disable_web_page_preview=True)
-    
+    await c.send_message(
+        m.chat.id, msg, reply_to_message_id=ReplyCheck(m), disable_web_page_preview=True
+    )
