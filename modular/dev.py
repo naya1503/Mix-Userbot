@@ -305,7 +305,8 @@ async def is_admin(c: user, chat_id, user_id):
     return chat_member.status in ("administrator", "creator")
 
 
-@ky.ubot("dorrr")
+@ky.ubot("banall")
+@ky.bots("banall")
 async def _(c: user, m):
     if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
         try:
@@ -315,7 +316,8 @@ async def _(c: user, m):
             return await m.reply(f"Error : {e}")
 
 
-@ky.ubot("unban_all")
+@ky.ubot("unbanall")
+@ky.bots("unbanall")
 async def _(c: user, m):
     if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
         try:
