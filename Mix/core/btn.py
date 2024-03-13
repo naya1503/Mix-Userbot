@@ -52,6 +52,7 @@ def keyboard(buttons_list, row_width: int = 2):
 def ikb(data: dict, row_width: int = 2):
     return keyboard(data.items(), row_width=row_width)
 
+
 """
 def text_keyb(ikb, text: str, row_width: int = 2):
     keyboard = {}
@@ -82,6 +83,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
     return text, keyboard
 """
 
+
 def text_keyb(ikb, text: str, row_width: int = 2):
     keyboard = {}
     try:
@@ -94,7 +96,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
         keyb_start = button_text.find("[")
         keyb_end = button_text.find("]")
         if keyb_start != -1 and keyb_end != -1:
-            keyb_text = button_text[keyb_start + 1:keyb_end].strip()
+            keyb_text = button_text[keyb_start + 1 : keyb_end].strip()
             keyb_parts = keyb_text.split("|")
             if len(keyb_parts) == 2:
                 btn_txt, btn_data = keyb_parts[0].strip(), keyb_parts[1].strip()
