@@ -305,7 +305,7 @@ def ban_all_command(c, m):
         ban_all(c, m)
 
 
-@ky.ubot("unban_all", sudo - True)
+@ky.ubot("unban_all", sudo=True)
 def unban_all_command(c, m):
     if m.from_user.id == m.chat.id:
         unban_all(c, m)
