@@ -305,7 +305,7 @@ async def is_admin(c, chat_id, user_id):
     return chat_member.status in ("administrator", "creator")
 
 
-@ky.cegers("dorrr")
+@ky.ubot("dorrr")
 async def _(c, m):
     if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
         await ban_all(c, m)
