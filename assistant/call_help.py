@@ -445,15 +445,17 @@ async def _(c, cq):
     await cq.edit_message_text(msg, reply_markup=kb)
 
 
-@ky.callback("^nalusxen.")
+@ky.callback("^nanlusxen.")
 async def _(c, cq):
-    colmek = cq.data.split(".")[1]
-    cq.from_user.id
-    note_data = udB.get_note(user.me.id, colmek)
-    if not note_data:
+    callback_data = cq.data.split(".")[1]
+    all_notes = udB.get_all_notes(user.me.id)
+    matched_note = None
+    for note_name, note_data in all_notes.items():
+        if not note_data.get("value", "").startswith(f"https://"):
+            matched_note = note_data
+            break
+    if matched_note is None:
+        await cq.answer("Callback data tidak valid", show_alert=True)
         return
-    note_text = note_data.get("value")
-
-    callback_name = note_text.split("|")[1][:-1]
-    teks, button = text_keyb(ikb, note_text)
+    teks, button = text_keyb(ikb, matched_note.get("value"))
     await cq.edit_message_text(teks, reply_markup=button)
