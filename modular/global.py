@@ -18,6 +18,8 @@ from pyrogram.types import *
 from Mix import *
 from Mix.core.parser import remove_markdown_and_html
 
+from .gcast import refresh_dialog
+
 dbgb = GBan()
 dbgm = GMute()
 
@@ -47,7 +49,7 @@ async def _(c: user, m):
         alasan = m.text.split(None, 2)[2]
     bs = 0
     gg = 0
-    chats = await c.get_user_dialog("all")
+    chats = await refresh_dialog("all")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -89,7 +91,7 @@ async def _(c: user, m):
         return
     bs = 0
     gg = 0
-    chats = await c.get_user_dialog("all")
+    chats = await refresh_dialog("all")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -133,7 +135,7 @@ async def _(c: user, m):
         alasan = m.text.split(None, 2)[2]
     bs = 0
     gg = 0
-    chats = await c.get_user_dialog("group")
+    chats = await refresh_dialog("group")
 
     try:
         mention = (await c.get_users(nyet)).mention
@@ -171,7 +173,7 @@ async def _(c: user, m):
         return
     bs = 0
     gg = 0
-    chats = await c.get_user_dialog("group")
+    chats = await refresh_dialog("group")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:

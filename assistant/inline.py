@@ -48,6 +48,24 @@ async def _(c, iq):
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
 
+@ky.inline("^buat_button")
+async def _(c, iq):
+    _id = int(iq.query.split()[1])
+    m = [obj for obj in get_objects() if id(obj) == _id][0]
+    rep = m.reply_to_message
+    text, keyboard = text_keyb(ikb, rep.text)
+    duar = [
+        (
+            InlineQueryResultArticle(
+                title="Tombol Teks!",
+                input_message_content=InputTextMessageContent(text),
+                reply_markup=keyboard,
+            )
+        )
+    ]
+    await c.answer_inline_query(iq.id, cache_time=0, results=duar)
+
+
 # markdown
 
 
@@ -433,3 +451,19 @@ async def _(c, iq):
                 )
             ]
         await c.answer_inline_query(iq.id, cache_time=0, results=duar)
+
+
+@ky.inline("^speed")
+async def _(c, iq):
+    msg = "**Seberapa Cepat Kah??\nLo Download Bokep!!**"
+    kb = okb([[("Klik Disini", "gasbalap")]])
+    meki = [
+        (
+            InlineQueryResultArticle(
+                title="Click Here",
+                input_message_content=InputTextMessageContent(msg),
+                reply_markup=kb,
+            )
+        )
+    ]
+    await c.answer_inline_query(iq.id, cache_time=0, results=meki)

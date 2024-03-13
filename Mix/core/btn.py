@@ -53,6 +53,69 @@ def ikb(data: dict, row_width: int = 2):
     return keyboard(data.items(), row_width=row_width)
 
 
+"""
+def text_keyb(ikb, text: str, row_width: int = 2):
+    keyboard = {}
+    try:
+        text = text.strip()
+        if text.startswith("`"):
+            text = text[1:]
+        if text.endswith("`"):
+            text = text[:-1]
+
+        text, keyb = text.split("-")
+
+        keyb = findall(r"\[([^|]+)\|([^]]+)\]", keyb)
+        for btn_str in keyb:
+
+            btn_str = btn_str.strip("[]")
+            btn_txt, btn_data = btn_str.split("|")
+            btn_txt = btn_txt.strip()
+            btn_data = btn_data.strip()
+
+            if not is_url(btn_data):
+                continue
+            keyboard[btn_txt] = btn_data
+        keyboard = ikb(keyboard, row_width)
+    except Exception as e:
+        print(f"Error in text_keyb: {e}")
+        return None, None
+    return text, keyboard
+"""
+
+
+def text_keyb(ikb, text: str, row_width: int = 2):
+    keyboard = {}
+    try:
+        text_parts = text.split("-")
+        if len(text_parts) != 2:
+            return None, None
+
+        main_text = text_parts[0].strip()
+        button_text = text_parts[1].strip()
+
+        # Mengizinkan penggunaan markup HTML di teks utama
+        main_text = main_text.replace("<b>", "**").replace("</b>", "**")
+        main_text = main_text.replace("<i>", "_").replace("</i>", "_")
+        main_text = main_text.replace("<u>", "__").replace("</u>", "__")
+        main_text = main_text.replace("<code>", "`").replace("</code>", "`")
+
+        keyb_texts = findall(r"\[([^]]+)\]", button_text)
+        for keyb_text in keyb_texts:
+            keyb_parts = keyb_text.split("|")
+            if len(keyb_parts) == 2:
+                btn_txt, btn_data = keyb_parts[0].strip(), keyb_parts[1].strip()
+                if not is_url(btn_data):
+                    btn_data = f"callback_data:{btn_data}"
+                keyboard[btn_txt] = btn_data
+
+        keyboard = ikb(keyboard, row_width)
+    except Exception as e:
+        print(f"Error in text_keyb: {e}")
+        return None, None
+    return main_text, keyboard
+
+
 def parse_button(text):
     markdown_note = text
     prev = 0
@@ -80,98 +143,6 @@ def parse_button(text):
         note_data += markdown_note[prev:]
 
     return note_data, buttons
-
-
-def parse_mark(tk: str, kk):
-    buttons = []
-    if kk and kk.inline_keyboard:
-        for i, row in enumerate(kk.inline_keyboard):
-            for j, but in enumerate(row):
-                button_str = f"{but.text} - {but.url}"
-                if j > 0 and i > 0:
-                    prev_button = kk.inline_keyboard[i][j - 1]
-                    if prev_button.text != but.text:
-                        button_str = f"{but.text} - {but.url} &&"
-                elif j > 0:
-                    button_str += f"&&"
-                buttons.append(button_str)
-    return f"{tk} {' '.join(buttons)}"
-
-
-def nan_parse(text):
-    markdown_note = text
-    prev = 0
-    note_data = ""
-    buttons = []
-    for match in NAN_REGEX.finditer(markdown_note):
-        n_escapes = 0
-        to_check = match.start(1) - 1
-        while to_check > 0 and markdown_note[to_check] == "\\":
-            n_escapes += 1
-            to_check -= 1
-        if n_escapes % 2 == 0:
-            buttons.append(
-                (
-                    match.group(1),
-                    match.group(2),
-                    True if "&&" in match.group(0) else False,
-                )
-            )
-            note_data += markdown_note[prev : match.start(0)]
-            prev = match.end(0)
-        else:
-            note_data += markdown_note[prev:to_check]
-            prev = match.start(1) - 1
-    else:
-        note_data += markdown_note[prev:]
-
-    return note_data, buttons
-
-
-"""
-
-
-def nan_parse(text):
-    markdown_note = text
-    prev = 0
-    note_data = ""
-    buttons = []
-    for match in NAN_REGEX.finditer(markdown_note):
-        n_escapes = 0
-        to_check = match.start(1) - 1
-        while to_check > 0 and markdown_note[to_check] == "\\":
-            n_escapes += 1
-            to_check -= 1
-        if n_escapes % 2 == 0:
-            button_text = match.group(1)
-            button_url = match.group(2)
-            is_horizontal = "&&" in match.group(2)
-            buttons.append((button_text, is_horizontal))
-            note_data += markdown_note[prev : match.start(0)]
-            prev = match.end(0)
-        else:
-            note_data += markdown_note[prev:to_check]
-            prev = match.start(1) - 1
-    else:
-        note_data += markdown_note[prev:]
-
-    return note_data, buttons
-"""
-
-
-def nan_kibor(buttons):
-    keyb = []
-    for als in buttons:
-        if "&&" in als[0]:
-            row = [
-                Ikb(label.strip(), url=url)
-                for label, url in [button.split(" - ") for button in als[0].split("&&")]
-            ]
-            keyb.append(row)
-        else:
-            keyb.append([Ikb(als[0], url=als[1])])
-
-    return keyb
 
 
 def extract_time(time_val):
