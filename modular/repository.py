@@ -8,7 +8,7 @@
 
 
 from Mix import *
-from Mix.core import http
+from Mix.core.http import get
 
 __modles__ = "Repository"
 __help__ = "Repository"
