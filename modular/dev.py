@@ -328,7 +328,9 @@ async def _(c, m):
                         tunggu = e.value
                         await asyncio.sleep(e.value)
                         await m.reply(f"{em.gagal} Harap tunggu {tunggu} detik lagi")
-                await m.reply(f"{em.sukses} Berhasil ban : <code>{kick_count}</code> member.")
+                await m.reply(
+                    f"{em.sukses} Berhasil ban : <code>{kick_count}</code> member."
+                )
             else:
                 loops_count = members_count / 200
                 loops_count = round(loops_count)
@@ -349,12 +351,18 @@ async def _(c, m):
                         except FloodWait as e:
                             tunggu = e.value
                             await asyncio.sleep(e.value)
-                            await m.reply(f"{em.gagal} Silahkan tunggu selama {tunggu} detik!")
+                            await m.reply(
+                                f"{em.gagal} Silahkan tunggu selama {tunggu} detik!"
+                            )
                     await asyncio.sleep(15)
-                await m.reply(f"{em.sukses} Berhasil kick : <code>{kick_count}</code> member!")
+                await m.reply(
+                    f"{em.sukses} Berhasil kick : <code>{kick_count}</code> member!"
+                )
         else:
             await m.reply(
                 f"{em.gagal} Izin admin anda tidak cukup untuk menggunakan perintah ini!"
             )
     else:
-        await m.reply(f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!")
+        await m.reply(
+            f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!"
+        )
