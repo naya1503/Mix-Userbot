@@ -292,8 +292,10 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 
-@ky.ubot("dorrr")
+@ky.cegers("dorrr")
 async def _(c, m):
+    em = Emojik()
+    em.initialize()
     chat = await c.get_chat(chat_id=m.chat.id)
     my = await chat.get_member(c.me.id)
     if my.privileges:
@@ -303,7 +305,7 @@ async def _(c, m):
                 req_user_member = await chat.get_member(m.from_user.id)
                 if req_user_member.privileges is None:
                     await m.reply(
-                        "❌ You are not admin and cannot execute this command!"
+                        f"{em.gagal} Anda bukan seorang admin! anda tidak bisa menggunakan perintah ini di sini!"
                     )
                     return
             kick_count = 0
@@ -323,8 +325,10 @@ async def _(c, m):
                         )
                         kick_count += 1
                     except FloodWait as e:
+                        tunggu = e.value
                         await asyncio.sleep(e.value)
-                await m.reply(f"✅ Total Users Removed: {kick_count}")
+                        await m.reply(f"{em.gagal} Harap tunggu {tunggu} detik lagi")
+                await m.reply(f"{em.sukses} Berhasil ban : <code>{kick_count}</code> member.")
             else:
                 loops_count = members_count / 200
                 loops_count = round(loops_count)
@@ -343,12 +347,14 @@ async def _(c, m):
                             )
                             kick_count += 1
                         except FloodWait as e:
+                            tunggu = e.value
                             await asyncio.sleep(e.value)
+                            await m.reply(f"{em.gagal} Silahkan tunggu selama {tunggu} detik!")
                     await asyncio.sleep(15)
-                await m.reply(f"✅ Total Users Removed: {kick_count}")
+                await m.reply(f"{em.sukses} Berhasil kick : <code>{kick_count}</code> member!")
         else:
             await m.reply(
-                "❌ The bot is admin but does not have the necessary permissions!"
+                f"{em.gagal} Izin admin anda tidak cukup untuk menggunakan perintah ini!"
             )
     else:
-        await m.reply("❌ The bot must have admin!")
+        await m.reply(f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!")
