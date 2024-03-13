@@ -88,6 +88,7 @@ import markdown2
 
 extras = ["fenced-code-blocks", "cuddled-lists", "metadata", "tables", "spoiler"]
 
+
 def text_keyb(ikb, text: str, row_width: int = 2):
     keyboard = {}
     try:
