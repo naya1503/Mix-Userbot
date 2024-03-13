@@ -59,7 +59,7 @@ async def _(c: user, m):
         await m.reply(cgr("butt_1").format(em.gagal))
     keyb = None
     if re.findall(r"\[.+\,.+\]", xx.text):
-        button = text_keyb(ikb, xx)
+        button = text_keyb(ikb, xx.text)
         if button:
             xx, keyb = button
     try:
