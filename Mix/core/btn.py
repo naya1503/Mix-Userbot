@@ -93,9 +93,12 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 
         main_text = text_parts[0].strip()
         button_text = text_parts[1].strip()
-        main_text_styles = set(re.findall(r"\*{2}|\_{2}|`", main_text))
-        for style in main_text_styles:
-            button_text = button_text.replace(style, "")
+
+        # Mengizinkan penggunaan markup HTML di teks utama
+        main_text = main_text.replace("<b>", "**").replace("</b>", "**")
+        main_text = main_text.replace("<i>", "_").replace("</i>", "_")
+        main_text = main_text.replace("<u>", "__").replace("</u>", "__")
+        main_text = main_text.replace("<code>", "`").replace("</code>", "`")
 
         keyb_texts = findall(r"\[([^]]+)\]", button_text)
         for keyb_text in keyb_texts:
@@ -111,6 +114,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
         print(f"Error in text_keyb: {e}")
         return None, None
     return main_text, keyboard
+
 
 
 def parse_button(text):
