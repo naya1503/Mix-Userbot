@@ -93,23 +93,20 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 
         main_text = text_parts[0].strip()
         button_text = text_parts[1].strip()
-        keyb_start = button_text.find("[")
-        keyb_end = button_text.find("]")
-        if keyb_start != -1 and keyb_end != -1:
-            keyb_text = button_text[keyb_start + 1 : keyb_end].strip()
+        keyb_texts = findall(r"\[([^]]+)\]", button_text)
+        for keyb_text in keyb_texts:
             keyb_parts = keyb_text.split("|")
             if len(keyb_parts) == 2:
                 btn_txt, btn_data = keyb_parts[0].strip(), keyb_parts[1].strip()
                 if is_url(btn_data):
                     keyboard[btn_txt] = btn_data
-        else:
-            return None, None
 
         keyboard = ikb(keyboard, row_width)
     except Exception as e:
         print(f"Error in text_keyb: {e}")
         return None, None
     return main_text, keyboard
+
 
 
 def parse_button(text):
