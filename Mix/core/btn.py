@@ -26,14 +26,12 @@ from .parser import escape_markdown
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: &&|\n|$)")
 
-
 def is_url(text: str) -> bool:
     regex = r"""(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
                 [.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(
                 \([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\
                 ()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))""".strip()
     return [x[0] for x in findall(regex, str(text))]
-
 
 def keyboard(buttons_list, row_width: int = 2):
     buttons = InlineKeyboard(row_width=row_width)
@@ -48,11 +46,9 @@ def keyboard(buttons_list, row_width: int = 2):
     buttons.add(*data)
     return buttons
 
-
 def ikb(data: dict, row_width: int = 2):
     return keyboard(data.items(), row_width=row_width)
-    
-    
+
 def text_keyb(ikb, text: str, row_width: int = 2):
     keyboard = {}
     try:
@@ -66,17 +62,20 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 
         keyb = findall(r"\[.+\,.+\]", keyb)
         for btn_str in keyb:
-            btn_str = re_sub(r"[\[\]]", "", btn_str)
-            btn_str = btn_str.split(",")
-            btn_txt, btn_url = btn_str[0], btn_str[1].strip()
+            btn_str = btn_str.strip("[]")
+            btn_txt, btn_data = btn_str.split(",")
+            btn_txt = btn_txt.strip()
+            btn_data = btn_data.strip()
 
-            if not is_url(btn_url):
+            if not is_url(btn_data):
                 continue
-            keyboard[btn_txt] = btn_url
+            keyboard[btn_txt] = btn_data
         keyboard = ikb(keyboard, row_width)
-    except Exception:
-        return
+    except Exception as e:
+        print(f"Error in text_keyb: {e}")
+        return None, None
     return text, keyboard
+
 
 
 def parse_button(text):
