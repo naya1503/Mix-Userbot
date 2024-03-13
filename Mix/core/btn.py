@@ -116,7 +116,6 @@ def text_keyb(ikb, text: str, row_width: int = 2):
     return main_text, keyboard
 
 
-
 def parse_button(text):
     markdown_note = text
     prev = 0
