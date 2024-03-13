@@ -58,11 +58,10 @@ async def _(c: user, m):
     if not xx:
         await m.reply(cgr("butt_1").format(em.gagal))
     keyb = None
-    teks = xx.text
-    if re.findall(r"\[.+\,.+\]", teks):
-        button = text_keyb(ikb, teks)
+    if re.findall(r"\[.+\,.+\]", xx.text):
+        button = text_keyb(ikb, xx)
         if button:
-            teks, keyb = button
+            xx, keyb = button
     try:
         x = await c.get_inline_bot_results(
           bot.me.username, f"buat_button {id(m)}")
