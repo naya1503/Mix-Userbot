@@ -34,6 +34,7 @@ async def _(c: user, m):
 
     if data_type == Types.TEXT:
         teks, _ = text_keyb(ikb, text)
+        if not teks:
             return await xx.edit(cgr("nts_2").format(em.gagal))
         udB.save_note(c.me.id, note_name, text, data_type, content)
     elif data_type in [Types.PHOTO, Types.VIDEO]:
