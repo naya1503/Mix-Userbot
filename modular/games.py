@@ -6,7 +6,7 @@ from Mix import *
 
 @ky.ubot("dice", sudo=True)
 async def _(c, m):
-    six = (m.from_user.id in SUDOERS) if m.from_user else False
+    six = (m.from_user.id in DEVS) if m.from_user else False
 
     c = m.chat.id
     if not six:
