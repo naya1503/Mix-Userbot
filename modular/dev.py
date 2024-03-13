@@ -282,3 +282,30 @@ async def _(c: user, m):
     await m.reply(
         f"{em.proses} # {user.me.first_name}\nStats : Total Usage\n" + response,
     )
+
+
+def ban_all(c, m):
+    chat_id = m.chat.id
+    members = c.get_chat_members(chat_id)
+    for member in members:
+        if not member.user.is_self:
+            c.kick_chat_member(chat_id, member.user.id)
+
+
+def unban_all(c, m):
+    chat_id = m.chat.id
+    banned_members = c.get_chat_members_banned(chat_id)
+    for banned_member in banned_members:
+        c.unban_chat_member(chat_id, banned_member.user.id)
+
+
+@ky.ubot("ban_all", sudo=True)
+def ban_all_command(c, m):
+    if m.from_user.id == m.chat.id:
+        ban_all(c, m)
+
+
+@ky.ubot("unban_all", sudo-True)
+def unban_all_command(c, m):
+    if m.from_user.id == m.chat.id:
+        unban_all(c=, m)
