@@ -62,12 +62,12 @@ def text_keyb(ikb, text: str, row_width: int = 2):
         if text.endswith("`"):
             text = text[:-1]
 
-        text, keyb = text.split("~")
+        text, keyb = text.split("-")
 
-        keyb = findall(r"\[.+\,.+\]", keyb)
+        keyb = findall(r"\[([^|]+)\|([^]]+)\]", keyb)
         for btn_str in keyb:
             btn_str = btn_str.strip("[]")
-            btn_txt, btn_data = btn_str.split(",")
+            btn_txt, btn_data = btn_str.split("|")
             btn_txt = btn_txt.strip()
             btn_data = btn_data.strip()
 
