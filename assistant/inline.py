@@ -53,16 +53,15 @@ async def _(c, iq):
     m = [obj for obj in get_objects() if id(obj) == _id][0]
     rep = m.reply_to_message
     keyb = None
-    teks = rep.text
-    if findall(r"\[.+\,.+\]", teks):
-          button = text_keyb(ikb, teks)
+    if findall(r"\[.+\,.+\]", rep.text):
+          button = text_keyb(ikb, rep.text)
           if button:
-              teks, keyb = button
+              rep, keyb = button
     duar = [
         (
             InlineQueryResultArticle(
                 title="Tombol Teks!",
-                input_message_content=InputTextMessageContent(teks),
+                input_message_content=InputTextMessageContent(),
                 reply_markup=keyb,
             )
         )
