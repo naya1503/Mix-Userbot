@@ -47,6 +47,26 @@ async def _(c, iq):
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
+@ky.inline("^dibikin_button")
+async def _(c, iq):
+    _id = int(iq.query.split()[1])
+    m = [obj for obj in get_objects() if id(obj) == _id][0]
+    rep = m.reply_to_message
+    bt = None
+    if findall(r"\[.+\,.+\]", rep.texy):
+          button = text_keyb(ikb, rep.text)
+          if button:
+              teks, bt = button
+    duar = [
+        (
+            InlineQueryResultArticle(
+                title="Tombol Teks!",
+                input_message_content=InputTextMessageContent(teks),
+                reply_markup=bt,
+            )
+        )
+    ]
+    await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
 # markdown
 
