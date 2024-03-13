@@ -8,8 +8,9 @@
 
 
 import asyncio
-from time import time
 import re
+from time import time
+
 import psutil
 import speedtest
 from pyrogram import *
@@ -451,7 +452,7 @@ async def _(c, cq):
     noteval = udB.get_note(user.me.id, data)
     if noteval:
         value = noteval["value"]
-        matches = re.findall(r'\[([^]]+)\]\|([^|]+)', value)
+        matches = re.findall(r"\[([^]]+)\]\|([^|]+)", value)
         if matches:
             result = {}
             for match in matches:
