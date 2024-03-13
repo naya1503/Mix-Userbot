@@ -3,6 +3,7 @@ from pyrogram.types import *
 
 from Mix import *
 
+
 @ky.ubot("dice", sudo=True)
 async def _(c, m):
     six = (m.from_user.id in SUDOERS) if m.from_user else False
