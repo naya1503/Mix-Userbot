@@ -53,8 +53,9 @@ async def _(c, iq):
     m = [obj for obj in get_objects() if id(obj) == _id][0]
     rep = m.reply_to_message
     keyb = None
-    if findall(r"\[.+\,.+\]", rep.text):
-          button = text_keyb(ikb, rep.text)
+    teks = rep.text
+    if findall(r"\[.+\,.+\]", teks):
+          button = text_keyb(ikb, teks)
           if button:
               teks, keyb = button
     duar = [
