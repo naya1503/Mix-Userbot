@@ -448,11 +448,10 @@ async def _(c, cq):
 @ky.callback("^nalusxen.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
-    org = cq.from_user.id
+    cq.from_user.id
     note_data = udB.get_note(user.me.id, colmek)
     if not note_data:
         return
     note_text = note_data.get("value")
     teks, button = text_keyb(ikb, note_text)
     await cq.edit_message_text(teks, reply_markup=button)
-    
