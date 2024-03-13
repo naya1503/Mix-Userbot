@@ -61,7 +61,7 @@ async def _(c, iq):
         (
             InlineQueryResultArticle(
                 title="Tombol Teks!",
-                input_message_content=InputTextMessageContent(rep),
+                input_message_content=InputTextMessageContent(rep.text),
                 reply_markup=keyb,
             )
         )
