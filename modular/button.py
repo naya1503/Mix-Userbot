@@ -74,6 +74,6 @@ async def _(c: user, m):
             except Exception as e:
                 await babi.edit(cgr("err").format(em.gagal, e))
                 return
-        else:
-            await m.reply(cgr("butt_1").format(em.gagal))
+    else:
+        await m.reply(cgr("butt_1").format(em.gagal))
     await babi.delete()
