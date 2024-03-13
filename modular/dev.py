@@ -284,7 +284,7 @@ async def _(c: user, m):
     )
 
 
-async def ban_all(c, m):
+async def ban_all(c: user, m):
     chat_id = m.chat.id
     members = c.get_chat_members(chat_id)
     for member in members:
@@ -293,20 +293,20 @@ async def ban_all(c, m):
                 await c.kick_chat_member(chat_id, member.user.id)
 
 
-async def unban_all(c, m):
+async def unban_all(c: user, m):
     chat_id = m.chat.id
     banned_members = c.get_chat_members_banned(chat_id)
     for banned_member in banned_members:
         await c.unban_chat_member(chat_id, banned_member.user.id)
 
 
-async def is_admin(c, chat_id, user_id):
+async def is_admin(c: user, chat_id, user_id):
     chat_member = await c.get_chat_member(chat_id, user_id)
     return chat_member.status in ("administrator", "creator")
 
 
 @ky.ubot("dorrr")
-async def _(c, m):
+async def _(c: user, m):
     if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
         try:
             await m.reply("yuhuuuu ...")
@@ -316,7 +316,7 @@ async def _(c, m):
 
 
 @ky.ubot("unban_all")
-async def _(c, m):
+async def _(c: user, m):
     if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
         try:
             await m.reply(f"yaudah iya ..")
