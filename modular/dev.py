@@ -284,44 +284,43 @@ async def _(c: user, m):
     )
 
 
-async def ban_all(c: user, m):
+def ban_all(c, m):
     chat_id = m.chat.id
     members = c.get_chat_members(chat_id)
     for member in members:
         if not member.user.is_self:
-            if await is_admin(c, chat_id, member.user.id):
-                await c.kick_chat_member(chat_id, member.user.id)
+            c.kick_chat_member(chat_id, member.user.id)
 
 
-async def unban_all(c: user, m):
+def unban_all(c, m):
     chat_id = m.chat.id
     banned_members = c.get_chat_members_banned(chat_id)
     for banned_member in banned_members:
-        await c.unban_chat_member(chat_id, banned_member.user.id)
+        c.unban_chat_member(chat_id, banned_member.user.id)
 
 
-async def is_admin(c: user, chat_id, user_id):
+async def is_admin(c, chat_id, user_id):
     chat_member = await c.get_chat_member(chat_id, user_id)
     return chat_member.status in ("administrator", "creator")
 
 
 @ky.ubot("banall")
 @ky.bots("banall")
-async def _(c: user, m):
-    if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
+async def _(c, m):
+    if m.from_user.id == m.chat.id:
         try:
             await m.reply("yuhuuuu ...")
             await ban_all(c, m)
-        except Exception as e:
-            return await m.reply(f"Error : {e}")
+        except pyrogram.errors.exceptions as e:
+            await m.reply(f"Error : {e}")
 
 
 @ky.ubot("unbanall")
 @ky.bots("unbanall")
-async def _(c: user, m):
-    if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
+async def _(c, m):
+    if m.from_user.id == m.chat.id:
         try:
-            await m.reply(f"yaudah iya ..")
+            await m.reply("yaudah iya ..")
             await unban_all(c, m)
-        except Exception as e:
+        except pyrogram.errors.exceptions as e:
             await m.reply(f"error: {e}")
