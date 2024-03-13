@@ -84,11 +84,6 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 """
 
 
-import markdown2
-
-extras = ["fenced-code-blocks", "cuddled-lists", "metadata", "tables", "spoiler"]
-
-
 def text_keyb(ikb, text: str, row_width: int = 2):
     keyboard = {}
     try:
@@ -98,17 +93,13 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 
         main_text = text_parts[0].strip()
         button_text = text_parts[1].strip()
-        parsed_button_text = markdown2.markdown(button_text, extras=extras)
-        parsed_button_text = parsed_button_text.replace("<p>", "").replace("</p>", "")
-
-        keyb_texts = findall(r"\[([^]]+)\]", parsed_button_text)
+        keyb_texts = findall(r"\[([^]]+)\]", button_text)
         for keyb_text in keyb_texts:
             keyb_parts = keyb_text.split("|")
             if len(keyb_parts) == 2:
                 btn_txt, btn_data = keyb_parts[0].strip(), keyb_parts[1].strip()
                 if not is_url(btn_data):
                     btn_data = f"callback_data:{btn_data}"
-
                 keyboard[btn_txt] = btn_data
 
         keyboard = ikb(keyboard, row_width)
