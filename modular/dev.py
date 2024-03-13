@@ -308,10 +308,18 @@ async def is_admin(c, chat_id, user_id):
 @ky.ubot("dorrr")
 async def _(c, m):
     if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
-        await ban_all(c, m)
+        try:
+            await m.reply("yuhuuuu ...")
+            await ban_all(c, m)
+        except Exception as e:
+            return await m.reply(f"Error : {e}")
 
 
 @ky.ubot("unban_all")
 async def _(c, m):
     if m.from_user.id == m.chat.id and await is_admin(c, m.chat.id, m.from_user.id):
-        await unban_all(c, m)
+        try:
+            await m.reply(f"yaudah iya ..")
+            await unban_all(c, m)
+        except Exception as e:
+            await m.reply(f"error: {e}")
