@@ -1,3 +1,14 @@
+################################################################
+"""
+ Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
+ 
+ @ CREDIT : NAN-DEV || Gojo_Satoru || William Butcher
+ 
+ EH KONTOL KALO PUNYA AKAL DIPAKE YA ANJING GAUSAH APUS² CREDIT LO BAJINGAN!!
+"""
+################################################################
+
+
 import re
 from datetime import datetime, timedelta
 from html import escape
@@ -106,7 +117,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
             if len(keyb_parts) == 2:
                 btn_txt, btn_data = keyb_parts[0].strip(), keyb_parts[1].strip()
                 if not is_url(btn_data):
-                    btn_data = f"callback_data:{btn_data}"
+                    btn_data = f"callback_data:nanlusxen.{btn_data}"
                 keyboard[btn_txt] = btn_data
 
         keyboard = ikb(keyboard, row_width)
