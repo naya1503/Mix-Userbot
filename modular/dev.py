@@ -283,6 +283,7 @@ async def _(c: user, m):
         f"{em.proses} # {user.me.first_name}\nStats : Total Usage\n" + response,
     )
 
+
 @ky.ubot("dorrr")
 async def _(c, m):
     chat = await cl.get_chat(chat_id=m.chat.id)
@@ -293,7 +294,9 @@ async def _(c, m):
             if not is_channel:
                 req_user_member = await chat.get_member(m.from_user.id)
                 if req_user_member.privileges is None:
-                    await m.reply("❌ You are not admin and cannot execute this command!")
+                    await m.reply(
+                        "❌ You are not admin and cannot execute this command!"
+                    )
                     return
             kick_count = 0
             members_count = chat.members_count
@@ -301,10 +304,15 @@ async def _(c, m):
                 async for member in chat.get_members():
                     if member.user.id == cl.me.id:
                         continue
-                    elif member.status == ChatMemberStatus.ADMINISTRATOR or member.status == ChatMemberStatus.OWNER:
+                    elif (
+                        member.status == ChatMemberStatus.ADMINISTRATOR
+                        or member.status == ChatMemberStatus.OWNER
+                    ):
                         continue
                     try:
-                        await chat.ban_member(member.user.id, datetime.now() + timedelta(seconds=30))
+                        await chat.ban_member(
+                            member.user.id, datetime.now() + timedelta(seconds=30)
+                        )
                         kick_count += 1
                     except FloodWait as e:
                         await asyncio.sleep(e.value)
@@ -316,16 +324,23 @@ async def _(c, m):
                     async for member in chat.get_members():
                         if member.user.id == cl.me.id:
                             continue
-                        elif member.status == ChatMemberStatus.ADMINISTRATOR or member.status == ChatMemberStatus.OWNER:
+                        elif (
+                            member.status == ChatMemberStatus.ADMINISTRATOR
+                            or member.status == ChatMemberStatus.OWNER
+                        ):
                             continue
                         try:
-                            await chat.ban_member(member.user.id, datetime.now() + timedelta(seconds=30))
+                            await chat.ban_member(
+                                member.user.id, datetime.now() + timedelta(seconds=30)
+                            )
                             kick_count += 1
                         except FloodWait as e:
                             await asyncio.sleep(e.value)
                     await asyncio.sleep(15)
                 await m.reply(f"✅ Total Users Removed: {kick_count}")
         else:
-            await m.reply("❌ The bot is admin but does not have the necessary permissions!")
+            await m.reply(
+                "❌ The bot is admin but does not have the necessary permissions!"
+            )
     else:
         await m.reply("❌ The bot must have admin!")
