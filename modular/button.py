@@ -55,7 +55,7 @@ async def _(c: user, m):
     em.initialize()
     xx = m.reply_to_message
     babi = await m.reply(cgr("proses").format(em.proses))
-    if not rep:
+    if not xx:
         await m.reply(cgr("butt_1").format(em.gagal))
     try:
         x = await c.get_inline_bot_results(
