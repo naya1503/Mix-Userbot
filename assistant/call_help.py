@@ -446,16 +446,42 @@ async def _(c, cq):
     await cq.edit_message_text(msg, reply_markup=kb)
 
 
-@ky.callback("^nanlusxen.")
+@ky.callback("^#")
 async def _(c, cq):
-    data = cq.data.split()
-    noteval = udB.get_note(user.me.id, data)
-    if noteval:
-        value = noteval["value"]
-        matches = re.findall(r"\[([^]]+)\]\|([^|]+)", value)
-        if matches:
-            result = {}
-            for match in matches:
-                if not match[1].startswith("https://"):
-                    result[match[0]] = match[1]
-            print(result)
+    try:
+        btn_data = cq.data
+        if btn_data.startswith("#"):
+            notetag = btn_data[1:]
+            noteval = udB.get_note(cq.from_user.id, notetag)
+            if not noteval:
+                await cq.answer("Catatan tidak ditemukan.")
+                return
+            note, button = text_keyb(ikb, noteval.get("value"))
+            if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
+                file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
+                biji = noteval.get("file")
+
+                if noteval["type"] == Types.PHOTO:
+                    await c.send_photo(
+                        cq.message.chat.id,
+                        photo=biji,
+                        caption=note,
+                        reply_markup=button
+                    )
+                elif noteval["type"] == Types.VIDEO:
+                    await c.send_video(
+                        cq.message.chat.id,
+                        video=biji,
+                        caption=note,
+                        reply_markup=button
+                    )
+            elif noteval["type"] == Types.TEXT:
+                await c.send_message(
+                    cq.message.chat.id,
+                    text=note,
+                    reply_markup=button
+                )
+            await cq.answer()
+
+    except Exception as e:
+        print(f"Error in callback handler: {e}")
