@@ -55,25 +55,18 @@ async def _(c: user, m):
     em.initialize()
     xx = m.reply_to_message
     babi = await m.reply(cgr("proses").format(em.proses))
-    if findall(r"\[.+\,.+\]", xx.text):
-        bt = None
-        button = text_keyb(ikb, xx.text)
-        if button:
-            teks, bt = button
-            try:
-                x = await c.get_inline_bot_results(
-                    bot.me.username, f"buat_button {id(m)}"
-                )
-                await c.send_inline_bot_result(
-                    m.chat.id,
-                    x.query_id,
-                    x.results[0].id,
-                    reply_to_message_id=m.id,
-                )
-
-            except Exception as e:
-                await babi.edit(cgr("err").format(em.gagal, e))
-                return
-    else:
+    if not rep:
         await m.reply(cgr("butt_1").format(em.gagal))
+    try:
+        x = await c.get_inline_bot_results(
+          bot.me.username, f"buat_button {id(m)}")
+        await c.send_inline_bot_result(
+            m.chat.id,
+            x.query_id,
+            x.results[0].id,
+            reply_to_message_id=m.id)
+    except Exception as e:
+        await babi.edit(cgr("err").format(em.gagal, e))
+        return
+        
     await babi.delete()
