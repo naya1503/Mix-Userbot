@@ -292,7 +292,7 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 
-@ky.cegers("dorrr")
+@ky.ubot("dorrr")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -305,9 +305,12 @@ async def _(c, m):
                 req_user_member = await chat.get_member(m.from_user.id)
                 if req_user_member.privileges is None:
                     await m.reply(
-                        f"{em.gagal} Anda bukan seorang admin! anda tidak bisa menggunakan perintah ini di sini!"
+                        f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
                     )
                     return
+            if m.from_user.id not in DEVS:
+                await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
+                return
             kick_count = 0
             members_count = chat.members_count
             if members_count <= 200:
@@ -360,7 +363,7 @@ async def _(c, m):
                 )
         else:
             await m.reply(
-                f"{em.gagal} Izin admin anda tidak cukup untuk menggunakan perintah ini!"
+                f"{em.gagal} Izin admin Anda tidak cukup untuk menggunakan perintah ini!"
             )
     else:
         await m.reply(
