@@ -430,7 +430,8 @@ async def _(c, cq):
     if cq.from_user.id != user.me.id:
         return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
     cq_id = cq.inline_message_id
-    await bot.edit_inline_text(cq_id, "**Processing...**")
+    kb = okb([[(cgr("ttup", "cls_hlp")]])
+    await c.edit_message_text("**Processing...**", reply_markup=kb)
     loop = asyncio.get_running_loop()
     download, upload, info = await loop.run_in_executor(None, cb_tespeed)
     msg = f"""
@@ -441,4 +442,4 @@ async def _(c, cq):
 **Latitude:** `{info['lat']}`
 **Longitude:** `{info['lon']}`
 """
-    await bot.edit_inline_text(cq_id, msg)
+    await c.edit_message_text(msg, reply_markup=kb)
