@@ -284,6 +284,12 @@ async def _(c: user, m):
     )
 
 
+from pyrogram.types import ChatType, ChatMemberStatus
+from datetime import datetime, timedelta
+from pyrogram.errors import FloodWait
+import asyncio
+
+
 @ky.ubot("dorrr")
 async def _(c, m):
     chat = await cl.get_chat(chat_id=m.chat.id)
