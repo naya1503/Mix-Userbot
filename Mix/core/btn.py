@@ -66,6 +66,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 
         keyb = findall(r"\[([^|]+)\|([^]]+)\]", keyb)
         for btn_str in keyb:
+          
             btn_str = btn_str.strip("[]")
             btn_txt, btn_data = btn_str.split("|")
             btn_txt = btn_txt.strip()
