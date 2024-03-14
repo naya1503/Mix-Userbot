@@ -408,6 +408,7 @@ async def _(_, cq):
         )
         return
 
+
 @ky.callback("^close")
 async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
@@ -419,6 +420,7 @@ async def _(_, cq):
             True,
         )
         return
+
 
 def cb_tespeed():
     def speed_convert(size):
