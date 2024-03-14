@@ -11,7 +11,7 @@ from Mix import *
 __modles__ = "Mention"
 __help__ = "Mention"
 
-berenti = False  # Inisialisasi variabel berenti sebagai pengontrol penghentian proses tag_all_members
+berenti = False
 
 
 def random_emoji():
@@ -40,14 +40,14 @@ async def tag_all_members(c: user, m: Message):
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
 
-    if berenti:  # Periksa apakah berenti telah diatur menjadi True
+    if berenti:
         await m.reply_text(
             "Proses tagall sedang berlangsung. Harap tunggu sampai selesai atau gunakan perintah stop."
         )
         return
 
     berenti = (
-        False  # Setel kembali berenti ke False sebelum memulai proses tag_all_members
+        False
     )
 
     if len(m.command) < 2:
@@ -70,7 +70,7 @@ async def tag_all_members(c: user, m: Message):
 
         if (
             berenti
-        ):  # Periksa apakah berenti telah diatur menjadi True setiap kali iterasi anggota chat
+        ):
             break
 
     if mention_texts:
@@ -80,7 +80,7 @@ async def tag_all_members(c: user, m: Message):
         asyncio.sleep(2.5)
 
     berenti = (
-        False  # Setel kembali berenti ke False setelah proses tag_all_members selesai
+        False
     )
 
 
@@ -91,5 +91,5 @@ async def stop_tagall(c: user, m: Message):
         await m.reply_text("Tidak ada proses tagall yang sedang berlangsung.")
         return
 
-    berenti = True  # Setel berenti ke True untuk menghentikan proses tag_all_members
+    berenti = True
     await m.reply_text("Tagall telah dihentikan.")
