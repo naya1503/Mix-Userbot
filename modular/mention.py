@@ -94,7 +94,9 @@ async def tag_all_members(c: user, m: Message):
         await asyncio.sleep(2.5)
         await progres.delete()
     berenti = False
-    await m.reply(f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</b> anggota.</b>")
+    await m.reply(
+        f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</b> anggota.</b>"
+    )
 
 
 """
@@ -162,6 +164,7 @@ async def tag_all_members(c: user, m: Message):
         await progres.delete()
     berenti = False
 """
+
 
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
