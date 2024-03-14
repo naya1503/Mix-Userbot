@@ -26,7 +26,7 @@ async def tag_all_members(c: user, m: Message):
     global berenti
     chat_id = m.chat.id
     admins = False
-    await m.reply(cgr("proses").format(em.proses))
+    progres = await m.reply(cgr("proses").format(em.proses))
     berenti = True
     try:
         administrator = []
@@ -42,12 +42,6 @@ async def tag_all_members(c: user, m: Message):
 
     if not admins:
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
-        return
-
-    if berenti:
-        await m.reply_text(
-            "Proses tagall sedang berlangsung. Harap tunggu sampai selesai atau gunakan perintah stop."
-        )
         return
 
     berenti = False
@@ -77,7 +71,7 @@ async def tag_all_members(c: user, m: Message):
         mention_text += "\n".join(mention_texts)
         await c.send_message(chat_id, mention_text)
         await asyncio.sleep(2.5)
-
+        await progres.delete()
     berenti = False
 
 
