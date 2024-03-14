@@ -301,10 +301,10 @@ async def _(c, iq):
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
-    teks, button = text_keyb(ikb, pm_text)
     keyboard = InlineKeyboard(row_width=2)
-    for bt_txt, bt_url, _ in button:
-        keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
+    teks, button = text_keyb(ikb, pm_text)
+    if button:
+        keyboard.add(button)
     keyboard.row(
         InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
         InlineKeyboardButton(
