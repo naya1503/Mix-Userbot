@@ -297,7 +297,7 @@ async def _(c, iq):
 async def _(c, iq):
     org = iq.query.split()
     gw = iq.from_user.id
-    m = [obj for obj in get_objects() if id(obj) == int(org[1])][0]
+    m = [obj for obj in get_objects() if id(obj) == int(gw[1])][0]
     getpm_txt = udB.get_var(user.me.id, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
@@ -307,32 +307,32 @@ async def _(c, iq):
     if button:
         keyboard.add(button)
     keyboard.row(
-        InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[2])}"),
+        InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
         InlineKeyboardButton(
             text="Blokir",
-            callback_data=f"pm_ blokbae {int(org[2])}",
+            callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
     full = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     kiki = None
     if user.me.id == gw:
-        if int(org[2]) in flood2:
+        if int(org[1]) in flood2:
             flood2[int(org[1])] += 1
         else:
-            flood2[int(org[2])] = 1
-        async for m in user.get_chat_history(int(org[2]), limit=pm_warns):
+            flood2[int(org[1])] = 1
+        async for m in user.get_chat_history(int(org[1]), limit=pm_warns):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
             full,
             pm_text,
-            flood2[int(org[2])],
+            flood2[int(org[1])],
             pm_warns,
         )
-        if flood2[int(org[2])] > pm_warns:
-            await user.send_message(int(org[2]), "Spam Terdeteksi !!! Blokir.")
-            del flood2[int(org[2])]
-            await user.block_user(int(org[2]))
+        if flood2[int(org[1])] > pm_warns:
+            await user.send_message(int(org[1]), "Spam Terdeteksi !!! Blokir.")
+            del flood2[int(org[1])]
+            await user.block_user(int(org[1]))
             return
         lah = udB.get_var(gw, "PMPIC")
         if lah:
