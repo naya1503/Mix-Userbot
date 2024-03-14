@@ -52,14 +52,19 @@ async def tag_all_members(c: user, m: Message):
 
     username_pattern = re.compile(r"@[\w\d_]+")
     members = c.get_chat_members(chat_id)
+    tagged_count = 0
     async for member in members:
         if not member.user.is_bot:
             profile_link_emoji = random.choice(["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"])
             mention_text = f"{text}\n\n{profile_link_emoji} [{member.user.first_name}](tg://user?id={member.user.id})"
             await c.send_message(chat_id, mention_text)
             await asyncio.sleep(2)
+            tagged_count += 1
 
     tagall_active = False
+    if tagged_count > 0:
+        await m.reply_text("Tagall telah selesai.")
+
 
 
 @ky.ubot("stop", sudo=True)
