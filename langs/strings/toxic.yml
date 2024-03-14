@@ -301,7 +301,7 @@ mark_3: "**Buat melihat format markdown silahkan klik tombol dibawah.**"
 
 # pmpermit
 pmper_1: "**Jangan Spam Bangsat!! Diblokir mampus loe!!**"
-pmper_2: "**Woy {} 👋. {}\n\nLoe punya kartu merah `{}/{}` !!**"
+pmper_2: "**Woy {} 👋. {}**\n\n**Loe punya kartu merah `{}/{}` !!**"
 pmper_3: "{} **Ini Manusia Udah Gw Acc Anj!!**"
 pmper_4: "{} **Okeh coeg, Gw Acc Ini Makhluk!!**"
 pmper_5: "{} **Lah sapa dia jing?? Gw gak kenal!!**"
