@@ -444,10 +444,9 @@ def cb_tespeed():
 @ky.callback("^gasbalap")
 async def _(c, cq):
     if cq.from_user.id != user.me.id:
-        return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
-    # cq.inline_message_id
-    kb = ikb({f"{cgr("ttup")}": "cls_hlp"})
-    await cq.edit_message_text(text="**Processing...**", reply_markup=kb)
+        return await cq.answer('LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.', True)
+    kb = ikb({f'{cgr("ttup")}': 'cls_hlp'})
+    await cq.edit_message_text(text='**Processing...**', reply_markup=kb)
     loop = asyncio.get_running_loop()
     download, upload, info = await loop.run_in_executor(None, cb_tespeed)
     msg = f"""
@@ -460,6 +459,26 @@ async def _(c, cq):
 """
     await cq.edit_message_text(msg, reply_markup=kb)
 
+"""
+@ky.callback("^gasbalap")
+async def _(c, cq):
+    if cq.from_user.id != user.me.id:
+        return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
+    # cq.inline_message_id
+    kb = ikb({f"{cgr("ttup")}": "cls_hlp"})
+    await cq.edit_message_text(text="**Processing...**", reply_markup=kb)
+    loop = asyncio.get_running_loop()
+    download, upload, info = await loop.run_in_executor(None, cb_tespeed)
+    msg = f"""
+#**Download:** `{download}`
+#**Upload:** `{upload}`
+#**Latency:** `{info['latency']} ms`
+#**Country:** `{info['country']} [{info['cc']}]`
+#**Latitude:** `{info['lat']}`
+#**Longitude:** `{info['lon']}`
+"""
+    await cq.edit_message_text(msg, reply_markup=kb)
+"""
 
 ################################################################
 """
