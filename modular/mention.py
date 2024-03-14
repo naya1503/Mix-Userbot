@@ -17,7 +17,7 @@ tagall_active = False
 
 
 @ky.ubot("tagall", sudo=True)
-async def tag_all_members(c: user, m: Message):
+async def _(c: user, m: Message):
     global tagall_active
     chat_id = m.chat.id
     admins = False
