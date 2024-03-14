@@ -12,7 +12,7 @@ __help__ = "Mention"
 
 
 @ky.ubot("tagall|mention", sudo=True)
-async def _(c, m):
+async def mention_all(c: Client, m: Message):
     chat_id = m.chat.id
     if m.chat.type == "private":
         return await m.reply(
@@ -25,17 +25,17 @@ async def _(c, m):
     except UserNotParticipant:
         is_admin = False
     else:
-        if isinstance(
-            participant, (ChannelParticipantAdmin, ChannelParticipantCreator)
-        ):
+        if participant.status in ("administrator", "creator"):
             is_admin = True
     if not is_admin:
         return await m.reply_text(
             f"Hanya admin grup yang bisa menggunakan perintah ini!"
         )
 
+    usrnum = 0
+    usrtxt = ""
     if m.text and m.reply_to_message:
-        return await m.reply_text(f"Berikan saya argumen!")
+        return await m.reply_text("Berikan saya argumen!")
     elif m.text:
         mode = "text_on_cmd"
         msg = m.text
@@ -44,11 +44,11 @@ async def _(c, m):
         msg = m.reply_to_message
         if msg is None:
             return await m.reply_text(
-                f"Saya tidak bisa melakukan tagall dari pesan yang sebelumnya tidak ada)"
+                "Saya tidak bisa melakukan tagall dari pesan yang sebelumnya tidak ada"
             )
     else:
         return await m.reply_text(
-            f"Berikan saya pesan atau balas pesan untuk melakukan tagall"
+            "Berikan saya pesan atau balas pesan untuk melakukan tagall"
         )
 
     async for user in c.iter_chat_members(chat_id):
