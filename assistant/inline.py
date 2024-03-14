@@ -301,18 +301,11 @@ async def _(c, iq):
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
-    keyboard = InlineKeyboard(row_width=2)
     teks, button = text_keyb(ikb, pm_text)
-    for row in button.inline_keyboard:
-        for data in row:
-            keyboard.add(ikb({f"{data.text}": f"{data.url}"}))
-    keyboard.row(
-        InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
-        InlineKeyboardButton(
-            text="Blokir",
-            callback_data=f"pm_ blokbae {int(org[1])}",
-        ),
-    )
+    #for row in button.inline_keyboard:
+        #for data in row:
+            #keyboard.add(ikb({f"{data.text}": f"{data.url}"}))
+    keyboard = ikb({"Setuju": f"pm_ okein {int(org[1])}"}, {"Blokir": f"pm_ blokbae {int(org[1])}"},)
     mari = await user.get_users(int(org[1]))
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
