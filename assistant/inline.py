@@ -13,7 +13,6 @@ from datetime import datetime
 from gc import get_objects
 from time import time
 
-from pykeyboard import InlineKeyboard
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -302,10 +301,13 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = text_keyb(ikb, pm_text)
-    #for row in button.inline_keyboard:
-        #for data in row:
-            #keyboard.add(ikb({f"{data.text}": f"{data.url}"}))
-    keyboard = ikb({"Setuju": f"pm_ okein {int(org[1])}"}, {"Blokir": f"pm_ blokbae {int(org[1])}"},)
+    # for row in button.inline_keyboard:
+    # for data in row:
+    # keyboard.add(ikb({f"{data.text}": f"{data.url}"}))
+    keyboard = ikb(
+        {"Setuju": f"pm_ okein {int(org[1])}"},
+        {"Blokir": f"pm_ blokbae {int(org[1])}"},
+    )
     mari = await user.get_users(int(org[1]))
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
