@@ -303,7 +303,13 @@ async def _(c, iq):
     teks, button = text_keyb(ikb, pm_text)
     for row in button.inline_keyboard:
         for data in row:
-            keyboard = ikb({"Setuju": f"pm_ okein {int(org[1])}", "Blokir": f"pm_ blokbae {int(org[1])}", f"{data.text}": f"{data.url}"})
+            keyboard = ikb(
+                {
+                    "Setuju": f"pm_ okein {int(org[1])}",
+                    "Blokir": f"pm_ blokbae {int(org[1])}",
+                    f"{data.text}": f"{data.url}",
+                }
+            )
     mari = await user.get_users(int(org[1]))
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
