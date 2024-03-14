@@ -60,7 +60,7 @@ async def tag_all_members(c: user, m: Message):
         if not berenti:
             break
         if not member.user.is_bot:
-            nyet = await c.extract_user(member)
+            nyet, _ = await c.extract_user_and_reason(member)
             full_name = (
                 nyet.first_name + " " + nyet.last_name
                 if nyet.last_name
