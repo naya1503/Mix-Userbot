@@ -48,7 +48,7 @@ async def _(c, cq):
         q = int(cq.data.split("_", 1)[1])
         m = [obj for obj in get_objects() if id(obj) == q][0]
         await m._client.unblock_user(bot.me.username)
-        await cq.edit_message_text(f"<b>Sedang proses . . .</b>")
+        await cq.edit_message_text(cgr("proses_1"))
         copy = await m._client.send_message(
             bot.me.username, f"/copy {m.text.split()[1]}"
         )
@@ -62,4 +62,4 @@ async def _(c, cq):
             await m._client.delete_messages(m.chat.id, COPY_ID[m._client.me.id])
             await get.delete()
     except Exception as error:
-        await cq.edit_message_text(f"<b>{error}</b>")
+        await cq.edit_message_text(cgr("err_1").format(e))
