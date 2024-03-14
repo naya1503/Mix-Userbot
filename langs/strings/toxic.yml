@@ -476,3 +476,4 @@ help_download: " **Download **\n\n• Perintah: `{0}dtik` [link tiktok]\n• Pen
 help_games: " **Games **\n\n• Perintah: `{0}dice`\n• Penjelasan: Buat mengocok dadu secara acak.\n\n• Perintah: `{0}dart`\n• Penjelasan: Buat melempar Darts.\n\n• Perintah: `{0}bowling`\n• Penjelasan: Buat melempar bola bowling.\n\n• Perintah: `{0}football`\n• Penjelasan: Buat melempar bola sepak.\n\n• Perintah: `{0}slot`\n• Penjelasan: Buat bermain game slot.\n"
 help_mention: " **Mention **\n\n• Perintah: `{0}tagall` [Pesan]\n• Penjelasan: Buat manggil semua binatang yang ada di group.\n\n• Perintah: `{0}stop`\n• Penjelasan: Buat nyetopin tagall jink.\n"
 help_repo: " **Repository**\n\n• Perintah: `{0}`repo\n• Penjelasan: Untuk melihat link repository."
+help_nul: " **Nulis**\n\n• Perintah: `{0}`nulis\n• Penjelasan: Untuk pemalas nulis."
