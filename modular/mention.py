@@ -53,14 +53,16 @@ async def tag_all_members(c: user, m: Message):
     username_pattern = re.compile(r"@[\w\d_]+")
     members = c.get_chat_members(chat_id)
     tagged_count = 0
-    member_groups = [members[i:i + 4] for i in range(0, len(members), 4)]
+    member_groups = [members[i : i + 4] for i in range(0, len(members), 4)]
 
     for group in member_groups:
         mention_texts = []
         for member in group:
             if not member.user.is_bot:
                 profile_link_emoji = random.choice(["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"])
-                mention_texts.append(f"{profile_link_emoji} [{member.user.first_name}](tg://user?id={member.user.id})")
+                mention_texts.append(
+                    f"{profile_link_emoji} [{member.user.first_name}](tg://user?id={member.user.id})"
+                )
                 tagged_count += 1
         if mention_texts:
             mention_text = f"{text}\n\n{' '.join(mention_texts)}"
