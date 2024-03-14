@@ -1,9 +1,10 @@
 import asyncio
+
 from pyrogram import *
 from pyrogram.errors import *
 from pyrogram.types import *
-from Mix import *
 
+from Mix import *
 
 __modles__ = "Mention"
 __help__ = "Mention"
@@ -23,10 +24,14 @@ async def _(c, m):
     except UserNotParticipant:
         is_admin = False
     else:
-        if isinstance(participant, (ChannelParticipantAdmin, ChannelParticipantCreator)):
+        if isinstance(
+            participant, (ChannelParticipantAdmin, ChannelParticipantCreator)
+        ):
             is_admin = True
     if not is_admin:
-        return await m.reply_text(f"Hanya admin grup yang bisa menggunakan perintah ini!")
+        return await m.reply_text(
+            f"Hanya admin grup yang bisa menggunakan perintah ini!"
+        )
 
     if m.text and m.reply_to_message:
         return await m.reply_text(f"Berikan saya argumen!")
