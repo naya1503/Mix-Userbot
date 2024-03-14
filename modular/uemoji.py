@@ -33,7 +33,9 @@ async def _(c: user, m):
         await xx.edit(cgr("em_5").format(em.gagal))
         return
     else:
-        await xx.edit(cgr("em_4").format(em.gagal, emoji_id))  # Perbaiki pesan format di sini
+        await xx.edit(
+            cgr("em_4").format(em.gagal, emoji_id)
+        )  # Perbaiki pesan format di sini
 
     prem = c.me.is_premium
     if prem:
