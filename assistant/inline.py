@@ -312,9 +312,8 @@ async def _(c, iq):
             callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
-    print(f"{int(org[1])}")
-    print(f"{org[1]}")
-    full = f"[{iq.from_user.first_name} {iq.from_user.last_name or ''}](tg://user?id={int(org[1])})"
+    mari = await user.get_users(int(org[1]))
+    full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
