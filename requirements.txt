@@ -39,5 +39,4 @@ pytz
 pyyaml
 lyricsgenius==3.0.1
 SafoneApi
-pytgcalls==3.0.0.dev24
-markdown2
+pytgcalls==3.0.0.dev22
