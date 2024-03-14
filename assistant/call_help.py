@@ -472,7 +472,7 @@ async def _(c, cq):
             note, button = text_keyb(ikb, noteval.get("value"))
             if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
                 file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
-                biji = noteval.get("file")
+                noteval.get("file")
 
                 if noteval["type"] == Types.PHOTO:
                     await cq.edit_message_caption(
