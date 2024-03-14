@@ -29,6 +29,7 @@ async def tag_all_members(c: user, m: Message):
     chat_id = m.chat.id
     admins = False
     berenti = True
+    progres = m.reply(cgr("proses").format(em.proses))
     try:
         administrator = []
         async for admin in c.get_chat_members(
@@ -73,6 +74,7 @@ async def tag_all_members(c: user, m: Message):
                 mention_text += "\n".join(mention_texts)
                 await c.send_message(chat_id, mention_text)
                 await asyncio.sleep(2.5)
+                await progres.delete()
                 mention_texts = []
 
     if mention_texts:
