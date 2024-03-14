@@ -41,7 +41,7 @@ def clbk_stasm():
 async def _(c, cq):
     org = cq.from_user.id
     data = cq.data.split()
-    if int(data[0]) == "okein":
+    if int(data[2]) == "okein":
         if org != user.me.id:
             return await cq.answer("This Button Not For You FCVK !!!!", True)
         udB.oke_pc(int(data[1]))
@@ -49,7 +49,7 @@ async def _(c, cq):
             cq.inline_message_id, "User Has Been Approved To PM."
         )
 
-    if int(data[0]) == "blokbae":
+    if int(data[2]) == "blokbae":
         if org != user.me.id:
             return await cq.answer("This Button Not For You FCVK !!!!", True)
         await bot.edit_inline_text(
