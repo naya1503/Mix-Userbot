@@ -11,12 +11,13 @@ __modles__ = "Mention"
 __help__ = "Mention"
 
 
+
 @ky.ubot("tagall|mention", sudo=True)
-async def mention_all(c: Client, m: Message):
+async def _(c, m):
     chat_id = m.chat.id
-    if m.chat.type == "private":
+    if m.chat.type == ChatType.PRIVATE:
         return await m.reply(
-            f"Perintah ini hanya bisa digunakan untuk Grup atau Channel"
+            "Perintah ini hanya bisa digunakan untuk Grup atau Channel"
         )
 
     is_admin = False
@@ -25,11 +26,11 @@ async def mention_all(c: Client, m: Message):
     except UserNotParticipant:
         is_admin = False
     else:
-        if participant.status in ("administrator", "creator"):
+        if participant.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.CREATOR):
             is_admin = True
     if not is_admin:
         return await m.reply_text(
-            f"Hanya admin grup yang bisa menggunakan perintah ini!"
+            "Hanya admin grup yang bisa menggunakan perintah ini!"
         )
 
     usrnum = 0
@@ -52,7 +53,7 @@ async def mention_all(c: Client, m: Message):
         )
 
     async for user in c.iter_chat_members(chat_id):
-        if user.status == "kicked":
+        if user.status == ChatMemberStatus.KICKED:
             continue
         usrnum += 1
         usrtxt += f"[{user.user.first_name}](tg://user?id={user.user.id}) "
