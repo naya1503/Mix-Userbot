@@ -1,5 +1,4 @@
 import random
-import re
 
 from pyrogram import *
 from pyrogram.enums import *
