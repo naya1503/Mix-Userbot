@@ -34,8 +34,8 @@ async def _(c: user, m):
         return
     else:
         await xx.edit(
-            cgr("em_4").format(em.gagal, emoji_id)
-        )  # Perbaiki pesan format di sini
+            cgr("em_3").format(em.gagal)
+        )
 
     prem = c.me.is_premium
     if prem:
