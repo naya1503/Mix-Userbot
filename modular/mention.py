@@ -11,7 +11,6 @@ __modles__ = "Mention"
 __help__ = "Mention"
 
 
-
 @ky.ubot("tagall|mention", sudo=True)
 async def _(c: user, m: Message):
     chat_id = m.chat.id
@@ -22,7 +21,7 @@ async def _(c: user, m: Message):
             chat_id=chat, filter=ChatMembersFilter.ADMINISTRATORS
         ):
             administrator.append(admin)
-        chat_member = await c.get_chat_member(chat_id, m.from_user.id)
+        await c.get_chat_member(chat_id, m.from_user.id)
         admins = administrator
     except Exception as e:
         await m.reply(f"Error : {e}")
