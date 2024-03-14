@@ -2,8 +2,7 @@ import asyncio
 
 from pyrogram import *
 from pyrogram.errors import *
-from pyrogram.types import *
-
+from pyrogram.types import UserStatus, ChatMember, ChannelParticipantAdmin, ChannelParticipantCreator
 from Mix import *
 
 __modles__ = "Mention"
