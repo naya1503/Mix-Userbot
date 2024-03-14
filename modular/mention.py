@@ -57,7 +57,8 @@ async def tag_all_members(c: user, m: Message):
     text = " ".join(m.command[1:])
 
     mention_texts = []
-    async for member in c.iter_chat_members(chat_id):
+    members = c.get_chat_members(chat_id)
+    async for member in members:
         if not member.user.is_bot:
             mention_texts.append(f"{random_emoji()} @{member.user.username}")
             if len(mention_texts) == 4:
