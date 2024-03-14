@@ -465,7 +465,7 @@ async def _(c, cq):
         btn_data = cq.data
         if btn_data.startswith("#"):
             notetag = btn_data[1:]
-            noteval = udB.get_note(cq.from_user.id, notetag)
+            noteval = udB.get_note(user.me.id, notetag)
             if not noteval:
                 await cq.answer("Catatan tidak ditemukan.", True)
                 return
