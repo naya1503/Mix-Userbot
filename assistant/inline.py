@@ -304,7 +304,7 @@ async def _(c, iq):
     keyboard = InlineKeyboard(row_width=2)
     teks, button = text_keyb(ikb, pm_text)
     for dat_txt, dat_but in button:
-        keyboard.add(dat_txt, dat_but)
+        keyboard.add(ikb({f"{dat_txt}", f"{dat_but}"}))
     #for row in button.inline_keyboard:
         #for data in row:
             #keyboard.add(InlineKeyboardButton(text=f"{data.text}", url=f"{data.url}"))
