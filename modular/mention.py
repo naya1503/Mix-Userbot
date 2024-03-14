@@ -61,7 +61,9 @@ async def tag_all_members(c: user, m: Message):
             break
         if not member.user.is_bot:
             full_name = (
-                member.user.first_name + member.user.last_name if member.user.last_name else member.user.first_name
+                member.user.first_name + member.user.last_name
+                if member.user.last_name
+                else member.user.first_name
             )
             mention_texts.append(
                 f"[{random_emoji()}{full_name}](tg://user?id={member.user.id})"
