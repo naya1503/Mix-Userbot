@@ -25,7 +25,7 @@ async def _(c, m):
     except UserNotParticipant:
         is_admin = False
     else:
-        if participant.status in (ChatMemberStatus.ADMINISTRATOR):
+        if participant.status in (ChatMemberStatus.ADMINISTRATOR,):
             is_admin = True
     if not is_admin:
         return await m.reply_text(
