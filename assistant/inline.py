@@ -259,7 +259,6 @@ async def _(c, iq):
     await c.answer_inline_query(iq.id, cache_time=300, results=duar)
 
 
-
 # notes
 @ky.inline("^get_note_")
 async def _(c, iq):

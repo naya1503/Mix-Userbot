@@ -458,6 +458,7 @@ async def _(c, cq):
 """
     await cq.edit_message_text(msg, reply_markup=kb)
 
+
 ################################################################
 """
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
@@ -467,6 +468,7 @@ async def _(c, cq):
  EH KONTOL BAJINGAN !! KALO MO PAKE DIKODE PAKE AJA BANGSAT!! GAUSAH APUS KREDIT NGENTOT
 """
 ################################################################
+
 
 @ky.callback("^#")
 async def _(c, cq):
