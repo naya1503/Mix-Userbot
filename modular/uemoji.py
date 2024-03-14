@@ -50,7 +50,6 @@ async def _(c: user, m):
         return
 
 
-
 """
 @ky.ubot("setemo", sudo=True)
 async def _(c: user, m):
