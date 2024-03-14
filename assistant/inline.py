@@ -303,9 +303,11 @@ async def _(c, iq):
     pm_warns = getpm_warns if getpm_warns else LIMIT
     keyboard = InlineKeyboard(row_width=2)
     teks, button = text_keyb(ikb, pm_text)
-    for row in button.inline_keyboard:
-        for data in row:
-            keyboard.add(InlineKeyboardButton(text=f"{data.text}", url=f"{data.url}"))
+    for dat_txt, dat_but in button:
+        keyboard.add(dat_txt, dat_but)
+    #for row in button.inline_keyboard:
+        #for data in row:
+            #keyboard.add(InlineKeyboardButton(text=f"{data.text}", url=f"{data.url}"))
     keyboard.row(
         InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
         InlineKeyboardButton(
@@ -326,7 +328,7 @@ async def _(c, iq):
                 await m.delete()
         kiki = PM_WARN.format(
             full,
-            pm_text,
+            teks,
             flood2[int(org[1])],
             pm_warns,
         )
