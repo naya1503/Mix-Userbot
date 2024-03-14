@@ -190,6 +190,7 @@ async def _(c: user, m):
                 reply_to_message_id=ReplyCheck(m),
             )
     await xx.delete()
+    return
 
 
 @ky.ubot("notes", sudo=True)
@@ -208,6 +209,7 @@ async def _(c: user, m):
         rply += cgr("nts_8").format(x)
 
     await xx.edit(rply)
+    return
 
 
 @ky.ubot("clear", sudo=True)
@@ -227,3 +229,4 @@ async def _(c: user, m):
         return
     else:
         await xx.edit(cgr("nts_11").format(em.sukses, note))
+    return
