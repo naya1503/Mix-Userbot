@@ -58,11 +58,7 @@ async def tag_all_members(c: user, m: Message):
         if not berenti:
             break
         if not member.user.is_bot:
-            full_name = (
-                c.me.first_name + " " + c.me.last_name
-                if c.me.last_name
-                else c.me.first_name
-            )
+            full_name = f"<a href='tg://user?id={m.from_user.id}'>{m.from_user.first_name} {m.from_user.last_name or ''}</a>"
             mention_texts.append(
                 f"{random_emoji()} [{full_name}](tg://user?id={member.user.id})"
             )
