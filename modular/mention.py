@@ -14,13 +14,20 @@ __help__ = "Mention"
 @ky.ubot("tagall|mention", sudo=True)
 async def _(c, m):
     chat_id = m.chat.id
-    if not m.from_user.is_admin:
+    is_admin = False
+    try:
+        chat_member = await c.get_chat_member(chat_id, m.from_user.id)
+        is_admin = chat_member.status in ("administrator", "creator")
+    except Exception as e:
+        print(e)
+    
+    if not is_admin:
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
     if m.reply_to_message:
-        target_message = m.reply_to_message
+        target_message = message.reply_to_message
     else:
-        target_message = m
+        target_message = message
     if len(m.command) > 1:
         text = " ".join(m.command[1:])
     else:
