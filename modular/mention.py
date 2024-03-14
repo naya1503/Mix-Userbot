@@ -12,7 +12,7 @@ __help__ = "Mention"
 
 
 @ky.ubot("tagall|mention", sudo=True)
-async def _(c: user, m):
+async def mention_all(c: Client, m: Message):
     chat_id = m.chat.id
     is_admin = False
     try:
@@ -24,17 +24,21 @@ async def _(c: user, m):
     if not is_admin:
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
+    
     if m.reply_to_message:
-        target_message = message.reply_to_message
+        target_message = m.reply_to_message
     else:
-        target_message = message
+        target_message = m
+    
     if len(m.command) > 1:
         text = " ".join(m.command[1:])
     else:
         text = None
+    
     if text is None:
         await m.reply_text("Harap berikan saya teks atau balas sebuah pesan.")
         return
+    
     username_pattern = re.compile(r"@[\w\d_]+")
     async for member in c.iter_chat_members(chat_id):
         if not member.user.is_bot:
