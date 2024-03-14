@@ -21,9 +21,13 @@ def random_emoji():
 
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
+    em = Emojik()
+    em.initialize()
     global berenti
     chat_id = m.chat.id
     admins = False
+    msg = await m.reply(cgr("proses").format(em.proses))
+    berenti = True
     try:
         administrator = []
         async for admin in c.get_chat_members(
@@ -57,23 +61,22 @@ async def tag_all_members(c: user, m: Message):
     mention_texts = []
     members = c.get_chat_members(chat_id)
     async for member in members:
+        if not berenti:
+            break
         if not member.user.is_bot:
             mention_texts.append(f"{random_emoji()} @{member.user.username}")
             if len(mention_texts) == 4:
                 mention_text = f"{text}\n"
                 mention_text += "\n".join(mention_texts)
                 await c.send_message(chat_id, mention_text)
-                asyncio.sleep(2.5)
+                await asyncio.sleep(2.5)
                 mention_texts = []
-
-        if berenti:
-            break
 
     if mention_texts:
         mention_text = f"{text}\n"
         mention_text += "\n".join(mention_texts)
         await c.send_message(chat_id, mention_text)
-        asyncio.sleep(2.5)
+        await asyncio.sleep(2.5)
 
     berenti = False
 
