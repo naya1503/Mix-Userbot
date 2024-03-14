@@ -14,6 +14,7 @@ __help__ = "Mention"
 
 tagall_active = False
 
+
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
     global tagall_active
