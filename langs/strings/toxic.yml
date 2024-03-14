@@ -19,6 +19,12 @@ ttup: "Tutup"
 reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya matot bot lo.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
+# mention
+ment_1: "{} <b>Yang bener aje goblok! Lo itu bukan admin di sini! Lo itu ampas!</b>"
+ment_2: "{} <b>Minimal kasih teks nya lah goblok!</b>"
+ment_3: "{} <b>Yahh TOLOL! orang kaga ada proses tagall!</b>"
+ment_4: "{} <b>IYA! UDAH GUE MATIIN JINK! BAWEL!</b>"
+
 # sangmata
 sangmat_1: "{} <b><code>sg</code> username/id/bales pesan</b>"
 sangmat_2: "{} <b>Yang bener aje lah anjeng, kasih username kek, atau user_id kek, goblok amat!</b>"
@@ -468,3 +474,4 @@ help_tox9: " **Toxic 9\n\n• Perintah: `{0}cacad`\n• Penjelasan: Cobain sendi
 help_cakep: " **Pantun \n\n• Perintah: `{0}sepat`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}ngangkang`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}hancur`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}kenalan`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}soms`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}sirik`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}imut`\n• Penjelasan: Cobain sendiri.**"
 help_download: " **Download **\n\n• Perintah: `{0}dtik` [link tiktok]\n• Penjelasan: Buat download media dari tiktok.\n\n• Perintah: `{0}vtube` [link Yutup]\n• Penjelasan: Buat download video dari link Yutup\n\n• Perintah: `{0}stube` [link Yutup]\n• Penjelasan: Buat download lagu dari Yutup.\n"
 help_games: " **Games **\n\n• Perintah: `{0}dice`\n• Penjelasan: Buat mengocok dadu secara acak.\n\n• Perintah: `{0}dart`\n• Penjelasan: Buat melempar Darts.\n\n• Perintah: `{0}bowling`\n• Penjelasan: Buat melempar bola bowling.\n\n• Perintah: `{0}football`\n• Penjelasan: Buat melempar bola sepak.\n\n• Perintah: `{0}slot`\n• Penjelasan: Buat bermain game slot.\n"
+help_mention: " **Mention **\n\n• Perintah: `{0}tagall` [Pesan]\n• Penjelasan: Buat manggil semua binatang yang ada di group.\n\n• Perintah: `{0}stop`\n• Penjelasan: Buat nyetopin tagall jink.\n"

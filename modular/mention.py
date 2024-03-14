@@ -9,7 +9,7 @@ from pyrogram.types import *
 from Mix import *
 
 __modles__ = "Mention"
-__help__ = "Mention"
+__help__ = get_cgr("help_mention")
 
 berenti = False
 
@@ -40,15 +40,15 @@ async def tag_all_members(c: user, m: Message):
         await c.get_chat_member(chat_id, m.from_user.id)
         admins = administrator
     except Exception as e:
-        await m.reply(f"Error : {e}")
+        await m.reply(cgr("err").format(em.gagal))
         print(e)
 
     if not admins:
-        await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
+        await m.reply(cgr("ment_1").format(em.gagal))
         return
 
     if len(m.command) < 2:
-        await m.reply_text("Harap berikan teks untuk di-mention.")
+        await m.reply(cgr("ment_2").format(em.gagal))
         return
 
     text = " ".join(m.command[1:])
@@ -86,11 +86,13 @@ async def tag_all_members(c: user, m: Message):
 
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
+    em = Emojik()
+    em.initialize()
     global berenti
     berenti = True
     if not berenti:
-        await m.reply_text("Tidak ada proses tagall yang sedang berlangsung.")
+        await m.reply(cgr("ment_3").format(em.gagal))
         return
 
     berenti = False
-    await m.reply_text("Tagall telah dihentikan.")
+    await m.reply(cgr("ment_4").format(em.sukses))

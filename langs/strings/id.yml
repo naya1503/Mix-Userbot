@@ -19,6 +19,12 @@ ttup: "Tutup"
 reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
+# mention
+ment_1: "{} <b>Anda harus menjadi admin untuk menggunakan perintah ini!</b>"
+ment_2: "{} <b>Harap berikan teks untuk di-mention.</b>"
+ment_3: "{} <b>Tidak ada proses tagall yang sedang berlangsung.</b>"
+ment_4: "{} <b>Tagall telah dihentikan.</b>"
+
 # sangmata
 sangmat_1: "{} <b>sg username/id/reply</b>"
 sangmat_2: "{} <b>Please specify a valid user!</b>"
@@ -469,3 +475,4 @@ help_tox9: " **Toxic 9\n\n• Perintah: `{0}cacad`\n• Penjelasan: Cobain sendi
 help_cakep: " **Pantun \n\n• Perintah: `{0}sepat`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}ngangkang`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}hancur`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}kenalan`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}soms`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}sirik`\n• Penjelasan: Cobain sendiri.\n\n• Perintah: `{0}imut`\n• Penjelasan: Cobain sendiri.**\n"
 help_download: " **Download **\n\n• Perintah: `{0}dtik` [link tiktok]\n• Penjelasan: Untuk mendownload media dari link tiktok.\n\n• Perintah: `{0}vtube` [link YouTube]\n• Penjelasan: Untuk mendownload video dari link YouTube\n\n• Perintah: `{0}stube` [link YouTube]\n• Penjelasan: Untuk mendownload lagu dari link YouTube.\n"
 help_games: " **Games **\n\n• Perintah: `{0}dice`\n• Penjelasan: untuk mengocok dadu secara acak.\n\n• Perintah: `{0}dart`\n• Penjelasan: untuk melempar Darts.\n\n• Perintah: `{0}bowling`\n• Penjelasan: Untuk melempar bola bowling.\n\n• Perintah: `{0}football`\n• Penjelasan: Untuk melempar bola sepak.\n\n• Perintah: `{0}slot`\n• Penjelasan: Untuk bermain game slot.\n"
+help_mention: " **Mention **\n\n• Perintah: `{0}tagall` [Pesan]\n• Penjelasan: Untuk melakukan mention atau tag kepada seluruh member.\n\n• Perintah: `{0}stop`\n• Penjelasan: Untuk memberhentikan mention atau tag yang sedang berjalan.\n"
