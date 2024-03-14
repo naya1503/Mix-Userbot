@@ -23,7 +23,7 @@ async def tag_all_members(c: user, m: Message):
     global takolanjing
     takolanjing = False
     chat_id = m.chat.id
-    simemek = await client.get_chat_members(chat_id)
+    simemek = await c.get_chat_members(chat_id)
     admins = False
     try:
         administrator = []
