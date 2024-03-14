@@ -17,7 +17,7 @@ takolanjing = False
 
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
-    global takolanjing
+    global tagall_active
     chat_id = m.chat.id
     admins = False
     try:
@@ -36,13 +36,13 @@ async def tag_all_members(c: user, m: Message):
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
 
-    if takolanjing:
+    if tagall_active:
         await m.reply_text(
             "Proses tagall sedang berlangsung. Harap tunggu sampai selesai atau gunakan perintah stop."
         )
         return
 
-    takolanjing = True
+    tagall_active = True
 
     if len(m.command) < 2:
         await m.reply_text("Harap berikan teks untuk di-mention.")
@@ -53,25 +53,31 @@ async def tag_all_members(c: user, m: Message):
     username_pattern = re.compile(r"@[\w\d_]+")
     members = c.get_chat_members(chat_id)
     tagged_count = 0
-    async for member in members:
-        if not member.user.is_bot:
-            profile_link_emoji = random.choice(["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"])
-            mention_text = f"{text}\n\n{profile_link_emoji} [{member.user.first_name}](tg://user?id={member.user.id})"
+    member_groups = [members[i:i + 4] for i in range(0, len(members), 4)]
+
+    for group in member_groups:
+        mention_texts = []
+        for member in group:
+            if not member.user.is_bot:
+                profile_link_emoji = random.choice(["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"])
+                mention_texts.append(f"{profile_link_emoji} [{member.user.first_name}](tg://user?id={member.user.id})")
+                tagged_count += 1
+        if mention_texts:
+            mention_text = f"{text}\n\n{' '.join(mention_texts)}"
             await c.send_message(chat_id, mention_text)
             await asyncio.sleep(2)
-            tagged_count += 1
 
     if tagged_count > 0:
         await m.reply_text("Tagall telah selesai.")
-    takolanjing = False
+    tagall_active = False
 
 
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
-    global takolanjing
-    if not takolanjing:
+    global tagall_active
+    if not tagall_active:
         await m.reply_text("Tidak ada proses tagall yang sedang berlangsung.")
         return
 
-    takolanjing = False
+    tagall_active = False
     await m.reply_text("Tagall telah dihentikan.")
