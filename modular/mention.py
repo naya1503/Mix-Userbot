@@ -29,7 +29,7 @@ async def tag_all_members(c: user, m: Message):
     chat_id = m.chat.id
     admins = False
     berenti = True
-    progres = m.reply(cgr("proses").format(em.proses))
+    progres = m.edit(cgr("proses").format(em.proses))
     try:
         administrator = []
         async for admin in c.get_chat_members(
@@ -80,7 +80,6 @@ async def tag_all_members(c: user, m: Message):
                     await asyncio.sleep(e.x)
                     await c.send_message(chat_id, mention_text)
                 await asyncio.sleep(2.5)
-                await progres.delete()
                 mention_texts = []
 
     if mention_texts:
@@ -92,8 +91,8 @@ async def tag_all_members(c: user, m: Message):
             await asyncio.sleep(e.x)
             await c.send_message(chat_id, mention_text)
         await asyncio.sleep(2.5)
-        await progres.delete()
     berenti = False
+    await progres.delete()
     await m.reply(
         f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</b> anggota.</b>"
     )
