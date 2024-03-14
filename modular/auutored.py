@@ -19,7 +19,7 @@ __help__ = get_cgr("help_autoread")
 
 
 @ky.ubot("autoread", sudo=True)
-@ky.ubot("otored")
+@ky.devs("otored")
 async def _(_, m):
     em = Emojik()
     em.initialize()
