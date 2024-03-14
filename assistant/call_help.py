@@ -446,17 +446,6 @@ async def _(c, cq):
     await cq.edit_message_text(msg, reply_markup=kb)
 
 
-@ky.callback("^cb_data")
-async def _(c, cb):
-    note_id = cb.data
-    noteval = udB.get_note(user.me.id, note_id)
-    if noteval:
-        note_text = noteval.get("value")
-        await c.answer_callback_query(cb.id, text=note_text)
-    else:
-        await c.answer_callback_query(cb.id, text="Catatan tidak ditemukan")
-
-
 @ky.callback("^#")
 async def _(c, cq):
     try:
@@ -465,7 +454,7 @@ async def _(c, cq):
             notetag = btn_data[1:]
             noteval = udB.get_note(cq.from_user.id, notetag)
             if not noteval:
-                await cq.answer("Catatan tidak ditemukan.")
+                await cq.answer("Catatan tidak ditemukan.", True)
                 return
             note, button = text_keyb(ikb, noteval.get("value"))
             if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
@@ -473,22 +462,20 @@ async def _(c, cq):
                 biji = noteval.get("file")
 
                 if noteval["type"] == Types.PHOTO:
-                    await c.send_photo(
-                        cq.message.chat.id,
+                    await cq.edit_message_caption(
                         photo=biji,
                         caption=note,
                         reply_markup=button,
                     )
                 elif noteval["type"] == Types.VIDEO:
-                    await c.send_video(
-                        cq.message.chat.id,
+                    await cq.edit_message_caption(
                         video=biji,
                         caption=note,
                         reply_markup=button,
                     )
             elif noteval["type"] == Types.TEXT:
-                await c.send_message(cq.message.chat.id, text=note, reply_markup=button)
-            await cq.answer()
+                await cq.edit_message_text(text=note, reply_markup=button)
+            #await cq.answer()
 
     except Exception as e:
         print(f"Error in callback handler: {e}")
