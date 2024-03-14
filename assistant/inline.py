@@ -301,12 +301,9 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = text_keyb(ikb, pm_text)
-    def_keyb = {
-        "Setuju": f"pm_okein {int(org[1])}",
-        "Blokir": f"pm_blokbae {int(org[1])}",
-    }
     for row in button.inline_keyboard:
         for data in row:
+            def_keyb = {"Setuju": f"pm_okein {int(org[1])}", "Blokir": f"pm_blokbae {int(org[1])}"}
             add_keyb = (
                 {data.text: data.url} if data.url else {data.text: data.callback_data}
             )
