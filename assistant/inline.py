@@ -102,7 +102,25 @@ async def _(c, iq):
 
 # copy
 
+@ky.inline("^get_msg")
+async def _(c, iq):
+    bk = ikb({f"{cgr('klk_1')}": f"copymsg_{int(iq.query.split()[1])}"})
+    await c.answer_inline_query(
+        iq.id,
+        cache_time=0,
+        results=[
+            (
+                InlineQueryResultArticle(
+                    title="message",
+                    reply_markup=bk,
+                    input_message_content=InputTextMessageContent(cgr('cpy_3')),
+                )
+            )
+        ],
+    )
 
+
+"""
 @ky.inline("^get_msg")
 async def _(c, iq):
     bk = ikb({f"{cgr("klk_1")}": f"copymsg_{int(iq.query.split()[1])}"})
@@ -119,7 +137,7 @@ async def _(c, iq):
             )
         ],
     )
-
+"""
 
 # send
 @ky.inline("^_send_")
