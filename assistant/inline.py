@@ -312,7 +312,7 @@ async def _(c, iq):
             callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
-    full = f"{iq.from_user.first_name} {iq.from_user.last_name or ''}"
+    f"{iq.from_user.first_name} {iq.from_user.last_name or ''}"
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
