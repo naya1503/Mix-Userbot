@@ -116,13 +116,13 @@ def text_keyb(ikb, text: str, row_width: int = 2):
                 if not is_url(btn_data):
                     btn_data = f"{btn_data}"
                 keyboard[btn_txt] = btn_data
-                buttons.append((btn_txt, btn_data))
+                button_.append((btn_txt, btn_data))
 
         keyboard = ikb(keyboard, row_width)
     except Exception as e:
         print(f"Error in text_keyb: {e}")
         return None, None
-    return main_text, keyboard, buttons
+    return main_text, keyboard, button_
 
 
 def extract_time(time_val):
