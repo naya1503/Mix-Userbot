@@ -29,7 +29,7 @@ async def tag_all_members(c: user, m: Message):
     berenti = True
     progres = await m.edit(
         cgr("proses").format(em.proses)
-    )  # Menggunakan await untuk m.edit()
+    )
     try:
         administrator = []
         async for admin in c.get_chat_members(
