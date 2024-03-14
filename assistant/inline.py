@@ -303,7 +303,10 @@ async def _(c, iq):
     teks, button = text_keyb(ikb, pm_text)
     for row in button.inline_keyboard:
         for data in row:
-            def_keyb = {"Setuju": f"pm_okein {int(org[1])}", "Blokir": f"pm_blokbae {int(org[1])}"}
+            def_keyb = {
+                "Setuju": f"pm_okein {int(org[1])}",
+                "Blokir": f"pm_blokbae {int(org[1])}",
+            }
             add_keyb = (
                 {data.text: data.url} if data.url else {data.text: data.callback_data}
             )
