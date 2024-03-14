@@ -303,8 +303,7 @@ async def _(c, iq):
     pm_warns = getpm_warns if getpm_warns else LIMIT
     keyboard = InlineKeyboard(row_width=2)
     teks, button = text_keyb(ikb, pm_text)
-
-    for btn_txt, btn_url in button["inline_keyboard"][0]:
+    for btn_txt, btn_url in button[0]:
         keyboard.add(InlineKeyboardButton(text=btn_txt, url=btn_url))
     keyboard.row(
         InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
