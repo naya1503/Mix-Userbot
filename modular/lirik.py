@@ -46,11 +46,13 @@ async def _(c, m):
             )
             return
 
-        penyanyi = parts[0].strip()
-        judul = parts[1].strip()
+        penyanyi = parts[0].strip().capitalize()
+        judul = parts[1].strip().capitalize()
         lyrics_text = await search_lyrics(penyanyi, judul)
         if not lyrics_text:
-            lyrics_text = await search_lyrics(judul, penyanyi)
+            penyanyi = parts[0].strip().lower()
+            judul = parts[1].strip().lower()
+            lyrics_text = await search_lyrics(penyanyi, judul)
 
         if lyrics_text:
             await pft.edit(f"{em.sukses} <code>{lyrics_text}</code>")
