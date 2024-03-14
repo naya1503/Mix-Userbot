@@ -297,7 +297,7 @@ async def _(c, iq):
 async def _(c, iq):
     org = iq.query.split()
     gw = iq.from_user.id
-    m = [obj for obj in get_objects() if id(obj) == int(gw)][2]
+    m = [obj for obj in get_objects() if id(obj) == int(org)][2]
     getpm_txt = udB.get_var(user.me.id, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
