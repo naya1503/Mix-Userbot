@@ -78,9 +78,10 @@ async def tag_all_members(c: user, m: Message):
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
     global berenti
+    berenti = True
     if not berenti:
         await m.reply_text("Tidak ada proses tagall yang sedang berlangsung.")
         return
 
-    berenti = True
+    berenti = False
     await m.reply_text("Tagall telah dihentikan.")
