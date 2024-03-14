@@ -116,9 +116,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
             keyb_parts = keyb_text.split("|")
             if len(keyb_parts) == 2:
                 btn_txt, btn_data = keyb_parts[0].strip(), keyb_parts[1].strip()
-                if btn_data.startswith("#"):
-                    btn_data = f"cb_data:{btn_data[1:]}"
-                elif not is_url(btn_data):
+                if not is_url(btn_data):
                     btn_data = f"#{btn_data}"
                 keyboard[btn_txt] = btn_data
 
