@@ -1,5 +1,5 @@
 import re
-
+import asyncio
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -50,3 +50,4 @@ async def _(c: user, m: Message):
         if not member.user.is_bot:
             mention_text = re.sub(username_pattern, f"@{member.user.username}", text)
             await target_message.reply(mention_text)
+            asyncio.sleep(2)
