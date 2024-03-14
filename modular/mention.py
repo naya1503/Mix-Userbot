@@ -14,7 +14,6 @@ __help__ = "Mention"
 
 tagall_active = False
 
-
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
     global tagall_active
@@ -51,7 +50,7 @@ async def tag_all_members(c: user, m: Message):
     text = " ".join(m.command[1:])
 
     username_pattern = re.compile(r"@[\w\d_]+")
-    members = await c.get_chat_members(chat_id)
+    members = c.get_chat_members(chat_id)
     async for member in members:
         if not member.user.is_bot:
             profile_link_emoji = random.choice(["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"])
