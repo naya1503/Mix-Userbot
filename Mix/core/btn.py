@@ -107,7 +107,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
         main_text = main_text.replace("<i>", "_").replace("</i>", "_")
         main_text = main_text.replace("<u>", "__").replace("</u>", "__")
         main_text = main_text.replace("<code>", "`").replace("</code>", "`")
-        button_ = []
+        
         keyb_texts = findall(r"\[([^]]+)\]", button_text)
         for keyb_text in keyb_texts:
             keyb_parts = keyb_text.split("|")
@@ -116,13 +116,13 @@ def text_keyb(ikb, text: str, row_width: int = 2):
                 if not is_url(btn_data):
                     btn_data = f"{btn_data}"
                 keyboard[btn_txt] = btn_data
-                button_.append((btn_txt, btn_data))
+                
 
         keyboard = ikb(keyboard, row_width)
     except Exception as e:
         print(f"Error in text_keyb: {e}")
         return None, None
-    return main_text, keyboard, button_
+    return main_text, keyboard
 
 
 def extract_time(time_val):
