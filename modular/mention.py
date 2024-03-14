@@ -1,7 +1,12 @@
 import random
+import asyncio
 
 from pyrogram import *
 from pyrogram.types import *
+from pyrogram.errors import *
+
+from Mix import *
+
 
 __modles__ = "Mention"
 __help__ = "Mention"
@@ -59,6 +64,7 @@ async def tag_all_members(c: user, m: Message):
                 mention_text = f"{text}\n"
                 mention_text += "\n".join(mention_texts)
                 await c.send_message(chat_id, mention_text)
+                asyncio.sleep(2.5)
                 mention_texts = []
 
         if (
@@ -70,6 +76,7 @@ async def tag_all_members(c: user, m: Message):
         mention_text = f"{text}\n"
         mention_text += "\n".join(mention_texts)
         await c.send_message(chat_id, mention_text)
+        asyncio.sleep(2.5)
 
     berenti = (
         False  # Setel kembali berenti ke False setelah proses tag_all_members selesai
