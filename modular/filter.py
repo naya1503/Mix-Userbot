@@ -27,7 +27,7 @@ db = Filters()
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    filters_chat = f"{em.sukses} Daftar filters digrup <b>{m.chat.title}</b>:\n"
+    filters_chat = cgr("fil_1").format(em.sukses, m.chat.title)
     all_filters = db.get_all_filters(m.chat.id)
     actual_filters = [j for i in all_filters for j in i.split("|")]
     if not actual_filters:
