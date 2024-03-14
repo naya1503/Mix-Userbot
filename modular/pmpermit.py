@@ -35,18 +35,16 @@ LIMIT = 5
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    babi = await m.reply(cgr("proses").format(em.proses))
     chat_type = m.chat.type
+    if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        return
+    if chat_type == "me":
+        return
+    babi = await m.reply(cgr("proses").format(em.proses))
     getc_pm_warns = udB.get_var(c.me.id, "PMLIMIT")
     pm_text = udB.get_var(c.me.id, "PMTEXT")
     custom_pm_txt = pm_text if pm_text else DEFAULT_TEXT
     custom_pm_warns = getc_pm_warns if getc_pm_warns else LIMIT
-    if chat_type == "me":
-        await babi.delete()
-        return
-    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        await babi.delete()
-        return
     dia = m.chat.id
     ok_tak = udB.dicek_pc(dia)
     if ok_tak:
