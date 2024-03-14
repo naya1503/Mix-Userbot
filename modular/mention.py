@@ -63,14 +63,14 @@ async def tag_all_members(c: user, m: Message):
             if len(mention_texts) == 4:
                 mention_text = f"{text}\n"
                 mention_text += "\n".join(mention_texts)
-                await m.reply_text(mention_text)
+                await c.send_message(chat_id, mention_text)
                 mention_texts = []
                 await asyncio.sleep(2.5)  # Menambah jeda 2,5 detik
 
     if mention_texts:
         mention_text = f"{text}\n"
         mention_text += "\n".join(mention_texts)
-        await m.reply_text(mention_text)
+        await c.send_message(chat_id, mention_text)
 
     berenti = False
 
