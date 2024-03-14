@@ -313,7 +313,7 @@ async def _(c, iq):
         ),
     )
     print(f"{int(org[1])}")
-    full = f"[{iq.from_user.first_name} {iq.from_user.last_name or ''}](tg://user?id={iq.from_user.id})"
+    full = f"[{iq.from_user.first_name} {iq.from_user.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
