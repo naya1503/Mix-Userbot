@@ -46,7 +46,7 @@ async def _(c: user, m: Message):
         return
 
     username_pattern = re.compile(r"@[\w\d_]+")
-    async for member in c.iter_chat_members(chat_id):
+    async for member in c.get_chat_member(chat_id):
         if not member.user.is_bot:
             mention_text = re.sub(username_pattern, f"@{member.user.username}", text)
             await target_message.reply(mention_text)
