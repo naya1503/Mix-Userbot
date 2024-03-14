@@ -308,13 +308,14 @@ async def _(c, iq):
                 {data.text: data.url} if data.url else {data.text: data.callback_data}
             )
             def_keyb.update(add_keyb)
-            add_keyb.update(
+            
+            keyboard = ikb(def_keyb)
+            def_keyb.update(
                 {
                     "Setuju": f"pm_okein {int(org[1])}",
                     "Blokir": f"pm_blokbae {int(org[1])}",
                 }
             )
-            keyboard = ikb(def_keyb)
     mari = await user.get_users(int(org[1]))
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
