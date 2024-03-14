@@ -304,8 +304,15 @@ async def _(c, iq):
     def_keyb = {}
     for row in button.inline_keyboard:
         for data in row:
-            add_keyb = {data.text: data.url} if data.url else {data.text: data.callback_data}
-            add_keyb.update({"Setuju": f"pm_okein {int(org[1])}", "Blokir": f"pm_blokbae {int(org[1])}"})
+            add_keyb = (
+                {data.text: data.url} if data.url else {data.text: data.callback_data}
+            )
+            add_keyb.update(
+                {
+                    "Setuju": f"pm_okein {int(org[1])}",
+                    "Blokir": f"pm_blokbae {int(org[1])}",
+                }
+            )
             keyboard = ikb(def_keyb)
     mari = await user.get_users(int(org[1]))
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
