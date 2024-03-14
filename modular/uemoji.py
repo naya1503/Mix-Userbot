@@ -18,9 +18,9 @@ __help__ = get_cgr("help_emo")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    
+
     xx = await m.edit(cgr("proses").format(em.proses))
-    
+
     if m.reply_to_message:
         emoji_message = m.reply_to_message
         if emoji_message.entities:
@@ -53,7 +53,6 @@ async def _(c: user, m):
         return
 
 
-
 """
 @ky.ubot("setemo", sudo=True)
 async def _(c: user, m):
@@ -80,6 +79,7 @@ async def _(c: user, m):
         await xx.edit(cgr("em_3").format(em.gagal))
         return
 """
+
 
 @ky.ubot("emoid", sudo=True)
 async def _(c: user, m):
