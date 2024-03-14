@@ -1,28 +1,20 @@
-import asyncio
 import random
-
+import asyncio
 from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
 from pyrogram.types import *
-
-from Mix import *
 
 __modles__ = "Mention"
 __help__ = "Mention"
 
-berenti = False
-
+berenti = False  # Inisialisasi variabel berenti sebagai pengontrol penghentian proses tag_all_members
 
 def random_emoji():
     emojis = ["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"]
     return random.choice(emojis)
 
-
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
     global berenti
-    berenti = False
     chat_id = m.chat.id
     admins = False
     try:
@@ -41,13 +33,13 @@ async def tag_all_members(c: user, m: Message):
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
 
-    if berenti:
+    if berenti:  # Periksa apakah berenti telah diatur menjadi True
         await m.reply_text(
             "Proses tagall sedang berlangsung. Harap tunggu sampai selesai atau gunakan perintah stop."
         )
         return
 
-    berenti = True
+    berenti = False  # Setel kembali berenti ke False sebelum memulai proses tag_all_members
 
     if len(m.command) < 2:
         await m.reply_text("Harap berikan teks untuk di-mention.")
@@ -56,8 +48,7 @@ async def tag_all_members(c: user, m: Message):
     text = " ".join(m.command[1:])
 
     mention_texts = []
-    members = c.get_chat_members(chat_id)  # Menggunakan get_chat_members tanpa await
-    async for member in members:
+    async for member in c.iter_chat_members(chat_id):
         if not member.user.is_bot:
             mention_texts.append(f"{random_emoji()} @{member.user.username}")
             if len(mention_texts) == 4:
@@ -65,23 +56,23 @@ async def tag_all_members(c: user, m: Message):
                 mention_text += "\n".join(mention_texts)
                 await c.send_message(chat_id, mention_text)
                 mention_texts = []
-                await asyncio.sleep(2.5)  # Menambah jeda 2,5 detik
+
+        if berenti:  # Periksa apakah berenti telah diatur menjadi True setiap kali iterasi anggota chat
+            break
 
     if mention_texts:
         mention_text = f"{text}\n"
         mention_text += "\n".join(mention_texts)
         await c.send_message(chat_id, mention_text)
 
-    berenti = False
+    berenti = False  # Setel kembali berenti ke False setelah proses tag_all_members selesai
 
-
-@ky.ubot("cstop", sudo=True)
-async def _(c: user, m):
-    em = Emojik()
-    em.initialize()
+@ky.ubot("stop", sudo=True)
+async def stop_tagall(c: user, m: Message):
     global berenti
     if not berenti:
-        return await m.reply(cgr("spm_3").format(em.gagal))
-    berenti = False
-    await m.reply(cgr("spm_4").format(em.sukses))
-    return
+        await m.reply_text("Tidak ada proses tagall yang sedang berlangsung.")
+        return
+
+    berenti = True  # Setel berenti ke True untuk menghentikan proses tag_all_members
+    await m.reply_text("Tagall telah dihentikan.")
