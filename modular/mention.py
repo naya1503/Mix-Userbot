@@ -58,9 +58,8 @@ async def tag_all_members(c: user, m: Message):
         if not berenti:
             break
         if not member.user.is_bot:
-            user_id, reason = await c.extract_user_and_reason(m)
-            mmk = (await c.get_users(members)).mention
-            mention_texts.append(f"{random_emoji()} {mmk}")
+            full_name = member.user.full_name
+            mention_texts.append(f"{random_emoji()} [{full_name}](tg://user?id={member.user.id})")
             if len(mention_texts) == 4:
                 mention_text = f"{text}\n"
                 mention_text += "\n".join(mention_texts)
