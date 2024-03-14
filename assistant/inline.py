@@ -312,7 +312,7 @@ async def _(c, iq):
             callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
-    f"{iq.from_user.first_name} {iq.from_user.last_name or ''}"
+    full = f"{iq.from_user.first_name} {iq.from_user.last_name or ''}"
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
@@ -324,7 +324,7 @@ async def _(c, iq):
                 await m.delete()
         kiki = PM_WARN.format(
             user.me.first_name,
-            pm_text.format(ful),
+            pm_text.format(full),
             flood2[int(org[1])],
             pm_warns,
         )
