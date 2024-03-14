@@ -6,7 +6,6 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 from Mix import *
-from Mix.modular.info import *
 from modular.info import *
 
 __modles__ = "Mention"
