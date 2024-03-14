@@ -173,7 +173,7 @@ async def _(c: user, m):
         except BaseException:
             pass
         return
-    x = await c.get_inline_bot_results(bot.me.username, f"ambil_tombolpc {id(m)}")
+    x = await c.get_inline_bot_results(bot.me.username, f"ambil_tombolpc {id(m)} {flood2(siapa)}")
     await c.send_inline_bot_result(
         m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
     )
