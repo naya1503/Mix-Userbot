@@ -46,9 +46,7 @@ async def tag_all_members(c: user, m: Message):
         )
         return
 
-    berenti = (
-        False
-    )
+    berenti = False
 
     if len(m.command) < 2:
         await m.reply_text("Harap berikan teks untuk di-mention.")
@@ -68,9 +66,7 @@ async def tag_all_members(c: user, m: Message):
                 asyncio.sleep(2.5)
                 mention_texts = []
 
-        if (
-            berenti
-        ):
+        if berenti:
             break
 
     if mention_texts:
@@ -79,9 +75,7 @@ async def tag_all_members(c: user, m: Message):
         await c.send_message(chat_id, mention_text)
         asyncio.sleep(2.5)
 
-    berenti = (
-        False
-    )
+    berenti = False
 
 
 @ky.ubot("stop", sudo=True)
