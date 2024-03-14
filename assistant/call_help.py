@@ -445,6 +445,15 @@ async def _(c, cq):
 """
     await cq.edit_message_text(msg, reply_markup=kb)
 
+@ky.callback("^cb_data")
+async def _(c, cb):
+    note_id = cb.data
+    noteval = udB.get_note(user.me.id, note_id)
+    if noteval:
+        note_text = noteval.get("value")
+        await c.answer_callback_query(cb.id, text=note_text)
+    else:
+        await c.answer_callback_query(cb.id, text="Catatan tidak ditemukan")
 
 @ky.callback("^#")
 async def _(c, cq):
