@@ -11,7 +11,6 @@ __modles__ = "Mention"
 __help__ = "Mention"
 
 
-
 @ky.ubot("tagall|mention", sudo=True)
 async def _(c, m):
     chat_id = m.chat.id
@@ -26,7 +25,10 @@ async def _(c, m):
     except UserNotParticipant:
         is_admin = False
     else:
-        if participant.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.CREATOR):
+        if participant.status in (
+            ChatMemberStatus.ADMINISTRATOR,
+            ChatMemberStatus.CREATOR,
+        ):
             is_admin = True
     if not is_admin:
         return await m.reply_text(
