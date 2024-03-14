@@ -59,7 +59,7 @@ async def tag_all_members(c: user, m: Message):
             break
         if not member.user.is_bot:
             user_id, reason = await c.extract_user_and_reason(m)
-            mmk = (await c.get_users(user_id)).mention
+            mmk = (await c.get_users(members)).mention
             mention_texts.append(f"{random_emoji()} {mmk}")
             if len(mention_texts) == 4:
                 mention_text = f"{text}\n"
