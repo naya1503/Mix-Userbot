@@ -119,7 +119,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
                 if btn_data.startswith("#"):
                     btn_data = f"cb_data:{btn_data[1:]}"
                 elif not is_url(btn_data):
-                    btn_data = f"{btn_data}"
+                    btn_data = f"#{btn_data}"
                 keyboard[btn_txt] = btn_data
 
         keyboard = ikb(keyboard, row_width)
