@@ -297,6 +297,7 @@ async def _(c, iq):
 async def _(c, iq):
     org = iq.query.split()
     gw = iq.from_user.id
+    m = [obj for obj in get_objects() if id(obj) == int(get_id[1])][0]
     getpm_txt = udB.get_var(user.me.id, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
@@ -312,7 +313,7 @@ async def _(c, iq):
             callback_data=f"pm_ blokbae {int(org[1])}",
         ),
     )
-    f"{org[1].first_name} {org[1].last_name or ''}"
+    full = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
@@ -323,7 +324,7 @@ async def _(c, iq):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
-            user.me.first_name,
+            full,
             pm_text,
             flood2[int(org[1])],
             pm_warns,
