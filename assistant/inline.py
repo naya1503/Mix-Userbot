@@ -313,6 +313,7 @@ async def _(c, iq):
         ),
     )
     print(f"{int(org[1])}")
+    print(f"{org[1]}")
     full = f"[{iq.from_user.first_name} {iq.from_user.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
     if user.me.id == gw:
