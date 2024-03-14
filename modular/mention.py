@@ -1,4 +1,3 @@
-import asyncio
 import random
 import re
 
@@ -18,6 +17,7 @@ takolanjing = False
 def random_emoji():
     emojis = ["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"]
     return random.choice(emojis)
+
 
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
@@ -75,6 +75,7 @@ async def tag_all_members(c: user, m: Message):
         await m.reply_text(mention_text)
 
     takolanjing = False
+
 
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
