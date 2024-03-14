@@ -12,7 +12,7 @@ __help__ = "Mention"
 
 
 @ky.ubot("tagall|mention", sudo=True)
-async def _(c, m):
+async def _(c: user, m):
     chat_id = m.chat.id
     is_admin = False
     try:
