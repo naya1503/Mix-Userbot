@@ -39,7 +39,11 @@ async def _(c, m):
         command = " ".join(m.command[1:])
         parts = command.split("-")
         if len(parts) != 2:
-            await pft.edit(cgr("lirk_1").format(em.gagal, em.sukses, m.command, em.sukses, m.command))
+            await pft.edit(
+                cgr("lirk_1").format(
+                    em.gagal, em.sukses, m.command, em.sukses, m.command
+                )
+            )
             return
 
         penyanyi = parts[0].strip()
