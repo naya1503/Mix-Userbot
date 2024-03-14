@@ -418,7 +418,7 @@ prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
-help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query]\n• Penjelasan : Untuk membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` untuk membaca semua pesan grup diakun anda.\n- `ch` untuk membaca semua pesan channel diakun anda.\n- `us` untuk membaca semua pesan pengguna diakun anda.\n- `all` untuk membaca semua pesan gc, ch, us diakun anda."
+help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query]\n• Penjelasan : Untuk membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` untuk membaca semua pesan grup diakun anda.\n- `ch` untuk membaca semua pesan channel diakun anda.\n- `us` untuk membaca semua pesan pengguna diakun anda.\n- `bot` untuk membaca semua pesan bot diakun anda.\n- `all` untuk membaca semua pesan gc, ch, us, bot diakun anda."
 help_carbon: " Carbon\n\n• Perintah: `{0} carbon`\n• Penjelasan: Untuk membuat teks carbonara."
 help_copy: " Copy\n\n• Perintah : `{0}copy` [link]\n• Penjelasan : Untuk mengambil pesan melalui link telegram."
 help_dtbs: " Settings\n\n• Perintah: `{0}setdb` [variable] [value]\n• Penjelasan: Untuk mengubah tampilan emoji.\n\n• Perintah: `{0}getdb`\n• Penjelasan: Untuk melihat variabel dan value anda.\n\n• Perintah: `{0}deldb`\n• Penjelasan: Untuk menghapus variabel dan value anda.\n\n• Variabel Yang Bisa Digunakan : -`pmtext`\n- `pmpic`\n- `pmpermit`\n- `alivepic`"
@@ -478,3 +478,13 @@ help_games: " **Games **\n\n• Perintah: `{0}dice`\n• Penjelasan: untuk mengo
 help_mention: " **Mention **\n\n• Perintah: `{0}tagall` [Pesan]\n• Penjelasan: Untuk melakukan mention atau tag kepada seluruh member.\n\n• Perintah: `{0}stop`\n• Penjelasan: Untuk memberhentikan mention atau tag yang sedang berjalan.\n"
 help_repo: " **Repository**\n\n• Perintah: `{0}`repo\n• Penjelasan: Untuk melihat link repository."
 help_nul: " **Nulis**\n\n• Perintah: `{0}`nulis\n• Penjelasan: Untuk pemalas nulis."
+help_lirk: " **Lyric**\n\n• Perintah: `{0}`lyrics\n• Penjelasan: Untuk mencari lirik lagu."
+help_auend: " **AutoEnd**\n\n• Perintah: `{0}`endchat [username/id pengguna/balas pengguna]\n• Penjelasan: Untuk menghapus riwayat obrolan\n\n• Optional: \n• `username/balas pengguna` - Menghapus riwayat obrolan pengguna\n• `bot` - Menghapus semua riwayat obrolan bot\n• `all` - Menghapus riwayat obrolan pesan pribadi anda dengan semua pengguna."
+
+auend_1: "{} **Berikan argumen!!**"
+auend_2: "{} Berhasil menghapus riwayat obrolan {}!"
+auend_3: "{} Berhasil menghapus riwayat {} obrolan pengguna!"
+auend_4: "{} Berhasil menghapus riwayat {} obrolan bot!"
+
+lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - Judul Lagu\n\n{} Contoh : <code>{} Arctic Monkeys - Do i Wanna Know</code></b>"
+lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
