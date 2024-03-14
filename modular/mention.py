@@ -15,6 +15,10 @@ __help__ = "Mention"
 takolanjing = False
 
 
+def random_emoji():
+    emojis = ["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"]
+    return random.choice(emojis)
+
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
     global takolanjing
@@ -52,27 +56,25 @@ async def tag_all_members(c: user, m: Message):
 
     username_pattern = re.compile(r"@[\w\d_]+")
     members = c.get_chat_members(chat_id)
-    tagged_count = 0
-    member_groups = [members[i : i + 4] for i in range(0, len(members), 4)]
+    mention_text = f"{text}\n"
+    member_count = 0
+    mention_texts = []
+    for member in members:
+        if not member.user.is_bot:
+            mention_texts.append(f"{random_emoji()} @{member.user.username}")
+            member_count += 1
+            if member_count == 4:
+                mention_text += "\n".join(mention_texts)
+                mention_texts = []
+                member_count = 0
+                await m.reply_text(mention_text)
+                mention_text = f"{text}\n"
 
-    for group in member_groups:
-        mention_texts = []
-        for member in group:
-            if not member.user.is_bot:
-                profile_link_emoji = random.choice(["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"])
-                mention_texts.append(
-                    f"{profile_link_emoji} [{member.user.first_name}](tg://user?id={member.user.id})"
-                )
-                tagged_count += 1
-        if mention_texts:
-            mention_text = f"{text}\n\n{' '.join(mention_texts)}"
-            await c.send_message(chat_id, mention_text)
-            await asyncio.sleep(2)
+    if mention_texts:
+        mention_text += "\n".join(mention_texts)
+        await m.reply_text(mention_text)
 
-    if tagged_count > 0:
-        await m.reply_text("Tagall telah selesai.")
     takolanjing = False
-
 
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
