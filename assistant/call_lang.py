@@ -53,7 +53,6 @@ async def _(c, cq):
         return
     cmd = cq.data.split(".")[1]
     op = get_bahasa_()
-    okb([[("Back", "clbk.bek")]])
     user_name = f"<a href='tg://user?id={cq.from_user.id}'>{cq.from_user.first_name} {cq.from_user.last_name or ''}</a>"
     if cmd == "bhsa":
         meki = f"{op[0]['natively']}"
