@@ -61,5 +61,5 @@ async def _(c, cq):
             )
             await m._client.delete_messages(m.chat.id, COPY_ID[m._client.me.id])
             await get.delete()
-    except Exception as error:
+    except Exception:
         await cq.edit_message_text(cgr("err_1").format(e))

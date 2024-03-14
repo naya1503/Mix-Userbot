@@ -102,6 +102,7 @@ async def _(c, iq):
 
 # copy
 
+
 @ky.inline("^get_msg")
 async def _(c, iq):
     bk = ikb({f"{cgr('klk_1')}": f"copymsg_{int(iq.query.split()[1])}"})
@@ -113,7 +114,7 @@ async def _(c, iq):
                 InlineQueryResultArticle(
                     title="message",
                     reply_markup=bk,
-                    input_message_content=InputTextMessageContent(cgr('cpy_3')),
+                    input_message_content=InputTextMessageContent(cgr("cpy_3")),
                 )
             )
         ],
@@ -138,6 +139,7 @@ async def _(c, iq):
         ],
     )
 """
+
 
 # send
 @ky.inline("^_send_")
@@ -191,30 +193,30 @@ async def _(c, iq):
     ape = await refresh_dialog("group")
     apa = await refresh_dialog("users")
     if user.me.id in DEVS:
-        stutas = cgr('alv_1')
+        stutas = cgr("alv_1")
     else:
-        stutas = cgr('alv_2')
-    cekpr = udB.get_var(user.me.id, 'PMPERMIT')
+        stutas = cgr("alv_2")
+    cekpr = udB.get_var(user.me.id, "PMPERMIT")
     if cekpr:
-        pmper = 'enable'
+        pmper = "enable"
     else:
-        pmper = 'disable'
-    txt = cgr('alv_3').format(
+        pmper = "disable"
+    txt = cgr("alv_3").format(
         stutas,
         user.me.dc_id,
-        str(pink).replace('.', ','),
+        str(pink).replace(".", ","),
         pmper,
         len(apa),
         len(ape),
         upnya,
     )
-    bo_ol = ikb({f'{cgr("alv_4")}': 't.me/kynansupport', 'Stats': 'stats_mix'})
-    cekpic = udB.get_var(user.me.id, 'ALIVEPIC')
+    bo_ol = ikb({f'{cgr("alv_4")}': "t.me/kynansupport", "Stats": "stats_mix"})
+    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
             (
                 InlineQueryResultArticle(
-                    title='Alive Teks',
+                    title="Alive Teks",
                     input_message_content=InputTextMessageContent(txt),
                     reply_markup=bo_ol,
                 )
@@ -224,18 +226,18 @@ async def _(c, iq):
     else:
         filem = (
             InlineQueryResultVideo
-            if cekpic.endswith('.mp4')
+            if cekpic.endswith(".mp4")
             else InlineQueryResultPhoto
         )
         url_ling = (
-            {'video_url': cekpic, 'thumb_url': cekpic}
-            if cekpic.endswith('.mp4')
-            else {'photo_url': cekpic}
+            {"video_url": cekpic, "thumb_url": cekpic}
+            if cekpic.endswith(".mp4")
+            else {"photo_url": cekpic}
         )
         duar = [
             filem(
                 **url_ling,
-                title='Alive Picture',
+                title="Alive Picture",
                 caption=txt,
                 reply_markup=bo_ol,
             )
@@ -308,6 +310,7 @@ async def _(c, iq):
 """
 
 # notes
+
 
 @ky.inline("^get_note_")
 async def _(c, iq):
