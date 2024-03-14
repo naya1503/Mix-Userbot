@@ -464,18 +464,20 @@ async def _(c, cq):
                 if noteval["type"] == Types.PHOTO:
                     await cq.edit_message_caption(
                         photo=biji,
-                        caption=noteval.get("value"),
+                        #caption=noteval.get("value"),
+                        caption=note,
                         reply_markup=button,
                     )
                 elif noteval["type"] == Types.VIDEO:
                     await cq.edit_message_caption(
                         video=biji,
-                        caption=noteval.get("value"),
+                        #caption=noteval.get("value"),
+                        caption=note,
                         reply_markup=button,
                     )
             elif noteval["type"] == Types.TEXT:
                 await cq.edit_message_text(
-                    text=noteval.get("value"), reply_markup=button
+                    text=note, reply_markup=button
                 )
             # await cq.answer()
 
