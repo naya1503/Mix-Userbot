@@ -307,7 +307,9 @@ async def _(c, iq):
                 "Setuju": f"pm_okein {int(org[1])}",
                 "Blokir": f"pm_blokbae {int(org[1])}",
             }
-            add_keyb = {data.text: data.url} if data.url else {data.text: data.callback_data}
+            add_keyb = (
+                {data.text: data.url} if data.url else {data.text: data.callback_data}
+            )
             def_keyb.update(add_keyb)
             keyboard = ikb(def_keyb)
     mari = await user.get_users(int(org[1]))
