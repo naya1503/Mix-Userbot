@@ -4,8 +4,9 @@ from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
-from Mix.modular.info import *
+
 from Mix import *
+from Mix.modular.info import *
 
 __modles__ = "Mention"
 __help__ = "Mention"
