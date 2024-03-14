@@ -475,7 +475,7 @@ async def _(c, cq):
                     )
             elif noteval["type"] == Types.TEXT:
                 await cq.edit_message_text(text=note, reply_markup=button)
-            #await cq.answer()
+            # await cq.answer()
 
     except Exception as e:
         print(f"Error in callback handler: {e}")
