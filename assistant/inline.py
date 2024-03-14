@@ -308,7 +308,7 @@ async def _(c, iq):
                 {data.text: data.url} if data.url else {data.text: data.callback_data}
             )
             def_keyb.update(add_keyb)
-            
+
             keyboard = ikb(def_keyb)
             def_keyb.update(
                 {
