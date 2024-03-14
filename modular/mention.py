@@ -70,7 +70,7 @@ async def tag_all_members(c: user, m: Message):
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id}) ")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{text}\n"
+                mention_text = f"{text}\n\n"
                 mention_text += " ".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
@@ -92,7 +92,7 @@ async def tag_all_members(c: user, m: Message):
     berenti = False
     await progres.delete()
     await m.reply(
-        f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</b> anggota.</b>"
+        f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
     )
 
 
