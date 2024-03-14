@@ -8,7 +8,7 @@ from pyrogram.types import *
 from Mix import *
 
 __modles__ = "Lyric"
-__help__ = "Lyrics"
+__help__ = get_cgr("help_lirk")
 
 
 async def search_lyrics(penyanyi, judul):
@@ -35,13 +35,11 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     try:
-        pft = await m.reply(f"{em.proses} <b>Sedang mencari lirik lagu</b>")
+        pft = await m.reply(cgr("proses").format(em.proses))
         command = " ".join(m.command[1:])
         parts = command.split("-")
         if len(parts) != 2:
-            await pft.edit(
-                f"{em.gagal} <b>Format perintah salah!\n{em.sukses} Gunakan format: <code>{m.command}</code> Nama Penyanyi - Judul Lagu\n\n{em.sukses} Contoh : <code>{m.command} Arctic Monkeys - Do i Wanna Know</code></b>"
-            )
+            await pft.edit(cgr("lirk_1").format(em.gagal, em.sukses, m.command, em.sukses, m.command))
             return
 
         penyanyi = parts[0].strip()
@@ -53,8 +51,6 @@ async def _(c, m):
         if lyrics_text:
             await pft.edit(f"{em.sukses} <code>{lyrics_text}</code>")
         else:
-            await pft.edit(f"{em.gagal} <b>Maaf, lirik lagu tidak ditemukan.</b>")
+            await pft.edit(cgr("lirk_2").format(em.gagal))
     except Exception as e:
-        await pft.edit(
-            f"{em.gagal} <b>Terjadi kesalahan saat mencari lirik lagu.</b> <code>{e}</code>"
-        )
+        await pft.edit(cgr("err").format(em.gagal, e))
