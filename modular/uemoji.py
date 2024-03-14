@@ -23,6 +23,7 @@ async def _(c: user, m):
 
     if m.reply_to_message:
         emoji_message = m.reply_to_message
+        emoji_id = None
         if emoji_message.entities:
             for entity in emoji_message.entities:
                 if entity.custom_emoji_id:
@@ -33,23 +34,21 @@ async def _(c: user, m):
         await xx.edit(cgr("em_5").format(em.gagal))
         return
     else:
-        await xx.edit(cgr("em_3").format(em.gagal))
+        await xx.edit(cgr("em_4").format(em.gagal))
 
     prem = c.me.is_premium
     if prem:
-        if emoji_message.entities:
-            for entity in emoji_message.entities:
-                if entity.custom_emoji_id:
-                    emoji_id = entity.custom_emoji_id
-                    await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
-                    await xx.edit(cgr("em_25").format(em.sukses, emoji_id))
-                    return
+        if emoji_id:  # Memastikan emoji_id memiliki nilai sebelum digunakan
+            await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
+            await xx.edit(cgr("em_25").format(em.sukses, emoji_id))
+            return
         else:
             await xx.edit(cgr("em_5").format(em.gagal))
             return
     else:
         await xx.edit(cgr("em_2").format(em.gagal))
         return
+
 
 
 """
