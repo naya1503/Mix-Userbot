@@ -117,8 +117,8 @@ def text_keyb(ikb, text: str, row_width: int = 2):
             if len(keyb_parts) == 2:
                 btn_txt, btn_data = keyb_parts[0].strip(), keyb_parts[1].strip()
                 if not is_url(btn_data):
-                    # btn_data = f"#{btn_data}"
-                    continue
+                    btn_data = f"{btn_data}"
+                    #continue
                 keyboard[btn_txt] = btn_data
 
         keyboard = ikb(keyboard, row_width)
