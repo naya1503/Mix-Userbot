@@ -14,7 +14,7 @@ from Mix import *
 from modular.gcast import refresh_dialog
 
 __modles__ = "AutoEndChat"
-__help__ = "AutoEndChat"
+__help__ = get_cgr("help_auend")
 
 
 @ky.ubot("clearchat|endchat|clchat", sudo=True)
