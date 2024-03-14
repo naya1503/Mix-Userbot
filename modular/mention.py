@@ -26,13 +26,14 @@ async def tag_all_members(c: user, m: Message):
     global berenti
     chat_id = m.chat.id
     admins = False
-    progres = await m.reply(cgr("proses").format(em.proses))
     berenti = True
     try:
         administrator = []
         async for admin in c.get_chat_members(
             chat_id, filter=ChatMembersFilter.ADMINISTRATORS
         ):
+            if not berenti:
+                break
             administrator.append(admin)
         await c.get_chat_member(chat_id, m.from_user.id)
         admins = administrator
@@ -44,8 +45,6 @@ async def tag_all_members(c: user, m: Message):
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
 
-    berenti = False
-
     if len(m.command) < 2:
         await m.reply_text("Harap berikan teks untuk di-mention.")
         return
@@ -54,6 +53,7 @@ async def tag_all_members(c: user, m: Message):
 
     mention_texts = []
     members = c.get_chat_members(chat_id)
+    berenti = True
     async for member in members:
         if not berenti:
             break
