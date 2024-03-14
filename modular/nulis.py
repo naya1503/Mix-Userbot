@@ -15,7 +15,7 @@ from SafoneAPI import SafoneAPI
 from Mix import *
 
 __modles__ = "Nulis"
-__help__ = "Nulis"
+__help__ = get_cgr("help_nul")
 
 
 async def nulis(text):
