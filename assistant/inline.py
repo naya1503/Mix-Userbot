@@ -304,8 +304,8 @@ async def _(c, iq):
     keyboard = InlineKeyboard(row_width=2)
     teks, button = text_keyb(ikb, pm_text)
     for row in button.inline_keyboard:
-          for data in row:
-              keyboard.add(data.text, data.url)
+        for data in row:
+            keyboard.add(data.text, data.url)
     keyboard.row(
         InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
         InlineKeyboardButton(
