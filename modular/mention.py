@@ -23,7 +23,6 @@ async def tag_all_members(c: user, m: Message):
     global takolanjing
     takolanjing = False
     chat_id = m.chat.id
-    simemek = await c.get_chat_members(chat_id)
     admins = False
     try:
         administrator = []
@@ -54,19 +53,17 @@ async def tag_all_members(c: user, m: Message):
         return
 
     text = " ".join(m.command[1:])
-
+    
+    # Menggunakan async for loop untuk mengonsumsi async generator
     mention_texts = []
-    member_count = 0
-    for member in simemek:
+    async for member in c.iter_chat_members(chat_id):
         if not member.user.is_bot:
             mention_texts.append(f"{random_emoji()} @{member.user.username}")
-            member_count += 1
-            if member_count == 4:
+            if len(mention_texts) == 4:
                 mention_text = f"{text}\n"
                 mention_text += "\n".join(mention_texts)
                 await m.reply_text(mention_text)
                 mention_texts = []
-                member_count = 0
 
     if mention_texts:
         mention_text = f"{text}\n"
