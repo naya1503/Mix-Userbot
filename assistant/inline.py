@@ -3,8 +3,11 @@
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
  @ CREDIT : NAN-DEV
+ 
+ EH KONTOL BAJINGAN !! KALO MO PAKE DIKODE PAKE AJA BANGSAT!! GAUSAH APUS KREDIT NGENTOT
 """
 ################################################################
+
 import os
 from datetime import datetime
 from gc import get_objects
@@ -254,6 +257,7 @@ async def _(c, iq):
             )
         ]
     await c.answer_inline_query(iq.id, cache_time=300, results=duar)
+
 
 
 # notes
