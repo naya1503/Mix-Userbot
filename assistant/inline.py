@@ -306,10 +306,9 @@ async def _(c, iq):
             keyboard = ikb(
                 {
                     "Setuju": f"pm_ okein {int(org[1])}",
-                    "Blokir": f"pm_ blokbae {int(org[1])}",
-                    f"{data.text}": f"{data.url}",
-                }
+                    "Blokir": f"pm_ blokbae {int(org[1])}"}
             )
+            keyboard.add({f"{data.text}": f"{data.url}"})
     mari = await user.get_users(int(org[1]))
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
