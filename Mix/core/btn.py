@@ -94,6 +94,16 @@ def text_keyb(ikb, text: str, row_width: int = 2):
     return text, keyboard
 """
 
+################################################################
+"""
+ Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
+ 
+ @ CREDIT : NAN-DEV
+ 
+ EH KONTOL BAJINGAN !! KALO MO PAKE DIKODE PAKE AJA BANGSAT!! GAUSAH APUS KREDIT NGENTOT
+"""
+################################################################
+
 
 def text_keyb(ikb, text: str, row_width: int = 2):
     keyboard = {}
