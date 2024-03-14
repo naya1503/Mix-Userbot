@@ -12,7 +12,7 @@ __help__ = "Mention"
 
 
 @ky.ubot("tagall|mention", sudo=True)
-async def _(c, m):
+async def mention_all(c: Client, m: Message):
     chat_id = m.chat.id
     if m.chat.type == ChatType.PRIVATE:
         return await m.reply(
@@ -51,7 +51,8 @@ async def _(c, m):
             "Berikan saya pesan atau balas pesan untuk melakukan tagall"
         )
 
-    async for user in c.get_chat_member(chat_id):
+    members = await c.get_chat_members(chat_id)
+    for user in members:
         if user.status == ChatMemberStatus.KICKED:
             continue
         usrnum += 1
