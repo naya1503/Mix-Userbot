@@ -40,25 +40,28 @@ def clbk_stasm():
 @ky.callback("pm_")
 async def _(c, cq):
     org = cq.from_user.id
-    data = cq.data.split()
-    if int(data[2]) == "okein":
+    data, sapa = (
+        cq.data.split(None, 2)[1],
+        cq.data.split(None, 2)[2],
+    )
+    if data == "okein":
         if org != user.me.id:
             return await cq.answer("This Button Not For You FCVK !!!!", True)
-        udB.oke_pc(int(data[1]))
+        udB.oke_pc(int(sapa))
         return await bot.edit_inline_text(
             cq.inline_message_id, "User Has Been Approved To PM."
         )
 
-    if int(data[2]) == "blokbae":
+    if data == "blokbae":
         if org != user.me.id:
             return await cq.answer("This Button Not For You FCVK !!!!", True)
         await bot.edit_inline_text(
             cq.inline_message_id, "Successfully blocked the user."
         )
-        await user.block_user(int(data[1]))
+        await user.block_user(int(sapa))
         return await user.invoke(
             DeleteHistory(
-                peer=(await user.resolve_peer(int(data[1]))),
+                peer=(await user.resolve_peer(sapa)),
                 max_id=0,
                 revoke=False,
             )
