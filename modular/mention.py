@@ -12,12 +12,12 @@ from Mix import *
 __modles__ = "Mention"
 __help__ = "Mention"
 
-tagall_active = False
+takolanjing = False
 
 
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
-    global tagall_active
+    global takolanjing
     chat_id = m.chat.id
     admins = False
     try:
@@ -36,13 +36,13 @@ async def tag_all_members(c: user, m: Message):
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
 
-    if tagall_active:
+    if takolanjing:
         await m.reply_text(
             "Proses tagall sedang berlangsung. Harap tunggu sampai selesai atau gunakan perintah stop."
         )
         return
 
-    tagall_active = True
+    takolanjing = True
 
     if len(m.command) < 2:
         await m.reply_text("Harap berikan teks untuk di-mention.")
@@ -61,17 +61,17 @@ async def tag_all_members(c: user, m: Message):
             await asyncio.sleep(2)
             tagged_count += 1
 
-    tagall_active = False
     if tagged_count > 0:
         await m.reply_text("Tagall telah selesai.")
+    takolanjing = False
 
 
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
-    global tagall_active
-    if not tagall_active:
+    global takolanjing
+    if not takolanjing:
         await m.reply_text("Tidak ada proses tagall yang sedang berlangsung.")
         return
 
-    tagall_active = False
+    takolanjing = False
     await m.reply_text("Tagall telah dihentikan.")
