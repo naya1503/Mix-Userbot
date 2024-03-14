@@ -23,8 +23,8 @@ async def _(c: user, m: Message):
     admins = False
     try:
         administrator = []
-        async for admin in c.iter_chat_members(
-            chat_id=m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
+        async for admin in c.get_chat_members(
+            chat_id, filter=ChatMembersFilter.ADMINISTRATORS
         ):
             administrator.append(admin)
         await c.get_chat_member(chat_id, m.from_user.id)
@@ -52,7 +52,7 @@ async def _(c: user, m: Message):
     text = " ".join(m.command[1:])
 
     username_pattern = re.compile(r"@[\w\d_]+")
-    for member in c.iter_chat_members(chat_id):
+    for member in c.get_chat_members(chat_id):
         if not member.user.is_bot:
             profile_link_emoji = random.choice(["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"])
             mention_text = f"{text}\n\n{profile_link_emoji} [{member.user.first_name}](tg://user?id={member.user.id})"
