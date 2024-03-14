@@ -1,4 +1,5 @@
 import random
+import asyncio
 
 from pyrogram import *
 from pyrogram.enums import *
@@ -10,7 +11,7 @@ from Mix import *
 __modles__ = "Mention"
 __help__ = "Mention"
 
-takolanjing = False
+berenti = False
 
 
 def random_emoji():
@@ -20,8 +21,8 @@ def random_emoji():
 
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
-    global takolanjing
-    takolanjing = False
+    global berenti
+    berenti = False
     chat_id = m.chat.id
     admins = False
     try:
@@ -40,13 +41,13 @@ async def tag_all_members(c: user, m: Message):
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
 
-    if takolanjing:
+    if berenti:
         await m.reply_text(
             "Proses tagall sedang berlangsung. Harap tunggu sampai selesai atau gunakan perintah stop."
         )
         return
 
-    takolanjing = True
+    berenti = True
 
     if len(m.command) < 2:
         await m.reply_text("Harap berikan teks untuk di-mention.")
@@ -64,22 +65,23 @@ async def tag_all_members(c: user, m: Message):
                 mention_text += "\n".join(mention_texts)
                 await m.reply_text(mention_text)
                 mention_texts = []
+                await asyncio.sleep(2.5)  # Menambah jeda 2,5 detik
 
     if mention_texts:
         mention_text = f"{text}\n"
         mention_text += "\n".join(mention_texts)
         await m.reply_text(mention_text)
 
-    takolanjing = False
+    berenti = False
 
 
-@ky.ubot("stop", sudo=True)
-async def stop_tagall(c: user, m: Message):
-    global takolanjing
-    takolanjing = False
-    if not takolanjing:
-        await m.reply_text("Tidak ada proses tagall yang sedang berlangsung.")
-        return
-
-    takolanjing = False
-    await m.reply_text("Tagall telah dihentikan.")
+@ky.ubot("cstop", sudo=True)
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
+    global berenti
+    if not berenti:
+        return await m.reply(cgr("spm_3").format(em.gagal))
+    berenti = False
+    await m.reply(cgr("spm_4").format(em.sukses))
+    return
