@@ -4,7 +4,7 @@ from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
-
+from Mix.modular.info import *
 from Mix import *
 
 __modles__ = "Mention"
@@ -14,14 +14,14 @@ __help__ = "Mention"
 @ky.ubot("tagall|mention", sudo=True)
 async def mention_all(c: Client, m: Message):
     chat_id = m.chat.id
-    is_admin = False
+    administrator = False
     try:
         chat_member = await c.get_chat_member(chat_id, m.from_user.id)
-        is_admin = chat_member.status in ("administrator", "creator")
+        administrator = chat_member.status in ("administrator", "creator")
     except Exception as e:
         print(e)
 
-    if not is_admin:
+    if not administrator:
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
 
