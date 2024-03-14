@@ -474,7 +474,9 @@ async def _(c, cq):
                         reply_markup=button,
                     )
             elif noteval["type"] == Types.TEXT:
-                await cq.edit_message_text(text=noteval.get("value"), reply_markup=button)
+                await cq.edit_message_text(
+                    text=noteval.get("value"), reply_markup=button
+                )
             # await cq.answer()
 
     except Exception as e:
