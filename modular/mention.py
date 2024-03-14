@@ -26,7 +26,7 @@ async def tag_all_members(c: user, m: Message):
     global berenti
     chat_id = m.chat.id
     admins = False
-    msg = await m.reply(cgr("proses").format(em.proses))
+    await m.reply(cgr("proses").format(em.proses))
     berenti = True
     try:
         administrator = []
