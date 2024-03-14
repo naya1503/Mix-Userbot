@@ -25,7 +25,14 @@ async def search_lyrics(penyanyi, judul):
             if "lyrics" in data:
                 return data["lyrics"]
             else:
-                return None
+                url = f"https://api.lyrics.ovh/v1/{judul}/{penyanyi}"
+                request = Request(url)
+                with urlopen(request) as response:
+                    data = json.load(response)
+                    if "lyrics" in data:
+                        return data["lyrics"]
+                    else:
+                        return None
     except Exception as e:
         return None
 
