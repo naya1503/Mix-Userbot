@@ -34,7 +34,7 @@ async def _(c: user, m):
         await xx.edit(cgr("em_5").format(em.gagal))
         return
     else:
-        await xx.edit(cgr("em_4").format(em.gagal))
+        await xx.edit(cgr("em_1").format(em.sukses))
 
     prem = c.me.is_premium
     if prem:
