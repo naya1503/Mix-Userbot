@@ -30,27 +30,6 @@ from modular.pmpermit import *
 from .call_markdown import markdown_help
 
 # button
-
-
-@ky.inline("^dibikin_button")
-async def _(c, iq):
-    _id = int(iq.query.split()[1])
-    m = [obj for obj in get_objects() if id(obj) == _id][0]
-    rep = m.reply_to_message
-    teks, button = parse_button(rep.text)
-    button = build_keyboard(button)
-    duar = [
-        (
-            InlineQueryResultArticle(
-                title="Tombol Teks!",
-                input_message_content=InputTextMessageContent(teks),
-                reply_markup=InlineKeyboardMarkup(button),
-            )
-        )
-    ]
-    await c.answer_inline_query(iq.id, cache_time=0, results=duar)
-
-
 @ky.inline("^buat_button")
 async def _(c, iq):
     _id = int(iq.query.split()[1])
@@ -321,7 +300,7 @@ async def _(c, iq):
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
-    teks, button = parse_button(pm_text)
+    teks, button = text_keyb(ikb, pm_text)
     keyboard = InlineKeyboard(row_width=2)
     for bt_txt, bt_url, _ in button:
         keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
