@@ -33,8 +33,7 @@ async def _(c: user, m):
         await xx.edit(cgr("em_5").format(em.gagal))
         return
     else:
-        await xx.edit(cgr("em_4").format(em.gagal))
-        return
+        await xx.edit(cgr("em_4").format(em.gagal))  # Perbaiki pesan format di sini
 
     prem = c.me.is_premium
     if prem:
@@ -51,6 +50,7 @@ async def _(c: user, m):
     else:
         await xx.edit(cgr("em_2").format(em.gagal))
         return
+
 
 
 """
