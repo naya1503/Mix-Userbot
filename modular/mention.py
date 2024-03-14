@@ -20,7 +20,7 @@ async def _(c, m):
         is_admin = chat_member.status in ("administrator", "creator")
     except Exception as e:
         print(e)
-    
+
     if not is_admin:
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
