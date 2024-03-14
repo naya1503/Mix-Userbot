@@ -53,7 +53,7 @@ async def tag_all_members(c: user, m: Message):
         return
 
     text = " ".join(m.command[1:])
-    
+
     # Menggunakan async for loop untuk mengonsumsi async generator
     mention_texts = []
     async for member in c.iter_chat_members(chat_id):
