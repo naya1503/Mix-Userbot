@@ -7,20 +7,25 @@ from pyrogram.types import *
 
 from Mix import *
 
-from .info import *
-
 __modles__ = "Mention"
 __help__ = "Mention"
 
 
+
 @ky.ubot("tagall|mention", sudo=True)
-async def mention_all(c: Client, m: Message):
+async def _(c: user, m: Message):
     chat_id = m.chat.id
     admins = False
     try:
+        administrator = []
+        async for admin in c.get_chat_members(
+            chat_id=chat, filter=ChatMembersFilter.ADMINISTRATORS
+        ):
+            administrator.append(admin)
         chat_member = await c.get_chat_member(chat_id, m.from_user.id)
-        admins = chat_member.status in ("administrator", "creator")
+        admins = administrator
     except Exception as e:
+        await m.reply(f"Error : {e}")
         print(e)
 
     if not admins:
