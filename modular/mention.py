@@ -89,7 +89,6 @@ async def stop_tagall(c: user, m: Message):
     em = Emojik()
     em.initialize()
     global berenti
-    berenti = True
     if not berenti:
         await m.reply(cgr("ment_3").format(em.gagal))
         return
