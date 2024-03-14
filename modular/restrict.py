@@ -199,15 +199,6 @@ async def _(c: user, m):
         await m.delete()
 
 
-"""    
-    rep = m.reply_to_message
-    if not rep:
-        pass
-    await m.delete()
-    await rep.delete()
-"""
-
-
 @ky.ubot("pin|unpin", sudo=True)
 async def _(c: user, m):
     em = Emojik()
