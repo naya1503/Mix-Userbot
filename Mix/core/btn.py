@@ -35,7 +35,6 @@ from .parser import escape_markdown
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
-NAN_REGEX = re.compile(r"([^-\n]+?) - (?:/{0,2})(.+?)(?: &&|\n|$)")
 
 
 def is_url(text: str) -> bool:
@@ -94,16 +93,6 @@ def text_keyb(ikb, text: str, row_width: int = 2):
     return text, keyboard
 """
 
-################################################################
-"""
- Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
- 
- @ CREDIT : NAN-DEV
- 
- EH KONTOL BAJINGAN !! KALO MO PAKE DIKODE PAKE AJA BANGSAT!! GAUSAH APUS KREDIT NGENTOT
-"""
-################################################################
-
 
 def text_keyb(ikb, text: str, row_width: int = 2):
     keyboard = {}
@@ -114,8 +103,6 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 
         main_text = text_parts[0].strip()
         button_text = text_parts[1].strip()
-
-        # Mengizinkan penggunaan markup HTML di teks utama
         main_text = main_text.replace("<b>", "**").replace("</b>", "**")
         main_text = main_text.replace("<i>", "_").replace("</i>", "_")
         main_text = main_text.replace("<u>", "__").replace("</u>", "__")
@@ -135,35 +122,6 @@ def text_keyb(ikb, text: str, row_width: int = 2):
         print(f"Error in text_keyb: {e}")
         return None, None
     return main_text, keyboard
-
-
-def parse_button(text):
-    markdown_note = text
-    prev = 0
-    note_data = ""
-    buttons = []
-    for match in BTN_URL_REGEX.finditer(markdown_note):
-        # Check if btnurl is escaped
-        n_escapes = 0
-        to_check = match.start(1) - 1
-        while to_check > 0 and markdown_note[to_check] == "\\":
-            n_escapes += 1
-            to_check -= 1
-
-        # if even, not escaped -> create button
-        if n_escapes % 2 == 0:
-            # create a thruple with button label, url, and newline status
-            buttons.append((match.group(2), match.group(3), bool(match.group(4))))
-            note_data += markdown_note[prev : match.start(1)]
-            prev = match.end(1)
-        # if odd, escaped -> move along
-        else:
-            note_data += markdown_note[prev:to_check]
-            prev = match.start(1) - 1
-    else:
-        note_data += markdown_note[prev:]
-
-    return note_data, buttons
 
 
 def extract_time(time_val):
@@ -198,17 +156,6 @@ def format_welcome_caption(html_string, chat_member):
         mention=chat_member.mention,
         username=chat_member.username,
     )
-
-
-def build_keyboard(buttons):
-    keyb = []
-    for als in buttons:
-        if als[-1] and keyb:
-            keyb[-1].append(Ikb(als[0], url=als[1]))
-        else:
-            keyb.append([Ikb(als[0], url=als[1])])
-
-    return keyb
 
 
 def okb(rows=None, back=False, todo="closeru"):
