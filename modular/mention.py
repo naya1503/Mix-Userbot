@@ -1,5 +1,5 @@
 import random
-import asyncio
+
 from pyrogram import *
 from pyrogram.types import *
 
@@ -8,9 +8,11 @@ __help__ = "Mention"
 
 berenti = False  # Inisialisasi variabel berenti sebagai pengontrol penghentian proses tag_all_members
 
+
 def random_emoji():
     emojis = ["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"]
     return random.choice(emojis)
+
 
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
@@ -39,7 +41,9 @@ async def tag_all_members(c: user, m: Message):
         )
         return
 
-    berenti = False  # Setel kembali berenti ke False sebelum memulai proses tag_all_members
+    berenti = (
+        False  # Setel kembali berenti ke False sebelum memulai proses tag_all_members
+    )
 
     if len(m.command) < 2:
         await m.reply_text("Harap berikan teks untuk di-mention.")
@@ -57,7 +61,9 @@ async def tag_all_members(c: user, m: Message):
                 await c.send_message(chat_id, mention_text)
                 mention_texts = []
 
-        if berenti:  # Periksa apakah berenti telah diatur menjadi True setiap kali iterasi anggota chat
+        if (
+            berenti
+        ):  # Periksa apakah berenti telah diatur menjadi True setiap kali iterasi anggota chat
             break
 
     if mention_texts:
@@ -65,7 +71,10 @@ async def tag_all_members(c: user, m: Message):
         mention_text += "\n".join(mention_texts)
         await c.send_message(chat_id, mention_text)
 
-    berenti = False  # Setel kembali berenti ke False setelah proses tag_all_members selesai
+    berenti = (
+        False  # Setel kembali berenti ke False setelah proses tag_all_members selesai
+    )
+
 
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
