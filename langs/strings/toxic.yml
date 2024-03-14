@@ -477,3 +477,7 @@ help_games: " **Games **\n\n• Perintah: `{0}dice`\n• Penjelasan: Buat mengoc
 help_mention: " **Mention **\n\n• Perintah: `{0}tagall` [Pesan]\n• Penjelasan: Buat manggil semua binatang yang ada di group.\n\n• Perintah: `{0}stop`\n• Penjelasan: Buat nyetopin tagall jink.\n"
 help_repo: " **Repository**\n\n• Perintah: `{0}`repo\n• Penjelasan: Untuk melihat link repository."
 help_nul: " **Nulis**\n\n• Perintah: `{0}`nulis\n• Penjelasan: Untuk pemalas nulis."
+help_lirk: " **Lyric**\n\n• Perintah: `{0}`lyrics\n• Penjelasan: Untuk mencari lirik lagu."
+
+lirk_1: "{} <b>Format perintah salah!\n{} Gunakan format: <code>{}</code> Nama Penyanyi - Judul Lagu\n\n{} Contoh : <code>{} Arctic Monkeys - Do i Wanna Know</code></b>"
+lirk_2: "{} <b>Maaf, lirik lagu tidak ditemukan.</b>"
