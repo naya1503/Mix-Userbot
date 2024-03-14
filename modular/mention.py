@@ -18,7 +18,7 @@ async def _(c: user, m: Message):
     try:
         administrator = []
         async for admin in c.get_chat_members(
-            chat_id=chat, filter=ChatMembersFilter.ADMINISTRATORS
+            chat_id=m, filter=ChatMembersFilter.ADMINISTRATORS
         ):
             administrator.append(admin)
         await c.get_chat_member(chat_id, m.from_user.id)
