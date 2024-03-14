@@ -105,6 +105,7 @@ async def _(c, iq):
 
 @ky.inline("^get_msg")
 async def _(c, iq):
+    bk = ikb({f"{cgr("klk_1")}": f"copymsg_{int(iq.query.split()[1])}"})
     await c.answer_inline_query(
         iq.id,
         cache_time=0,
@@ -112,16 +113,7 @@ async def _(c, iq):
             (
                 InlineQueryResultArticle(
                     title="message",
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    text=cgr("klk_1"),
-                                    callback_data=f"copymsg_{int(iq.query.split()[1])}",
-                                )
-                            ],
-                        ]
-                    ),
+                    reply_markup=bk,
                     input_message_content=InputTextMessageContent(cgr("cpy_3")),
                 )
             )
@@ -198,12 +190,7 @@ async def _(c, iq):
         len(ape),
         upnya,
     )
-    bo_ol = [
-        [
-            InlineKeyboardButton(cgr("alv_4"), url="t.me/kynansupport"),
-            InlineKeyboardButton("Stats", callback_data="stats_mix"),
-        ]
-    ]
+    bo_ol = ikb({f"{(cgr("alv_4")}": "t.me/kynansupport", "Stats": "stats_mix"})
     cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
@@ -211,7 +198,7 @@ async def _(c, iq):
                 InlineQueryResultArticle(
                     title="Alive Teks",
                     input_message_content=InputTextMessageContent(txt),
-                    reply_markup=InlineKeyboardMarkup(bo_ol),
+                    reply_markup=bo_ol,
                 )
             )
         ]
@@ -232,7 +219,7 @@ async def _(c, iq):
                 **url_ling,
                 title="Alive Picture",
                 caption=txt,
-                reply_markup=InlineKeyboardMarkup(bo_ol),
+                reply_markup=bo_ol,
             )
         ]
     await c.answer_inline_query(iq.id, cache_time=300, results=duar)
