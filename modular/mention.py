@@ -16,14 +16,14 @@ __help__ = "Mention"
 @ky.ubot("tagall|mention", sudo=True)
 async def mention_all(c: Client, m: Message):
     chat_id = m.chat.id
-    administrator = False
+    admins = False
     try:
         chat_member = await c.get_chat_member(chat_id, m.from_user.id)
-        administrator = chat_member.status in ("administrator", "creator")
+        admins = chat_member.status in ("administrator", "creator")
     except Exception as e:
         print(e)
 
-    if not administrator:
+    if not admins:
         await m.reply_text("Anda harus menjadi admin untuk menggunakan perintah ini!")
         return
 
