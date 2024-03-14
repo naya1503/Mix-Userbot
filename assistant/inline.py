@@ -191,71 +191,6 @@ async def _(c, iq):
     ape = await refresh_dialog("group")
     apa = await refresh_dialog("users")
     if user.me.id in DEVS:
-        stutas = cgr("alv_1")
-    else:
-        stutas = cgr("alv_2")
-    cekpr = udB.get_var(user.me.id, "PMPERMIT")
-    if cekpr:
-        pmper = "enable"
-    else:
-        pmper = "disable"
-    txt = cgr("alv_3").format(
-        stutas,
-        user.me.dc_id,
-        str(pink).replace(".", ","),
-        pmper,
-        len(apa),
-        len(ape),
-        upnya,
-    )
-    bo_ol = ikb({f"{cgr("alv_4")}": "t.me/kynansupport", "Stats": "stats_mix"})
-    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
-    if not cekpic:
-        duar = [
-            (
-                InlineQueryResultArticle(
-                    title="Alive Teks",
-                    input_message_content=InputTextMessageContent(txt),
-                    reply_markup=bo_ol,
-                )
-            )
-        ]
-
-    else:
-        filem = (
-            InlineQueryResultVideo
-            if cekpic.endswith(".mp4")
-            else InlineQueryResultPhoto
-        )
-        url_ling = (
-            {"video_url": cekpic, "thumb_url": cekpic}
-            if cekpic.endswith(".mp4")
-            else {"photo_url": cekpic}
-        )
-        duar = [
-            filem(
-                **url_ling,
-                title="Alive Picture",
-                caption=txt,
-                reply_markup=bo_ol,
-            )
-        ]
-    await c.answer_inline_query(iq.id, cache_time=300, results=duar)
-
-
-# notes
-
-@ky.inline("^alive")
-async def _(c, iq):
-    pmper = None
-    stutas = None
-    start = datetime.now()
-    await user.invoke(Ping(ping_id=0))
-    pink = (datetime.now() - start).microseconds / 1000
-    upnya = await get_time((time() - start_time))
-    ape = await refresh_dialog("group")
-    apa = await refresh_dialog("users")
-    if user.me.id in DEVS:
         stutas = cgr('alv_1')
     else:
         stutas = cgr('alv_2')
@@ -307,7 +242,73 @@ async def _(c, iq):
         ]
     await c.answer_inline_query(iq.id, cache_time=300, results=duar)
 
+
 """
+@ky.inline("^alive")
+async def _(c, iq):
+    pmper = None
+    stutas = None
+    start = datetime.now()
+    await user.invoke(Ping(ping_id=0))
+    pink = (datetime.now() - start).microseconds / 1000
+    upnya = await get_time((time() - start_time))
+    ape = await refresh_dialog("group")
+    apa = await refresh_dialog("users")
+    if user.me.id in DEVS:
+        stutas = cgr("alv_1")
+    else:
+        stutas = cgr("alv_2")
+    cekpr = udB.get_var(user.me.id, "PMPERMIT")
+    if cekpr:
+        pmper = "enable"
+    else:
+        pmper = "disable"
+    txt = cgr("alv_3").format(
+        stutas,
+        user.me.dc_id,
+        str(pink).replace(".", ","),
+        pmper,
+        len(apa),
+        len(ape),
+        upnya,
+    )
+    bo_ol = ikb({f"{cgr("alv_4")}": "t.me/kynansupport", "Stats": "stats_mix"})
+    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
+    if not cekpic:
+        duar = [
+            (
+                InlineQueryResultArticle(
+                    title="Alive Teks",
+                    input_message_content=InputTextMessageContent(txt),
+                    reply_markup=bo_ol,
+                )
+            )
+        ]
+
+    else:
+        filem = (
+            InlineQueryResultVideo
+            if cekpic.endswith(".mp4")
+            else InlineQueryResultPhoto
+        )
+        url_ling = (
+            {"video_url": cekpic, "thumb_url": cekpic}
+            if cekpic.endswith(".mp4")
+            else {"photo_url": cekpic}
+        )
+        duar = [
+            filem(
+                **url_ling,
+                title="Alive Picture",
+                caption=txt,
+                reply_markup=bo_ol,
+            )
+        ]
+    await c.answer_inline_query(iq.id, cache_time=300, results=duar)
+"""
+
+# notes
+
 @ky.inline("^get_note_")
 async def _(c, iq):
     q = iq.query.split(None, 1)
@@ -358,7 +359,7 @@ async def _(c, iq):
                 )
             ],
         )
-"""
+
 
 # pmpermit
 @ky.inline("^ambil_tombolpc")
