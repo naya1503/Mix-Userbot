@@ -12,12 +12,10 @@ from Mix import *
 __modles__ = "Mention"
 __help__ = "Mention"
 
-
 tagall_active = False
 
-
 @ky.ubot("tagall", sudo=True)
-async def _(c: user, m: Message):
+async def tag_all_members(c: user, m: Message):
     global tagall_active
     chat_id = m.chat.id
     admins = False
@@ -52,7 +50,7 @@ async def _(c: user, m: Message):
     text = " ".join(m.command[1:])
 
     username_pattern = re.compile(r"@[\w\d_]+")
-    for member in c.get_chat_members(chat_id):
+    async for member in c.iter_chat_members(chat_id):
         if not member.user.is_bot:
             profile_link_emoji = random.choice(["👤", "👥", "🧑‍💼", "🧑‍🔬", "🧑‍🚀"])
             mention_text = f"{text}\n\n{profile_link_emoji} [{member.user.first_name}](tg://user?id={member.user.id})"
@@ -63,7 +61,7 @@ async def _(c: user, m: Message):
 
 
 @ky.ubot("stop", sudo=True)
-async def _(c: user, m: Message):
+async def stop_tagall(c: user, m: Message):
     global tagall_active
     tagall_active = False
     await m.reply_text("Tagall telah dihentikan.")
