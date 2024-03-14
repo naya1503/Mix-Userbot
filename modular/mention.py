@@ -22,7 +22,9 @@ def random_emoji():
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: user, m: Message):
     global takolanjing
+    takolanjing = False
     chat_id = m.chat.id
+    simemek = await client.get_chat_members(chat_id)
     admins = False
     try:
         administrator = []
@@ -54,23 +56,21 @@ async def tag_all_members(c: user, m: Message):
 
     text = " ".join(m.command[1:])
 
-    username_pattern = re.compile(r"@[\w\d_]+")
-    members = c.get_chat_members(chat_id)
-    mention_text = f"{text}\n"
-    member_count = 0
     mention_texts = []
-    for member in members:
+    member_count = 0
+    for member in simemek:
         if not member.user.is_bot:
             mention_texts.append(f"{random_emoji()} @{member.user.username}")
             member_count += 1
             if member_count == 4:
+                mention_text = f"{text}\n"
                 mention_text += "\n".join(mention_texts)
+                await m.reply_text(mention_text)
                 mention_texts = []
                 member_count = 0
-                await m.reply_text(mention_text)
-                mention_text = f"{text}\n"
 
     if mention_texts:
+        mention_text = f"{text}\n"
         mention_text += "\n".join(mention_texts)
         await m.reply_text(mention_text)
 
@@ -80,6 +80,7 @@ async def tag_all_members(c: user, m: Message):
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
     global takolanjing
+    takolanjing = False
     if not takolanjing:
         await m.reply_text("Tidak ada proses tagall yang sedang berlangsung.")
         return
