@@ -51,7 +51,7 @@ async def _(c, m):
             "Berikan saya pesan atau balas pesan untuk melakukan tagall"
         )
 
-    async for user in c.iter_chat_members(chat_id):
+    async for user in c.get_chat_member(chat_id):
         if user.status == ChatMemberStatus.KICKED:
             continue
         usrnum += 1
