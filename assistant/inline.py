@@ -324,7 +324,7 @@ async def _(c, iq):
                 await m.delete()
         kiki = PM_WARN.format(
             user.me.first_name,
-            full,
+            teks.format(ful),
             flood2[int(org[1])],
             pm_warns,
         )
