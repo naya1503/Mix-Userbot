@@ -37,7 +37,9 @@ async def tag_all_members(c: user, m: Message):
         return
 
     if tagall_active:
-        await m.reply_text("Proses tagall sedang berlangsung. Harap tunggu sampai selesai atau gunakan perintah stop.")
+        await m.reply_text(
+            "Proses tagall sedang berlangsung. Harap tunggu sampai selesai atau gunakan perintah stop."
+        )
         return
 
     tagall_active = True
