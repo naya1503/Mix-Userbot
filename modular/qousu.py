@@ -116,9 +116,8 @@ async def _(c: user, m):
     em.initialize()
     acak = None
     messages = None
-    tag = m.command[1].strip()
-    c.get_arg(m)
     if len(m.command) > 1:
+        tag = m.command[1].strip()
         if tag.startswith("@"):
             user_id = tag[1:]
             try:
