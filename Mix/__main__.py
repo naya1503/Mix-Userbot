@@ -34,7 +34,7 @@ async def start_user():
 
 async def start_bot():
     LOGGER.info(f"Starting Telegram Bot Client...")
-    if not TOKEN_BOT:
+    if bot_token is None:
         await autobot()
     try:
         await bot.start()
