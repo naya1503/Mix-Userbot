@@ -74,7 +74,9 @@ async def tag_all_members(c: user, m: Message):
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{repli_teks}\n\n" if reply_text else f"{repli_teks}\n\n"
+                mention_text = (
+                    f"{repli_teks}\n\n" if reply_text else f"{repli_teks}\n\n"
+                )
                 mention_text += " ".join(mention_texts)
                 try:
                     await send.copy(chat_id, mention_text)
