@@ -33,7 +33,7 @@ async def _(c: user, m):
     else:
         tag = m.command[1].strip()
         c.get_arg(m)
-        
+
         if tag.startswith("@"):
             user_id = tag[1:]
             try:
@@ -70,7 +70,6 @@ async def _(c: user, m):
         return await m.reply(cgr("err").format(em.gagal, e))
 
 
-
 @ky.ubot("qcolor", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -84,6 +83,7 @@ async def _(c: user, m):
         os.remove("qcolor.txt")
     else:
         await m.reply(jadi + iymek)
+
 
 """
 @ky.ubot("q", sudo=True)
