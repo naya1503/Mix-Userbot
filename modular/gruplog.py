@@ -46,12 +46,9 @@ async def _(c: user, m):
         return await xx.edit(cgr("grplog_5").format(em.gagal))
 
 
-# @ky.gc()
+@ky.gc()
 async def _(c, m):
     if not TAG_LOG:
-        return
-    cek = udB.get_var(user.me.id, "TAGC")
-    if not cek:
         return
     org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     lenk = m.link
@@ -102,7 +99,7 @@ async def _(c, m):
     tag_add(ret.id, m.chat.id, m.id)
 
 
-# @ky.replog()
+@ky.replog()
 async def _(c: user, m):
     reply_ = m.reply_to_message
     chat, msg = who_tag(reply_.id)
