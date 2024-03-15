@@ -32,7 +32,7 @@ async def _(c: user, m):
         dnbg = cgr("grp_3").format(
             em.sukses, media_url[0], disable_web_page_preview=True
         )
-        await xx.edit(dnbg)
+        await xx.edit(dnbg, disable_web_page_preview=True)
     elif m.reply_to_message.text:
         page_title = f"{c.me.first_name} {c.me.last_name or ''}"
         page_text = m.reply_to_message.text
@@ -44,4 +44,4 @@ async def _(c: user, m):
         ybg = cgr("grp_5").format(
             em.sukses, response["path"], disable_web_page_preview=True
         )
-        await xx.edit(ybg)
+        await xx.edit(ybg, disable_web_page_preview=True)
