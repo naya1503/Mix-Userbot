@@ -209,9 +209,7 @@ async def _(c: user, m):
                     x = await c.get_inline_bot_results(
                         bot.me.username, f"_send_ {id(m)}"
                     )
-                    await c.send_inline_bot_result(
-                        chat_id, x.query_id, x.results[0].id
-                    )
+                    await c.send_inline_bot_result(chat_id, x.query_id, x.results[0].id)
                     await m.delete()
                     return
         except Exception as error:
@@ -241,5 +239,3 @@ async def _(c: user, m):
                 return
         except Exception as t:
             return await m.reply(f"{t}")
-
-
