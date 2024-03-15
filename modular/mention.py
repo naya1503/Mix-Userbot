@@ -57,9 +57,7 @@ async def tag_all_members(c: user, m: Message):
 
     text = " ".join(m.command[1:]) if len(m.command) >= 2 else None
     reply_text = rep.text if rep.text else None
-    repli_teks = await c.get_m(
-        chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-    )
+    repli_teks = await c.get_m(m)
     repli = [repli_teks]
     mention_texts = []
     members = c.get_chat_members(chat_id)
