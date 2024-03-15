@@ -89,7 +89,7 @@ async def _(c: user, m):
 
     add = db.save_filter(m.chat.id, keyword, teks, msgtype, file_id)
     if add:
-        await m.reply_text(cgr("fil_11").format(em.sukses, {'|'.join(keyword.split('|'))))
+        await m.reply_text(cgr("fil_11").format(em.sukses, '|'.join(keyword.split('|'))))
     await m.stop_propagation()
 
 
