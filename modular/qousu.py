@@ -73,7 +73,24 @@ async def _(c: user, m):
                 "Balasan tidak dapat diproses karena tidak ada teks atau media yang ditemukan."
             )
     else:
-        return await m.reply("Tidak ada pesan yang di-reply.")
+        if len(m.command) < 2:
+            # Jika tidak ada pesan yang dibalas dan tidak ada argumen username, gunakan id pengirim pesan sebagai pengganti id pengguna yang ditargetkan
+            user_id = m.from_user.id
+            try:
+                org = await c.get_users(user_id)
+                if org.id in DEVS:
+                    await m.reply(cgr("qot_3").format(em.gagal))
+                    return
+                messages = [m]
+            except Exception as e:
+                return await m.reply(cgr("err").format(em.gagal, e))
+            warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
+            if warna:
+                acak = warna
+            else:
+                acak = random.choice(loanjing)
+        else:
+            return await m.reply("Tidak ada pesan yang di-reply dan tidak ada argumen username yang diberikan.")
 
     try:
         hasil = await quotly(messages, acak)
@@ -82,6 +99,7 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
+
 
 
 @ky.ubot("qcolor", sudo=True)
