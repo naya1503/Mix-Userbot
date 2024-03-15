@@ -65,9 +65,7 @@ async def tag_all_members(c: user, m: Message):
             tegs = await c.get_messages(
                 chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
             )
-            mention_texts.append(
-                f"[{random_emoji()}](tg://user?id={member.user.id})"
-            )
+            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
                 mention_text = f"{tegs}\n\n"
@@ -106,7 +104,6 @@ async def tag_all_members(c: user, m: Message):
     await m.reply(
         f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
     )
-
 
 
 @ky.ubot("stop", sudo=True)
