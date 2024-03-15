@@ -29,49 +29,48 @@ async def _(c: user, m):
     acak = None
     messages = []
     rep = m.reply_to_message
+    
+    # Memeriksa apakah ada pesan yang di-reply dan pesan tersebut berisi teks atau media yang dapat diproses
+    if rep:
+        if rep.text or rep.media:
+            if len(m.command) < 2:
+                acak = random.choice(loanjing)
+            else:
+                tag = m.command[1].strip()
+                c.get_arg(m)
 
-    # Memeriksa apakah ada pesan yang di-reply dan pesan tersebut berisi teks atau dapat diproses
-    if rep and (rep.text or rep.media):
-        if len(m.command) < 2:
-            acak = random.choice(loanjing)
-        else:
-            tag = m.command[1].strip()
-            c.get_arg(m)
-
-            if tag.startswith("@"):
-                user_id = tag[1:]
-                try:
-                    org = await c.get_users(user_id)
-                    if org.id in DEVS:
-                        await m.reply(cgr("qot_3").format(em.gagal))
-                        return
-                    rep = await c.get_messages(
-                        m.chat.id, m.reply_to_message.id, replies=0
+                if tag.startswith("@"):
+                    user_id = tag[1:]
+                    try:
+                        org = await c.get_users(user_id)
+                        if org.id in DEVS:
+                            await m.reply(cgr("qot_3").format(em.gagal))
+                            return
+                        rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=0)
+                        rep.from_user = org
+                        messages = [rep]
+                    except Exception as e:
+                        return await m.reply(cgr("err").format(em.gagal, e))
+                    warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
+                    if warna:
+                        acak = warna
+                    else:
+                        acak = random.choice(loanjing)
+                elif not tag.startswith("@"):
+                    warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
+                    if warna:
+                        acak = warna
+                    else:
+                        acak = random.choice(loanjing)
+                    m_one = await c.get_messages(
+                        chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
                     )
-                    rep.from_user = org
-                    messages = [rep]
-                except Exception as e:
-                    return await m.reply(cgr("err").format(em.gagal, e))
-                warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
-                if warna:
-                    acak = warna
-                else:
-                    acak = random.choice(loanjing)
-            elif not tag.startswith("@"):
-                warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
-                if warna:
-                    acak = warna
-                else:
-                    acak = random.choice(loanjing)
-                m_one = await c.get_messages(
-                    chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-                )
-                messages = [m_one]
+                    messages = [m_one]
+        else:
+            return await m.reply("Balasan tidak dapat diproses karena tidak ada teks atau media yang ditemukan.")
     else:
-        return await m.reply(
-            "Balasan tidak dapat diproses karena tidak ada teks atau media yang ditemukan."
-        )
-
+        return await m.reply("Tidak ada pesan yang di-reply.")
+    
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
@@ -79,6 +78,7 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
+
 
 
 @ky.ubot("qcolor", sudo=True)
