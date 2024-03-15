@@ -43,12 +43,7 @@ async def _(c: user, m):
                 return await m.reply(cgr("err").format(em.gagal, e))
     else:
         if len(m.command) < 2:
-            user_id = m.from_user.id
             try:
-                org = await c.get_users(user_id)
-                if org.id in DEVS:
-                    await m.reply(cgr("qot_3").format(em.gagal))
-                    return
                 messages = [m]
             except Exception as e:
                 return await m.reply(cgr("err").format(em.gagal, e))
@@ -94,6 +89,7 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
+
 
 
 @ky.ubot("qcolor", sudo=True)
