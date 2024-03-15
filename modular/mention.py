@@ -66,11 +66,11 @@ async def tag_all_members(c: user, m: Message):
                 if member.user.last_name
                 else member.user.first_name
             )
-            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
+            mention_texts.append(f"[{full_name}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
                 mention_text = f"{text}\n\n"
-                mention_text += " ".join(mention_texts)
+                mention_text += "\n".join(mention_texts)
                 try:
                     await send.copy(chat_id, mention_text)
                 except FloodWait as e:
@@ -83,9 +83,9 @@ async def tag_all_members(c: user, m: Message):
         # Tambahkan mention member di bagian bawah pesan yang dibalas
         repl_text = m.reply_to_message.text
         if repl_text:
-            repl_text += "\n" + " ".join(mention_texts)
+            repl_text += "\n\n" + "\n".join(mention_texts)
         else:
-            repl_text = " ".join(mention_texts)
+            repl_text = "\n".join(mention_texts)
         try:
             await send.copy(chat_id, repl_text)
         except FloodWait as e:
