@@ -47,7 +47,10 @@ async def _(c, m):
             return
 
         chat_member = await c.get_chat_member(chat_id, m.from_user.id)
-        if chat_member.status in (ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR):
+        if chat_member.status in (
+            ChatMemberStatus.OWNER,
+            ChatMemberStatus.ADMINISTRATOR,
+        ):
             if str(chat_id).startswith("https://t.me/"):
                 chat_id = chat_id.split("/")[-1]
                 inpogc = await c.get_chat(chat_id)
