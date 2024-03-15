@@ -29,16 +29,21 @@ async def _(c: user, m):
     acak = None
     messages = []
     rep = m.reply_to_message
-
-    # Memeriksa apakah ada pesan yang di-reply dan pesan tersebut berisi teks atau media yang dapat diproses
     if rep:
-        if rep.text or rep.media:
-            if len(m.command) < 2:
-                acak = random.choice(loanjing)
-            else:
-                tag = m.command[1].strip()
-                c.get_arg(m)
-
+        if rep.text:
+            text = rep.text
+            try:
+                hasil = await quotly([text], acak)
+                bs = BytesIO(hasil)
+                bs.name = "mix.webp"
+                await m.reply_sticker(bs)
+                return
+            except Exception as e:
+                return await m.reply(cgr("err").format(em.gagal, e))
+        # else:
+        #     return await m.reply(
+        #         "Balasan tidak dapat diproses karena pesan yang dibalas tidak mengandung teks."
+        #     )
                 if tag.startswith("@"):
                     user_id = tag[1:]
                     try:
@@ -74,7 +79,6 @@ async def _(c: user, m):
             )
     else:
         if len(m.command) < 2:
-            # Jika tidak ada pesan yang dibalas dan tidak ada argumen username, gunakan id pengirim pesan sebagai pengganti id pengguna yang ditargetkan
             user_id = m.from_user.id
             try:
                 org = await c.get_users(user_id)
