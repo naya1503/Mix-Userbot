@@ -54,7 +54,7 @@ async def tag_all_members(c: user, m: Message):
     await progres.delete()
     text = " ".join(m.command[1:])
 
-    mention_texts = []
+    # mention_texts = []
     members = c.get_chat_members(chat_id)
     berenti = True
     count = 0
@@ -76,7 +76,7 @@ async def tag_all_members(c: user, m: Message):
                     await asyncio.sleep(e.x)
                     await c.send_message(chat_id, mention_text)
                 await asyncio.sleep(2.5)
-                mention_texts = []
+                # mention_texts = []
         if not member.user.is_bot:
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
@@ -92,11 +92,16 @@ async def tag_all_members(c: user, m: Message):
                 mention_texts = []
 
     if mention_texts:
-        mention_text = f"{text}\n"
+        if text:
+            mention_text = f"{text}\n"
+        elif isinya:
+            mention_text = f"{isinya}\n"
         mention_text += "\n".join(mention_texts)
         try:
             await c.send_message(chat_id, mention_text)
         except FloodWait as e:
+            tunggu = asyncio.slee(e.x)
+            await c.send_message(chat_id, f"Silahkan tunggu `{tunggu}` detik")
             await asyncio.sleep(e.x)
             await c.send_message(chat_id, mention_text)
         await asyncio.sleep(2)
@@ -104,6 +109,7 @@ async def tag_all_members(c: user, m: Message):
     await m.reply(
         f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
     )
+
 
 
 @ky.ubot("stop", sudo=True)
