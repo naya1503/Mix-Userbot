@@ -66,18 +66,15 @@ async def _(c, m):
             f"{em.gagal} <b>Anda bukan anggota atau member di <code>{namagece}</code></b>"
         )
     except Exception as e:
-        await m.reply(
-            f"{em.gagal} <b>Terjadi kesalahan saat mencoba meninggalkan obrolan:</b> <code>{str(e)}</code>"
-        )
+        await m.reply(cgr("err").format(em.gagal, e))
+    return
 
 
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    xenn = await m.reply_text(
-        f"{em.proses} <code>Global Leave from group chats...</code>"
-    )
+    xenn = await m.reply_text(cgr("proses").format(em.proses))
     luci = 0
     nan = 0
     ceger = [-1001986858575, -1001876092598, -1001812143750]
@@ -103,7 +100,7 @@ async def _(c, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xenn = await m.reply(f"{em.proses} <b>Proses Pengeluaran Global Channel...</b>")
+    xenn = await m.reply(cgr("proses").format(em.proses))
     luci = 0
     nan = 0
     ceger = [-1001713457115, -1001818398503, -1001697717236]
