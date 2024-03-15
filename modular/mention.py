@@ -99,7 +99,6 @@ async def tag_all_members(c: user, m: Message):
     )
 
 
-
 @ky.ubot("stop", sudo=True)
 async def stop_tagall(c: user, m: Message):
     em = Emojik()
