@@ -50,6 +50,9 @@ async def _(c: user, m):
 async def _(c, m):
     if not TAG_LOG:
         return
+    cek = udB.get_var(user.me.id, "TAGC")
+    if not cek:
+        return
     org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     lenk = m.link
     media = None
