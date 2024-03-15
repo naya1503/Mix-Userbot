@@ -9,7 +9,7 @@
 """
 ################################################################
 
-
+import os
 import random
 from io import BytesIO
 
@@ -21,7 +21,7 @@ from Mix.core.tools_quote import *
 __modles__ = "Quote"
 __help__ = get_cgr("help_qot")
 
-"""
+
 @ky.ubot("q", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -29,12 +29,11 @@ async def _(c: user, m):
     acak = None
     messages = None
     if len(m.command) < 2:
-        # Jika tidak ada argumen kedua, pilih warna secara acak dari loanjing
         acak = random.choice(loanjing)
     else:
         tag = m.command[1].strip()
         c.get_arg(m)
-
+        
         if tag.startswith("@"):
             user_id = tag[1:]
             try:
@@ -71,8 +70,6 @@ async def _(c: user, m):
         return await m.reply(cgr("err").format(em.gagal, e))
 
 
-"""
-
 
 @ky.ubot("qcolor", sudo=True)
 async def _(c: user, m):
@@ -88,7 +85,7 @@ async def _(c: user, m):
     else:
         await m.reply(jadi + iymek)
 
-
+"""
 @ky.ubot("q", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -158,3 +155,4 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
+"""
