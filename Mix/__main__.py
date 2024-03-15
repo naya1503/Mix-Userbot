@@ -58,7 +58,7 @@ async def starter():
         await start_bot()
     await asyncio.gather(refresh_cache(), check_logger())
     LOGGER.info("Successfully Started Userbot.")
-    await asyncio.gather(getFinish(), isFinish(), idle())
+    await asyncio.gather(isFinish(), idle())
 
 
 if __name__ == "__main__":
