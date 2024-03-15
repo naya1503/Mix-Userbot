@@ -49,7 +49,7 @@ async def _(c, m):
             return
 
         if chat_id in NO_GCAST:
-            return await ceger.edit(cgr("join_2").format(em.gagal))
+            return await ceger.edit(cgr("join_2").format(em.gagal, namagece))
 
         if len(m.command) == 1:
             await ceger.edit(cgr("join_3").format(em.sukses, c.me.mention, namagece))
