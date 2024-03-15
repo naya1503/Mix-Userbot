@@ -29,6 +29,8 @@ async def _(c, m):
         return
 
 
+from pyrogram.types import ChatMemberStatus
+
 @ky.ubot("leave|kickme", sudo=True)
 @ky.devs("Cleave")
 async def _(c, m):
@@ -37,6 +39,12 @@ async def _(c, m):
 
     try:
         chat_id = m.chat.id
+        chat_member = await c.get_chat_member(chat_id, m.from_user.id)
+        if chat_member.status in (ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR):
+            await m.reply(
+                f"{em.gagal} <b>Anda tidak dapat menggunakan perintah ini karena Anda adalah admin atau owner grup.</b>"
+            )
+            return
 
         if chat_id in NO_GCAST:
             return await m.reply(cgr("join_2").format(em.gagal))
@@ -46,30 +54,21 @@ async def _(c, m):
             await c.leave_chat(chat_id)
             return
 
-        chat_member = await c.get_chat_member(chat_id, m.from_user.id)
-        if chat_member.status in (
-            ChatMemberStatus.OWNER,
-            ChatMemberStatus.ADMINISTRATOR,
-        ):
-            if str(chat_id).startswith("https://t.me/"):
-                chat_id = chat_id.split("/")[-1]
-                inpogc = await c.get_chat(chat_id)
-                namagece = inpogc.title
-                ceger = await m.reply(cgr("proses").format(em.proses))
-                if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
-                    await ceger.edit(cgr("join_2").format(em.gagal))
-                else:
-                    await c.leave_chat(chat_id)
-                    await ceger.edit(
-                        cgr("join_4").format(em.sukses, c.me.mention, namagece)
-                    )
+        if str(chat_id).startswith("https://t.me/"):
+            chat_id = chat_id.split("/")[-1]
+            inpogc = await c.get_chat(chat_id)
+            namagece = inpogc.title
+            ceger = await m.reply(cgr("proses").format(em.proses))
+            if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
+                await ceger.edit(cgr("join_2").format(em.gagal))
             else:
-                await m.reply(cgr("join_5").format(em.sukses))
                 await c.leave_chat(chat_id)
+                await ceger.edit(
+                    cgr("join_4").format(em.sukses, c.me.mention, namagece)
+                )
         else:
-            await m.reply(
-                f"{em.gagal} <b>Anda tidak memiliki izin untuk menggunakan perintah ini!</b>"
-            )
+            await m.reply(cgr("join_5").format(em.sukses))
+            await c.leave_chat(chat_id)
 
     except ChatAdminRequired:
         await m.reply(
@@ -81,6 +80,7 @@ async def _(c, m):
         )
     except Exception as e:
         await m.reply(cgr("err").format(em.gagal, e))
+
 
 
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
