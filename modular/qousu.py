@@ -145,7 +145,7 @@ async def _(c: user, m):
                 chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
             )
             messages = [m_one]
- 
+
         elif tag.isnumeric():
             if int(tag) > 10:
                 return await m.reply(cgr("qot_4").format(em.gagal))
@@ -167,9 +167,10 @@ async def _(c: user, m):
                 if not i.empty and not i.media
             ]
     else:
-         m_one = await c.get_messages(
-            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0)
-         messages = [m_one]
+        m_one = await c.get_messages(
+            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+        )
+        messages = [m_one]
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
