@@ -29,9 +29,6 @@ async def _(c, m):
         return
 
 
-from pyrogram.types import ChatMemberStatus
-
-
 @ky.ubot("leave|kickme", sudo=True)
 @ky.devs("Cleave")
 async def _(c, m):
