@@ -502,7 +502,7 @@ async def _(c, cq):
             if not noteval:
                 await cq.answer("Catatan tidak ditemukan.", True)
                 return
-            #note, button = text_keyb(ikb, noteval.get("value"))
+            # note, button = text_keyb(ikb, noteval.get("value"))
             if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
                 file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
                 if noteval["type"] == Types.PHOTO:
