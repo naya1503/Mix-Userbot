@@ -69,7 +69,7 @@ async def tag_all_members(c: user, m: Message):
             mention_texts.append(f"[{full_name}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{send}\n\n"
+                mention_text = f"{send.text}\n\n"
                 mention_text += "\n".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
