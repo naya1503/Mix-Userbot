@@ -34,7 +34,7 @@ async def _(c, m):
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    chat_id = chat_id.split("/")[-1]
+    chat_id = m.chat.id
     inpogc = await c.get_chat(chat_id)
     namagece = inpogc.title
     ceger = await m.reply(cgr("proses").format(em.proses))
@@ -59,6 +59,8 @@ async def _(c, m):
 
         if str(chat_id).startswith("https://t.me/"):
             chat_id = chat_id.split("/")[-1]
+            inpogc = await c.get_chat(chat_id)
+            namagece = inpogc.title
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
                 await ceger.edit(cgr("join_2").format(em.gagal))
             else:
