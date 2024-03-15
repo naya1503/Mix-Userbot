@@ -146,7 +146,7 @@ async def _(c: user, m):
             )
             messages = [m_one]
 
-        elif tag.isnumeric():
+        elif int(tag):
             if int(tag) > 10:
                 return await m.reply(cgr("qot_4").format(em.gagal))
             warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
