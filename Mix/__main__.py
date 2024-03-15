@@ -1,7 +1,6 @@
 import asyncio
 import importlib
 import sys
-from contextlib import closing, suppress
 
 from pyrogram import *
 from pyrogram.errors import *
