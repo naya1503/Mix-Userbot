@@ -51,7 +51,7 @@ async def tag_all_members(c: user, m: Message):
         return
 
     # Mendapatkan teks dari pesan yang akan di-reply atau pesan yang dibalas
-    send = c.get_m(m)
+    send = c.get_m(m.reply_to_message_text)
     text = " ".join(m.command[1:])
     mention_texts = []
     members = c.get_chat_members(chat_id)
@@ -66,10 +66,10 @@ async def tag_all_members(c: user, m: Message):
                 if member.user.last_name
                 else member.user.first_name
             )
-            mention_texts.append(f"[{full_name}](tg://user?id={member.user.id})")
+            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{send.text}\n\n"
+                mention_text = f"{send}\n\n"
                 mention_text += "\n".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
