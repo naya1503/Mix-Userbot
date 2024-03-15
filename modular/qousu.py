@@ -28,13 +28,13 @@ async def _(c: user, m):
     em.initialize()
     acak = random.choice(loanjing)
     rep = m.reply_to_message
-    
+
     if rep:
         if rep.text:
             try:
                 m_one = await c.get_messages(
-                        chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-                        )
+                    chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+                )
                 messages = [m_one]
                 hasil = await quotly(messages, acak)
                 bs = BytesIO(hasil)
