@@ -67,7 +67,11 @@ async def tag_all_members(c: user, m: Message):
     berenti = True
     count = 0
     send = c.get_m(m)
-    ininya = mention_texts.append(reply_text) if reply_text else mention_texts.append(repli_teks)
+    ininya = (
+        mention_texts.append(reply_text)
+        if reply_text
+        else mention_texts.append(repli_teks)
+    )
 
     async for member in members:
         if not berenti:
