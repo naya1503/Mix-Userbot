@@ -47,10 +47,11 @@ async def tag_all_members(c: user, m: Message):
         await m.reply(cgr("ment_1").format(em.gagal))
         return
 
-    if len(m.command) < 2 and not rep:
+    if not rep and len(m.command) < 2:
         await m.reply(cgr("ment_2").format(em.gagal))
         return
-    progres.delete()
+
+    await progres.delete()
     text = " ".join(m.command[1:])
 
     mention_texts = []
@@ -60,38 +61,25 @@ async def tag_all_members(c: user, m: Message):
     async for member in members:
         if not berenti:
             break
-        rep = m.reply_to_message
-        if rep:
-            if rep.text:
-                tegs = await c.get_messages(
-                    chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-                )
-                isinya = [tegs]
-                full_name = (
-                    member.user.first_name + member.user.last_name
-                    if member.user.last_name
-                    else member.user.first_name
-                )
-                mention_texts.append(
-                    f"[{random_emoji()}](tg://user?id={member.user.id})"
-                )
-                count += 1
-                if len(mention_texts) == 4:
-                    mention_text = f"{isinya}\n\n"
-                    mention_text += " ".join(mention_texts)
-                    try:
-                        await c.send_message(chat_id, mention_text)
-                    except FloodWait as e:
-                        await asyncio.sleep(e.x)
-                        await c.send_message(chat_id, mention_text)
-                    await asyncio.sleep(2.5)
-                    mention_texts = []
-        if not member.user.is_bot:
-            full_name = (
-                member.user.first_name + member.user.last_name
-                if member.user.last_name
-                else member.user.first_name
+        if rep and rep.text:
+            tegs = await c.get_messages(
+                chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
             )
+            mention_texts.append(
+                f"[{random_emoji()}](tg://user?id={member.user.id})"
+            )
+            count += 1
+            if len(mention_texts) == 4:
+                mention_text = f"{tegs}\n\n"
+                mention_text += " ".join(mention_texts)
+                try:
+                    await c.send_message(chat_id, mention_text)
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
+                    await c.send_message(chat_id, mention_text)
+                await asyncio.sleep(2.5)
+                mention_texts = []
+        if not member.user.is_bot:
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
@@ -102,7 +90,7 @@ async def tag_all_members(c: user, m: Message):
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
                     await c.send_message(chat_id, mention_text)
-                await asyncio.sleep(2.5)
+                await asyncio.sleep(2)
                 mention_texts = []
 
     if mention_texts:
@@ -113,12 +101,12 @@ async def tag_all_members(c: user, m: Message):
         except FloodWait as e:
             await asyncio.sleep(e.x)
             await c.send_message(chat_id, mention_text)
-        await asyncio.sleep(2.5)
+        await asyncio.sleep(2)
     berenti = False
-    await progres.delete()
     await m.reply(
         f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
     )
+
 
 
 @ky.ubot("stop", sudo=True)
