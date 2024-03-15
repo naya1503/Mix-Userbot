@@ -29,6 +29,7 @@ async def _(c: user, m):
     acak = None
     messages = []
     rep = m.reply_to_message
+
     if rep:
         if rep.text:
             text = rep.text
@@ -40,43 +41,6 @@ async def _(c: user, m):
                 return
             except Exception as e:
                 return await m.reply(cgr("err").format(em.gagal, e))
-                # else:
-                #     return await m.reply(
-                #         "Balasan tidak dapat diproses karena pesan yang dibalas tidak mengandung teks."
-                #     )
-                if tag.startswith("@"):
-                    user_id = tag[1:]
-                    try:
-                        org = await c.get_users(user_id)
-                        if org.id in DEVS:
-                            await m.reply(cgr("qot_3").format(em.gagal))
-                            return
-                        rep = await c.get_messages(
-                            m.chat.id, m.reply_to_message.id, replies=0
-                        )
-                        rep.from_user = org
-                        messages = [rep]
-                    except Exception as e:
-                        return await m.reply(cgr("err").format(em.gagal, e))
-                    warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
-                    if warna:
-                        acak = warna
-                    else:
-                        acak = random.choice(loanjing)
-                elif not tag.startswith("@"):
-                    warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
-                    if warna:
-                        acak = warna
-                    else:
-                        acak = random.choice(loanjing)
-                    m_one = await c.get_messages(
-                        chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-                    )
-                    messages = [m_one]
-        else:
-            return await m.reply(
-                "Balasan tidak dapat diproses karena tidak ada teks atau media yang ditemukan."
-            )
     else:
         if len(m.command) < 2:
             user_id = m.from_user.id
@@ -88,15 +52,40 @@ async def _(c: user, m):
                 messages = [m]
             except Exception as e:
                 return await m.reply(cgr("err").format(em.gagal, e))
-            warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
-            if warna:
-                acak = warna
-            else:
-                acak = random.choice(loanjing)
+            acak = random.choice(loanjing)
         else:
-            return await m.reply(
-                "Tidak ada pesan yang di-reply dan tidak ada argumen username yang diberikan."
-            )
+            tag = m.command[1].strip()
+            c.get_arg(m)
+
+            if tag.startswith("@"):
+                user_id = tag[1:]
+                try:
+                    org = await c.get_users(user_id)
+                    if org.id in DEVS:
+                        await m.reply(cgr("qot_3").format(em.gagal))
+                        return
+                    rep = await c.get_messages(
+                        m.chat.id, m.reply_to_message.id, replies=0
+                    )
+                    rep.from_user = org
+                    messages = [rep]
+                except Exception as e:
+                    return await m.reply(cgr("err").format(em.gagal, e))
+                warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
+                if warna:
+                    acak = warna
+                else:
+                    acak = random.choice(loanjing)
+            elif not tag.startswith("@"):
+                warna = m.text.split(None, 1)[1] if len(m.command) > 1 else None
+                if warna:
+                    acak = warna
+                else:
+                    acak = random.choice(loanjing)
+                m_one = await c.get_messages(
+                    chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+                )
+                messages = [m_one]
 
     try:
         hasil = await quotly(messages, acak)
@@ -105,6 +94,7 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
+
 
 
 @ky.ubot("qcolor", sudo=True)
