@@ -487,6 +487,7 @@ help_repo: " **Repository**\n\n• Command: `{0}`repo\n• Description: To look 
 help_nul: " **Write**\n\n• Command: `{0}`write\n• Description: For lazy writing."
 help_lirk: " **Lyric**\n\n• Command: `{0}`lyrics\n• Description: To search for song lyrics."
 help_auend: " **AutoEnd**\n\n• Command: `{0}`endchat [username/user ID/reply to user]\n• Description: To delete chat history\n\n• Optional: \n• `username/reply to user` - Delete chat history of user\n• `bot` - Delete all bot chat history\n• `all` - Delete chat history of all your private messages."
+help_img: " **Image**\n\n• Command: `{0}`img [query]\n• Description: Searching image."
 
 auend_1: "{} **Provide arguments!!**"
 auend_2: "{} Successfully deleted chat history {}!"
@@ -512,3 +513,4 @@ fil_13: "{} No Filters here."
 fil_14: "{} Filter `{}` deleted!"
 fil_15: "{} All Filters successfully deleted."
 fil_16: "{} Unable to find this Filter."
+
