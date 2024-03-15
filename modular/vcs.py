@@ -18,6 +18,21 @@ __modles__ = "Voicechat"
 
 __help__ = get_cgr("help_vcs")
 
+from pytgcalls import GroupCallFactory
+vc = None
+CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+OUTGOING_AUDIO_BITRATE_KBIT = 128
+PLAYOUT_FILE = "Mix/core/vc.raw"
+
+def init_client(func):
+    async def wrapper(client, message):
+        global vc
+        if not vc:
+            vc = GroupCallFactory(user, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+    ).get_file_group_call(PLAYOUT_FILE)
+            vc.enable_logs_to_console = False
+        return await func(client, message)
+    return wrapper
 
 async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCall]:
     em = Emojik()
@@ -100,13 +115,11 @@ async def _(c: user, m):
 
 @ky.ubot("joinvc", sudo=True)
 @ky.devs("Jvcs")
+@init_client
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    vc = pytgcalls.GroupCallFactory(
-        c, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
-    ).get_file_group_call(PLAYOUT_FILE)
-    vc.enable_logs_to_console = False
+    
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
@@ -124,13 +137,10 @@ async def _(c: user, m):
 
 @ky.ubot("leavevc", sudo=True)
 @ky.devs("Lvcs")
+@init_client
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    vc = pytgcalls.GroupCallFactory(
-        c, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
-    ).get_file_group_call(PLAYOUT_FILE)
-    vc.enable_logs_to_console = False
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
