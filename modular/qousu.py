@@ -26,7 +26,7 @@ __help__ = get_cgr("help_qot")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    acak = None
+    acak = random.choice(loanjing)
     messages = []
     rep = m.reply_to_message
 
