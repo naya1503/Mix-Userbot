@@ -507,21 +507,29 @@ async def _(c, cq):
                 file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
                 if noteval["type"] == Types.PHOTO:
                     note, button = text_keyb(ikb, noteval.get("value"))
-                    await cq.edit_message_caption(
-                        # caption=noteval.get("value"),
-                        caption=note,
-                        reply_markup=button,
-                    )
+                    try:
+                        await cq.edit_message_caption(
+                            caption=note,
+                            reply_markup=button)
+                    except FloodWait as e:
+                        await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+                        return
                 elif noteval["type"] == Types.VIDEO:
                     note, button = text_keyb(ikb, noteval.get("value"))
-                    await cq.edit_message_caption(
-                        # caption=noteval.get("value"),
-                        caption=note,
-                        reply_markup=button,
-                    )
+                    try:
+                        await cq.edit_message_caption(
+                            caption=note,
+                            reply_markup=button)
+                    except FloodWait as e:
+                        await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+                        return
             elif noteval["type"] == Types.TEXT:
                 note, button = text_keyb(ikb, noteval.get("value"))
-                await cq.edit_message_text(text=note, reply_markup=button)
+                try:
+                    await cq.edit_message_text(text=note, reply_markup=button)
+                except FloodWait as e:
+                    await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
+                    return
             # await cq.answer()
 
     except Exception as e:
