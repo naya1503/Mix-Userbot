@@ -70,7 +70,7 @@ async def tag_all_members(c: user, m: Message):
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{reply_text}\n\n" if reply_text else f"{repli}\n\n"
+                mention_text = f"{repli_teks}\n\n" # if reply_text else f"{repli}\n\n"
                 mention_text += " ".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
@@ -81,7 +81,7 @@ async def tag_all_members(c: user, m: Message):
                 mention_texts = []
 
     if mention_texts:
-        mention_text = f"{reply_text}\n\n" if reply_text else f"{repli}\n\n"
+        mention_text = f"{repli_teks}\n\n" # if reply_text else f"{repli}\n\n"
         mention_text += "\n".join(mention_texts)
         try:
             await c.send_message(chat_id, mention_text)
