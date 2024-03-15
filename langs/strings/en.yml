@@ -73,7 +73,7 @@ inv_6: "{} <b>This feature is only available for groups and channels</b>"
 
 # join
 join_1: "{} <b>Successfully Joined</b> <code>{}</code>"
-join_2: "{} <b>Not allowed to use that command here!</b>"
+join_2: "{} <b>Not allowed to use that command in `{}`!</b>"
 join_3: "{} {} Successfully left <code>{}</code>"
 join_4: "{} <b>Bye!</b>"
 join_5: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"

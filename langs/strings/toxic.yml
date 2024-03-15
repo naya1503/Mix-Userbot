@@ -73,7 +73,7 @@ inv_6: "{} Fitur ini cuma buat group/channel tolol mikir lah udah gede masih kag
 
 # join
 join_1: "{} <b>Berhasil gabung ke</b> <code>{}</code>"
-join_2: "{} <b>Kaga boleh make itu perintah di sini goblok</b>"
+join_2: "{} <b>Kaga boleh make itu perintah di `{}` goblok</b>"
 join_3: "{} <b>Sukses keluar dari <code>{}</code>"
 join_4: "{} <b>Bye!</b>"
 join_5: "{} **Sukses keluar dari `{}` Grup ampas, Gagal Keluar dari `{}` Grup ampas</b>"

@@ -73,7 +73,7 @@ inv_6: "{} Fitur ini hanya tersedia untuk group dan channel."
 
 # join
 join_1: "{} <b>Berhasil Bergabung ke</b> <code>{}</code>"
-join_2: "{} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
+join_2: "{} <b>Tidak dapat menggunakan perintah itu di `{}`!</b>"
 join_3: "{} {} Berhasil keluar dari <code>{}</code>"
 join_4: "{} <b>Bye!</b>"
 join_5: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"

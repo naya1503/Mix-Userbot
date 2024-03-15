@@ -65,14 +65,14 @@ async def _(c, m):
             namagece = inpogc.title
 
             if chat_id in NO_GCAST:
-                return await ceger.edit(cgr("join_2").format(em.gagal))
+                return await ceger.edit(cgr("join_2").format(em.gagal, namagece))
 
         if str(chat_id).startswith("https://t.me/"):
             chat_id = chat_id.split("/")[-1]
             inpogc = await c.get_chat(chat_id)
             namagece = inpogc.title
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
-                await ceger.edit(cgr("join_2").format(em.gagal))
+                await ceger.edit(cgr("join_2").format(em.gagal, namagece))
             else:
                 await c.leave_chat(chat_id)
                 await ceger.edit(
