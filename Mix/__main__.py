@@ -1,7 +1,8 @@
 import asyncio
 import importlib
 import sys
-
+from os import execvp
+from sys import executable
 from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
@@ -43,7 +44,7 @@ async def start_bot():
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
-        sys.exit(1)
+        execvp(executable, [executable, "-m", "Mix"])
 
 
 async def starter():
