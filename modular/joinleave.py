@@ -39,24 +39,6 @@ async def _(c, m):
     namagece = inpogc.title
     ceger = await m.reply(cgr("proses").format(em.proses))
     try:
-        chat_id = m.chat.id
-        chat_member = await c.get_chat_member(chat_id, m.from_user.id)
-        if chat_member.status in (
-            ChatMemberStatus.OWNER,
-            ChatMemberStatus.ADMINISTRATOR,
-        ):
-            await ceger.edit(cgr("join_7").format(em.gagal, namagece))
-            return
-
-        if chat_id in NO_GCAST:
-            return await ceger.edit(cgr("join_2").format(em.gagal, namagece))
-
-        if len(m.command) == 1:
-            await ceger.edit(cgr("join_3").format(em.sukses, c.me.mention, namagece))
-            await m.delete()
-            await c.leave_chat(chat_id)
-            return
-
         chat_username = m.command[1]
 
         if chat_username.startswith("@"):
@@ -79,6 +61,25 @@ async def _(c, m):
                 await ceger.edit(
                     cgr("join_3").format(em.sukses, c.me.mention, namagece)
                 )
+
+        chat_id = m.chat.id
+        chat_member = await c.get_chat_member(chat_id, m.from_user.id)
+        if chat_member.status in (
+            ChatMemberStatus.OWNER,
+            ChatMemberStatus.ADMINISTRATOR,
+        ):
+            await ceger.edit(cgr("join_7").format(em.gagal, namagece))
+            return
+
+        if chat_id in NO_GCAST:
+            return await ceger.edit(cgr("join_2").format(em.gagal, namagece))
+
+        if len(m.command) == 1:
+            await ceger.edit(cgr("join_3").format(em.sukses, c.me.mention, namagece))
+            await m.delete()
+            await c.leave_chat(chat_id)
+            return
+
         else:
             await m.reply(cgr("join_4").format(em.sukses))
             await c.leave_chat(chat_id)
