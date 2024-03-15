@@ -65,8 +65,8 @@ async def tag_all_members(c: user, m: Message):
             break
         if rep and rep.text:
             tegs = await c.get_messages(
-                    chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-                )
+                chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+            )
             isinya = [tegs]
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
@@ -96,8 +96,8 @@ async def tag_all_members(c: user, m: Message):
 
     if mention_texts:
         tegs = await c.get_messages(
-                    chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-                )
+            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+        )
         isinya = [tegs]
         if text:
             mention_text = f"{text}\n"
