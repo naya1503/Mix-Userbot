@@ -16,7 +16,7 @@ from SafoneAPI import SafoneAPI
 from Mix import *
 
 __modles__ = "Image"
-__help__ = "Image"
+__help__ = get_cgr("help_img")
 
 
 async def search_image_and_reply(query, m, lim):
