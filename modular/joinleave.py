@@ -31,6 +31,7 @@ async def _(c, m):
 
 from pyrogram.types import ChatMemberStatus
 
+
 @ky.ubot("leave|kickme", sudo=True)
 @ky.devs("Cleave")
 async def _(c, m):
@@ -94,7 +95,6 @@ async def _(c, m):
         )
     except Exception as e:
         await m.reply(cgr("err").format(em.gagal, e))
-
 
 
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
