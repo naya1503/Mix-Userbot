@@ -39,7 +39,7 @@ async def _(c: user, m):
                 hasil = await quotly(messages, acak)
                 bs = BytesIO(hasil)
                 bs.name = "mix.webp"
-                prs.delete()
+                await prs.delete()
                 await m.reply_sticker(bs)
                 return
             except Exception as e:
