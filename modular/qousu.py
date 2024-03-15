@@ -29,7 +29,7 @@ async def _(c: user, m):
     acak = None
     messages = []
     rep = m.reply_to_message
-    
+
     # Memeriksa apakah ada pesan yang di-reply dan pesan tersebut berisi teks atau media yang dapat diproses
     if rep:
         if rep.text or rep.media:
@@ -46,7 +46,9 @@ async def _(c: user, m):
                         if org.id in DEVS:
                             await m.reply(cgr("qot_3").format(em.gagal))
                             return
-                        rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=0)
+                        rep = await c.get_messages(
+                            m.chat.id, m.reply_to_message.id, replies=0
+                        )
                         rep.from_user = org
                         messages = [rep]
                     except Exception as e:
@@ -67,10 +69,12 @@ async def _(c: user, m):
                     )
                     messages = [m_one]
         else:
-            return await m.reply("Balasan tidak dapat diproses karena tidak ada teks atau media yang ditemukan.")
+            return await m.reply(
+                "Balasan tidak dapat diproses karena tidak ada teks atau media yang ditemukan."
+            )
     else:
         return await m.reply("Tidak ada pesan yang di-reply.")
-    
+
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
@@ -78,7 +82,6 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
-
 
 
 @ky.ubot("qcolor", sudo=True)
