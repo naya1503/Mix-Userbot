@@ -73,6 +73,7 @@ async def _(c, m):
             namagece = inpogc.title
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
                 await ceger.edit(cgr("join_2").format(em.gagal, namagece))
+                return
             else:
                 await c.leave_chat(chat_id)
                 await ceger.edit(
