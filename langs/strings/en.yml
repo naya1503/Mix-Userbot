@@ -514,3 +514,6 @@ fil_14: "{} Filter `{}` deleted!"
 fil_15: "{} All Filters successfully deleted."
 fil_16: "{} Unable to find this Filter."
 
+
+help_img: " **Image**\n\n• Command: `{0}`img [query]\n• Description: To search for images."
+help_ips: " **IpSearch**\n\n• Command: `{0}`ipf [country]\n• Description: To search for fake addresses.\n\n• Command: `{0}`ips [ip]\n• Description: To search for an address\n\n• Not 100% accurate."
