@@ -50,7 +50,6 @@ async def tag_all_members(c: user, m: Message):
         await m.reply(cgr("ment_2").format(em.gagal))
         return
 
-    # Mendapatkan teks dari pesan yang akan di-reply atau pesan yang dibalas
     send = c.get_text(m)
     text = " ".join(m.command[1:])
     mention_texts = []
@@ -70,7 +69,7 @@ async def tag_all_members(c: user, m: Message):
             count += 1
             if len(mention_texts) == 4:
                 mention_text = f"{send}\n\n"
-                mention_text += "\n".join(mention_texts)
+                mention_text += " ".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
                 except FloodWait as e:
@@ -80,12 +79,11 @@ async def tag_all_members(c: user, m: Message):
                 mention_texts = []
 
     if mention_texts:
-        # Tambahkan mention member di bagian bawah pesan yang dibalas
         repl_text = m.reply_to_message.text
         if repl_text:
             repl_text += "\n\n" + "\n".join(mention_texts)
         else:
-            repl_text = "\n".join(mention_texts)
+            repl_text = " ".join(mention_texts)
         try:
             await c.send_message(chat_id, repl_text)
         except FloodWait as e:
