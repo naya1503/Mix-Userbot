@@ -78,6 +78,7 @@ join_3: "{} {} Berhasil keluar dari <code>{}</code>"
 join_4: "{} <b>Bye!</b>"
 join_5: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"
 join_6: "{} **Berhasil keluar dari `{}` channel\n{} Gagal keluar dari `{}` channel.**"
+join_7: "{} <b>Anda tidak dapat menggunakan perintah ini karena Anda adalah `Admin` atau `Owner` di `{}`.</b>"
 
 # uprefixies
 upref_2: "{} **Prefix diatur ke : `{}`**"

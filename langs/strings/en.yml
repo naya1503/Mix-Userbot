@@ -78,6 +78,7 @@ join_3: "{} {} Successfully left <code>{}</code>"
 join_4: "{} <b>Bye!</b>"
 join_5: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"
 join_6: "{} **Successfully left `{}` channel\n{} **Failed to leave `{}` channel.**"
+join_7: "{} <b>You can't use this command on this chat!\nBecause, You're a `Admin` or `Owner` of `{}`</b>"
 
 # assistant
 asst_1: "Hello 👋 {} !! I'm your bot assistant.\n\nWhat settings would you like to change?"

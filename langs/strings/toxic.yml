@@ -78,6 +78,7 @@ join_3: "{} <b>Sukses keluar dari <code>{}</code>"
 join_4: "{} <b>Bye!</b>"
 join_5: "{} **Sukses keluar dari `{}` Grup ampas, Gagal Keluar dari `{}` Grup ampas</b>"
 join_6: "{} **Berhasil keluar dari `{}` Channel ampas\n{} **Gagal keluar dari `{}` Channel ampas.**"
+join_7: "{} <b>Yang bener bae! masa lo mau ot dari sini? Lo kan `Admin` atau `Owner` di `{}`</b>"
 
 # uprefixies
 upref_2: "{} **Prefix diganti jing ke : `{}`**"

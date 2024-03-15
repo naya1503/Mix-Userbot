@@ -34,7 +34,10 @@ async def _(c, m):
 async def _(c, m):
     em = Emojik()
     em.initialize()
-
+    chat_id = chat_id.split("/")[-1]
+    inpogc = await c.get_chat(chat_id)
+    namagece = inpogc.title
+    ceger = await m.reply(cgr("proses").format(em.proses))
     try:
         chat_id = m.chat.id
         chat_member = await c.get_chat_member(chat_id, m.from_user.id)
@@ -42,33 +45,29 @@ async def _(c, m):
             ChatMemberStatus.OWNER,
             ChatMemberStatus.ADMINISTRATOR,
         ):
-            await m.reply(
-                f"{em.gagal} <b>Anda tidak dapat menggunakan perintah ini karena Anda adalah admin atau owner grup.</b>"
-            )
+            await ceger.edit(cgr("join_7").format(em.gagal, namagece))
             return
 
         if chat_id in NO_GCAST:
-            return await m.reply(cgr("join_2").format(em.gagal))
+            return await ceger.edit(cgr("join_2").format(em.gagal))
 
         if len(m.command) == 1:
-            await m.reply(cgr("proses").format(em.proses))
+            await ceger.edit(cgr("join_3").format(em.sukses, c.me.mention, namagece))
+            await m.delete()
             await c.leave_chat(chat_id)
             return
 
         if str(chat_id).startswith("https://t.me/"):
             chat_id = chat_id.split("/")[-1]
-            inpogc = await c.get_chat(chat_id)
-            namagece = inpogc.title
-            ceger = await m.reply(cgr("proses").format(em.proses))
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
                 await ceger.edit(cgr("join_2").format(em.gagal))
             else:
                 await c.leave_chat(chat_id)
                 await ceger.edit(
-                    cgr("join_4").format(em.sukses, c.me.mention, namagece)
+                    cgr("join_3").format(em.sukses, c.me.mention, namagece)
                 )
         else:
-            await m.reply(cgr("join_5").format(em.sukses))
+            await m.reply(cgr("join_4").format(em.sukses))
             await c.leave_chat(chat_id)
 
     except ChatAdminRequired:
@@ -106,7 +105,7 @@ async def _(c, m):
                     await c.leave_chat(chat)
             except BaseException:
                 luci += 1
-    await xenn.edit(cgr("join_6").format(em.sukses, nan, em.gagal, luci))
+    await xenn.edit(cgr("join_5").format(em.sukses, nan, em.gagal, luci))
 
 
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
@@ -135,4 +134,4 @@ async def _(c: user, m):
                     nan += 1
         except Exception:
             nan += 1
-    await xenn.edit_text(cgr("join_7").format(em.sukses, luci, em.gagal, nan))
+    await xenn.edit_text(cgr("join_6").format(em.sukses, luci, em.gagal, nan))
