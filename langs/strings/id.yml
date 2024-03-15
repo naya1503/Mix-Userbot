@@ -505,3 +505,5 @@ fil_13: "{} Tidak ada Filter disini."
 fil_14: "{} Filter `{}` dihapus!"
 fil_15: "{} Semua Filter berhasil dihapus."
 fil_16: "{} Tidak dapat menemukan Filter ini"
+
+help_img: " **Image**\n\n• Perintah: `{0}`img [query]\n• Penjelasan: Untuk mencari gambar."
