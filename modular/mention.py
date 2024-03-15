@@ -59,13 +59,37 @@ async def tag_all_members(c: user, m: Message):
     async for member in members:
         if not berenti:
             break
+        rep = m.reply_to_mesaage
+        if rep:
+            if rep.text:
+                tegs = await c.get_messages(
+                    chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+                )
+                isinya = [tegs]
+                full_name = (
+                member.user.first_name + member.user.last_name
+                if member.user.last_name
+                else member.user.first_name
+                )
+                mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
+                count += 1
+                if len(mention_texts) == 4:
+                    mention_text = f"{isinya}\n\n"
+                    mention_text += " ".join(mention_texts)
+                    try:
+                        await c.send_message(chat_id, mention_text)
+                    except FloodWait as e:
+                        await asyncio.sleep(e.x)
+                        await c.send_message(chat_id, mention_text)
+                    await asyncio.sleep(2.5)
+                    mention_texts = []
         if not member.user.is_bot:
             full_name = (
                 member.user.first_name + member.user.last_name
                 if member.user.last_name
                 else member.user.first_name
             )
-            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id}) ")
+            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
                 mention_text = f"{text}\n\n"
