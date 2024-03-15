@@ -69,17 +69,17 @@ async def _(c: user, m):
             return await m.reply_text(cgr("fil_6").format(em.sukses))
 
     if not keyword:
-        return await m.reply_text(cgr("fil_7").format(em.gagal)) 
+        return await m.reply_text(cgr("fil_7").format(em.gagal))
 
     if keyword.startswith("<") or keyword.startswith(">"):
-        return await m.reply_text(cgr("fil_8").format(em.gagal)) 
+        return await m.reply_text(cgr("fil_8").format(em.gagal))
 
     eee, msgtype, file_id = get_filter_type(m)
     lol = eee if m.reply_to_message else extracted[1]
     teks = lol if msgtype == Types.TEXT else eee
 
     if not m.reply_to_message and msgtype == Types.TEXT and len(m.text.split()) < 3:
-        return await m.reply_text(cgr("fil_9").format(em.gagal)) 
+        return await m.reply_text(cgr("fil_9").format(em.gagal))
 
     if not teks and not msgtype:
         return await m.reply_text(cgr("fil_10").format(em.gagal))
@@ -89,7 +89,9 @@ async def _(c: user, m):
 
     add = db.save_filter(m.chat.id, keyword, teks, msgtype, file_id)
     if add:
-        await m.reply_text(cgr("fil_11").format(em.sukses, '|'.join(keyword.split('|'))))
+        await m.reply_text(
+            cgr("fil_11").format(em.sukses, "|".join(keyword.split("|")))
+        )
     await m.stop_propagation()
 
 
