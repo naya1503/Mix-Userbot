@@ -28,9 +28,13 @@ async def _(c: user, m):
     em.initialize()
     acak = None
     messages = None
-    tag = m.command[1].strip()
-    c.get_arg(m)
-    if len(m.command) > 1:
+    if len(m.command) < 2:
+        # Jika tidak ada argumen kedua, pilih warna secara acak dari loanjing
+        acak = random.choice(loanjing)
+    else:
+        tag = m.command[1].strip()
+        c.get_arg(m)
+        
         if tag.startswith("@"):
             user_id = tag[1:]
             try:
@@ -53,33 +57,7 @@ async def _(c: user, m):
             if warna:
                 acak = warna
             else:
-                acak = random.choice(loanjing)  # Pilih warna secara acak
-            m_one = await c.get_messages(
-                chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-            )
-            messages = [m_one]
-    else:
-        if tag.isnumeric():
-            if int(tag) > 10:
-                return await m.reply(cgr("qot_4").format(em.gagal))
-            warna = m.text.split(None, 2)[2] if len(m.command) > 2 else None
-            if warna:
-                acak = warna
-            else:
-                acak = random.choice(loanjing)  # Pilih warna secara acak
-            messages = [
-                i
-                for i in await c.get_messages(
-                    chat_id=m.chat.id,
-                    message_ids=range(
-                        m.reply_to_message.id,
-                        m.reply_to_message.id + int(tag),
-                    ),
-                    replies=0,
-                )
-                if not i.empty and not i.media
-            ]
-        else:
+                acak = random.choice(loanjing)
             m_one = await c.get_messages(
                 chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
             )
@@ -91,6 +69,7 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
+
 
 
 """
