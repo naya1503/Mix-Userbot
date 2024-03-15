@@ -106,7 +106,9 @@ def text_keyb(ikb, text: str, row_width: int = 2):
         main_text = main_text.replace("<b>", "**").replace("</b>", "**")
         main_text = main_text.replace("<i>", "_").replace("</i>", "_")
         main_text = main_text.replace("<u>", "__").replace("</u>", "__")
-        main_text = main_text.replace("<code>", "`").replace("</code>", "`")
+        main_text = main_text.replace("<strike>", "~~").replace("</strike>", "~~")
+        main_text = main_text.replace("<spoiler>", "||").replace("</spoiler>", "||")
+        main_text = main_text.replace("<i>", "--").replace("</u>", "--")
 
         keyb_texts = findall(r"\[([^]]+)\]", button_text)
         for keyb_text in keyb_texts:
