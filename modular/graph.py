@@ -29,7 +29,9 @@ async def _(c: user, m):
             media_url = upload_file(m_d)
         except exceptions.TelegraphException as r:
             return await xx.edit(cgr("err").format(em.gagal, r))
-        dnbg = cgr("grp_3").format(em.sukses, media_url[0], disable_web_page_preview=True)
+        dnbg = cgr("grp_3").format(
+            em.sukses, media_url[0], disable_web_page_preview=True
+        )
         await xx.edit(dnbg)
     elif m.reply_to_message.text:
         page_title = f"{c.me.first_name} {c.me.last_name or ''}"
@@ -39,5 +41,7 @@ async def _(c: user, m):
             response = telegraph.create_page(page_title, html_content=page_text)
         except exceptions.TelegraphException as r:
             return await xx.edit(cgr("err").format(em.gagal, r))
-        ybg = cgr("grp_5").format(em.sukses, response["path"], disable_web_page_preview=True)
+        ybg = cgr("grp_5").format(
+            em.sukses, response["path"], disable_web_page_preview=True
+        )
         await xx.edit(ybg)
