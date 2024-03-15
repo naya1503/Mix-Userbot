@@ -10,6 +10,7 @@ from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
                                           EditGroupCallTitle)
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
+import pytgcalls
 
 from Mix import *
 
@@ -102,14 +103,16 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-
+    vc = pytgcalls.GroupCallFactory(
+        c, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+    ).get_file_group_call(PLAYOUT_FILE)
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
         chat_id = int(chat_id)
     if chat_id:
         try:
-            await c.vc.start(chat_id)
+            await vc.start(chat_id)
             await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
             await asyncio.sleep(2)
             await c.vc.set_is_mute(True)
@@ -123,14 +126,16 @@ async def _(c: user, m):
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-
+    vc = pytgcalls.GroupCallFactory(
+        c, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+    ).get_file_group_call(PLAYOUT_FILE)
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
         chat_id = int(chat_id)
     if chat_id:
         try:
-            await c.vc.stop()
+            await vc.stop()
             await ky.edit(cgr("vc_9").format(em.sukses, chat_id))
             return
         except Exception as e:
