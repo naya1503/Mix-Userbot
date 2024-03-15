@@ -167,6 +167,7 @@ async def _(c: user, m):
                 if not i.empty and not i.media
             ]
     else:
+        acak = random.choice(loanjing)
         m_one = await c.get_messages(
             chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
         )
