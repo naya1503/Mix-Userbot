@@ -69,13 +69,13 @@ async def tag_all_members(c: user, m: Message):
             mention_texts.append(f"[{full_name}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{text}\n\n"
+                mention_text = f"{send}\n\n"
                 mention_text += "\n".join(mention_texts)
                 try:
-                    await send.copy(chat_id, mention_text)
+                    await c.send_message(chat_id, mention_text)
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
-                    await send.copy(chat_id, mention_text)
+                    await c.send_message(chat_id, mention_text)
                 await asyncio.sleep(2.5)
                 mention_texts = []
 
@@ -87,10 +87,10 @@ async def tag_all_members(c: user, m: Message):
         else:
             repl_text = "\n".join(mention_texts)
         try:
-            await send.copy(chat_id, repl_text)
+            await c.send_message(chat_id, repl_text)
         except FloodWait as e:
             await asyncio.sleep(e.x)
-            await send.copy(chat_id, repl_text)
+            await c.send_message(chat_id, repl_text)
         await asyncio.sleep(2.5)
     berenti = False
     await progres.delete()
