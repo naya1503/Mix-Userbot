@@ -67,11 +67,13 @@ async def tag_all_members(c: user, m: Message):
                 )
                 isinya = [tegs]
                 full_name = (
-                member.user.first_name + member.user.last_name
-                if member.user.last_name
-                else member.user.first_name
+                    member.user.first_name + member.user.last_name
+                    if member.user.last_name
+                    else member.user.first_name
                 )
-                mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
+                mention_texts.append(
+                    f"[{random_emoji()}](tg://user?id={member.user.id})"
+                )
                 count += 1
                 if len(mention_texts) == 4:
                     mention_text = f"{isinya}\n\n"
