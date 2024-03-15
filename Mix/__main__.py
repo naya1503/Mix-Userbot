@@ -42,6 +42,7 @@ async def start_bot():
             importlib.reload(imported_module)
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
+        ndB.del_key("BOT_TOKEN")
         sys.exit(1)
 
 
