@@ -253,7 +253,7 @@ async def _(c, m):
         return
 
 
-@ky.afk()
+#@ky.afk()
 async def _(c, m):
     em = Emojik()
     em.initialize()
