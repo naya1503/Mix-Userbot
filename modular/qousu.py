@@ -10,7 +10,6 @@
 ################################################################
 
 
-import os
 import random
 from io import BytesIO
 
@@ -92,6 +91,7 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
+
 
 """
 @ky.ubot("qcolor", sudo=True)
