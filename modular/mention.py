@@ -28,6 +28,7 @@ async def tag_all_members(c: user, m: Message):
     admins = False
     berenti = True
     progres = await m.edit(cgr("proses").format(em.proses))
+    rep = m.reply_to_message
     try:
         administrator = []
         async for admin in c.get_chat_members(
@@ -46,7 +47,7 @@ async def tag_all_members(c: user, m: Message):
         await m.reply(cgr("ment_1").format(em.gagal))
         return
 
-    if len(m.command) < 2:
+    if len(m.command) < 2 and not rep:
         await m.reply(cgr("ment_2").format(em.gagal))
         return
 
