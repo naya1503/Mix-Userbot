@@ -50,7 +50,7 @@ async def tag_all_members(c: user, m: Message):
     if len(m.command) < 2 and not rep:
         await m.reply(cgr("ment_2").format(em.gagal))
         return
-
+    progres.delete()
     text = " ".join(m.command[1:])
 
     mention_texts = []
