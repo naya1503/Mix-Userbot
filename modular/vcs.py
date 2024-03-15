@@ -106,6 +106,7 @@ async def _(c: user, m):
     vc = pytgcalls.GroupCallFactory(
         c, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
     ).get_file_group_call(PLAYOUT_FILE)
+    vc.enable_logs_to_console = False
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
@@ -115,7 +116,7 @@ async def _(c: user, m):
             await vc.start(chat_id)
             await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
             await asyncio.sleep(2)
-            await c.vc.set_is_mute(True)
+            await vc.set_is_mute(True)
             return
         except Exception as e:
             return await ky.edit(cgr("err").format(em.gagal, e))
@@ -129,6 +130,7 @@ async def _(c: user, m):
     vc = pytgcalls.GroupCallFactory(
         c, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
     ).get_file_group_call(PLAYOUT_FILE)
+    vc.enable_logs_to_console = False
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
