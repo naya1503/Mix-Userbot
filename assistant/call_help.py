@@ -505,21 +505,22 @@ async def _(c, cq):
             note, button = text_keyb(ikb, noteval.get("value"))
             if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
                 file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
-                noteval.get("file")
-
                 if noteval["type"] == Types.PHOTO:
+                    note, button = text_keyb(ikb, noteval.get("value"))
                     await cq.edit_message_caption(
                         # caption=noteval.get("value"),
                         caption=note,
                         reply_markup=button,
                     )
                 elif noteval["type"] == Types.VIDEO:
+                    note, button = text_keyb(ikb, noteval.get("value"))
                     await cq.edit_message_caption(
                         # caption=noteval.get("value"),
                         caption=note,
                         reply_markup=button,
                     )
             elif noteval["type"] == Types.TEXT:
+                note, button = text_keyb(ikb, noteval.get("value"))
                 await cq.edit_message_text(text=note, reply_markup=button)
             # await cq.answer()
 
