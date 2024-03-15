@@ -28,10 +28,10 @@ async def _(c: user, m):
     em.initialize()
     acak = random.choice(loanjing)
     rep = m.reply_to_message
-    prs = m.reply(cgr("proses").format(em.proses))
     if rep:
         if rep.text:
             try:
+                prs = m.reply(cgr("proses").format(em.proses))
                 m_one = await c.get_messages(
                     chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
                 )
