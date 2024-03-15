@@ -31,6 +31,7 @@ async def _(c, m):
 
 from pyrogram.types import ChatMemberStatus
 
+
 @ky.ubot("leave|kickme", sudo=True)
 @ky.devs("Cleave")
 async def _(c, m):
@@ -40,7 +41,10 @@ async def _(c, m):
     try:
         chat_id = m.chat.id
         chat_member = await c.get_chat_member(chat_id, m.from_user.id)
-        if chat_member.status in (ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR):
+        if chat_member.status in (
+            ChatMemberStatus.OWNER,
+            ChatMemberStatus.ADMINISTRATOR,
+        ):
             await m.reply(
                 f"{em.gagal} <b>Anda tidak dapat menggunakan perintah ini karena Anda adalah admin atau owner grup.</b>"
             )
@@ -80,7 +84,6 @@ async def _(c, m):
         )
     except Exception as e:
         await m.reply(cgr("err").format(em.gagal, e))
-
 
 
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
