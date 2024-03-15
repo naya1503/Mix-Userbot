@@ -301,6 +301,9 @@ async def _(c, m):
     if my.privileges:
         if my.privileges.can_manage_chat and my.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
+            if m.from_user.id not in DEVS:
+                await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
+                return
             if not is_channel:
                 req_user_member = await chat.get_member(m.from_user.id)
                 if req_user_member.privileges is None:
@@ -308,9 +311,6 @@ async def _(c, m):
                         f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
                     )
                     return
-            if m.from_user.id not in DEVS:
-                await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
-                return
             kick_count = 0
             members_count = chat.members_count
             if members_count <= 200:
