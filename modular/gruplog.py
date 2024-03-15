@@ -31,13 +31,11 @@ async def _(c: user, m):
             xx = await c.get_grup()
             ff = await c.export_chat_invite_link(int(xx.id))
             return await xx.edit(cgr("grplog_1").format(em.sukses, ff))
-            udB.set_logger(c.me.id, int(xx.id))
             ndB.set_key("TAG_LOG", int(xx.id))
         else:
             return await xx.edit(cgr("grplog_2").format(em.sukses))
     if cek.lower() == "off":
         if TAG_LOG:
-            udB.rem_logger(c.me.id)
             ndB.del_key("TAG_LOG")
             xx = await c.get_grup()
             await c.delete_supergroup(int(xx.id))
