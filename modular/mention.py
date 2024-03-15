@@ -69,7 +69,9 @@ async def tag_all_members(c: user, m: Message):
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{reply_text}\n\n" if reply_text else ""  # Menambahkan teks pesan yang dibalas jika ada
+                mention_text = (
+                    f"{reply_text}\n\n" if reply_text else ""
+                )  # Menambahkan teks pesan yang dibalas jika ada
                 mention_text += " ".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text, parse_mode="MarkdownV2")
@@ -80,13 +82,17 @@ async def tag_all_members(c: user, m: Message):
                 mention_texts = []
 
     if mention_texts:
-        mention_text = f"{reply_text}\n\n" if reply_text else ""  # Menambahkan teks pesan yang dibalas jika ada
+        mention_text = (
+            f"{reply_text}\n\n" if reply_text else ""
+        )  # Menambahkan teks pesan yang dibalas jika ada
         mention_text += "\n".join(mention_texts)
         try:
             await c.send_message(chat_id, mention_text, parse_mode="MarkdownV2")
         except FloodWait as e:
             tunggu = asyncio.slee(e.x)
-            await c.send_message(chat_id, f"Silahkan tunggu `{tunggu}` detik", parse_mode="MarkdownV2")
+            await c.send_message(
+                chat_id, f"Silahkan tunggu `{tunggu}` detik", parse_mode="MarkdownV2"
+            )
             await asyncio.sleep(e.x)
             await c.send_message(chat_id, mention_text, parse_mode="MarkdownV2")
         await asyncio.sleep(2)
@@ -94,7 +100,6 @@ async def tag_all_members(c: user, m: Message):
     await m.reply(
         f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
     )
-
 
 
 @ky.ubot("stop", sudo=True)
