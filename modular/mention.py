@@ -57,7 +57,10 @@ async def tag_all_members(c: user, m: Message):
 
     text = " ".join(m.command[1:]) if len(m.command) >= 2 else None
     reply_text = rep.text if rep.text else None
-
+    repli_teks = await c.get_messages(
+                    chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+                )
+    repli = [repli_teks]
     mention_texts = []
     members = c.get_chat_members(chat_id)
     berenti = True
@@ -65,24 +68,11 @@ async def tag_all_members(c: user, m: Message):
     async for member in members:
         if not berenti:
             break
-        if rep and rep.text:
-            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
-            count += 1
-            if len(mention_texts) == 4:
-                mention_text = f"{reply_text}\n\n" if reply_text else ""
-                mention_text += " ".join(mention_texts)
-                try:
-                    await c.send_message(chat_id, mention_text)
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    await c.send_message(chat_id, mention_text)
-                await asyncio.sleep(2.5)
-                mention_texts = []
         if not member.user.is_bot:
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{text}\n\n" if text else ""
+                mention_text = f"{reply_text}\n\n" if reply_text else f"{repli}\n\n"
                 mention_text += " ".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
@@ -93,7 +83,7 @@ async def tag_all_members(c: user, m: Message):
                 mention_texts = []
 
     if mention_texts:
-        mention_text = f"{text}\n" if text else ""
+        mention_text = f"{reply_text}\n\n" if reply_text else f"{repli}\n\n"
         mention_text += "\n".join(mention_texts)
         try:
             await c.send_message(chat_id, mention_text)
@@ -107,6 +97,7 @@ async def tag_all_members(c: user, m: Message):
     await m.reply(
         f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
     )
+
 
 
 @ky.ubot("stop", sudo=True)
