@@ -72,6 +72,8 @@ async def _(c: user, m):
 
 
 """
+
+
 @ky.ubot("qcolor", sudo=True)
 async def _(c: user, m):
     em = Emojik()
