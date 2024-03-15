@@ -29,7 +29,9 @@ async def tag_all_members(c: user, m: Message):
     berenti = True
     progres = await m.edit(cgr("proses").format(em.proses))
     rep = m.reply_to_message
+
     try:
+        mention_texts = []
         administrator = []
         async for admin in c.get_chat_members(
             chat_id, filter=ChatMembersFilter.ADMINISTRATORS
@@ -54,7 +56,7 @@ async def tag_all_members(c: user, m: Message):
     await progres.delete()
     text = " ".join(m.command[1:])
 
-    # mention_texts = []
+    mention_texts = []
     members = c.get_chat_members(chat_id)
     berenti = True
     count = 0
@@ -76,7 +78,7 @@ async def tag_all_members(c: user, m: Message):
                     await asyncio.sleep(e.x)
                     await c.send_message(chat_id, mention_text)
                 await asyncio.sleep(2.5)
-                # mention_texts = []
+                mention_texts = []
         if not member.user.is_bot:
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
