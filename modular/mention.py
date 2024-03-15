@@ -60,7 +60,7 @@ async def tag_all_members(c: user, m: Message):
     async for member in members:
         if not berenti:
             break
-        rep = m.reply_to_mesaage
+        rep = m.reply_to_message
         if rep:
             if rep.text:
                 tegs = await c.get_messages(
