@@ -209,14 +209,16 @@ async def _(c: user, m):
                     x = await c.get_inline_bot_results(
                         bot.me.username, f"_send_ {id(m)}"
                     )
-                    return await c.send_inline_bot_result(
-                        chat_id, x.query_id, x.results[0].id
-                    )
+                    await c.send_inline_bot_result(chat_id, x.query_id, x.results[0].id)
+                    await m.delete()
+                    return
         except Exception as error:
             return await m.reply(error)
         else:
             try:
-                return await m.reply_to_message.copy(chat_id)
+                await m.reply_to_message.copy(chat_id)
+                await m.delete()
+                return
             except Exception as t:
                 return await m.reply(f"{t}")
     else:
@@ -226,10 +228,14 @@ async def _(c: user, m):
         try:
             if "/" in chat_id:
                 to_chat, msg_id = chat_id.split("/")
-                return await c.send_message(
+                await c.send_message(
                     to_chat, chat_text, reply_to_message_id=int(msg_id)
                 )
+                await m.delete()
+                return
             else:
-                return await c.send_message(chat_id, chat_text)
+                await c.send_message(chat_id, chat_text)
+                await m.delete()
+                return
         except Exception as t:
             return await m.reply(f"{t}")

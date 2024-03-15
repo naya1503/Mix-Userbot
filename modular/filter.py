@@ -27,11 +27,11 @@ db = Filters()
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    filters_chat = f"{em.sukses} Daftar filters digrup <b>{m.chat.title}</b>:\n"
+    filters_chat = cgr("fil_1").format(em.sukses, m.chat.title)
     all_filters = db.get_all_filters(m.chat.id)
     actual_filters = [j for i in all_filters for j in i.split("|")]
     if not actual_filters:
-        await m.reply_text(f"{em.gagal} Tidak ada filters digrup ini.")
+        await m.reply_text(cgr("fil_2").format(em.gagal))
         return
 
     filters_chat += "\n".join(
@@ -52,61 +52,45 @@ async def _(c: user, m):
     actual_filters = {j for i in all_filters for j in i.split("|")}
 
     if (len(all_filters) >= 50) and (len(actual_filters) >= 150):
-        await m.reply_text(
-            f"{em.gagal} Anda mempunyai 50 kata filter, hapus salah satu dan coba lagi.",
-        )
+        await m.reply_text(cgr("fil_3").format(em.gagal))
         return
 
     if not m.reply_to_message and len(m.text.split()) < 3:
-        return await m.reply_text(
-            f"{em.gagal} Format yang anda berikan salah. Gunakan format : `filter [nama filter] [balas ke pesan]`."
-        )
+        return await m.reply_text(cgr("fil_4").format(em.gagal, m.command))
 
     if m.reply_to_message and len(args) < 2:
-        return await m.reply_text(
-            f"{em.gagal} Format yang anda berikan salah. Gunakan format : `filter [nama filter] [balas ke pesan]`."
-        )
+        return await m.reply_text(cgr("fil_4").format(em.gagal, m.command))
 
     extracted = await split_quotes(args[1])
     keyword = extracted[0].lower()
 
     for k in keyword.split("|"):
         if k in actual_filters:
-            return await m.reply_text(f"{em.sukses} Filter <code>{k}</code> sudah ada!")
+            return await m.reply_text(cgr("fil_6").format(em.sukses))
 
     if not keyword:
-        return await m.reply_text(
-            f"{em.gagal} <code>{m.text}</code>\n\nSilahkan berikan nama filter.",
-        )
+        return await m.reply_text(cgr("fil_7").format(em.gagal))
 
     if keyword.startswith("<") or keyword.startswith(">"):
-        return await m.reply_text(
-            f"{em.gagal} Tidak dapat menyimpan filter dengan symbol '<' atau '>'."
-        )
+        return await m.reply_text(cgr("fil_8").format(em.gagal))
 
     eee, msgtype, file_id = get_filter_type(m)
     lol = eee if m.reply_to_message else extracted[1]
     teks = lol if msgtype == Types.TEXT else eee
 
     if not m.reply_to_message and msgtype == Types.TEXT and len(m.text.split()) < 3:
-        return await m.reply_text(
-            f"{em.gagal} <code>{m.text}</code>\n\nError: Tidak ada pesan disini!",
-        )
+        return await m.reply_text(cgr("fil_9").format(em.gagal))
 
     if not teks and not msgtype:
-        return await m.reply_text(
-            f"{em.gagal} Pastikan split quote sudah benar untuk format filter!",
-        )
+        return await m.reply_text(cgr("fil_10").format(em.gagal))
 
     if not msgtype:
-        return await m.reply_text(
-            f"{em.gagal} Pastikan format sudah benar untuk filter!",
-        )
+        return await m.reply_text(cgr("fil_10").format(em.gagal))
 
     add = db.save_filter(m.chat.id, keyword, teks, msgtype, file_id)
     if add:
         await m.reply_text(
-            f"{em.sukses} Filter disimpan '<code>{'|'.join(keyword.split('|'))}</code>'.",
+            cgr("fil_11").format(em.sukses, "|".join(keyword.split("|")))
         )
     await m.stop_propagation()
 
@@ -118,31 +102,25 @@ async def _(c: user, m):
     args = c.get_arg(m)
 
     if len(args) < 1:
-        return await m.reply_text(f"{em.gagal} Filter apa yang harus dihentikan ?")
+        return await m.reply_text(cgr("fil_12").format(em.gagal))
 
     chat_filters = db.get_all_filters(m.chat.id)
     act_filters = {j for i in chat_filters for j in i.split("|")}
 
     if not chat_filters:
-        return await m.reply_text(f"{em.gagal} Tidak ada filter disini.")
+        return await m.reply_text(cgr("fil_13").format(em.gagal))
 
     for keyword in act_filters:
         if keyword == m.text.split(None, 1)[1].lower():
             db.rm_filter(m.chat.id, m.text.split(None, 1)[1].lower())
-            await m.reply_text(
-                f"{em.sukses} Filter berhasil dihapus!",
-            )
+            await m.reply_text(cgr("fil_14").format(em.sukses))
             await m.stop_propagation()
         else:
             db.rm_filter(m.chat.id, args)
-            await m.reply_text(
-                f"{em.sukses} Filter berhasil dihapus!",
-            )
+            await m.reply_text(cgr("fil_14").format(em.sukses))
             await m.stop_propagation()
 
-    await m.reply_text(
-        f"{em.gagal} Tidak ada filters disini!",
-    )
+    await m.reply_text(cgr("fil_13").format(em.gagal))
     await m.stop_propagation()
 
 
@@ -152,9 +130,9 @@ async def _(c: user, m):
     em.initialize()
     all_bls = db.get_all_filters(m.chat.id)
     if not all_bls:
-        return await m.reply_text(f"{em.gagal} Tidak ada filter digrup ini!")
+        return await m.reply_text(cgr("fil_13").format(em.gagal))
     db.rm_all_filters(m.chat.id)
-    await m.reply_text(f"{em.sukses} Semua filter berhasil dihapus!")
+    await m.reply_text(cgr("fil_15").format(em.sukses))
 
 
 async def send_filter_reply(c: user, m, trigger: str):
@@ -166,13 +144,11 @@ async def send_filter_reply(c: user, m, trigger: str):
         return
 
     if not getfilter:
-        return await m.reply_text(
-            "<b>Error:</b> Tidak dapat menemukan filter ini!!",
-        )
+        return await m.reply_text(cgr("fil_16").format(em.gagal))
 
     msgtype = getfilter["msgtype"]
     if not msgtype:
-        return await m.reply_text("<b>Error:</b> Tidak dapat menemukan filter ini!!")
+        return await m.reply_text(cgr("fil_16").format(em.gagal))
     yoki = await send_cmd(c, msgtype)
     try:
         # support for random filter texts
@@ -220,7 +196,7 @@ async def send_filter_reply(c: user, m, trigger: str):
                 reply_to_message_id=m.id,
             )
     except Exception as ef:
-        await m.reply_text(f"Error in filters: {ef}")
+        await m.reply_text(cgr("err").format(em.gagal, ef))
         return msgtype
 
     return msgtype
@@ -240,7 +216,7 @@ async def _(c: user, m):
             try:
                 await send_filter_reply(c, m, trigger)
             except Exception as ef:
-                await m.reply_text(f"Error: {ef}")
+                await m.reply_text(cgr("err").format(em.gagal, ef))
                 LOGGER.error(ef)
                 LOGGER.error(format_exc())
             break

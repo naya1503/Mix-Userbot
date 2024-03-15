@@ -3,14 +3,16 @@
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
  @ CREDIT : NAN-DEV
+ 
+ EH KONTOL BAJINGAN !! KALO MO PAKE DIKODE PAKE AJA BANGSAT!! GAUSAH APUS KREDIT NGENTOT
 """
 ################################################################
+
 import os
 from datetime import datetime
 from gc import get_objects
 from time import time
 
-from pykeyboard import InlineKeyboard
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -26,28 +28,8 @@ from modular.pmpermit import *
 
 from .call_markdown import markdown_help
 
+
 # button
-
-
-@ky.inline("^dibikin_button")
-async def _(c, iq):
-    _id = int(iq.query.split()[1])
-    m = [obj for obj in get_objects() if id(obj) == _id][0]
-    rep = m.reply_to_message
-    teks, button = parse_button(rep.text)
-    button = build_keyboard(button)
-    duar = [
-        (
-            InlineQueryResultArticle(
-                title="Tombol Teks!",
-                input_message_content=InputTextMessageContent(teks),
-                reply_markup=InlineKeyboardMarkup(button),
-            )
-        )
-    ]
-    await c.answer_inline_query(iq.id, cache_time=0, results=duar)
-
-
 @ky.inline("^buat_button")
 async def _(c, iq):
     _id = int(iq.query.split()[1])
@@ -123,6 +105,7 @@ async def _(c, iq):
 
 @ky.inline("^get_msg")
 async def _(c, iq):
+    bk = ikb({f"{cgr('klk_1')}": f"copymsg_{int(iq.query.split()[1])}"})
     await c.answer_inline_query(
         iq.id,
         cache_time=0,
@@ -130,21 +113,32 @@ async def _(c, iq):
             (
                 InlineQueryResultArticle(
                     title="message",
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    text=cgr("klk_1"),
-                                    callback_data=f"copymsg_{int(iq.query.split()[1])}",
-                                )
-                            ],
-                        ]
-                    ),
+                    reply_markup=bk,
                     input_message_content=InputTextMessageContent(cgr("cpy_3")),
                 )
             )
         ],
     )
+
+
+"""
+@ky.inline("^get_msg")
+async def _(c, iq):
+    bk = ikb({f"{cgr("klk_1")}": f"copymsg_{int(iq.query.split()[1])}"})
+    await c.answer_inline_query(
+        iq.id,
+        cache_time=0,
+        results=[
+            (
+                InlineQueryResultArticle(
+                    title="message",
+                    reply_markup=bk,
+                    input_message_content=InputTextMessageContent(cgr("cpy_3")),
+                )
+            )
+        ],
+    )
+"""
 
 
 # send
@@ -216,12 +210,7 @@ async def _(c, iq):
         len(ape),
         upnya,
     )
-    bo_ol = [
-        [
-            InlineKeyboardButton(cgr("alv_4"), url="t.me/kynansupport"),
-            InlineKeyboardButton("Stats", callback_data="stats_mix"),
-        ]
-    ]
+    bo_ol = ikb({f'{cgr("alv_4")}': "t.me/kynansupport", "Stats": "stats_mix"})
     cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
@@ -229,7 +218,7 @@ async def _(c, iq):
                 InlineQueryResultArticle(
                     title="Alive Teks",
                     input_message_content=InputTextMessageContent(txt),
-                    reply_markup=InlineKeyboardMarkup(bo_ol),
+                    reply_markup=bo_ol,
                 )
             )
         ]
@@ -250,75 +239,74 @@ async def _(c, iq):
                 **url_ling,
                 title="Alive Picture",
                 caption=txt,
-                reply_markup=InlineKeyboardMarkup(bo_ol),
+                reply_markup=bo_ol,
             )
         ]
     await c.answer_inline_query(iq.id, cache_time=300, results=duar)
 
 
 """
-# pmpermit
-@ky.inline("^ambil_tombolpc")
+@ky.inline("^alive")
 async def _(c, iq):
-    org = iq.query.split()
-    gw = iq.from_user.id
-    getpm_txt = udB.get_var(gw, "PMTEXT")
-    getpm_warns = udB.get_var(gw, "PMLIMIT")
-    pm_warns = getpm_warns if getpm_warns else LIMIT
-    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
-    teks, button = parse_button(pm_text)
-    button = build_keyboard(button)
-    kiki = None
-    if user.me.id == gw:
-        if int(org[1]) in flood2:
-            flood2[int(org[1])] += 1
-        else:
-            flood2[int(org[1])] = 1
-        async for m in user.get_chat_history(int(org[1]), limit=pm_warns):
-            if m.reply_markup:
-                await m.delete()
-        kiki = PM_WARN.format(
-            user.me.first_name,
-            flood2[int(org[1])],
-            pm_warns,
-            teks.format(bot.me.first_name),
+    pmper = None
+    stutas = None
+    start = datetime.now()
+    await user.invoke(Ping(ping_id=0))
+    pink = (datetime.now() - start).microseconds / 1000
+    upnya = await get_time((time() - start_time))
+    ape = await refresh_dialog("group")
+    apa = await refresh_dialog("users")
+    if user.me.id in DEVS:
+        stutas = cgr("alv_1")
+    else:
+        stutas = cgr("alv_2")
+    cekpr = udB.get_var(user.me.id, "PMPERMIT")
+    if cekpr:
+        pmper = "enable"
+    else:
+        pmper = "disable"
+    txt = cgr("alv_3").format(
+        stutas,
+        user.me.dc_id,
+        str(pink).replace(".", ","),
+        pmper,
+        len(apa),
+        len(ape),
+        upnya,
+    )
+    bo_ol = ikb({f"{cgr("alv_4")}": "t.me/kynansupport", "Stats": "stats_mix"})
+    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
+    if not cekpic:
+        duar = [
+            (
+                InlineQueryResultArticle(
+                    title="Alive Teks",
+                    input_message_content=InputTextMessageContent(txt),
+                    reply_markup=bo_ol,
+                )
+            )
+        ]
+
+    else:
+        filem = (
+            InlineQueryResultVideo
+            if cekpic.endswith(".mp4")
+            else InlineQueryResultPhoto
         )
-        if flood2[int(org[1])] > pm_warns:
-            await user.send_message(int(org[1]), "Spam Terdeteksi !!! Blokir.")
-            del flood2[int(org[1])]
-            await user.block_user(int(org[1]))
-            return
-        lah = udB.get_var(gw, "PMPIC")
-        if lah:
-            filem = (
-                InlineQueryResultVideo
-                if lah.endswith(".mp4")
-                else InlineQueryResultPhoto
+        url_ling = (
+            {"video_url": cekpic, "thumb_url": cekpic}
+            if cekpic.endswith(".mp4")
+            else {"photo_url": cekpic}
+        )
+        duar = [
+            filem(
+                **url_ling,
+                title="Alive Picture",
+                caption=txt,
+                reply_markup=bo_ol,
             )
-            url_ling = (
-                {"video_url": lah, "thumb_url": lah}
-                if lah.endswith(".mp4")
-                else {"photo_url": lah}
-            )
-            duar = [
-                filem(
-                    **url_ling,
-                    title="PIC Buttons !",
-                    caption=kiki,
-                    reply_markup=InlineKeyboardMarkup(button),
-                )
-            ]
-        else:
-            duar = [
-                (
-                    InlineQueryResultArticle(
-                        title="Tombol PM!",
-                        input_message_content=InputTextMessageContent(kiki),
-                        reply_markup=InlineKeyboardMarkup(button),
-                    )
-                )
-            ]
-        await c.answer_inline_query(iq.id, cache_time=0, results=duar)
+        ]
+    await c.answer_inline_query(iq.id, cache_time=300, results=duar)
 """
 
 # notes
@@ -331,8 +319,7 @@ async def _(c, iq):
     noteval = udB.get_note(user.me.id, notetag)
     if not noteval:
         return
-    note, button = parse_button(noteval.get("value"))
-    button = build_keyboard(button)
+    note, button = text_keyb(ikb, noteval.get("value"))
     if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
         file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
         biji = noteval.get("file")
@@ -346,7 +333,7 @@ async def _(c, iq):
                         title="Note Photo",
                         photo_url=biji,
                         caption=note,
-                        reply_markup=InlineKeyboardMarkup(button),
+                        reply_markup=button,
                     )
                 ],
             )
@@ -359,7 +346,7 @@ async def _(c, iq):
                         title="Note Video",
                         video_url=biji,
                         caption=note,
-                        reply_markup=InlineKeyboardMarkup(button),
+                        reply_markup=button,
                     )
                 ],
             )
@@ -371,7 +358,7 @@ async def _(c, iq):
                 InlineQueryResultArticle(
                     title="Tombol Notes!",
                     input_message_content=InputTextMessageContent(note),
-                    reply_markup=InlineKeyboardMarkup(button),
+                    reply_markup=button,
                 )
             ],
         )
@@ -386,18 +373,20 @@ async def _(c, iq):
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
-    teks, button = parse_button(pm_text)
-    keyboard = InlineKeyboard(row_width=2)
-    for bt_txt, bt_url, _ in button:
-        keyboard.add(InlineKeyboardButton(text=f"{bt_txt}", url=f"{bt_url}"))
-    keyboard.row(
-        InlineKeyboardButton(text="Setujui", callback_data=f"pm_ okein {int(org[1])}"),
-        InlineKeyboardButton(
-            text="Blokir",
-            callback_data=f"pm_ blokbae {int(org[1])}",
-        ),
-    )
-    full = f"{iq.from_user.first_name} {iq.from_user.last_name or ''}"
+    teks, button = text_keyb(ikb, pm_text)
+    def_keyb = {
+        "Setuju": f"pm_ okein {int(org[1])}",
+        "Blokir": f"pm_ blokbae {int(org[1])}",
+    }
+    for row in button.inline_keyboard:
+        for data in row:
+            add_keyb = (
+                {data.text: data.url} if data.url else {data.text: data.callback_data}
+            )
+            def_keyb.update(add_keyb)
+            keyboard = ikb(def_keyb)
+    mari = await user.get_users(int(org[1]))
+    full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
     if user.me.id == gw:
         if int(org[1]) in flood2:
@@ -408,8 +397,8 @@ async def _(c, iq):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
-            user.me.first_name,
-            teks.format(full),
+            full,
+            teks,
             flood2[int(org[1])],
             pm_warns,
         )

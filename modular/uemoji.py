@@ -18,6 +18,42 @@ __help__ = get_cgr("help_emo")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
+
+    xx = await m.edit(cgr("proses").format(em.proses))
+    rep = m.reply_to_message
+    if not rep:
+        rep = m
+
+    emoji_id = None
+    if rep.entities:
+        for entity in rep.entities:
+            if entity.custom_emoji_id:
+                emoji_id = entity.custom_emoji_id
+                await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
+                await xx.edit(cgr("em_25").format(em.sukses, emoji_id))
+                return
+    await xx.edit(cgr("em_5").format(em.gagal))
+    return
+
+    prem = c.me.is_premium
+    if prem:
+        if emoji_id:
+            await c.set_emoji_status(EmojiStatus(custom_emoji_id=emoji_id))
+            await xx.edit(cgr("em_25").format(em.sukses, emoji_id))
+            return
+        else:
+            await xx.edit(cgr("em_5").format(em.gagal))
+            return
+    else:
+        await xx.edit(cgr("em_2").format(em.gagal))
+        return
+
+
+"""
+@ky.ubot("setemo", sudo=True)
+async def _(c: user, m):
+    em = Emojik()
+    em.initialize()
     xx = await m.edit(cgr("proses").format(em.proses))
     emoji = m.reply_to_message
     prem = c.me.is_premium
@@ -38,6 +74,7 @@ async def _(c: user, m):
     else:
         await xx.edit(cgr("em_3").format(em.gagal))
         return
+"""
 
 
 @ky.ubot("emoid", sudo=True)

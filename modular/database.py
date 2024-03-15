@@ -59,12 +59,7 @@ async def _(c: user, m):
     if variable.lower() == "pmtext":
         bb = udB.get_var(c.me.id, "PMTEXT")
         cc = bb if bb else DEFAULT_TEXT
-        teks, button = parse_button(cc)
-        button = build_keyboard(button)
-        if button:
-            button = InlineKeyboardMarkup(button)
-        else:
-            button = None
+        teks, button = text_keyb(ikb, cc)
         if button:
             try:
                 x = await c.get_inline_bot_results(
@@ -100,14 +95,13 @@ async def _(c, iq):
     gw = iq.from_user.id
     getpm_txt = udB.get_var(gw, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
-    teks, button = parse_button(pm_text)
-    button = build_keyboard(button)
+    teks, button = text_keyb(ikb, pm_text)
     duar = [
         (
             InlineQueryResultArticle(
                 title="Tombol Teks PM!",
-                input_message_content=InputTextMessageContent(getpm_txt),
-                reply_markup=InlineKeyboardMarkup(button),
+                input_message_content=InputTextMessageContent(teks),
+                reply_markup=button,
             )
         )
     ]

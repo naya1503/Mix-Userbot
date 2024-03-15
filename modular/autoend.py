@@ -14,7 +14,7 @@ from Mix import *
 from modular.gcast import refresh_dialog
 
 __modles__ = "AutoEndChat"
-__help__ = "AutoEndChat"
+__help__ = get_cgr("help_auend")
 
 
 @ky.ubot("clearchat|endchat|clchat", sudo=True)
@@ -24,7 +24,8 @@ async def _(_, m):
     rep = m.reply_to_message
     mek = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) < 2 and not rep:
-        await m.reply("**Kasih argumen Goblok**")
+        await m.reply(cgr("auend_1").format(em.gagal))
+        return
     if len(m.command) == 1 and rep:
         who = rep.from_user.id
         try:
@@ -32,7 +33,7 @@ async def _(_, m):
             await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
         except PeerIdInvalid:
             pass
-        await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
+        await m.reply(cgr("auend_2").format(em.sukses, who))
     else:
         if m.command[1].strip().lower() == "all":
             biji = await refresh_dialog("users")
@@ -42,16 +43,16 @@ async def _(_, m):
                     await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
                 except PeerIdInvalid:
                     continue
-            await m.reply(f"{em.sukses} **Mampus {len(biji)} pesan Gw EndChat!!**")
+            await m.reply(cgr("auend_3").format(em.sukses, len(biji)))
         elif m.command[1].strip().lower() == "bot":
-            biji = await refresh_dialog("bot")
-            for kelot in biji:
+            bijo = await refresh_dialog("bot")
+            for kelot in bijo:
                 try:
                     info = await user.resolve_peer(kelot)
                     await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
                 except PeerIdInvalid:
                     continue
-            await m.reply(f"{em.sukses} **Mampus {len(biji)} pesan Gw EndChat!!**")
+            await m.reply(cgr("auend_4").format(em.sukses, len(bijo)))
         else:
             who = m.text.split(None, 1)[1]
             try:
@@ -59,6 +60,6 @@ async def _(_, m):
                 await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
             except PeerIdInvalid:
                 pass
-            await m.reply(f"{em.sukses} **Mampus lu jing {who}!! Gw EndChat!!**")
+            await m.reply(cgr("auend_2").format(em.sukses, who))
     await mek.delete()
     return

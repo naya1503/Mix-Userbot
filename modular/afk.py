@@ -15,17 +15,6 @@ __modles__ = "Afk"
 __help__ = get_cgr("help_afk")
 
 
-async def isAfk_(f, c, m):
-    cek = udB.is_afk(c.me.id)
-    if cek:
-        return bool(True)
-    else:
-        return bool(False)
-
-
-# isAfk = filters.create(isAfk_)
-
-
 @ky.ubot("afk", sudo=True)
 async def _(c: user, m):
     em = Emojik()

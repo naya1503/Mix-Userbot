@@ -1,7 +1,8 @@
 import asyncio
 import importlib
 import sys
-from contextlib import closing, suppress
+from os import execvp
+from sys import executable
 
 from pyrogram import *
 from pyrogram.errors import *
@@ -34,7 +35,7 @@ async def start_user():
 
 async def start_bot():
     LOGGER.info(f"Starting Telegram Bot Client...")
-    if bot_token is None:
+    if TOKEN_BOT is None:
         await autobot()
     try:
         await bot.start()
@@ -43,7 +44,8 @@ async def start_bot():
             importlib.reload(imported_module)
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
-        sys.exit(1)
+        ndB.del_key("BOT_TOKEN")
+        execvp(executable, [executable, "-m", "Mix"])
 
 
 async def starter():
@@ -63,7 +65,4 @@ async def starter():
 
 if __name__ == "__main__":
     install()
-    with closing(lool):
-        with suppress(asyncio.exceptions.CancelledError):
-            lool.run_until_complete(starter())
-        lool.run_until_complete(asyncio.sleep(3.0))
+    lool.run_until_complete(starter())

@@ -35,29 +35,22 @@ LIMIT = 5
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    babi = await m.reply(cgr("proses").format(em.proses))
     chat_type = m.chat.type
+    if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        return
+    if chat_type == "me":
+        return
+    babi = await m.reply(cgr("proses").format(em.proses))
     getc_pm_warns = udB.get_var(c.me.id, "PMLIMIT")
     pm_text = udB.get_var(c.me.id, "PMTEXT")
     custom_pm_txt = pm_text if pm_text else DEFAULT_TEXT
     custom_pm_warns = getc_pm_warns if getc_pm_warns else LIMIT
-    if chat_type == "me":
-        await babi.delete()
-        return
-    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        await babi.delete()
-        return
     dia = m.chat.id
     ok_tak = udB.dicek_pc(dia)
     if ok_tak:
         await babi.edit(cgr("pmper_3").format(em.sukses))
         return
-    teks, button = parse_button(custom_pm_txt)
-    button = build_keyboard(button)
-    if button:
-        button = InlineKeyboardMarkup(button)
-    else:
-        button = None
+    teks, button = text_keyb(ikb, custom_pm_txt)
     if button:
         async for m in c.get_chat_history(dia, limit=custom_pm_warns):
             if m.reply_markup:
@@ -103,11 +96,8 @@ async def _(c: user, m):
     args_txt = c.get_arg(m)
 
     if direp:
-        if direp:
-            pm_txt = parse_mark(direp.text, direp.reply_markup)
-        else:
-            pm_txt = direp.text
-    elif args_txt:
+        pm_txt = direp.text
+    else:
         pm_txt = args_txt
 
     if len(m.command) == 1 and not direp:
@@ -186,83 +176,3 @@ async def _(c: user, m):
         m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
     )
     return
-
-    """
-    teks, button = parse_button(custom_pm_txt)
-    button = build_keyboard(button)
-    if button:
-        button = InlineKeyboardMarkup(button)
-    else:
-        button = None
-    if button:
-        
-    else:
-        gmbr = udB.get_var(user_id, "PMPIC")
-        if gmbr:
-            kok_poto = m.reply_video if gmbr.endswith(".mp4") else m.reply_photo
-            if in_user.id in flood:
-                try:
-                    if chat_id in flood2:
-                        await c.delete_messages(chat_id, message_ids=flood2[chat_id])
-                except BaseException:
-                    pass
-                flood[in_user.id] += 1
-                if flood[in_user.id] >= custom_pm_warns:
-                    del flood[in_user.id]
-                    await m.reply(cgr("pmper_5").format(em.block, custom_pm_warns))
-                    return await c.block_user(in_user.id)
-                else:
-                    rplied_msg = await kok_poto(
-                        gmbr,
-                        caption=PM_WARN.format(
-                            master.mention,
-                            flood[in_user.id],
-                            custom_pm_warns,
-                            custom_pm_txt.format(biji),
-                        ),
-                    )
-            else:
-                flood[in_user.id] = 1
-                rplied_msg = await kok_poto(
-                    gmbr,
-                    caption=PM_WARN.format(
-                        master.mention,
-                        flood[in_user.id],
-                        custom_pm_warns,
-                        custom_pm_txt.format(biji),
-                    ),
-                )
-            flood2[chat_id] = rplied_msg.id
-        else:
-            if in_user.id in flood:
-                try:
-                    if chat_id in flood2:
-                        await c.delete_messages(chat_id, message_ids=flood2[chat_id])
-                except BaseException:
-                    pass
-                flood[in_user.id] += 1
-                if flood[in_user.id] >= custom_pm_warns:
-                    del flood[in_user.id]
-                    await m.reply(cgr("pmper_5").format(em.block, custom_pm_warns))
-                    return await c.block_user(in_user.id)
-                else:
-                    rplied_msg = await m.reply(
-                        PM_WARN.format(
-                            master.mention,
-                            flood[in_user.id],
-                            custom_pm_warns,
-                            custom_pm_txt.format(biji),
-                        ),
-                    )
-            else:
-                flood[in_user.id] = 1
-                rplied_msg = await m.reply(
-                    PM_WARN.format(
-                        master.mention,
-                        flood[in_user.id],
-                        custom_pm_warns,
-                        custom_pm_txt.format(biji),
-                    ),
-                )
-            flood2[chat_id] = rplied_msg.id
-    """

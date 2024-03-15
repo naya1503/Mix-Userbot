@@ -119,17 +119,13 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2:
-        return await m.reply(
-            f"{em.gagal} Masukkan judul dengan benar.",
-        )
+        return await m.reply(cgr("down_1").format(em.gagal))
     pros = await m.reply(cgr("proses").format(em.proses))
     try:
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
     except Exception as error:
-        return await pros.reply_text(
-            f"{em.proses} <b>Sedang mencari . . .\n\n{error}</b>"
-        )
+        return await pros.reply_text(cgr("err").format(em.gagal, error))
     try:
         (
             file_name,
@@ -142,9 +138,7 @@ async def _(c, m):
             data_ytp,
         ) = await YoutubeDownload(link, as_video=True)
     except Exception as error:
-        return await pros.reply_text(
-            f"{em.proses} <b>Sedang proses download . . .\n\n{error}</b>"
-        )
+        return await pros.reply_text(cgr("err").format(em.gagal, error))
     thumbnail = wget.download(thumb)
     await c.send_video(
         m.chat.id,
@@ -166,7 +160,7 @@ async def _(c, m):
         progress_args=(
             pros,
             time(),
-            "<b>Sedang proses download . . .</b>",
+            cgr("proses").format(em.proses),
             f"{search['id']}.mp4",
         ),
         reply_to_message_id=m.id,
@@ -183,9 +177,7 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2:
-        return await m.reply(
-            f"{em.gagal} Masukkan judul dengan benar.",
-        )
+        return await m.reply(cgr("down_1").format(em.gagal))
     pros = await m.reply(cgr("proses").format(em.proses))
     try:
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
@@ -226,7 +218,7 @@ async def _(c, m):
         progress_args=(
             pros,
             time(),
-            "<b>Proses Download . . .</b>",
+            cgr("proses").format(em.proses),
             f"{search['id']}.mp3",
         ),
         reply_to_message_id=m.id,
