@@ -146,6 +146,7 @@ async def _(c: user, m):
             )
             messages = [m_one]
     else:
+        tag = m.command[1].strip()
         if tag.isnumeric():
             if int(tag) > 10:
                 return await m.reply(cgr("qot_4").format(em.gagal))
