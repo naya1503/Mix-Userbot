@@ -49,12 +49,14 @@ async def tag_all_members(c: user, m: Message):
         await m.reply(cgr("ment_1").format(em.gagal))
         return
 
-    if not rep and len(m.command) < 2:
+    if not rep:
         await m.reply(cgr("ment_2").format(em.gagal))
         return
 
     await progres.delete()
-    text = " ".join(m.command[1:])
+
+    text = " ".join(m.command[1:]) if len(m.command) >= 2 else None
+    reply_text = rep.text if rep.text else None
 
     mention_texts = []
     members = c.get_chat_members(chat_id)
@@ -64,14 +66,10 @@ async def tag_all_members(c: user, m: Message):
         if not berenti:
             break
         if rep and rep.text:
-            tegs = await c.get_messages(
-                chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-            )
-            isinya = [tegs]
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{tegs}\n\n"
+                mention_text = f"{reply_text}\n\n" if reply_text else ""
                 mention_text += " ".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
@@ -84,7 +82,7 @@ async def tag_all_members(c: user, m: Message):
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{text}\n\n"
+                mention_text = f"{text}\n\n" if text else ""
                 mention_text += " ".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
@@ -95,14 +93,7 @@ async def tag_all_members(c: user, m: Message):
                 mention_texts = []
 
     if mention_texts:
-        tegs = await c.get_messages(
-            chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-        )
-        isinya = [tegs]
-        if text:
-            mention_text = f"{text}\n"
-        elif isinya:
-            mention_text = f"{isinya}\n"
+        mention_text = f"{text}\n" if text else ""
         mention_text += "\n".join(mention_texts)
         try:
             await c.send_message(chat_id, mention_text)
@@ -116,6 +107,7 @@ async def tag_all_members(c: user, m: Message):
     await m.reply(
         f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
     )
+
 
 
 @ky.ubot("stop", sudo=True)
