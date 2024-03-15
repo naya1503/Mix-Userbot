@@ -28,7 +28,7 @@ async def _(c: user, m):
     em.initialize()
     acak = random.choice(loanjing)
     rep = m.reply_to_message
-
+    prs = m.reply(cgr(proses).format(em.proses))
     if rep:
         if rep.text:
             try:
@@ -39,6 +39,7 @@ async def _(c: user, m):
                 hasil = await quotly(messages, acak)
                 bs = BytesIO(hasil)
                 bs.name = "mix.webp"
+                prs.delete()
                 await m.reply_sticker(bs)
                 return
             except Exception as e:
