@@ -72,8 +72,6 @@ async def _(c: user, m):
         return await m.reply(cgr("err").format(em.gagal, e))
 
 
-
-
 @ky.ubot("qcolor", sudo=True)
 async def _(c: user, m):
     em = Emojik()
