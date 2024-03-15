@@ -25,7 +25,8 @@ async def _(c, m):
         await ceger.edit(cgr("join_1").format(em.sukses, namagece))
         await c.join_chat(Nan)
     except Exception as ex:
-        await ceger.edit(f"{em.gagal} <b>ERROR: </b>\n\n<code>{str(ex)}</code>")
+        await ceger.edit(cgr("err").format(em.gagal, ex))
+        return
 
 
 @ky.ubot("leave|kickme", sudo=True)
@@ -44,7 +45,7 @@ async def _(c, m):
             chat_id = chat_id.split("/")[-1]
             inpogc = await c.get_chat(chat_id)
             namagece = inpogc.title
-            ceger = await m.reply(f"{em.proses} <code>Processing...</code>")
+            ceger = await m.reply(cgr("proses").format(em.proses))
             if str(chat_id) in NO_GCAST or inpogc.id in NO_GCAST:
                 await ceger.edit(cgr("join_2").format(em.gagal))
             else:
