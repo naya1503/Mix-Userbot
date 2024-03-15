@@ -40,10 +40,10 @@ async def _(c: user, m):
                 return
             except Exception as e:
                 return await m.reply(cgr("err").format(em.gagal, e))
-        # else:
-        #     return await m.reply(
-        #         "Balasan tidak dapat diproses karena pesan yang dibalas tidak mengandung teks."
-        #     )
+                # else:
+                #     return await m.reply(
+                #         "Balasan tidak dapat diproses karena pesan yang dibalas tidak mengandung teks."
+                #     )
                 if tag.startswith("@"):
                     user_id = tag[1:]
                     try:
