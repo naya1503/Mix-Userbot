@@ -28,14 +28,15 @@ async def _(c: user, m):
     em.initialize()
     acak = random.choice(loanjing)
     rep = m.reply_to_message
-    m_one = await c.get_messages(
-        chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
-    )
-    messages = [m_one]
+    
     if rep:
         if rep.text:
             try:
-                hasil = await quotly([messages], acak)
+                m_one = await c.get_messages(
+                        chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
+                        )
+                messages = [m_one]
+                hasil = await quotly(messages, acak)
                 bs = BytesIO(hasil)
                 bs.name = "mix.webp"
                 await m.reply_sticker(bs)
