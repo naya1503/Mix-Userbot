@@ -1,10 +1,10 @@
 import asyncio
 
+import pytgcalls
 from team.nandev.class_ubot import Bot, Userbot
 
 from config import *
 from Mix.core import *
-import pytgcalls
 
 # part of https://github.com/thehamkercat/Telegram_VC_Bot
 
