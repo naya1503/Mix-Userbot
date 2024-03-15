@@ -58,12 +58,9 @@ async def starter():
         await start_bot()
     await asyncio.gather(refresh_cache(), check_logger())
     LOGGER.info("Successfully Started Userbot.")
-    await asyncio.gather(isFinish(), idle())
+    await asyncio.gather(getFinish(), isFinish(), idle())
 
 
 if __name__ == "__main__":
     install()
-    with closing(lool):
-        with suppress(asyncio.exceptions.CancelledError):
-            lool.run_until_complete(starter())
-        lool.run_until_complete(asyncio.sleep(3.0))
+    lool.run_until_complete(starter())
