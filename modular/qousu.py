@@ -94,6 +94,7 @@ async def _(c: user, m):
         return await m.reply(cgr("err").format(em.gagal, e))
 """
 
+
 @ky.ubot("qcolor", sudo=True)
 async def _(c: user, m):
     em = Emojik()
@@ -107,7 +108,6 @@ async def _(c: user, m):
         os.remove("qcolor.txt")
     else:
         await m.reply(jadi + iymek)
-
 
 
 @ky.ubot("q", sudo=True)
@@ -179,4 +179,3 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
-
