@@ -28,7 +28,7 @@ async def _(c: user, m):
     em.initialize()
     acak = random.choice(loanjing)
     rep = m.reply_to_message
-    prs = m.reply(cgr(proses).format(em.proses))
+    prs = m.reply(cgr("proses").format(em.proses))
     if rep:
         if rep.text:
             try:
