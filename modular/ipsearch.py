@@ -18,7 +18,7 @@ from Mix import *
 from Mix.core import http
 
 __modles__ = "IpSearch"
-__help__ = "IpSearch"
+__help__ = get_cgr("help_ips")
 
 
 @ky.ubot("ipf|ipfake", sudo=True)
