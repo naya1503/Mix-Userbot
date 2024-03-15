@@ -27,9 +27,11 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     acak = None
-    messages = None
+    messages = []
+    rep = m.reply_to_message
     if len(m.command) < 2:
-        acak = random.choice(loanjing)
+        if rep:
+            acak = random.choice(loanjing)
     else:
         tag = m.command[1].strip()
         c.get_arg(m)
@@ -68,6 +70,8 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
+
+
 
 
 @ky.ubot("qcolor", sudo=True)
