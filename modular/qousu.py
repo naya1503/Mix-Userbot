@@ -34,7 +34,7 @@ async def _(c: user, m):
     else:
         tag = m.command[1].strip()
         c.get_arg(m)
-        
+
         if tag.startswith("@"):
             user_id = tag[1:]
             try:
@@ -69,7 +69,6 @@ async def _(c: user, m):
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
-
 
 
 """
