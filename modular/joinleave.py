@@ -29,6 +29,8 @@ async def _(c, m):
         return
 
 
+from pyrogram.types import ChatMemberStatus
+
 @ky.ubot("leave|kickme", sudo=True)
 @ky.devs("Cleave")
 async def _(c, m):
@@ -57,6 +59,16 @@ async def _(c, m):
             await c.leave_chat(chat_id)
             return
 
+        chat_username = m.command[1]
+
+        if chat_username.startswith("@"):
+            inpogc = await c.get_chat(chat_username)
+            chat_id = inpogc.id
+            namagece = inpogc.title
+
+            if chat_id in NO_GCAST:
+                return await ceger.edit(cgr("join_2").format(em.gagal))
+
         if str(chat_id).startswith("https://t.me/"):
             chat_id = chat_id.split("/")[-1]
             inpogc = await c.get_chat(chat_id)
@@ -82,6 +94,7 @@ async def _(c, m):
         )
     except Exception as e:
         await m.reply(cgr("err").format(em.gagal, e))
+
 
 
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
