@@ -67,21 +67,19 @@ async def tag_all_members(c: user, m: Message):
     berenti = True
     count = 0
     send = c.get_m(m)
-
-    # Tambahkan pesan mention sebelum meng-copy pesan
-    mention_texts.append(reply_text) if reply_text else mention_texts.append(repli_teks)
+    ininya = mention_texts.append(reply_text) if reply_text else mention_texts.append(repli_teks)
 
     async for member in members:
         if not berenti:
             break
         if not member.user.is_bot:
-            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
+            ininya.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
-            if len(mention_texts) == 4:
+            if len(ininya) == 4:
                 mention_text = (
-                    f"{repli_teks}\n\n" if reply_text else f"{repli_teks}\n\n"
+                    f"{reply_text}\n\n" if reply_text else f"{repli_teks}\n\n"
                 )
-                mention_text += " ".join(mention_texts)
+                mention_text += " ".join(ininya)
                 try:
                     await send.copy(chat_id, mention_text)
                 except FloodWait as e:
