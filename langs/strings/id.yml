@@ -19,6 +19,38 @@ ttup: "Tutup"
 reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
+# autoend
+auend_1: "{} **Berikan argumen!!**"
+auend_2: "{} Berhasil menghapus riwayat obrolan {}!"
+auend_3: "{} Berhasil menghapus riwayat {} obrolan pengguna!"
+auend_4: "{} Berhasil menghapus riwayat {} obrolan bot!"
+
+# lirik
+lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - Judul Lagu\n\n{} Contoh : <code>{} Arctic Monkeys - Do i Wanna Know</code></b>"
+lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
+
+# filter
+fil_1: "{} Daftar Filter Di Grup {}:\n"
+fil_2: "{} Tidak ada filters digrup ini."
+fil_3: "{} Batas maksimal Filters adalah 50."
+fil_4: "{} Gunakan format : `{}` [nama][balas pesan]."
+fil_5: "{} Gunakan format : `{}` [nama][balas pesan]."
+fil_6: "{} Filters `{}` sudah ada."
+fil_7: "{} Berikan nama Filters."
+fil_8: "{} Tidak dapat menyimpan Filters dengan symbol < atau >."
+fil_9: "{} Teks tidak dapat kosong."
+fil_10: "{} Pastikan split quote sudah benar."
+fil_11: "{} Filters disimpan `{}`."
+fil_12: "{} Filters apa yang harus dihentikan ?"
+fil_13: "{} Tidak ada Filter disini."
+fil_14: "{} Filter `{}` dihapus!"
+fil_15: "{} Semua Filter berhasil dihapus."
+fil_16: "{} Tidak dapat menemukan Filter ini"
+
+# images
+help_img: " **Image**\n\n• Perintah: `{0}`img [query]\n• Penjelasan: Untuk mencari gambar."
+help_ips: " **IpSearch**\n\n• Perintah: `{0}`ipf [country]\n• Penjelasan: Untuk mencari fake address.\n\n• Perintah: `{0}`ips [ip]\n• Penjelasan: Untuk mencari alamat\n\n• Tidak 100% Akurat."
+
 # mention
 ment_1: "{} <b>Anda harus menjadi admin untuk menggunakan perintah ini!</b>"
 ment_2: "{} <b>Harap berikan teks untuk di-mention.</b>"
@@ -42,11 +74,10 @@ inv_6: "{} Fitur ini hanya tersedia untuk group dan channel."
 # join
 join_1: "{} <b>Berhasil Bergabung ke</b> <code>{}</code>"
 join_2: "{} <b>Tidak dapat menggunakan perintah itu di sini!</b>"
-join_3: "{} <b>Tidak boleh menggunakan perintah itu di sini!</b>"
-join_4: "{} {} Berhasil keluar dari <code>{}</code>"
-join_5: "{} <b>Bye!</b>"
-join_6: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"
-join_7: "{} **Berhasil keluar dari `{}` channel\n{} Gagal keluar dari `{}` channel.**"
+join_3: "{} {} Berhasil keluar dari <code>{}</code>"
+join_4: "{} <b>Bye!</b>"
+join_5: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"
+join_6: "{} **Berhasil keluar dari `{}` channel\n{} Gagal keluar dari `{}` channel.**"
 
 # uprefixies
 upref_2: "{} **Prefix diatur ke : `{}`**"
@@ -278,8 +309,6 @@ lck_29: "{} **Lapor ke @kynansupport :\n\n`{}`**"
 logo_1: "{} **Gunakan format : `{}` [text]**"
 logo_2: "{} **Dibuat oleh : {}**"
 
-
-
 # notes
 nts_1: "{} **Gunakan format : `{}` [nama catatan] [balas ke pesan].**"
 nts_2: "{} **Teks tidak dapat kosong.**"
@@ -476,35 +505,8 @@ help_cakep: " **Pantun \n\n• Perintah: `{0}sepat`\n• Penjelasan: Cobain send
 help_download: " **Download **\n\n• Perintah: `{0}dtik` [link tiktok]\n• Penjelasan: Untuk mendownload media dari link tiktok.\n\n• Perintah: `{0}vtube` [link YouTube]\n• Penjelasan: Untuk mendownload video dari link YouTube\n\n• Perintah: `{0}stube` [link YouTube]\n• Penjelasan: Untuk mendownload lagu dari link YouTube.\n"
 help_games: " **Games **\n\n• Perintah: `{0}dice`\n• Penjelasan: untuk mengocok dadu secara acak.\n\n• Perintah: `{0}dart`\n• Penjelasan: untuk melempar Darts.\n\n• Perintah: `{0}bowling`\n• Penjelasan: Untuk melempar bola bowling.\n\n• Perintah: `{0}football`\n• Penjelasan: Untuk melempar bola sepak.\n\n• Perintah: `{0}slot`\n• Penjelasan: Untuk bermain game slot.\n"
 help_mention: " **Mention **\n\n• Perintah: `{0}tagall` [Pesan]\n• Penjelasan: Untuk melakukan mention atau tag kepada seluruh member.\n\n• Perintah: `{0}stop`\n• Penjelasan: Untuk memberhentikan mention atau tag yang sedang berjalan.\n"
-help_repo: " **Repository**\n\n• Perintah: `{0}`repo\n• Penjelasan: Untuk melihat link repository."
-help_nul: " **Nulis**\n\n• Perintah: `{0}`nulis\n• Penjelasan: Untuk pemalas nulis."
-help_lirk: " **Lyric**\n\n• Perintah: `{0}`lyrics\n• Penjelasan: Untuk mencari lirik lagu."
-help_auend: " **AutoEnd**\n\n• Perintah: `{0}`endchat [username/id pengguna/balas pengguna]\n• Penjelasan: Untuk menghapus riwayat obrolan\n\n• Optional: \n• `username/balas pengguna` - Menghapus riwayat obrolan pengguna\n• `bot` - Menghapus semua riwayat obrolan bot\n• `all` - Menghapus riwayat obrolan pesan pribadi anda dengan semua pengguna."
-
-auend_1: "{} **Berikan argumen!!**"
-auend_2: "{} Berhasil menghapus riwayat obrolan {}!"
-auend_3: "{} Berhasil menghapus riwayat {} obrolan pengguna!"
-auend_4: "{} Berhasil menghapus riwayat {} obrolan bot!"
-
-lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - Judul Lagu\n\n{} Contoh : <code>{} Arctic Monkeys - Do i Wanna Know</code></b>"
-lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
-
-fil_1: "{} Daftar Filter Di Grup {}:\n"
-fil_2: "{} Tidak ada filters digrup ini."
-fil_3: "{} Batas maksimal Filters adalah 50."
-fil_4: "{} Gunakan format : `{}` [nama][balas pesan]."
-fil_5: "{} Gunakan format : `{}` [nama][balas pesan]."
-fil_6: "{} Filters `{}` sudah ada."
-fil_7: "{} Berikan nama Filters."
-fil_8: "{} Tidak dapat menyimpan Filters dengan symbol < atau >."
-fil_9: "{} Teks tidak dapat kosong."
-fil_10: "{} Pastikan split quote sudah benar."
-fil_11: "{} Filters disimpan `{}`."
-fil_12: "{} Filters apa yang harus dihentikan ?"
-fil_13: "{} Tidak ada Filter disini."
-fil_14: "{} Filter `{}` dihapus!"
-fil_15: "{} Semua Filter berhasil dihapus."
-fil_16: "{} Tidak dapat menemukan Filter ini"
-
-help_img: " **Image**\n\n• Perintah: `{0}`img [query]\n• Penjelasan: Untuk mencari gambar."
-help_ips: " **IpSearch**\n\n• Perintah: `{0}`ipf [country]\n• Penjelasan: Untuk mencari fake address.\n\n• Perintah: `{0}`ips [ip]\n• Penjelasan: Untuk mencari alamat\n\n• Tidak 100% Akurat."
+help_repo: " **Repository**\n\n• Perintah: `{0}`repo\n• Penjelasan: Untuk melihat link repository.\n"
+help_nul: " **Nulis**\n\n• Perintah: `{0}`nulis\n• Penjelasan: Untuk pemalas nulis.\n"
+help_lirk: " **Lyric**\n\n• Perintah: `{0}`lyrics\n• Penjelasan: Untuk mencari lirik lagu.\n"
+help_auend: " **AutoEnd**\n\n• Perintah: `{0}`endchat [username/id pengguna/balas pengguna]\n• Penjelasan: Untuk menghapus riwayat obrolan\n\n• Optional: \n• `username/balas pengguna` - Menghapus riwayat obrolan pengguna\n• `bot` - Menghapus semua riwayat obrolan bot\n• `all` - Menghapus riwayat obrolan pesan pribadi anda dengan semua pengguna.\n"
+help_img: " **Image**\n\n• Perintah: `{0}`img [kata pencarian]\n• Penjelasan: Mencari image atau gambar.\n"

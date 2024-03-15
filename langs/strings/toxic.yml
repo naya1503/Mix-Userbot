@@ -19,6 +19,38 @@ ttup: "Tutup"
 reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya matot bot lo.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 
+# autoend
+auend_1: "{} **Berikan argumen!!**"
+auend_2: "{} Berhasil menghapus riwayat obrolan {}!"
+auend_3: "{} Berhasil menghapus riwayat {} obrolan pengguna!"
+auend_4: "{} Berhasil menghapus riwayat {} obrolan bot!"
+
+# lirik
+lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - Judul Lagu\n\n{} Contoh : <code>{} Arctic Monkeys - Do i Wanna Know</code></b>"
+lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
+
+# filter
+fil_1: "{} Daftar Filter Di Grup {}:\n"
+fil_2: "{} Tidak ada filters digrup ini."
+fil_3: "{} Batas maksimal Filters adalah 50."
+fil_4: "{} Gunakan format : `{}` [nama][balas pesan]."
+fil_5: "{} Gunakan format : `{}` [nama][balas pesan]."
+fil_6: "{} Filters `{}` sudah ada."
+fil_7: "{} Berikan nama Filters."
+fil_8: "{} Tidak dapat menyimpan Filters dengan symbol < atau >."
+fil_9: "{} Teks tidak dapat kosong."
+fil_10: "{} Pastikan split quote sudah benar."
+fil_11: "{} Filters disimpan `{}`."
+fil_12: "{} Filters apa yang harus dihentikan ?"
+fil_13: "{} Tidak ada Filter disini."
+fil_14: "{} Filter `{}` dihapus!"
+fil_15: "{} Semua Filter berhasil dihapus."
+fil_16: "{} Tidak dapat menemukan Filter ini"
+
+# image
+help_img: " **Image**\n\n• Perintah: `{0}`img [query]\n• Penjelasan: Untuk mencari gambar."
+help_ips: " **IpSearch**\n\n• Perintah: `{0}`ipf [country]\n• Penjelasan: Untuk mencari fake address.\n\n• Perintah: `{0}`ips [ip]\n• Penjelasan: Untuk mencari alamat\n\n• Tidak 100% Akurat."
+
 # mention
 ment_1: "{} <b>Yang bener aje goblok! Lo itu bukan admin di sini! Lo itu ampas!</b>"
 ment_2: "{} <b>Minimal kasih teks nya lah goblok!</b>"
@@ -277,8 +309,6 @@ lck_29: "{} **Lapor ke @kynansupport :\n\n`{}`**"
 logo_1: "{} **Goblok!! Pake format : `{}` [text]**"
 logo_2: "{} **Dimasak, dikukus, digoreng sama : {}**"
 
-
-
 # notes
 nts_1: "{} **Goblok!! Pake format : `{}` [nama catatan] [balas ke pesan].**"
 nts_2: "{} **Minimal kasih teks lah Dongok!!**"
@@ -479,31 +509,4 @@ help_repo: " **Repository**\n\n• Perintah: `{0}`repo\n• Penjelasan: Untuk me
 help_nul: " **Nulis**\n\n• Perintah: `{0}`nulis\n• Penjelasan: Untuk pemalas nulis."
 help_lirk: " **Lyric**\n\n• Perintah: `{0}`lyrics\n• Penjelasan: Untuk mencari lirik lagu."
 help_auend: " **AutoEnd**\n\n• Perintah: `{0}`endchat [username/id pengguna/balas pengguna]\n• Penjelasan: Untuk menghapus riwayat obrolan\n\n• Optional: \n• `username/balas pengguna` - Menghapus riwayat obrolan pengguna\n• `bot` - Menghapus semua riwayat obrolan bot\n• `all` - Menghapus riwayat obrolan pesan pribadi anda dengan semua pengguna."
-
-auend_1: "{} **Berikan argumen!!**"
-auend_2: "{} Berhasil menghapus riwayat obrolan {}!"
-auend_3: "{} Berhasil menghapus riwayat {} obrolan pengguna!"
-auend_4: "{} Berhasil menghapus riwayat {} obrolan bot!"
-
-lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - Judul Lagu\n\n{} Contoh : <code>{} Arctic Monkeys - Do i Wanna Know</code></b>"
-lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
-
-fil_1: "{} Daftar Filter Di Grup {}:\n"
-fil_2: "{} Tidak ada filters digrup ini."
-fil_3: "{} Batas maksimal Filters adalah 50."
-fil_4: "{} Gunakan format : `{}` [nama][balas pesan]."
-fil_5: "{} Gunakan format : `{}` [nama][balas pesan]."
-fil_6: "{} Filters `{}` sudah ada."
-fil_7: "{} Berikan nama Filters."
-fil_8: "{} Tidak dapat menyimpan Filters dengan symbol < atau >."
-fil_9: "{} Teks tidak dapat kosong."
-fil_10: "{} Pastikan split quote sudah benar."
-fil_11: "{} Filters disimpan `{}`."
-fil_12: "{} Filters apa yang harus dihentikan ?"
-fil_13: "{} Tidak ada Filter disini."
-fil_14: "{} Filter `{}` dihapus!"
-fil_15: "{} Semua Filter berhasil dihapus."
-fil_16: "{} Tidak dapat menemukan Filter ini"
-
-help_img: " **Image**\n\n• Perintah: `{0}`img [query]\n• Penjelasan: Untuk mencari gambar."
-help_ips: " **IpSearch**\n\n• Perintah: `{0}`ipf [country]\n• Penjelasan: Untuk mencari fake address.\n\n• Perintah: `{0}`ips [ip]\n• Penjelasan: Untuk mencari alamat\n\n• Tidak 100% Akurat."
+help_img: " **Image**\n\n• Perintah: `{0}`img [kata kunci]\n• Penjelasan: Nyari gambar.\n"

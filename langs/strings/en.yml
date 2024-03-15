@@ -19,6 +19,38 @@ ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 
+# autoend
+auend_1: "{} **Provide arguments!!**"
+auend_2: "{} Successfully deleted chat history {}!"
+auend_3: "{} Successfully deleted {} chat history of user!"
+auend_4: "{} Successfully deleted {} chat history of bot!"
+
+# lirik
+lirk_1: "{} <b>Wrong stupid!!\n{} Use format: <code>{}</code> Artist Name - Song Title\n\n{} Example : <code>{} Arctic Monkeys - Do I Wanna Know</code></b>"
+lirk_2: "{} <b>Oops, couldn't find the song lyrics.</b>"
+
+# filter
+fil_1: "{} List of Filters in Group {}:\n"
+fil_2: "{} There are no filters in this group."
+fil_3: "{} Maximum Filters limit is 50."
+fil_4: "{} Use format : `{}` [name][reply to message]."
+fil_5: "{} Use format : `{}` [name][reply to message]."
+fil_6: "{} Filters `{}` already exist."
+fil_7: "{} Provide filter name."
+fil_8: "{} Unable to save Filters with symbols < or >."
+fil_9: "{} Text cannot be empty."
+fil_10: "{} Make sure split quote is correct."
+fil_11: "{} Filters saved `{}`."
+fil_12: "{} Which filters should be stopped?"
+fil_13: "{} No Filters here."
+fil_14: "{} Filter `{}` deleted!"
+fil_15: "{} All Filters successfully deleted."
+fil_16: "{} Unable to find this Filter."
+
+# image
+help_img: " **Image**\n\n• Command: `{0}`img [query]\n• Description: To search for images."
+help_ips: " **IpSearch**\n\n• Command: `{0}`ipf [country]\n• Description: To search for fake addresses.\n\n• Command: `{0}`ips [ip]\n• Description: To search for an address\n\n• Not 100% accurate."
+
 # mention
 ment_1: "{} <b>You're not an ADMIN on this Group!</b>"
 ment_2: "{} <b>Please give me someme text.</b>"
@@ -41,12 +73,11 @@ inv_6: "{} <b>This feature is only available for groups and channels</b>"
 
 # join
 join_1: "{} <b>Successfully Joined</b> <code>{}</code>"
-join_2: "{} <b>Unable to use that command here!</b>"
-join_3: "{} <b>Not allowed to use that command here!</b>"
-join_4: "{} {} Successfully left <code>{}</code>"
-join_5: "{} <b>Bye!</b>"
-join_6: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"
-join_7: "{} **Successfully left `{}` channel\n{} **Failed to leave `{}` channel.**"
+join_2: "{} <b>Not allowed to use that command here!</b>"
+join_3: "{} {} Successfully left <code>{}</code>"
+join_4: "{} <b>Bye!</b>"
+join_5: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"
+join_6: "{} **Successfully left `{}` channel\n{} **Failed to leave `{}` channel.**"
 
 # assistant
 asst_1: "Hello 👋 {} !! I'm your bot assistant.\n\nWhat settings would you like to change?"
@@ -258,8 +289,6 @@ lck_29: "{} **Report to @kynansupport:\n\n`{}`**"
 logo_1: "{} **Use the format: `{}` [text]**"
 logo_2: "{} **Created by: {}**"
 
-
-
 # notes
 nts_1: "{} **Use the format: `{}` [note name] [reply to message].**"
 nts_2: "{} **Text cannot be empty.**"
@@ -355,7 +384,6 @@ spy_2: "{} Theft Result!!"
 
 # markdown
 mark_1: "<b>Markdown Formatting</b>\n<b>You can format your message using <b>bold</b>, <i>italic</i>, <u>underline</u>, <strike>strikethrough</strike>, and many more.</b>\n\n<code>`code word`</code>: Backticks are used to make monospace font. Displayed as: <code>code word</code>.\n\n<code>__italic__</code>: Double underscore is used to make italic font. Displayed as: <i>italic word</i>.\n\n<code>**bold**</code>: Asterisks are used to make bold font. Displayed as: <b>bold word</b>.\n\n<code>--underline--</code>: Double dashes are used to create <u>underline</u> text.\n\n<code>~~strikethrough~~</code>: Tildes are used to create strikethrough. Displayed as: <strike>strikethrough word</strike>.\n\n<code>||spoiler||</code>: Double vertical bars are used to create a spoiler. Displayed as: <spoiler>Spoiler</spoiler>.\n\n<code>[hyperlink](example)</code>: This is the formatting used to create a hyperlink.\n\n<code>[My Button|https://link.com]</code>: This is the formatting used to create a button.\n\nYou can also create callback_data buttons by using the <code>#</code> symbol at the beginning. For more information, please go to @KynanSupport for assistance."
-
 mark_2: "<b>Fillings</b>\n\nYou can also customize the content of your message with contextual data. For example, you can mention the username in a welcome message, or reference it in a filter!\n\n<b>Supported Fillings:</b>\n\n<code>{first}</code>: User's first name.\n<code>{last}</code>: User's last name.\n<code>{fullname}</code>: User's full name.\n<code>{username}</code>: User's username. If they don't have one, it will mention the user.\n<code>{mention}</code>: Mentions the user with their first name.\n<code>{id}</code>: User's ID.\n<code>{chatname}</code>: Chat's name."
 mark_3: "**To view markdown format please click on the button below.**"
 
@@ -389,6 +417,7 @@ tr_6: "{} **What kind of language code is that?**"
 upref_2: "{} **Prefix set to: `{}`**"
 upref_1: "{} **Use format: `{}` [query]**"
 
+# vc
 vc_1: "{} **No voice chat found!\n`{}`**"
 vc_2: "{} **Starting voice chat.**"
 vc_3: "{} **Ending voice chat.**"
@@ -400,9 +429,9 @@ vc_8: "{} **Your account has already joined the voice chat!!**"
 vc_9: "{} **Left voice chat:\n`{}`.**"
 vc_10: "{} **Your account is not in any voice chat!**"
 
+#webss
 webs_1: "{} **Use format: `{}` [link].**"
 webs_2: "{} **Failed to fetch image!**"
-
 
 # profile
 prof_1: "{} **Please reply to the user's message or provide the username.**"
@@ -464,21 +493,13 @@ help_asupan: " Asupan\n\n• Command: <code>{0}asupan</code>\n• Description: T
 help_filr: " Filter \n\n• Command: <code>{0}filters</code>\n• Description: To view the list of filters in the group.\n\n• Command: <code>{0}filter</code> [filter name] [reply to message]\n• Description: To add a filter to the group.\n\n• Command: <code>{0}unfilter</code> [filter name]\n• Description: To remove a filter from the group.\n\n• Command: <code>{0}unfilterall</code>\n• Description: To remove all filters from the group."
 help_sangmata: " SangMata\n\n• Command: <code>{0}sg</code> [username/user_id/reply text]\n• Description: To view the history of username or User's name usage."
 help_tox1: " Toxic 1\n\n• Command: <code>{0}a</code> - `z`\n• Description: Try it yourself."
-
 help_tox2: " Toxic 2\n\n• Command: `{0}ngentot`\n• Description: Try it yourself.\n\n• Command: `{0}goblok`\n• Description: Try it yourself.\n\n• Command: `{0}ngatain`\n• Description: Try it yourself.\n\n• Command: `{0}yatim`\n• Description: Try it yourself.\n\n• Command: `{0}kont`\n• Description: Try it yourself."
-
 help_tox3: " Toxic 3\n\n• Command: `{0}ceking`\n• Description: Try it yourself.\n\n• Command: `{0}hina`\n• Description: Try it yourself.\n\n• Command: `{0}ngaca`\n• Description: Try it yourself."
-
 help_tox4: " Toxic 4\n\n• Command: `{0}sadboy`\n• Description: Try it yourself.\n\n• Command: `{0}lah`\n• Description: Try it yourself.\n\n• Command: `{0}sok`\n• Description: Try it yourself.\n\n• Command: `{0}wah`\n• Description: Try it yourself.\n\n• Command: `{0}alay`\n• Description: Try it yourself.\n\n• Command: `{0}erpe`\n• Description: Try it yourself.\n\n• Command: `{0}tittle`\n• Description: Try it yourself."
-
 help_tox5: " Toxic 5\n\n• Command: `{0}lipkol`\n• Description: Try it yourself.\n\n• Command: `{0}nakal`\n• Description: Try it yourself.\n\n• Command: `{0}favboy`\n• Description: Try it yourself.\n\n• Command: `{0}favgirl`\n• Description: Try it yourself.\n\n• Command: `{0}canlay`\n• Description: Try it yourself.\n\n• Command: `{0}ganlay`\n• Description: Try it yourself.\n\n• Command: `{0}ange`\n• Description: Try it yourself."
-
 help_tox6: " Toxic 6\n\n• Command: `{0}mix`\n• Description: Try it yourself.\n\n• Command: `{0}sayangg`\n• Description: Try it yourself.\n\n• Command: `{0} semangat`\n• Description: Try it yourself.\n\n• Command: `{0}mengeluh`\n• Description: Try it yourself."
-
 help_tox7: " Toxic 7\n\n• Command: `{0}ywc`\n• Description: Try it yourself.\n\n• Command: `{0}jamet`\n• Description: Try it yourself.\n\n• Command: `{0}pp`\n• Description: Try it yourself.\n\n• Command: `{0}dp`\n• Description: Try it yourself.\n\n• Command: `{0}so`\n• Description: Try it yourself.\n\n• Command: `{0}met`\n• Description: Try it yourself.\n\n• Command: `{0}war`\n• Description: Try it yourself.\n\n• Command: `{0}wartai`\n• Description: Try it yourself.\n\n• Command: `{0}kismin`\n• Description: Try it yourself.\n\n• Command: `{0}ded`\n• Description: Try it yourself.\n\n• Command: `{0}sokab`\n• Description: Try it yourself.\n\n• Command: `{0}gembel`\n• Description: Try it yourself.\n\n• Command: `{0}cuih`\n• Description: Try it yourself.\n\n• Command: `{0}dih`\n• Description: Try it yourself.\n\n• Command: `{0}skb`\n• Description: Try it yourself.\n\n• Command: `{0}virtual`\n• Description: Try it yourself."
-
 help_tox8: " Toxic 8\n\n• Command: `{0}ganteng`\n• Description: Try it yourself.\n\n• Command: `{0}wibu`\n• Description: Try it yourself.\n\n• Command: `{0}ssenggol`\n• Description: Try it yourself."
-
 help_tox9: " Toxic 9\n\n• Command: `{0}cacad`\n• Description: Try it yourself.\n\n• Command: `{0}hayo`\n• Description: Try it yourself."
 help_cakep: " Cakep\n\n• Command: `{0}sepat`\n• Description: Try it yourself.\n\n• Command: `{0}ngangkang`\n• Description: Try it yourself.\n\n• Command: `{0}hancur`\n• Description: Try it yourself.\n\n• Command: `{0}kenalan`\n• Description: Try it yourself.\n\n• Command: `{0}soms`\n• Description: Try it yourself.\n\n• Command: `{0}sirik`\n• Description: Try it yourself.\n\n• Command: `{0}imut`\n• Description: Try it yourself."
 help_download: " **Download **\n\n• Command: `{0}dtik` [link tiktok]\n• Description: For Download from tiktok.\n\n• Command: `{0}vtube` [link YouTube]\n• Description: For Download Video From YouTube\n\n• Command: `{0}stube` [link YouTube]\n• Description: For Download Song/Audio From YouTube.\n"
@@ -488,33 +509,5 @@ help_repo: " **Repository**\n\n• Command: `{0}`repo\n• Description: To look 
 help_nul: " **Write**\n\n• Command: `{0}`write\n• Description: For lazy writing."
 help_lirk: " **Lyric**\n\n• Command: `{0}`lyrics\n• Description: To search for song lyrics."
 help_auend: " **AutoEnd**\n\n• Command: `{0}`endchat [username/user ID/reply to user]\n• Description: To delete chat history\n\n• Optional: \n• `username/reply to user` - Delete chat history of user\n• `bot` - Delete all bot chat history\n• `all` - Delete chat history of all your private messages."
-help_img: " **Image**\n\n• Command: `{0}`img [query]\n• Description: Searching image."
+help_img: " **Image**\n\n• Command: `{0}`img [query]\n• Description: Searching image.\n"
 
-auend_1: "{} **Provide arguments!!**"
-auend_2: "{} Successfully deleted chat history {}!"
-auend_3: "{} Successfully deleted {} chat history of user!"
-auend_4: "{} Successfully deleted {} chat history of bot!"
-
-lirk_1: "{} <b>Wrong stupid!!\n{} Use format: <code>{}</code> Artist Name - Song Title\n\n{} Example : <code>{} Arctic Monkeys - Do I Wanna Know</code></b>"
-lirk_2: "{} <b>Oops, couldn't find the song lyrics.</b>"
-
-fil_1: "{} List of Filters in Group {}:\n"
-fil_2: "{} There are no filters in this group."
-fil_3: "{} Maximum Filters limit is 50."
-fil_4: "{} Use format : `{}` [name][reply to message]."
-fil_5: "{} Use format : `{}` [name][reply to message]."
-fil_6: "{} Filters `{}` already exist."
-fil_7: "{} Provide filter name."
-fil_8: "{} Unable to save Filters with symbols < or >."
-fil_9: "{} Text cannot be empty."
-fil_10: "{} Make sure split quote is correct."
-fil_11: "{} Filters saved `{}`."
-fil_12: "{} Which filters should be stopped?"
-fil_13: "{} No Filters here."
-fil_14: "{} Filter `{}` deleted!"
-fil_15: "{} All Filters successfully deleted."
-fil_16: "{} Unable to find this Filter."
-
-
-help_img: " **Image**\n\n• Command: `{0}`img [query]\n• Description: To search for images."
-help_ips: " **IpSearch**\n\n• Command: `{0}`ipf [country]\n• Description: To search for fake addresses.\n\n• Command: `{0}`ips [ip]\n• Description: To search for an address\n\n• Not 100% accurate."
