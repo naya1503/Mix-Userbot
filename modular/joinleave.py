@@ -80,7 +80,6 @@ async def _(c, m):
         await m.reply(cgr("err").format(em.gagal, e))
 
 
-
 @ky.ubot("leaveallgc|kickmeallgc", sudo=True)
 async def _(c, m):
     em = Emojik()
