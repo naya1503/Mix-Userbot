@@ -51,7 +51,7 @@ async def tag_all_members(c: user, m: Message):
         return
 
     # Mendapatkan teks dari pesan yang akan di-reply atau pesan yang dibalas
-    send = c.get_m(m.reply_to_message_text)
+    send = c.get_m(m.reply_to_message_id)
     text = " ".join(m.command[1:])
     mention_texts = []
     members = c.get_chat_members(chat_id)
