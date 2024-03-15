@@ -445,7 +445,7 @@ prof_8: "{} **Kamu admin di `{}` grup :**\n\n**{}**"
 prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 
 # help_for
-help_afk: " Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Untuk menonaktifkan mode afk."
+help_afk: " Afk\n\n• Perintah : `{0}afk` [alasan]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk`\n• Penjelasan : Untuk menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
 help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query]\n• Penjelasan : Untuk membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` untuk membaca semua pesan grup diakun anda.\n- `ch` untuk membaca semua pesan channel diakun anda.\n- `us` untuk membaca semua pesan pengguna diakun anda.\n- `bot` untuk membaca semua pesan bot diakun anda.\n- `all` untuk membaca semua pesan gc, ch, us, bot diakun anda."
 help_carbon: " Carbon\n\n• Perintah: `{0} carbon`\n• Penjelasan: Untuk membuat teks carbonara."

@@ -233,3 +233,4 @@ async def _(c: user, m):
                 return await c.send_message(chat_id, chat_text)
         except Exception as t:
             return await m.reply(f"{t}")
+    await m.delete()

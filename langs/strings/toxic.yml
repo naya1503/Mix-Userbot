@@ -445,7 +445,7 @@ prof_8: "{} **Nih tempat loe jadi babu `{}` grup :**\n\n**{}**"
 prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 
 # help_for
-help_afk: " Afk\n\n• Perintah : `{0}afk` [reason]\n• Penjelasan : Buat mengaktifkan mode afk.\n\n• Perintah : `{0}unafk` [reason]\n• Penjelasan : Buat menonaktifkan mode afk."
+help_afk: " Afk\n\n• Perintah : `{0}afk` [alesan]\n• Penjelasan : Buat mengaktifkan mode afk.\n\n• Perintah : `{0}unafk`\n• Penjelasan : Buat menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
 help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query]\n• Penjelasan : Buat membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` Buat membaca semua pesan grup diakun anda.\n- `ch` Buat membaca semua pesan channel diakun anda.\n- `us` Buat membaca semua pesan pengguna diakun anda.\n- `all` Buat membaca semua pesan gc, ch, us diakun anda."
 help_carbon: " Carbon\n\n• Perintah: `{0} carbon`\n• Penjelasan: Buat membuat teks carbonara."
@@ -508,5 +508,5 @@ help_mention: " **Mention **\n\n• Perintah: `{0}tagall` [Pesan]\n• Penjelasa
 help_repo: " **Repository**\n\n• Perintah: `{0}`repo\n• Penjelasan: Untuk melihat link repository."
 help_nul: " **Nulis**\n\n• Perintah: `{0}`nulis\n• Penjelasan: Untuk pemalas nulis."
 help_lirk: " **Lyric**\n\n• Perintah: `{0}`lyrics\n• Penjelasan: Untuk mencari lirik lagu."
-help_auend: " **AutoEnd**\n\n• Perintah: `{0}`endchat [username/id pengguna/balas pengguna]\n• Penjelasan: Untuk menghapus riwayat obrolan\n\n• Optional: \n• `username/balas pengguna` - Menghapus riwayat obrolan pengguna\n• `bot` - Menghapus semua riwayat obrolan bot\n• `all` - Menghapus riwayat obrolan pesan pribadi anda dengan semua pengguna."
+help_auend: " **AutoEnd**\n\n• Perintah: `{0}endchat` [username/id pengguna/balas pengguna]\n• Penjelasan: Untuk menghapus riwayat obrolan\n\n• Optional: \n• `username/balas pengguna` - Menghapus riwayat obrolan pengguna\n• `bot` - Menghapus semua riwayat obrolan bot\n• `all` - Menghapus riwayat obrolan pesan pribadi anda dengan semua pengguna."
 help_img: " **Image**\n\n• Perintah: `{0}`img [kata kunci]\n• Penjelasan: Nyari gambar.\n"
