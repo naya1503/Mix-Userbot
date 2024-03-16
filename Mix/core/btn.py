@@ -15,11 +15,11 @@ from html import escape
 from re import findall
 from typing import List
 
+from pykeyboard import InlineKeyboard
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardButton as Ikb
 from pyrogram.types import InlineKeyboardMarkup, Message
-from pykeyboard import InlineKeyboard
 
 from .parser import escape_markdown
 
