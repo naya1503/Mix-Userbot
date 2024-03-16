@@ -298,7 +298,6 @@ async def _(c: nlx, m):
 
 
 async def reload_user():
-    # await user.start()
     try:
         modxx = import_modular()
         for modx in modxx:
