@@ -17,40 +17,40 @@ __modles__ = "Wiki"
 __help__ = "Wiki"
 
 
-def scrape_wikipedia(query):
+def search_duckduckgo(query):
     try:
-        url = f"https://en.wikipedia.org/wiki/{query}"
+        url = f"https://api.duckduckgo.com/?q={query}&format=json"
         response = requests.get(url)
-        soup = BeautifulSoup(response.content, "html.parser")
-        result = soup.find("p").text.strip()
-        return result
+        data = response.json()
+        if 'AbstractText' in data:
+            return data['AbstractText']
+        elif 'Answer' in data:
+            return data['Answer']
+        elif 'RelatedTopics' in data and data['RelatedTopics']:
+            return data['RelatedTopics'][0]['Text']
+        else:
+            return None
     except Exception as e:
         print("Error:", e)
         return None
 
-
-@ky.ubot("dimanakah|apakah|siapakah|bagaimanakah", sudo=True)
-async def handle_question(client, message):
-    query = message.text.lower()
+@ky.ubot("apa|siapa|dimana|bagaimana|kapan", sudo=True)
+async def handle_command(client, message):
+    query = message.text.split(maxsplit=1)[1].strip()
     response = ""
 
-    if (
-        "dimanakah" in query
-        or "apakah" in query
-        or "siapakah" in query
-        or "bagaimanakah" in query
-    ):
-        query = (
-            query.replace("apakah", "")
-            .replace("siapakah", "")
-            .replace("bagaimanakah", "")
-            .replace("dimanakah", "")
-            .replace(" ", "_")
-        )
-        result = scrape_wikipedia(query)
-        if result:
-            response = result
-        else:
-            response = "Maaf, tidak dapat menemukan informasi yang relevan."
+    if message.command[0] == "apa":
+        response = search_duckduckgo(query)
+    elif message.command[0] == "siapa":
+        response = search_duckduckgo(query)
+    elif message.command[0] == "dimana":
+        response = search_duckduckgo(query)
+    elif message.command[0] == "bagaimana":
+        response = search_duckduckgo(query)
+    elif message.command[0] == "kapan":
+        response = search_duckduckgo(query)
 
-    await message.reply(response)
+    if response:
+        await message.reply(response)
+    else:
+        await message.reply("Maaf, tidak dapat menemukan informasi yang relevan.")
