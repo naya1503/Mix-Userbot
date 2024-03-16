@@ -41,15 +41,10 @@ async def refresh_dialog(query):
                 chat = await nlx.get_chat(xxone.chat.id)
                 if chat:
                     chats.append(xxone.chat.id)
-            except (
-                UserBannedInChannel,
-                SlowmodeWait,
-                PeerIdInvalid,
-                Forbidden,
-                ChatWriteForbidden,
-            ):
+            except (UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden):
                 continue
     return chats
+
 
 
 @ky.ubot("gcast", sudo=True)
@@ -110,8 +105,6 @@ async def _(c: nlx, m):
                 else:
                     await c.send_message(chat, send)
                 done += 1
-            except PeerIdInvalid:
-                continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
                 try:
