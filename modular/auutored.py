@@ -31,31 +31,31 @@ async def _(_, m):
     if peler.lower() == "gc":
         bcgc = await refresh_dialog("group")
         for gc in bcgc:
-            await user.read_chat_history(gc, max_id=0)
+              await nlx.read_chat_history(gc, max_id=0)
         await mek.edit(cgr("autoread_2").format(em.sukses, len(bcgc)))
         return
     elif peler.lower() == "us":
         bcus = await refresh_dialog("users")
         for us in bcus:
-            await user.read_chat_history(us, max_id=0)
+            await nlx.read_chat_history(us, max_id=0)
         await mek.edit(cgr("autoread_3").format(em.sukses, len(bcus)))
         return
     elif peler.lower() == "bot":
         bcbot = await refresh_dialog("bot")
         for bt in bcbot:
-            await user.read_chat_history(bt, max_id=0)
+            await nlx.read_chat_history(bt, max_id=0)
         await mek.edit(cgr("autoread_7").format(em.sukses, len(bcbot)))
         return
     elif peler.lower() == "ch":
         bcch = await refresh_dialog("ch")
         for ch in bcch:
-            await user.read_chat_history(ch, max_id=0)
+            await nlx.read_chat_history(ch, max_id=0)
         await mek.edit(cgr("autoread_4").format(em.sukses, len(bcch)))
         return
     elif peler.lower() == "all":
         bcall = await refresh_dialog("allread")
         for aih in bcall:
-            await user.read_chat_history(aih, max_id=0)
+            await nlx.read_chat_history(aih, max_id=0)
         await mek.edit(cgr("autoread_5").format(em.sukses, len(bcall)))
         return
     else:
