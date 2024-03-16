@@ -147,7 +147,7 @@ async def _(c: user, m):
 
     udB.add_afk(user_id, details)
     send = await m.reply_text(cgr("afk_2").format(em.sukses))
-    await put_cleanmode(c.me.id, send.id)
+    await put_cleanmode(m.chat.id, send.id)
 
 
 @ky.ubot("unafk", sudo=True)
@@ -249,7 +249,7 @@ async def _(c, m):
                 ),
                 disable_web_page_preview=True,
             )
-        await put_cleanmode(c.me.id, send.id)
+        await put_cleanmode(m.chat.id, send.id)
         return
 
 
@@ -327,7 +327,7 @@ async def _(c, m):
         except:
             pass
     try:
-        await put_cleanmode(c.me.id, send.id)
+        await put_cleanmode(m.chat.id, send.id)
     except:
         pass
 
