@@ -37,7 +37,7 @@ def clbk_stasm():
     )
 
 
-@ky.callback("pm_")
+@ky.callback("^pm_")
 async def _(c, cq):
     org = cq.from_user.id
     data, sapa = (
