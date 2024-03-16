@@ -33,7 +33,12 @@ async def _(_, m):
         for gc in bcgc:
             try:
                 await nlx.read_chat_history(gc, max_id=0)
-            except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
+            except (
+                ChannelPrivate,
+                PeerIdInvalid,
+                UserBannedInChannel,
+                UsernameInvalid,
+            ):
                 continue
         await mek.edit(cgr("autoread_2").format(em.sukses, len(bcgc)))
         return
@@ -42,7 +47,12 @@ async def _(_, m):
         for us in bcus:
             try:
                 await nlx.read_chat_history(us, max_id=0)
-            except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
+            except (
+                ChannelPrivate,
+                PeerIdInvalid,
+                UserBannedInChannel,
+                UsernameInvalid,
+            ):
                 continue
         await mek.edit(cgr("autoread_3").format(em.sukses, len(bcus)))
         return
@@ -51,7 +61,12 @@ async def _(_, m):
         for bt in bcbot:
             try:
                 await nlx.read_chat_history(bt, max_id=0)
-            except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
+            except (
+                ChannelPrivate,
+                PeerIdInvalid,
+                UserBannedInChannel,
+                UsernameInvalid,
+            ):
                 continue
         await mek.edit(cgr("autoread_7").format(em.sukses, len(bcbot)))
         return
@@ -60,7 +75,12 @@ async def _(_, m):
         for ch in bcch:
             try:
                 await nlx.read_chat_history(ch, max_id=0)
-            except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
+            except (
+                ChannelPrivate,
+                PeerIdInvalid,
+                UserBannedInChannel,
+                UsernameInvalid,
+            ):
                 continue
         await mek.edit(cgr("autoread_4").format(em.sukses, len(bcch)))
         return
@@ -69,7 +89,12 @@ async def _(_, m):
         for aih in bcall:
             try:
                 await nlx.read_chat_history(aih, max_id=0)
-            except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
+            except (
+                ChannelPrivate,
+                PeerIdInvalid,
+                UserBannedInChannel,
+                UsernameInvalid,
+            ):
                 continue
         await mek.edit(cgr("autoread_5").format(em.sukses, len(bcall)))
         return
