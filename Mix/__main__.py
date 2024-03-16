@@ -19,7 +19,7 @@ lool = asyncio.get_event_loop()
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
-        await user.start()
+        await nlx.start()
         LOGGER.info(f"Importing All Modules...")
         for modul in USER_MOD:
             imported_module = importlib.import_module(f"modular." + modul)
@@ -57,7 +57,7 @@ async def starter():
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
     await start_user()
-    if user.is_connected:
+    if nlx.is_connected:
         await start_bot()
     await asyncio.gather(refresh_cache(), check_logger())
     LOGGER.info("Successfully Started Userbot.")
