@@ -9,7 +9,7 @@
 import time
 
 from Mix import Emojik, cgr, get_cgr, ky, udB, user
-from Mix.core.waktu import get_time, 
+from Mix.core.waktu import get_time, put_cleanmode
 
 __modles__ = "Afk"
 __help__ = get_cgr("help_afk")
