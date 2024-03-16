@@ -41,3 +41,4 @@ SafoneApi
 pytgcalls==3.0.0.dev22
 hydrogram
 flask
+flask_restful
