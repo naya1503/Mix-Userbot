@@ -15,11 +15,11 @@ from time import time
 
 import psutil
 import speedtest
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.raw.functions.messages import DeleteHistory
-from pyrogram.types import *
+from hydrogram import *
+from hydrogram.enums import *
+from hydrogram.errors import *
+from hydrogram.raw.functions.messages import DeleteHistory
+from hydrogram.types import *
 
 from Mix import *
 from Mix.core.waktu import get_time, start_time
@@ -37,7 +37,7 @@ def clbk_stasm():
     )
 
 
-@ky.callback("pm_")
+@ky.callback("^pm_")
 async def _(c, cq):
     org = cq.from_user.id
     data, sapa = (
@@ -429,14 +429,11 @@ async def _(_, cq):
 @ky.callback("^close")
 async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
-    # if cq.from_user.id == user.me.id:
-    await user.delete_messages(unPacked.chat_id, unPacked.message_id)
-    # else:
-    #    await cq.answer(
-    #        f"Jangan Di Pencet Anjeng.",
-    #        True,
-    #    )
-    return
+    if cq.from_user.id == user.me.id:
+        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
+    else:
+        await cq.answer(f"Jangan Di Pencet Anjeng.", True)
+        return
 
 
 def cb_tespeed():

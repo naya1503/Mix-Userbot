@@ -1,6 +1,6 @@
 import asyncio
 
-from pyrogram import *
+from hydrogram import *
 
 from Mix import *
 

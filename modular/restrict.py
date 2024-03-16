@@ -9,10 +9,10 @@
 import asyncio
 from time import time
 
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.types import *
+from hydrogram import *
+from hydrogram.enums import *
+from hydrogram.errors import *
+from hydrogram.types import *
 
 from Mix import DEVS, Emojik, cgr, get_cgr, ky, user
 from Mix.core.parser import mention_html

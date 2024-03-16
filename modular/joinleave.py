@@ -1,6 +1,6 @@
-from pyrogram.enums import *
-from pyrogram.errors import ChatAdminRequired, UserNotParticipant
-from pyrogram.types import *
+from hydrogram.enums import *
+from hydrogram.errors import ChatAdminRequired, UserNotParticipant
+from hydrogram.types import *
 
 from Mix import *
 

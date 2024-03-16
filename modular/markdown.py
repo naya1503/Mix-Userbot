@@ -6,8 +6,8 @@
 """
 ################################################################
 
-from pyrogram.enums import *
-from pyrogram.types import *
+from hydrogram.enums import *
+from hydrogram.types import *
 
 from Mix import *
 

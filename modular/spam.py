@@ -8,7 +8,7 @@
 
 import asyncio
 
-from pyrogram.errors import *
+from hydrogram.errors import *
 
 from Mix import *
 

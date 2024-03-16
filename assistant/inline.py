@@ -13,11 +13,11 @@ from datetime import datetime
 from gc import get_objects
 from time import time
 
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.raw.functions import Ping
-from pyrogram.types import *
+from hydrogram import *
+from hydrogram.enums import *
+from hydrogram.errors import *
+from hydrogram.raw.functions import Ping
+from hydrogram.types import *
 from telegraph import upload_file
 
 from Mix import *
@@ -49,7 +49,7 @@ async def _(c, iq):
                 )
             )
         ]
-
+        os.remove(dn)
     elif m.reply_to_message.video:
         dn = await m.reply_to_message.download()
         photo_tg = upload_file(dn)
@@ -63,7 +63,7 @@ async def _(c, iq):
                 )
             )
         ]
-
+        os.remove(dn)
     else:
         duar = [
             (
@@ -74,7 +74,6 @@ async def _(c, iq):
                 )
             )
         ]
-    os.remove(dn)
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
 

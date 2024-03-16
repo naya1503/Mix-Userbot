@@ -15,11 +15,11 @@ from html import escape
 from re import findall
 from typing import List
 
+from hydrogram.enums import ChatType
+from hydrogram.types import InlineKeyboardButton
+from hydrogram.types import InlineKeyboardButton as Ikb
+from hydrogram.types import InlineKeyboardMarkup, Message
 from pykeyboard import InlineKeyboard
-from pyrogram.enums import ChatType
-from pyrogram.types import InlineKeyboardButton
-from pyrogram.types import InlineKeyboardButton as Ikb
-from pyrogram.types import InlineKeyboardMarkup, Message
 
 from .parser import escape_markdown
 
@@ -36,10 +36,19 @@ from .parser import escape_markdown
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
+"""
+def is_url(text: str) -> bool:
+    regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
+                [.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(
+                \([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\
+                ()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))".strip()
+    return [x[0] for x in findall(regex, str(text))]
+"""
+
 
 def is_url(text: str) -> bool:
     regex = r"""(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
-                [.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(
+                [.][a-z]{2,4}/|(?:t.me/|@))[^\s()<>]+(?:\(([^\s()<>]+|(
                 \([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\
                 ()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))""".strip()
     return [x[0] for x in findall(regex, str(text))]
@@ -49,9 +58,9 @@ def keyboard(buttons_list, row_width: int = 2):
     buttons = InlineKeyboard(row_width=row_width)
     data = [
         (
-            Ikb(text=str(i[0]), callback_data=str(i[1]))
-            if not is_url(i[1])
-            else Ikb(text=str(i[0]), url=str(i[1]))
+            Ikb(text=str(i[0]), url=str(i[1]))
+            if is_url(i[1])
+            else Ikb(text=str(i[0]), callback_data=str(i[1]))
         )
         for i in buttons_list
     ]
@@ -104,11 +113,10 @@ def text_keyb(ikb, text: str, row_width: int = 2):
         main_text = text_parts[0].strip()
         button_text = text_parts[1].strip()
         main_text = main_text.replace("<b>", "**").replace("</b>", "**")
-        main_text = main_text.replace("<i>", "_").replace("</i>", "_")
         main_text = main_text.replace("<i>", "__").replace("</i>", "__")
         main_text = main_text.replace("<strike>", "~~").replace("</strike>", "~~")
         main_text = main_text.replace("<spoiler>", "||").replace("</spoiler>", "||")
-        main_text = main_text.replace("<i>", "--").replace("</u>", "--")
+        main_text = main_text.replace("<u>", "--").replace("</u>", "--")
 
         keyb_texts = findall(r"\[([^]]+)\]", button_text)
         for keyb_text in keyb_texts:

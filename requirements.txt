@@ -6,7 +6,6 @@ python-dotenv
 tgcrypto
 requests
 ffmpeg-python
-pyrogram
 pymongo
 uvloop
 wget
@@ -18,7 +17,7 @@ pymediainfo
 youtube-search
 youtube-search-python
 attrify
-maling==1.9.1
+maling==1.9.1.dev1
 gitpython
 heroku3
 speedtest-cli
@@ -40,3 +39,6 @@ pyyaml
 lyricsgenius==3.0.1
 SafoneApi
 pytgcalls==3.0.0.dev22
+hydrogram
+flask
+flask_restful

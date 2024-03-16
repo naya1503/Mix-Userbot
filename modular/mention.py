@@ -1,10 +1,10 @@
 import asyncio
 import random
 
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.types import *
+from hydrogram import *
+from hydrogram.enums import *
+from hydrogram.errors import *
+from hydrogram.types import *
 
 from Mix import *
 

@@ -4,7 +4,7 @@ import asyncio
 from datetime import datetime, timedelta
 from time import time as waktunya
 
-from pyrogram.errors import FloodWait
+from hydrogram.errors import FloodWait
 
 start_time = waktunya()
 from team.nandev.database import cleanmode, ndB, udB
@@ -88,7 +88,7 @@ async def put_cleanmode(chat_id, message_id):
 
 
 async def auto_clean():
-    while not await asyncio.sleep(30):
+    while not await asyncio.sleep(5):
         try:
             for chat_id in cleanmode:
                 if not udB.is_cleanmode_on(chat_id):
@@ -100,6 +100,7 @@ async def auto_clean():
                         await user.delete_messages(chat_id, x["msg_id"])
                     except FloodWait as e:
                         await asyncio.sleep(e.value)
+                        await user.delete_messages(chat_id, x["msg_id"])
                     except:
                         continue
         except:

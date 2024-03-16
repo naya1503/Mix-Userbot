@@ -10,10 +10,10 @@
 import os
 import sys
 
+from hydrogram import *
+from hydrogram.enums import *
+from hydrogram.types import *
 from pykeyboard import InlineKeyboard
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.types import *
 
 from Mix import *
 

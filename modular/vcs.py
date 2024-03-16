@@ -3,14 +3,13 @@ from contextlib import suppress
 from random import randint
 from typing import Optional
 
-import pytgcalls
-from pyrogram import enums
-from pyrogram.errors import *
-from pyrogram.raw.functions.channels import GetFullChannel
-from pyrogram.raw.functions.messages import GetFullChat
-from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
-                                          EditGroupCallTitle)
-from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
+from hydrogram import enums
+from hydrogram.errors import *
+from hydrogram.raw.functions.channels import GetFullChannel
+from hydrogram.raw.functions.messages import GetFullChat
+from hydrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
+                                           EditGroupCallTitle)
+from hydrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 
 from Mix import *
 
@@ -21,7 +20,7 @@ __help__ = get_cgr("help_vcs")
 from pytgcalls import GroupCallFactory
 
 vc = None
-CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+# CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
 OUTGOING_AUDIO_BITRATE_KBIT = 128
 PLAYOUT_FILE = "Mix/core/vc.raw"
 
@@ -31,7 +30,7 @@ def init_client(func):
         global vc
         if not vc:
             vc = GroupCallFactory(
-                user, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+                user, OUTGOING_AUDIO_BITRATE_KBIT
             ).get_file_group_call(PLAYOUT_FILE)
             vc.enable_logs_to_console = False
         return await func(client, message)
@@ -110,7 +109,7 @@ async def _(c: user, m):
     if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
         return
     try:
-        await c.send(EditGroupCallTitle(call=group_call, title=f"{txt}"))
+        await c.invoke(EditGroupCallTitle(call=group_call, title=f"{txt}"))
     except Forbidden:
         await ky.edit(cgr("vc_5").format(em.gagal))
         return
