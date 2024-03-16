@@ -26,6 +26,7 @@ async def dicek_dulu(chat_id):
     except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
         return None
 
+
 async def refresh_dialog(query):
     chats = []
     chat_types = {
@@ -48,7 +49,6 @@ async def refresh_dialog(query):
             if chat:
                 chats.append(xxone.chat.id)
     return chats
-
 
 
 @ky.ubot("gcast", sudo=True)
