@@ -97,7 +97,7 @@ def text_keyb(ikb, text: str, row_width: int = 2):
 def text_keyb(ikb, text: str, row_width: int = 2):
     keyboard = {}
     try:
-        text_parts = text.split("-")
+        text_parts = text.split("~")
         if len(text_parts) != 2:
             return None, None
 
