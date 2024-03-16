@@ -1,12 +1,16 @@
 # @TomiX
 
+import asyncio
 from datetime import datetime, timedelta
 from time import time as waktunya
-import asyncio
+
 from pyrogram.errors import FloodWait
+
 start_time = waktunya()
 from team.nandev.database import cleanmode, ndB, udB
+
 from Mix import user
+
 
 async def get_time(seconds):
     lng = ndB.get_key("bahasa")
@@ -55,6 +59,7 @@ async def get_time(seconds):
 
     return up_time
 
+
 # Part Of MissKaty
 """
 async def put_cleanmode(org, message_id):
@@ -70,6 +75,7 @@ async def put_cleanmode(org, message_id):
     cleanmode[org].append(put)
 """
 
+
 async def put_cleanmode(chat_id, message_id):
     if chat_id not in cleanmode:
         cleanmode[chat_id] = []
@@ -79,6 +85,7 @@ async def put_cleanmode(chat_id, message_id):
         "timer_after": time_now + timedelta(minutes=1),
     }
     cleanmode[chat_id].append(put)
+
 
 async def auto_clean():
     while not await asyncio.sleep(30):
