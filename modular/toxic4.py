@@ -17,7 +17,7 @@ from Mix import *
 
 @ky.ubot("sadboy", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("`Pertama-tama kamu cantik`")
@@ -32,7 +32,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("lah", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("**Lah, Lu tolol?**", reply_to_message_id=ReplyCheck(m))
@@ -46,7 +46,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("sok", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("**WOII**", reply_to_message_id=ReplyCheck(m))
@@ -62,7 +62,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("wah", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply(
@@ -88,7 +88,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("alay", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("eh kamu, iya kamu", reply_to_message_id=ReplyCheck(m))
@@ -97,14 +97,14 @@ async def _(c: nlx, m):
     await asyncio.sleep(1.8)
     await uputt.edit("**spam bot mulu**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**baru pande bikin nlxbot ya?? xixixi**")
+    await uputt.edit("**baru pande bikin userbot ya?? xixixi**")
     await asyncio.sleep(1.8)
     await uputt.edit("**pantes NORAK**")
 
 
 @ky.ubot("erpe", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("Hai, Kamu Anak Erpe Ya", reply_to_message_id=ReplyCheck(m))
@@ -128,7 +128,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("tittle", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("**OI ANAK TITLE**", reply_to_message_id=ReplyCheck(m))

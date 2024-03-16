@@ -39,10 +39,10 @@ async def _(c, m):
     namagece = inpogc.title
     ceger = await m.reply(cgr("proses").format(em.proses))
     try:
-        chat_nlxname = m.command[1]
+        chat_username = m.command[1]
 
-        if chat_nlxname.startswith("@"):
-            inpogc = await c.get_chat(chat_nlxname)
+        if chat_username.startswith("@"):
+            inpogc = await c.get_chat(chat_username)
             chat_id = inpogc.id
             namagece = inpogc.title
 
@@ -63,7 +63,7 @@ async def _(c, m):
                 )
 
         chat_id = m.chat.id
-        chat_member = await c.get_chat_member(chat_id, m.from_nlx.id)
+        chat_member = await c.get_chat_member(chat_id, m.from_user.id)
         if chat_member.status in (
             ChatMemberStatus.OWNER,
             ChatMemberStatus.ADMINISTRATOR,
@@ -110,8 +110,8 @@ async def _(c, m):
             chat = dialog.chat.id
             try:
                 chat_info = await c.get_chat_member(chat, "me")
-                nlx_status = chat_info.status
-                if chat not in ceger and nlx_status not in (
+                user_status = chat_info.status
+                if chat not in ceger and user_status not in (
                     ChatMemberStatus.OWNER,
                     ChatMemberStatus.ADMINISTRATOR,
                 ):
@@ -137,8 +137,8 @@ async def _(c: nlx, m):
                 chat = dialog.chat.id
                 try:
                     chat_info = await c.get_chat_member(chat, "me")
-                    nlx_status = chat_info.status
-                    if chat not in ceger and nlx_status not in (
+                    user_status = chat_info.status
+                    if chat not in ceger and user_status not in (
                         ChatMemberStatus.OWNER,
                         ChatMemberStatus.ADMINISTRATOR,
                     ):

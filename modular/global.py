@@ -32,7 +32,7 @@ __help__ = get_cgr("help_global")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nyet, _ = await c.extract_nlx_and_reason(m)
+    nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
@@ -51,7 +51,7 @@ async def _(c: nlx, m):
     gg = 0
     chats = await refresh_dialog("all")
     try:
-        mention = (await c.get_nlxs(nyet)).mention
+        mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
@@ -83,9 +83,9 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nyet, _ = await c.extract_nlx_and_reason(m)
+    nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
-    await c.get_nlxs(nyet)
+    await c.get_users(nyet)
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
         return
@@ -93,7 +93,7 @@ async def _(c: nlx, m):
     gg = 0
     chats = await refresh_dialog("all")
     try:
-        mention = (await c.get_nlxs(nyet)).mention
+        mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
@@ -118,7 +118,7 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nyet, _ = await c.extract_nlx_and_reason(m)
+    nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
@@ -138,7 +138,7 @@ async def _(c: nlx, m):
     chats = await refresh_dialog("group")
 
     try:
-        mention = (await c.get_nlxs(nyet)).mention
+        mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
@@ -165,9 +165,9 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nyet, _ = await c.extract_nlx_and_reason(m)
+    nyet, _ = await c.extract_user_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
-    await c.get_nlxs(nyet)
+    await c.get_users(nyet)
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
         return
@@ -175,7 +175,7 @@ async def _(c: nlx, m):
     gg = 0
     chats = await refresh_dialog("group")
     try:
-        mention = (await c.get_nlxs(nyet)).mention
+        mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:

@@ -32,7 +32,7 @@ async def _(_, m):
         bcgc = await refresh_dialog("group")
         for gc in bcgc:
             try:
-                await nlx.read_chat_history(gc, max_id=0)
+                await user.read_chat_history(gc, max_id=0)
             except ChannelPrivate:
                 continue
             except ChannelInvalid:
@@ -40,22 +40,22 @@ async def _(_, m):
         await mek.edit(cgr("autoread_2").format(em.sukses, len(bcgc)))
         return
     elif peler.lower() == "us":
-        bcus = await refresh_dialog("nlxs")
+        bcus = await refresh_dialog("users")
         for us in bcus:
-            await nlx.read_chat_history(us, max_id=0)
+            await user.read_chat_history(us, max_id=0)
         await mek.edit(cgr("autoread_3").format(em.sukses, len(bcus)))
         return
     elif peler.lower() == "bot":
         bcbot = await refresh_dialog("bot")
         for bt in bcbot:
-            await nlx.read_chat_history(bt, max_id=0)
+            await user.read_chat_history(bt, max_id=0)
         await mek.edit(cgr("autoread_7").format(em.sukses, len(bcbot)))
         return
     elif peler.lower() == "ch":
         bcch = await refresh_dialog("ch")
         for ch in bcch:
             try:
-                await nlx.read_chat_history(ch, max_id=0)
+                await user.read_chat_history(ch, max_id=0)
             except ChannelPrivate:
                 continue
             except ChannelInvalid:
@@ -66,7 +66,7 @@ async def _(_, m):
         bcall = await refresh_dialog("allread")
         for aih in bcall:
             try:
-                await nlx.read_chat_history(aih, max_id=0)
+                await user.read_chat_history(aih, max_id=0)
             except ChannelPrivate:
                 continue
             except ChannelInvalid:

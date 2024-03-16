@@ -50,7 +50,7 @@ async def _(c: nlx, m):
 async def _(c, m):
     if not TAG_LOG:
         return
-    org = f"[{m.from_nlx.first_name} {m.from_nlx.last_name or ''}](tg://nlx?id={m.from_nlx.id})"
+    org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     lenk = m.link
     media = None
     teks = None
@@ -68,7 +68,7 @@ async def _(c, m):
     try:
         if m.photo:
             media = m.photo.file_id
-            pat = await c.download_media(media, file_name=f"{m.from_nlx.id}.jpg")
+            pat = await c.download_media(media, file_name=f"{m.from_user.id}.jpg")
             ret = await bot.send_photo(
                 TAG_LOG,
                 photo=pat,
@@ -78,7 +78,7 @@ async def _(c, m):
             os.remove(pat)
         elif m.video:
             media = m.video.file_id
-            pat = await c.download_media(media, file_name=f"{m.from_nlx.id}.mp4")
+            pat = await c.download_media(media, file_name=f"{m.from_user.id}.mp4")
             ret = await bot.send_video(
                 TAG_LOG,
                 video=pat,
@@ -108,7 +108,7 @@ async def _(c: nlx, m):
         try:
             if m.photo:
                 media = m.photo.file_id
-                pat = await c.download_media(media, file_name=f"{m.from_nlx.id}.jpg")
+                pat = await c.download_media(media, file_name=f"{m.from_user.id}.jpg")
                 await c.send_photo(
                     chat,
                     photo=pat,
@@ -118,7 +118,7 @@ async def _(c: nlx, m):
                 os.remove(pat)
             elif m.video:
                 media = reply_.video.file_id
-                pat = await c.download_media(media, file_name=f"{m.from_nlx.id}.mp4")
+                pat = await c.download_media(media, file_name=f"{m.from_user.id}.mp4")
                 await c.send_video(
                     chat,
                     video=pat,

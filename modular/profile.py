@@ -14,15 +14,15 @@ __help__ = get_cgr("help_prof")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nlx_id = await c.extract_nlx(m)
+    user_id = await c.extract_user(m)
     tex = await m.reply(cgr("proses").format(em.proses))
-    if not nlx_id:
+    if not user_id:
         return await tex.edit(cgr("prof_1").format(em.gagal))
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         await tex.delete()
         return
-    await c.unblock_nlx(nlx_id)
-    umention = (await c.get_nlxs(nlx_id)).mention
+    await c.unblock_user(user_id)
+    umention = (await c.get_users(user_id)).mention
     await tex.edit(cgr("prof_2").format(em.sukses, umention))
     return
 
@@ -31,15 +31,15 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nlx_id = await c.extract_nlx(m)
+    user_id = await c.extract_user(m)
     tex = await m.reply(cgr("proses").format(em.proses))
-    if not nlx_id:
+    if not user_id:
         return await tex.edit(cgr("prof_1").format(em.gagal))
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         await tex.delete()
         return
-    await c.block_nlx(nlx_id)
-    umention = (await c.get_nlxs(nlx_id)).mention
+    await c.block_user(user_id)
+    umention = (await c.get_users(user_id)).mention
     await tex.edit(cgr("prof_3").format(em.sukses, umention))
     return
 
@@ -113,8 +113,8 @@ async def _(c: nlx, m):
             title = chat.title
         except Exception:
             title = "Private Group"
-        if chat.nlxname:
-            text += f"<b>{j + 1}.</b>  [{title}](https://t.me/{chat.nlxname})[`{chat.id}`]\n"
+        if chat.username:
+            text += f"<b>{j + 1}.</b>  [{title}](https://t.me/{chat.username})[`{chat.id}`]\n"
         else:
             text += f"<b>{j + 1}. {title}</b> [`{chat.id}`]\n"
         j += 1
@@ -145,11 +145,11 @@ async def _(c: nlx, m):
     try:
         if replied.photo:
             media = replied.photo.file_id
-            pat = await c.download_media(media, file_name=f"{nlx.me.id}.jpg")
+            pat = await c.download_media(media, file_name=f"{user.me.id}.jpg")
             await c.set_profile_photo(photo=pat)
         elif replied.video:
             media = replied.video.file_id
-            pat = await c.download_media(media, file_name=f"{nlx.me.id}.mp4")
+            pat = await c.download_media(media, file_name=f"{user.me.id}.mp4")
             await c.set_profile_photo(video=pat)
         return await m.reply(cgr("prof_9").format(em.sukses))
         os.remove(pat)
@@ -174,7 +174,7 @@ async def _(c: nlx, m):
         m.id
         async for m in c.search_messages(
             chat_id,
-            from_nlx=int(m.from_nlx.id),
+            from_user=int(m.from_user.id),
             limit=n,
         )
     ]

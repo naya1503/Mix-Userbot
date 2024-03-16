@@ -32,7 +32,8 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 from team.nandev.class_log import LOGGER
 
 from config import *
-from Mix import XCB, Emojik, cgr, get_cgr, in_heroku, ky, nlx, on_heroku, paste
+from Mix import (XCB, Emojik, cgr, get_cgr, in_heroku, ky, on_heroku, paste,
+                 user)
 
 from . import import_modular
 
@@ -181,7 +182,7 @@ async def _(c: nlx, m):
     dyno = await m.reply_text(cgr("proses").format(em.proses))
     Heroku = heroku3.from_key(heroku_api)
     account_id = Heroku.account().id
-    nlxagent = (
+    useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/80.0.3987.149 Mobile Safari/537.36"
@@ -297,8 +298,8 @@ async def _(c: nlx, m):
     os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
-async def reload_nlx():
-    # await nlx.start()
+async def reload_user():
+    # await user.start()
     try:
         modxx = import_modular()
         for modx in modxx:
@@ -311,6 +312,6 @@ async def reload_nlx():
 @ky.ubot("restart", sudo=True)
 async def _(c: nlx, m):
     try:
-        await reload_nlx()
+        await reload_user()
     except Exception as er:
         await m.reply(f"Error {er}")

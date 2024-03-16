@@ -23,7 +23,7 @@ async def refresh_dialog(query):
     chats = []
     chat_types = {
         "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "nlxs": [ChatType.PRIVATE],
+        "users": [ChatType.PRIVATE],
         "bot": [ChatType.BOT],
         "all": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
         "ch": [ChatType.CHANNEL],
@@ -35,7 +35,7 @@ async def refresh_dialog(query):
             ChatType.BOT,
         ],
     }
-    async for xxone in nlx.get_dialogs():
+    async for xxone in user.get_dialogs():
         if xxone.chat.type in chat_types[query]:
             chats.append(xxone.chat.id)
     return chats
@@ -97,7 +97,7 @@ async def _(c: nlx, m):
     send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
-    chats = await refresh_dialog("nlxs")
+    chats = await refresh_dialog("users")
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
@@ -207,7 +207,7 @@ async def _(c: nlx, m):
             if c.me.id != bot.me.id:
                 if m.reply_to_message.reply_markup:
                     x = await c.get_inline_bot_results(
-                        bot.me.nlxname, f"_send_ {id(m)}"
+                        bot.me.username, f"_send_ {id(m)}"
                     )
                     await c.send_inline_bot_result(chat_id, x.query_id, x.results[0].id)
                     await m.delete()

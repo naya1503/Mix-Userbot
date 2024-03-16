@@ -140,7 +140,7 @@ async def send_filter_reply(c: nlx, m, trigger: str):
     em.initialize()
     """Reply with assigned filter for the trigger"""
     getfilter = db.get_filter(m.chat.id, trigger)
-    if m and not m.from_nlx:
+    if m and not m.from_user:
         return
 
     if not getfilter:
@@ -164,7 +164,7 @@ async def send_filter_reply(c: nlx, m, trigger: str):
         "fullname",
         "id",
         "mention",
-        "nlxname",
+        "username",
         "chatname",
     ]
     text = await escape_mentions_using_curly_brackets(m, filter_reply, parse_words)

@@ -29,9 +29,9 @@ def init_client(func):
     async def wrapper(client, message):
         global vc
         if not vc:
-            vc = GroupCallFactory(nlx, OUTGOING_AUDIO_BITRATE_KBIT).get_file_group_call(
-                PLAYOUT_FILE
-            )
+            vc = GroupCallFactory(
+                user, OUTGOING_AUDIO_BITRATE_KBIT
+            ).get_file_group_call(PLAYOUT_FILE)
             vc.enable_logs_to_console = False
         return await func(client, message)
 

@@ -20,12 +20,12 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     chat = m.chat
-    your_id = m.from_nlx.id
+    your_id = m.from_user.id
     message_id = m.id
     reply = m.reply_to_message
 
     text = f"**[Message ID:]({m.link})** `{message_id}`\n"
-    text += f"**[Your ID:](tg://nlx?id={your_id})** `{your_id}`\n"
+    text += f"**[Your ID:](tg://user?id={your_id})** `{your_id}`\n"
 
     if not m.command:
         m.command = m.text.split()
@@ -33,16 +33,16 @@ async def _(c, m):
     if len(m.command) == 2:
         try:
             split = m.text.split(None, 1)[1].strip()
-            nlx_id = (await c.get_nlxs(split)).id
-            text += f" **[User ID:](tg://nlx?id={nlx_id})** `{nlx_id}`\n"
+            user_id = (await c.get_users(split)).id
+            text += f" **[User ID:](tg://user?id={user_id})** `{user_id}`\n"
         except Exception:
-            return await m.reply_text("**This nlx doesn't exist.**")
+            return await m.reply_text("**This user doesn't exist.**")
 
-    text += f"**[Chat ID:](https://t.me/{chat.nlxname})** `{chat.id}`\n\n"
+    text += f"**[Chat ID:](https://t.me/{chat.username})** `{chat.id}`\n\n"
     if not getattr(reply, "empty", True):
-        id_ = reply.from_nlx.id if reply.from_nlx else reply.sender_chat.id
+        id_ = reply.from_user.id if reply.from_user else reply.sender_chat.id
         text += f" **[Replied Message ID:]({reply.link})** `{reply.id}`\n"
-        text += f" **[Replied User ID:](tg://nlx?id={id_})** `{id_}`"
+        text += f" **[Replied User ID:](tg://user?id={id_})** `{id_}`"
 
     await m.reply_text(
         text,

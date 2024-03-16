@@ -14,7 +14,7 @@ __help__ = "Toxic"
 
 @ky.ubot("a", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -25,7 +25,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("b", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -36,7 +36,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("c", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -46,7 +46,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("d", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -57,7 +57,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("e", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -68,7 +68,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("f", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -79,7 +79,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("g", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -90,7 +90,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("h", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -101,7 +101,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("i", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -112,7 +112,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("j", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -123,7 +123,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("k", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -134,7 +134,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("l", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -145,7 +145,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("m", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -156,7 +156,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("n", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -167,7 +167,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("o", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -178,7 +178,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("p", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -189,7 +189,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("q", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -200,7 +200,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("r", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -211,7 +211,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("s", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -222,7 +222,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("t", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -233,7 +233,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("u", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -244,7 +244,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("v", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -255,7 +255,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("w", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -266,7 +266,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("x", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(
@@ -277,7 +277,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("z", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     await m.reply(

@@ -7,7 +7,7 @@
 ################################################################
 
 
-from Mix import bot, get_cgr, ky, nlx
+from Mix import bot, get_cgr, ky, user
 
 __modles__ = "Alive"
 __help__ = get_cgr("help_alive")
@@ -16,7 +16,7 @@ __help__ = get_cgr("help_alive")
 @ky.ubot("alive", sudo=True)
 async def _(c: nlx, m):
     try:
-        x = await c.get_inline_bot_results(bot.me.nlxname, "alive")
+        x = await c.get_inline_bot_results(bot.me.username, "alive")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
         await m.reply(error)

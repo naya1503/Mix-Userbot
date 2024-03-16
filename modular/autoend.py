@@ -27,20 +27,20 @@ async def _(_, m):
         await m.reply(cgr("auend_1").format(em.gagal))
         return
     if len(m.command) == 1 and rep:
-        who = rep.from_nlx.id
+        who = rep.from_user.id
         try:
-            info = await nlx.resolve_peer(who)
-            await nlx.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+            info = await user.resolve_peer(who)
+            await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
         except PeerIdInvalid:
             pass
         await m.reply(cgr("auend_2").format(em.sukses, who))
     else:
         if m.command[1].strip().lower() == "all":
-            biji = await refresh_dialog("nlxs")
+            biji = await refresh_dialog("users")
             for kelot in biji:
                 try:
-                    info = await nlx.resolve_peer(kelot)
-                    await nlx.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+                    info = await user.resolve_peer(kelot)
+                    await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
                 except PeerIdInvalid:
                     continue
             await m.reply(cgr("auend_3").format(em.sukses, len(biji)))
@@ -48,16 +48,16 @@ async def _(_, m):
             bijo = await refresh_dialog("bot")
             for kelot in bijo:
                 try:
-                    info = await nlx.resolve_peer(kelot)
-                    await nlx.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+                    info = await user.resolve_peer(kelot)
+                    await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
                 except PeerIdInvalid:
                     continue
             await m.reply(cgr("auend_4").format(em.sukses, len(bijo)))
         else:
             who = m.text.split(None, 1)[1]
             try:
-                info = await nlx.resolve_peer(who)
-                await nlx.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
+                info = await user.resolve_peer(who)
+                await user.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
             except PeerIdInvalid:
                 pass
             await m.reply(cgr("auend_2").format(em.sukses, who))

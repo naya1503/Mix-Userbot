@@ -12,7 +12,7 @@ from Mix import *
 
 @ky.ubot("lipkol", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("**Ayaaang** 🥺")
@@ -27,7 +27,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("nakal", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("**Ayaaang Ih** 🥺", reply_to_message_id=ReplyCheck(m))
@@ -41,7 +41,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("favboy", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply(
@@ -59,7 +59,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("favgirl", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply(
@@ -77,7 +77,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("canlay", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply(
@@ -95,7 +95,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("ganlay", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply(
@@ -113,7 +113,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("ange", sudo=True)
 async def _(c: nlx, m):
-    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
+    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("**Ayanggg 😖**", reply_to_message_id=ReplyCheck(m))

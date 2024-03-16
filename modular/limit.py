@@ -12,7 +12,7 @@ __help__ = get_cgr("help_limt")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    await c.unblock_nlx("SpamBot")
+    await c.unblock_user("SpamBot")
     xin = await c.resolve_peer("SpamBot")
     msg = await m.reply(cgr("proses").format(em.proses))
     rsp = await c.invoke(

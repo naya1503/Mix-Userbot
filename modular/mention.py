@@ -36,7 +36,7 @@ async def tag_all_members(c: nlx, m: Message):
             if not berenti:
                 break
             administrator.append(admin)
-        await c.get_chat_member(chat_id, m.from_nlx.id)
+        await c.get_chat_member(chat_id, m.from_user.id)
         admins = administrator
     except Exception as e:
         await m.reply(cgr("err").format(em.gagal))
@@ -59,13 +59,13 @@ async def tag_all_members(c: nlx, m: Message):
     async for member in members:
         if not berenti:
             break
-        if not member.nlx.is_bot:
+        if not member.user.is_bot:
             full_name = (
-                member.nlx.first_name + member.nlx.last_name
-                if member.nlx.last_name
-                else member.nlx.first_name
+                member.user.first_name + member.user.last_name
+                if member.user.last_name
+                else member.user.first_name
             )
-            mention_texts.append(f"[{random_emoji()}](tg://nlx?id={member.nlx.id})")
+            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
                 mention_text = f"{send}\n\n"

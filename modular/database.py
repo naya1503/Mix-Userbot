@@ -63,7 +63,7 @@ async def _(c: nlx, m):
         if button:
             try:
                 x = await c.get_inline_bot_results(
-                    bot.me.nlxname, f"get_teks_but {m.chat.id}"
+                    bot.me.username, f"get_teks_but {m.chat.id}"
                 )
                 await c.send_inline_bot_result(
                     m.chat.id,
@@ -92,7 +92,7 @@ async def _(c: nlx, m):
 
 @ky.inline("^get_teks_but")
 async def _(c, iq):
-    gw = iq.from_nlx.id
+    gw = iq.from_user.id
     getpm_txt = udB.get_var(gw, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     teks, button = text_keyb(ikb, pm_text)

@@ -18,7 +18,7 @@ from hydrogram.raw.functions.users import GetFullUser
 from team.nandev.class_log import LOGGER
 
 from Mix import *
-from Mix.core.sender_tools import extract_nlx
+from Mix.core.sender_tools import extract_user
 
 gban_db = GBan()
 
@@ -65,11 +65,11 @@ async def count(c: nlx, chat):
     return total_bot, total_admin, bot_admin, total_banned
 
 
-async def nlx_info(c, sus, already=False):
+async def user_info(c, sus, already=False):
     em = Emojik()
     em.initialize()
     if not already:
-        susu = await c.get_nlxs(nlx_ids=sus)
+        susu = await c.get_users(user_ids=sus)
     if not susu.first_name:
         return ["Deleted account", None]
 
@@ -81,15 +81,15 @@ async def nlx_info(c, sus, already=False):
         gban = False
         reason = cgr("glbl_7").format(em.warn)
 
-    nlx_id = susu.id
-    nlxrr = await c.resolve_peer(nlx_id)
+    user_id = susu.id
+    userrr = await c.resolve_peer(user_id)
     about = None
     try:
-        ll = await c.invoke(GetFullUser(id=nlxrr))
-        about = ll.full_nlx.about
+        ll = await c.invoke(GetFullUser(id=userrr))
+        about = ll.full_user.about
     except Exception:
         pass
-    nlxname = susu.nlxname
+    username = susu.username
     first_name = susu.first_name
     last_name = susu.last_name
     mention = susu.mention(f"{first_name}")
@@ -97,18 +97,18 @@ async def nlx_info(c, sus, already=False):
     is_verified = susu.is_verified
     is_restricted = susu.is_restricted
     photo_id = susu.photo.big_file_id if susu.photo else None
-    is_support = True if nlx_id in DEVS else False
-    if nlx_id == bot.me.id:
+    is_support = True if user_id in DEVS else False
+    if user_id == bot.me.id:
         is_support = "Bot"
     omp = cgr("info_2")
     if is_support or bot.me.id:
-        if nlx_id in DEVS:
+        if user_id in DEVS:
             omp = cgr("info_2")
-        elif nlx_id == bot.me.id:
+        elif user_id == bot.me.id:
             omp = "Bot"
-        elif nlx_id == c.me.id:
+        elif user_id == c.me.id:
             omp = cgr("info_4")
-        if nlx_id in DEVS and nlx_id == c.me.id:
+        if user_id in DEVS and user_id == c.me.id:
             omp = cgr("info_5")
 
     is_scam = susu.is_scam
@@ -137,12 +137,12 @@ async def nlx_info(c, sus, already=False):
             last_date = cgr("info_13")
 
     caption = cgr("info_14").format(
-        nlx_id,
-        nlx_id,
+        user_id,
+        user_id,
         mention,
         first_name,
         last_name,
-        ("@" + nlxname) if nlxname else "NA",
+        ("@" + username) if username else "NA",
         about,
         is_support,
         omp,
@@ -170,7 +170,7 @@ async def chat_info(c: nlx, chat, already=False):
             try:
                 chat_r = await c.resolve_peer(chat.id)
                 ll = await c.invoke(GetFullChannel(channel=chat_r))
-                u_name = ll.chats[0].nlxnames
+                u_name = ll.chats[0].usernames
             except Exception:
                 pass
         except Exception:
@@ -179,7 +179,7 @@ async def chat_info(c: nlx, chat, already=False):
                 chat = await c.get_chat(chat_r.channel_id)
                 try:
                     ll = await c.invoke(GetFullChannel(channel=chat_r))
-                    u_name = ll.chats[0].nlxnames
+                    u_name = ll.chats[0].usernames
                 except Exception:
                     pass
             except KeyError:
@@ -187,9 +187,9 @@ async def chat_info(c: nlx, chat, already=False):
                 return caption, None
     chat_id = chat.id
     if u_name:
-        nlxname = " ".join([f"@{i}" for i in u_name])
+        username = " ".join([f"@{i}" for i in u_name])
     elif not u_name:
-        nlxname = chat.nlxname
+        username = chat.username
     total_bot, total_admin, total_bot_admin, total_banned = await count(c, chat.id)
     title = chat.title
     type_ = str(chat.type).split(".")[1]
@@ -208,7 +208,7 @@ async def chat_info(c: nlx, chat, already=False):
         title,
         type_,
         dc_id,
-        ("@" + nlxname) if nlxname else "NA",
+        ("@" + username) if username else "NA",
         total_admin,
         total_bot,
         total_banned,
@@ -232,7 +232,7 @@ async def _(c, m):
     if m.reply_to_message and m.reply_to_message.sender_chat:
         await m.reply_text(cgr("info_16").format(em.gagal))
         return
-    sus, _, nlx_name = await extract_nlx(c, m)
+    sus, _, user_name = await extract_user(c, m)
 
     if not sus:
         await m.reply_text(cgr("glbl_2").format(em.gagal))
@@ -240,7 +240,7 @@ async def _(c, m):
     m = await m.reply_text(cgr("proses").format(em.proses))
 
     try:
-        info_caption, photo_id = await nlx_info(c, sus)
+        info_caption, photo_id = await user_info(c, sus)
 
     except Exception as e:
         LOGGER.error(e)
@@ -332,7 +332,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("me|nlxstats", sudo=True)
+@ky.ubot("me|userstats", sudo=True)
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -354,8 +354,8 @@ async def _(c, m):
             nanki += 1
         elif dialog.chat.type == ChatType.SUPERGROUP:
             luci += 1
-            nlx_s = await dialog.chat.get_member(int(xenn.id))
-            if nlx_s.status in (
+            user_s = await dialog.chat.get_member(int(xenn.id))
+            if user_s.status in (
                 ChatMemberStatus.OWNER,
                 ChatMemberStatus.ADMINISTRATOR,
             ):

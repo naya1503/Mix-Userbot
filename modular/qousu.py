@@ -56,16 +56,16 @@ async def _(c: nlx, m):
             c.get_arg(m)
 
             if tag.startswith("@"):
-                nlx_id = tag[1:]
+                user_id = tag[1:]
                 try:
-                    org = await c.get_nlxs(nlx_id)
+                    org = await c.get_users(user_id)
                     if org.id in DEVS:
                         await m.reply(cgr("qot_3").format(em.gagal))
                         return
                     rep = await c.get_messages(
                         m.chat.id, m.reply_to_message.id, replies=0
                     )
-                    rep.from_nlx = org
+                    rep.from_user = org
                     messages = [rep]
                 except Exception as e:
                     return await m.reply(cgr("err").format(em.gagal, e))
@@ -119,14 +119,14 @@ async def _(c: nlx, m):
     if len(m.command) > 1:
         tag = m.command[1].strip()
         if tag.startswith("@"):
-            nlx_id = tag[1:]
+            user_id = tag[1:]
             try:
-                org = await c.get_nlxs(nlx_id)
+                org = await c.get_users(user_id)
                 if org.id in DEVS:
                     await m.reply(cgr("qot_3").format(em.gagal))
                     return
                 rep = await c.get_messages(m.chat.id, m.reply_to_message.id, replies=0)
-                rep.from_nlx = org
+                rep.from_user = org
                 messages = [rep]
             except Exception as e:
                 return await m.reply(cgr("err").format(em.gagal, e))

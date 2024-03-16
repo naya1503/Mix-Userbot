@@ -10,7 +10,7 @@ import os
 import time
 from time import time
 
-from Mix import Emojik, bot, cgr, get_cgr, ky, nlx, progress
+from Mix import Emojik, bot, cgr, get_cgr, ky, progress, user
 
 COPY_ID = {}
 
@@ -186,7 +186,7 @@ async def _(c: nlx, m):
                 try:
                     nyolong_jalan = True
                     text = f"get_msg {id(m)}"
-                    x = await c.get_inline_bot_results(bot.me.nlxname, text)
+                    x = await c.get_inline_bot_results(bot.me.username, text)
                     results = await c.send_inline_bot_result(
                         m.chat.id,
                         x.query_id,

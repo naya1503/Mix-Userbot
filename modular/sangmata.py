@@ -23,7 +23,7 @@ __help__ = get_cgr("help_sangmata")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    puki = await c.extract_nlx(m)
+    puki = await c.extract_user(m)
     if len(m.command) < 2 and not m.reply_to_message:
         return await m.reply(cgr("sangmat_1").format(em.gagal))
     if puki in DEVS:
@@ -31,7 +31,7 @@ async def _(c: nlx, m):
             f"{em.gagal} <b>DILARANG KERAS MENGGUNAKAN FITUR INI KEPADA SEORANG DEV MIX-USERBOT!</b>"
         )
     try:
-        argu = (await c.get_nlxs(puki)).id
+        argu = (await c.get_users(puki)).id
     except Exception:
         try:
             argu = int(m.command[1])
@@ -56,8 +56,8 @@ async def _(c: nlx, m):
             break
 
     try:
-        nlx_info = await c.resolve_peer(sg)
-        await c.invoke(DeleteHistory(peer=nlx_info, max_id=0, revoke=True))
+        user_info = await c.resolve_peer(sg)
+        await c.invoke(DeleteHistory(peer=user_info, max_id=0, revoke=True))
     except Exception:
         pass
 
