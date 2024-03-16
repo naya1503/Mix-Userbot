@@ -14,6 +14,7 @@ from Mix import *
 __modles__ = "Wiki"
 __help__ = "Wiki"
 
+
 def search_duckduckgo(query):
     try:
         url = f"https://api.duckduckgo.com/?q={query}&format=json"
@@ -31,6 +32,7 @@ def search_duckduckgo(query):
         print("Error:", e)
         return None
 
+
 @ky.ubot("apa|siapa|dimana|bagaimana|kapan", sudo=True)
 async def handle_command(client, message):
     try:
@@ -40,7 +42,9 @@ async def handle_command(client, message):
             if response:
                 await message.reply(response)
             else:
-                await message.reply("Maaf, tidak dapat menemukan informasi yang relevan.")
+                await message.reply(
+                    "Maaf, tidak dapat menemukan informasi yang relevan."
+                )
         else:
             await message.reply("Harap berikan kueri.")
     except Exception as e:
