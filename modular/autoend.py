@@ -47,7 +47,7 @@ async def _(_, m):
         await m.reply(cgr("auend_2").format(em.sukses, who))
     else:
         if m.command[1].strip().lower() == "all":
-            biji = await refresh_dialog("users")
+            biji = await diend_chat("users")
             for kelot in biji:
                 try:
                     info = await nlx.resolve_peer(kelot)
@@ -56,7 +56,7 @@ async def _(_, m):
                     continue
             await m.reply(cgr("auend_3").format(em.sukses, len(biji)))
         elif m.command[1].strip().lower() == "bot":
-            bijo = await refresh_dialog("bot")
+            bijo = await diend_chat("bot")
             for kelot in bijo:
                 try:
                     info = await nlx.resolve_peer(kelot)
