@@ -34,17 +34,21 @@ from .call_markdown import markdown_help
 async def _(c, iq):
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
-    rep = m.reply_to_message
-    text, keyboard = text_keyb(ikb, rep.text)
-    duar = [
-        (
-            InlineQueryResultArticle(
-                title="Tombol Teks!",
-                input_message_content=InputTextMessageContent(text),
-                reply_markup=keyboard,
-            )
-        )
-    ]
+    rep = user.get_text(m)
+    text, keyboard = text_keyb(ikb, rep)
+    if m.reply_to_message.photo:
+        dn = await m.reply_to_message.download()
+        photo_tg = upload_file(dn)
+        duar = [(InlineQueryResultPhoto(photo_url=f"https://telegra.ph/{photo_tg[0]}", title="kon", reply_markup=keyboard, caption=text)]
+        
+    elif m.reply_to_message.video:
+        dn = await m.reply_to_message.download()
+        photo_tg = upload_file(dn)
+        duar = [(InlineQueryResultVideo(video_url=f"https://telegra.ph/{photo_tg[0]}", title="kon", reply_markup=keyboard, caption=text)]
+        
+    else:
+        duar = [(InlineQueryResultArticle(title="Tombol Teks!", input_message_content=InputTextMessageContent(text), reply_markup=keyboard))]
+    os.remove(m_d)
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
 
