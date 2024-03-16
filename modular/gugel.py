@@ -1,12 +1,13 @@
 import json
 from urllib.request import Request, urlopen
-from urllib.parse import quote
+
 from pyrogram import *
 
 from Mix import *
 
 __modles__ = "Wiki"
 __help__ = "Wiki"
+
 
 def search_duckduckgo(query):
     try:
@@ -30,6 +31,7 @@ def search_duckduckgo(query):
     except Exception as e:
         print("Error:", e)
         return None
+
 
 @ky.ubot("apa|siapa|dimana|bagaimana|kapan", sudo=True)
 async def handle_command(client, message):

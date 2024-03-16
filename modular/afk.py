@@ -147,7 +147,7 @@ async def _(c: user, m):
 
     udB.add_afk(user_id, details)
     send = await m.reply_text(cgr("afk_2").format(em.sukses))
-    await put_cleanmode(c.me.id, send.id)
+    await put_cleanmode(m.chat.id, send.id)
 
 
 @ky.ubot("unafk", sudo=True)
@@ -249,7 +249,7 @@ async def _(c, m):
                 ),
                 disable_web_page_preview=True,
             )
-        await put_cleanmode(c.me.id, send.id)
+        await put_cleanmode(m.chat.id, send.id)
         return
 
 
@@ -327,7 +327,7 @@ async def _(c, m):
         except:
             pass
     try:
-        await put_cleanmode(c.me.id, send.id)
+        await put_cleanmode(m.chat.id, send.id)
     except:
         pass
 
@@ -338,14 +338,14 @@ async def _(c: user, m):
     em.initialize()
     if len(m.command) == 1:
         return await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
-    # chat_id = c.me.id
+    chat_id = c.me.id
     state = m.text.split(None, 1)[1].strip()
     state = state.lower()
     if state == "on":
-        udB.cleanmode_on(c.me.id)
+        udB.cleanmode_on(chat_id)
         await m.reply_text(f"{em.sukses} Afk Delete Diaktifkan!")
     elif state == "off":
-        udB.cleanmode_off(c.me.id)
+        udB.cleanmode_off(chat_id)
         await m.reply_text(f"{em.gagal} Afk Delete Dinonaktifkan!")
     else:
         await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
