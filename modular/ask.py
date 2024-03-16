@@ -1,4 +1,5 @@
 import random
+
 import requests
 from gpytranslate import Translator
 
@@ -8,6 +9,7 @@ __modles__ = "TOD"
 __help__ = "TOD"
 
 translator = Translator()
+
 
 async def get_truth(category="classic|kids|party|hot|mixed"):
     try:
