@@ -9,14 +9,11 @@
 ################################################################
 
 
-import socket
 from os import execvp
 from sys import executable
 from sys import version as pyver
 
-import heroku3
 import wget
-from aiohttp import ClientSession
 from pyrogram import *
 from pyrogram import __version__ as pyrover
 from pyrogram.errors import *
