@@ -20,6 +20,12 @@ reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimul
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 supot: "**Jika anda butuhkan bantuan silahkan datang ke Grup Support Dibawah!!**\n\n**Atau kamu bisa melihat update di Channel Kami..**"
 
+# tod
+tod_1: "{} **Tantangan :**\n\n `{}`"
+tod_2: "{} **Gagal mengambil Tantangan. Silakan coba lagi nanti.**"
+tod_3: "{} **Jawab Jujur :**\n\n `{}`"
+tod_4: "{} **Gagal mengambil Jawab Jujur. Silakan coba lagi nanti.**"
+
 # autoend
 auend_1: "{} **Berikan argumen!!**"
 auend_2: "{} Berhasil menghapus riwayat obrolan {}!"

@@ -20,6 +20,12 @@ reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes 
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 supot: "**If you need help, please come to the Support Group Below!!\n\nOr you can see updates on our Channel...**"
 
+# tod
+tod_1: "{} **Dare :**\n\n `{}`"
+tod_2: "{} **Failed to get Dare. Please try again.**"
+tod_3: "{} **Truth :**\n\n `{}`"
+tod_4: "{} **Failed to get Truth. Please try again.**"
+
 # autoend
 auend_1: "{} **Provide arguments!!**"
 auend_2: "{} Successfully deleted chat history {}!"

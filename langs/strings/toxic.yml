@@ -20,6 +20,12 @@ reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya mato
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 supot: "**Eh Goblok Kalo Lo Buta MAP, Lo dateng bae ke Grup Support Dibawah!!\n\nAtau Lo bisa ke Channel buat liat Apa yg Update..**"
 
+# tod
+tod_1: "{} **Dare :**\n\n `{}`"
+tod_2: "{} **Yah kaga ada tantangan, ntar coba lagi ya!**"
+tod_3: "{} **Truth :**\n\n `{}`"
+tod_4: "{} **Yah kaga ada truth, ntar coba lagi ya!**"
+
 # autoend
 auend_1: "{} **Berikan argumen!!**"
 auend_2: "{} Berhasil menghapus riwayat obrolan {}!"
