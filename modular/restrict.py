@@ -14,7 +14,7 @@ from hydrogram.enums import *
 from hydrogram.errors import *
 from hydrogram.types import *
 
-from Mix import DEVS, Emojik, cgr, get_cgr, ky, user
+from Mix import DEVS, Emojik, cgr, get_cgr, ky, nlx
 from Mix.core.parser import mention_html
 from Mix.core.sender_tools import extract_user
 
@@ -24,7 +24,7 @@ __help__ = get_cgr("help_rest")
 
 async def member_permissions(chat: int, org: int):
     perms = []
-    member = (await user.get_chat_member(chat, org)).privileges
+    member = (await nlx.get_chat_member(chat, org)).privileges
     if not member:
         return []
     if member.can_post_messages:
@@ -62,7 +62,7 @@ async def list_admins(m):
         "last_updated_at": time(),
         "data": [
             mek.user.id
-            async for mek in user.get_chat_members(
+            async for mek in nlx.get_chat_members(
                 m.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
             )
         ],
