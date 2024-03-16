@@ -303,6 +303,7 @@ async def reload_user():
         for modx in modxx:
             imported_module = import_module(f"modular.{modx}")
             importlib.reload(imported_module)
+        LOGGER.info("Succes Update Module.")
     except Exception as er:
         LOGGER.error(f"{er}")
 
