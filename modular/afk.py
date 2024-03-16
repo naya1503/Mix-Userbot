@@ -338,7 +338,7 @@ async def _(c: user, m):
     em.initialize()
     if len(m.command) == 1:
         return await m.reply_text(f"{em.gagal} Gunakan format : `afkdel` on/off.")
-    chat_id = c.me.id
+    chat_id = m.chat.id
     state = m.text.split(None, 1)[1].strip()
     state = state.lower()
     if state == "on":
