@@ -49,7 +49,7 @@ async def _(c, iq):
                 )
             )
         ]
-
+        os.remove(dn)
     elif m.reply_to_message.video:
         dn = await m.reply_to_message.download()
         photo_tg = upload_file(dn)
@@ -63,7 +63,7 @@ async def _(c, iq):
                 )
             )
         ]
-
+        os.remove(dn)
     else:
         duar = [
             (
@@ -74,7 +74,6 @@ async def _(c, iq):
                 )
             )
         ]
-    os.remove(dn)
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
 
