@@ -11,41 +11,41 @@ __help__ = get_cgr("help_prof")
 
 
 @ky.ubot("unblock", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    user_id = await c.extract_user(m)
+    nlx_id = await c.extract_nlx(m)
     tex = await m.reply(cgr("proses").format(em.proses))
-    if not user_id:
+    if not nlx_id:
         return await tex.edit(cgr("prof_1").format(em.gagal))
-    if user_id == c.me.id:
+    if nlx_id == c.me.id:
         await tex.delete()
         return
-    await c.unblock_user(user_id)
-    umention = (await c.get_users(user_id)).mention
+    await c.unblock_nlx(nlx_id)
+    umention = (await c.get_nlxs(nlx_id)).mention
     await tex.edit(cgr("prof_2").format(em.sukses, umention))
     return
 
 
 @ky.ubot("block", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    user_id = await c.extract_user(m)
+    nlx_id = await c.extract_nlx(m)
     tex = await m.reply(cgr("proses").format(em.proses))
-    if not user_id:
+    if not nlx_id:
         return await tex.edit(cgr("prof_1").format(em.gagal))
-    if user_id == c.me.id:
+    if nlx_id == c.me.id:
         await tex.delete()
         return
-    await c.block_user(user_id)
-    umention = (await c.get_users(user_id)).mention
+    await c.block_nlx(nlx_id)
+    umention = (await c.get_nlxs(nlx_id)).mention
     await tex.edit(cgr("prof_3").format(em.sukses, umention))
     return
 
 
 @ky.ubot("setname", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     tex = await m.reply(cgr("proses").format(em.proses))
@@ -72,7 +72,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setbio", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     tex = await m.reply(cgr("proses").format(em.proses))
@@ -91,7 +91,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("meadmin", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     bacot = await m.reply(cgr("proses").format(em.proses))
@@ -113,8 +113,8 @@ async def _(c: user, m):
             title = chat.title
         except Exception:
             title = "Private Group"
-        if chat.username:
-            text += f"<b>{j + 1}.</b>  [{title}](https://t.me/{chat.username})[`{chat.id}`]\n"
+        if chat.nlxname:
+            text += f"<b>{j + 1}.</b>  [{title}](https://t.me/{chat.nlxname})[`{chat.id}`]\n"
         else:
             text += f"<b>{j + 1}. {title}</b> [`{chat.id}`]\n"
         j += 1
@@ -137,7 +137,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setpp", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     replied = m.reply_to_message
@@ -145,11 +145,11 @@ async def _(c: user, m):
     try:
         if replied.photo:
             media = replied.photo.file_id
-            pat = await c.download_media(media, file_name=f"{user.me.id}.jpg")
+            pat = await c.download_media(media, file_name=f"{nlx.me.id}.jpg")
             await c.set_profile_photo(photo=pat)
         elif replied.video:
             media = replied.video.file_id
-            pat = await c.download_media(media, file_name=f"{user.me.id}.mp4")
+            pat = await c.download_media(media, file_name=f"{nlx.me.id}.mp4")
             await c.set_profile_photo(video=pat)
         return await m.reply(cgr("prof_9").format(em.sukses))
         os.remove(pat)
@@ -158,7 +158,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("purgeme", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.command) != 2:
@@ -174,7 +174,7 @@ async def _(c: user, m):
         m.id
         async for m in c.search_messages(
             chat_id,
-            from_user=int(m.from_user.id),
+            from_nlx=int(m.from_nlx.id),
             limit=n,
         )
     ]

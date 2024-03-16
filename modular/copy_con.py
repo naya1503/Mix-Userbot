@@ -10,7 +10,7 @@ import os
 import time
 from time import time
 
-from Mix import Emojik, bot, cgr, get_cgr, ky, progress, user
+from Mix import Emojik, bot, cgr, get_cgr, ky, progress, nlx
 
 COPY_ID = {}
 
@@ -23,7 +23,7 @@ __help__ = get_cgr("help_copy")
 #### TomiXtomi
 
 
-async def gas_download(g, c: user, inf, m):
+async def gas_download(g, c: nlx, inf, m):
     msg = m.reply_to_message or m
     text = g.caption or ""
 
@@ -152,7 +152,7 @@ async def gas_download(g, c: user, inf, m):
 
 
 @ky.ubot("copy", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     global nyolong_jalan
     em = Emojik()
     em.initialize()
@@ -186,7 +186,7 @@ async def _(c: user, m):
                 try:
                     nyolong_jalan = True
                     text = f"get_msg {id(m)}"
-                    x = await c.get_inline_bot_results(bot.me.username, text)
+                    x = await c.get_inline_bot_results(bot.me.nlxname, text)
                     results = await c.send_inline_bot_result(
                         m.chat.id,
                         x.query_id,

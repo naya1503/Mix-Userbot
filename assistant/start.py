@@ -49,13 +49,13 @@ def clbk_strto():
 
 @ky.bots("start", human.pv)
 async def _(c, m):
-    udB.add_served_user(m.from_user.id)
-    owner_nih = user.me.id
-    user_name = f"<a href='tg://user?id={m.from_user.id}'>{m.from_user.first_name} {m.from_user.last_name or ''}</a>"
-    user2 = f"<a href='tg://user?id={user.me.id}'>{user.me.first_name} {user.me.last_name or ''}</a>"
-    ts_1 = cgr("asst_1").format(user_name)
-    ts_2 = cgr("asst_2").format(user_name, user2)
-    if m.from_user.id == owner_nih:
+    udB.add_served_nlx(m.from_nlx.id)
+    owner_nih = nlx.me.id
+    nlx_name = f"<a href='tg://nlx?id={m.from_nlx.id}'>{m.from_nlx.first_name} {m.from_nlx.last_name or ''}</a>"
+    nlx2 = f"<a href='tg://nlx?id={nlx.me.id}'>{nlx.me.first_name} {nlx.me.last_name or ''}</a>"
+    ts_1 = cgr("asst_1").format(nlx_name)
+    ts_2 = cgr("asst_2").format(nlx_name, nlx2)
+    if m.from_nlx.id == owner_nih:
         await m.reply(ts_1, reply_markup=clbk_strt())
     else:
         await m.reply(ts_2, reply_markup=clbk_strto())

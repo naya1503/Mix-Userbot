@@ -6,8 +6,8 @@ from Mix import *
 
 
 @ky.ubot("ngentot", sudo=True)
-async def _(c: user, m):
-    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+async def _(c: nlx, m):
+    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     pler = await m.reply("**WOYY NGENTOD!!**", reply_to_message_id=ReplyCheck(m))
@@ -35,8 +35,8 @@ async def _(c: user, m):
 
 
 @ky.ubot("goblok", sudo=True)
-async def _(c: user, m):
-    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+async def _(c: nlx, m):
+    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     puki = await m.reply("**WOYY GOBLOK!!**", reply_to_message_id=ReplyCheck(m))
@@ -64,8 +64,8 @@ async def _(c: user, m):
 
 
 @ky.ubot("ngatain", sudo=True)
-async def _(c: user, m):
-    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+async def _(c: nlx, m):
+    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     kon = await m.reply("**BABI!!**", reply_to_message_id=ReplyCheck(m))
@@ -93,8 +93,8 @@ async def _(c: user, m):
 
 
 @ky.ubot("yatim", sudo=True)
-async def _(c: user, m):
-    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+async def _(c: nlx, m):
+    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     mek = await m.reply(
@@ -121,8 +121,8 @@ async def _(c: user, m):
 
 
 @ky.ubot("kont", sudo=True)
-async def _(c: user, m):
-    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+async def _(c: nlx, m):
+    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     putt = await m.reply("**WOYY NGENTOD!!**", reply_to_message_id=ReplyCheck(m))

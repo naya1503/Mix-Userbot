@@ -160,7 +160,7 @@ class MEMES:
         "nail",
         "printer",
         "shovel",
-        "pair of trousers",
+        "pair of tronlxs",
         "CRT monitor",
         "diamond sword",
         "baguette",

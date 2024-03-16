@@ -24,7 +24,7 @@ l_t = """
 - `msg` = Messages
 - `media` = Media, such as Photo and Video.
 - `polls` = Polls
-- `invite` = Add users to Group
+- `invite` = Add nlxs to Group
 - `pin` = Pin Messages
 - `info` = Change Group Info
 - `webprev` = Web Page Previews
@@ -33,15 +33,15 @@ l_t = """
 - `games` = Game Bots
 - `stickers` = Stickers
 - `anonchannel` = Send as chat will be locked
-- `forwardall` = Forwarding from channel and user
-- `forwardu` = Forwarding from user
+- `forwardall` = Forwarding from channel and nlx
+- `forwardu` = Forwarding from nlx
 - `forwardc` = Forwarding from channel
 - `url` = Lock links"""
 
 
 async def prevent_approved(m):
-    ceksud = udB.get_list_from_var(user.me.id, "SUDO_USER", "ID_NYA")
-    ms = m.from_user.id
+    ceksud = udB.get_list_from_var(nlx.me.id, "SUDO_USER", "ID_NYA")
+    ms = m.from_nlx.id
     for ms in (DEVS, ceksud):
         try:
             await m.chat.unban_member(ms)
@@ -51,27 +51,27 @@ async def prevent_approved(m):
     return
 
 
-async def is_approved_user(c: user, m):
-    # admins_group = member_permissions(m.chat.id, m.from_user.id)
+async def is_approved_nlx(c: nlx, m):
+    # admins_group = member_permissions(m.chat.id, m.from_nlx.id)
     if m.forward_from:
-        if m.from_user.id in DEVS or m.from_user.id == c.me.id:
+        if m.from_nlx.id in DEVS or m.from_nlx.id == c.me.id:
             return False
         return True
     elif m.forward_from_chat:
         x_chat = (await c.get_chat(m.forward_from_chat.id)).linked_chat
-        if m.from_user.id in DEVS or m.from_user.id == c.me.id:
+        if m.from_nlx.id in DEVS or m.from_nlx.id == c.me.id:
             return True
         if not x_chat:
             return False
         elif x_chat and x_chat.id == m.chat.id:
             return True
-    elif m.from_user:
-        if m.from_user.id in DEVS or m.from_user.id == c.me.id:
+    elif m.from_nlx:
+        if m.from_nlx.id in DEVS or m.from_nlx.id == c.me.id:
             return False
         return True
 
 
-async def delete_messages(c: user, m):
+async def delete_messages(c: nlx, m):
     try:
         await c.delete_messages(m.chat.id, message_ids=m.id)
         return
@@ -79,8 +79,8 @@ async def delete_messages(c: user, m):
         await m.reply(f"{e}")
 
 
-@user.on_message(filters.group & ~filters.me, group=4)
-async def _(c: user, m):
+@nlx.on_message(filters.group & ~filters.me, group=4)
+async def _(c: nlx, m):
     lock = LOCKS()
     all_chats = lock.get_lock_channel()
     if not all_chats:
@@ -92,7 +92,7 @@ async def _(c: user, m):
             return
         await delete_messages(c, m)
         return
-    is_approved = await is_approved_user(c, m)
+    is_approved = await is_approved_nlx(c, m)
     entity = m.entities if m.text else m.caption_entities
     if entity:
         for i in entity:
@@ -119,7 +119,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("locktypes", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     await m.reply_text(l_t)
@@ -127,7 +127,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("lock", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) < 2:
@@ -147,7 +147,7 @@ async def _(c: user, m):
     webprev = get_perm.can_add_web_page_previews
     polls = get_perm.can_send_polls
     info = get_perm.can_change_info
-    invite = get_perm.can_invite_users
+    invite = get_perm.can_invite_nlxs
     pin = get_perm.can_pin_messages
     stickers = animations = games = inlinebots = None
 
@@ -257,7 +257,7 @@ async def _(c: user, m):
                 can_add_web_page_previews=webprev,
                 can_send_polls=polls,
                 can_change_info=info,
-                can_invite_users=invite,
+                can_invite_nlxs=invite,
                 can_pin_messages=pin,
             ),
         )
@@ -271,7 +271,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("unlock", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) < 2:
@@ -295,7 +295,7 @@ async def _(c: user, m):
                     can_add_web_page_previews=True,
                     can_send_polls=True,
                     can_change_info=True,
-                    can_invite_users=True,
+                    can_invite_nlxs=True,
                     can_pin_messages=True,
                 ),
             )
@@ -313,7 +313,7 @@ async def _(c: user, m):
     uwebprev = get_uperm.can_add_web_page_previews
     upolls = get_uperm.can_send_polls
     uinfo = get_uperm.can_change_info
-    uinvite = get_uperm.can_invite_users
+    uinvite = get_uperm.can_invite_nlxs
     upin = get_uperm.can_pin_messages
     ustickers = uanimations = ugames = uinlinebots = None
 
@@ -420,7 +420,7 @@ async def _(c: user, m):
                 can_add_web_page_previews=uwebprev,
                 can_send_polls=upolls,
                 can_change_info=uinfo,
-                can_invite_users=uinvite,
+                can_invite_nlxs=uinvite,
                 can_pin_messages=upin,
             ),
         )
@@ -434,7 +434,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("locks", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chkmsg = await m.reply_text(cgr("proses").format(em.proses))
@@ -472,7 +472,7 @@ async def _(c: user, m):
     vwebprev = await convert_to_emoji(v_perm.can_add_web_page_previews)
     vpolls = await convert_to_emoji(v_perm.can_send_polls)
     vinfo = await convert_to_emoji(v_perm.can_change_info)
-    vinvite = await convert_to_emoji(v_perm.can_invite_users)
+    vinvite = await convert_to_emoji(v_perm.can_invite_nlxs)
     vpin = await convert_to_emoji(v_perm.can_pin_messages)
     vanon = await convert_to_emoji(anon)
     vanti = await convert_to_emoji(anti_f)
@@ -498,7 +498,7 @@ async def _(c: user, m):
       <b>Pin Messages:</b> {vpin}
       <b>Send as chat:</b> {vanon}
       <b>Can forward:</b> {vanti}
-      <b>Can forward from user:</b> {vantiu}
+      <b>Can forward from nlx:</b> {vantiu}
       <b>Can forward from channel and chats:</b> {vantic}
       <b>Can send links:</b> {antil}
       """

@@ -8,7 +8,7 @@
 
 import time
 
-from Mix import Emojik, cgr, get_cgr, ky, udB, user
+from Mix import Emojik, cgr, get_cgr, ky, udB, nlx
 from Mix.core.waktu import get_time, put_cleanmode
 
 __modles__ = "Afk"
@@ -16,10 +16,10 @@ __help__ = get_cgr("help_afk")
 
 
 @ky.ubot("afk", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    user_id = c.me.id
+    nlx_id = c.me.id
     if m.sender_chat:
         return await m.reply_text(cgr("afk_1").format(em.gagal))
     if len(m.command) == 1 and not m.reply_to_message:
@@ -55,7 +55,7 @@ async def _(c: user, m):
             "reason": _reason,
         }
     elif len(m.command) == 1 and m.reply_to_message.photo:
-        await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
+        await c.download_media(m.reply_to_message, file_name=f"{nlx_id}.jpg")
         details = {
             "type": "photo",
             "time": time.time(),
@@ -63,7 +63,7 @@ async def _(c: user, m):
             "reason": None,
         }
     elif len(m.command) > 1 and m.reply_to_message.photo:
-        await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
+        await c.download_media(m.reply_to_message, file_name=f"{nlx_id}.jpg")
         _reason = m.text.split(None, 1)[1].strip()
         details = {
             "type": "photo",
@@ -72,7 +72,7 @@ async def _(c: user, m):
             "reason": _reason,
         }
     elif len(m.command) == 1 and m.reply_to_message.video:
-        await c.download_media(m.reply_to_message, file_name=f"{user_id}.mp4")
+        await c.download_media(m.reply_to_message, file_name=f"{nlx_id}.mp4")
         details = {
             "type": "video",
             "time": time.time(),
@@ -80,7 +80,7 @@ async def _(c: user, m):
             "reason": None,
         }
     elif len(m.command) > 1 and m.reply_to_message.video:
-        await c.download_media(m.reply_to_message, file_name=f"{user_id}.mp4")
+        await c.download_media(m.reply_to_message, file_name=f"{nlx_id}.mp4")
         _reason = m.text.split(None, 1)[1].strip()
         details = {
             "type": "video",
@@ -97,7 +97,7 @@ async def _(c: user, m):
                 "reason": None,
             }
         elif m.reply_to_message.photo:
-            await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
+            await c.download_media(m.reply_to_message, file_name=f"{nlx_id}.jpg")
             details = {
                 "type": "photo",
                 "time": time.time(),
@@ -105,7 +105,7 @@ async def _(c: user, m):
                 "reason": None,
             }
         else:
-            await c.download_media(m.reply_to_message, file_name=f"{user_id}.mp4")
+            await c.download_media(m.reply_to_message, file_name=f"{nlx_id}.mp4")
             details = {
                 "type": "video",
                 "time": time.time(),
@@ -122,7 +122,7 @@ async def _(c: user, m):
                 "reason": _reason,
             }
         elif m.reply_to_message.photo:
-            await c.download_media(m.reply_to_message, file_name=f"{user_id}.jpg")
+            await c.download_media(m.reply_to_message, file_name=f"{nlx_id}.jpg")
             details = {
                 "type": "photo",
                 "time": time.time(),
@@ -130,7 +130,7 @@ async def _(c: user, m):
                 "reason": _reason,
             }
         else:
-            await c.download_media(m.reply_to_message, file_name=f"{user_id}.mp4")
+            await c.download_media(m.reply_to_message, file_name=f"{nlx_id}.mp4")
             details = {
                 "type": "video",
                 "time": time.time(),
@@ -145,7 +145,7 @@ async def _(c: user, m):
             "reason": None,
         }
 
-    udB.add_afk(user_id, details)
+    udB.add_afk(nlx_id, details)
     send = await m.reply_text(cgr("afk_2").format(em.sukses))
     await put_cleanmode(m.chat.id, send.id)
 
@@ -154,10 +154,10 @@ async def _(c: user, m):
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    user_id = c.me.id
-    verifier, reasondb = udB.is_afk(user_id)
+    nlx_id = c.me.id
+    verifier, reasondb = udB.is_afk(nlx_id)
     if verifier:
-        udB.remove_afk(user_id)
+        udB.remove_afk(nlx_id)
         try:
             afktype = reasondb["type"]
             timeafk = reasondb["time"]
@@ -189,7 +189,7 @@ async def _(c, m):
             elif afktype == "photo":
                 send = (
                     await m.reply_photo(
-                        photo=f"downloads/{user_id}.jpg",
+                        photo=f"downloads/{nlx_id}.jpg",
                         caption=cgr("afk_3").format(
                             em.sukses,
                             em.warn,
@@ -198,7 +198,7 @@ async def _(c, m):
                     )
                     if str(reasonafk) == "None"
                     else await m.reply_photo(
-                        photo=f"downloads/{user_id}.jpg",
+                        photo=f"downloads/{nlx_id}.jpg",
                         caption=cgr("afk_4").format(
                             em.sukses,
                             em.block,
@@ -211,7 +211,7 @@ async def _(c, m):
             elif afktype == "video":
                 send = (
                     await m.reply_video(
-                        video=f"downloads/{user_id}.mp4",
+                        video=f"downloads/{nlx_id}.mp4",
                         caption=cgr("afk_3").format(
                             em.sukses,
                             em.warn,
@@ -220,7 +220,7 @@ async def _(c, m):
                     )
                     if str(reasonafk) == "None"
                     else await m.reply_video(
-                        video=f"downloads/{user_id}.mp4",
+                        video=f"downloads/{nlx_id}.mp4",
                         caption=cgr("afk_4").format(
                             em.sukses,
                             em.block,
@@ -258,7 +258,7 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     msg = ""
-    verifier, reasondb = udB.is_afk(user.me.id)
+    verifier, reasondb = udB.is_afk(nlx.me.id)
     if verifier:
         try:
             afktype = reasondb["type"]
@@ -333,7 +333,7 @@ async def _(c, m):
 
 
 @ky.ubot("afkdel", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.command) == 1:

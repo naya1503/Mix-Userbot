@@ -25,7 +25,7 @@ __help__ = get_cgr("help_dev")
 
 
 @ky.cegers("aktif")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     exx = c.get_arg(m)
@@ -33,33 +33,33 @@ async def _(c: user, m):
         exx = 30
     now = datetime.now(timezone("Asia/Jakarta"))
     expire_date = now + timedelta(days=int(exx))
-    udB.set_expired_date(user.me.id, expire_date)
+    udB.set_expired_date(nlx.me.id, expire_date)
     await m.reply(f"{em.sukses} Aktif {exx} hari.")
     return
 
 
 @ky.cegers("cek")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    kmm = udB.get_expired_date(user.me.id)
+    kmm = udB.get_expired_date(nlx.me.id)
     if kmm is None:
-        await m.reply(f"{user.me.id} ga aktif!!")
+        await m.reply(f"{nlx.me.id} ga aktif!!")
         return
     else:
         rimen = (kmm - datetime.now()).days
         await m.reply(
-            f"{user.me.id} aktif hingga {kmm.strftime('%d-%m-%Y %H:%M:%S')}. Sisa waktu aktif {rimen} hari."
+            f"{nlx.me.id} aktif hingga {kmm.strftime('%d-%m-%Y %H:%M:%S')}. Sisa waktu aktif {rimen} hari."
         )
         return
 
 
 @ky.cegers("nonaktif")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    udB.rem_expired_date(user.me.id)
-    return await m.reply(f"{em.sukses} {user.me.id} expired telah dihapus")
+    udB.rem_expired_date(nlx.me.id)
+    return await m.reply(f"{em.sukses} {nlx.me.id} expired telah dihapus")
 
 
 @ky.ubot("sh", sudo=True)
@@ -107,7 +107,7 @@ async def _(c, m):
 
 
 @ky.ubot("trash", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message:
         try:
             if len(m.command) < 2:
@@ -130,7 +130,7 @@ async def _(c: user, m):
 @ky.cegers("ceval")
 @ky.bots("eval|ev")
 async def _(c, m):
-    if not user.get_arg(m):
+    if not nlx.get_arg(m):
         return
     xx = await m.reply_text("Processing ...")
     cmd = m.text.split(" ", maxsplit=1)[1]
@@ -141,7 +141,7 @@ async def _(c, m):
     redirected_error = sys.stderr = StringIO()
     stdout, stderr, exc = None, None, None
     try:
-        await user.aexec(cmd, c, m)
+        await nlx.aexec(cmd, c, m)
     except Exception:
         exc = traceback.format_exc()
     stdout = redirected_output.getvalue()
@@ -182,7 +182,7 @@ def get_size(bytes, suffix="B"):
 
 
 @ky.ubot("host", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(f"{em.proses} Processing...")
@@ -226,7 +226,7 @@ async def _(c: user, m):
 
 
 async def generate_sysinfo(workdir):
-    # user total
+    # nlx total
 
     # uptime
     info = {
@@ -275,12 +275,12 @@ async def generate_sysinfo(workdir):
 
 
 @ky.ubot("stats", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     response = await generate_sysinfo(c.workdir)
     await m.reply(
-        f"{em.proses} # {user.me.first_name}\nStats : Total Usage\n" + response,
+        f"{em.proses} # {nlx.me.first_name}\nStats : Total Usage\n" + response,
     )
 
 
@@ -301,12 +301,12 @@ async def _(c, m):
     if my.privileges:
         if my.privileges.can_manage_chat and my.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
-            if m.from_user.id not in DEVS:
+            if m.from_nlx.id not in DEVS:
                 await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
                 return
             if not is_channel:
-                req_user_member = await chat.get_member(m.from_user.id)
-                if req_user_member.privileges is None:
+                req_nlx_member = await chat.get_member(m.from_nlx.id)
+                if req_nlx_member.privileges is None:
                     await m.reply(
                         f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
                     )
@@ -315,7 +315,7 @@ async def _(c, m):
             members_count = chat.members_count
             if members_count <= 200:
                 async for member in chat.get_members():
-                    if member.user.id == c.me.id:
+                    if member.nlx.id == c.me.id:
                         continue
                     elif (
                         member.status == ChatMemberStatus.ADMINISTRATOR
@@ -324,7 +324,7 @@ async def _(c, m):
                         continue
                     try:
                         await chat.ban_member(
-                            member.user.id, datetime.now() + timedelta(seconds=30)
+                            member.nlx.id, datetime.now() + timedelta(seconds=30)
                         )
                         kick_count += 1
                     except FloodWait as e:
@@ -339,7 +339,7 @@ async def _(c, m):
                 loops_count = round(loops_count)
                 for loop_num in range(loops_count):
                     async for member in chat.get_members():
-                        if member.user.id == c.me.id:
+                        if member.nlx.id == c.me.id:
                             continue
                         elif (
                             member.status == ChatMemberStatus.ADMINISTRATOR
@@ -348,7 +348,7 @@ async def _(c, m):
                             continue
                         try:
                             await chat.ban_member(
-                                member.user.id, datetime.now() + timedelta(seconds=30)
+                                member.nlx.id, datetime.now() + timedelta(seconds=30)
                             )
                             kick_count += 1
                         except FloodWait as e:

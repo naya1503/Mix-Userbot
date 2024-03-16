@@ -32,7 +32,7 @@ LIMIT = 5
 
 
 @ky.ubot("ok|setuju", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat_type = m.chat.type
@@ -66,7 +66,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("no|tolak", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     babi = await m.reply(cgr("proses").format(em.proses))
@@ -75,23 +75,23 @@ async def _(c: user, m):
     if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         await babi.delete()
         return
-    user_id = m.chat.id
-    ok_tak = udB.dicek_pc(user_id)
+    nlx_id = m.chat.id
+    ok_tak = udB.dicek_pc(nlx_id)
     if not ok_tak:
         await babi.edit(cgr("pmper_5").format(em.sukses))
         return
-    udB.tolak_pc(user_id)
+    udB.tolak_pc(nlx_id)
     await babi.edit(cgr("pmper_6").format(em.sukses))
     return
 
 
 @ky.ubot("setmsg", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     babi = await m.reply(cgr("proses").format(em.proses))
     await asyncio.sleep(2)
-    user_id = c.me.id
+    nlx_id = c.me.id
     direp = m.reply_to_message
     args_txt = c.get_arg(m)
 
@@ -103,18 +103,18 @@ async def _(c: user, m):
     if len(m.command) == 1 and not direp:
         return await babi.edit(cgr("gcs_1").format(em.gagal))
 
-    udB.set_var(user_id, "PMTEXT", pm_txt)
+    udB.set_var(nlx_id, "PMTEXT", pm_txt)
     await babi.edit(cgr("pmper_7").format(em.sukses, pm_txt))
     return
 
 
 @ky.ubot("setlimit", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     babi = await m.reply(cgr("proses").format(em.proses))
     await asyncio.sleep(2)
-    user_id = c.me.id
+    nlx_id = c.me.id
     args_txt = c.get_arg(m)
     if args_txt:
         if args_txt.isnumeric():
@@ -123,11 +123,11 @@ async def _(c: user, m):
             return await babi.edit(cgr("pmper_8").format(em.gagal, m.command))
     else:
         return await babi.edit(cgr("pmper_8").format(em.gagal, m.command))
-    udB.set_var(user_id, "PMLIMIT", pm_warns)
+    udB.set_var(nlx_id, "PMLIMIT", pm_warns)
     await babi.edit(cgr("pmper_9").format(em.sukses, pm_warns))
 
 
-async def formula(c: user, m):
+async def formula(c: nlx, m):
     if TAG_LOG is None:
         return
     if m.chat.id != 777000:
@@ -140,30 +140,30 @@ async def formula(c: user, m):
 
 
 @ky.permit()
-async def _(c: user, m):
+async def _(c: nlx, m):
     await formula(c, m)
     em = Emojik()
     em.initialize()
-    user_id = c.me.id
-    siapa = m.from_user.id
-    biji = m.from_user.mention
+    nlx_id = c.me.id
+    siapa = m.from_nlx.id
+    biji = m.from_nlx.mention
     chat_id = m.chat.id
-    in_user = m.from_user
+    in_nlx = m.from_nlx
     fsdj = udB.dicek_pc(chat_id)
-    is_pm_guard_enabled = udB.get_var(user_id, "PMPERMIT")
+    is_pm_guard_enabled = udB.get_var(nlx_id, "PMPERMIT")
     if not is_pm_guard_enabled:
         return
     if fsdj:
         return
 
-    if in_user.is_fake or in_user.is_scam:
-        return await c.block_user(in_user.id)
-    if in_user.is_support or in_user.is_verified or in_user.is_self:
+    if in_nlx.is_fake or in_nlx.is_scam:
+        return await c.block_nlx(in_nlx.id)
+    if in_nlx.is_support or in_nlx.is_verified or in_nlx.is_self:
         return
     if siapa in DEVS:
         try:
             await c.send_message(
-                in_user.id,
+                in_nlx.id,
                 f"<b>Menerima Pesan Dari {biji} !!\nTerdeteksi Developer Dari Mix-Userbot.</b>",
                 parse_mode=ParseMode.HTML,
             )
@@ -171,7 +171,7 @@ async def _(c: user, m):
         except BaseException:
             pass
         return
-    x = await c.get_inline_bot_results(bot.me.username, f"ambil_tombolpc {chat_id}")
+    x = await c.get_inline_bot_results(bot.me.nlxname, f"ambil_tombolpc {chat_id}")
     await c.send_inline_bot_result(
         m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
     )

@@ -23,7 +23,7 @@ async def refresh_dialog(query):
     chats = []
     chat_types = {
         "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "users": [ChatType.PRIVATE],
+        "nlxs": [ChatType.PRIVATE],
         "bot": [ChatType.BOT],
         "all": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
         "ch": [ChatType.CHANNEL],
@@ -35,14 +35,14 @@ async def refresh_dialog(query):
             ChatType.BOT,
         ],
     }
-    async for xxone in user.get_dialogs():
+    async for xxone in nlx.get_dialogs():
         if xxone.chat.type in chat_types[query]:
             chats.append(xxone.chat.id)
     return chats
 
 
 @ky.ubot("gcast", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
@@ -90,14 +90,14 @@ async def _(c: user, m):
 
 
 @ky.ubot("gucast", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
     send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
-    chats = await refresh_dialog("users")
+    chats = await refresh_dialog("nlxs")
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
@@ -128,7 +128,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("addbl", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pp = await m.reply(cgr("proses").format(em.proses))
@@ -146,7 +146,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("delbl", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pp = await m.reply(cgr("proses").format(em.proses))
@@ -170,7 +170,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("listbl", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pp = await m.reply(cgr("proses").format(em.proses))
@@ -187,7 +187,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("rmall", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
@@ -200,14 +200,14 @@ async def _(c: user, m):
 
 
 @ky.ubot("send", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message:
         chat_id = m.chat.id if len(m.command) < 2 else m.text.split()[1]
         try:
             if c.me.id != bot.me.id:
                 if m.reply_to_message.reply_markup:
                     x = await c.get_inline_bot_results(
-                        bot.me.username, f"_send_ {id(m)}"
+                        bot.me.nlxname, f"_send_ {id(m)}"
                     )
                     await c.send_inline_bot_result(chat_id, x.query_id, x.results[0].id)
                     await m.delete()

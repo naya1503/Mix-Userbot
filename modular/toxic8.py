@@ -16,7 +16,7 @@ from Mix import *
 
 
 @ky.ubot("ganteng", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     uputt = await m.reply(
         "`Lu Mau Tau Sebuah Fakta?`", reply_to_message_id=ReplyCheck(m)
     )
@@ -27,8 +27,8 @@ async def _(c: user, m):
 
 
 @ky.ubot("wibu", sudo=True)
-async def _(c: user, m):
-    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+async def _(c: nlx, m):
+    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply("`Kata Emak`", reply_to_message_id=ReplyCheck(m))
@@ -64,8 +64,8 @@ async def _(c: user, m):
 
 
 @ky.ubot("ssenggol", sudo=True)
-async def _(c: user, m):
-    if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
+async def _(c: nlx, m):
+    if m.reply_to_message and m.reply_to_message.from_nlx.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
     uputt = await m.reply(

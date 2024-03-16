@@ -19,21 +19,21 @@ async def _(c, m):
         await mg.edit(cgr("inv_2").format(em.gagal))
         return
 
-    user_s_to_add = m.command[1]
-    user_list = user_s_to_add.split(" ")
-    user_id = await c.extract_user(m)
+    nlx_s_to_add = m.command[1]
+    nlx_list = nlx_s_to_add.split(" ")
+    nlx_id = await c.extract_nlx(m)
 
-    if not user_list:
+    if not nlx_list:
         await mg.edit(cgr("inv_2").format(em.gagal))
         return
     try:
-        await c.add_chat_members(m.chat.id, user_list, forward_limit=100)
+        await c.add_chat_members(m.chat.id, nlx_list, forward_limit=100)
     except errors.BadRequest as e:
         await mg.edit(
             f"{em.gagal} <b>Gagal menambahkan pengguna. Alasan:</b> <code>{str(e)}</code>"
         )
         return
-    mention = (await c.get_users(user_id)).mention
+    mention = (await c.get_nlxs(nlx_id)).mention
     await mg.edit(cgr("inv_3").format(em.sukses, mention, m.chat.title))
 
 

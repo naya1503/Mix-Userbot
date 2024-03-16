@@ -39,10 +39,10 @@ async def _(c, m):
     namagece = inpogc.title
     ceger = await m.reply(cgr("proses").format(em.proses))
     try:
-        chat_username = m.command[1]
+        chat_nlxname = m.command[1]
 
-        if chat_username.startswith("@"):
-            inpogc = await c.get_chat(chat_username)
+        if chat_nlxname.startswith("@"):
+            inpogc = await c.get_chat(chat_nlxname)
             chat_id = inpogc.id
             namagece = inpogc.title
 
@@ -63,7 +63,7 @@ async def _(c, m):
                 )
 
         chat_id = m.chat.id
-        chat_member = await c.get_chat_member(chat_id, m.from_user.id)
+        chat_member = await c.get_chat_member(chat_id, m.from_nlx.id)
         if chat_member.status in (
             ChatMemberStatus.OWNER,
             ChatMemberStatus.ADMINISTRATOR,
@@ -110,8 +110,8 @@ async def _(c, m):
             chat = dialog.chat.id
             try:
                 chat_info = await c.get_chat_member(chat, "me")
-                user_status = chat_info.status
-                if chat not in ceger and user_status not in (
+                nlx_status = chat_info.status
+                if chat not in ceger and nlx_status not in (
                     ChatMemberStatus.OWNER,
                     ChatMemberStatus.ADMINISTRATOR,
                 ):
@@ -123,7 +123,7 @@ async def _(c, m):
 
 
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xenn = await m.reply(cgr("proses").format(em.proses))
@@ -137,8 +137,8 @@ async def _(c: user, m):
                 chat = dialog.chat.id
                 try:
                     chat_info = await c.get_chat_member(chat, "me")
-                    user_status = chat_info.status
-                    if chat not in ceger and user_status not in (
+                    nlx_status = chat_info.status
+                    if chat not in ceger and nlx_status not in (
                         ChatMemberStatus.OWNER,
                         ChatMemberStatus.ADMINISTRATOR,
                     ):

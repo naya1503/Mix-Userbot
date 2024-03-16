@@ -155,7 +155,7 @@ def format_welcome_caption(html_string, chat_member):
         id=chat_member.id,
         last_name=chat_member.last_name,
         mention=chat_member.mention,
-        username=chat_member.username,
+        nlxname=chat_member.nlxname,
     )
 
 
@@ -247,30 +247,30 @@ async def escape_mentions_using_curly_brackets(
     if m.chat.type in [ChatType.SUPERGROUP, ChatType.GROUP, ChatType.CHANNEL]:
         chat_name = escape(m.chat.title)
     else:
-        chat_name = escape(m.from_user.first_name)
+        chat_name = escape(m.from_nlx.first_name)
     teks = await escape_invalid_curly_brackets(text, parse_words)
     if teks:
         teks = teks.format(
-            first=escape(m.from_user.first_name),
-            last=escape(m.from_user.last_name or m.from_user.first_name),
-            mention=m.from_user.mention,
-            username=(
-                "@" + (await escape_markdown(escape(m.from_user.username)))
-                if m.from_user.username
-                else m.from_user.mention
+            first=escape(m.from_nlx.first_name),
+            last=escape(m.from_nlx.last_name or m.from_nlx.first_name),
+            mention=m.from_nlx.mention,
+            nlxname=(
+                "@" + (await escape_markdown(escape(m.from_nlx.nlxname)))
+                if m.from_nlx.nlxname
+                else m.from_nlx.mention
             ),
             fullname=" ".join(
                 (
                     [
-                        escape(m.from_user.first_name),
-                        escape(m.from_user.last_name),
+                        escape(m.from_nlx.first_name),
+                        escape(m.from_nlx.last_name),
                     ]
-                    if m.from_user.last_name
-                    else [escape(m.from_user.first_name)]
+                    if m.from_nlx.last_name
+                    else [escape(m.from_nlx.first_name)]
                 ),
             ),
             chatname=chat_name,
-            id=m.from_user.id,
+            id=m.from_nlx.id,
         )
     else:
         teks = ""

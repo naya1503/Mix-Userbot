@@ -29,10 +29,10 @@ __help__ = get_cgr("help_global")
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nyet, _ = await c.extract_user_and_reason(m)
+    nyet, _ = await c.extract_nlx_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
@@ -51,7 +51,7 @@ async def _(c: user, m):
     gg = 0
     chats = await refresh_dialog("all")
     try:
-        mention = (await c.get_users(nyet)).mention
+        mention = (await c.get_nlxs(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
@@ -80,12 +80,12 @@ async def _(c: user, m):
 
 @ky.ubot("ungban", sudo=True)
 @ky.devs("cungban")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nyet, _ = await c.extract_user_and_reason(m)
+    nyet, _ = await c.extract_nlx_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
-    await c.get_users(nyet)
+    await c.get_nlxs(nyet)
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
         return
@@ -93,7 +93,7 @@ async def _(c: user, m):
     gg = 0
     chats = await refresh_dialog("all")
     try:
-        mention = (await c.get_users(nyet)).mention
+        mention = (await c.get_nlxs(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
@@ -115,10 +115,10 @@ async def _(c: user, m):
 
 @ky.ubot("gmute", sudo=True)
 @ky.devs("cgmute")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nyet, _ = await c.extract_user_and_reason(m)
+    nyet, _ = await c.extract_nlx_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
@@ -138,7 +138,7 @@ async def _(c: user, m):
     chats = await refresh_dialog("group")
 
     try:
-        mention = (await c.get_users(nyet)).mention
+        mention = (await c.get_nlxs(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
@@ -162,12 +162,12 @@ async def _(c: user, m):
 
 @ky.ubot("ungmute", sudo=True)
 @ky.devs("cungmute")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nyet, _ = await c.extract_user_and_reason(m)
+    nyet, _ = await c.extract_nlx_and_reason(m)
     xx = await m.reply(cgr("proses").format(em.proses))
-    await c.get_users(nyet)
+    await c.get_nlxs(nyet)
     if len(m.text.split()) == 1:
         await xx.edit(cgr("glbl_2").format(em.gagal))
         return
@@ -175,7 +175,7 @@ async def _(c: user, m):
     gg = 0
     chats = await refresh_dialog("group")
     try:
-        mention = (await c.get_users(nyet)).mention
+        mention = (await c.get_nlxs(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     for chat in chats:
@@ -198,7 +198,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("gbanlist|listgban", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     gbanu = dbgb.load_from_db()
@@ -224,7 +224,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("gmutelist|listgmute", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     gmnu = dbgm.load_from_db()

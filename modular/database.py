@@ -18,7 +18,7 @@ __help__ = get_cgr("help_dtbs")
 
 
 @ky.ubot("setdb", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     jing = await m.reply(cgr("proses").format(em.proses))
@@ -49,7 +49,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("getdb", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     jing = await m.reply(cgr("proses").format(em.proses))
@@ -63,7 +63,7 @@ async def _(c: user, m):
         if button:
             try:
                 x = await c.get_inline_bot_results(
-                    bot.me.username, f"get_teks_but {m.chat.id}"
+                    bot.me.nlxname, f"get_teks_but {m.chat.id}"
                 )
                 await c.send_inline_bot_result(
                     m.chat.id,
@@ -92,7 +92,7 @@ async def _(c: user, m):
 
 @ky.inline("^get_teks_but")
 async def _(c, iq):
-    gw = iq.from_user.id
+    gw = iq.from_nlx.id
     getpm_txt = udB.get_var(gw, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     teks, button = text_keyb(ikb, pm_text)

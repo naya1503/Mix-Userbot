@@ -13,12 +13,12 @@ from Mix import *
 
 
 @ky.ubot("help", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if not c.get_arg(m):
         try:
-            x = await c.get_inline_bot_results(bot.me.username, "help")
+            x = await c.get_inline_bot_results(bot.me.nlxname, "help")
             await m.reply_inline_bot_result(x.query_id, x.results[0].id)
         except Exception as error:
             await m.reply(error)

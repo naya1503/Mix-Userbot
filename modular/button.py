@@ -17,7 +17,7 @@ __help__ = get_cgr("help_butt")
 
 
 @ky.ubot("button", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = c.get_text(m)
@@ -25,7 +25,7 @@ async def _(c: user, m):
     text, keyboard = text_keyb(ikb, xx)
     if keyboard:
         try:
-            x = await c.get_inline_bot_results(bot.me.username, f"buat_button {id(m)}")
+            x = await c.get_inline_bot_results(bot.me.nlxname, f"buat_button {id(m)}")
             await c.send_inline_bot_result(
                 m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
             )

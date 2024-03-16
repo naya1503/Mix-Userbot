@@ -15,15 +15,15 @@ async def escape_markdown(text: str) -> str:
     return sub(r"([%s])" % escape_chars, r"\\\1", text)
 
 
-async def mention_html(name: str, user_id: int) -> str:
-    """Mention user in html format."""
+async def mention_html(name: str, nlx_id: int) -> str:
+    """Mention nlx in html format."""
     name = escape(name)
-    return f'<a href="tg://user?id={user_id}">{name}</a>'
+    return f'<a href="tg://nlx?id={nlx_id}">{name}</a>'
 
 
-async def mention_markdown(name: str, user_id: int) -> str:
-    """Mention user in markdown format."""
-    return f"[{(await escape_markdown(name))}](tg://user?id={user_id})"
+async def mention_markdown(name: str, nlx_id: int) -> str:
+    """Mention nlx in markdown format."""
+    return f"[{(await escape_markdown(name))}](tg://nlx?id={nlx_id})"
 
 
 async def clean_html(text: str) -> str:

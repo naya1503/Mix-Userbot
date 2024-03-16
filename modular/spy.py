@@ -16,7 +16,7 @@ __help__ = get_cgr("help_spy")
 
 
 @ky.ubot("curi|spy", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     dia = m.reply_to_message
     if not dia:
         return

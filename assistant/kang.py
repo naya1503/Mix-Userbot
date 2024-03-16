@@ -33,7 +33,7 @@ async def _(self: bot, message):
     videos = False
     convert = False
     reply = message.reply_to_message
-    user = await self.resolve_peer(message.from_user.username or message.from_user.id)
+    nlx = await self.resolve_peer(message.from_nlx.nlxname or message.from_nlx.id)
 
     if reply and reply.media:
         if reply.photo:
@@ -73,7 +73,7 @@ async def _(self: bot, message):
             return await prog_msg.edit_text()
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
-        packname = f"{pack_prefix}_{message.from_user.id}_by_{self.me.username}"
+        packname = f"{pack_prefix}_{message.from_nlx.id}_by_{self.me.nlxname}"
 
         if (
             len(message.command) > 1
@@ -83,7 +83,7 @@ async def _(self: bot, message):
             # provide pack number to kang in desired pack
             packnum = message.command.pop(1)
             packname = (
-                f"{pack_prefix}{packnum}_{message.from_user.id}_by_{self.me.username}"
+                f"{pack_prefix}{packnum}_{message.from_nlx.id}_by_{self.me.nlxname}"
             )
         if len(message.command) > 1:
             # matches all valid emojis in input
@@ -99,7 +99,7 @@ async def _(self: bot, message):
     elif message.entities and len(message.entities) > 1:
         pack_prefix = "a"
         filename = "sticker.png"
-        packname = f"c{message.from_user.id}_by_{self.me.username}"
+        packname = f"c{message.from_nlx.id}_by_{self.me.nlxname}"
         img_url = next(
             (
                 message.text[y.offset : (y.offset + y.length)]
@@ -123,7 +123,7 @@ async def _(self: bot, message):
             # m.command[1] is image_url
             if message.command[2].isdigit() and int(message.command[2]) > 0:
                 packnum = message.command.pop(2)
-                packname = f"a{packnum}_{message.from_user.id}_by_{self.me.username}"
+                packname = f"a{packnum}_{message.from_nlx.id}_by_{self.me.nlxname}"
             if len(message.command) > 2:
                 sticker_emoji = (
                     "".join(set(EMOJI_PATTERN.findall("".join(message.command[2:]))))
@@ -152,7 +152,7 @@ async def _(self: bot, message):
                 )
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
-                    packname = f"{pack_prefix}_{packnum}_{message.from_user.id}_by_{self.me.username}"
+                    packname = f"{pack_prefix}_{packnum}_{message.from_nlx.id}_by_{self.me.nlxname}"
                 else:
                     packname_found = True
             except StickersetInvalid:
@@ -166,7 +166,7 @@ async def _(self: bot, message):
                     mime_type=self.guess_mime_type(filename),
                     attributes=[DocumentAttributeFilename(file_name=filename)],
                 ),
-                message=f"#Sticker kang by UserID -> {message.from_user.id}",
+                message=f"#Sticker kang by UserID -> {message.from_nlx.id}",
                 random_id=self.rnd_id(),
             ),
         )
@@ -189,7 +189,7 @@ async def _(self: bot, message):
             )
         else:
             await prog_msg.edit_text("Membuat paket stiker baru...")
-            stkr_title = f"{message.from_user.first_name}"
+            stkr_title = f"{message.from_nlx.first_name}"
             if animated:
                 stkr_title += " AnimPack"
             elif videos:
@@ -199,7 +199,7 @@ async def _(self: bot, message):
             try:
                 await self.invoke(
                     CreateStickerSet(
-                        user_id=user,
+                        nlx_id=nlx,
                         title=stkr_title,
                         short_name=packname,
                         stickers=[

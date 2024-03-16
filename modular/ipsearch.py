@@ -22,7 +22,7 @@ __help__ = get_cgr("help_ips")
 
 
 @ky.ubot("ipf|ipfake", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     rep = m.reply_to_message
@@ -57,7 +57,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("ips|ipsearch|ip", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     rep = m.reply_to_message

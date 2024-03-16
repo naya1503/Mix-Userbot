@@ -16,7 +16,7 @@ from Mix import *
 
 
 @ky.ubot("mix", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     uputt = await m.reply("**Hai... Perkenalkan Saya Adalah Mix-Userbot**")
     asyncio.sleep(3)
     await uputt.edit("**Userbot base on Pyrogram**")
@@ -32,7 +32,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("sayang", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     xx = await m.reply("**Aku Cuma Mau Bilang...**", reply_to_message_id=ReplyCheck(m))
     asyncio.sleep(3)
     await xx.edit("**Aku Sayang Kamu Mwaahh** 😘❤")
@@ -42,7 +42,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("semangat", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     uputt = await m.reply(
         "**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m)
     )
@@ -56,7 +56,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("mengeluh", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     uputt = await m.reply(
         "**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m)
     )

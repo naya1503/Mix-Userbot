@@ -9,7 +9,7 @@ from hydrogram.errors import FloodWait
 start_time = waktunya()
 from team.nandev.database import cleanmode, ndB, udB
 
-from Mix import user
+from Mix import nlx
 
 
 async def get_time(seconds):
@@ -97,10 +97,10 @@ async def auto_clean():
                     if datetime.now() <= x["timer_after"]:
                         continue
                     try:
-                        await user.delete_messages(chat_id, x["msg_id"])
+                        await nlx.delete_messages(chat_id, x["msg_id"])
                     except FloodWait as e:
                         await asyncio.sleep(e.value)
-                        await user.delete_messages(chat_id, x["msg_id"])
+                        await nlx.delete_messages(chat_id, x["msg_id"])
                     except:
                         continue
         except:
