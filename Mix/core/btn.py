@@ -36,13 +36,23 @@ from .parser import escape_markdown
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
+"""
+def is_url(text: str) -> bool:
+    regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
+                [.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(
+                \([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\
+                ()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))".strip()
+    return [x[0] for x in findall(regex, str(text))]
+"""
+from re import findall
 
 def is_url(text: str) -> bool:
     regex = r"""(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
-                [.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(
+                [.][a-z]{2,4}/|(?:t.me/|@))[^\s()<>]+(?:\(([^\s()<>]+|(
                 \([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\
                 ()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))""".strip()
     return [x[0] for x in findall(regex, str(text))]
+
 
 
 def keyboard(buttons_list, row_width: int = 2):
