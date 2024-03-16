@@ -46,13 +46,13 @@ def is_url(text: str) -> bool:
 """
 from re import findall
 
+
 def is_url(text: str) -> bool:
     regex = r"""(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
                 [.][a-z]{2,4}/|(?:t.me/|@))[^\s()<>]+(?:\(([^\s()<>]+|(
                 \([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\
                 ()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))""".strip()
     return [x[0] for x in findall(regex, str(text))]
-
 
 
 def keyboard(buttons_list, row_width: int = 2):
