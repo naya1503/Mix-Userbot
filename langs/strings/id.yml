@@ -18,6 +18,7 @@ balik: "Kembali"
 ttup: "Tutup"
 reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
+supot: "**Jika anda butuhkan bantuan silahkan datang ke Grup Support Dibawah!!**\n\n**Atau kamu bisa melihat update di Channel Kami..**"
 
 # autoend
 auend_1: "{} **Berikan argumen!!**"
