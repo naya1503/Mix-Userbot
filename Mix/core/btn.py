@@ -15,11 +15,11 @@ from html import escape
 from re import findall
 from typing import List
 
-from pykeyboard import InlineKeyboard
 from hydrogram.enums import ChatType
 from hydrogram.types import InlineKeyboardButton
 from hydrogram.types import InlineKeyboardButton as Ikb
 from hydrogram.types import InlineKeyboardMarkup, Message
+from pykeyboard import InlineKeyboard
 
 from .parser import escape_markdown
 

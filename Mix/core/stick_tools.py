@@ -10,8 +10,8 @@ import asyncio
 import os
 import re
 
-from PIL import Image
 from hydrogram import emoji
+from PIL import Image
 
 
 def get_emoji_regex():
