@@ -22,7 +22,7 @@ def ReplyCheck(m):
     reply_id = None
     if m.reply_to_message:
         reply_id = m.reply_to_message.id
-    elif not m.from_nlx.is_self:
+    elif not m.from_user.is_self:
         reply_id = m.id
     return reply_id
 

@@ -13,9 +13,9 @@ def get_stuff():
     return ndB.get_key("BOTCHAT") or {}
 
 
-def add_stuff(msg_id, nlx_id):
+def add_stuff(msg_id, user_id):
     ok = get_stuff()
-    ok.update({msg_id: nlx_id})
+    ok.update({msg_id: user_id})
     return ndB.set_key("BOTCHAT", ok)
 
 
@@ -25,12 +25,12 @@ def get_who(msg_id):
         return ok[msg_id]
 
 
-def tag_add(msg, chat, nlx):
+def tag_add(msg, chat, user):
     ok = get_stuff()
     if not ok.get("TAG"):
-        ok.update({"TAG": {msg: [chat, nlx]}})
+        ok.update({"TAG": {msg: [chat, user]}})
     else:
-        ok["TAG"].update({msg: [chat, nlx]})
+        ok["TAG"].update({msg: [chat, user]})
     return ndB.set_key("BOTCHAT", ok)
 
 

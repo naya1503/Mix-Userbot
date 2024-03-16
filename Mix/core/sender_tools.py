@@ -5,12 +5,12 @@ from typing import Tuple
 from hydrogram.enums import MessageEntityType as entity
 from team.nandev.class_log import LOGGER
 
-from Mix import Users, nlx
+from Mix import Users, user
 
 from .msgty import Types
 
 
-async def send_cmd(c: nlx, msgtype: int):
+async def send_cmd(c: user, msgtype: int):
     GET_FORMAT = {
         Types.TEXT.value: c.send_message,
         Types.DOCUMENT.value: c.send_document,
@@ -28,103 +28,103 @@ async def send_cmd(c: nlx, msgtype: int):
 
 
 async def extract_user(c, m) -> Tuple[int, str, str]:
-    """Extract the nlx from the provided message."""
-    nlx_id = None
-    nlx_first_name = None
-    nlx_name = None
-    nlx_found = None
+    """Extract the user from the provided message."""
+    user_id = None
+    user_first_name = None
+    user_name = None
+    user_found = None
 
-    if m.reply_to_message and m.reply_to_message.from_nlx:
-        nlx_id = m.reply_to_message.from_nlx.id
-        nlx_first_name = m.reply_to_message.from_nlx.first_name
-        nlx_name = m.reply_to_message.from_nlx.nlxname
+    if m.reply_to_message and m.reply_to_message.from_user:
+        user_id = m.reply_to_message.from_user.id
+        user_first_name = m.reply_to_message.from_user.first_name
+        user_name = m.reply_to_message.from_user.username
 
     elif len(m.text.split()) > 1:
         if len(m.entities) > 1:
             required_entity = m.entities[1]
             if required_entity.type == entity.TEXT_MENTION:
-                nlx_id = required_entity.nlx.id
-                nlx_first_name = required_entity.nlx.first_name
-                nlx_name = required_entity.nlx.nlxname
+                user_id = required_entity.user.id
+                user_first_name = required_entity.user.first_name
+                user_name = required_entity.user.username
             elif required_entity.type in (entity.MENTION, entity.PHONE_NUMBER):
-                # new long nlx ids are identified as phone_number
-                nlx_found = m.text[
+                # new long user ids are identified as phone_number
+                user_found = m.text[
                     required_entity.offset : (
                         required_entity.offset + required_entity.length
                     )
                 ]
 
                 try:
-                    nlx_found = int(nlx_found)
+                    user_found = int(user_found)
                 except (ValueError, Exception) as ef:
                     if "invalid literal for int() with base 10:" in str(ef):
-                        nlx_found = str(nlx_found)
+                        user_found = str(user_found)
                     else:
                         LOGGER.error(ef)
                         LOGGER.error(format_exc())
 
                 try:
-                    sone = Users.get_nlx_info(nlx_found)
-                    nlx_id = sone["_id"]
-                    nlx_first_name = sone["name"]
-                    nlx_name = sone["nlxname"]
+                    sone = Users.get_user_info(user_found)
+                    user_id = sone["_id"]
+                    user_first_name = sone["name"]
+                    user_name = sone["username"]
                 except KeyError:
-                    # If nlx not in database
+                    # If user not in database
                     try:
-                        sone = await c.get_nlxs(nlx_found)
+                        sone = await c.get_users(user_found)
                     except Exception:
                         try:
-                            nlx_r = await c.resolve_peer(nlx_found)
-                            sone = await c.get_nlxs(nlx_r.nlx_id)
+                            user_r = await c.resolve_peer(user_found)
+                            sone = await c.get_users(user_r.user_id)
                         except Exception as ef:
                             return await m.reply_text(f"User not found ! Error: {ef}")
-                    nlx_id = sone.id
-                    nlx_first_name = sone.first_name
-                    nlx_name = sone.nlxname
+                    user_id = sone.id
+                    user_first_name = sone.first_name
+                    user_name = sone.username
                 except Exception as ef:
-                    nlx_id = nlx_found
-                    nlx_first_name = nlx_found
-                    nlx_name = ""
+                    user_id = user_found
+                    user_first_name = user_found
+                    user_name = ""
                     LOGGER.error(ef)
                     LOGGER.error(format_exc())
 
         else:
             try:
-                nlx_id = int(m.text.split()[1])
+                user_id = int(m.text.split()[1])
             except (ValueError, Exception) as ef:
                 if "invalid literal for int() with base 10:" in str(ef):
-                    nlx_id = (
+                    user_id = (
                         str(m.text.split()[1])
                         if (m.text.split()[1]).startswith("@")
                         else None
                     )
                 else:
-                    nlx_id = m.text.split()[1]
+                    user_id = m.text.split()[1]
                     LOGGER.error(ef)
                     LOGGER.error(format_exc())
 
-            if nlx_id is not None:
+            if user_id is not None:
                 try:
-                    sone = Users.get_nlx_info(nlx_id)
-                    nlx_first_name = sone["name"]
-                    nlx_name = sone["nlxname"]
+                    sone = Users.get_user_info(user_id)
+                    user_first_name = sone["name"]
+                    user_name = sone["username"]
                 except Exception as ef:
                     try:
-                        sone = await c.get_nlxs(nlx_id)
+                        sone = await c.get_users(user_id)
                     except Exception:
                         try:
-                            nlx_r = await c.resolve_peer(nlx_found)
-                            sone = await c.get_nlxs(nlx_r.nlx_id)
+                            user_r = await c.resolve_peer(user_found)
+                            sone = await c.get_users(user_r.user_id)
                         except Exception as ef:
                             return await m.reply_text(f"User not found ! Error: {ef}")
-                    nlx_first_name = sone.first_name
-                    nlx_name = sone.nlxname
+                    user_first_name = sone.first_name
+                    user_name = sone.username
                     LOGGER.error(ef)
                     LOGGER.error(format_exc())
 
     else:
-        nlx_id = m.from_nlx.id
-        nlx_first_name = m.from_nlx.first_name
-        nlx_name = m.from_nlx.nlxname
+        user_id = m.from_user.id
+        user_first_name = m.from_user.first_name
+        user_name = m.from_user.username
 
-    return nlx_id, nlx_first_name, nlx_name
+    return user_id, user_first_name, user_name
