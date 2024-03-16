@@ -58,9 +58,12 @@ async def get_time(seconds):
 async def put_cleanmode(org, message_id):
     if org not in cleanmode:
         cleanmode[org] = []
+    elif not isinstance(cleanmode[org], list):
+        cleanmode[org] = [cleanmode[org]]
     time_now = datetime.now()
     put = {
         "msg_id": message_id,
         "timer_after": time_now + timedelta(minutes=1),
     }
     cleanmode[org].append(put)
+
