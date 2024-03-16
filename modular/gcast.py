@@ -35,12 +35,16 @@ async def refresh_dialog(query):
             ChatType.BOT,
         ],
     }
-    async for xxone in user.get_dialogs():
+    async for xxone in nlx.get_dialogs():
         if xxone.chat.type in chat_types[query]:
-            chat = await check_chat_access(xxone.chat.id)
-            if chat:
-                chats.append(xxone.chat.id)
+            try:
+                chat = await nlx.get_chat(xxone.chat.id)
+                if chat:
+                    chats.append(xxone.chat.id)
+            except (UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden):
+                continue
     return chats
+
 
 
 @ky.ubot("gcast", sudo=True)
@@ -65,16 +69,6 @@ async def _(c: nlx, m):
                     await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(0.2)
-            except UserBannedInChannel:
-                continue
-            except SlowmodeWait:
-                continue
-            except PeerIdInvalid:
-                continue
-            except Forbidden:
-                continue
-            except ChatWriteForbidden:
-                continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
                 try:
