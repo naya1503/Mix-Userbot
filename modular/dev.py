@@ -380,7 +380,7 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
 
-    chat = await c.get_chat(chat_id=m.chat.id)
+    chat = c.get_chat(chat_id=m.chat.id)
     my = await chat.get_member(c.me.id)
 
     if my.privileges:
