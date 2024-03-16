@@ -45,7 +45,6 @@ def is_url(text: str) -> bool:
     return [x[0] for x in findall(regex, str(text))]
 
 
-
 def keyboard(buttons_list, row_width: int = 2):
     buttons = InlineKeyboard(row_width=row_width)
     data = [
