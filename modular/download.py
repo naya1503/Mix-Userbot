@@ -97,9 +97,7 @@ async def _(self: nlx, m):
     em.initialize()
     hm = "luciferbukanrobot_bot"
     await nlx.unblock_user(hm)
-    await nlx.send_message(
-        hm, f"/tiktok {m.command[1]}", disable_web_page_preview=True
-    )
+    await nlx.send_message(hm, f"/tiktok {m.command[1]}", disable_web_page_preview=True)
     pros = await m.reply(cgr("proses").format(em.proses))
     ai = await nlx.forward_messages(hm, m.chat.id, message_ids=m.id)
     await nlx.send_message(hm, "/tiktok", reply_to_message_id=ai.id)
