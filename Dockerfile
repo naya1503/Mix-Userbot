@@ -16,4 +16,4 @@ RUN pip3 install -U pip
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 
-CMD bash run.sh
+CMD bash start
