@@ -117,7 +117,12 @@ async def _(c: nlx, m):
                 else:
                     await c.send_message(chat, send)
                 done += 1
-            except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
+            except (
+                ChannelPrivate,
+                PeerIdInvalid,
+                UserBannedInChannel,
+                UsernameInvalid,
+            ):
                 continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
