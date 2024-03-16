@@ -1,4 +1,5 @@
-import requests
+import json
+from urllib.request import Request, urlopen
 from urllib.parse import quote
 from pyrogram import *
 
@@ -9,24 +10,36 @@ __help__ = "Wiki"
 
 def search_duckduckgo(query):
     try:
-        query_encoded = quote(query).replace(" ", "%20")
+        query_encoded = urlib.parse.quote(query)
         url = f"https://api.duckduckgo.com/?q={query_encoded}&format=json&pretty=1"
-        response = requests.get(url)
-        data = response.json()
-        search_text = data.get('AbstractText', None)
-        if not search_text and 'RelatedTopics' in data and data['RelatedTopics']:
-            search_text = data['RelatedTopics'][0].get('Text', None)
-        
-        return search_text
+        rikues = Request(url)
+
+        with urlopen(rikues) as response:
+            data = json.load(response)
+            if "AbstractText" in data:
+                return data["AbstractText"]
+            else:
+                url = f"https://api.duckduckgo.com/?q={query_encoded}&format=json"
+                request = Request(url)
+                with urlopen(request) as respose:
+                    data = json.laod(response)
+                    if "AbstractText" in data:
+                        return data["AbstractText"]
+                    else:
+                        return None
     except Exception as e:
         print("Error:", e)
         return None
 
 @ky.ubot("apa|siapa|dimana|bagaimana|kapan", sudo=True)
 async def handle_command(client, message):
+    em = Emojik()
+    em.initialize()
     try:
-        query = message.text.split(maxsplit=1)[1].strip()
-        if query:
+        hdh = await m.reply(cgr("proses").format(em.proses))
+        command = " ".join(m.command[1:])
+        if command:
+            await hdh.edit(response)
             response = search_duckduckgo(query)
             if response:
                 await message.reply(response)
