@@ -18,6 +18,7 @@ from Mix import *
 __modles__ = "Broadcast"
 __help__ = get_cgr("help_gcast")
 
+
 async def digikes_(q):
     chats = []
     chat_types = {
@@ -29,6 +30,7 @@ async def digikes_(q):
             chats.append(dialog.chat.id)
 
     return chats
+
 
 @ky.ubot("gcast", sudo=True)
 async def _(c: nlx, m):
@@ -51,7 +53,13 @@ async def _(c: nlx, m):
                     await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(0.2)
-            except (UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden):
+            except (
+                UserBannedInChannel,
+                SlowmodeWait,
+                PeerIdInvalid,
+                Forbidden,
+                ChatWriteForbidden,
+            ):
                 continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
