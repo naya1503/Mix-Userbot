@@ -175,7 +175,7 @@ gcs_14: "{} **All blacklist lists have been successfully deleted.**"
 # alive 
 alv_1: "**Author**"
 alv_2: "**Connoisseur**"
-alv_3: "**Mix-Userbot**\n    **status:** {}\n      **dc_id:** {}\n      **ping_dc:** {} ms\n      **antipm:** {}\n      **users:** {}\n      **groups:** {}\n      **bot_duration:** {}"
+alv_3: "**Mix-Userbot**\n    **status:** {}\n      **dc_id:** {}\n      **ping_dc:** {} ms\n      **antipm:** {}\n      **users:** {}\n      **bot**: {}\n      **groups:** {}\n      **bot_duration:** {}"
 alv_4: "Support"
 
 # global
