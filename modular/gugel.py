@@ -8,13 +8,11 @@
 
 import requests
 from pyrogram import *
-from pyrogram.types import *
 
 from Mix import *
 
 __modles__ = "Wiki"
 __help__ = "Wiki"
-
 
 def search_duckduckgo(query):
     try:
@@ -33,24 +31,17 @@ def search_duckduckgo(query):
         print("Error:", e)
         return None
 
-
 @ky.ubot("apa|siapa|dimana|bagaimana|kapan", sudo=True)
 async def handle_command(client, message):
-    query = message.text.split(maxsplit=1)[1].strip()
-    response = ""
-
-    if message.command[0] == "apa":
-        response = search_duckduckgo(query)
-    elif message.command[0] == "siapa":
-        response = search_duckduckgo(query)
-    elif message.command[0] == "dimana":
-        response = search_duckduckgo(query)
-    elif message.command[0] == "bagaimana":
-        response = search_duckduckgo(query)
-    elif message.command[0] == "kapan":
-        response = search_duckduckgo(query)
-
-    if response:
-        await message.reply(response)
-    else:
-        await message.reply("Maaf, tidak dapat menemukan informasi yang relevan.")
+    try:
+        query = message.text.split(maxsplit=1)[1].strip()
+        if query:
+            response = search_duckduckgo(query)
+            if response:
+                await message.reply(response)
+            else:
+                await message.reply("Maaf, tidak dapat menemukan informasi yang relevan.")
+        else:
+            await message.reply("Harap berikan kueri.")
+    except Exception as e:
+        print("Error:", e)
