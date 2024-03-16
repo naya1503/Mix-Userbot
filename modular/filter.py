@@ -202,7 +202,7 @@ async def send_filter_reply(c: user, m, trigger: str):
     return msgtype
 
 
-@ky.filter
+@ky.filter()
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
