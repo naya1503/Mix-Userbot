@@ -109,7 +109,7 @@ async def _(c: user, m):
     if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
         return
     try:
-        await c.send(EditGroupCallTitle(call=group_call, title=f"{txt}"))
+        await c.invoke(EditGroupCallTitle(call=group_call, title=f"{txt}"))
     except Forbidden:
         await ky.edit(cgr("vc_5").format(em.gagal))
         return
