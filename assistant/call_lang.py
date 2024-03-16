@@ -48,12 +48,12 @@ async def _(c, cq):
 
 @ky.callback("clbk.")
 async def _(c, cq):
-    if cq.from_nlx.id != nlx.me.id:
+    if cq.from_user.id != user.me.id:
         await cq.answer("Lu Siapa Si Memeg??", True)
         return
     cmd = cq.data.split(".")[1]
     op = get_bahasa_()
-    nlx_name = f"<a href='tg://nlx?id={cq.from_nlx.id}'>{cq.from_nlx.first_name} {cq.from_nlx.last_name or ''}</a>"
+    user_name = f"<a href='tg://user?id={cq.from_user.id}'>{cq.from_user.first_name} {cq.from_user.last_name or ''}</a>"
     if cmd == "bhsa":
         meki = f"{op[0]['natively']}"
         teks = cgr("asst_4").format(meki)
@@ -62,7 +62,7 @@ async def _(c, cq):
         await cq.edit_message_text(cgr("reboot_1"))
         os.execl(sys.executable, sys.executable, "-m", "Mix")
     elif cmd == "bek":
-        ts_1 = cgr("asst_1").format(nlx_name)
+        ts_1 = cgr("asst_1").format(user_name)
         await cq.edit_message_text(text=ts_1, reply_markup=clbk_strt())
 
 

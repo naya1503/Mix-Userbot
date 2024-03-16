@@ -39,13 +39,13 @@ def clbk_stasm():
 
 @ky.callback("^pm_")
 async def _(c, cq):
-    org = cq.from_nlx.id
+    org = cq.from_user.id
     data, sapa = (
         cq.data.split(None, 2)[1],
         cq.data.split(None, 2)[2],
     )
     if data == "okein":
-        if org != nlx.me.id:
+        if org != user.me.id:
             return await cq.answer("This Button Not For You FCVK !!!!", True)
         udB.oke_pc(int(sapa))
         return await bot.edit_inline_text(
@@ -53,15 +53,15 @@ async def _(c, cq):
         )
 
     if data == "blokbae":
-        if org != nlx.me.id:
+        if org != user.me.id:
             return await cq.answer("This Button Not For You FCVK !!!!", True)
         await bot.edit_inline_text(
-            cq.inline_message_id, "Successfully blocked the nlx."
+            cq.inline_message_id, "Successfully blocked the user."
         )
-        await nlx.block_nlx(int(sapa))
-        return await nlx.invoke(
+        await user.block_user(int(sapa))
+        return await user.invoke(
             DeleteHistory(
-                peer=(await nlx.resolve_peer(sapa)),
+                peer=(await user.resolve_peer(sapa)),
                 max_id=0,
                 revoke=False,
             )
@@ -108,8 +108,8 @@ async def _(c, cq):
     prev_match = re.match(r"help_prev\((.+?)\)", cq.data)
     next_match = re.match(r"help_next\((.+?)\)", cq.data)
     back_match = re.match(r"help_back", cq.data)
-    nlx_id = cq.from_nlx.id
-    prefix = await nlx.get_prefix(nlx_id)
+    user_id = cq.from_user.id
+    prefix = await user.get_prefix(user_id)
 
     if mod_match:
         module = (mod_match.group(1)).replace(" ", "_")
@@ -232,8 +232,8 @@ async def _(c, cq):
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
     kemem = okb([[("≪", "anim.bc")]])
-    nlx_id = cq.from_nlx.id
-    prefix = await nlx.get_prefix(nlx_id)
+    user_id = cq.from_user.id
+    prefix = await user.get_prefix(user_id)
     txt = None
     if colmek == "anm1":
         txt = get_cgr("help_anm1").format(next((p) for p in prefix))
@@ -293,8 +293,8 @@ async def _(c, cq):
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
     kemem = okb([[("≪", "to.bc"), ("⪼", "to.next")]])
-    nlx_id = cq.from_nlx.id
-    prefix = await nlx.get_prefix(nlx_id)
+    user_id = cq.from_user.id
+    prefix = await user.get_prefix(user_id)
     txt = None
     if colmek == "next":
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
@@ -416,8 +416,8 @@ async def _(c, cq):
 @ky.callback("^cls_hlp")
 async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
-    if cq.from_nlx.id == nlx.me.id:
-        await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+    if cq.from_user.id == user.me.id:
+        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
     else:
         await cq.answer(
             f"Jangan Di Pencet Anjeng.",
@@ -429,8 +429,8 @@ async def _(_, cq):
 @ky.callback("^close")
 async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
-    if cq.from_nlx.id == nlx.me.id:
-        await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+    if cq.from_user.id == user.me.id:
+        await user.delete_messages(unPacked.chat_id, unPacked.message_id)
     else:
         await cq.answer(f"Jangan Di Pencet Anjeng.", True)
         return
@@ -455,7 +455,7 @@ def cb_tespeed():
 
 @ky.callback("^gasbalap")
 async def _(c, cq):
-    if cq.from_nlx.id != nlx.me.id:
+    if cq.from_user.id != user.me.id:
         return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
     kb = ikb({f"{cgr('ttup')}": "cls_hlp"})
     await cq.edit_message_text(text="**Processing...**", reply_markup=kb)
@@ -478,7 +478,7 @@ async def _(c, cq):
         btn_data = cq.data
         if btn_data.startswith("#"):
             notetag = btn_data[1:]
-            noteval = udB.get_note(nlx.me.id, notetag)
+            noteval = udB.get_note(user.me.id, notetag)
             if not noteval:
                 await cq.answer("Catatan tidak ditemukan.", True)
                 return
