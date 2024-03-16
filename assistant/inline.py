@@ -133,7 +133,7 @@ async def _(c, iq):
 # copy
 @ky.inline("^get_msg")
 async def _(c, iq):
-    bk = ikb({f"{cgr("klk_1")}": f"copymsg_{int(iq.query.split()[1])}"})
+    bk = ikb({f"{cgr('klk_1')}": f"copymsg_{int(iq.query.split()[1])}"})
     await c.answer_inline_query(
         iq.id,
         cache_time=0,
@@ -221,7 +221,7 @@ async def _(c, iq):
         len(ape),
         upnya,
     )
-    bo_ol = ikb({f"{cgr("alv_4")}": "t.me/kynansupport", "Stats": "stats_mix"})
+    bo_ol = ikb({f"{cgr('alv_4')}": "t.me/kynansupport", "Stats": "stats_mix"})
     cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
