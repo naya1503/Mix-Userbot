@@ -372,7 +372,7 @@ async def _(c: user, m):
 
 
 from pyrogram.errors import FloodWait
-
+from pyrogram.enums import ChatMembersFilter
 
 @ky.ubot("anben")
 async def _(c, m):
@@ -401,7 +401,7 @@ async def _(c, m):
             try:
                 unban_count = 0
                 benet = await chat.get_members(
-                    chat.id, filter=ChatMembertsFilter.BANNED
+                    chat.id, filter=ChatMembersFilter.BANNED
                 )
                 async for member in benet:
                     try:
