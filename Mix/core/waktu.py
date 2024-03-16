@@ -81,19 +81,18 @@ async def put_cleanmode(chat_id, message_id):
     cleanmode[chat_id].append(put)
 
 async def auto_clean():
-    while not await asyncio.sleep(5):
+    while not await asyncio.sleep(30):
         try:
-            for org in cleanmode:
-                if not udB.is_cleanmode_on(user.me.id):
+            for chat_id in cleanmode:
+                if not await is_cleanmode_on(chat_id):
                     continue
                 for x in cleanmode[chat_id]:
                     if datetime.now() <= x["timer_after"]:
                         continue
                     try:
-                        await user.delete_messages(chat_id, x["msg_id"])
+                        await app.delete_messages(chat_id, x["msg_id"])
                     except FloodWait as e:
                         await asyncio.sleep(e.value)
-                        await user.delete_messages(chat_id, x["msg_id"])
                     except:
                         continue
         except:
