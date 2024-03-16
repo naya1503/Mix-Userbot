@@ -88,7 +88,6 @@ async def put_cleanmode(chat_id, message_id):
 
 
 async def auto_clean():
-    while not await asyncio.sleep(5):
         try:
             for chat_id in cleanmode:
                 if not udB.is_cleanmode_on(chat_id):
