@@ -8,7 +8,7 @@ from Mix.core import *
 git()
 heroku()
 bot = Bot()
-nlx = Userbot()
+user = Userbot()
 
 
 from team import *
