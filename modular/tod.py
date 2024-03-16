@@ -7,7 +7,7 @@ from gpytranslate import Translator
 from Mix import *
 
 __modles__ = "TOD"
-__help__ = "TOD"
+__help__ = get_cgr("help_tod")
 
 translator = Translator()
 
