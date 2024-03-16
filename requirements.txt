@@ -17,7 +17,7 @@ pymediainfo
 youtube-search
 youtube-search-python
 attrify
-maling==1.9.3
+maling==1.9.4
 gitpython
 heroku3
 speedtest-cli
@@ -40,5 +40,3 @@ lyricsgenius==3.0.1
 SafoneApi
 pytgcalls==3.0.0.dev22
 pyrogram
-flask
-flask_restful
