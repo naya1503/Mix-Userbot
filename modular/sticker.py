@@ -17,7 +17,7 @@ from hydrogram.raw.functions.messages import *
 from hydrogram.raw.functions.stickers import *
 from hydrogram.raw.types import *
 
-from Mix import Emojik, bot, cgr, get_cgr, ky, ndB, user
+from Mix import Emojik, bot, cgr, get_cgr, ky, ndB, nlx
 
 __modles__ = "Sticker"
 __help__ = get_cgr("help_stick")
@@ -64,14 +64,14 @@ async def _(self: nlx, m):
     em = Emojik()
     em.initialize()
     rep = m.reply_to_message
-    await user.unblock_user(bot.me.username)
+    await nlx.unblock_user(bot.me.username)
     if not rep:
         await m.reply(cgr("st_3").format(em.gagal))
         return
     if rep.sticker:
         pros = await m.reply(cgr("proses").format(em.proses))
-        ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
-        await user.send_message(bot.me.username, "/unkang", reply_to_message_id=ai.id)
+        ai = await nlx.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
+        await nlx.send_message(bot.me.username, "/unkang", reply_to_message_id=ai.id)
         await asyncio.sleep(0.5)
         if await resleting(m) == "Stiker berhasil dihapus dari paket Anda.":
             await pros.edit(cgr("st_4").format(em.sukses))
@@ -88,25 +88,25 @@ async def _(self: nlx, m):
     em = Emojik()
     em.initialize()
     rep = m.reply_to_message
-    await user.unblock_user(bot.me.username)
+    await nlx.unblock_user(bot.me.username)
     if not rep:
         await m.reply(cgr("st_7").format(em.gagal))
         return
-    await user.send_message(bot.me.username, "/kang")
+    await nlx.send_message(bot.me.username, "/kang")
     pros = await m.reply(cgr("proses").format(em.proses))
-    ai = await user.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
-    await user.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
+    ai = await nlx.forward_messages(bot.me.username, m.chat.id, message_ids=rep.id)
+    await nlx.send_message(bot.me.username, "/kang", reply_to_message_id=ai.id)
     await asyncio.sleep(5)
-    async for tai in user.search_messages(
+    async for tai in nlx.search_messages(
         bot.me.username, query="Sticker Anda Berhasil Dibuat!", limit=1
     ):
         await asyncio.sleep(5)
         await tai.copy(m.chat.id)
     await pros.delete()
-    ulat = await user.resolve_peer(bot.me.username)
-    await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
+    ulat = await nlx.resolve_peer(bot.me.username)
+    await nlx.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
     return
 
 
 async def resleting(m):
-    return [x async for x in user.get_chat_history(bot.me.username, limit=1)][0].text
+    return [x async for x in nlx.get_chat_history(bot.me.username, limit=1)][0].text
