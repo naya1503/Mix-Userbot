@@ -41,7 +41,13 @@ async def _(c: nlx, m):
                         await c.send_message(chat, send)
                     done += 1
                     await asyncio.sleep(0.2)
-                except (UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden):
+                except (
+                    UserBannedInChannel,
+                    SlowmodeWait,
+                    PeerIdInvalid,
+                    Forbidden,
+                    ChatWriteForbidden,
+                ):
                     continue
                 except FloodWait as e:
                     await asyncio.sleep(int(e))
@@ -67,7 +73,7 @@ async def _(c: nlx, m):
     send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
-    
+
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
@@ -81,7 +87,13 @@ async def _(c: nlx, m):
                     else:
                         await c.send_message(chat, send)
                     done += 1
-                except (UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden):
+                except (
+                    UserBannedInChannel,
+                    SlowmodeWait,
+                    PeerIdInvalid,
+                    Forbidden,
+                    ChatWriteForbidden,
+                ):
                     continue
                 except FloodWait as e:
                     await asyncio.sleep(int(e))
