@@ -56,13 +56,13 @@ async def starter():
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
-    await start_user()
-    if nlx.is_connected:
-        await start_bot()
+    user_task = asyncio.create_task(start_user())
+    bot_task = asyncio.create_task(start_bot())
+    await user_task
+    await bot_task
     await asyncio.gather(refresh_cache(), check_logger())
     LOGGER.info("Successfully Started Userbot.")
-    asyncio.create_task(auto_clean())
-    await asyncio.gather(getFinish(), isFinish(), idle())
+    await asyncio.gather(getFinish(), auto_clean(), isFinish(), idle())
 
 
 # if __name__ == "__main__":
