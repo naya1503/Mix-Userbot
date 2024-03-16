@@ -91,7 +91,7 @@ async def auto_clean():
         try:
             for chat_id in cleanmode:
                 if not udB.is_cleanmode_on(user.me.id):
-                    continue
+                    return
                 for x in cleanmode[chat_id]:
                     if datetime.now() <= x["timer_after"]:
                         continue
@@ -102,4 +102,4 @@ async def auto_clean():
                     except:
                         continue
         except:
-            continue
+            pass
