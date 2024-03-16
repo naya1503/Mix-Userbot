@@ -1,7 +1,6 @@
-
 import requests
 from bs4 import BeautifulSoup
-from googletrans import Translator
+from gpytranslate import Translator
 
 from Mix import *
 
@@ -25,8 +24,8 @@ async def get_duckduckgo_answer(query):
 
 async def translate_text(text, target_language="id"):
     translator = Translator()
-    translated_text = await translator.translate(text, dest=target_language)
-    return translated_text.text
+    translated_text = await translator.translate(text, target_lang=target_language)
+    return translated_text
 
 
 @ky.ubot("ask", sudo=True)
