@@ -7,7 +7,7 @@ from hydrogram import *
 from hydrogram.types import *
 from PIL import Image, ImageDraw, ImageFont
 
-from Mix import Emojik, cgr, get_cgr, ky, user
+from Mix import Emojik, cgr, get_cgr, ky, nlx
 
 __modles__ = "Logo"
 __help__ = get_cgr("help_logo")
@@ -20,7 +20,7 @@ async def dl_font():
 
 
 @ky.ubot("logo", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     await dl_font()

@@ -38,7 +38,7 @@ def init_client(func):
     return wrapper
 
 
-async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCall]:
+async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCall]:
     em = Emojik()
     em.initialize()
     chat_peer = await c.resolve_peer(m.chat.id)
@@ -56,7 +56,7 @@ async def get_group_call(c: user, m, err_msg: str = "") -> Optional[InputGroupCa
 
 
 @ky.ubot("startvc", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     flags = " ".join(m.command[1:])
@@ -81,7 +81,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("stopvc", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     ky = await m.reply(cgr("proses").format(em.proses))
@@ -98,7 +98,7 @@ Ini Gw Bikin Dewek Ya Anj, Kalo Masih Dikata Copas Coba Cari Jing. ANAK KONTOL E
 
 
 @ky.ubot("vctitle", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     txt = c.get_arg(m)
@@ -120,7 +120,7 @@ async def _(c: user, m):
 @ky.ubot("joinvc", sudo=True)
 @ky.devs("Jvcs")
 @init_client
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
 
@@ -142,7 +142,7 @@ async def _(c: user, m):
 @ky.ubot("leavevc", sudo=True)
 @ky.devs("Lvcs")
 @init_client
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     ky = await m.reply(cgr("proses").format(em.proses))

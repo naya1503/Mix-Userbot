@@ -18,7 +18,7 @@ __help__ = get_cgr("help_dtbs")
 
 
 @ky.ubot("setdb", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     jing = await m.reply(cgr("proses").format(em.proses))
@@ -49,7 +49,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("getdb", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     jing = await m.reply(cgr("proses").format(em.proses))

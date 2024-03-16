@@ -19,7 +19,7 @@ __help__ = get_cgr("help_transmart")
 
 
 @ky.ubot("tts", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
@@ -52,7 +52,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("tr", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     trans = Translator()
@@ -77,7 +77,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("lang", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     try:
@@ -92,7 +92,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setlang", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))

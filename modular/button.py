@@ -17,7 +17,7 @@ __help__ = get_cgr("help_butt")
 
 
 @ky.ubot("button", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = c.get_text(m)

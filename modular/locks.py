@@ -51,7 +51,7 @@ async def prevent_approved(m):
     return
 
 
-async def is_approved_user(c: user, m):
+async def is_approved_user(c: nlx, m):
     # admins_group = member_permissions(m.chat.id, m.from_user.id)
     if m.forward_from:
         if m.from_user.id in DEVS or m.from_user.id == c.me.id:
@@ -71,7 +71,7 @@ async def is_approved_user(c: user, m):
         return True
 
 
-async def delete_messages(c: user, m):
+async def delete_messages(c: nlx, m):
     try:
         await c.delete_messages(m.chat.id, message_ids=m.id)
         return
@@ -79,8 +79,8 @@ async def delete_messages(c: user, m):
         await m.reply(f"{e}")
 
 
-@user.on_message(filters.group & ~filters.me, group=4)
-async def _(c: user, m):
+@nlx.on_message(filters.group & filters.me, group=4)
+async def _(c: nlx, m):
     lock = LOCKS()
     all_chats = lock.get_lock_channel()
     if not all_chats:
@@ -119,7 +119,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("locktypes", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     await m.reply_text(l_t)
@@ -127,7 +127,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("lock", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) < 2:
@@ -271,7 +271,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("unlock", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) < 2:
@@ -434,7 +434,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("locks", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chkmsg = await m.reply_text(cgr("proses").format(em.proses))

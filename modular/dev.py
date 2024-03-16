@@ -25,7 +25,7 @@ __help__ = get_cgr("help_dev")
 
 
 @ky.cegers("aktif")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     exx = c.get_arg(m)
@@ -39,7 +39,7 @@ async def _(c: user, m):
 
 
 @ky.cegers("cek")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     kmm = udB.get_expired_date(user.me.id)
@@ -55,7 +55,7 @@ async def _(c: user, m):
 
 
 @ky.cegers("nonaktif")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     udB.rem_expired_date(user.me.id)
@@ -107,7 +107,7 @@ async def _(c, m):
 
 
 @ky.ubot("trash", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message:
         try:
             if len(m.command) < 2:
@@ -130,7 +130,7 @@ async def _(c: user, m):
 @ky.cegers("ceval")
 @ky.bots("eval|ev")
 async def _(c, m):
-    if not user.get_arg(m):
+    if not nlx.get_arg(m):
         return
     xx = await m.reply_text("Processing ...")
     cmd = m.text.split(" ", maxsplit=1)[1]
@@ -141,7 +141,7 @@ async def _(c, m):
     redirected_error = sys.stderr = StringIO()
     stdout, stderr, exc = None, None, None
     try:
-        await user.aexec(cmd, c, m)
+        await nlx.aexec(cmd, c, m)
     except Exception:
         exc = traceback.format_exc()
     stdout = redirected_output.getvalue()
@@ -182,7 +182,7 @@ def get_size(bytes, suffix="B"):
 
 
 @ky.ubot("host", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(f"{em.proses} Processing...")
@@ -275,7 +275,7 @@ async def generate_sysinfo(workdir):
 
 
 @ky.ubot("stats", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     response = await generate_sysinfo(c.workdir)

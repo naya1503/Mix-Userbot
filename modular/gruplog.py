@@ -20,7 +20,7 @@ __help__ = get_cgr("help_gruplog")
 
 
 @ky.ubot("gruplog", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(cgr("proses").format(em.proses))
@@ -100,7 +100,7 @@ async def _(c, m):
 
 
 @ky.replog()
-async def _(c: user, m):
+async def _(c: nlx, m):
     reply_ = m.reply_to_message
     chat, msg = who_tag(reply_.id)
     media = None

@@ -13,7 +13,7 @@ from Mix import *
 
 
 @ky.ubot("help", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if not c.get_arg(m):

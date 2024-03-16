@@ -16,7 +16,7 @@ __help__ = get_cgr("help_markd")
 
 
 @ky.ubot("markdown", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     try:
         xi = await c.get_inline_bot_results(bot.me.username, "mark_in")
         await m.delete()

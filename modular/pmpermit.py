@@ -32,7 +32,7 @@ LIMIT = 5
 
 
 @ky.ubot("ok|setuju", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat_type = m.chat.type
@@ -66,7 +66,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("no|tolak", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     babi = await m.reply(cgr("proses").format(em.proses))
@@ -86,7 +86,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setmsg", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     babi = await m.reply(cgr("proses").format(em.proses))
@@ -109,7 +109,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setlimit", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     babi = await m.reply(cgr("proses").format(em.proses))
@@ -127,7 +127,7 @@ async def _(c: user, m):
     await babi.edit(cgr("pmper_9").format(em.sukses, pm_warns))
 
 
-async def formula(c: user, m):
+async def formula(c: nlx, m):
     if TAG_LOG is None:
         return
     if m.chat.id != 777000:
@@ -140,7 +140,7 @@ async def formula(c: user, m):
 
 
 @ky.permit()
-async def _(c: user, m):
+async def _(c: nlx, m):
     await formula(c, m)
     em = Emojik()
     em.initialize()

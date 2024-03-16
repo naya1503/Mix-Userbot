@@ -50,9 +50,9 @@ def clbk_strto():
 @ky.bots("start", human.pv)
 async def _(c, m):
     udB.add_served_user(m.from_user.id)
-    owner_nih = user.me.id
+    owner_nih = nlx.me.id
     user_name = f"<a href='tg://user?id={m.from_user.id}'>{m.from_user.first_name} {m.from_user.last_name or ''}</a>"
-    user2 = f"<a href='tg://user?id={user.me.id}'>{user.me.first_name} {user.me.last_name or ''}</a>"
+    user2 = f"<a href='tg://user?id={nlx.me.id}'>{user.me.first_name} {user.me.last_name or ''}</a>"
     ts_1 = cgr("asst_1").format(user_name)
     ts_2 = cgr("asst_2").format(user_name, user2)
     if m.from_user.id == owner_nih:

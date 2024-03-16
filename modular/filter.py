@@ -24,7 +24,7 @@ db = Filters()
 
 
 @ky.ubot("filters", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     filters_chat = cgr("fil_1").format(em.sukses, m.chat.title)
@@ -44,7 +44,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("filter", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     args = m.text.split(" ", 1)
@@ -96,7 +96,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("unfilter", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     args = c.get_arg(m)
@@ -125,7 +125,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("unfilterall", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     all_bls = db.get_all_filters(m.chat.id)
@@ -135,7 +135,7 @@ async def _(c: user, m):
     await m.reply_text(cgr("fil_15").format(em.sukses))
 
 
-async def send_filter_reply(c: user, m, trigger: str):
+async def send_filter_reply(c: nlx, m, trigger: str):
     em = Emojik()
     em.initialize()
     """Reply with assigned filter for the trigger"""
@@ -203,7 +203,7 @@ async def send_filter_reply(c: user, m, trigger: str):
 
 
 @ky.filter()
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat_filters = db.get_all_filters(m.chat.id)

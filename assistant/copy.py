@@ -11,10 +11,10 @@ from modular.copy_con import *
 
 @ky.bots("copy")
 async def _(c, m):
-    if m.from_user.id != user.me.id:
+    if m.from_user.id != nlx.me.id:
         return
     xx = await m.reply("Tunggu Sebentar...")
-    link = user.get_arg(m)
+    link = nlx.get_arg(m)
     if not link:
         return await xx.edit(f"<b><code>{m.text}</code> [link]</b>")
     if link.startswith(("https", "t.me")):

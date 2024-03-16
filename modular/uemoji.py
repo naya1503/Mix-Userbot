@@ -15,7 +15,7 @@ __help__ = get_cgr("help_emo")
 
 
 @ky.ubot("setemo", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
 
@@ -51,7 +51,7 @@ async def _(c: user, m):
 
 """
 @ky.ubot("setemo", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.edit(cgr("proses").format(em.proses))
@@ -78,7 +78,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("emoid", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.edit(cgr("proses").format(em.proses))
@@ -95,7 +95,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("emoji", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     gua = c.me.is_premium
@@ -245,7 +245,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("getemo", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(cgr("proses").format(em.proses))

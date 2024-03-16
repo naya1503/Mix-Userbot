@@ -16,7 +16,7 @@ from Mix import *
 
 
 @ky.ubot("sadboy", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
@@ -31,7 +31,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("lah", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
@@ -45,7 +45,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("sok", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
@@ -61,7 +61,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("wah", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
@@ -87,7 +87,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("alay", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
@@ -103,7 +103,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("erpe", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
@@ -127,7 +127,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("tittle", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return

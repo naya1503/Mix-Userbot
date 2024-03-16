@@ -34,7 +34,7 @@ from .call_markdown import markdown_help
 async def _(c, iq):
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
-    rep = user.get_text(m)
+    rep = nlx.get_text(m)
     text, keyboard = text_keyb(ikb, rep)
     if m.reply_to_message.photo:
         dn = await m.reply_to_message.download()
@@ -104,7 +104,7 @@ async def _(c, iq):
 @ky.inline("^help")
 async def _(c, iq):
     user_id = iq.from_user.id
-    emut = await user.get_prefix(user_id)
+    emut = await nlx.get_prefix(user_id)
     msg = (
         "<b>Commands\n      Prefixes: `{}`\n      Modules: <code>{}</code></b>".format(
             " ".join(emut), len(CMD_HELP)
@@ -194,24 +194,24 @@ async def _(c, iq):
     pmper = None
     stutas = None
     start = datetime.now()
-    await user.invoke(Ping(ping_id=0))
+    await nlx.invoke(Ping(ping_id=0))
     pink = (datetime.now() - start).microseconds / 1000
     upnya = await get_time((time() - start_time))
     ape = await refresh_dialog("group")
     apa = await refresh_dialog("users")
     upu = await refresh_dialog("bot")
-    if user.me.id in DEVS:
+    if nlx.me.id in DEVS:
         stutas = cgr("alv_1")
     else:
         stutas = cgr("alv_2")
-    cekpr = udB.get_var(user.me.id, "PMPERMIT")
+    cekpr = udB.get_var(nlx.me.id, "PMPERMIT")
     if cekpr:
         pmper = "enable"
     else:
         pmper = "disable"
     txt = cgr("alv_3").format(
         stutas,
-        user.me.dc_id,
+        nlx.me.dc_id,
         str(pink).replace(".", ","),
         pmper,
         len(apa),
@@ -220,7 +220,7 @@ async def _(c, iq):
         upnya,
     )
     bo_ol = ikb({f"{cgr('alv_4')}": "suprot", "Stats": "stats_mix"})
-    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
+    cekpic = udB.get_var(nlx.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
             (
@@ -259,7 +259,7 @@ async def _(c, iq):
 async def _(c, iq):
     q = iq.query.split(None, 1)
     notetag = q[1]
-    noteval = udB.get_note(user.me.id, notetag)
+    noteval = udB.get_note(nlx.me.id, notetag)
     if not noteval:
         return
     note, button = text_keyb(ikb, noteval.get("value"))
@@ -312,7 +312,7 @@ async def _(c, iq):
 async def _(c, iq):
     org = iq.query.split()
     gw = iq.from_user.id
-    getpm_txt = udB.get_var(user.me.id, "PMTEXT")
+    getpm_txt = udB.get_var(nlx.me.id, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
@@ -328,15 +328,15 @@ async def _(c, iq):
             )
             def_keyb.update(add_keyb)
             keyboard = ikb(def_keyb)
-    mari = await user.get_users(int(org[1]))
+    mari = await nlx.get_users(int(org[1]))
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
-    if user.me.id == gw:
+    if nlx.me.id == gw:
         if int(org[1]) in flood2:
             flood2[int(org[1])] += 1
         else:
             flood2[int(org[1])] = 1
-        async for m in user.get_chat_history(int(org[1]), limit=pm_warns):
+        async for m in nlx.get_chat_history(int(org[1]), limit=pm_warns):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
@@ -346,12 +346,12 @@ async def _(c, iq):
             pm_warns,
         )
         if flood2[int(org[1])] > pm_warns:
-            await user.send_message(
+            await nlx.send_message(
                 int(org[1]),
                 f"**Saya sudah memperingati anda `{pm_warns}` !! Jangan Spam Atau Akan Diblokir!!**",
             )
             del flood2[int(org[1])]
-            await user.block_user(int(org[1]))
+            await nlx.block_user(int(org[1]))
             return
         lah = udB.get_var(gw, "PMPIC")
         if lah:

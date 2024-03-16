@@ -20,7 +20,7 @@ __help__ = get_cgr("help_sangmata")
 
 @ky.ubot("sg", sudo=True)
 @ky.devs("siapa")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     puki = await c.extract_user(m)

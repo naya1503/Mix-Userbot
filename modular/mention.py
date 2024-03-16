@@ -20,7 +20,7 @@ def random_emoji():
 
 
 @ky.ubot("tagall", sudo=True)
-async def tag_all_members(c: user, m: Message):
+async def tag_all_members(c: nlx, m: Message):
     em = Emojik()
     em.initialize()
     global berenti
@@ -98,7 +98,7 @@ async def tag_all_members(c: user, m: Message):
 
 
 @ky.ubot("stop", sudo=True)
-async def stop_tagall(c: user, m: Message):
+async def stop_tagall(c: nlx, m: Message):
     em = Emojik()
     em.initialize()
     global berenti

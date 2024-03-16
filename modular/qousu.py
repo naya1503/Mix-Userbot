@@ -23,7 +23,7 @@ __help__ = get_cgr("help_qot")
 
 """
 @ky.ubot("q", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     acak = random.choice(loanjing)
@@ -96,7 +96,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("qcolor", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     iymek = f"\n• ".join(loanjing)
@@ -111,7 +111,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("q", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     acak = None

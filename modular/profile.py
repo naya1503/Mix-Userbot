@@ -11,7 +11,7 @@ __help__ = get_cgr("help_prof")
 
 
 @ky.ubot("unblock", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     user_id = await c.extract_user(m)
@@ -28,7 +28,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("block", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     user_id = await c.extract_user(m)
@@ -45,7 +45,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setname", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     tex = await m.reply(cgr("proses").format(em.proses))
@@ -72,7 +72,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setbio", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     tex = await m.reply(cgr("proses").format(em.proses))
@@ -91,7 +91,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("meadmin", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     bacot = await m.reply(cgr("proses").format(em.proses))
@@ -137,7 +137,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setpp", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     replied = m.reply_to_message
@@ -158,7 +158,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("purgeme", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.command) != 2:

@@ -26,7 +26,7 @@ def kontol_siapa(xi, tipe):
 
 
 @ky.ubot("save", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     gua = c.me.id
@@ -59,7 +59,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("get", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(cgr("proses").format(em.proses))
@@ -194,7 +194,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("notes", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(cgr("proses").format(em.proses))
@@ -213,7 +213,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("clear", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(cgr("proses").format(em.proses))

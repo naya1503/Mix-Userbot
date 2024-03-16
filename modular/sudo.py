@@ -13,7 +13,7 @@ __help__ = get_cgr("help_sudo")
 
 
 @ky.ubot("addsudo", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
@@ -37,7 +37,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("delsudo", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
@@ -63,7 +63,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("sudolist", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")

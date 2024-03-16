@@ -123,7 +123,7 @@ async def _(c, m):
 
 
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xenn = await m.reply(cgr("proses").format(em.proses))

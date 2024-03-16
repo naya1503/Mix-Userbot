@@ -14,7 +14,7 @@ from hydrogram.enums import *
 from hydrogram.errors import *
 from hydrogram.types import *
 
-from Mix import DEVS, Emojik, cgr, get_cgr, ky, user
+from Mix import DEVS, Emojik, cgr, get_cgr, ky, nlx
 from Mix.core.parser import mention_html
 from Mix.core.sender_tools import extract_user
 
@@ -24,7 +24,7 @@ __help__ = get_cgr("help_rest")
 
 async def member_permissions(chat: int, org: int):
     perms = []
-    member = (await user.get_chat_member(chat, org)).privileges
+    member = (await nlx.get_chat_member(chat, org)).privileges
     if not member:
         return []
     if member.can_post_messages:
@@ -62,7 +62,7 @@ async def list_admins(m):
         "last_updated_at": time(),
         "data": [
             mek.user.id
-            async for mek in user.get_chat_members(
+            async for mek in nlx.get_chat_members(
                 m.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
             )
         ],
@@ -71,7 +71,7 @@ async def list_admins(m):
 
 
 @ky.ubot("purge", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     await m.delete()
     if not m.reply_to_message:
         return
@@ -98,7 +98,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("kick|delkick", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     user_id, reason = await c.extract_user_and_reason(m)
@@ -131,7 +131,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("ban|delban", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     user_id, reason = await c.extract_user_and_reason(m)
@@ -166,7 +166,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("unban", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     reply = m.reply_to_message
@@ -191,7 +191,7 @@ async def delete_reply(c, message):
 
 
 @ky.ubot("del", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message:
         await delete_reply(c, m.reply_to_message)
         await m.delete()
@@ -200,7 +200,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("pin|unpin", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
@@ -216,7 +216,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("mute|delmute", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     user_id, reason = await c.extract_user_and_reason(m)
@@ -255,7 +255,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("unmute", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     user_id = await c.extract_user(m)
@@ -279,7 +279,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("zombies", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat_id = m.chat.id
@@ -305,7 +305,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("getlink|invitelink", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if m.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
@@ -320,7 +320,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("report", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:
@@ -361,7 +361,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("fullpromote", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
@@ -405,7 +405,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("promote", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
@@ -457,7 +457,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("demote", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
@@ -505,7 +505,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("gctitle", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
@@ -523,7 +523,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("gcdes", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
@@ -541,7 +541,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("title", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if len(m.text.split()) == 1 and not m.reply_to_message:
@@ -574,7 +574,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("gcpic", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if not m.reply_to_message:

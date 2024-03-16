@@ -21,7 +21,7 @@ __help__ = get_cgr("help_spam")
 
 
 @ky.ubot("spam", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     global berenti
@@ -63,7 +63,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("dspam", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     global berenti
@@ -111,7 +111,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("cspam", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     global berenti
@@ -123,7 +123,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("dspamfw", sudo=True)
-async def _(c: user, message):
+async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
     global berenti

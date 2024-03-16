@@ -32,8 +32,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 from team.nandev.class_log import LOGGER
 
 from config import *
-from Mix import (XCB, Emojik, cgr, get_cgr, in_heroku, ky, on_heroku, paste,
-                 user)
+from Mix import XCB, Emojik, cgr, get_cgr, in_heroku, ky, nlx, on_heroku, paste
 
 from . import import_modular
 
@@ -44,7 +43,7 @@ __help__ = get_cgr("help_heroku")
 
 
 @ky.ubot("getlog", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     try:
@@ -76,7 +75,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("getvar", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     usage = cgr("hero_2").format(em.gagal, m.command)
@@ -108,7 +107,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("delvar", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     usage = cgr("hero_2").format(em.gagal)
@@ -138,7 +137,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("setvar", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     usage = cgr("hero_7").format(em.gagal, m.command)
@@ -169,7 +168,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("usage", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     ### Credits CatUserbot
@@ -188,7 +187,7 @@ async def _(c: user, m):
         "Chrome/80.0.3987.149 Mobile Safari/537.36"
     )
     headers = {
-        "User-Agent": useragent,
+        "User-Agent": nlxagent,
         "Authorization": f"Bearer {heroku_api}",
         "Accept": "application/vnd.heroku+json; version=3.account-quotas",
     }
@@ -232,7 +231,7 @@ async def _(c: user, m):
 
 @ky.ubot("update", sudo=True)
 @ky.devs("diupdate")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if await in_heroku():
@@ -289,7 +288,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("reboot", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     jj = await m.reply_text(cgr("proses").format(em.proses))
@@ -299,18 +298,18 @@ async def _(c: user, m):
 
 
 async def reload_user():
-    # await user.start()
     try:
         modxx = import_modular()
         for modx in modxx:
             imported_module = import_module(f"modular.{modx}")
             importlib.reload(imported_module)
+        LOGGER.info("Succes Update Module.")
     except Exception as er:
         LOGGER.error(f"{er}")
 
 
 @ky.ubot("restart", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     try:
         await reload_user()
     except Exception as er:

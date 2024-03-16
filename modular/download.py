@@ -92,25 +92,23 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
 
 
 @ky.ubot("dtik", sudo=False)
-async def _(self: user, m):
+async def _(self: nlx, m):
     em = Emojik()
     em.initialize()
     hm = "luciferbukanrobot_bot"
-    await user.unblock_user(hm)
-    await user.send_message(
-        hm, f"/tiktok {m.command[1]}", disable_web_page_preview=True
-    )
+    await nlx.unblock_user(hm)
+    await nlx.send_message(hm, f"/tiktok {m.command[1]}", disable_web_page_preview=True)
     pros = await m.reply(cgr("proses").format(em.proses))
-    ai = await user.forward_messages(hm, m.chat.id, message_ids=m.id)
-    await user.send_message(hm, "/tiktok", reply_to_message_id=ai.id)
+    ai = await nlx.forward_messages(hm, m.chat.id, message_ids=m.id)
+    await nlx.send_message(hm, "/tiktok", reply_to_message_id=ai.id)
     await asyncio.sleep(5)
-    async for tai in user.search_messages(hm, limit=1):
+    async for tai in nlx.search_messages(hm, limit=1):
         await asyncio.sleep(5)
         if tai.media:
             await tai.copy(m.chat.id)
     await pros.delete()
-    ulat = await user.resolve_peer(hm)
-    await user.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
+    ulat = await nlx.resolve_peer(hm)
+    await nlx.invoke(DeleteHistory(peer=ulat, max_id=0, revoke=True))
     return
 
 

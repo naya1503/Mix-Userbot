@@ -9,7 +9,7 @@ __help__ = get_cgr("help_asupan")
 
 
 @ky.ubot("asupan", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     y = await m.reply_text(cgr("proses").format(em.proses))
@@ -27,7 +27,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("cewek|cewe", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     y = await m.reply_text(cgr("proses").format(em.proses))
@@ -45,7 +45,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("cowok|cowo", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     y = await m.reply_text(cgr("proses").format(em.proses))
@@ -63,7 +63,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("anime", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     y = await m.reply_text(cgr("proses").format(em.proses))
@@ -82,7 +82,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("bokep", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     y = await m.reply_text(cgr("proses").format(em.proses))

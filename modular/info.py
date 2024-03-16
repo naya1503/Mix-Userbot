@@ -26,7 +26,7 @@ __modles__ = "Info"
 __help__ = get_cgr("help_info")
 
 
-async def count(c: user, chat):
+async def count(c: nlx, chat):
     em = Emojik()
     em.initialize()
     try:
@@ -160,7 +160,7 @@ async def user_info(c, sus, already=False):
     return caption, photo_id
 
 
-async def chat_info(c: user, chat, already=False):
+async def chat_info(c: nlx, chat, already=False):
     em = Emojik()
     em.initialize()
     u_name = False
@@ -273,7 +273,7 @@ async def _(c, m):
 
 
 @ky.ubot("cinfo|chatinfo", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     splited = m.text.split()

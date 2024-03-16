@@ -14,7 +14,7 @@ __help__ = get_cgr("help_pref")
 
 
 @ky.ubot("setprefix", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     xx = await m.reply(cgr("proses").format(em.proses))
@@ -37,5 +37,5 @@ async def _(c: user, m):
 
 
 @ky.devs("batu")
-async def _(c: user, m):
+async def _(c: nlx, m):
     await c.send_reaction(m.chat.id, m.id, "🗿")

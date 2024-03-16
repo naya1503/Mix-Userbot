@@ -52,7 +52,7 @@ async def _(c, m):
 
 
 @ky.ubot("gifid", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if m.reply_to_message and m.reply_to_message.animation:

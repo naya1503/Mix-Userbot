@@ -9,7 +9,7 @@ __help__ = get_cgr("help_limt")
 
 
 @ky.ubot("limit", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     await c.unblock_user("SpamBot")

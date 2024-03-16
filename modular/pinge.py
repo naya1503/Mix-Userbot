@@ -19,7 +19,7 @@ __help__ = get_cgr("help_ping")
 
 @ky.ubot("ping", sudo=True)
 @ky.devs("mping")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     start = datetime.now()

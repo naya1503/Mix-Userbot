@@ -8,7 +8,7 @@ from Mix import *
 
 
 @ky.ubot("ceking", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
@@ -34,7 +34,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("hina", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return
@@ -60,7 +60,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("ngaca", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
         return

@@ -19,6 +19,14 @@ __modles__ = "Broadcast"
 __help__ = get_cgr("help_gcast")
 
 
+async def dicek_dulu(chat_id):
+    try:
+        chat = await nlx.get_chat(chat_id)
+        return chat
+    except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
+        return None
+
+
 async def refresh_dialog(query):
     chats = []
     chat_types = {
@@ -35,14 +43,16 @@ async def refresh_dialog(query):
             ChatType.BOT,
         ],
     }
-    async for xxone in user.get_dialogs():
+    async for xxone in nlx.get_dialogs():
         if xxone.chat.type in chat_types[query]:
-            chats.append(xxone.chat.id)
+            chat = await dicek_dulu(xxone.chat.id)
+            if chat:
+                chats.append(xxone.chat.id)
     return chats
 
 
 @ky.ubot("gcast", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
@@ -63,15 +73,13 @@ async def _(c: user, m):
                     await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(0.2)
-            except UserBannedInChannel:
-                continue
-            except SlowmodeWait:
-                continue
-            except PeerIdInvalid:
-                continue
-            except Forbidden:
-                continue
-            except ChatWriteForbidden:
+            except (
+                UserBannedInChannel,
+                SlowmodeWait,
+                PeerIdInvalid,
+                Forbidden,
+                ChatWriteForbidden,
+            ):
                 continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
@@ -90,7 +98,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("gucast", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
@@ -109,7 +117,12 @@ async def _(c: user, m):
                 else:
                     await c.send_message(chat, send)
                 done += 1
-            except PeerIdInvalid:
+            except (
+                ChannelPrivate,
+                PeerIdInvalid,
+                UserBannedInChannel,
+                UsernameInvalid,
+            ):
                 continue
             except FloodWait as e:
                 await asyncio.sleep(int(e))
@@ -128,7 +141,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("addbl", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pp = await m.reply(cgr("proses").format(em.proses))
@@ -146,7 +159,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("delbl", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pp = await m.reply(cgr("proses").format(em.proses))
@@ -170,7 +183,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("listbl", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pp = await m.reply(cgr("proses").format(em.proses))
@@ -187,7 +200,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("rmall", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     msg = await m.reply(cgr("proses").format(em.proses))
@@ -200,7 +213,7 @@ async def _(c: user, m):
 
 
 @ky.ubot("send", sudo=True)
-async def _(c: user, m):
+async def _(c: nlx, m):
     if m.reply_to_message:
         chat_id = m.chat.id if len(m.command) < 2 else m.text.split()[1]
         try:
