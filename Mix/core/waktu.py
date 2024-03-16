@@ -90,7 +90,7 @@ async def put_cleanmode(chat_id, message_id):
 async def auto_clean():
         try:
             for chat_id in cleanmode:
-                if not udB.is_cleanmode_on(chat_id):
+                if not udB.is_cleanmode_on(user.me.id):
                     continue
                 for x in cleanmode[chat_id]:
                     if datetime.now() <= x["timer_after"]:
