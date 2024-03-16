@@ -1,10 +1,13 @@
 import random
+
 import requests
 from gpytranslate import translate
+
 from Mix import *
 
 __modles__ = "TOD"
 __help__ = "TOD"
+
 
 async def get_truth(category="classic|kids|party|hot|mixed"):
     try:
@@ -23,6 +26,7 @@ async def get_truth(category="classic|kids|party|hot|mixed"):
         print("Failed to fetch Truth:", e)
         return None
 
+
 async def get_dare(category="classic|kids|party|hot|mixed"):
     try:
         categories = category.split("|")
@@ -40,6 +44,7 @@ async def get_dare(category="classic|kids|party|hot|mixed"):
         print("Failed to fetch Dare:", e)
         return None
 
+
 @ky.ubot("dare", sudo=True)
 async def dare_command(client, message):
     proses = await message.reply(f"`Tunggu ...`")
@@ -50,6 +55,7 @@ async def dare_command(client, message):
         response = "**Gagal mengambil Dare. Silakan coba lagi nanti.**"
     await message.reply_text(response)
     await proses.delete()
+
 
 @ky.ubot("truth", sudo=True)
 async def truth_command(client, message):
