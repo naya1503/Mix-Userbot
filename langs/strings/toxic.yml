@@ -18,6 +18,7 @@ balik: "Kembali"
 ttup: "Tutup"
 reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya matot bot lo.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
+supot: "**Eh Goblok Kalo Lo Buta MAP, Lo dateng bae ke Grup Support Dibawah!!\n\nAtau Lo bisa ke Channel buat liat Apa yg Update..**"
 
 # autoend
 auend_1: "{} **Berikan argumen!!**"
