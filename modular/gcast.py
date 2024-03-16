@@ -41,10 +41,15 @@ async def refresh_dialog(query):
                 chat = await nlx.get_chat(xxone.chat.id)
                 if chat:
                     chats.append(xxone.chat.id)
-            except (UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden):
+            except (
+                UserBannedInChannel,
+                SlowmodeWait,
+                PeerIdInvalid,
+                Forbidden,
+                ChatWriteForbidden,
+            ):
                 continue
     return chats
-
 
 
 @ky.ubot("gcast", sudo=True)
