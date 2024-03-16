@@ -18,6 +18,17 @@ from Mix import *
 __modles__ = "Broadcast"
 __help__ = get_cgr("help_gcast")
 
+async def digikes_(q):
+    chats = []
+    chat_types = {
+        "gikes": [ChatType.GROUP, ChatType.SUPERGROUP],
+        "gucast": [ChatType.PRIVATE],
+    }
+    async for dialog in nlx.get_dialogs():
+        if dialog.chat.type in chat_types[q]:
+            chats.append(dialog.chat.id)
+
+    return chats
 
 @ky.ubot("gcast", sudo=True)
 async def _(c: nlx, m):
@@ -28,37 +39,30 @@ async def _(c: nlx, m):
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
     blacklist = udB.get_chat(c.me.id)
+    chats = await digikes_("gikes")
     done = 0
     failed = 0
-    async for dialog in c.get_dialogs():
-        if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
-            chat = dialog.chat.id
-            if chat not in blacklist and chat not in NO_GCAST:
+    for chat in chats:
+        if chat not in blacklist and chat not in NO_GCAST:
+            try:
+                if m.reply_to_message:
+                    await send.copy(chat)
+                else:
+                    await c.send_message(chat, send)
+                done += 1
+                await asyncio.sleep(0.2)
+            except (UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden):
+                continue
+            except FloodWait as e:
+                await asyncio.sleep(int(e))
                 try:
                     if m.reply_to_message:
                         await send.copy(chat)
                     else:
                         await c.send_message(chat, send)
                     done += 1
-                    await asyncio.sleep(0.2)
-                except (
-                    UserBannedInChannel,
-                    SlowmodeWait,
-                    PeerIdInvalid,
-                    Forbidden,
-                    ChatWriteForbidden,
-                ):
-                    continue
-                except FloodWait as e:
-                    await asyncio.sleep(int(e))
-                    try:
-                        if m.reply_to_message:
-                            await send.copy(chat)
-                        else:
-                            await c.send_message(chat, send)
-                        done += 1
-                    except Exception:
-                        failed += 1
+                except Exception:
+                    failed += 1
 
     return await msg.edit(
         cgr("gcs_2").format(em.alive, em.sukses, done, em.gagal, failed)
@@ -73,38 +77,30 @@ async def _(c: nlx, m):
     send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
-
+    chats = await digikes_("gucast")
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
-    async for dialog in c.get_dialogs():
-        if dialog.chat.type == ChatType.PRIVATE:
-            chat = dialog.chat.id
-            if chat not in blacklist and chat not in DEVS:
+    for chat in chats:
+        if chat not in blacklist and chat not in DEVS:
+            try:
+                if m.reply_to_message:
+                    await send.copy(chat)
+                else:
+                    await c.send_message(chat, send)
+                done += 1
+            except PeerIdInvalid:
+                continue
+            except FloodWait as e:
+                await asyncio.sleep(int(e))
                 try:
                     if m.reply_to_message:
                         await send.copy(chat)
                     else:
                         await c.send_message(chat, send)
                     done += 1
-                except (
-                    UserBannedInChannel,
-                    SlowmodeWait,
-                    PeerIdInvalid,
-                    Forbidden,
-                    ChatWriteForbidden,
-                ):
-                    continue
-                except FloodWait as e:
-                    await asyncio.sleep(int(e))
-                    try:
-                        if m.reply_to_message:
-                            await send.copy(chat)
-                        else:
-                            await c.send_message(chat, send)
-                        done += 1
-                    except Exception:
-                        failed += 1
+                except Exception:
+                    failed += 1
 
     return await msg.edit(
         cgr("gcs_3").format(em.alive, em.sukses, done, em.gagal, failed)
