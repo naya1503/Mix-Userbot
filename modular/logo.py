@@ -7,7 +7,7 @@ from hydrogram import *
 from hydrogram.types import *
 from PIL import Image, ImageDraw, ImageFont
 
-from Mix import Emojik, cgr, get_cgr, ky
+from Mix import Emojik, cgr, get_cgr, ky, nlx
 
 __modles__ = "Logo"
 __help__ = get_cgr("help_logo")
