@@ -60,8 +60,8 @@ async def starter():
     bot_task = asyncio.create_task(start_bot())
     await user_task
     await bot_task
-    if TAG_LOG is None:
-        await check_logger()
+    #if TAG_LOG is None:
+        #await check_logger()
     # await asyncio.gather(refresh_cache())
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
