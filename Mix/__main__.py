@@ -13,7 +13,7 @@ from Mix import *
 from Mix.core.waktu import auto_clean
 from modular import USER_MOD
 
-#lool = asyncio.get_event_loop()
+# lool = asyncio.get_event_loop()
 
 
 async def start_user():
@@ -65,10 +65,10 @@ async def starter():
     await asyncio.gather(getFinish(), isFinish(), idle())
 
 
-#if __name__ == "__main__":
+# if __name__ == "__main__":
 install()
 loop = asyncio.get_event_loop_policy()
 event_loop = loop.get_event_loop()
 asyncio.set_event_loop(event_loop)
 event_loop.run_until_complete(starter())
-#lool.run_until_complete(starter())
+# lool.run_until_complete(starter())
