@@ -39,15 +39,41 @@ async def _(c, iq):
     if m.reply_to_message.photo:
         dn = await m.reply_to_message.download()
         photo_tg = upload_file(dn)
-        duar = [(InlineQueryResultPhoto(photo_url=f"https://telegra.ph/{photo_tg[0]}", title="kon", reply_markup=keyboard, caption=text))]
-        
+        duar = [
+            (
+                InlineQueryResultPhoto(
+                    photo_url=f"https://telegra.ph/{photo_tg[0]}",
+                    title="kon",
+                    reply_markup=keyboard,
+                    caption=text,
+                )
+            )
+        ]
+
     elif m.reply_to_message.video:
         dn = await m.reply_to_message.download()
         photo_tg = upload_file(dn)
-        duar = [(InlineQueryResultVideo(video_url=f"https://telegra.ph/{photo_tg[0]}", title="kon", reply_markup=keyboard, caption=text))]
-        
+        duar = [
+            (
+                InlineQueryResultVideo(
+                    video_url=f"https://telegra.ph/{photo_tg[0]}",
+                    title="kon",
+                    reply_markup=keyboard,
+                    caption=text,
+                )
+            )
+        ]
+
     else:
-        duar = [(InlineQueryResultArticle(title="Tombol Teks!", input_message_content=InputTextMessageContent(text), reply_markup=keyboard))]
+        duar = [
+            (
+                InlineQueryResultArticle(
+                    title="Tombol Teks!",
+                    input_message_content=InputTextMessageContent(text),
+                    reply_markup=keyboard,
+                )
+            )
+        ]
     os.remove(m_d)
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
