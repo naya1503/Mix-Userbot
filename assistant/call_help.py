@@ -74,10 +74,10 @@ async def _(c, cq):
     kbt = ikb(
         {
             "Stats": "stats_mix",
-            "Support 1": f"{https://t.me/kynansupport}",
-            "Support 2": f"{https://t.me/gokilsupport}",
-            "Channel 1": f"{https://t.me/kontenfilm}",
-            "Channel 2": f"{https://t.me/SquirtInYourPussy}",
+            "Support 1": f"https://t.me/kynansupport",
+            "Support 2": f"https://t.me/gokilsupport",
+            "Channel 1": f"https://t.me/kontenfilm",
+            "Channel 2": f"https://t.me/SquirtInYourPussy",
         }
     )
     await cq.edit_message_text(txt, reply_markup=kbt)
