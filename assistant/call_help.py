@@ -73,11 +73,11 @@ async def _(c, cq):
     txt = cgr("supot")
     kbt = ikb(
         {
-            "Stats": "stats_mix",
             "Support 1": f"https://t.me/kynansupport",
             "Support 2": f"https://t.me/gokilsupport",
             "Channel 1": f"https://t.me/kontenfilm",
             "Channel 2": f"https://t.me/SquirtInYourPussy",
+            "Stats": "stats_mix",
         }
     )
     await cq.edit_message_text(txt, reply_markup=kbt)
