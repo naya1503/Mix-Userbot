@@ -16,7 +16,7 @@ from hydrogram.types import *
 
 from Mix import DEVS, Emojik, cgr, get_cgr, ky, nlx
 from Mix.core.parser import mention_html
-from Mix.core.sender_tools import extract_nlx
+from Mix.core.sender_tools import extract_user
 
 __modles__ = "Restrict"
 __help__ = get_cgr("help_rest")
@@ -39,8 +39,8 @@ async def member_permissions(chat: int, org: int):
         perms.append("can_promote_members")
     if member.can_change_info:
         perms.append("can_change_info")
-    if member.can_invite_nlxs:
-        perms.append("can_invite_nlxs")
+    if member.can_invite_users:
+        perms.append("can_invite_users")
     if member.can_pin_messages:
         perms.append("can_pin_messages")
     if member.can_manage_video_chats:
@@ -61,7 +61,7 @@ async def list_admins(m):
     admins_in_chat[m.chat.id] = {
         "last_updated_at": time(),
         "data": [
-            mek.nlx.id
+            mek.user.id
             async for mek in nlx.get_chat_members(
                 m.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
             )
@@ -101,19 +101,19 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nlx_id, reason = await c.extract_nlx_and_reason(m)
-    if not nlx_id:
+    user_id, reason = await c.extract_user_and_reason(m)
+    if not user_id:
         return await m.reply_text(cgr("glbl_2").format(em.gagal))
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         return await m.reply_text(cgr("res_1").format(em.gagal))
-    if nlx_id in DEVS:
+    if user_id in DEVS:
         return await m.reply_text(cgr("glbl_3").format(em.gagal))
-    mention = (await c.get_nlxs(nlx_id)).mention
+    mention = (await c.get_users(user_id)).mention
     msg = cgr("res_2").format(
         em.profil,
         mention,
         em.warn,
-        m.from_nlx.mention if m.from_nlx else "Anon",
+        m.from_user.mention if m.from_user else "Anon",
         em.block,
         reason or "No Reason Provided.",
     )
@@ -121,12 +121,12 @@ async def _(c: nlx, m):
         await m.reply_to_message.delete()
         await m.delete()
     try:
-        await m.chat.ban_member(nlx_id)
+        await m.chat.ban_member(user_id)
     except UserAdminInvalid:
         return await m.reply_text(cgr("res_3").format(em.gagal))
     await m.reply_text(msg)
     await asyncio.sleep(1)
-    await m.chat.unban_member(nlx_id)
+    await m.chat.unban_member(user_id)
     return
 
 
@@ -134,23 +134,23 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nlx_id, reason = await c.extract_nlx_and_reason(m)
+    user_id, reason = await c.extract_user_and_reason(m)
 
-    if not nlx_id:
+    if not user_id:
         return await m.reply_text(cgr("glbl_2").format(em.gagal))
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         return await m.reply_text(cgr("res_4").format(em.gagal))
-    if nlx_id in DEVS:
+    if user_id in DEVS:
         return await m.reply_text(cgr("glbl_3").format(em.gagal))
     try:
-        mention = (await c.get_nlxs(nlx_id)).mention
+        mention = (await c.get_users(user_id)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
     msg = cgr("res_5").format(
         em.profil,
         mention,
         em.warn,
-        m.from_nlx.mention if m.from_nlx else "Anon",
+        m.from_user.mention if m.from_user else "Anon",
         em.block,
         reason or "No Reason Provided.",
     )
@@ -158,7 +158,7 @@ async def _(c: nlx, m):
         await m.reply_to_message.delete()
         await m.delete()
     try:
-        await m.chat.ban_member(nlx_id)
+        await m.chat.ban_member(user_id)
     except UserAdminInvalid:
         return await m.reply_text(cgr("res_3").format(em.gagal))
     await m.reply_text(msg)
@@ -174,13 +174,13 @@ async def _(c: nlx, m):
     if reply and reply.sender_chat and reply.sender_chat != m.chat.id:
         return await m.reply_text(cgr("res_3").format(em.gagal))
     if len(m.command) == 2:
-        nlx = m.text.split(None, 1)[1]
+        user = m.text.split(None, 1)[1]
     elif len(m.command) == 1 and reply:
-        nlx = m.reply_to_message.from_nlx.id
+        user = m.reply_to_message.from_user.id
     else:
         return await m.reply_text(cgr("prof_1").format(em.gagal))
-    await m.chat.unban_member(nlx)
-    umention = (await c.get_nlxs(nlx)).mention
+    await m.chat.unban_member(user)
+    umention = (await c.get_users(user)).mention
     await m.reply_text(cgr("res_6").format(em.sukses, umention))
     return
 
@@ -219,19 +219,19 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nlx_id, reason = await c.extract_nlx_and_reason(m)
-    if not nlx_id:
+    user_id, reason = await c.extract_user_and_reason(m)
+    if not user_id:
         return await m.reply_text(cgr("glbl_2").format(em.gagal))
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         return await m.reply_text(cgr("res_10").format(em.gagal))
-    if nlx_id in DEVS:
+    if user_id in DEVS:
         return await m.reply_text(cgr("glbl_3").format(em.gagal))
-    mention = (await c.get_nlxs(nlx_id)).mention
+    mention = (await c.get_users(user_id)).mention
     msg = cgr("res_11").format(
         em.profil,
         mention,
         em.warn,
-        m.from_nlx.mention if m.from_nlx else "Anon",
+        m.from_user.mention if m.from_user else "Anon",
         em.block,
         reason or "No Reason Provided.",
     )
@@ -239,7 +239,7 @@ async def _(c: nlx, m):
         await m.reply_to_message.delete()
         await m.delete()
     try:
-        await m.chat.restrict_member(nlx_id, permissions=ChatPermissions())
+        await m.chat.restrict_member(user_id, permissions=ChatPermissions())
         await m.reply_text(msg)
     except ChatAdminRequired:
         await m.reply_text(cgr("res_12").format(em.gagal))
@@ -258,12 +258,12 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    nlx_id = await c.extract_nlx(m)
-    if not nlx_id:
+    user_id = await c.extract_user(m)
+    if not user_id:
         return await m.reply_text(cgr("glbl_2").format(em.gagal))
     try:
-        await m.chat.unban_member(nlx_id)
-        umention = (await c.get_nlxs(nlx_id)).mention
+        await m.chat.unban_member(user_id)
+        umention = (await c.get_users(user_id)).mention
         await m.reply_text(cgr("res_14").format(em.sukses, umention))
     except ChatAdminRequired:
         await m.reply_text(cgr("res_12").format(em.gagal))
@@ -283,21 +283,21 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat_id = m.chat.id
-    deleted_nlxs = []
-    banned_nlxs = 0
+    deleted_users = []
+    banned_users = 0
     m = await m.reply(cgr("proses").format(em.proses))
 
     async for i in c.get_chat_members(chat_id):
-        if i.nlx.is_deleted:
-            deleted_nlxs.append(i.nlx.id)
-    if len(deleted_nlxs) > 0:
-        for deleted_nlx in deleted_nlxs:
+        if i.user.is_deleted:
+            deleted_users.append(i.user.id)
+    if len(deleted_users) > 0:
+        for deleted_user in deleted_users:
             try:
-                await m.chat.ban_member(deleted_nlx)
+                await m.chat.ban_member(deleted_user)
             except Exception:
                 pass
-            banned_nlxs += 1
-        await m.edit(cgr("res_15").format(em.sukses, banned_nlxs))
+            banned_users += 1
+        await m.edit(cgr("res_15").format(em.sukses, banned_users))
         return
     else:
         await m.edit(cgr("res_16").format(em.gagal))
@@ -327,12 +327,12 @@ async def _(c: nlx, m):
         return await m.reply_text(cgr("res_18").format(em.gagal))
 
     reply = m.reply_to_message
-    reply_id = reply.from_nlx.id if reply.from_nlx else reply.sender_chat.id
-    nlx_id = m.from_nlx.id if m.from_nlx else m.sender_chat.id
-    if reply_id == nlx_id:
+    reply_id = reply.from_user.id if reply.from_user else reply.sender_chat.id
+    user_id = m.from_user.id if m.from_user else m.sender_chat.id
+    if reply_id == user_id:
         return await m.reply_text(cgr("res_19").format(em.gagal))
 
-    list_of_admins = await member_permissions(m.chat.id, nlx_id)
+    list_of_admins = await member_permissions(m.chat.id, user_id)
     linked_chat = (await c.get_chat(m.chat.id)).linked_chat
     if linked_chat is not None:
         if list_of_admins or reply_id == m.chat.id or reply_id == linked_chat.id:
@@ -341,8 +341,10 @@ async def _(c: nlx, m):
         if list_of_admins or reply_id == m.chat.id:
             return await m.reply_text(cgr("res_20").format(em.gagal))
 
-    nlx_mention = reply.from_nlx.mention if reply.from_nlx else reply.sender_chat.title
-    text = cgr("res_21").format(em.warn, nlx_mention)
+    user_mention = (
+        reply.from_user.mention if reply.from_user else reply.sender_chat.title
+    )
+    text = cgr("res_21").format(em.warn, user_mention)
     admin_data = [
         i
         async for i in c.get_chat_members(
@@ -350,10 +352,10 @@ async def _(c: nlx, m):
         )
     ]  # will it give floods ???
     for admin in admin_data:
-        if admin.nlx.is_bot or admin.nlx.is_deleted:
+        if admin.user.is_bot or admin.user.is_deleted:
             # return bots or deleted admins
             continue
-        text += f"[\u2063](tg://nlx?id={admin.nlx.id})"
+        text += f"[\u2063](tg://user?id={admin.user.id})"
 
     await m.reply_to_message.reply_text(text)
 
@@ -366,18 +368,18 @@ async def _(c: nlx, m):
         await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
-        nlx_id, nlx_first_name, nlx_name = await extract_nlx(c, m)
+        user_id, user_first_name, user_name = await extract_user(c, m)
     except Exception:
         return
     bot = await c.get_chat_member(m.chat.id, c.me.id)
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         await m.reply_text(cgr("res_22").format(em.gagal))
         return
     if not bot.privileges.can_promote_members:
         await m.reply_text(cgr("res_13").format(em.gagal))
         return
     try:
-        await m.chat.promote_member(nlx_id=nlx_id, privileges=bot.privileges)
+        await m.chat.promote_member(user_id=user_id, privileges=bot.privileges)
         title = ""
         if m.chat.type in [ChatType.SUPERGROUP, ChatType.GROUP]:
             title = "Babu"  # Default fullpromote title
@@ -386,9 +388,9 @@ async def _(c: nlx, m):
             elif len(m.text.split()) >= 2 and m.reply_to_message:
                 title = " ".join(m.text.split()[1:16])  # trim title to 16 characters
 
-            await c.set_administrator_title(m.chat.id, nlx_id, title)
-        promoter = await mention_html(m.from_nlx.first_name, m.from_nlx.id)
-        promoted = await mention_html(nlx_first_name, nlx_id)
+            await c.set_administrator_title(m.chat.id, user_id, title)
+        promoter = await mention_html(m.from_user.first_name, m.from_user.id)
+        promoted = await mention_html(user_first_name, user_id)
         await m.reply_text(cgr("res_23").format(em.profil, promoter, em.warn, promoted))
 
     except ChatAdminRequired:
@@ -410,11 +412,11 @@ async def _(c: nlx, m):
         await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
-        nlx_id, nlx_first_name, nlx_name = await extract_nlx(c, m)
+        user_id, user_first_name, user_name = await extract_user(c, m)
     except Exception:
         return
     bot = await c.get_chat_member(m.chat.id, c.me.id)
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         await m.reply_text(cgr("res_22").format(em.gagal))
         return
     if not bot.privileges.can_promote_members:
@@ -422,9 +424,9 @@ async def _(c: nlx, m):
         return
     try:
         await m.chat.promote_member(
-            nlx_id=nlx_id,
+            user_id=user_id,
             privileges=ChatPrivileges(
-                can_invite_nlxs=bot.privileges.can_invite_nlxs,
+                can_invite_users=bot.privileges.can_invite_users,
                 can_delete_messages=bot.privileges.can_delete_messages,
                 can_restrict_members=bot.privileges.can_restrict_members,
                 can_manage_chat=bot.privileges.can_manage_chat,
@@ -438,9 +440,9 @@ async def _(c: nlx, m):
                 title = " ".join(m.text.split()[2:16])  # trim title to 16 characters
             elif len(m.text.split()) >= 2 and m.reply_to_message:
                 title = " ".join(m.text.split()[1:16])  # trim title to 16 characters
-            await c.set_administrator_title(m.chat.id, nlx_id, title)
-        promoter = await mention_html(m.from_nlx.first_name, m.from_nlx.id)
-        promoted = await mention_html(nlx_first_name, nlx_id)
+            await c.set_administrator_title(m.chat.id, user_id, title)
+        promoter = await mention_html(m.from_user.first_name, m.from_user.id)
+        promoted = await mention_html(user_first_name, user_id)
         await m.reply_text(cgr("res_24").format(em.profil, promoter, em.warn, promoted))
 
     except ChatAdminRequired:
@@ -462,22 +464,22 @@ async def _(c: nlx, m):
         await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
-        nlx_id, nlx_first_name, _ = await extract_nlx(c, m)
+        user_id, user_first_name, _ = await extract_user(c, m)
     except Exception:
         return
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         await m.reply_text(cgr("res_19").format(em.gagal))
         return
-    botol = await member_permissions(m.chat.id, nlx_id)
+    botol = await member_permissions(m.chat.id, user_id)
     if not botol:
         await m.reply_text(cgr("res_25").format(em.gagal))
         return
     try:
         await m.chat.promote_member(
-            nlx_id=nlx_id,
+            user_id=user_id,
             privileges=ChatPrivileges(
                 can_change_info=False,
-                can_invite_nlxs=False,
+                can_invite_users=False,
                 can_delete_messages=False,
                 can_restrict_members=False,
                 can_pin_messages=False,
@@ -486,8 +488,8 @@ async def _(c: nlx, m):
                 can_manage_video_chats=False,
             ),
         )
-        demoter = await mention_html(m.from_nlx.first_name, m.from_nlx.id)
-        demoted = await mention_html(nlx_first_name, nlx_id)
+        demoter = await mention_html(m.from_user.first_name, m.from_user.id)
+        demoted = await mention_html(user_first_name, user_id)
         await m.reply_text(cgr("res_26").format(em.profil, demoter, em.warn, demoted))
     except BotChannelsNa:
         await m.reply_text(cgr("res_27").format(em.gagal))
@@ -551,24 +553,24 @@ async def _(c: nlx, m):
         if len(m.text.split()) >= 3:
             reason = m.text.split(None, 2)[2]
     try:
-        nlx_id, _, _ = await extract_nlx(c, m)
+        user_id, _, _ = await extract_user(c, m)
     except Exception:
         return
-    if not nlx_id:
+    if not user_id:
         return await m.reply_text(cgr("glbl_2").format(em.gagal))
-    if nlx_id == c.me.id:
+    if user_id == c.me.id:
         return await m.reply_text(cgr("res_19").format(em.gagal))
     if not reason:
         return await m.reply_text(cgr("res_30").format(em.gagal))
-    from_nlx = await c.get_nlxs(nlx_id)
+    from_user = await c.get_users(user_id)
     title = reason
     try:
-        await c.set_administrator_title(m.chat.id, from_nlx.id, title)
+        await c.set_administrator_title(m.chat.id, from_user.id, title)
     except Exception as e:
         return await m.reply_text(cgr("err").format(em.gagal), e)
     except UserCreator:
         return await m.reply_text(cgr("res_31").format(em.gagal))
-    return await m.reply_text(cgr("res_32").format(em.sukses, from_nlx.mention, title))
+    return await m.reply_text(cgr("res_32").format(em.sukses, from_user.mention, title))
 
 
 @ky.ubot("gcpic", sudo=True)
