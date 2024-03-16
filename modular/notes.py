@@ -80,7 +80,7 @@ async def _(c: nlx, m):
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
-                    bot.me.nlxname, f"get_note_ {note}"
+                    bot.me.username, f"get_note_ {note}"
                 )
                 await m.delete()
                 await c.send_inline_bot_result(
@@ -99,7 +99,7 @@ async def _(c: nlx, m):
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
-                    bot.me.nlxname, f"get_note_ {note}"
+                    bot.me.username, f"get_note_ {note}"
                 )
                 await m.delete()
                 await c.send_inline_bot_result(
@@ -122,7 +122,7 @@ async def _(c: nlx, m):
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
-                    bot.me.nlxname, f"get_note_ {note}"
+                    bot.me.username, f"get_note_ {note}"
                 )
                 await m.delete()
                 await c.send_inline_bot_result(
@@ -169,7 +169,7 @@ async def _(c: nlx, m):
         teks, button = text_keyb(ikb, getnotes.get("value"))
         if button:
             try:
-                xi = await c.get_inline_bot_results(bot.me.nlxname, f"get_note_ {note}")
+                xi = await c.get_inline_bot_results(bot.me.username, f"get_note_ {note}")
                 await m.delete()
                 await c.send_inline_bot_result(
                     m.chat.id,
