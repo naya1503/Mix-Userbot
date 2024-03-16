@@ -37,7 +37,7 @@ async def handle_command(client, message):
     em.initialize()
     try:
         hdh = await m.reply(cgr("proses").format(em.proses))
-        command = " ".join(m.command[1:])
+        command = " ".join(message.command[1:])
         if command:
             await hdh.edit(response)
             response = search_duckduckgo(query)
