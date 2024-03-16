@@ -371,7 +371,6 @@ async def _(c: user, m):
         )
 
 
-from pyrogram.enums import ChatMembersFilter
 from pyrogram.errors import FloodWait
 
 
@@ -401,7 +400,9 @@ async def _(c, m):
 
             try:
                 unban_count = 0
-                benet = await chat.get_members(chat.id, filter=ChatMembertsFilter.BANNED)
+                benet = await chat.get_members(
+                    chat.id, filter=ChatMembertsFilter.BANNED
+                )
                 async for member in benet:
                     try:
                         await c.unban_chat_member(chat.id, member.user.id)
