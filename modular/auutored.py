@@ -31,7 +31,7 @@ async def _(_, m):
     if peler.lower() == "gc":
         bcgc = await refresh_dialog("group")
         for gc in bcgc:
-              await user.read_chat_history(gc, max_id=0)
+            await user.read_chat_history(gc, max_id=0)
         await mek.edit(cgr("autoread_2").format(em.sukses, len(bcgc)))
         return
     elif peler.lower() == "us":
