@@ -1,7 +1,6 @@
 import asyncio
 
-from team.nandev.class_ubot import Bot, Userbot
-
+from .mix_ciient import *
 from config import *
 from Mix.core import *
 
