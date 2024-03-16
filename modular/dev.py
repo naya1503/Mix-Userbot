@@ -292,8 +292,8 @@ from hydrogram.errors import *
 from hydrogram.types import *
 
 
-@ky.ubot("dorrr")
-async def _(c, m):
+@ky.ubot("benal")
+async def _(c: user, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(chat_id=m.chat.id)
@@ -371,8 +371,8 @@ async def _(c, m):
         )
 
 
-@ky.ubot("undorrr")
-async def _(c, m):
+@ky.ubot("anben")
+async def _(c: user, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(chat_id=m.chat.id)
@@ -391,7 +391,7 @@ async def _(c, m):
                     )
                     return
             unban_count = 0
-            banned_members = await chat.get_banned_members()
+            banned_members = chat.get_banned_members()
             for banned_member in banned_members:
                 try:
                     await chat.unban_member(banned_member.user.id)
