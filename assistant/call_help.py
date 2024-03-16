@@ -429,14 +429,11 @@ async def _(_, cq):
 @ky.callback("^close")
 async def _(_, cq):
     unPacked = unpackInlineMessage(cq.inline_message_id)
-    # if cq.from_user.id == user.me.id:
+    if cq.from_user.id == user.me.id:
     await user.delete_messages(unPacked.chat_id, unPacked.message_id)
-    # else:
-    #    await cq.answer(
-    #        f"Jangan Di Pencet Anjeng.",
-    #        True,
-    #    )
-    return
+    else:
+        await cq.answer(f"Jangan Di Pencet Anjeng.", True)
+        return
 
 
 def cb_tespeed():
