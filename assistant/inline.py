@@ -379,7 +379,7 @@ async def _(c, iq):
                 (
                     InlineQueryResultArticle(
                         title="Tombol PM!",
-                        input_message_content=InputTextMessageContent(kiki),,
+                        input_message_content=InputTextMessageContent(kiki),
                         reply_markup=keyboard,
                     )
                 )
