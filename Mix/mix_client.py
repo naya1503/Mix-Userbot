@@ -7,25 +7,23 @@
 ################################################################
 
 import asyncio
-
 import os
 import re
-
-import wget
 from io import BytesIO
-from os import execvp
-from sys import executable
+
 from pyrogram import *
 from pyrogram.enums import *
+from pyrogram.errors import *
 from pyrogram.handlers import *
 from pyrogram.types import *
-from pyrogram.errors import *
-from config import *
-from team.nandev.database import udB, ndB
 from team.nandev.class_log import LOGGER
+from team.nandev.database import ndB, udB
 
-TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token 
-    
+from config import *
+
+TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
+
+
 class Userbot(Client):
     _prefix = {}
     _translate = {}
@@ -33,26 +31,27 @@ class Userbot(Client):
     def __init__(self, **kwargs):
         super().__init__(
             name="user",
-            api_id=api_id, 
+            api_id=api_id,
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
             test_mode=False,
-            **kwargs)
+            **kwargs,
+        )
 
     def set_prefix(self, user_id, prefix):
         self._prefix[user_id] = prefix
 
     async def get_prefix(self, user_id):
         return self._prefix.get(user_id, ["."])
-        
+
     def on_message(self, filters=None, group=-1):
         def decorator(func):
             self.add_handler(MessageHandler(func, filters), group)
             return func
 
         return decorator
-        
+
     def user_prefix(self, cmd):
         command_re = re.compile(r"([\"'])(.*?)(?<!\\)\1|(\S+)")
 
@@ -96,18 +95,15 @@ class Userbot(Client):
                 return False
 
         return filters.create(func)
-        
-        
+
     def get_m(self, m):
         msg = (
             m.reply_to_message
             if m.reply_to_message
-            else ""
-            if len(m.command) < 2
-            else " ".join(m.command[1:])
+            else "" if len(m.command) < 2 else " ".join(m.command[1:])
         )
         return msg
-        
+
     def get_text(self, m):
         if m.reply_to_message:
             if len(m.command) < 2:
@@ -124,7 +120,7 @@ class Userbot(Client):
             else:
                 text = m.text.split(None, 1)[1]
         return text
-        
+
     async def bash(self, cmd):
         process = await asyncio.create_subprocess_shell(
             cmd,
@@ -135,7 +131,7 @@ class Userbot(Client):
         err = stderr.decode().strip()
         out = stdout.decode().strip()
         return out, err
-        
+
     async def run_cmd(self, cmd):
         args = shlex.split(cmd)
         process = await asyncio.create_subprocess_exec(
@@ -148,14 +144,12 @@ class Userbot(Client):
             process.returncode,
             process.pid,
         )
-        
+
     async def aexec(self, code, c, m):
         exec(
-            "async def __aexec(c, m): "
-            + "".join(f"\n {l_}" for l_ in code.split("\n"))
+            "async def __aexec(c, m): " + "".join(f"\n {l_}" for l_ in code.split("\n"))
         )
         return await locals()["__aexec"](c, m)
-
 
     async def shell_exec(self, code, treat=True):
         process = await asyncio.create_subprocess_shell(
@@ -167,7 +161,6 @@ class Userbot(Client):
             stdout = stdout.decode().strip()
         return stdout, process
 
-        
     async def dl_pic(self, a):
         path = await self.download_media(a)
         with open(path, "rb") as f:
@@ -175,7 +168,7 @@ class Userbot(Client):
         os.remove(path)
         getpp = BytesIO(content)
         return getpp
-        
+
     def get_arg(self, m):
         if m.reply_to_message and len(m.command) < 2:
             msg = m.reply_to_message.text or m.reply_to_message.caption
@@ -188,7 +181,7 @@ class Userbot(Client):
             return " ".join(m.command[1:])
         else:
             return ""
-        
+
     async def extract_userid(self, m, t):
         def is_int(t):
             try:
@@ -203,14 +196,14 @@ class Userbot(Client):
             return int(text)
 
         entities = m.entities
-        app = m._client
+        m._client
         entity = entities[1 if m.text.startswith("/") else 0]
         if entity.type == enums.MessageEntityType.MENTION:
             return (await self.get_users(text)).id
         if entity.type == enums.MessageEntityType.TEXT_MENTION:
             return entity.user.id
         return None
-        
+
     async def extract_user_and_reason(self, m, s=False):
         args = m.text.strip().split()
         text = m.text
@@ -219,11 +212,7 @@ class Userbot(Client):
         if m.reply_to_message:
             reply = m.reply_to_message
             if not reply.from_user:
-                if (
-                    reply.sender_chat
-                    and reply.sender_chat != m.chat.id
-                    and s
-                ):
+                if reply.sender_chat and reply.sender_chat != m.chat.id and s:
                     id_ = reply.sender_chat.id
                 else:
                     return None, None
@@ -248,7 +237,7 @@ class Userbot(Client):
 
     async def extract_user(self, m):
         return (await self.extract_user_and_reason(m))[0]
-        
+
     async def start(self):
         await super().start()
         handler = udB.get_pref(self.me.id)
@@ -258,16 +247,13 @@ class Userbot(Client):
             self._prefix[self.me.id] = ["."]
         self._translate[self.me.id] = {"negara": "id"}
         LOGGER.info(f"Starting Userbot {self.me.id}|{self.me.mention}")
-        
- 
+
+
 class Bot(Client):
     def __init__(self, **kwargs):
         super().__init__(
-          name="bot",
-          api_id=api_id,
-          api_hash=api_hash,
-          bot_token=TOKEN_BOT,
-          **kwargs)
+            name="bot", api_id=api_id, api_hash=api_hash, bot_token=TOKEN_BOT, **kwargs
+        )
 
     def on_message(self, filters=None, group=-1):
         def decorator(func):
