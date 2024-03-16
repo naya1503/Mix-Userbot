@@ -293,7 +293,7 @@ from pyrogram.types import *
 
 
 @ky.ubot("benal")
-async def _(c: user, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(chat_id=m.chat.id)
