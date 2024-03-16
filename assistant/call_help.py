@@ -460,8 +460,6 @@ async def _(c, cq):
     await cq.edit_message_text(msg, reply_markup=kb)
 
 
-
-
 @ky.callback("^#")
 async def _(c, cq):
     try:
