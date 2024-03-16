@@ -341,9 +341,7 @@ async def _(c: nlx, m):
         if list_of_admins or reply_id == m.chat.id:
             return await m.reply_text(cgr("res_20").format(em.gagal))
 
-    nlx_mention = (
-        reply.from_nlx.mention if reply.from_nlx else reply.sender_chat.title
-    )
+    nlx_mention = reply.from_nlx.mention if reply.from_nlx else reply.sender_chat.title
     text = cgr("res_21").format(em.warn, nlx_mention)
     admin_data = [
         i

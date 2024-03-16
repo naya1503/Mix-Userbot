@@ -10,7 +10,7 @@ import os
 import time
 from time import time
 
-from Mix import Emojik, bot, cgr, get_cgr, ky, progress, nlx
+from Mix import Emojik, bot, cgr, get_cgr, ky, nlx, progress
 
 COPY_ID = {}
 

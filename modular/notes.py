@@ -169,9 +169,7 @@ async def _(c: nlx, m):
         teks, button = text_keyb(ikb, getnotes.get("value"))
         if button:
             try:
-                xi = await c.get_inline_bot_results(
-                    bot.me.nlxname, f"get_note_ {note}"
-                )
+                xi = await c.get_inline_bot_results(bot.me.nlxname, f"get_note_ {note}")
                 await m.delete()
                 await c.send_inline_bot_result(
                     m.chat.id,

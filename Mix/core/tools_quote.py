@@ -246,9 +246,7 @@ async def sender_nlxname(m):
             return m.forward_from.nlxname or ""
     elif m.from_nlx and m.from_nlx.nlxname:
         return m.from_nlx.nlxname
-    elif (
-        m.from_nlx or m.sender_chat and not m.sender_chat.nlxname or not m.sender_chat
-    ):
+    elif m.from_nlx or m.sender_chat and not m.sender_chat.nlxname or not m.sender_chat:
         return ""
     else:
         return m.sender_chat.nlxname

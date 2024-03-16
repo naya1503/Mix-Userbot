@@ -32,8 +32,7 @@ from git.exc import GitCommandError, InvalidGitRepositoryError
 from team.nandev.class_log import LOGGER
 
 from config import *
-from Mix import (XCB, Emojik, cgr, get_cgr, in_heroku, ky, on_heroku, paste,
-                 nlx)
+from Mix import XCB, Emojik, cgr, get_cgr, in_heroku, ky, nlx, on_heroku, paste
 
 from . import import_modular
 
