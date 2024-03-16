@@ -7,7 +7,6 @@
 ################################################################
 
 import requests
-from bs4 import BeautifulSoup
 from pyrogram import *
 from pyrogram.types import *
 
@@ -22,17 +21,18 @@ def search_duckduckgo(query):
         url = f"https://api.duckduckgo.com/?q={query}&format=json"
         response = requests.get(url)
         data = response.json()
-        if 'AbstractText' in data:
-            return data['AbstractText']
-        elif 'Answer' in data:
-            return data['Answer']
-        elif 'RelatedTopics' in data and data['RelatedTopics']:
-            return data['RelatedTopics'][0]['Text']
+        if "AbstractText" in data:
+            return data["AbstractText"]
+        elif "Answer" in data:
+            return data["Answer"]
+        elif "RelatedTopics" in data and data["RelatedTopics"]:
+            return data["RelatedTopics"][0]["Text"]
         else:
             return None
     except Exception as e:
         print("Error:", e)
         return None
+
 
 @ky.ubot("apa|siapa|dimana|bagaimana|kapan", sudo=True)
 async def handle_command(client, message):
