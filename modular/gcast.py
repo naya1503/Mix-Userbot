@@ -30,7 +30,7 @@ async def _(c: nlx, m):
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
-    async for dialog in client.get_dialogs():
+    async for dialog in c.get_dialogs():
         if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
             chat = dialog.chat.id
             if chat not in blacklist and chat not in NO_GCAST:
@@ -77,7 +77,7 @@ async def _(c: nlx, m):
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
-    async for dialog in client.get_dialogs():
+    async for dialog in c.get_dialogs():
         if dialog.chat.type == ChatType.PRIVATE:
             chat = dialog.chat.id
             if chat not in blacklist and chat not in DEVS:
