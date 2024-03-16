@@ -372,7 +372,7 @@ async def _(c: user, m):
 
 
 from pyrogram.errors import FloodWait
-from pyrogram.types import ChatMembersFilter
+from pyrogram.enums import ChatMembersFilter
 
 
 @ky.ubot("anben")
