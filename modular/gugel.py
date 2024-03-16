@@ -1,12 +1,5 @@
-################################################################
-"""
- Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
- 
- @ CREDIT : NAN-DEV
-"""
-################################################################
-
 import requests
+from urllib.parse import quote
 from pyrogram import *
 
 from Mix import *
@@ -14,10 +7,10 @@ from Mix import *
 __modles__ = "Wiki"
 __help__ = "Wiki"
 
-
 def search_duckduckgo(query):
     try:
-        url = f"https://api.duckduckgo.com/?q={query}&format=json"
+        query_encoded = quote(query).replace(" ", "%20")
+        url = f"https://api.duckduckgo.com/?q={query_encoded}&format=json&pretty=1"
         response = requests.get(url)
         data = response.json()
         if "AbstractText" in data:
@@ -31,7 +24,6 @@ def search_duckduckgo(query):
     except Exception as e:
         print("Error:", e)
         return None
-
 
 @ky.ubot("apa|siapa|dimana|bagaimana|kapan", sudo=True)
 async def handle_command(client, message):
