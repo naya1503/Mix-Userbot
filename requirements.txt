@@ -6,7 +6,6 @@ python-dotenv
 tgcrypto
 requests
 ffmpeg-python
-pyrogram
 pymongo
 uvloop
 wget
@@ -40,3 +39,4 @@ pyyaml
 lyricsgenius==3.0.1
 SafoneApi
 pytgcalls==3.0.0.dev22
+hydrogram
