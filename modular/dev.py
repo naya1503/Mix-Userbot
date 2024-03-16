@@ -391,7 +391,7 @@ async def _(c: user, m):
                     )
                     return
             unban_count = 0
-            banned_members = chat.get_banned_members()
+            banned_members = await chat.get_banned_members()
             for banned_member in banned_members:
                 try:
                     await chat.unban_member(banned_member.user.id)
