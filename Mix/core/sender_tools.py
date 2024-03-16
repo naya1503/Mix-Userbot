@@ -27,7 +27,7 @@ async def send_cmd(c: nlx, msgtype: int):
     return GET_FORMAT[msgtype]
 
 
-async def extract_nlx(c, m) -> Tuple[int, str, str]:
+async def extract_user(c, m) -> Tuple[int, str, str]:
     """Extract the nlx from the provided message."""
     nlx_id = None
     nlx_first_name = None
