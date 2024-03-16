@@ -1,12 +1,12 @@
 import aiohttp
 from bs4 import BeautifulSoup
-from gpytranslate import Translator
-from pyrogram import filters
 from pyrogram.types import Message
+
 from Mix import *
 
 __modles__ = "ask"
 __help__ = "ask"
+
 
 async def get_safone_google_answer(query):
     url = f"https://www.google.com/search?q={'+'.join(query.split())}"
@@ -20,8 +20,15 @@ async def get_safone_google_answer(query):
                 soup = BeautifulSoup(html_content, "html.parser")
                 answer = soup.find("div", class_="BNeawe iBp4i AP7Wnd")
                 if answer:
-                    return answer.text.strip(), "id"  # Mengembalikan jawaban dan lang id
-    return "Maaf, tidak dapat menemukan jawaban untuk pertanyaan tersebut.", "id"  # Default lang id jika tidak ditemukan jawaban
+                    return (
+                        answer.text.strip(),
+                        "id",
+                    )  # Mengembalikan jawaban dan lang id
+    return (
+        "Maaf, tidak dapat menemukan jawaban untuk pertanyaan tersebut.",
+        "id",
+    )  # Default lang id jika tidak ditemukan jawaban
+
 
 @ky.ubot("ask", sudo=True)
 async def ask_command(_, message: Message):
