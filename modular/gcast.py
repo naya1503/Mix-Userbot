@@ -43,7 +43,7 @@ async def refresh_dialog(query):
             ChatType.BOT,
         ],
     }
-    async for xxone in nlx.iter_dialogs():
+    async for xxone in nlx.get_dialogs():
         if xxone.chat.type in chat_types[query]:
             chat = await dicek_dulu(xxone.chat.id)
             if chat:
