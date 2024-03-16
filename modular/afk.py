@@ -332,7 +332,7 @@ async def _(c, m):
         pass
 
 
-@ky.ubot("afkdel")
+@ky.ubot("afkdel", sudo=True)
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
