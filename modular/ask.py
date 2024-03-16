@@ -1,11 +1,11 @@
 import re
-
 import requests
 from bs4 import BeautifulSoup
 from googletrans import Translator
-from pyrogram import *
+from pyrogram import Client, filters
 
 from Mix import *
+
 
 __modles__ = "ask"
 __help__ = "ask"
@@ -32,17 +32,15 @@ async def translate_text(text, target_language="id"):
 
 
 @ky.ubot("ask", sudo=True)
-async def _(c, m):
-    message_text = m.text.lower()
-    question_pattern = r"^/ask (.+)$"
-    match = re.match(question_pattern, message_text)
-    if match:
-        query = match.group(1)
+async def ask_command(_, message):
+    command_args = message.text.split(maxsplit=1)
+    if len(command_args) == 2:
+        query = command_args[1]
         answer = await get_duckduckgo_answer(query)
         translated_answer = await translate_text(answer)
         response = f"Pertanyaan: {query}\n\nJawaban:\n{translated_answer}"
-        await m.reply_text(response)
+        await message.reply_text(response)
     else:
-        await m.reply_text(
+        await message.reply_text(
             "Format perintah salah. Gunakan /ask pertanyaan untuk mencari jawaban."
         )
