@@ -14,11 +14,10 @@ from hydrogram import *
 from hydrogram.enums import *
 from hydrogram.errors import *
 from hydrogram.types import *
+from hydrogram.raw.functions.messages import DeleteHistory
 
 from Mix import *
 from Mix.core.parser import remove_markdown_and_html
-
-from .gcast import refresh_dialog
 
 dbgb = GBan()
 dbgm = GMute()
@@ -26,6 +25,17 @@ dbgm = GMute()
 __modles__ = "Global"
 __help__ = get_cgr("help_global")
 
+async def digiben_(q):
+    chats = []
+    chat_types = {
+        "giben": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
+        "gimut": [ChatType.GROUP, ChatType.SUPERGROUP],
+    }
+    async for dialog in nlx.get_dialogs():
+        if dialog.chat.type in chat_types[q]
+            chats.append(dialog.chat.id)
+
+    return chats
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
@@ -49,7 +59,7 @@ async def _(c: nlx, m):
         alasan = m.text.split(None, 2)[2]
     bs = 0
     gg = 0
-    chats = await refresh_dialog("all")
+    chats = await digiben_("giben")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -71,6 +81,8 @@ async def _(c: nlx, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgb.add_gban(nyet, alasan, c.me.id)
+    await c.block_user(nyet)
+    await nlx.invoke(DeleteHistory(peer=(await nlx.resolve_peer(sapa)), max_id=0, revoke=True))
     mmg = cgr("glbl_6").format(
         em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan
     )
@@ -91,7 +103,7 @@ async def _(c: nlx, m):
         return
     bs = 0
     gg = 0
-    chats = await refresh_dialog("all")
+    chats = await digiben_("giben")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -108,6 +120,7 @@ async def _(c: nlx, m):
             gg += 1
             await asyncio.sleep(0.1)
     dbgb.remove_gban(nyet)
+    await c.unblock_user(nyet)
     mmg = cgr("glbl_8").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
     await m.reply(mmg)
     await xx.delete()
@@ -135,7 +148,7 @@ async def _(c: nlx, m):
         alasan = m.text.split(None, 2)[2]
     bs = 0
     gg = 0
-    chats = await refresh_dialog("group")
+    chats = await digiben_("gimut")
 
     try:
         mention = (await c.get_users(nyet)).mention
@@ -173,7 +186,7 @@ async def _(c: nlx, m):
         return
     bs = 0
     gg = 0
-    chats = await refresh_dialog("group")
+    chats = await digiben_("gimut")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
