@@ -105,4 +105,4 @@ async def auto_clean():
         except:
             continue
 
-asycio.create_task(auto_clean())
+asyncio.create_task(auto_clean())
