@@ -18,12 +18,14 @@ from Mix import *
 __modles__ = "Broadcast"
 __help__ = get_cgr("help_gcast")
 
+
 async def dicek_dulu(chat_id):
     try:
         chat = await nlx.get_chat(chat_id)
         return chat
     except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
         return None
+
 
 async def refresh_dialog(query):
     chats = []
@@ -47,7 +49,6 @@ async def refresh_dialog(query):
             if chat:
                 chats.append(xxone.chat.id)
     return chat_types
-
 
 
 @ky.ubot("gcast", sudo=True)
