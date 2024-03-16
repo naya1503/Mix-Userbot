@@ -10,6 +10,7 @@ from uvloop import install
 
 from assistant import BOT_PLUGINS
 from Mix import *
+from Mix.core.waktu import auto_clean
 from modular import USER_MOD
 
 lool = asyncio.get_event_loop()
@@ -60,6 +61,7 @@ async def starter():
         await start_bot()
     await asyncio.gather(refresh_cache(), check_logger())
     LOGGER.info("Successfully Started Userbot.")
+    asyncio.create_task(auto_clean())
     await asyncio.gather(getFinish(), isFinish(), idle())
 
 
