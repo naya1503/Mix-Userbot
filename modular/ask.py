@@ -1,47 +1,48 @@
-import aiohttp
-from bs4 import BeautifulSoup
-from pyrogram.types import Message
-
-from Mix import *
-
-__modles__ = "ask"
-__help__ = "ask"
+from pyrogram import Client, filters
+import requests
 
 
-async def get_safone_google_answer(query):
-    url = f"https://www.google.com/search?q={'+'.join(query.split())}"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-    }
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, headers=headers) as response:
-            if response.status == 200:
-                html_content = await response.text()
-                soup = BeautifulSoup(html_content, "html.parser")
-                answer = soup.find("div", class_="BNeawe iBp4i AP7Wnd")
-                if answer:
-                    return (
-                        answer.text.strip(),
-                        "id",
-                    )  # Mengembalikan jawaban dan lang id
-    return (
-        "Maaf, tidak dapat menemukan jawaban untuk pertanyaan tersebut.",
-        "id",
-    )  # Default lang id jika tidak ditemukan jawaban
+async def get_truth(category="classic|kids|party|hot|mixed"):
+    try:
+        response = requests.get(f"https://api.safone.dev/truth?category={category}")
+        data = response.json()
+        if response.status_code == 200 and "truth" in data:
+            return data["truth"]
+        else:
+            return None
+    except Exception as e:
+        print("Failed to fetch Truth:", e)
+        return None
 
 
-@ky.ubot("ask", sudo=True)
-async def ask_command(_, message: Message):
-    command_args = message.text.split(maxsplit=1)
-    proses = await message.reply(f"Sedang berpikir ...")
-    if len(command_args) == 2:
-        query = command_args[1]
-        answer, lang = await get_safone_google_answer(query)
-        response = f"Pertanyaan: {query}\n\nJawaban:\n{answer}"
-        await message.reply_text(response)
-        await proses.delete()
+async def get_dare(category="classic|kids|party|hot|mixed"):
+    try:
+        response = requests.get(f"https://api.safone.dev/dare?category={category}")
+        data = response.json()
+        if response.status_code == 200 and "dare" in data:
+            return data["dare"]
+        else:
+            return None
+    except Exception as e:
+        print("Failed to fetch Dare:", e)
+        return None
+
+
+@ky.ubot("dare", sudo=True)
+async def dare_command(client, message):
+    dare = await get_dare()
+    if dare:
+        response = f"Dare: {dare}"
     else:
-        await message.reply_text(
-            "Format perintah salah. Gunakan /ask pertanyaan untuk mencari jawaban."
-        )
-        await proses.delete()
+        response = "Failed to fetch Dare. Please try again later."
+    await message.reply_text(response)
+
+
+@ky.ubot("truth", sudo=True)
+async def truth_command(client, message):
+    truth = await get_truth()
+    if truth:
+        response = f"Truth: {truth}"
+    else:
+        response = "Failed to fetch Truth. Please try again later."
+    await message.reply_text(response)
