@@ -369,3 +369,44 @@ async def _(c, m):
         await m.reply(
             f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!"
         )
+
+
+@ky.ubot("undorrr")
+async def _(c, m):
+    em = Emojik()
+    em.initialize()
+    chat = await c.get_chat(chat_id=m.chat.id)
+    my = await chat.get_member(c.me.id)
+    if my.privileges:
+        if my.privileges.can_manage_chat and my.privileges.can_restrict_members:
+            is_channel = True if m.chat.type == ChatType.CHANNEL else False
+            if m.from_user.id not in DEVS:
+                await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
+                return
+            if not is_channel:
+                req_user_member = await chat.get_member(m.from_user.id)
+                if req_user_member.privileges is None:
+                    await m.reply(
+                        f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
+                    )
+                    return
+            unban_count = 0
+            banned_members = await chat.get_banned_members()
+            for banned_member in banned_members:
+                try:
+                    await chat.unban_member(banned_member.user.id)
+                    unban_count += 1
+                except FloodWait as e:
+                    await asyncio.sleep(e.value)
+                    await m.reply(f"{em.gagal} Harap tunggu {e.value} detik lagi")
+            await m.reply(
+                f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
+            )
+        else:
+            await m.reply(
+                f"{em.gagal} Izin admin Anda tidak cukup untuk menggunakan perintah ini!"
+            )
+    else:
+        await m.reply(
+            f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!"
+        )

@@ -23,10 +23,24 @@ from telegraph import upload_file
 from Mix import *
 from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
-from modular.gcast import refresh_dialog
 from modular.pmpermit import *
 
 from .call_markdown import markdown_help
+
+
+async def diinline(q):
+    chats = []
+    chat_types = {
+        "group": [ChatType.GROUP, ChatType.SUPERGROUP],
+        "users": [ChatType.PRIVATE],
+        "bot": [ChatType.BOT],
+        "ch": [ChatType.CHANNEL],
+    }
+    async for dialog in nlx.get_dialogs():
+        if dialog.chat.type in chat_types[q]:
+            chats.append(dialog.chat.id)
+
+    return chats
 
 
 # button
@@ -197,9 +211,9 @@ async def _(c, iq):
     await nlx.invoke(Ping(ping_id=0))
     pink = (datetime.now() - start).microseconds / 1000
     upnya = await get_time((time() - start_time))
-    ape = await refresh_dialog("group")
-    apa = await refresh_dialog("users")
-    upu = await refresh_dialog("bot")
+    ape = await diinline("group")
+    apa = await diinline("users")
+    upu = await diinline("bot")
     if nlx.me.id in DEVS:
         stutas = cgr("alv_1")
     else:

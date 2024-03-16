@@ -20,6 +20,12 @@ reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya mato
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 supot: "**Eh Goblok Kalo Lo Buta MAP, Lo dateng bae ke Grup Support Dibawah!!\n\nAtau Lo bisa ke Channel buat liat Apa yg Update..**"
 
+# tod
+tod_1: "{} **Dare :**\n\n `{}`"
+tod_2: "{} **Yah kaga ada tantangan, ntar coba lagi ya!**"
+tod_3: "{} **Truth :**\n\n `{}`"
+tod_4: "{} **Yah kaga ada truth, ntar coba lagi ya!**"
+
 # autoend
 auend_1: "{} **Berikan argumen!!**"
 auend_2: "{} Berhasil menghapus riwayat obrolan {}!"
@@ -512,3 +518,4 @@ help_nul: " **Nulis**\n\n• Perintah: `{0}`nulis\n• Penjelasan: Untuk pemalas
 help_lirk: " **Lyric**\n\n• Perintah: `{0}`lyrics\n• Penjelasan: Untuk mencari lirik lagu."
 help_auend: " **AutoEnd**\n\n• Perintah: `{0}endchat` [username/id pengguna/balas pengguna]\n• Penjelasan: Untuk menghapus riwayat obrolan\n\n• Optional: \n• `username/balas pengguna` - Menghapus riwayat obrolan pengguna\n• `bot` - Menghapus semua riwayat obrolan bot\n• `all` - Menghapus riwayat obrolan pesan pribadi anda dengan semua pengguna."
 help_img: " **Image**\n\n• Perintah: `{0}`img [kata kunci]\n• Penjelasan: Nyari gambar.\n"
+help_tod: " **Truth Or Dare**\n\n• Perintah: `{0}truth`\n• Penjelasan: Untuk memberikan pertanyaan random yang harus dijawab jujur!\n\n• Perintah: `{0}dare`\n• Penjelasan: Untuk memberikan tantangan random yang harus dilakukan!\n"

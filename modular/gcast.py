@@ -19,38 +19,6 @@ __modles__ = "Broadcast"
 __help__ = get_cgr("help_gcast")
 
 
-async def dicek_dulu(chat_id):
-    try:
-        chat = await nlx.get_chat(chat_id)
-        return chat
-    except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
-        return None
-
-
-async def refresh_dialog(query):
-    chats = []
-    chat_types = {
-        "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "users": [ChatType.PRIVATE],
-        "bot": [ChatType.BOT],
-        "all": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
-        "ch": [ChatType.CHANNEL],
-        "allread": [
-            ChatType.GROUP,
-            ChatType.SUPERGROUP,
-            ChatType.CHANNEL,
-            ChatType.PRIVATE,
-            ChatType.BOT,
-        ],
-    }
-    async for xxone in nlx.get_dialogs():
-        if xxone.chat.type in chat_types[query]:
-            chat = await dicek_dulu(xxone.chat.id)
-            if chat:
-                chats.append(xxone.chat.id)
-    return chats
-
-
 @ky.ubot("gcast", sudo=True)
 async def _(c: nlx, m):
     em = Emojik()
@@ -59,38 +27,38 @@ async def _(c: nlx, m):
     send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
-    chats = await refresh_dialog("group")
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
-    for chat in chats:
-
-        if chat not in blacklist and chat not in NO_GCAST:
-            try:
-                if m.reply_to_message:
-                    await send.copy(chat)
-                else:
-                    await c.send_message(chat, send)
-                done += 1
-                await asyncio.sleep(0.2)
-            except (
-                UserBannedInChannel,
-                SlowmodeWait,
-                PeerIdInvalid,
-                Forbidden,
-                ChatWriteForbidden,
-            ):
-                continue
-            except FloodWait as e:
-                await asyncio.sleep(int(e))
+    async for dialog in client.get_dialogs():
+        if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
+            chat = dialog.chat.id
+            if chat not in blacklist and chat not in NO_GCAST:
                 try:
                     if m.reply_to_message:
                         await send.copy(chat)
                     else:
                         await c.send_message(chat, send)
                     done += 1
-                except Exception:
-                    failed += 1
+                    await asyncio.sleep(0.2)
+                except (
+                    UserBannedInChannel,
+                    SlowmodeWait,
+                    PeerIdInvalid,
+                    Forbidden,
+                    ChatWriteForbidden,
+                ):
+                    continue
+                except FloodWait as e:
+                    await asyncio.sleep(int(e))
+                    try:
+                        if m.reply_to_message:
+                            await send.copy(chat)
+                        else:
+                            await c.send_message(chat, send)
+                        done += 1
+                    except Exception:
+                        failed += 1
 
     return await msg.edit(
         cgr("gcs_2").format(em.alive, em.sukses, done, em.gagal, failed)
@@ -105,35 +73,38 @@ async def _(c: nlx, m):
     send = c.get_m(m)
     if not send:
         return await msg.edit(cgr("gcs_1").format(em.gagal))
-    chats = await refresh_dialog("users")
+
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
-    for chat in chats:
-        if chat not in blacklist and chat not in DEVS:
-            try:
-                if m.reply_to_message:
-                    await send.copy(chat)
-                else:
-                    await c.send_message(chat, send)
-                done += 1
-            except (
-                ChannelPrivate,
-                PeerIdInvalid,
-                UserBannedInChannel,
-                UsernameInvalid,
-            ):
-                continue
-            except FloodWait as e:
-                await asyncio.sleep(int(e))
+    async for dialog in client.get_dialogs():
+        if dialog.chat.type == ChatType.PRIVATE:
+            chat = dialog.chat.id
+            if chat not in blacklist and chat not in DEVS:
                 try:
                     if m.reply_to_message:
                         await send.copy(chat)
                     else:
                         await c.send_message(chat, send)
                     done += 1
-                except Exception:
-                    failed += 1
+                except (
+                    UserBannedInChannel,
+                    SlowmodeWait,
+                    PeerIdInvalid,
+                    Forbidden,
+                    ChatWriteForbidden,
+                ):
+                    continue
+                except FloodWait as e:
+                    await asyncio.sleep(int(e))
+                    try:
+                        if m.reply_to_message:
+                            await send.copy(chat)
+                        else:
+                            await c.send_message(chat, send)
+                        done += 1
+                    except Exception:
+                        failed += 1
 
     return await msg.edit(
         cgr("gcs_3").format(em.alive, em.sukses, done, em.gagal, failed)
