@@ -61,16 +61,16 @@ async def starter():
     await user_task
     await bot_task
     await asyncio.gather(refresh_cache(), check_logger())
-    #await asyncio.gather(refresh_cache())
+    # await asyncio.gather(refresh_cache())
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(getFinish(), auto_clean(), isFinish(), idle())
-    #await asyncio.gather(auto_clean(), isFinish(), idle())
+    # await asyncio.gather(auto_clean(), isFinish(), idle())
 
 
 if __name__ == "__main__":
     install()
-#loop = asyncio.get_event_loop_policy()
-#event_loop = loop.get_event_loop()
-#asyncio.set_event_loop(event_loop)
-#event_loop.run_until_complete(starter())
+    # loop = asyncio.get_event_loop_policy()
+    # event_loop = loop.get_event_loop()
+    # asyncio.set_event_loop(event_loop)
+    # event_loop.run_until_complete(starter())
     lool.run_until_complete(starter())
