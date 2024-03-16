@@ -8,12 +8,14 @@
 ################################################################
 
 
-from hydrogram.errors import *
-from Mix import *
 from hydrogram.enums import ChatType
+from hydrogram.errors import *
+
+from Mix import *
 
 __modles__ = "AutoRead"
 __help__ = get_cgr("help_autoread")
+
 
 async def diread_dong(q):
     chats = []

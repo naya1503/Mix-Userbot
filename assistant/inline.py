@@ -27,6 +27,7 @@ from modular.pmpermit import *
 
 from .call_markdown import markdown_help
 
+
 async def diinline(q):
     chats = []
     chat_types = {
@@ -40,6 +41,7 @@ async def diinline(q):
             chats.append(dialog.chat.id)
 
     return chats
+
 
 # button
 @ky.inline("^buat_button")

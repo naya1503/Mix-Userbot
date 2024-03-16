@@ -13,8 +13,8 @@ from io import BytesIO
 from hydrogram import *
 from hydrogram.enums import *
 from hydrogram.errors import *
-from hydrogram.types import *
 from hydrogram.raw.functions.messages import DeleteHistory
+from hydrogram.types import *
 
 from Mix import *
 from Mix.core.parser import remove_markdown_and_html
@@ -24,6 +24,7 @@ dbgm = GMute()
 
 __modles__ = "Global"
 __help__ = get_cgr("help_global")
+
 
 async def digiben_(q):
     chats = []
@@ -36,6 +37,7 @@ async def digiben_(q):
             chats.append(dialog.chat.id)
 
     return chats
+
 
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
@@ -82,7 +84,9 @@ async def _(c: nlx, m):
             await asyncio.sleep(0.1)
     dbgb.add_gban(nyet, alasan, c.me.id)
     await c.block_user(nyet)
-    await nlx.invoke(DeleteHistory(peer=(await nlx.resolve_peer(sapa)), max_id=0, revoke=True))
+    await nlx.invoke(
+        DeleteHistory(peer=(await nlx.resolve_peer(sapa)), max_id=0, revoke=True)
+    )
     mmg = cgr("glbl_6").format(
         em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan
     )

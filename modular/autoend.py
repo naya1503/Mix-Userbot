@@ -7,13 +7,15 @@
 """
 ################################################################
 
+from hydrogram.enums import ChatType
 from hydrogram.errors import *
 from hydrogram.raw.functions.messages import DeleteHistory
-from hydrogram.enums import ChatType
+
 from Mix import *
 
 __modles__ = "AutoEndChat"
 __help__ = get_cgr("help_auend")
+
 
 async def diend_chat(q):
     chats = []
@@ -27,6 +29,7 @@ async def diend_chat(q):
             chats.append(dialog.chat.id)
 
     return chats
+
 
 @ky.ubot("clearchat|endchat|clchat", sudo=True)
 async def _(_, m):
