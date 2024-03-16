@@ -141,7 +141,7 @@ async def _(c, m):
     redirected_error = sys.stderr = StringIO()
     stdout, stderr, exc = None, None, None
     try:
-        await user.aexec(cmd, c, m)
+        await nlx.aexec(cmd, c, m)
     except Exception:
         exc = traceback.format_exc()
     stdout = redirected_output.getvalue()
