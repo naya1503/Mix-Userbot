@@ -31,12 +31,7 @@ async def _(_, m):
     if peler.lower() == "gc":
         bcgc = await refresh_dialog("group")
         for gc in bcgc:
-            try:
-                await user.read_chat_history(gc, max_id=0)
-            except ChannelPrivate:
-                continue
-            except ChannelInvalid:
-                continue
+              await user.read_chat_history(gc, max_id=0)
         await mek.edit(cgr("autoread_2").format(em.sukses, len(bcgc)))
         return
     elif peler.lower() == "us":
@@ -54,23 +49,13 @@ async def _(_, m):
     elif peler.lower() == "ch":
         bcch = await refresh_dialog("ch")
         for ch in bcch:
-            try:
-                await user.read_chat_history(ch, max_id=0)
-            except ChannelPrivate:
-                continue
-            except ChannelInvalid:
-                continue
+            await user.read_chat_history(ch, max_id=0)
         await mek.edit(cgr("autoread_4").format(em.sukses, len(bcch)))
         return
     elif peler.lower() == "all":
         bcall = await refresh_dialog("allread")
         for aih in bcall:
-            try:
-                await user.read_chat_history(aih, max_id=0)
-            except ChannelPrivate:
-                continue
-            except ChannelInvalid:
-                continue
+            await user.read_chat_history(aih, max_id=0)
         await mek.edit(cgr("autoread_5").format(em.sukses, len(bcall)))
         return
     else:
