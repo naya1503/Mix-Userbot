@@ -18,6 +18,7 @@ balik: "Back"
 ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
+supot: "**If you need help, please come to the Support Group Below!!\n\nOr you can see updates on our Channel...**"
 
 # autoend
 auend_1: "{} **Provide arguments!!**"
@@ -175,7 +176,7 @@ gcs_14: "{} **All blacklist lists have been successfully deleted.**"
 # alive 
 alv_1: "**Author**"
 alv_2: "**Connoisseur**"
-alv_3: "**Mix-Userbot**\n    **status:** {}\n      **dc_id:** {}\n      **ping_dc:** {} ms\n      **antipm:** {}\n      **users:** {}\n      **groups:** {}\n      **bot_duration:** {}"
+alv_3: "**Mix-Userbot**\n    **status:** {}\n      **dc_id:** {}\n      **ping_dc:** {} ms\n      **antipm:** {}\n      **users:** {}\n      **bot**: {}\n      **groups:** {}\n      **bot_duration:** {}"
 alv_4: "Support"
 
 # global
@@ -384,7 +385,7 @@ spy_1: "{} Failed!!"
 spy_2: "{} Theft Result!!"
 
 # markdown
-mark_1: "<b>Markdown Formatting</b>\n<b>You can format your message using <b>bold</b>, <i>italic</i>, <u>underline</u>, <strike>strikethrough</strike>, and many more.</b>\n\n<code>`code word`</code>: Backticks are used to make monospace font. Displayed as: <code>code word</code>.\n\n<code>__italic__</code>: Double underscore is used to make italic font. Displayed as: <i>italic word</i>.\n\n<code>**bold**</code>: Asterisks are used to make bold font. Displayed as: <b>bold word</b>.\n\n<code>--underline--</code>: Double dashes are used to create <u>underline</u> text.\n\n<code>~~strikethrough~~</code>: Tildes are used to create strikethrough. Displayed as: <strike>strikethrough word</strike>.\n\n<code>||spoiler||</code>: Double vertical bars are used to create a spoiler. Displayed as: <spoiler>Spoiler</spoiler>.\n\n<code>[hyperlink](example)</code>: This is the formatting used to create a hyperlink.\n\n<code>[My Button|https://link.com]</code>: This is the formatting used to create a button.\n\nYou can also create callback_data buttons by using the <code>#</code> symbol at the beginning. For more information, please go to @KynanSupport for assistance."
+mark_1: "<b>Markdown Formatting</b>\n<b>You can format your message using <b>bold</b>, <i>italic</i>, <u>underline</u>, <strike>strikethrough</strike>, and many more.</b>\n\n<code>`code word`</code>: Backticks are used to make monospace font. Displayed as: <code>code word</code>.\n\n<code>__italic__</code>: Double underscore is used to make italic font. Displayed as: <i>italic word</i>.\n\n<code>**bold**</code>: Asterisks are used to make bold font. Displayed as: <b>bold word</b>.\n\n<code>--underline--</code>: Double dashes are used to create <u>underline</u> text.\n\n<code>~~strikethrough~~</code>: Tildes are used to create strikethrough. Displayed as: <strike>strikethrough word</strike>.\n\n<code>||spoiler||</code>: Double vertical bars are used to create a spoiler. Displayed as: <spoiler>Spoiler</spoiler>.\n\n<code>[hyperlink](example)</code>: This is the formatting used to create a hyperlink.\n\n<code>Hallo Disini ~ [My Button|https://link.com]</code>: This is the formatting used to create a button.\n\nYou can also create callback_data buttons by using the <code>#</code> symbol at the beginning. For more information, please go to @KynanSupport for assistance."
 mark_2: "<b>Fillings</b>\n\nYou can also customize the content of your message with contextual data. For example, you can mention the username in a welcome message, or reference it in a filter!\n\n<b>Supported Fillings:</b>\n\n<code>{first}</code>: User's first name.\n<code>{last}</code>: User's last name.\n<code>{fullname}</code>: User's full name.\n<code>{username}</code>: User's username. If they don't have one, it will mention the user.\n<code>{mention}</code>: Mentions the user with their first name.\n<code>{id}</code>: User's ID.\n<code>{chatname}</code>: Chat's name."
 mark_3: "**To view markdown format please click on the button below.**"
 

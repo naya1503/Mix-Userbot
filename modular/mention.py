@@ -46,12 +46,12 @@ async def tag_all_members(c: user, m: Message):
         await m.reply(cgr("ment_1").format(em.gagal))
         return
 
-    if len(m.command) < 2:
+    if not m.reply_to_message and len(m.command) < 2:
         await m.reply(cgr("ment_2").format(em.gagal))
         return
 
+    send = c.get_text(m)
     text = " ".join(m.command[1:])
-
     mention_texts = []
     members = c.get_chat_members(chat_id)
     berenti = True
@@ -65,10 +65,10 @@ async def tag_all_members(c: user, m: Message):
                 if member.user.last_name
                 else member.user.first_name
             )
-            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id}) ")
+            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
-                mention_text = f"{text}\n\n"
+                mention_text = f"{send}\n\n"
                 mention_text += " ".join(mention_texts)
                 try:
                     await c.send_message(chat_id, mention_text)
@@ -79,13 +79,16 @@ async def tag_all_members(c: user, m: Message):
                 mention_texts = []
 
     if mention_texts:
-        mention_text = f"{text}\n"
-        mention_text += "\n".join(mention_texts)
+        repl_text = m.reply_to_message.text
+        if repl_text:
+            repl_text += "\n\n" + "\n".join(mention_texts)
+        else:
+            repl_text = " ".join(mention_texts)
         try:
-            await c.send_message(chat_id, mention_text)
+            await c.send_message(chat_id, repl_text)
         except FloodWait as e:
             await asyncio.sleep(e.x)
-            await c.send_message(chat_id, mention_text)
+            await c.send_message(chat_id, repl_text)
         await asyncio.sleep(2.5)
     berenti = False
     await progres.delete()

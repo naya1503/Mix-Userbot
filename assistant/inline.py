@@ -34,17 +34,47 @@ from .call_markdown import markdown_help
 async def _(c, iq):
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
-    rep = m.reply_to_message
-    text, keyboard = text_keyb(ikb, rep.text)
-    duar = [
-        (
-            InlineQueryResultArticle(
-                title="Tombol Teks!",
-                input_message_content=InputTextMessageContent(text),
-                reply_markup=keyboard,
+    rep = user.get_text(m)
+    text, keyboard = text_keyb(ikb, rep)
+    if m.reply_to_message.photo:
+        dn = await m.reply_to_message.download()
+        photo_tg = upload_file(dn)
+        duar = [
+            (
+                InlineQueryResultPhoto(
+                    photo_url=f"https://telegra.ph/{photo_tg[0]}",
+                    title="kon",
+                    reply_markup=keyboard,
+                    caption=text,
+                )
             )
-        )
-    ]
+        ]
+
+    elif m.reply_to_message.video:
+        dn = await m.reply_to_message.download()
+        photo_tg = upload_file(dn)
+        duar = [
+            (
+                InlineQueryResultVideo(
+                    video_url=f"https://telegra.ph/{photo_tg[0]}",
+                    title="kon",
+                    reply_markup=keyboard,
+                    caption=text,
+                )
+            )
+        ]
+
+    else:
+        duar = [
+            (
+                InlineQueryResultArticle(
+                    title="Tombol Teks!",
+                    input_message_content=InputTextMessageContent(text),
+                    reply_markup=keyboard,
+                )
+            )
+        ]
+    os.remove(dn)
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
 
@@ -101,8 +131,6 @@ async def _(c, iq):
 
 
 # copy
-
-
 @ky.inline("^get_msg")
 async def _(c, iq):
     bk = ikb({f"{cgr('klk_1')}": f"copymsg_{int(iq.query.split()[1])}"})
@@ -119,26 +147,6 @@ async def _(c, iq):
             )
         ],
     )
-
-
-"""
-@ky.inline("^get_msg")
-async def _(c, iq):
-    bk = ikb({f"{cgr("klk_1")}": f"copymsg_{int(iq.query.split()[1])}"})
-    await c.answer_inline_query(
-        iq.id,
-        cache_time=0,
-        results=[
-            (
-                InlineQueryResultArticle(
-                    title="message",
-                    reply_markup=bk,
-                    input_message_content=InputTextMessageContent(cgr("cpy_3")),
-                )
-            )
-        ],
-    )
-"""
 
 
 # send
@@ -192,6 +200,7 @@ async def _(c, iq):
     upnya = await get_time((time() - start_time))
     ape = await refresh_dialog("group")
     apa = await refresh_dialog("users")
+    upu = await refresh_dialog("bot")
     if user.me.id in DEVS:
         stutas = cgr("alv_1")
     else:
@@ -207,10 +216,11 @@ async def _(c, iq):
         str(pink).replace(".", ","),
         pmper,
         len(apa),
+        len(upu),
         len(ape),
         upnya,
     )
-    bo_ol = ikb({f'{cgr("alv_4")}': "t.me/kynansupport", "Stats": "stats_mix"})
+    bo_ol = ikb({f"{cgr('alv_4')}": "suprot", "Stats": "stats_mix"})
     cekpic = udB.get_var(user.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
@@ -244,74 +254,8 @@ async def _(c, iq):
         ]
     await c.answer_inline_query(iq.id, cache_time=300, results=duar)
 
-
-"""
-@ky.inline("^alive")
-async def _(c, iq):
-    pmper = None
-    stutas = None
-    start = datetime.now()
-    await user.invoke(Ping(ping_id=0))
-    pink = (datetime.now() - start).microseconds / 1000
-    upnya = await get_time((time() - start_time))
-    ape = await refresh_dialog("group")
-    apa = await refresh_dialog("users")
-    if user.me.id in DEVS:
-        stutas = cgr("alv_1")
-    else:
-        stutas = cgr("alv_2")
-    cekpr = udB.get_var(user.me.id, "PMPERMIT")
-    if cekpr:
-        pmper = "enable"
-    else:
-        pmper = "disable"
-    txt = cgr("alv_3").format(
-        stutas,
-        user.me.dc_id,
-        str(pink).replace(".", ","),
-        pmper,
-        len(apa),
-        len(ape),
-        upnya,
-    )
-    bo_ol = ikb({f"{cgr("alv_4")}": "t.me/kynansupport", "Stats": "stats_mix"})
-    cekpic = udB.get_var(user.me.id, "ALIVEPIC")
-    if not cekpic:
-        duar = [
-            (
-                InlineQueryResultArticle(
-                    title="Alive Teks",
-                    input_message_content=InputTextMessageContent(txt),
-                    reply_markup=bo_ol,
-                )
-            )
-        ]
-
-    else:
-        filem = (
-            InlineQueryResultVideo
-            if cekpic.endswith(".mp4")
-            else InlineQueryResultPhoto
-        )
-        url_ling = (
-            {"video_url": cekpic, "thumb_url": cekpic}
-            if cekpic.endswith(".mp4")
-            else {"photo_url": cekpic}
-        )
-        duar = [
-            filem(
-                **url_ling,
-                title="Alive Picture",
-                caption=txt,
-                reply_markup=bo_ol,
-            )
-        ]
-    await c.answer_inline_query(iq.id, cache_time=300, results=duar)
-"""
 
 # notes
-
-
 @ky.inline("^get_note_")
 async def _(c, iq):
     q = iq.query.split(None, 1)
@@ -403,7 +347,10 @@ async def _(c, iq):
             pm_warns,
         )
         if flood2[int(org[1])] > pm_warns:
-            await user.send_message(int(org[1]), "Spam Terdeteksi !!! Blokir.")
+            await user.send_message(
+                int(org[1]),
+                f"**Saya sudah memperingati anda `{pm_warns}` !! Jangan Spam Atau Akan Diblokir!!**",
+            )
             del flood2[int(org[1])]
             await user.block_user(int(org[1]))
             return
@@ -424,7 +371,6 @@ async def _(c, iq):
                     **url_ling,
                     title="PIC Buttons !",
                     caption=kiki,
-                    # reply_markup=InlineKeyboardMarkup(button),
                     reply_markup=keyboard,
                 )
             ]
@@ -434,7 +380,6 @@ async def _(c, iq):
                     InlineQueryResultArticle(
                         title="Tombol PM!",
                         input_message_content=InputTextMessageContent(kiki),
-                        # reply_markup=InlineKeyboardMarkup(button),
                         reply_markup=keyboard,
                     )
                 )

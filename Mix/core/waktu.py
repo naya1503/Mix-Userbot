@@ -2,10 +2,11 @@
 
 from datetime import datetime, timedelta
 from time import time as waktunya
-
+import asyncio
+from pyrogram.errors import FloodWait
 start_time = waktunya()
 from team.nandev.database import cleanmode, ndB
-
+from Mix import user
 
 async def get_time(seconds):
     lng = ndB.get_key("bahasa")
@@ -54,13 +55,46 @@ async def get_time(seconds):
 
     return up_time
 
-
+# Part Of MissKaty
+"""
 async def put_cleanmode(org, message_id):
     if org not in cleanmode:
         cleanmode[org] = []
+    elif not isinstance(cleanmode[org], list):
+        cleanmode[org] = [cleanmode[org]]
     time_now = datetime.now()
     put = {
         "msg_id": message_id,
         "timer_after": time_now + timedelta(minutes=1),
     }
     cleanmode[org].append(put)
+"""
+
+async def put_cleanmode(chat_id, message_id):
+    if chat_id not in cleanmode:
+        cleanmode[chat_id] = []
+    time_now = datetime.now()
+    put = {
+        "msg_id": message_id,
+        "timer_after": time_now + timedelta(minutes=1),
+    }
+    cleanmode[chat_id].append(put)
+
+async def auto_clean():
+    while not await asyncio.sleep(5):
+        try:
+            for org in cleanmode:
+                if not udB.is_cleanmode_on(user.me.id):
+                    continue
+                for x in cleanmode[chat_id]:
+                    if datetime.now() <= x["timer_after"]:
+                        continue
+                    try:
+                        await user.delete_messages(chat_id, x["msg_id"])
+                    except FloodWait as e:
+                        await asyncio.sleep(e.value)
+                        await user.delete_messages(chat_id, x["msg_id"])
+                    except:
+                        continue
+        except:
+            continue

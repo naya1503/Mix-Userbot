@@ -68,7 +68,22 @@ async def _(c, cq):
         )
 
 
-@ky.callback(("stats_mix"))
+@ky.callback(("^suprot"))
+async def _(c, cq):
+    txt = cgr("supot")
+    kbt = ikb(
+        {
+            "Support 1": f"https://t.me/kynansupport",
+            "Support 2": f"https://t.me/gokilsupport",
+            "Channel 1": f"https://t.me/kontenfilm",
+            "Channel 2": f"https://t.me/SquirtInYourPussy",
+            "Stats": "stats_mix",
+        }
+    )
+    await cq.edit_message_text(txt, reply_markup=kbt)
+
+
+@ky.callback(("^stats_mix"))
 async def _(c, cq):
 
     uptime = await get_time((time() - start_time))
@@ -445,7 +460,7 @@ def cb_tespeed():
 async def _(c, cq):
     if cq.from_user.id != user.me.id:
         return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
-    kb = ikb({f'{cgr("ttup")}': "cls_hlp"})
+    kb = ikb({f"{cgr('ttup')}": "cls_hlp"})
     await cq.edit_message_text(text="**Processing...**", reply_markup=kb)
     loop = asyncio.get_running_loop()
     download, upload, info = await loop.run_in_executor(None, cb_tespeed)
@@ -460,38 +475,6 @@ async def _(c, cq):
     await cq.edit_message_text(msg, reply_markup=kb)
 
 
-"""
-@ky.callback("^gasbalap")
-async def _(c, cq):
-    if cq.from_user.id != user.me.id:
-        return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
-    # cq.inline_message_id
-    kb = ikb({f"{cgr("ttup")}": "cls_hlp"})
-    await cq.edit_message_text(text="**Processing...**", reply_markup=kb)
-    loop = asyncio.get_running_loop()
-    download, upload, info = await loop.run_in_executor(None, cb_tespeed)
-    msg = f"""
-# **Download:** `{download}`
-# **Upload:** `{upload}`
-# **Latency:** `{info['latency']} ms`
-# **Country:** `{info['country']} [{info['cc']}]`
-# **Latitude:** `{info['lat']}`
-# **Longitude:** `{info['lon']}`
-"""
-    await cq.edit_message_text(msg, reply_markup=kb)
-"""
-
-################################################################
-"""
- Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
- 
- @ CREDIT : NAN-DEV
- 
- EH KONTOL BAJINGAN !! KALO MO PAKE DIKODE PAKE AJA BANGSAT!! GAUSAH APUS KREDIT NGENTOT
-"""
-################################################################
-
-
 @ky.callback("^#")
 async def _(c, cq):
     try:
@@ -502,7 +485,6 @@ async def _(c, cq):
             if not noteval:
                 await cq.answer("Catatan tidak ditemukan.", True)
                 return
-            # note, button = text_keyb(ikb, noteval.get("value"))
             if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
                 file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
                 if noteval["type"] == Types.PHOTO:
@@ -526,7 +508,6 @@ async def _(c, cq):
                 except FloodWait as e:
                     await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
                     return
-            # await cq.answer()
 
     except Exception as e:
         print(f"Error in callback handler: {e}")
