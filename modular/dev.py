@@ -401,9 +401,8 @@ async def _(c, m):
 
             try:
                 unban_count = 0
-                async for member in c.iter_chat_members(
-                    chat.id, filter=ChatMembersFilter.BANNED
-                ):
+                benet = await chat.get_members(chat.id, filter=ChatMembertsFilter.BANNED)
+                async for member in benet:
                     try:
                         await c.unban_chat_member(chat.id, member.user.id)
                         unban_count += 1
