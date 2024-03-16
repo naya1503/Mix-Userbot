@@ -79,7 +79,7 @@ async def delete_messages(c: nlx, m):
         await m.reply(f"{e}")
 
 
-@user.on_message(filters.group & ~filters.me, group=4)
+@nlx.on_message(filters.group & filters.me, group=4)
 async def _(c: nlx, m):
     lock = LOCKS()
     all_chats = lock.get_lock_channel()
