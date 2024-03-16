@@ -1,17 +1,20 @@
-import requests
 import random
+
+import requests
 
 from Mix import *
 
-
 __modles__ = "TOD"
 __help__ = "TOD"
+
 
 async def get_truth(category="classic|kids|party|hot|mixed"):
     try:
         categories = category.split("|")
         random_category = random.choice(categories)
-        response = requests.get(f"https://api.safone.dev/truth?category={random_category}")
+        response = requests.get(
+            f"https://api.safone.dev/truth?category={random_category}"
+        )
         data = response.json()
         if response.status_code == 200 and "truth" in data:
             return data["truth"]
@@ -26,7 +29,9 @@ async def get_dare(category="classic|kids|party|hot|mixed"):
     try:
         categories = category.split("|")
         random_category = random.choice(categories)
-        response = requests.get(f"https://api.safone.dev/dare?category={random_category}")
+        response = requests.get(
+            f"https://api.safone.dev/dare?category={random_category}"
+        )
         data = response.json()
         if response.status_code == 200 and "dare" in data:
             return data["dare"]
