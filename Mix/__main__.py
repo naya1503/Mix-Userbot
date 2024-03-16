@@ -10,7 +10,6 @@ from uvloop import install
 
 from assistant import BOT_PLUGINS
 from Mix import *
-from Mix.core.waktu import auto_clean
 from modular import USER_MOD
 
 lool = asyncio.get_event_loop()
