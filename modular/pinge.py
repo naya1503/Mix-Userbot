@@ -8,7 +8,7 @@
 from datetime import datetime
 from time import time
 
-from pyrogram.raw.functions import Ping
+from hydrogram.raw.functions import Ping
 
 from Mix import *
 from Mix.core.waktu import get_time, start_time

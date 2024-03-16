@@ -4,8 +4,8 @@ import random
 import subprocess
 
 from PIL import Image, ImageDraw, ImageFont
-from pyrogram import *
-from pyrogram.types import *
+from hydrogram import *
+from hydrogram.types import *
 
 from Mix import Emojik, cgr, get_cgr, ky, user
 

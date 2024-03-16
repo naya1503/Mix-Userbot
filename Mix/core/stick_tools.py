@@ -11,7 +11,7 @@ import os
 import re
 
 from PIL import Image
-from pyrogram import emoji
+from hydrogram import emoji
 
 
 def get_emoji_regex():

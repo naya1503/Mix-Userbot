@@ -11,8 +11,8 @@
 
 import os
 
-from pyrogram.errors import *
-from pyrogram.types import *
+from hydrogram.errors import *
+from hydrogram.types import *
 from telegraph import upload_file
 
 from Mix import *

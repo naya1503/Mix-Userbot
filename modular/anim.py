@@ -10,7 +10,7 @@ import asyncio
 import random
 
 import requests
-from pyrogram.errors import *
+from hydrogram.errors import *
 
 from Mix import *
 

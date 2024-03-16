@@ -9,9 +9,9 @@
 from re import escape as re_escape
 from secrets import choice
 
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.types import *
+from hydrogram.enums import *
+from hydrogram.errors import *
+from hydrogram.types import *
 
 from Mix import *
 from Mix.core.sender_tools import send_cmd

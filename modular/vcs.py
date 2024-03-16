@@ -4,13 +4,13 @@ from random import randint
 from typing import Optional
 
 import pytgcalls
-from pyrogram import enums
-from pyrogram.errors import *
-from pyrogram.raw.functions.channels import GetFullChannel
-from pyrogram.raw.functions.messages import GetFullChat
-from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
+from hydrogram import enums
+from hydrogram.errors import *
+from hydrogram.raw.functions.channels import GetFullChannel
+from hydrogram.raw.functions.messages import GetFullChat
+from hydrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
                                           EditGroupCallTitle)
-from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
+from hydrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 
 from Mix import *
 

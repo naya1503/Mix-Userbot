@@ -9,9 +9,9 @@
 import asyncio
 import os
 
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
+from hydrogram import *
+from hydrogram.enums import *
+from hydrogram.errors import *
 
 from Mix import *
 

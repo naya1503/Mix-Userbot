@@ -13,11 +13,11 @@ from datetime import datetime
 from gc import get_objects
 from time import time
 
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.raw.functions import Ping
-from pyrogram.types import *
+from hydrogram import *
+from hydrogram.enums import *
+from hydrogram.errors import *
+from hydrogram.raw.functions import Ping
+from hydrogram.types import *
 from telegraph import upload_file
 
 from Mix import *

@@ -287,9 +287,9 @@ async def _(c: user, m):
 import asyncio
 from datetime import datetime, timedelta
 
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.types import *
+from hydrogram.enums import *
+from hydrogram.errors import *
+from hydrogram.types import *
 
 
 @ky.ubot("dorrr")

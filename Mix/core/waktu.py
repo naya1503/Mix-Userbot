@@ -4,7 +4,7 @@ import asyncio
 from datetime import datetime, timedelta
 from time import time as waktunya
 
-from pyrogram.errors import FloodWait
+from hydrogram.errors import FloodWait
 
 start_time = waktunya()
 from team.nandev.database import cleanmode, ndB, udB

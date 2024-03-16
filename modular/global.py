@@ -10,10 +10,10 @@
 import asyncio
 from io import BytesIO
 
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.types import *
+from hydrogram import *
+from hydrogram.enums import *
+from hydrogram.errors import *
+from hydrogram.types import *
 
 from Mix import *
 from Mix.core.parser import remove_markdown_and_html

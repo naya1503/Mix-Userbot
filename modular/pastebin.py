@@ -8,8 +8,8 @@
 import re
 
 import aiofiles
-from pyrogram.errors import *
-from pyrogram.types import *
+from hydrogram.errors import *
+from hydrogram.types import *
 
 from Mix import *
 

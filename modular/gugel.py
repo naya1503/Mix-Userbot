@@ -1,7 +1,7 @@
 import json
 from urllib.request import Request, urlopen
 
-from pyrogram import *
+from hydrogram import *
 
 from Mix import *
 

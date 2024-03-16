@@ -10,8 +10,8 @@
 
 import asyncio
 
-from pyrogram import *
-from pyrogram.types import *
+from hydrogram import *
+from hydrogram.types import *
 from SafoneAPI import SafoneAPI
 
 from Mix import *

@@ -7,8 +7,8 @@
 """
 ################################################################
 
-from pyrogram.errors import PeerIdInvalid
-from pyrogram.raw.functions.messages import DeleteHistory
+from hydrogram.errors import PeerIdInvalid
+from hydrogram.raw.functions.messages import DeleteHistory
 
 from Mix import *
 from modular.gcast import refresh_dialog

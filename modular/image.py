@@ -10,7 +10,7 @@ import os
 from io import BytesIO
 
 import requests
-from pyrogram.types import InputMediaPhoto
+from hydrogram.types import InputMediaPhoto
 from SafoneAPI import SafoneAPI
 
 from Mix import *
