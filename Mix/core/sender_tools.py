@@ -5,12 +5,12 @@ from typing import Tuple
 from hydrogram.enums import MessageEntityType as entity
 from team.nandev.class_log import LOGGER
 
-from Mix import Users, user
+from Mix import Users, nlx
 
 from .msgty import Types
 
 
-async def send_cmd(c: user, msgtype: int):
+async def send_cmd(c: nlx, msgtype: int):
     GET_FORMAT = {
         Types.TEXT.value: c.send_message,
         Types.DOCUMENT.value: c.send_document,
@@ -27,7 +27,7 @@ async def send_cmd(c: user, msgtype: int):
     return GET_FORMAT[msgtype]
 
 
-async def extract_user(c, m) -> Tuple[int, str, str]:
+async def extract_user(c: nlx, m) -> Tuple[int, str, str]:
     """Extract the user from the provided message."""
     user_id = None
     user_first_name = None
