@@ -1,11 +1,9 @@
-import re
+
 import requests
 from bs4 import BeautifulSoup
 from googletrans import Translator
-from pyrogram import Client, filters
 
 from Mix import *
-
 
 __modles__ = "ask"
 __help__ = "ask"
