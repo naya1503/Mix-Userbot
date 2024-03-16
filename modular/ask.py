@@ -1,7 +1,8 @@
+import asyncio
 import random
+
 import requests
 from gpytranslate import Translator
-import asyncio
 
 from Mix import *
 
@@ -53,27 +54,21 @@ async def get_dare(category="classic|kids|party|hot|mixed"):
 async def dare_command(client, message):
     proses = await message.reply(f"`Tunggu ...`")
     dare = await get_dare()
-    response_text = dare.get('text', dare.get('text_raw'))
+    response_text = dare.get("text", dare.get("text_raw"))
     if response_text:
         response = f"**Dare:** `{response_text}`"
     else:
         response = "**Gagal mengambil Dare. Silakan coba lagi nanti.**"
-    await asyncio.gather(
-        message.reply_text(response),
-        proses.delete()
-    )
+    await asyncio.gather(message.reply_text(response), proses.delete())
 
 
 @ky.ubot("truth", sudo=True)
 async def truth_command(client, message):
     proses = await message.reply(f"`Tunggu ...`")
     truth = await get_truth()
-    response_text = truth.get('text', truth.get('text_raw'))
+    response_text = truth.get("text", truth.get("text_raw"))
     if response_text:
         response = f"**Truth :** `{response_text}`"
     else:
         response = "**Gagal mengambil Truth. Silakan coba lagi nanti.**"
-    await asyncio.gather(
-        message.reply_text(response),
-        proses.delete()
-    )
+    await asyncio.gather(message.reply_text(response), proses.delete())
