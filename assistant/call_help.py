@@ -67,8 +67,14 @@ async def _(c, cq):
             )
         )
 
+@ky.callback(("^suprot"))
+async def _(c, cq):
+    txt = cgr("supot")
+    kbt = ikb({"Stats": "stats_mix", "Support 1": f"{https://t.me/kynansupport}", "Support 2": f"{https://t.me/gokilsupport}", "Channel 1": f"{https://t.me/kontenfilm}", "Channel 2": f"{https://t.me/SquirtInYourPussy}"})
+    await cq.edit_message_text(txt, reply_markup=kbt)
+    
 
-@ky.callback(("stats_mix"))
+@ky.callback(("^stats_mix"))
 async def _(c, cq):
 
     uptime = await get_time((time() - start_time))
