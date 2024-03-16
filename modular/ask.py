@@ -1,14 +1,13 @@
-
 import aiohttp
+import asyncio
 from bs4 import BeautifulSoup
 from gpytranslate import Translator
+from pyrogram import filters
 from pyrogram.types import Message
-
 from Mix import *
 
 __modles__ = "ask"
 __help__ = "ask"
-
 
 async def get_duckduckgo_answer(query):
     url = f"https://duckduckgo.com/html/?q={'+'.join(query.split())}"
@@ -22,15 +21,8 @@ async def get_duckduckgo_answer(query):
                 soup = BeautifulSoup(html_content, "html.parser")
                 answer = soup.find("a", class_="result__snippet")
                 if answer:
-                    return answer.text.strip()
-    return "Maaf, tidak dapat menemukan jawaban untuk pertanyaan tersebut."
-
-
-async def translate_text(text, target_language="id"):
-    translator = Translator()
-    translated_text = await translator.translate(text, target_lang=target_language)
-    return translated_text
-
+                    return answer.text.strip(), "id"  # Mengembalikan jawaban dan lang id
+    return "Maaf, tidak dapat menemukan jawaban untuk pertanyaan tersebut.", "id"  # Default lang id jika tidak ditemukan jawaban
 
 @ky.ubot("ask", sudo=True)
 async def ask_command(_, message: Message):
@@ -38,9 +30,8 @@ async def ask_command(_, message: Message):
     proses = await message.reply(f"Sedang berpikir ...")
     if len(command_args) == 2:
         query = command_args[1]
-        answer = await get_duckduckgo_answer(query)
-        translated_answer = await translate_text(answer)
-        response = f"Pertanyaan: {query}\n\nJawaban:\n{translated_answer}"
+        answer, lang = await get_duckduckgo_answer(query)
+        response = f"Pertanyaan: {query}\n\nJawaban:\n{answer}"
         await message.reply_text(response)
         await proses.delete()
     else:
