@@ -9,19 +9,13 @@
 #
 
 import socket
-
-import heroku3
-from aiohttp import ClientSession
-from team.nandev.class_log import LOGGER
-import asyncio
-import os
-import re
-from io import BytesIO
 from os import execvp
 from sys import executable
 from sys import version as pyver
 
+import heroku3
 import wget
+from aiohttp import ClientSession
 from pyrogram import *
 from pyrogram import __version__ as pyrover
 from pyrogram.errors import *
@@ -29,7 +23,7 @@ from pyrogram.types import ChatPrivileges
 from pytgcalls import __version__ as pytgver
 from team.nandev.class_handler import TAG_LOG
 from team.nandev.class_log import LOGGER
-from team.nandev.database import ndB, udB
+from team.nandev.database import ndB
 
 from config import *
 
@@ -125,4 +119,3 @@ async def getFinish():
     except (ChannelInvalid, PeerIdInvalid):
         ndB.del_key("TAG_LOG")
         execvp(executable, [executable, "-m", "Mix"])
-

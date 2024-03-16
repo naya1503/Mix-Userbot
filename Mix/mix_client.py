@@ -10,25 +10,16 @@ import asyncio
 import os
 import re
 from io import BytesIO
-from os import execvp
-from sys import executable
-from sys import version as pyver
 
-import wget
 from pyrogram import *
-from pyrogram import __version__ as pyrover
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.handlers import *
 from pyrogram.types import *
-from pyrogram.types import ChatPrivileges
-from pytgcalls import __version__ as pytgver
-from team.nandev.class_handler import TAG_LOG
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB, udB
 
 from config import *
-from Mix import bot, nlx
 
 TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
 
@@ -281,5 +272,3 @@ class Bot(Client):
     async def start(self):
         await super().start()
         LOGGER.info(f"Starting Assistant {self.me.id}|{self.me.mention}")
-
-
