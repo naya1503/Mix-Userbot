@@ -66,4 +66,3 @@ async def put_cleanmode(org, message_id):
         "timer_after": time_now + timedelta(minutes=1),
     }
     cleanmode[org].append(put)
-
