@@ -14,7 +14,7 @@ from traceback import format_exc
 from hydrogram.enums import *
 from hydrogram.errors import *
 from hydrogram.raw.functions.channels import GetFullChannel
-from hydrogram.raw.functions.nlxs import GetFullUser
+from hydrogram.raw.functions.users import GetFullUser
 from team.nandev.class_log import LOGGER
 
 from Mix import *
