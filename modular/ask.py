@@ -1,13 +1,13 @@
+
 import aiohttp
-import asyncio
 from bs4 import BeautifulSoup
-from gpytranslate import Translator
-from pyrogram import filters
 from pyrogram.types import Message
+
 from Mix import *
 
 __modles__ = "ask"
 __help__ = "ask"
+
 
 async def get_duckduckgo_answer(query):
     url = f"https://duckduckgo.com/html/?q={'+'.join(query.split())}"
@@ -21,8 +21,15 @@ async def get_duckduckgo_answer(query):
                 soup = BeautifulSoup(html_content, "html.parser")
                 answer = soup.find("a", class_="result__snippet")
                 if answer:
-                    return answer.text.strip(), "id"  # Mengembalikan jawaban dan lang id
-    return "Maaf, tidak dapat menemukan jawaban untuk pertanyaan tersebut.", "id"  # Default lang id jika tidak ditemukan jawaban
+                    return (
+                        answer.text.strip(),
+                        "id",
+                    )  # Mengembalikan jawaban dan lang id
+    return (
+        "Maaf, tidak dapat menemukan jawaban untuk pertanyaan tersebut.",
+        "id",
+    )  # Default lang id jika tidak ditemukan jawaban
+
 
 @ky.ubot("ask", sudo=True)
 async def ask_command(_, message: Message):
