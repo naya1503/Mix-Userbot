@@ -21,5 +21,5 @@ jobs:
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git add .
-        git commit -m "Replace 'ubot.on_message(anjay(' with 'KY.UBOT('"
+        git commit -m "mmg"
         git push
