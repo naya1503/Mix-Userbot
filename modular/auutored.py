@@ -31,7 +31,7 @@ async def diread_dong(q):
         ],
     }
     async for dialog in nlx.get_dialogs():
-        if dialog.chat.type in chat_types[q]
+        if dialog.chat.type in chat_types[q]:
             chats.append(dialog.chat.id)
 
     return chats
