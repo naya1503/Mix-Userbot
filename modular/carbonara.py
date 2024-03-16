@@ -64,7 +64,7 @@ async def _(c, m):
         await m.reply_photo(
             meg,
             caption=cgr("crbn_2").format(
-                em.sukses, user.me.mention, reply_to_message_id=ReplyCheck(m)
+                em.sukses, nlx.me.mention, reply_to_message_id=ReplyCheck(m)
             ),
         )
         os.remove(meg)
@@ -79,7 +79,7 @@ async def _(c, m):
         await m.reply_photo(
             meg,
             caption=cgr("crbn_2").format(
-                em.sukses, user.me.mention, reply_to_message_id=ReplyCheck(m)
+                em.sukses, nlx.me.mention, reply_to_message_id=ReplyCheck(m)
             ),
         )
         os.remove(meg)
@@ -98,7 +98,7 @@ async def _(c, m):
         await m.reply_photo(
             meg,
             caption=cgr("crbn_2").format(
-                em.sukses, user.me.mention, reply_to_message_id=ReplyCheck(m)
+                em.sukses, nlx.me.mention, reply_to_message_id=ReplyCheck(m)
             ),
         )
         os.remove(meg)
@@ -118,7 +118,7 @@ async def _(c, m):
         await m.reply_photo(
             meg,
             caption=cgr("crbn_2").format(
-                em.sukses, user.me.mention, reply_to_message_id=ReplyCheck(m)
+                em.sukses, nlx.me.mention, reply_to_message_id=ReplyCheck(m)
             ),
         )
         os.remove(meg)
