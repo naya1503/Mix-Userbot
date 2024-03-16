@@ -1,13 +1,13 @@
 import random
-
 import requests
-from gpytranslate import translate
+from gpytranslate import Translator
 
 from Mix import *
 
 __modles__ = "TOD"
 __help__ = "TOD"
 
+translator = Translator()
 
 async def get_truth(category="classic|kids|party|hot|mixed"):
     try:
@@ -18,7 +18,7 @@ async def get_truth(category="classic|kids|party|hot|mixed"):
         )
         data = response.json()
         if response.status_code == 200 and "truth" in data:
-            truth = await translate(data["truth"], "en", "id")
+            truth = await translator.translate(data["truth"], "en", "id")
             return truth
         else:
             return None
@@ -36,7 +36,7 @@ async def get_dare(category="classic|kids|party|hot|mixed"):
         )
         data = response.json()
         if response.status_code == 200 and "dare" in data:
-            dare = await translate(data["dare"], "en", "id")
+            dare = await translator.translate(data["dare"], "en", "id")
             return dare
         else:
             return None
