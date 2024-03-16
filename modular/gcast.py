@@ -37,8 +37,11 @@ async def refresh_dialog(query):
     }
     async for xxone in user.get_dialogs():
         if xxone.chat.type in chat_types[query]:
-            chats.append(xxone.chat.id)
+            chat = await check_chat_access(xxone.chat.id)
+            if chat:
+                chats.append(xxone.chat.id)
     return chats
+
 
 
 @ky.ubot("gcast", sudo=True)
