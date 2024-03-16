@@ -10,23 +10,22 @@ import asyncio
 import os
 import re
 from io import BytesIO
+from os import execvp
+from sys import executable
 
+import wget
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.handlers import *
 from pyrogram.types import *
+from pyrogram.types import ChatPrivileges
+from team.nandev.class_handler import TAG_LOG
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB, udB
-from team.nandev.class_log import LOGGER
-from team.nandev.class_handler import TAG_LOG
-from Mix import nlx, bot
-import wget
-from pyrogram.types import ChatPrivileges
-from os import execvp
-from sys import executable
 
 from config import *
+from Mix import bot, nlx
 
 TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
 
@@ -280,6 +279,7 @@ class Bot(Client):
         await super().start()
         LOGGER.info(f"Starting Assistant {self.me.id}|{self.me.mention}")
 
+
 async def check_logger():
     LOGGER.info(f"Check Grup Log User...")
     if TAG_LOG is not None:
@@ -294,7 +294,7 @@ async def check_logger():
     kntl = gc.id
     await nlx.set_chat_photo(kntl, **gmbr)
     await nlx.promote_chat_member(
-        kntl, 
+        kntl,
         bot.me.username,
         privileges=ChatPrivileges(
             can_change_info=True,
@@ -304,11 +304,10 @@ async def check_logger():
             can_pin_messages=True,
             can_promote_members=True,
             can_manage_chat=True,
-            can_manage_video_chats=True))
+            can_manage_video_chats=True,
+        ),
+    )
     ndB.set_key("TAG_LOG", kntl)
-    await nlx.send_message(
-        kntl,
-        f"<b>Group Log Berhasil Dibuat.</b>")
+    await nlx.send_message(kntl, f"<b>Group Log Berhasil Dibuat.</b>")
     LOGGER.info(f"Group Logger Enable...")
     execvp(executable, [executable, "-m", "Mix"])
-   
