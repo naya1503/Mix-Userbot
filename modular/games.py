@@ -1,5 +1,5 @@
-from hydrogram import *
-from hydrogram.types import *
+from pyrogram import *
+from pyrogram.types import *
 
 from Mix import *
 

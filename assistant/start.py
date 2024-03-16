@@ -7,14 +7,14 @@
 ################################################################
 
 
-from hydrogram import *
-from hydrogram.enums import *
-from hydrogram.errors import *
-from hydrogram.file_id import *
-from hydrogram.raw.functions.messages import *
-from hydrogram.raw.functions.stickers import *
-from hydrogram.raw.types import *
-from hydrogram.types import *
+from pyrogram import *
+from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.file_id import *
+from pyrogram.raw.functions.messages import *
+from pyrogram.raw.functions.stickers import *
+from pyrogram.raw.types import *
+from pyrogram.types import *
 
 from Mix import *
 

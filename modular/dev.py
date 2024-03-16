@@ -287,9 +287,9 @@ async def _(c: nlx, m):
 import asyncio
 from datetime import datetime, timedelta
 
-from hydrogram.enums import *
-from hydrogram.errors import *
-from hydrogram.types import *
+from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.types import *
 
 
 @ky.ubot("benal")
@@ -297,9 +297,9 @@ async def _(c: user, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(chat_id=m.chat.id)
-    my = await chat.get_member(c.me.id)
-    if my.privileges:
-        if my.privileges.can_manage_chat and my.privileges.can_restrict_members:
+    gue = await chat.get_member(c.me.id)
+    if gue.privileges:
+        if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
             if m.from_user.id not in DEVS:
                 await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
@@ -381,10 +381,10 @@ async def _(c, m):
     em.initialize()
 
     chat = c.get_chat(chat_id=m.chat.id)
-    my = await chat.get_member(c.me.id)
+    gue = chat.get_member(c.me.id)
 
-    if my.privileges:
-        if my.privileges.can_manage_chat and my.privileges.can_restrict_members:
+    if gue.privileges:
+        if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
 
             if m.from_user.id not in DEVS:

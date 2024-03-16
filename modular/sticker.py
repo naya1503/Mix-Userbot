@@ -11,11 +11,11 @@
 import asyncio
 import os
 
-from hydrogram.errors import *
-from hydrogram.file_id import *
-from hydrogram.raw.functions.messages import *
-from hydrogram.raw.functions.stickers import *
-from hydrogram.raw.types import *
+from pyrogram.errors import *
+from pyrogram.file_id import *
+from pyrogram.raw.functions.messages import *
+from pyrogram.raw.functions.stickers import *
+from pyrogram.raw.types import *
 
 from Mix import Emojik, bot, cgr, get_cgr, ky, ndB, nlx
 

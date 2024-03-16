@@ -1,6 +1,6 @@
 import asyncio
 
-from hydrogram.errors import *
+from pyrogram.errors import *
 
 DEFAULTUSER = "Nay"
 

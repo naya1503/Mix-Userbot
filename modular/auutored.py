@@ -8,8 +8,8 @@
 ################################################################
 
 
-from hydrogram.enums import ChatType
-from hydrogram.errors import *
+from pyrogram.enums import ChatType
+from pyrogram.errors import *
 
 from Mix import *
 

@@ -2,7 +2,7 @@ import asyncio
 import math
 import time
 
-from hydrogram.errors.exceptions import *
+from pyrogram.errors.exceptions import *
 
 
 def humanbytes(size):

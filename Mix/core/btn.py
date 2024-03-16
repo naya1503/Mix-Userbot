@@ -15,10 +15,10 @@ from html import escape
 from re import findall
 from typing import List
 
-from hydrogram.enums import ChatType
-from hydrogram.types import InlineKeyboardButton
-from hydrogram.types import InlineKeyboardButton as Ikb
-from hydrogram.types import InlineKeyboardMarkup, Message
+from pyrogram.enums import ChatType
+from pyrogram.types import InlineKeyboardButton
+from pyrogram.types import InlineKeyboardButton as Ikb
+from pyrogram.types import InlineKeyboardMarkup, Message
 from pykeyboard import InlineKeyboard
 
 from .parser import escape_markdown

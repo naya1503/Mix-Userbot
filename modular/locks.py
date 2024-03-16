@@ -9,9 +9,9 @@
 
 from asyncio import sleep
 
-from hydrogram.enums import MessageEntityType as MET
-from hydrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
-from hydrogram.types import ChatPermissions
+from pyrogram.enums import MessageEntityType as MET
+from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
+from pyrogram.types import ChatPermissions
 
 from Mix import *
 

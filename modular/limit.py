@@ -1,6 +1,6 @@
 from asyncio import sleep
 
-from hydrogram.raw.functions.messages import DeleteHistory, StartBot
+from pyrogram.raw.functions.messages import DeleteHistory, StartBot
 
 from Mix import *
 

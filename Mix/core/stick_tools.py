@@ -10,7 +10,7 @@ import asyncio
 import os
 import re
 
-from hydrogram import emoji
+from pyrogram import emoji
 from PIL import Image
 
 

@@ -4,8 +4,8 @@ import sys
 from os import execvp
 from sys import executable
 
-from hydrogram import *
-from hydrogram.errors import *
+from pyrogram import *
+from pyrogram.errors import *
 from uvloop import install
 
 from assistant import BOT_PLUGINS

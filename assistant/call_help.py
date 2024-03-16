@@ -15,11 +15,11 @@ from time import time
 
 import psutil
 import speedtest
-from hydrogram import *
-from hydrogram.enums import *
-from hydrogram.errors import *
-from hydrogram.raw.functions.messages import DeleteHistory
-from hydrogram.types import *
+from pyrogram import *
+from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.raw.functions.messages import DeleteHistory
+from pyrogram.types import *
 
 from Mix import *
 from Mix.core.waktu import get_time, start_time
