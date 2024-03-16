@@ -12,8 +12,6 @@ import socket
 
 import heroku3
 from aiohttp import ClientSession
-from pyrogram import *
-from pyrogram.errors import *
 from team.nandev.class_log import LOGGER
 
 from config import *
