@@ -20,9 +20,9 @@ __help__ = get_cgr("help_butt")
 async def _(c: user, m):
     em = Emojik()
     em.initialize()
-    xx = m.reply_to_message
+    xx = c.get_text(m)
     babi = await m.reply(cgr("proses").format(em.proses))
-    text, keyboard = text_keyb(ikb, xx.text)
+    text, keyboard = text_keyb(ikb, xx)
     if keyboard:
         try:
             x = await c.get_inline_bot_results(bot.me.username, f"buat_button {id(m)}")
