@@ -18,6 +18,7 @@ balik: "Back"
 ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
+supot: "**If you need help, please come to the Support Group Below!!\n\nOr you can see updates on our Channel...**"
 
 # autoend
 auend_1: "{} **Provide arguments!!**"
