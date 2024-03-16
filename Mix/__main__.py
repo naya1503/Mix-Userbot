@@ -22,7 +22,7 @@ async def start_user():
         await nlx.start()
         LOGGER.info(f"Importing All Modules...")
         for modul in USER_MOD:
-            imported_module = importlib.import_module(f"modular.{modul}" )
+            imported_module = importlib.import_module(f"modular.{modul}")
             if hasattr(imported_module, "__modles__") and imported_module.__modles__:
                 imported_module.__modles__ = imported_module.__modles__
                 if hasattr(imported_module, "__help__") and imported_module.__help__:
