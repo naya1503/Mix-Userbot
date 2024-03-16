@@ -13,14 +13,11 @@ def search_duckduckgo(query):
         url = f"https://api.duckduckgo.com/?q={query_encoded}&format=json&pretty=1"
         response = requests.get(url)
         data = response.json()
-        if "AbstractText" in data:
-            return data["AbstractText"]
-        elif "Answer" in data:
-            return data["Answer"]
-        elif "RelatedTopics" in data and data["RelatedTopics"]:
-            return data["RelatedTopics"][0]["Text"]
-        else:
-            return None
+        search_text = data.get('AbstractText', None)
+        if not search_text and 'RelatedTopics' in data and data['RelatedTopics']:
+            search_text = data['RelatedTopics'][0].get('Text', None)
+        
+        return search_text
     except Exception as e:
         print("Error:", e)
         return None
