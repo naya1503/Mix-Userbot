@@ -23,9 +23,8 @@ async def dicek_dulu(chat_id):
     try:
         chat = await nlx.get_chat(chat_id)
         return chat
-    except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
+    except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel, UsernameInvalid):
         return None
-
 
 async def refresh_dialog(query):
     chats = []
@@ -43,12 +42,13 @@ async def refresh_dialog(query):
             ChatType.BOT,
         ],
     }
-    async for xxone in nlx.get_dialogs():
+    async for xxone in nlx.iter_dialogs():
         if xxone.chat.type in chat_types[query]:
             chat = await dicek_dulu(xxone.chat.id)
             if chat:
                 chats.append(xxone.chat.id)
-    return chat_types
+    return chats
+
 
 
 @ky.ubot("gcast", sudo=True)
