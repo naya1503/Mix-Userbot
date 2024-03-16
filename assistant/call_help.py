@@ -445,7 +445,7 @@ def cb_tespeed():
 async def _(c, cq):
     if cq.from_user.id != user.me.id:
         return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
-    kb = ikb({f"{cgr("ttup")}": "cls_hlp"})
+    kb = ikb({f"{cgr('ttup')}": "cls_hlp"})
     await cq.edit_message_text(text="**Processing...**", reply_markup=kb)
     loop = asyncio.get_running_loop()
     download, upload, info = await loop.run_in_executor(None, cb_tespeed)
@@ -495,7 +495,6 @@ async def _(c, cq):
                 except FloodWait as e:
                     await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
                     return
-            # await cq.answer()
 
     except Exception as e:
         print(f"Error in callback handler: {e}")
