@@ -130,7 +130,7 @@ async def _(c: nlx, m):
 @ky.cegers("ceval")
 @ky.bots("eval|ev")
 async def _(c, m):
-    if not user.get_arg(m):
+    if not nlx.get_arg(m):
         return
     xx = await m.reply_text("Processing ...")
     cmd = m.text.split(" ", maxsplit=1)[1]
