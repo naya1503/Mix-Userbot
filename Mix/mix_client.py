@@ -7,12 +7,11 @@
 ################################################################
 
 import asyncio
+import importlib
 import os
 import re
 from io import BytesIO
-import importlib
-from modular import USER_MOD
-from assistant import BOT_PLUGINS
+
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -21,7 +20,9 @@ from pyrogram.types import *
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB, udB
 
+from assistant import BOT_PLUGINS
 from config import *
+from modular import USER_MOD
 
 TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
 
@@ -254,7 +255,9 @@ class Userbot(Client):
             if hasattr(imported_module, "__modles__") and imported_module.__modles__:
                 imported_module.__modles__ = imported_module.__modles__
                 if hasattr(imported_module, "__help__") and imported_module.__help__:
-                    CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (imported_module)
+                    CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (
+                        imported_module
+                    )
         LOGGER.info(f"Successfully Import User Modules...")
         LOGGER.info(f"Starting Userbot {self.me.id}|{self.me.mention}")
 
