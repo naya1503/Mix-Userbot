@@ -28,14 +28,15 @@ from modular.pmpermit import *
 from .call_markdown import markdown_help
 
 parse_words = [
-        "first",
-        "last",
-        "fullname",
-        "id",
-        "mention",
-        "username",
-        "chatname",
+    "first",
+    "last",
+    "fullname",
+    "id",
+    "mention",
+    "username",
+    "chatname",
 ]
+
 
 async def diinline(q):
     chats = []
