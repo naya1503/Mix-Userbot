@@ -105,6 +105,7 @@ autoread_5: "{} **Successfully turned on autoread all.**"
 autoread_6: "{} **Please enter the query correctly!!**"
 autoread_7: "{} **Successfully turned on autoread bot.**"
 autoread_8: "{} **Autoread { } was successfully disabled.**"
+autoread_9: "{} **Successfully turned on autoread mention s.**"
 
 # button
 butt_1: "{} **Please type `help markdown` to see button format!**"
