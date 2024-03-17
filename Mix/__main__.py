@@ -8,7 +8,6 @@ from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
 
-from assistant import BOT_PLUGINS
 from Mix import *
 from Mix.core.gclog import getFinish
 from Mix.core.waktu import auto_clean
@@ -41,9 +40,9 @@ async def start_bot():
         await autobot()
     try:
         await bot.start()
-        #for plus in BOT_PLUGINS:
-            #imported_module = importlib.import_module(f"assistant.{plus}")
-            #importlib.reload(imported_module)
+        # for plus in BOT_PLUGINS:
+        # imported_module = importlib.import_module(f"assistant.{plus}")
+        # importlib.reload(imported_module)
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
