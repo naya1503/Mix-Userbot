@@ -13,7 +13,7 @@ from team.nandev.class_log import LOGGER
 
 async def akunbebanamat(c):
     chats = []
-    async for bb in c.get_dialogs():
+    async for bb in c.get_dialogs(limit=500):
         if bb.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
             chats.append(bb.chat.id)
     return chats
