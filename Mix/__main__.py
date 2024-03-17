@@ -41,9 +41,9 @@ async def start_bot():
         await autobot()
     try:
         await bot.start()
-        for plus in BOT_PLUGINS:
-            imported_module = importlib.import_module(f"assistant.{plus}")
-            importlib.reload(imported_module)
+        #for plus in BOT_PLUGINS:
+            #imported_module = importlib.import_module(f"assistant.{plus}")
+            #importlib.reload(imported_module)
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
