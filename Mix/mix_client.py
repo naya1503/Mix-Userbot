@@ -242,7 +242,7 @@ class Userbot(Client):
         self._translate[self.me.id] = {"negara": "id"}
         LOGGER.info(f"Importing User Modules...")
         for modul in USER_MOD:
-            imported_module = importlib.import_module(f"modular.{modul}")
+            imported_module = importlib.import_module(f"modular." + modul)
             if hasattr(imported_module, "__modles__") and imported_module.__modles__:
                 imported_module.__modles__ = imported_module.__modles__
                 if hasattr(imported_module, "__help__") and imported_module.__help__:
@@ -259,25 +259,11 @@ class Bot(Client):
             name="bot", api_id=api_id, api_hash=api_hash, bot_token=TOKEN_BOT, **kwargs
         )
 
-    def on_message(self, filters=None, group=-1):
-        def decorator(func):
-            self.add_handler(MessageHandler(func, filters), group)
-            return func
-
-        return decorator
-
-    def on_callback_query(self, filters=None, group=-1):
-        def decorator(func):
-            self.add_handler(CallbackQueryHandler(func, filters), group)
-            return func
-
-        return decorator
-
     async def start(self):
         await super().start()
         LOGGER.info(f"Importing Bot Modules...")
         for plus in BOT_PLUGINS:
-            imported_module = importlib.import_module(f"assistant.{plus}")
+            imported_module = importlib.import_module(f"assistant." + plus)
             importlib.reload(imported_module)
         LOGGER.info(f"Successfully Import Bot Modules...")
         LOGGER.info(f"Starting Assistant {self.me.id}|{self.me.mention}")
