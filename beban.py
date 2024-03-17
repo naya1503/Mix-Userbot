@@ -6,7 +6,7 @@
   • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
 """
 ################################################################
-
+import asyncio
 from pyrogram.enums import ChatType
 from pyrogram.errors import *
 from team.nandev.class_log import LOGGER
@@ -28,4 +28,7 @@ async def dasar_laknat(c):
             await c.read_chat_history(jamet, max_id=0)
         except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
             continue
+        except FloodWait as e:
+            await asyncio.slee(e.value)
+            await c.read_chat_history(jamet, max_id=0)
     LOGGER.info("Finished Read Message...")
