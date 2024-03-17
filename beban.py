@@ -6,7 +6,6 @@
   • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
 """
 ################################################################
-import asyncio
 
 from pyrogram.enums import ChatType
 from pyrogram.errors import *
@@ -37,6 +36,7 @@ async def dasar_laknat(c):
                 continue
     LOGGER.info("Finished Read Message...")
 """
+
 
 async def dasar_laknat(c):
     async with c:
