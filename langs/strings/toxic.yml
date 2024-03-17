@@ -125,6 +125,7 @@ autoread_5: "{} **Berhasil menghidupkan autoread all.**"
 autoread_6: "{} **Silahkan masukkan query dengan benar!!**"
 autoread_7: "{} **Berhasil menghidupkan autoread bot.**"
 autoread_8: "{} **Autoread {} berhasil dimatikan.**"
+autoread_9: "{} **Berhasil menghidupkan autoread mention.**"
 
 # button
 butt_1: "{} **Sigoblok ga bener!! ketik `help markdown` terus baca!!**"
