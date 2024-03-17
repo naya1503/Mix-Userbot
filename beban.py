@@ -9,6 +9,7 @@
 import asyncio
 import sys
 from pyrogram.enums import ChatType
+from pyrogram.errors import *
 from team.nandev.class_log import LOGGER
 from Mix import nlx
 from team.nandev.database import udB
