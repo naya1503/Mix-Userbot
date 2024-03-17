@@ -47,6 +47,8 @@ async def starter():
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
 """
+
+
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
@@ -54,6 +56,7 @@ async def start_user():
     except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
         LOGGER.info("Check your session or api id!!")
         sys.exit(1)
+
 
 async def start_bot():
     LOGGER.info(f"Starting Telegram Bot Client...")
