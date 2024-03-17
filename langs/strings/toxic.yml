@@ -457,7 +457,7 @@ prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [alesan]\n• Penjelasan : Buat mengaktifkan mode afk.\n\n• Perintah : `{0}unafk`\n• Penjelasan : Buat menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
-help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query] [on/off]\n• Penjelasan : Buat membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` Buat membaca semua pesan grup diakun anda.\n- `ch` Buat membaca semua pesan channel diakun anda.\n- `us` Buat membaca semua pesan pengguna diakun anda.\n- `all` Buat membaca semua pesan gc, ch, us diakun anda."
+help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query] [on/off]\n• Penjelasan : Buat membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` Buat membaca semua pesan grup diakun anda.\n- `tag` Buat baca mention atau tag.\n- `ch` Buat membaca semua pesan channel diakun anda.\n- `us` Buat membaca semua pesan pengguna diakun anda.\n- `all` Buat membaca semua pesan gc, ch, us diakun anda."
 help_carbon: " Carbon\n\n• Perintah: `{0} carbon`\n• Penjelasan: Buat membuat teks carbonara."
 help_copy: " Copy\n\n• Perintah : `{0}copy` [link]\n• Penjelasan : Buat mengambil pesan melalui link telegram."
 help_dtbs: " Settings\n\n• Perintah: `{0}setdb` [variable] [value]\n• Penjelasan: Buat mengubah tampilan emoji.\n\n• Perintah: `{0}getdb`\n• Penjelasan: Buat melihat variabel dan value anda.\n\n• Perintah: `{0}deldb`\n• Penjelasan: Buat menghapus variabel dan value anda.\n\n• Variabel Yang Bisa Digunakan : -`pmtext`\n- `pmpic`\n- `pmpermit`\n- `alivepic`"
