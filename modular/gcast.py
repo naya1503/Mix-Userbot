@@ -64,7 +64,7 @@ async def _(c: nlx, m):
             except ChatWriteForbidden:
                 continue
             except FloodWait as e:
-                await asyncio.sleep(int(e))
+                await asyncio.sleep(e.value)
                 try:
                     if m.reply_to_message:
                         await send.copy(chat)
@@ -102,7 +102,7 @@ async def _(c: nlx, m):
             except PeerIdInvalid:
                 continue
             except FloodWait as e:
-                await asyncio.sleep(int(e))
+                await asyncio.sleep(e.value)
                 try:
                     if m.reply_to_message:
                         await send.copy(chat)
