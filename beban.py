@@ -34,7 +34,7 @@ async def dasar_laknat():
     
 
 async def autor_gc():
-    if udB.get_var(nlx.me.id, "read_gc") is None:
+    if not udB.get_var(nlx.me.id, "read_gc"):
         return
     while not await asyncio.sleep(300):
         LOGGER.info("Running Autoread For Group...")
@@ -54,7 +54,7 @@ async def autor_gc():
         
 
 async def autor_ch():
-    if udB.get_var(nlx.me.id, "read_ch") is None:
+    if not udB.get_var(nlx.me.id, "read_ch"):
         return
     while not await asyncio.sleep(300):
         LOGGER.info("Running Autoread For Channel...")
@@ -74,7 +74,7 @@ async def autor_ch():
         
 
 async def autor_us():
-    if udB.get_var(nlx.me.id, "read_us") is None:
+    if not udB.get_var(nlx.me.id, "read_us"):
         return
     while not await asyncio.sleep(300):
         LOGGER.info("Running Autoread For Users...")
@@ -94,7 +94,7 @@ async def autor_us():
         
         
 async def autor_bot():
-    if udB.get_var(nlx.me.id, "read_bot") is None:
+    if not udB.get_var(nlx.me.id, "read_bot"):
         return
     while not await asyncio.sleep(300):
         LOGGER.info("Running Autoread For Users...")
@@ -114,7 +114,7 @@ async def autor_bot():
         
         
 async def autor_all():
-    if udB.get_var(nlx.me.id, "read_all") is None:
+    if not udB.get_var(nlx.me.id, "read_all"):
         return
     while not await asyncio.sleep(300):
         LOGGER.info("Running Autoread For All...")
