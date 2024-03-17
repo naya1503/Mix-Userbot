@@ -8,7 +8,6 @@
 ################################################################
 
 from pyrogram.enums import ChatType
-from pyrogram.errors import *
 from team.nandev.class_log import LOGGER
 
 """
@@ -39,8 +38,8 @@ async def dasar_laknat(c):
 
 
 async def dasar_laknat(c):
-        async for bc in await c.get_dialogs():
-            if bc.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL]:
-                LOGGER.info(f"Reading messages {bc.chat.title}")
-                lastm = (await c.get_history(bc.chat.id, limit=1))[0].message_id
-                await c.read_history(bc.chat.id, lastm)
+    async for bc in await c.get_dialogs():
+        if bc.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL]:
+            LOGGER.info(f"Reading messages {bc.chat.title}")
+            lastm = (await c.get_history(bc.chat.id, limit=1))[0].message_id
+            await c.read_history(bc.chat.id, lastm)
