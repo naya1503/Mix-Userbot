@@ -6,7 +6,7 @@ from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
 
-from beban import dasar_laknat, autor_gc, autor_ch, autor_us, autor_bot, autor_all
+from beban import (autor_all, autor_bot, autor_ch, autor_gc, autor_us)
 from Mix import *
 from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
@@ -48,6 +48,7 @@ async def starter():
     if TAG_LOG is None:
         await check_logger()
 
+
 async def main():
     await starter()
     await asyncio.gather(refresh_cache(), getFinish())
@@ -58,7 +59,10 @@ async def main():
     task_us = asyncio.create_task(autor_us())
     task_bot = asyncio.create_task(autor_bot())
     task_all = asyncio.create_task(autor_all())
-    await asyncio.gather(task_afk, task_gc, task_ch, task_us, task_bot, task_all, isFinish(), idle())
+    await asyncio.gather(
+        task_afk, task_gc, task_ch, task_us, task_bot, task_all, isFinish(), idle()
+    )
+
 
 if __name__ == "__main__":
     install()

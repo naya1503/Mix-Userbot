@@ -8,11 +8,13 @@
 ################################################################
 import asyncio
 import sys
+
 from pyrogram.enums import ChatType
 from pyrogram.errors import *
 from team.nandev.class_log import LOGGER
-from Mix import nlx
 from team.nandev.database import udB
+
+from Mix import nlx
 
 
 async def dasar_laknat():
@@ -32,7 +34,7 @@ async def dasar_laknat():
                     continue
     LOGGER.info("Finished Read Message...\n\nTry to Command bash start!!")
     sys.exit(1)
-    
+
 
 async def autor_gc():
     if not udB.get_var(nlx.me.id, "read_gc"):
@@ -52,7 +54,7 @@ async def autor_gc():
                     except:
                         continue
         LOGGER.info("Finished Read Message...")
-        
+
 
 async def autor_ch():
     if not udB.get_var(nlx.me.id, "read_ch"):
@@ -72,7 +74,7 @@ async def autor_ch():
                     except:
                         continue
         LOGGER.info("Finished Read Message...")
-        
+
 
 async def autor_us():
     if not udB.get_var(nlx.me.id, "read_us"):
@@ -92,8 +94,8 @@ async def autor_us():
                     except:
                         continue
         LOGGER.info("Finished Read Message...")
-        
-        
+
+
 async def autor_bot():
     if not udB.get_var(nlx.me.id, "read_bot"):
         return
@@ -112,15 +114,21 @@ async def autor_bot():
                     except:
                         continue
         LOGGER.info("Finished Read Message...")
-        
-        
+
+
 async def autor_all():
     if not udB.get_var(nlx.me.id, "read_all"):
         return
     while not await asyncio.sleep(300):
         LOGGER.info("Running Autoread For All...")
         async for bb in nlx.get_dialogs(limit=500):
-            if bb.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL, ChatType.PRIVATE, ChatType.BOT]:
+            if bb.chat.type in [
+                ChatType.GROUP,
+                ChatType.SUPERGROUP,
+                ChatType.CHANNEL,
+                ChatType.PRIVATE,
+                ChatType.BOT,
+            ]:
                 try:
                     await nlx.read_chat_history(bb.chat.id, max_id=0)
                 except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
@@ -132,6 +140,6 @@ async def autor_all():
                     except:
                         continue
         LOGGER.info("Finished Read Message...")
-        
-        
-#asyncio.get_event_loop().run_until_complete(dasar_laknat())
+
+
+# asyncio.get_event_loop().run_until_complete(dasar_laknat())

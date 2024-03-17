@@ -47,12 +47,12 @@ class Userbot(Client):
     async def get_prefix(self, user_id):
         return self._prefix.get(user_id, ["."])
 
-    #def on_message(self, filters=None, group=-1):
-        #def decorator(func):
-            #self.add_handler(MessageHandler(func, filters), group)
-            #return func
+    # def on_message(self, filters=None, group=-1):
+    # def decorator(func):
+    # self.add_handler(MessageHandler(func, filters), group)
+    # return func
 
-        #return decorator
+    # return decorator
 
     def user_prefix(self, cmd):
         command_re = re.compile(r"([\"'])(.*?)(?<!\\)\1|(\S+)")
