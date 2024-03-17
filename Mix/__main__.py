@@ -10,7 +10,7 @@ from uvloop import install
 
 from assistant import BOT_PLUGINS
 from Mix import *
-from Mix.core.gclog import getFinish, check_logger
+from Mix.core.gclog import getFinish
 from Mix.core.waktu import auto_clean
 from modular import USER_MOD
 
