@@ -24,7 +24,7 @@ from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB
 
 from config import *
-from Mix import nlx, bot
+from Mix import bot, nlx
 
 
 async def check_logger():
