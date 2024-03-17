@@ -9,6 +9,7 @@
 
 from asyncio import sleep
 
+from pyrogram.enums import MessageEntityType as MET
 from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
 from pyrogram.types import ChatPermissions
 
@@ -32,6 +33,9 @@ l_t = """
 - `games` = Game Bots
 - `stickers` = Stickers
 - `anonchannel` = Send as chat will be locked
+- `forwardall` = Forwarding from channel and user
+- `forwardu` = Forwarding from user
+- `forwardc` = Forwarding from channel
 - `url` = Lock links"""
 
 
@@ -73,6 +77,45 @@ async def delete_messages(c: nlx, m):
         return
     except RPCError as e:
         await m.reply(f"{e}")
+
+
+# @nlx.on_message(filters.group & filters.me, group=4)
+async def _(c: nlx, m):
+    lock = LOCKS()
+    all_chats = lock.get_lock_channel()
+    if not all_chats:
+        return
+    if m.chat.id not in all_chats:
+        return
+    if m.sender_chat and not (m.forward_from_chat or m.forward_from):
+        if m.sender_chat.id == m.chat.id:
+            return
+        await delete_messages(c, m)
+        return
+    is_approved = await is_approved_user(c, m)
+    entity = m.entities if m.text else m.caption_entities
+    if entity:
+        for i in entity:
+            if i.type in [MET.URL or MET.TEXT_LINK]:
+                if not is_approved:
+                    await delete_messages(c, m)
+                    return
+    elif m.forward_from or m.forward_from_chat:
+        if not is_approved:
+            if lock.is_particular_lock(m.chat.id, "anti_fwd"):
+                await delete_messages(c, m)
+                return
+            elif (
+                lock.is_particular_lock(m.chat.id, "anti_fwd_u")
+                and not m.forward_from_chat
+            ):
+                await delete_messages(c, m)
+                return
+            elif (
+                lock.is_particular_lock(m.chat.id, "anti_fwd_c") and m.forward_from_chat
+            ):
+                await delete_messages(c, m)
+                return
 
 
 @ky.ubot("locktypes", sudo=True)
