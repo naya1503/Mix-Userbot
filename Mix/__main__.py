@@ -5,8 +5,9 @@ from sys import executable
 from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
-from Mix.mix_client import check_logger, getFinish
+
 from Mix import *
+from Mix.mix_client import check_logger, getFinish
 
 lool = asyncio.get_event_loop()
 
