@@ -1,5 +1,4 @@
 import asyncio
-import sys
 from os import execvp
 from sys import executable
 
@@ -48,6 +47,8 @@ async def starter():
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
 """
+
+
 async def start_bot():
     LOGGER.info(f"Starting Telegram Bot Client...")
     if TOKEN_BOT is None:
@@ -58,16 +59,18 @@ async def start_bot():
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
         execvp(executable, [executable, "-m", "Mix"])
-        
+
+
 async def starter():
     LOGGER.info(f"Check Updater...")
     await cek_updater()
     LOGGER.info(f"Updater Finished...")
-    #await start_user()
+    # await start_user()
     await start_bot()
     LOGGER.info("Successfully Started Userbot.")
-    #await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
+    # await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
     await idle()
+
 
 if __name__ == "__main__":
     install()
