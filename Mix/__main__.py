@@ -6,7 +6,7 @@ from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
 
-from beban import dasar_laknat
+from beban import dasar_laknat, autor_gc, autor_ch, autor_us, autor_bot, autor_all
 from Mix import *
 from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
