@@ -239,7 +239,7 @@ async def escape_invalid_curly_brackets(text: str, valids: List[str]) -> str:
     return new_text
 
 
-async def escape_mentions_using_curly_brackets(
+async def escape_tag(
     m: Message,
     text: str,
     parse_words: list,
