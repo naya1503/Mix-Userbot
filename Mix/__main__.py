@@ -44,8 +44,8 @@ async def starter():
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
     await start_user()
-    if nlx.is_connected:
-        await start_bot()
+    #if nlx.is_connected:
+        #await start_bot()
     if TAG_LOG is None:
         await check_logger()
     LOGGER.info("Successfully Started Userbot.")
