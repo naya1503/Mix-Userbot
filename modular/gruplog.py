@@ -46,7 +46,7 @@ async def _(c: nlx, m):
         return await xx.edit(cgr("grplog_5").format(em.gagal))
 
 
-#@ky.gc()
+# @ky.gc()
 async def _(c, m):
     if not TAG_LOG:
         return
@@ -99,7 +99,7 @@ async def _(c, m):
     tag_add(ret.id, m.chat.id, m.id)
 
 
-#@ky.replog()
+# @ky.replog()
 async def _(c: nlx, m):
     reply_ = m.reply_to_message
     chat, msg = who_tag(reply_.id)
