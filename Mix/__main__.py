@@ -48,7 +48,17 @@ async def starter():
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
 """
-
+async def start_bot():
+    LOGGER.info(f"Starting Telegram Bot Client...")
+    if TOKEN_BOT is None:
+        await autobot()
+    try:
+        await bot.start()
+    except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
+        LOGGER.info("Token Expired.")
+        ndB.del_key("BOT_TOKEN")
+        execvp(executable, [executable, "-m", "Mix"])
+        
 async def starter():
     LOGGER.info(f"Check Updater...")
     await cek_updater()
