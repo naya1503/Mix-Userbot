@@ -1,11 +1,11 @@
 import asyncio
 from os import execvp
 from sys import executable
-import importlib
+
 from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
-from assistant import BOT_PLUGINS
+
 from beban import dasar_laknat, autor_gc, autor_ch, autor_us, autor_bot, autor_all
 from Mix import *
 from Mix.core.gclog import check_logger, getFinish
@@ -29,11 +29,6 @@ async def start_bot():
         await autobot()
     try:
         await bot.start()
-        LOGGER.info(f"Importing Bot Modules...")
-        for plus in BOT_PLUGINS:
-            imported_module = importlib.import_module("assistant." + plus)
-            importlib.reload(imported_module)
-        LOGGER.info(f"Successfully Import Bot Modules...")
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
