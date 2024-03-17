@@ -39,8 +39,7 @@ async def dasar_laknat(c):
 
 
 async def dasar_laknat(c):
-    async with c:
-        for bc in await c.get_dialogs():
+        async for bc in await c.get_dialogs():
             if bc.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL]:
                 LOGGER.info(f"Reading messages {bb.chat.title}")
                 lastm = (await c.get_history(bb.chat.id, limit=1))[0].message_id
