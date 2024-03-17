@@ -9,7 +9,6 @@
 
 from asyncio import sleep
 
-from pyrogram.enums import MessageEntityType as MET
 from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
 from pyrogram.types import ChatPermissions
 
@@ -74,6 +73,7 @@ async def delete_messages(c: nlx, m):
         return
     except RPCError as e:
         await m.reply(f"{e}")
+
 
 @ky.ubot("locktypes", sudo=True)
 async def _(c: nlx, m):
