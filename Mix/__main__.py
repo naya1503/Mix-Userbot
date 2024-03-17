@@ -10,6 +10,8 @@ from uvloop import install
 
 from assistant import BOT_PLUGINS
 from Mix import *
+from Mix.core.gclog import getFinish
+from Mix.core.waktu import auto_clean
 from modular import USER_MOD
 
 lool = asyncio.get_event_loop()
@@ -58,14 +60,13 @@ async def starter():
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
-    user_task = asyncio.create_task(start_user())
-    bot_task = asyncio.create_task(start_bot())
-    await user_task
-    await bot_task
-    if TAG_LOG is None:
-        await check_logger()
+    await start_user()
+    if nlx.is_connected:
+        await start_bot()
+    #if TAG_LOG is None:
+        #await check_logger()
     LOGGER.info("Successfully Started Userbot.")
-    # await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
+    #await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
     await idle()
     # await asyncio.gather(auto_clean(), isFinish(), idle())
 
