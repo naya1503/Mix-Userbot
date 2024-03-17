@@ -43,12 +43,10 @@ async def starter():
     await start_user()
     if nlx.is_connected:
         await start_bot()
-    # if TAG_LOG is None:
-    # await check_logger()
+    if TAG_LOG is None:
+        await check_logger()
     LOGGER.info("Successfully Started Userbot.")
-    # await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
-    await idle()
-    # await asyncio.gather(auto_clean(), isFinish(), idle())
+    await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
 
 
 if __name__ == "__main__":
