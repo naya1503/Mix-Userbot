@@ -165,14 +165,6 @@ class Userbot(Client):
             stdout = stdout.decode().strip()
         return stdout, process
 
-    async def dl_pic(self, a):
-        path = await self.download_media(a)
-        with open(path, "rb") as f:
-            content = f.read()
-        os.remove(path)
-        getpp = BytesIO(content)
-        return getpp
-
     def get_arg(self, m):
         if m.reply_to_message and len(m.command) < 2:
             msg = m.reply_to_message.text or m.reply_to_message.caption
