@@ -33,7 +33,7 @@ async def _(c: nlx, m):
         exx = 30
     now = datetime.now(timezone("Asia/Jakarta"))
     expire_date = now + timedelta(days=int(exx))
-    udB.set_expired_date(user.me.id, expire_date)
+    udB.set_expired_date(nlx.me.id, expire_date)
     await m.reply(f"{em.sukses} Aktif {exx} hari.")
     return
 
@@ -42,14 +42,14 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    kmm = udB.get_expired_date(user.me.id)
+    kmm = udB.get_expired_date(nlx.me.id)
     if kmm is None:
-        await m.reply(f"{user.me.id} ga aktif!!")
+        await m.reply(f"{nlx.me.id} ga aktif!!")
         return
     else:
         rimen = (kmm - datetime.now()).days
         await m.reply(
-            f"{user.me.id} aktif hingga {kmm.strftime('%d-%m-%Y %H:%M:%S')}. Sisa waktu aktif {rimen} hari."
+            f"{nlx.me.id} aktif hingga {kmm.strftime('%d-%m-%Y %H:%M:%S')}. Sisa waktu aktif {rimen} hari."
         )
         return
 
@@ -58,8 +58,8 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    udB.rem_expired_date(user.me.id)
-    return await m.reply(f"{em.sukses} {user.me.id} expired telah dihapus")
+    udB.rem_expired_date(nlx.me.id)
+    return await m.reply(f"{em.sukses} {nlx.me.id} expired telah dihapus")
 
 
 @ky.ubot("sh", sudo=True)
@@ -280,7 +280,7 @@ async def _(c: nlx, m):
     em.initialize()
     response = await generate_sysinfo(c.workdir)
     await m.reply(
-        f"{em.proses} # {user.me.first_name}\nStats : Total Usage\n" + response,
+        f"{em.proses} # {nlx.me.first_name}\nStats : Total Usage\n" + response,
     )
 
 
