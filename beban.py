@@ -21,9 +21,10 @@ async def akunbebanamat(c):
 
 async def dasar_laknat(c):
     jml = await akunbebanamat(c)
-    try:
-        await nlx.read_chat_history(gc, max_id=0)
-    except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
-        continue
+    for jamet in jml:
+        try:
+            await c.read_chat_history(jamet, max_id=0)
+        except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
+            continue
     LOGGER.info("Finished Read Message...")
         
