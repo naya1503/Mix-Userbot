@@ -8,9 +8,7 @@
 
 import asyncio
 import importlib
-import os
 import re
-from io import BytesIO
 
 from pyrogram import *
 from pyrogram.enums import *
