@@ -11,7 +11,7 @@ from Mix import *
 
 lool = asyncio.get_event_loop()
 
-
+"""
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
@@ -47,7 +47,17 @@ async def starter():
         await check_logger()
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
+"""
 
+async def starter():
+    LOGGER.info(f"Check Updater...")
+    await cek_updater()
+    LOGGER.info(f"Updater Finished...")
+    #await start_user()
+    await start_bot()
+    LOGGER.info("Successfully Started Userbot.")
+    #await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
+    await idle()
 
 if __name__ == "__main__":
     install()
