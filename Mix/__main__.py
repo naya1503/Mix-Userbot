@@ -48,9 +48,18 @@ async def starter():
         await start_bot()
     if TAG_LOG is None:
         await check_logger()
-    LOGGER.info("Successfully Started Userbot.")
-    await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
 
+async def main():
+    await starter()
+    task_afk = asyncio.create_taks(auto_clean())
+    task_gc = asyncio.create_taks(autor_gc())
+    task_ch = asyncio.create_taks(autor_ch())
+    task_us = asyncio.create_taks(autor_us())
+    task_bot = asyncio.create_taks(autor_bot())
+    task_all = asyncio.create_taks(autor_all())
+    await asyncio.gather(task_afk, task_gc, task_ch, task_us, task_bot, task_all)
+    LOGGER.info("Successfully Started Userbot.")
+    await asyncio.gather(refresh_cache(), getFinish(), isFinish(), idle())
 
 if __name__ == "__main__":
     install()
@@ -58,4 +67,4 @@ if __name__ == "__main__":
     # event_loop = loop.get_event_loop()
     # asyncio.set_event_loop(event_loop)
     # event_loop.run_until_complete(starter())
-    lool.run_until_complete(starter())
+    lool.run_until_complete(main())
