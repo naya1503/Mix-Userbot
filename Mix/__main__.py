@@ -51,12 +51,12 @@ async def starter():
 
 async def main():
     await starter()
-    task_afk = asyncio.create_taks(auto_clean())
-    task_gc = asyncio.create_taks(autor_gc())
-    task_ch = asyncio.create_taks(autor_ch())
-    task_us = asyncio.create_taks(autor_us())
-    task_bot = asyncio.create_taks(autor_bot())
-    task_all = asyncio.create_taks(autor_all())
+    task_afk = asyncio.create_task(auto_clean())
+    task_gc = asyncio.create_task(autor_gc())
+    task_ch = asyncio.create_task(autor_ch())
+    task_us = asyncio.create_task(autor_us())
+    task_bot = asyncio.create_task(autor_bot())
+    task_all = asyncio.create_task(autor_all())
     await asyncio.gather(task_afk, task_gc, task_ch, task_us, task_bot, task_all)
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(refresh_cache(), getFinish(), isFinish(), idle())
