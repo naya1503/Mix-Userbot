@@ -1,3 +1,5 @@
+thegokil==2.0.0
+maling==2.0.1
 aiofiles
 aiohttp
 beautifulsoup4
@@ -39,4 +41,3 @@ lyricsgenius==3.0.1
 SafoneApi
 pytgcalls==3.0.0.dev22
 pyrogram
-thegokil
