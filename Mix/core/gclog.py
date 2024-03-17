@@ -22,7 +22,7 @@ from pytgcalls import __version__ as pytgver
 from team.nandev.class_handler import TAG_LOG
 from team.nandev.class_log import LOGGER
 from team.nandev.database import ndB
-
+from Mix import nlx
 from config import *
 
 
