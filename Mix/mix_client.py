@@ -19,6 +19,7 @@ from team.nandev.class_log import LOGGER
 from team.nandev.class_modules import CMD_HELP
 from team.nandev.database import ndB, udB
 
+from assistant import BOT_PLUGINS
 from config import *
 from modular import USER_MOD
 
@@ -45,6 +46,13 @@ class Userbot(Client):
 
     async def get_prefix(self, user_id):
         return self._prefix.get(user_id, ["."])
+
+    #def on_message(self, filters=None, group=-1):
+        #def decorator(func):
+            #self.add_handler(MessageHandler(func, filters), group)
+            #return func
+
+        #return decorator
 
     def user_prefix(self, cmd):
         command_re = re.compile(r"([\"'])(.*?)(?<!\\)\1|(\S+)")
@@ -253,4 +261,9 @@ class Bot(Client):
 
     async def start(self):
         await super().start()
+        LOGGER.info(f"Importing Bot Modules...")
+        for plus in BOT_PLUGINS:
+            imported_module = importlib.import_module(f"assistant." + plus)
+            importlib.reload(imported_module)
+        LOGGER.info(f"Successfully Import Bot Modules...")
         LOGGER.info(f"Starting Assistant {self.me.id}|{self.me.mention}")
