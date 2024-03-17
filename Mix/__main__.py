@@ -47,7 +47,13 @@ async def starter():
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
 """
-
+async def start_user():
+    LOGGER.info(f"Starting Telegram User Client...")
+    try:
+        await nlx.start()
+    except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
+        LOGGER.info("Check your session or api id!!")
+        sys.exit(1)
 
 async def start_bot():
     LOGGER.info(f"Starting Telegram Bot Client...")
@@ -65,7 +71,7 @@ async def starter():
     LOGGER.info(f"Check Updater...")
     await cek_updater()
     LOGGER.info(f"Updater Finished...")
-    # await start_user()
+    await start_user()
     await start_bot()
     LOGGER.info("Successfully Started Userbot.")
     # await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
