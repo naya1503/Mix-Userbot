@@ -48,7 +48,6 @@ async def starter():
     await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
 
 
-
 if __name__ == "__main__":
     install()
     # loop = asyncio.get_event_loop_policy()
