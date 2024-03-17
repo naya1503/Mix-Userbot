@@ -21,9 +21,11 @@ async def start_user():
     for modul in USER_MOD:
         imported_module = importlib.import_module(f"modular.{modul}")
         if hasattr(imported_module, "__modles__") and imported_module.__modles__:
-              imported_module.__modles__ = imported_module.__modles__
-              if hasattr(imported_module, "__help__") and imported_module.__help__:
-                  CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (imported_module)
+            imported_module.__modles__ = imported_module.__modles__
+            if hasattr(imported_module, "__help__") and imported_module.__help__:
+                CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (
+                    imported_module
+                )
     LOGGER.info(f"Successfully Import User Modules...")
     LOGGER.info(f"Starting Telegram User Client...")
     try:
