@@ -258,6 +258,20 @@ class Bot(Client):
         super().__init__(
             name="bot", api_id=api_id, api_hash=api_hash, bot_token=TOKEN_BOT, **kwargs
         )
+    
+    def on_message(self, filters=None, group=-1):
+        def decorator(func):
+            self.add_handler(MessageHandler(func, filters), group)
+            return func
+
+        return decorator
+
+    def on_callback_query(self, filters=None, group=-1):
+        def decorator(func):
+            self.add_handler(CallbackQueryHandler(func, filters), group)
+            return func
+
+        return decorator
 
     async def start(self):
         await super().start()
