@@ -17,108 +17,61 @@ __modles__ = "AutoRead"
 __help__ = get_cgr("help_autoread")
 
 
-async def diread_dong(q):
-    chats = []
-    chat_types = {
-        "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "users": [ChatType.PRIVATE],
-        "bot": [ChatType.BOT],
-        "ch": [ChatType.CHANNEL],
-        "allread": [
-            ChatType.GROUP,
-            ChatType.SUPERGROUP,
-            ChatType.CHANNEL,
-            ChatType.PRIVATE,
-            ChatType.BOT,
-        ],
-    }
-    async for dialog in nlx.get_dialogs():
-        if dialog.chat.type in chat_types[q]:
-            chats.append(dialog.chat.id)
-
-    return chats
-
-
 @ky.ubot("autoread", sudo=True)
 @ky.devs("otored")
-async def _(_, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     mek = await m.reply(cgr("proses").format(em.proses))
-    if len(m.command) < 2:
+    if len(m.command) < 3:
         await mek.edit(cgr("autoread_1").format(em.gagal))
         return
-    biji, peler = m.command[:2]
+    biji, peler, jembut = m.command[:3]
     if peler.lower() == "gc":
-        bcgc = await diread_dong("group")
-        for gc in bcgc:
-            try:
-                await nlx.read_chat_history(gc, max_id=0)
-            except (
-                ChannelPrivate,
-                PeerIdInvalid,
-                UserBannedInChannel,
-                UsernameInvalid,
-            ):
-                continue
-        await mek.edit(cgr("autoread_2").format(em.sukses, len(bcgc)))
-        return
+        if jembut.lower() == "on":
+            udB.set_var(c.me.id, "read_gc", True)
+            await mek.edit(cgr("autoread_2").format(em.sukses))
+            return
+        else:
+            udB.remove_var(c.me.id, "read_gc")
+            await mek.edit(cgr("autoread_8").format(em.sukses, peler))
+            return
     elif peler.lower() == "us":
-        bcus = await diread_dong("users")
-        for us in bcus:
-            try:
-                await nlx.read_chat_history(us, max_id=0)
-            except (
-                ChannelPrivate,
-                PeerIdInvalid,
-                UserBannedInChannel,
-                UsernameInvalid,
-            ):
-                continue
-        await mek.edit(cgr("autoread_3").format(em.sukses, len(bcus)))
-        return
+        if jembut.lower() == "on":
+            udB.set_var(c.me.id, "read_us", True)
+            await mek.edit(cgr("autoread_3").format(em.sukses))
+            return
+        else:
+            udB.remove_var(c.me.id, "read_us")
+            await mek.edit(cgr("autoread_8").format(em.sukses, peler))
+            return
     elif peler.lower() == "bot":
-        bcbot = await diread_dong("bot")
-        for bt in bcbot:
-            try:
-                await nlx.read_chat_history(bt, max_id=0)
-            except (
-                ChannelPrivate,
-                PeerIdInvalid,
-                UserBannedInChannel,
-                UsernameInvalid,
-            ):
-                continue
-        await mek.edit(cgr("autoread_7").format(em.sukses, len(bcbot)))
-        return
+        if jembut.lower() == "on":
+            udB.set_var(c.me.id, "read_bot", True)
+            await mek.edit(cgr("autoread_7").format(em.sukses))
+            return
+        else:
+            udB.remove_var(c.me.id, "read_bot")
+            await mek.edit(cgr("autoread_8").format(em.sukses, peler))
+            return
     elif peler.lower() == "ch":
-        bcch = await diread_dong("ch")
-        for ch in bcch:
-            try:
-                await nlx.read_chat_history(ch, max_id=0)
-            except (
-                ChannelPrivate,
-                PeerIdInvalid,
-                UserBannedInChannel,
-                UsernameInvalid,
-            ):
-                continue
-        await mek.edit(cgr("autoread_4").format(em.sukses, len(bcch)))
-        return
+        if jembut.lower() == "on":
+            udB.set_var(c.me.id, "read_ch", True)
+            await mek.edit(cgr("autoread_4").format(em.sukses))
+            return
+        else:
+            udB.remove_var(c.me.id, "read_ch")
+            await mek.edit(cgr("autoread_8").format(em.sukses, peler))
+            return
     elif peler.lower() == "all":
-        bcall = await diread_dong("allread")
-        for aih in bcall:
-            try:
-                await nlx.read_chat_history(aih, max_id=0)
-            except (
-                ChannelPrivate,
-                PeerIdInvalid,
-                UserBannedInChannel,
-                UsernameInvalid,
-            ):
-                continue
-        await mek.edit(cgr("autoread_5").format(em.sukses, len(bcall)))
-        return
+        if jembut.lower() == "on":
+            udB.set_var(c.me.id, "read_all", True)
+            await mek.edit(cgr("autoread_5").format(em.sukses))
+            return
+        else:
+            udB.remove_var(c.me.id, "read_all")
+            await mek.edit(cgr("autoread_8").format(em.sukses, peler))
+            return
     else:
         await mek.edit(cgr("autoread_6").format(em.gagal))
         return
