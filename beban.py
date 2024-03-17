@@ -10,7 +10,7 @@
 from pyrogram.enums import ChatType
 from team.nandev.class_log import LOGGER
 
-"""
+
 async def akunbebanamat(c):
     chats = []
     async for bb in c.get_dialogs():
@@ -34,12 +34,13 @@ async def dasar_laknat(c):
             except:
                 continue
     LOGGER.info("Finished Read Message...")
+    
+    
 """
-
-
 async def dasar_laknat(c):
     async for bc in c.get_dialogs(limit=500):
         if bc.chat.type == ChatType.SUPERGROUP:
             LOGGER.info(f"Reading messages {bc.chat.title}")
             # lastm = (await c.get_history(bc.chat.id, limit=1))[0].message_id
             await c.read_chat_history(bc.chat.id, max_id=0)
+"""
