@@ -27,6 +27,15 @@ from modular.pmpermit import *
 
 from .call_markdown import markdown_help
 
+parse_words = [
+        "first",
+        "last",
+        "fullname",
+        "id",
+        "mention",
+        "username",
+        "chatname",
+]
 
 async def diinline(q):
     chats = []
@@ -331,6 +340,7 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = text_keyb(ikb, pm_text)
+    tekss = escape_tag(iq, teks, parse_words)
     def_keyb = {
         "Setuju": f"pm_ okein {int(org[1])}",
         "Blokir": f"pm_ blokbae {int(org[1])}",
@@ -383,7 +393,7 @@ async def _(c, iq):
                 filem(
                     **url_ling,
                     title="PIC Buttons !",
-                    caption=kiki,
+                    caption=tekss,
                     reply_markup=keyboard,
                 )
             ]
@@ -392,7 +402,7 @@ async def _(c, iq):
                 (
                     InlineQueryResultArticle(
                         title="Tombol PM!",
-                        input_message_content=InputTextMessageContent(kiki),
+                        input_message_content=InputTextMessageContent(tekss),
                         reply_markup=keyboard,
                     )
                 )
