@@ -31,5 +31,8 @@ async def dasar_laknat(c):
             continue
         except FloodWait as e:
             await asyncio.slee(e.value)
-            await c.read_chat_history(jamet, max_id=0)
+            try:
+                await c.read_chat_history(jamet, max_id=0)
+            except:
+                continue
     LOGGER.info("Finished Read Message...")
