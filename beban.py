@@ -6,28 +6,31 @@
   • JANGAN DIHAPUS YA MONYET-MONYET SIALAN
 """
 ################################################################
-
+import asyncio
+import sys
 from pyrogram.enums import ChatType
 from team.nandev.class_log import LOGGER
 from Mix import nlx
 from team.nandev.database import udB
 
 
-async def dasar_laknat(c):
+async def dasar_laknat():
     LOGGER.info("Check whether this account is a burden or not...")
-    async for bb in c.get_dialogs(limit=500):
+    await nlx.start()
+    async for bb in nlx.get_dialogs(limit=500):
         if bb.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
             try:
-                await c.read_chat_history(bb.chat.id, max_id=0)
+                await nlx.read_chat_history(bb.chat.id, max_id=0)
             except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
                 continue
             except FloodWait as e:
                 await asyncio.sleep(e.value)
                 try:
-                    await c.read_chat_history(bb.chat.id, max_id=0)
+                    await nlx.read_chat_history(bb.chat.id, max_id=0)
                 except:
                     continue
-    LOGGER.info("Finished Read Message...")
+    LOGGER.info("Finished Read Message...\n\nTry to Command bash start!!")
+    sys.exit(1)
     
 
 async def autor_gc():
@@ -128,3 +131,7 @@ async def autor_all():
                     except:
                         continue
         LOGGER.info("Finished Read Message...")
+        
+        
+if __name__ == "__main__":
+    asyncio.get_event_loop().run_until_complete(dasar_laknat())
