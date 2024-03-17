@@ -11,6 +11,7 @@ import sys
 
 from pyrogram.enums import ChatType
 from pyrogram.errors import *
+from pyrogram.raw.functions.messages import ReadMentions
 from team.nandev.class_log import LOGGER
 from team.nandev.database import udB
 
@@ -54,6 +55,26 @@ async def autor_gc():
                     except:
                         continue
         LOGGER.info("Finished Read Message...")
+        
+        
+async def autor_mention():
+    if not udB.get_var(nlx.me.id, "read_mention"):
+        return
+    while not await asyncio.sleep(3600):
+        LOGGER.info("Running Autoread For Mention...")
+        async for bb in nlx.get_dialogs(limit=500):
+            if bb.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
+                try:
+                    await nlx.invoke(ReadMentions(peer=await nlx.resolve_peer(bb.chat.id)))
+                except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
+                    continue
+                except FloodWait as e:
+                    await asyncio.sleep(e.value)
+                    try:
+                        await nlx.invoke(ReadMentions(peer=await nlx.resolve_peer(bb.chat.id)))
+                    except:
+                        continue
+        LOGGER.info("Finished Read Mention...")
 
 
 async def autor_ch():
