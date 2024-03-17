@@ -1,5 +1,4 @@
 import asyncio
-import importlib
 import sys
 from os import execvp
 from sys import executable
@@ -8,24 +7,13 @@ from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
 
-from assistant import BOT_PLUGINS
 from Mix import *
-from modular import USER_MOD
+
 
 lool = asyncio.get_event_loop()
 
 
 async def start_user():
-    LOGGER.info(f"Importing User Modules...")
-    for modul in USER_MOD:
-        imported_module = importlib.import_module(f"modular.{modul}")
-        if hasattr(imported_module, "__modles__") and imported_module.__modles__:
-            imported_module.__modles__ = imported_module.__modles__
-            if hasattr(imported_module, "__help__") and imported_module.__help__:
-                CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (
-                    imported_module
-                )
-    LOGGER.info(f"Successfully Import User Modules...")
     LOGGER.info(f"Starting Telegram User Client...")
     try:
         await nlx.start()
@@ -35,11 +23,6 @@ async def start_user():
 
 
 async def start_bot():
-    LOGGER.info(f"Importing Bot Modules...")
-    for plus in BOT_PLUGINS:
-        imported_module = importlib.import_module(f"assistant.{plus}")
-        importlib.reload(imported_module)
-    LOGGER.info(f"Successfully Import Bot Modules...")
     LOGGER.info(f"Starting Telegram Bot Client...")
     if TOKEN_BOT is None:
         await autobot()
