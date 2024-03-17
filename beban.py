@@ -133,5 +133,4 @@ async def autor_all():
         LOGGER.info("Finished Read Message...")
         
         
-if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(dasar_laknat())
+asyncio.get_event_loop().run_until_complete(dasar_laknat())
