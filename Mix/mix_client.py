@@ -40,19 +40,19 @@ class Userbot(Client):
             test_mode=False,
             **kwargs,
         )
+        
+    def on_message(self, filters=None, group=-1):
+        def decorator(func):
+            self.add_handler(MessageHandler(func, filters), group)
+            return func
+
+        return decorator
 
     def set_prefix(self, user_id, prefix):
         self._prefix[user_id] = prefix
 
     async def get_prefix(self, user_id):
         return self._prefix.get(user_id, ["."])
-
-    # def on_message(self, filters=None, group=-1):
-    # def decorator(func):
-    # self.add_handler(MessageHandler(func, filters), group)
-    # return func
-
-    # return decorator
 
     def user_prefix(self, cmd):
         command_re = re.compile(r"([\"'])(.*?)(?<!\\)\1|(\S+)")
@@ -258,7 +258,7 @@ class Bot(Client):
         super().__init__(
             name="bot", api_id=api_id, api_hash=api_hash, bot_token=TOKEN_BOT, **kwargs
         )
-
+    
     def on_message(self, filters=None, group=-1):
         def decorator(func):
             self.add_handler(MessageHandler(func, filters), group)
