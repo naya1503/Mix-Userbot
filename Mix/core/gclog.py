@@ -28,8 +28,7 @@ from config import *
 
 async def check_logger():
     LOGGER.info(f"Check Grup Log User...")
-    if TAG_LOG is not None:
-        return
+    
     LOGGER.info(f"Creating Grup Log...")
     nama = f"Mix-Userbot Logs"
     des = "Jangan Keluar Dari Grup Log Ini\n\nPowered by: @KynanSupport"
