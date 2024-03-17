@@ -40,7 +40,7 @@ class Userbot(Client):
             test_mode=False,
             **kwargs,
         )
-        
+
     def on_message(self, filters=None, group=-1):
         def decorator(func):
             self.add_handler(MessageHandler(func, filters), group)
@@ -258,7 +258,7 @@ class Bot(Client):
         super().__init__(
             name="bot", api_id=api_id, api_hash=api_hash, bot_token=TOKEN_BOT, **kwargs
         )
-    
+
     def on_message(self, filters=None, group=-1):
         def decorator(func):
             self.add_handler(MessageHandler(func, filters), group)
