@@ -117,7 +117,7 @@ asst_6: "Reboot"
 asst_7: "Update"
 
 # autoread 
-autoread_1: "{} **Gunakan Format : `autoread` [`gc` or `us` or `bot` or `ch` or `all`] [on/off].**"
+autoread_1: "{} **Gunakan Format : `autoread` [query] [on/off].**"
 autoread_2: "{} **Berhasil menghidupkan autoread grup.**"
 autoread_3: "{} **Berhasil menghidupkan autoread pengguna.**"
 autoread_4: "{} **Berhasil menghidupkan autoread channel.**"
