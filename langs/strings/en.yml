@@ -457,7 +457,7 @@ prof_9: "{} **Your Profile Picture has been successfully changed.**"
 # help_for
 help_afk: " Afk\n\n• Command: `{0}afk` [reason]\n• Description: To activate afk mode.\n\n• Command: `{0}unafk` [reason]\n• Description: To deactivate afk mode."
 help_alive: " Alive\n\n• Command: `{0}alive`\n• Description: Alive."
-help_autoread: " AutoRead\n\n• Command: `{0}autoread` [query] [on/off]\n• Description: To read all messages on your account.\n\n**Optional Notes:**\n- `gc` to read all group messages on your account.\n- `ch` to read all channel messages on your account.\n- `us` to read all user messages on your account.\n- `all` to read all gc, ch, us messages on your account."
+help_autoread: " AutoRead\n\n• Command : {0}autoread [query] [on/off]\n• Description : Makes reading all messages on your account.\n\nNotes Optional:\n- gc Makes read all group messages  in your account.\n- tag Makes you read mentions or tags.\n- ch Makes you read all channel messages in your account.\n- us Makes you read all messages from users in your account.\n- all Makes you read all gc, ch, us messages  your account."
 help_carbon: " Carbon\n\n• Command: `{0}carbon`\n• Description: To create carbonara text."
 help_copy: " Copy\n\n• Command: `{0}copy` [link]\n• Description: To fetch messages via Telegram link."
 help_dtbs: " Settings\n\n• Command: `{0}setdb` [variable] [value]\n• Description: To change emoji display.\n\n• Command: `{0}getdb`\n• Description: To view your variables and values.\n\n• Command: `{0}deldb`\n• Description: To delete your variables and values.\n\n• Variables That Can Be Used: -`pmtext`\n- `pmpic`\n- `pmpermit`\n- `alivepic`"
