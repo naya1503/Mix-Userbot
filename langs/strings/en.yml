@@ -97,7 +97,7 @@ asst_6: "Restart"
 asst_7: "Update"
 
 # autoread 
-autoread_1: "{} **Use Format: `autoread` [`gc` or `us` or `bot` or `ch` or `all`] [on/off].**"
+autoread_1: "{} **Use Format: `autoread` [query] [on/off].**"
 autoread_2: "{} **Successfully turned on group autoread.**"
 autoread_3: "{} **Successfully turned on user autoread.**"
 autoread_4: "{} **Successfully turned on autoread channel.**"
