@@ -117,13 +117,14 @@ asst_6: "Reboot"
 asst_7: "Update"
 
 # autoread 
-autoread_1: "{} **Gunakan Format : `autoread` [`gc` or `us` or `bot` or `ch` or `all`] [on/off].**"
+autoread_1: "{} **Gunakan Format : `autoread` [query] [on/off].**"
 autoread_2: "{} **Berhasil menghidupkan autoread grup.**"
 autoread_3: "{} **Berhasil menghidupkan autoread pengguna.**"
 autoread_4: "{} **Berhasil menghidupkan autoread channel.**"
 autoread_5: "{} **Berhasil menghidupkan autoread all.**"
 autoread_6: "{} **Silahkan masukkan query dengan benar!!**"
 autoread_7: "{} **Berhasil menghidupkan autoread bot.**"
+autoread_9: "{} **Berhasil menghidupkan autoread mention.**"
 autoread_8: "{} **Autoread {} berhasil dimatikan.**"
 
 
@@ -457,7 +458,7 @@ prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [alasan]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk`\n• Penjelasan : Untuk menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
-help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query] [on/off]\n• Penjelasan : Untuk membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` untuk membaca semua pesan grup diakun anda.\n- `ch` untuk membaca semua pesan channel diakun anda.\n- `us` untuk membaca semua pesan pengguna diakun anda.\n- `bot` untuk membaca semua pesan bot diakun anda.\n- `all` untuk membaca semua pesan gc, ch, us, bot diakun anda."
+help_autoread: " AutoRead\n\n• Perintah : `{0}autoread` [query] [on/off]\n• Penjelasan : Buat membaca semua pesan diakun anda.\n\n**Notes Optional:**\n- `gc` Buat membaca semua pesan grup diakun anda.\n- `tag` Buat baca mention atau tag.\n- `ch` Buat membaca semua pesan channel diakun anda.\n- `us` Buat membaca semua pesan pengguna diakun anda.\n- `all` Buat membaca semua pesan gc, ch, us diakun anda."
 help_carbon: " Carbon\n\n• Perintah: `{0} carbon`\n• Penjelasan: Untuk membuat teks carbonara."
 help_copy: " Copy\n\n• Perintah : `{0}copy` [link]\n• Penjelasan : Untuk mengambil pesan melalui link telegram."
 help_dtbs: " Settings\n\n• Perintah: `{0}setdb` [variable] [value]\n• Penjelasan: Untuk mengubah tampilan emoji.\n\n• Perintah: `{0}getdb`\n• Penjelasan: Untuk melihat variabel dan value anda.\n\n• Perintah: `{0}deldb`\n• Penjelasan: Untuk menghapus variabel dan value anda.\n\n• Variabel Yang Bisa Digunakan : -`pmtext`\n- `pmpic`\n- `pmpermit`\n- `alivepic`"
