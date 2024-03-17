@@ -7,9 +7,9 @@
 """
 ################################################################
 
-from hydrogram.enums import ChatType
-from hydrogram.errors import *
-from hydrogram.raw.functions.messages import DeleteHistory
+from pyrogram.enums import ChatType
+from pyrogram.errors import *
+from pyrogram.raw.functions.messages import DeleteHistory
 
 from Mix import *
 

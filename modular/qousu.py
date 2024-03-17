@@ -13,7 +13,7 @@ import os
 import random
 from io import BytesIO
 
-from hydrogram.types import *
+from pyrogram.types import *
 
 from Mix import *
 from Mix.core.tools_quote import *

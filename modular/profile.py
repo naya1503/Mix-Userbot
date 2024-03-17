@@ -1,8 +1,8 @@
 import os
 from io import BytesIO
 
-from hydrogram import *
-from hydrogram.enums import *
+from pyrogram import *
+from pyrogram.enums import *
 
 from Mix import *
 

@@ -14,11 +14,11 @@ from datetime import timedelta
 from time import time
 
 import wget
-from hydrogram.enums import *
-from hydrogram.errors import *
-from hydrogram.file_id import *
-from hydrogram.raw.functions.messages import *
-from hydrogram.types import *
+from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.file_id import *
+from pyrogram.raw.functions.messages import *
+from pyrogram.types import *
 from youtubesearchpython import VideosSearch
 
 from Mix import *

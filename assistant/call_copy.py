@@ -8,9 +8,9 @@
 import asyncio
 from gc import get_objects
 
-from hydrogram import *
-from hydrogram.enums import *
-from hydrogram.types import *
+from pyrogram import *
+from pyrogram.enums import *
+from pyrogram.types import *
 
 from Mix import *
 from modular.copy_con import *

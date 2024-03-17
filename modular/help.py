@@ -7,7 +7,7 @@
 ################################################################
 
 
-from hydrogram.types import *
+from pyrogram.types import *
 
 from Mix import *
 

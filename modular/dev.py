@@ -33,7 +33,7 @@ async def _(c: nlx, m):
         exx = 30
     now = datetime.now(timezone("Asia/Jakarta"))
     expire_date = now + timedelta(days=int(exx))
-    udB.set_expired_date(user.me.id, expire_date)
+    udB.set_expired_date(nlx.me.id, expire_date)
     await m.reply(f"{em.sukses} Aktif {exx} hari.")
     return
 
@@ -42,14 +42,14 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    kmm = udB.get_expired_date(user.me.id)
+    kmm = udB.get_expired_date(nlx.me.id)
     if kmm is None:
-        await m.reply(f"{user.me.id} ga aktif!!")
+        await m.reply(f"{nlx.me.id} ga aktif!!")
         return
     else:
         rimen = (kmm - datetime.now()).days
         await m.reply(
-            f"{user.me.id} aktif hingga {kmm.strftime('%d-%m-%Y %H:%M:%S')}. Sisa waktu aktif {rimen} hari."
+            f"{nlx.me.id} aktif hingga {kmm.strftime('%d-%m-%Y %H:%M:%S')}. Sisa waktu aktif {rimen} hari."
         )
         return
 
@@ -58,8 +58,8 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    udB.rem_expired_date(user.me.id)
-    return await m.reply(f"{em.sukses} {user.me.id} expired telah dihapus")
+    udB.rem_expired_date(nlx.me.id)
+    return await m.reply(f"{em.sukses} {nlx.me.id} expired telah dihapus")
 
 
 @ky.ubot("sh", sudo=True)
@@ -280,26 +280,26 @@ async def _(c: nlx, m):
     em.initialize()
     response = await generate_sysinfo(c.workdir)
     await m.reply(
-        f"{em.proses} # {user.me.first_name}\nStats : Total Usage\n" + response,
+        f"{em.proses} # {nlx.me.first_name}\nStats : Total Usage\n" + response,
     )
 
 
 import asyncio
 from datetime import datetime, timedelta
 
-from hydrogram.enums import *
-from hydrogram.errors import *
-from hydrogram.types import *
+from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.types import *
 
 
-@ky.ubot("dorrr")
-async def _(c, m):
+@ky.ubot("benal")
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(chat_id=m.chat.id)
-    my = await chat.get_member(c.me.id)
-    if my.privileges:
-        if my.privileges.can_manage_chat and my.privileges.can_restrict_members:
+    gue = await chat.get_member(c.me.id)
+    if gue.privileges:
+        if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
             if m.from_user.id not in DEVS:
                 await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
@@ -371,18 +371,26 @@ async def _(c, m):
         )
 
 
-@ky.ubot("undorrr")
+from pyrogram.enums import ChatMembersFilter
+from pyrogram.errors import FloodWait
+
+
+@ky.ubot("anben")
 async def _(c, m):
     em = Emojik()
     em.initialize()
-    chat = await c.get_chat(chat_id=m.chat.id)
-    my = await chat.get_member(c.me.id)
-    if my.privileges:
-        if my.privileges.can_manage_chat and my.privileges.can_restrict_members:
+
+    chat = c.get_chat(chat_id=m.chat.id)
+    gue = chat.get_member(c.me.id)
+
+    if gue.privileges:
+        if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
+
             if m.from_user.id not in DEVS:
                 await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
                 return
+
             if not is_channel:
                 req_user_member = await chat.get_member(m.from_user.id)
                 if req_user_member.privileges is None:
@@ -390,18 +398,25 @@ async def _(c, m):
                         f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
                     )
                     return
-            unban_count = 0
-            banned_members = await chat.get_banned_members()
-            for banned_member in banned_members:
-                try:
-                    await chat.unban_member(banned_member.user.id)
-                    unban_count += 1
-                except FloodWait as e:
-                    await asyncio.sleep(e.value)
-                    await m.reply(f"{em.gagal} Harap tunggu {e.value} detik lagi")
-            await m.reply(
-                f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
-            )
+
+            try:
+                unban_count = 0
+                benet = chat.get_members(chat.id, filter=ChatMembersFilter.BANNED)
+                async for member in benet:
+                    try:
+                        await c.unban_chat_member(chat.id, member.user.id)
+                        unban_count += 1
+                    except FloodWait as e:
+                        await asyncio.sleep(e.x)
+                        await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
+
+                await m.reply(
+                    f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
+                )
+
+            except Exception as e:
+                await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
+
         else:
             await m.reply(
                 f"{em.gagal} Izin admin Anda tidak cukup untuk menggunakan perintah ini!"

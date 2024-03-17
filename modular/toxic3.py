@@ -2,7 +2,7 @@
 
 import asyncio
 
-from hydrogram import *
+from pyrogram import *
 
 from Mix import *
 

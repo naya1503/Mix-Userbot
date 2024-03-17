@@ -1,7 +1,7 @@
-from hydrogram.enums import *
-from hydrogram.errors import *
-from hydrogram.methods import *
-from hydrogram.types import *
+from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.methods import *
+from pyrogram.types import *
 
 from Mix import *
 

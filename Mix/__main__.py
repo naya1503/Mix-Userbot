@@ -1,17 +1,15 @@
 import asyncio
-import importlib
-import sys
 from os import execvp
 from sys import executable
 
-from hydrogram import *
-from hydrogram.errors import *
+from pyrogram import *
+from pyrogram.errors import *
 from uvloop import install
 
-from assistant import BOT_PLUGINS
+from beban import autor_all, autor_bot, autor_ch, autor_gc, autor_us
 from Mix import *
+from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
-from modular import USER_MOD
 
 lool = asyncio.get_event_loop()
 
@@ -20,15 +18,6 @@ async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
         await nlx.start()
-        LOGGER.info(f"Importing All Modules...")
-        for modul in USER_MOD:
-            imported_module = importlib.import_module(f"modular." + modul)
-            if hasattr(imported_module, "__modles__") and imported_module.__modles__:
-                imported_module.__modles__ = imported_module.__modles__
-                if hasattr(imported_module, "__help__") and imported_module.__help__:
-                    CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (
-                        imported_module
-                    )
     except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
         LOGGER.info("Check your session or api id!!")
         sys.exit(1)
@@ -40,9 +29,6 @@ async def start_bot():
         await autobot()
     try:
         await bot.start()
-        for plus in BOT_PLUGINS:
-            imported_module = importlib.import_module("assistant." + plus)
-            importlib.reload(imported_module)
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
@@ -59,12 +45,29 @@ async def starter():
     await start_user()
     if nlx.is_connected:
         await start_bot()
-    await asyncio.gather(refresh_cache(), check_logger())
+    if TAG_LOG is None:
+        await check_logger()
+
+
+async def main():
+    await starter()
+    await asyncio.gather(refresh_cache(), getFinish())
     LOGGER.info("Successfully Started Userbot.")
-    asyncio.create_task(auto_clean())
-    await asyncio.gather(getFinish(), isFinish(), idle())
+    task_afk = asyncio.create_task(auto_clean())
+    task_gc = asyncio.create_task(autor_gc())
+    task_ch = asyncio.create_task(autor_ch())
+    task_us = asyncio.create_task(autor_us())
+    task_bot = asyncio.create_task(autor_bot())
+    task_all = asyncio.create_task(autor_all())
+    await asyncio.gather(
+        task_afk, task_gc, task_ch, task_us, task_bot, task_all, isFinish(), idle()
+    )
 
 
 if __name__ == "__main__":
     install()
-    lool.run_until_complete(starter())
+    # loop = asyncio.get_event_loop_policy()
+    # event_loop = loop.get_event_loop()
+    # asyncio.set_event_loop(event_loop)
+    # event_loop.run_until_complete(starter())
+    lool.run_until_complete(main())

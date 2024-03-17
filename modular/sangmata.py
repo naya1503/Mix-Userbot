@@ -8,9 +8,9 @@
 
 import asyncio
 
-from hydrogram import *
-from hydrogram.raw.functions.messages import DeleteHistory
-from hydrogram.types import *
+from pyrogram import *
+from pyrogram.raw.functions.messages import DeleteHistory
+from pyrogram.types import *
 
 from Mix import *
 

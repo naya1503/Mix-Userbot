@@ -11,10 +11,10 @@ from Mix import *
 __modles__ = "PMPermit"
 __help__ = get_cgr("help_pmper")
 
-from hydrogram import *
-from hydrogram.enums import *
-from hydrogram.errors import *
-from hydrogram.types import *
+from pyrogram import *
+from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.types import *
 
 from Mix import *
 

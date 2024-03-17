@@ -2,7 +2,7 @@
 from traceback import format_exc
 from typing import Tuple
 
-from hydrogram.enums import MessageEntityType as entity
+from pyrogram.enums import MessageEntityType as entity
 from team.nandev.class_log import LOGGER
 
 from Mix import Users, nlx
