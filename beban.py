@@ -21,6 +21,7 @@ async def akunbebanamat(c):
 
 
 async def dasar_laknat(c):
+    LOGGER.info("Check whether this account is a burden or not...")
     jml = await akunbebanamat(c)
     for jamet in jml:
         try:
