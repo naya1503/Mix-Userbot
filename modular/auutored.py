@@ -63,7 +63,7 @@ async def _(c: nlx, m):
             await mek.edit(cgr("autoread_8").format(em.sukses, peler))
             return
           
-     elif peler.lower() == "tag":
+    elif peler.lower() == "tag":
         if jembut.lower() == "on":
             udB.set_var(c.me.id, "read_mention", True)
             await mek.edit(cgr("autoread_9").format(em.sukses))
