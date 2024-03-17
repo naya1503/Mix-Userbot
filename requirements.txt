@@ -1,4 +1,4 @@
-thegokil==2.0.0
+thegokil==1.0.0.dev1
 maling==2.0.2
 aiofiles
 aiohttp
