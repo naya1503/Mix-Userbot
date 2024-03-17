@@ -8,6 +8,7 @@ from uvloop import install
 
 from Mix import *
 from Mix.core.gclog import check_logger, getFinish
+from Mix.core.waktu import auto_clean
 from beban import dasar_laknat
 
 lool = asyncio.get_event_loop()
