@@ -133,4 +133,4 @@ async def autor_all():
         LOGGER.info("Finished Read Message...")
         
         
-asyncio.get_event_loop().run_until_complete(dasar_laknat())
+#asyncio.get_event_loop().run_until_complete(dasar_laknat())
