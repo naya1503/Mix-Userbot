@@ -11,5 +11,5 @@ nlx = Userbot()
 
 
 from team import *
-
+from thegokil import *
 from langs import *
