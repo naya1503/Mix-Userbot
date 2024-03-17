@@ -10,7 +10,9 @@ import asyncio
 import os
 import re
 from io import BytesIO
-
+import importlib
+from modular import USER_MOD
+from assistant import BOT_PLUGINS
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -246,6 +248,14 @@ class Userbot(Client):
         else:
             self._prefix[self.me.id] = ["."]
         self._translate[self.me.id] = {"negara": "id"}
+        LOGGER.info(f"Importing User Modules...")
+        for modul in USER_MOD:
+            imported_module = importlib.import_module(f"modular.{modul}")
+            if hasattr(imported_module, "__modles__") and imported_module.__modles__:
+                imported_module.__modles__ = imported_module.__modles__
+                if hasattr(imported_module, "__help__") and imported_module.__help__:
+                    CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (imported_module)
+        LOGGER.info(f"Successfully Import User Modules...")
         LOGGER.info(f"Starting Userbot {self.me.id}|{self.me.mention}")
 
 
@@ -271,4 +281,9 @@ class Bot(Client):
 
     async def start(self):
         await super().start()
+        LOGGER.info(f"Importing Bot Modules...")
+        for plus in BOT_PLUGINS:
+            imported_module = importlib.import_module(f"assistant.{plus}")
+            importlib.reload(imported_module)
+        LOGGER.info(f"Successfully Import Bot Modules...")
         LOGGER.info(f"Starting Assistant {self.me.id}|{self.me.mention}")
