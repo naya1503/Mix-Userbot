@@ -8,11 +8,11 @@ from pyrogram import *
 from pyrogram.errors import *
 from uvloop import install
 
-from assistant import BOT_PLUGINS
 from Mix import *
 from Mix.core.gclog import getFinish
 from Mix.core.waktu import auto_clean
 from modular import USER_MOD
+from assistant import BOT_PLUGINS
 
 lool = asyncio.get_event_loop()
 
@@ -22,11 +22,9 @@ async def start_user():
     for modul in USER_MOD:
         imported_module = importlib.import_module(f"modular.{modul}")
         if hasattr(imported_module, "__modles__") and imported_module.__modles__:
-            imported_module.__modles__ = imported_module.__modles__
-            if hasattr(imported_module, "__help__") and imported_module.__help__:
-                CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (
-                    imported_module
-                )
+              imported_module.__modles__ = imported_module.__modles__
+              if hasattr(imported_module, "__help__") and imported_module.__help__:
+                  CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (imported_module)
     LOGGER.info(f"Successfully Import User Modules...")
     LOGGER.info(f"Starting Telegram User Client...")
     try:
@@ -64,9 +62,8 @@ async def starter():
     bot_task = asyncio.create_task(start_bot())
     await user_task
     await bot_task
-    # if TAG_LOG is None:
-    # await check_logger()
-    # await asyncio.gather(refresh_cache())
+    if TAG_LOG is None:
+        await check_logger()
     LOGGER.info("Successfully Started Userbot.")
     await asyncio.gather(refresh_cache(), getFinish(), auto_clean(), isFinish(), idle())
     # await asyncio.gather(auto_clean(), isFinish(), idle())
