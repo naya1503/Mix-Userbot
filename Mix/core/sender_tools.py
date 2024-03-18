@@ -137,7 +137,7 @@ SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
 
 
-async def escape_invalid_curly_brackets(text: str, valids: List[str]) -> str:
+async def escape_one(text: str, valids: List[str]) -> str:
     new_text = ""
     idx = 0
     while idx < len(text):
@@ -177,7 +177,9 @@ async def escape_tag(
     parse_words: list,
 ) -> str:
     orang = await nlx.get_users(int(ore))
-    teks = await escape_invalid_curly_brackets(text, parse_words)
+    if not orang:
+        return ""
+    teks = await escape_one(text, parse_words)
     if teks:
         teks = teks.format(
             first=escape(orang.first_name),
