@@ -25,11 +25,15 @@ __help__ = get_cgr("help_qot")
 
 
 async def consu(dok):
-    image_data = base64.b64decode(dok)
-    img = Image.open(io.BytesIO(image_data))
-    temp_file = io.BytesIO()
-    img.save(temp_file, format="webp")
-    return temp_file.getvalue()
+    try:
+        image_data = base64.b64decode(dok)
+        img = Image.open(io.BytesIO(image_data))
+        temp_file = io.BytesIO()
+        img.save(temp_file, format='webp')
+        return temp_file.getvalue()
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        raise 
 
 
 @ky.ubot("qcolor", sudo=True)
@@ -114,4 +118,5 @@ async def _(c: nlx, m):
         coba = await consu(hasil)
         await m.reply_sticker(io.BytesIO(coba))
     except Exception as e:
+        print(f"Error: {str(e)}")
         return await m.reply(cgr("err").format(em.gagal, e))
