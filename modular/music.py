@@ -12,8 +12,7 @@ from .vcs import vc
 from Mix.core.misc import aiohttpsession as session
 from pyrogram.raw.functions.phone import CreateGroupCall
 from pyrogram.raw.types import InputPeerChannel
-from pyrogram.errors import 
-    ChatAdminRequired
+from pyrogram.errors import *
     
     
 import vcmus
