@@ -11,6 +11,15 @@ from Mix import Users, nlx
 from .msgty import Types
 from .parser import escape_markdown
 
+parse_words = [
+    "first",
+    "last",
+    "fullname",
+    "id",
+    "mention",
+    "username",
+    "chatname",
+]
 
 async def send_cmd(c: nlx, msgtype: int):
     GET_FORMAT = {
