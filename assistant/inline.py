@@ -352,7 +352,6 @@ async def _(c, iq):
             "Blokir": f"pm_ blokbae {int(org[1])}",
         }
         keyboard = ikb(def_keyb)
-    await nlx.get_users(int(org[1]))
     tekss = await escape_tag(int(org[1]), pm_text, parse_words)
     kiki = None
     if nlx.me.id == gw:
