@@ -21,6 +21,7 @@ parse_words = [
     "chatname",
 ]
 
+
 async def send_cmd(c: nlx, msgtype: int):
     GET_FORMAT = {
         Types.TEXT.value: c.send_message,
