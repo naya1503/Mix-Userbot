@@ -27,5 +27,5 @@ genius_api = getenv(
     "zhtfIphjnawHBcLFkIi-zE7tp8B9kJqY3xGnz_BlzQM9nhJJrD7csS1upSxUE0OMmiP3c7lgabJcRaB0hwViow",
 )
 durasi_musik = getenv("durasi_musik", 7200)
-arq_api = getenv("arq_api", None)
+arqapi = getenv("arqapi", None)
 defmus = getenv("defmus", "youtube")
