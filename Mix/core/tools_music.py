@@ -248,7 +248,7 @@ async def play_song(requested_by, query, message, service):
     title, duration, thumbnail, artist, url = song
 
     if service == "youtube":
-        if duration >= durasi_musik:
+        if duration > durasi_musik:
             return await m.edit("[ERROR]: Limited")
 
         await m.edit("**Generating thumbnail.**")
@@ -310,7 +310,7 @@ async def telegram(message):
         return await message.reply_text(err)
     if not reply.audio.duration:
         return await message.reply_text(err)
-    if int(reply.audio.file_size) >= durasi_musik:
+    if int(reply.audio.file_size) > durasi_musik:
         return await message.reply_text("[ERROR]: SONG_TOO_BIG")
     m = await message.reply_text("__**Downloading.**__")
     song = await message.reply_to_message.download()
