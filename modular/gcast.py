@@ -53,7 +53,7 @@ async def _(c: nlx, m):
                     await c.send_message(chat, send)
                 done += 1
                 await asyncio.sleep(0.3)
-            except UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden:
+            except (UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden):
                 continue
             except FloodWait as e:
                 await asyncio.sleep(e.value)
