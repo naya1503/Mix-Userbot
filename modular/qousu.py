@@ -123,13 +123,6 @@ async def _(c: nlx, m):
         with open("hasil.json", "w") as file:
             file.write(hasil.decode())
         stik = await consu("hasil.json")
-        # with open("mix", "rb") as file:
-        # data_bytes = file.read()
-        # json_data = json.loads(data_bytes)
-        # image_data_base64 = json_data.get("image")
-        # image_data = base64.b64decode(image_data_base64)
-        # image_io = io.BytesIO(image_data)
-        # image_io.name = "quotly.webp"
         await m.reply_sticker(stik)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
