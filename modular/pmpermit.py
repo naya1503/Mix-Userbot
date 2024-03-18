@@ -175,4 +175,4 @@ async def _(c: nlx, m):
     await c.send_inline_bot_result(
         m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
     )
-    return
+    await m.stop_propagation()

@@ -21,6 +21,7 @@ from pyrogram.types import *
 from telegraph import upload_file
 
 from Mix import *
+from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
 from modular.pmpermit import *
@@ -331,19 +332,27 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = text_keyb(ikb, pm_text)
-    def_keyb = {
-        "Setuju": f"pm_ okein {int(org[1])}",
-        "Blokir": f"pm_ blokbae {int(org[1])}",
-    }
-    for row in button.inline_keyboard:
-        for data in row:
-            add_keyb = (
-                {data.text: data.url} if data.url else {data.text: data.callback_data}
-            )
-            def_keyb.update(add_keyb)
-            keyboard = ikb(def_keyb)
-    mari = await nlx.get_users(int(org[1]))
-    full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
+    if button:
+        def_keyb = {
+            "Setuju": f"pm_ okein {int(org[1])}",
+            "Blokir": f"pm_ blokbae {int(org[1])}",
+        }
+        for row in button.inline_keyboard:
+            for data in row:
+                add_keyb = (
+                    {data.text: data.url}
+                    if data.url
+                    else {data.text: data.callback_data}
+                )
+                def_keyb.update(add_keyb)
+                keyboard = ikb(def_keyb)
+    else:
+        def_keyb = {
+            "Setuju": f"pm_ okein {int(org[1])}",
+            "Blokir": f"pm_ blokbae {int(org[1])}",
+        }
+        keyboard = ikb(def_keyb)
+    tekss = await escape_tag(int(org[1]), pm_text, parse_words)
     kiki = None
     if nlx.me.id == gw:
         if int(org[1]) in flood2:
@@ -354,19 +363,18 @@ async def _(c, iq):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
-            full,
-            teks,
+            tekss,
             flood2[int(org[1])],
             pm_warns,
         )
         if flood2[int(org[1])] > pm_warns:
             await nlx.send_message(
                 int(org[1]),
-                f"**Saya sudah memperingati anda `{pm_warns}` !! Jangan Spam Atau Akan Diblokir!!**",
+                f"**Saya sudah memperingati anda `{pm_warns}` peringatan !! Jangan Spam Atau Akan Diblokir!!**",
             )
             del flood2[int(org[1])]
-            await nlx.block_user(int(org[1]))
-            return
+            return await nlx.block_user(int(org[1]))
+
         lah = udB.get_var(gw, "PMPIC")
         if lah:
             filem = (

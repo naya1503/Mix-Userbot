@@ -22,7 +22,9 @@ from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
 
 from Mix import *
+from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
+from modular.pmpermit import *
 
 
 def clbk_stasm():
@@ -35,6 +37,57 @@ def clbk_stasm():
         False,
         "close_asst",
     )
+
+
+@ky.callback("^back_permit")
+async def _(c, cq):
+    sapa = cq.data.split()
+    gw = cq.from_user.id
+    getpm_txt = udB.get_var(nlx.me.id, "PMTEXT")
+    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
+    getpm_warns = udB.get_var(gw, "PMLIMIT")
+    pm_warns = getpm_warns if getpm_warns else LIMIT
+    teks, button = text_keyb(ikb, pm_text)
+    if button:
+        def_keyb = {
+            "Setuju": f"pm_ okein {int(sapa[3])}",
+            "Blokir": f"pm_ blokbae {int(sapa[3])}",
+        }
+        for row in button.inline_keyboard:
+            for data in row:
+                add_keyb = (
+                    {data.text: data.url}
+                    if data.url
+                    else {data.text: data.callback_data}
+                )
+                def_keyb.update(add_keyb)
+                keyboard = ikb(def_keyb)
+    else:
+        def_keyb = {
+            "Setuju": f"pm_ okein {int(sapa[3])}",
+            "Blokir": f"pm_ blokbae {int(sapa[3])}",
+        }
+        keyboard = ikb(def_keyb)
+    tekss = await escape_tag(int(sapa[3]), pm_text, parse_words)
+    kiki = None
+    if nlx.me.id == gw:
+        if int(sapa[3]) in flood2:
+            flood2[int(sapa[3])] += 1
+        else:
+            flood2[int(sapa[3])] = 1
+        async for m in nlx.get_chat_history(int(sapa[3]), limit=pm_warns):
+            if m.reply_markup:
+                await m.delete()
+        kiki = PM_WARN.format(
+            tekss,
+            flood2[int(sapa[3])],
+            pm_warns,
+        )
+        lah = udB.get_var(gw, "PMPIC")
+        if lah:
+            await cq.edit_message_caption(caption=kiki, reply_markup=keyboard)
+        else:
+            await cq.edit_message_text(kiki, reply_markup=keyboard)
 
 
 @ky.callback("^pm_")
