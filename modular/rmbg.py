@@ -7,6 +7,7 @@
 ################################################################
 
 import os
+
 from SafoneAPI import SafoneAPI
 
 from Mix import *
@@ -18,13 +19,15 @@ __help__ = """
 • Penjelasan: Untuk menghapus latar belakang foto tersebut.
 """
 
+
 async def rem_bg(image_data):
     meki = SafoneAPI()
     img = await meki.removebg(image_data)
     with open("rmbg.png", "wb") as file:
         file.write(img.getvalue())
     return "rmbg.png"
-    
+
+
 @ky.ubot("rmbg", sudo=True)
 async def _(c, m):
     em = Emojik()
@@ -40,9 +43,11 @@ async def _(c, m):
             await m.reply_photo(img, reply_to_message_id=ReplyCheck(m))
             os.remove(hasil)
         else:
-            await m.reply_text("Maaf, terjadi kesalahan dalam menghapus latar belakang gambar.", reply_to_message_id=ReplyCheck(m))
+            await m.reply_text(
+                "Maaf, terjadi kesalahan dalam menghapus latar belakang gambar.",
+                reply_to_message_id=ReplyCheck(m),
+            )
     else:
         await m.reply_text("Mohon balas ke gambar.", reply_to_message_id=ReplyCheck(m))
     await pros.delete()
     return
-    
