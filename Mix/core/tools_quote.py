@@ -318,12 +318,12 @@ async def t_or_c(m):
 async def quotly(messages, kolor):
     if not isinstance(messages, list):
         messages = [messages]
-    #payload = {
+    # payload = {
     #    "type": "quote",
     #    "format": "png",
     #    "backgroundColor": kolor,
     #    "messages": [],
-    #}
+    # }
     payload = {
         "type": "quote",
         "format": "webp",
