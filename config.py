@@ -29,3 +29,4 @@ genius_api = getenv(
 durasi_musik = getenv("durasi_musik", 7200)
 arq_api = getenv("arq_api", None)
 stream = getenv("stream", "https://youtu.be/8wKVAqAzOeo?si=lwR849vWAi0k34ue")
+defmus = getenv("defmus", "youtube")
