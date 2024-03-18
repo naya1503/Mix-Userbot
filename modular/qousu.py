@@ -9,12 +9,12 @@
 """
 ################################################################
 
+import base64
+import io
 import os
 import random
-import io
-import base64
-from PIL import Image
 
+from PIL import Image
 from pyrogram.types import *
 
 from Mix import *
@@ -23,12 +23,14 @@ from Mix.core.tools_quote import *
 __modles__ = "Quote"
 __help__ = get_cgr("help_qot")
 
+
 async def consu(dok):
     image_data = base64.b64decode(dok)
     img = Image.open(io.BytesIO(image_data))
     temp_file = io.BytesIO()
-    img.save(temp_file, format='webp')
+    img.save(temp_file, format="webp")
     return temp_file.getvalue()
+
 
 @ky.ubot("qcolor", sudo=True)
 async def _(c: nlx, m):
