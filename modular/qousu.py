@@ -102,7 +102,7 @@ async def _(c: nlx, m):
     try:
         hasil = await quotly(messages, acak)
         bs = BytesIO(hasil)
-        #bs.name = "mix.webp"
+        # bs.name = "mix.webp"
         await m.reply_sticker(bs)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
