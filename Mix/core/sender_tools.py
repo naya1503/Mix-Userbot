@@ -243,4 +243,4 @@ async def remove_escapes(text: str) -> str:
             is_escaped = True
         else:
             res += text[counter]
-    return rest
+    return res
