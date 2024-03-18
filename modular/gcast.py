@@ -61,6 +61,9 @@ async def _(c: nlx, m):
                 ChatWriteForbidden,
             ):
                 continue
+            except Exception:
+                failed += 1
+                await asyncio.sleep(0.3)
             except FloodWait as e:
                 await asyncio.sleep(e.value)
                 try:
