@@ -23,6 +23,8 @@ from pyrogram.types import *
 
 from Mix import *
 from Mix.core.waktu import get_time, start_time
+from Mix.core.sender_tools import escape_tag, parse_words
+from modular.pmpermit import *
 
 
 def clbk_stasm():
@@ -36,6 +38,67 @@ def clbk_stasm():
         "close_asst",
     )
 
+@ky.callback("^back_permit")
+async def _(c, cq):
+    org = cq.data.split()
+    gw = cq.from_user.id
+    getpm_txt = udB.get_var(nlx.me.id, "PMTEXT")
+    pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
+    getpm_warns = udB.get_var(gw, "PMLIMIT")
+    pm_warns = getpm_warns if getpm_warns else LIMIT
+    teks, button = text_keyb(ikb, pm_text)
+    if button:
+        def_keyb = {
+            "Setuju": f"pm_ okein {int(org[1])}",
+            "Blokir": f"pm_ blokbae {int(org[1])}",
+        }
+        for row in button.inline_keyboard:
+            for data in row:
+                add_keyb = (
+                    {data.text: data.url}
+                    if data.url
+                    else {data.text: data.callback_data}
+                )
+                def_keyb.update(add_keyb)
+                keyboard = ikb(def_keyb)
+    else:
+        def_keyb = {
+            "Setuju": f"pm_ okein {int(org[1])}",
+            "Blokir": f"pm_ blokbae {int(org[1])}",
+        }
+        keyboard = ikb(def_keyb)
+    mari = await nlx.get_users(int(org[1]))
+    tekss = await escape_tag(int(org[1]), pm_text, parse_words)
+    kiki = None
+    if nlx.me.id == gw:
+        if int(org[1]) in flood2:
+            flood2[int(org[1])] += 1
+        else:
+            flood2[int(org[1])] = 1
+        async for m in nlx.get_chat_history(int(org[1]), limit=pm_warns):
+            if m.reply_markup:
+                await m.delete()
+        kiki = PM_WARN.format(
+            tekss,
+            flood2[int(org[1])],
+            pm_warns,
+        )
+        lah = udB.get_var(gw, "PMPIC")
+        if lah:
+            filem = (
+                InlineQueryResultVideo
+                if lah.endswith(".mp4")
+                else InlineQueryResultPhoto
+            )
+            url_ling = (
+                {"video_url": lah, "thumb_url": lah}
+                if lah.endswith(".mp4")
+                else {"photo_url": lah}
+            )
+            await cq.edit_message_caption(caption=kiki, reply_markup=keyboard)
+        else:
+            await cq.edit_message_text(kiki, reply_markup=keyboard)
+        
 
 @ky.callback("^pm_")
 async def _(c, cq):
