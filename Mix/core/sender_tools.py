@@ -176,7 +176,7 @@ async def escape_tag(
     text: str,
     parse_words: list,
 ) -> str:
-    orang = await nlx.get_users(int(ore))
+    orang = await nlx.get_users(ore)
     if not orang:
         return ""
     teks = await escape_one(text, parse_words)
