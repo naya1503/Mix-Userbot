@@ -20,7 +20,7 @@ from .misc import aiohttpsession as session
 
 arq_api = ndB.get_key("arq_api") or arqapi
 
-arq = ARQ("https://thearq.tech", arq_api, session)
+arq = ARQ("https://arq.hamker.dev", arq_api, session)
 ydl_opts = {"format": "bestaudio", "quiet": True}
 
 
