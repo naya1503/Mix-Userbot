@@ -318,9 +318,15 @@ async def t_or_c(m):
 async def quotly(messages, kolor):
     if not isinstance(messages, list):
         messages = [messages]
+    # payload = {
+    #    "type": "quote",
+    #    "format": "png",
+    #    "backgroundColor": kolor,
+    #    "messages": [],
+    # }
     payload = {
         "type": "quote",
-        "format": "png",
+        "format": "webp",
         "backgroundColor": kolor,
         "messages": [],
     }
@@ -365,7 +371,9 @@ async def quotly(messages, kolor):
         else:
             m_dict["replyMessage"] = {}
         payload["messages"].append(m_dict)
-    r = await http.post("https://bot.lyo.su/quote/generate.png", json=payload)
+    # r = await http.post("https://bot.lyo.su/quote/generate.png", json=payload)
+    r = await http.post("https://api.safone.dev/quotly", json=payload)
+
     if not r.is_error:
         return r.read()
     else:

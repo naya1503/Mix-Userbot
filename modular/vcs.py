@@ -18,11 +18,12 @@ __modles__ = "Voicechat"
 __help__ = get_cgr("help_vcs")
 
 from pytgcalls import GroupCallFactory
+from pytgcalls.exceptions import GroupCallNotFoundError
 
 vc = None
-# CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+CLIENT_TYPE = GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
 OUTGOING_AUDIO_BITRATE_KBIT = 128
-PLAYOUT_FILE = "Mix/core/vc.raw"
+PLAYOUT_FILE = "input.raw"
 
 
 def init_client(func):
@@ -30,7 +31,7 @@ def init_client(func):
         global vc
         if not vc:
             vc = GroupCallFactory(
-                user, OUTGOING_AUDIO_BITRATE_KBIT
+                nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
             ).get_file_group_call(PLAYOUT_FILE)
             vc.enable_logs_to_console = False
         return await func(client, message)
@@ -135,7 +136,7 @@ async def _(c: nlx, m):
             await asyncio.sleep(2)
             await vc.set_is_mute(True)
             return
-        except Exception as e:
+        except GroupCallNotFoundError as e:
             return await ky.edit(cgr("err").format(em.gagal, e))
 
 
