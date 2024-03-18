@@ -50,8 +50,8 @@ async def _(c, cq):
     teks, button = text_keyb(ikb, pm_text)
     if button:
         def_keyb = {
-            "Setuju": f"pm_ okein {int(org[1])}",
-            "Blokir": f"pm_ blokbae {int(org[1])}",
+            "Setuju": f"pm_ okein {int(org[2])}",
+            "Blokir": f"pm_ blokbae {int(org[2])}",
         }
         for row in button.inline_keyboard:
             for data in row:
@@ -64,11 +64,10 @@ async def _(c, cq):
                 keyboard = ikb(def_keyb)
     else:
         def_keyb = {
-            "Setuju": f"pm_ okein {int(org[1])}",
-            "Blokir": f"pm_ blokbae {int(org[1])}",
+            "Setuju": f"pm_ okein {int(org[2])}",
+            "Blokir": f"pm_ blokbae {int(org[2])}",
         }
         keyboard = ikb(def_keyb)
-    await nlx.get_users(int(org[1]))
     tekss = await escape_tag(int(org[1]), pm_text, parse_words)
     kiki = None
     if nlx.me.id == gw:
@@ -76,7 +75,7 @@ async def _(c, cq):
             flood2[int(org[1])] += 1
         else:
             flood2[int(org[1])] = 1
-        async for m in nlx.get_chat_history(int(org[1]), limit=pm_warns):
+        async for m in nlx.get_chat_history(int(org[2]), limit=pm_warns):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
