@@ -347,7 +347,7 @@ async def _(c, iq):
                 def_keyb.update(add_keyb)
     keyboard = ikb(def_keyb)
     mari = await nlx.get_users(int(org[1]))
-    tekss = await escape_tag(int(org[1]), teks, parse_words)
+    tekss = await escape_tag(int(org[1]), pm_text, parse_words)
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
     if nlx.me.id == gw:
