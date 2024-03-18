@@ -68,19 +68,19 @@ async def _(c, cq):
             "Blokir": f"pm_ blokbae {int(org[2])}",
         }
         keyboard = ikb(def_keyb)
-    tekss = await escape_tag(int(org[1]), pm_text, parse_words)
+    tekss = await escape_tag(int(org[2]), pm_text, parse_words)
     kiki = None
     if nlx.me.id == gw:
         if int(org[1]) in flood2:
-            flood2[int(org[1])] += 1
+            flood2[int(org[2])] += 1
         else:
-            flood2[int(org[1])] = 1
+            flood2[int(org[2])] = 1
         async for m in nlx.get_chat_history(int(org[2]), limit=pm_warns):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
             tekss,
-            flood2[int(org[1])],
+            flood2[int(org[2])],
             pm_warns,
         )
         lah = udB.get_var(gw, "PMPIC")
