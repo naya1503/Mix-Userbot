@@ -21,8 +21,8 @@ from pyrogram.types import *
 from telegraph import upload_file
 
 from Mix import *
-from Mix.core.waktu import get_time, start_time
 from Mix.core.sender_tools import escape_tag
+from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
 from modular.pmpermit import *
 
@@ -349,7 +349,11 @@ async def _(c, iq):
     if button:
         for row in button.inline_keyboard:
             for data in row:
-                add_keyb = ({data.text: data.url} if data.url else {data.text: data.callback_data})
+                add_keyb = (
+                    {data.text: data.url}
+                    if data.url
+                    else {data.text: data.callback_data}
+                )
                 def_keyb.update(add_keyb)
     keyboard = ikb(def_keyb)
     mari = await nlx.get_users(int(org[1]))
