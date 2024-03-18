@@ -341,7 +341,6 @@ async def _(c, iq):
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = text_keyb(ikb, pm_text)
-    tekss = await escape_tag(iq, teks, parse_words)
     def_keyb = {
         "Setuju": f"pm_ okein {int(org[1])}",
         "Blokir": f"pm_ blokbae {int(org[1])}",
@@ -354,6 +353,7 @@ async def _(c, iq):
             def_keyb.update(add_keyb)
             keyboard = ikb(def_keyb)
     mari = await nlx.get_users(int(org[1]))
+    tekss = await escape_tag(mari, teks, parse_words)
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
     if nlx.me.id == gw:
