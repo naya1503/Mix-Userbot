@@ -9,8 +9,9 @@
 """
 ################################################################
 
-import base64
 import io
+import json
+import base64
 import os
 import random
 
@@ -22,24 +23,6 @@ from Mix.core.tools_quote import *
 
 __modles__ = "Quote"
 __help__ = get_cgr("help_qot")
-
-
-async def consu(json_doc):
-    try:
-        data = json.loads(json_doc)
-        image_data_base64 = data.get("image")
-        if not image_data_base64:
-            raise ValueError("Tidak ada data gambar dalam JSON")
-        image_data = base64.b64decode(image_data_base64)
-        img = Image.open(io.BytesIO(image_data))
-
-        temp_file = io.BytesIO()
-        img.save(temp_file, format="PNG")
-        temp_file.seek(0)
-        return temp_file.getvalue()
-    except Exception as e:
-        print("Error:", e)
-        raise
 
 
 @ky.ubot("qcolor", sudo=True)
@@ -123,6 +106,13 @@ async def _(c: nlx, m):
         hasil = await quotly(messages, acak)
         bs = io.BytesIO(hasil)
         bs.name = "mix"
-        await m.reply_sticker(bs)
+        with open("mix", "rb") as file:
+        data_bytes = file.read()
+        json_data = json.loads(data_bytes)
+        image_data_base64 = json_data.get("image")
+        image_data = base64.b64decode(image_data_base64)
+        image_io = io.BytesIO(image_data)
+        image_io.name = "quotly.webp"
+        await m.reply_sticker(image_io)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
