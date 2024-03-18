@@ -24,7 +24,7 @@ async def _(c: nlx, m):
         return await xx.edit(cgr("grp_1").format(em.gagal))
     telegraph = Telegraph()
     if m.reply_to_message.media:
-        m_d = await c.dl_pic(m.reply_to_message)
+        m_d = await m.reply_to_message.download()
         try:
             media_url = upload_file(m_d)
         except exceptions.TelegraphException as r:
