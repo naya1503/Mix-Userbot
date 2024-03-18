@@ -150,7 +150,7 @@ async def generate_cover(msg, requested_by, title, artist, duration, thumbnail):
     final = "final.png"
     temp = "temp.png"
     image1 = Image.open(background)
-    image2 = Image.open("assets/banner.png")
+    image2 = Image.open("Mix/core/banner.png")
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
@@ -158,7 +158,7 @@ async def generate_cover(msg, requested_by, title, artist, duration, thumbnail):
     Image.alpha_composite(image5, image6).save(temp)
     img = Image.open(temp)
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("assets/font.otf", 32)
+    font = ImageFont.truetype("Mix/core/font.otf", 32)
     draw.text((190, 550), f"Title: {title}", (255, 255, 255), font=font)
     draw.text(
         (190, 590),
