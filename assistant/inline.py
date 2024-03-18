@@ -374,7 +374,7 @@ async def _(c, iq):
             )
             del flood2[int(org[1])]
             return await nlx.block_user(int(org[1]))
-            
+
         lah = udB.get_var(gw, "PMPIC")
         if lah:
             filem = (
