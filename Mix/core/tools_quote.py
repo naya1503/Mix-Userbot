@@ -328,7 +328,7 @@ async def quotly(messages, kolor):
         "type": "quote",
         "format": "webp",
         "backgroundColor": kolor,
-        "messages": [],
+        "messages": messages,
     }
 
     for m in messages:
