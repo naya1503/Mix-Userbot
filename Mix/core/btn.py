@@ -244,10 +244,7 @@ async def escape_tag(
     text: str,
     parse_words: list,
 ) -> str:
-    if m.chat.type in [ChatType.SUPERGROUP, ChatType.GROUP, ChatType.CHANNEL]:
-        chat_name = escape(m.chat.title)
-    else:
-        chat_name = escape(m.from_user.first_name)
+    chat_name = escape(m.from_user.first_name)
     teks = await escape_invalid_curly_brackets(text, parse_words)
     if teks:
         teks = teks.format(
