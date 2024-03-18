@@ -1,30 +1,22 @@
 # part of https://github.com/thehamkercat/Telegram_VC_Bot
 
 import asyncio
-import functools
-import os
-import traceback
 
-import aiofiles
-import ffmpeg
-import youtube_dl
-from .vcs import vc
-from Mix.core.misc import aiohttpsession as session
-from pyrogram.raw.functions.phone import CreateGroupCall
-from pyrogram.raw.types import InputPeerChannel
 from pyrogram.errors import *
-    
-    
+
 import vcmus
+
+
 vcmus.init()
 from vcmus import vcmus
 
 PLAY_LOCK = asyncio.Lock()
 
 from Mix import *
-from Mix.core.tools_music import get_default_service, telegram, play_song
+from Mix.core.tools_music import get_default_service, telegram
 
 running = False
+
 
 @ky.ubot("play")
 async def _(_, message):
@@ -33,15 +25,10 @@ async def _(_, message):
         usage = f"{message.command} [query]"
 
         async with PLAY_LOCK:
-            if (
-                len(message.command) < 2
-                and not message.reply_to_message
-            ):
+            if len(message.command) < 2 and not message.reply_to_message:
                 return await message.reply_text(usage)
             if "call" not in vcmus:
-                return await message.reply_text(
-                    "**Use /joinvc First!**"
-                )
+                return await message.reply_text("**Use /joinvc First!**")
             if message.reply_to_message:
                 if message.reply_to_message.audio:
                     service = "telegram"
