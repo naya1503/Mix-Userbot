@@ -6,7 +6,6 @@ from pyrogram.errors import *
 
 import vcmus
 
-
 vcmus.init()
 from vcmus import vcmus
 
