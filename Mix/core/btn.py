@@ -18,7 +18,6 @@ from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardButton as Ikb
 from pyrogram.types import InlineKeyboardMarkup
 
-
 # NOTE: the url \ escape may cause double escapes
 # match * (bold) (don't escape if in url)
 # match _ (italics) (don't escape if in url)
