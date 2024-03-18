@@ -18,8 +18,10 @@ from typing import List
 from pykeyboard import InlineKeyboard
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardButton as Ikb
-from pyrogram.types import InlineKeyboardMarkup, Message
+from pyrogram.types import InlineKeyboardMarkup
+
 from Mix import nlx
+
 from .parser import escape_markdown
 
 # NOTE: the url \ escape may cause double escapes
@@ -271,7 +273,6 @@ async def escape_tag(
         teks = ""
 
     return teks
-
 
 
 async def split_quotes(text: str):
