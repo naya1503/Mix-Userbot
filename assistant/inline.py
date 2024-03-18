@@ -22,7 +22,7 @@ from telegraph import upload_file
 
 from Mix import *
 from Mix.core.waktu import get_time, start_time
-#from Mix.core.sender_tools import escape_tag
+# from Mix.core.sender_tools import escape_tag
 from modular.copy_con import *
 from modular.pmpermit import *
 
@@ -354,7 +354,7 @@ async def _(c, iq):
             def_keyb.update(add_keyb)
             keyboard = ikb(def_keyb)
     mari = await nlx.get_users(int(org[1]))
-    #tekss = await escape_tag(mari, teks, parse_words)
+    # tekss = await escape_tag(mari, teks, parse_words)
     tekss = teks
     full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None

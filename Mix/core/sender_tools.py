@@ -1,6 +1,7 @@
 # Gojo_satoru
+from html import escape
 from traceback import format_exc
-from typing import Tuple
+from typing import List, Tuple
 
 from pyrogram.enums import MessageEntityType as entity
 from team.nandev.class_log import LOGGER
@@ -9,8 +10,6 @@ from Mix import Users, nlx
 
 from .msgty import Types
 from .parser import escape_markdown
-from html import escape
-from typing import List
 
 
 async def send_cmd(c: nlx, msgtype: int):
@@ -131,6 +130,7 @@ async def extract_user(c: nlx, m) -> Tuple[int, str, str]:
         user_name = m.from_user.username
 
     return user_id, user_first_name, user_name
+
 
 SMART_OPEN = "“"
 SMART_CLOSE = "”"

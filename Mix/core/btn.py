@@ -11,17 +11,12 @@
 
 import re
 from datetime import datetime, timedelta
-
 from re import findall
-
 
 from pykeyboard import InlineKeyboard
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardButton as Ikb
 from pyrogram.types import InlineKeyboardMarkup
-
-
-
 
 # NOTE: the url \ escape may cause double escapes
 # match * (bold) (don't escape if in url)
@@ -198,5 +193,3 @@ def okb(rows=None, back=False, todo="closeru"):
 
 def btn(text, value, type="callback_data"):
     return InlineKeyboardButton(text, **{type: value})
-
-
