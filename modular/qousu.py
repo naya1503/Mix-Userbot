@@ -9,13 +9,12 @@
 """
 ################################################################
 
+import base64
 import io
 import json
-import base64
 import os
 import random
 
-from PIL import Image
 from pyrogram.types import *
 
 from Mix import *
