@@ -2,7 +2,7 @@
 from html import escape
 from traceback import format_exc
 from typing import List, Tuple
-
+import re
 from pyrogram.enums import MessageEntityType as entity
 from team.nandev.class_log import LOGGER
 
@@ -181,6 +181,8 @@ async def escape_one(text: str, valids: List[str]) -> str:
     return new_text
 
 
+import re
+
 async def escape_tag(
     ore: int,
     text: str,
@@ -189,6 +191,8 @@ async def escape_tag(
     orang = await nlx.get_users(ore)
     if not orang:
         return ""
+    text = re.sub(r'~ \[.*?\|.*?\]', '', text)
+
     teks = await escape_one(text, parse_words)
     if teks:
         teks = teks.format(
@@ -216,6 +220,7 @@ async def escape_tag(
         teks = ""
 
     return teks
+
 
 
 async def split_quotes(text: str):
