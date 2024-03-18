@@ -33,7 +33,9 @@ async def consu(dok):
         if not image_data_base64:
             raise ValueError("Tidak ada data gambar dalam JSON")
         image_data = base64.b64decode(image_data_base64)
-        return io.BytesIO(image_data)
+        image_io = io.BytesIO(image_data)
+        image_io.name = "quotly.webp"
+        return image_io
     except Exception as e:
         print("Error:", e)
         raise
