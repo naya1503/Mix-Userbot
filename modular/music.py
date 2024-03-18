@@ -2,9 +2,11 @@
 
 import asyncio
 import os
+
 from pyrogram.errors import *
 from pyrogram.raw.functions.phone import CreateGroupCall
 from pyrogram.raw.types import InputPeerChannel
+
 import vcmus
 
 vcmus.init()
@@ -13,9 +15,12 @@ from vcmus import vcmus
 PLAY_LOCK = asyncio.Lock()
 
 from Mix import *
-from Mix.core.tools_music import get_default_service, telegram, play_song
-from .vcs import vc, PLAYOUT_FILE
+from Mix.core.tools_music import get_default_service, play_song, telegram
+
+from .vcs import PLAYOUT_FILE, vc
+
 running = False
+
 
 async def start_queue(message=None):
     while vcmus:
@@ -42,6 +47,7 @@ async def start_queue(message=None):
                 service,
             )
 
+
 @ky.ubot("play")
 async def _(_, message):
     global running
@@ -58,7 +64,12 @@ async def _(_, message):
                     await vc.start(message.chat.id)
                 except Exception:
                     peer = await nlx.resolve_peer(CHAT_ID)
-                    startVC = CreateGroupCall(peer=InputPeerChannel(channel_id=peer.channel_id, access_hash=peer.access_hash), random_id=nlx.rnd_id() // 9000000000)
+                    startVC = CreateGroupCall(
+                        peer=InputPeerChannel(
+                            channel_id=peer.channel_id, access_hash=peer.access_hash
+                        ),
+                        random_id=nlx.rnd_id() // 9000000000,
+                    )
                     try:
                         await nlx.send(startVC)
                         await vc.start(message.chat.id)
