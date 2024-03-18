@@ -20,7 +20,7 @@ __help__ = get_cgr("help_vcs")
 from pytgcalls import GroupCallFactory
 
 vc = None
-# CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
 OUTGOING_AUDIO_BITRATE_KBIT = 128
 PLAYOUT_FILE = "Mix/core/vc.raw"
 
@@ -30,7 +30,7 @@ def init_client(func):
         global vc
         if not vc:
             vc = GroupCallFactory(
-                user, OUTGOING_AUDIO_BITRATE_KBIT
+                nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
             ).get_file_group_call(PLAYOUT_FILE)
             vc.enable_logs_to_console = False
         return await func(client, message)
