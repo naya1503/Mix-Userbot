@@ -113,10 +113,10 @@ async def _(c: nlx, m):
             chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
         )
         messages = [m_one]
-    #try:
+        # try:
         hasil = await quotly(messages, acak)
         coba = await consu(hasil)
         await m.reply_sticker(io.BytesIO(coba))
-    #except Exception as e:
-        #print(f"Error: {str(e)}")
-        #return await m.reply(cgr("err").format(em.gagal, e))
+    # except Exception as e:
+    # print(f"Error: {str(e)}")
+    # return await m.reply(cgr("err").format(em.gagal, e))
