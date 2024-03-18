@@ -133,8 +133,8 @@ def changeImageSize(maxWidth: int, maxHeight: int, image):
     return newImage
 
 
-async def send(*args, **kwargs):
-    await nlx.send_message(TAG_LOG, *args, **kwargs)
+async def send(m, *args, **kwargs):
+    await nlx.send_message(m.chat.id, *args, **kwargs)
 
 
 # Generate cover for youtube
