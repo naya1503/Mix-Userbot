@@ -42,3 +42,4 @@ SafoneApi
 pytgcalls==3.0.0.dev22
 pyrogram
 youtube_dl
+python-arq
