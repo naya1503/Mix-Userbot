@@ -370,11 +370,11 @@ async def _(c, iq):
         if flood2[int(org[1])] > pm_warns:
             await nlx.send_message(
                 int(org[1]),
-                f"**Saya sudah memperingati anda `{pm_warns}` !! Jangan Spam Atau Akan Diblokir!!**",
+                f"**Saya sudah memperingati anda `{pm_warns}` peringatan !! Jangan Spam Atau Akan Diblokir!!**",
             )
             del flood2[int(org[1])]
-            await nlx.block_user(int(org[1]))
-            return
+            return await nlx.block_user(int(org[1]))
+            
         lah = udB.get_var(gw, "PMPIC")
         if lah:
             filem = (
