@@ -107,7 +107,7 @@ async def _(c: nlx, m):
         bs = io.BytesIO(hasil)
         bs.name = "mix"
         with open("mix", "rb") as file:
-        data_bytes = file.read()
+            data_bytes = file.read()
         json_data = json.loads(data_bytes)
         image_data_base64 = json_data.get("image")
         image_data = base64.b64decode(image_data_base64)
