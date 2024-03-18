@@ -354,7 +354,6 @@ async def _(c, iq):
         keyboard = ikb(def_keyb)
     mari = await nlx.get_users(int(org[1]))
     tekss = await escape_tag(int(org[1]), pm_text, parse_words)
-    full = f"[{mari.first_name} {mari.last_name or ''}](tg://user?id={int(org[1])})"
     kiki = None
     if nlx.me.id == gw:
         if int(org[1]) in flood2:
@@ -365,8 +364,7 @@ async def _(c, iq):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
-            full,
-            teks,
+            tekss,
             flood2[int(org[1])],
             pm_warns,
         )
@@ -394,7 +392,7 @@ async def _(c, iq):
                 filem(
                     **url_ling,
                     title="PIC Buttons !",
-                    caption=tekss,
+                    caption=kiki,
                     reply_markup=keyboard,
                 )
             ]
@@ -403,7 +401,7 @@ async def _(c, iq):
                 (
                     InlineQueryResultArticle(
                         title="Tombol PM!",
-                        input_message_content=InputTextMessageContent(tekss),
+                        input_message_content=InputTextMessageContent(kiki),
                         reply_markup=keyboard,
                     )
                 )
