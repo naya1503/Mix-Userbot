@@ -11,17 +11,13 @@
 
 import re
 from datetime import datetime, timedelta
-from html import escape
 from re import findall
-from typing import List
 
 from pykeyboard import InlineKeyboard
-from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardButton as Ikb
-from pyrogram.types import InlineKeyboardMarkup, Message
+from pyrogram.types import InlineKeyboardMarkup
 
-from .parser import escape_markdown
 
 # NOTE: the url \ escape may cause double escapes
 # match * (bold) (don't escape if in url)
