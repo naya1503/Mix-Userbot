@@ -23,6 +23,19 @@ from Mix.core.tools_quote import *
 __modles__ = "Quote"
 __help__ = get_cgr("help_qot")
 
+async def consu(dok):
+    try:
+        with open(dok, "rb") as file:
+            data_bytes = file.read()
+        json_data = json.loads(data_bytes)
+        image_data_base64 = json_data.get("image")
+        if not image_data_base64:
+            raise ValueError("Tidak ada data gambar dalam JSON")
+        image_data = base64.b64decode(image_data_base64)
+        return io.BytesIO(image_data)
+    except Exception as e:
+        print("Error:", e)
+        raise
 
 @ky.ubot("qcolor", sudo=True)
 async def _(c: nlx, m):
@@ -105,13 +118,14 @@ async def _(c: nlx, m):
         hasil = await quotly(messages, acak)
         bs = io.BytesIO(hasil)
         bs.name = "mix"
-        with open("mix", "rb") as file:
-            data_bytes = file.read()
-        json_data = json.loads(data_bytes)
-        image_data_base64 = json_data.get("image")
-        image_data = base64.b64decode(image_data_base64)
-        image_io = io.BytesIO(image_data)
-        image_io.name = "quotly.webp"
-        await m.reply_sticker(image_io)
+        stik = await consu(bs)
+        #with open("mix", "rb") as file:
+            #data_bytes = file.read()
+        #json_data = json.loads(data_bytes)
+        #image_data_base64 = json_data.get("image")
+        #image_data = base64.b64decode(image_data_base64)
+        #image_io = io.BytesIO(image_data)
+        #image_io.name = "quotly.webp"
+        await m.reply_sticker(stik)
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
