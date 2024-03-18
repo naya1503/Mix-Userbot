@@ -22,8 +22,8 @@ from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.waktu import get_time, start_time
 from Mix.core.sender_tools import escape_tag, parse_words
+from Mix.core.waktu import get_time, start_time
 from modular.pmpermit import *
 
 
@@ -37,6 +37,7 @@ def clbk_stasm():
         False,
         "close_asst",
     )
+
 
 @ky.callback("^back_permit")
 async def _(c, cq):
@@ -67,7 +68,7 @@ async def _(c, cq):
             "Blokir": f"pm_ blokbae {int(org[1])}",
         }
         keyboard = ikb(def_keyb)
-    mari = await nlx.get_users(int(org[1]))
+    await nlx.get_users(int(org[1]))
     tekss = await escape_tag(int(org[1]), pm_text, parse_words)
     kiki = None
     if nlx.me.id == gw:
@@ -98,7 +99,7 @@ async def _(c, cq):
             await cq.edit_message_caption(caption=kiki, reply_markup=keyboard)
         else:
             await cq.edit_message_text(kiki, reply_markup=keyboard)
-        
+
 
 @ky.callback("^pm_")
 async def _(c, cq):
