@@ -29,11 +29,11 @@ async def consu(dok):
         image_data = base64.b64decode(dok)
         img = Image.open(io.BytesIO(image_data))
         temp_file = io.BytesIO()
-        img.save(temp_file, format='webp')
+        img.save(temp_file, format="webp")
         return temp_file.getvalue()
     except Exception as e:
         print(f"Error: {str(e)}")
-        raise 
+        raise
 
 
 @ky.ubot("qcolor", sudo=True)
