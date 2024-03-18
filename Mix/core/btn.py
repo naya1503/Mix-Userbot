@@ -19,7 +19,7 @@ from pykeyboard import InlineKeyboard
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardButton as Ikb
 from pyrogram.types import InlineKeyboardMarkup, Message
-
+from Mix import nlx
 from .parser import escape_markdown
 
 # NOTE: the url \ escape may cause double escapes
@@ -239,39 +239,39 @@ async def escape_invalid_curly_brackets(text: str, valids: List[str]) -> str:
 
 
 async def escape_tag(
-    m: Message,
+    ore: int,
     text: str,
     parse_words: list,
 ) -> str:
-    chat_name = escape(m.from_user.first_name)
+    orang = await nlx.get_users(int(ore))
     teks = await escape_invalid_curly_brackets(text, parse_words)
     if teks:
         teks = teks.format(
-            first=escape(m.from_user.first_name),
-            last=escape(m.from_user.last_name or m.from_user.first_name),
-            mention=m.from_user.mention,
+            first=escape(orang.first_name),
+            last=escape(orang.last_name or orang.first_name),
+            mention=orang.mention,
             username=(
-                "@" + (await escape_markdown(escape(m.from_user.username)))
-                if m.from_user.username
-                else m.from_user.mention
+                "@" + (await escape_markdown(escape(orang.username)))
+                if orang.username
+                else orang.mention
             ),
             fullname=" ".join(
                 (
                     [
-                        escape(m.from_user.first_name),
-                        escape(m.from_user.last_name),
+                        escape(orang.first_name),
+                        escape(orang.last_name),
                     ]
-                    if m.from_user.last_name
-                    else [escape(m.from_user.first_name)]
+                    if orang.last_name
+                    else [escape(orang.first_name)]
                 ),
             ),
-            chatname=chat_name,
-            id=m.from_user.id,
+            id=orang.id,
         )
     else:
         teks = ""
 
     return teks
+
 
 
 async def split_quotes(text: str):
