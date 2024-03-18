@@ -32,9 +32,9 @@ async def consu(json_doc):
             raise ValueError("Tidak ada data gambar dalam JSON")
         image_data = base64.b64decode(image_data_base64)
         img = Image.open(io.BytesIO(image_data))
-       
+
         temp_file = io.BytesIO()
-        img.save(temp_file, format='PNG')
+        img.save(temp_file, format="PNG")
         temp_file.seek(0)
         return temp_file.getvalue()
     except Exception as e:
