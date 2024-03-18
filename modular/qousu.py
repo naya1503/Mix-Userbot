@@ -118,8 +118,9 @@ async def _(c: nlx, m):
         messages = [m_one]
     try:
         hasil = await quotly(messages, acak)
-        print(hasil)
-        stik = await consu(io.BytesIO(hasil))
+        with open("hasil.json", "w") as file:
+            file.write(hasil.decode())
+        stik = await consu("hasil.json")
         # with open("mix", "rb") as file:
         # data_bytes = file.read()
         # json_data = json.loads(data_bytes)
