@@ -50,8 +50,8 @@ async def _(c, cq):
     teks, button = text_keyb(ikb, pm_text)
     if button:
         def_keyb = {
-            "Setuju": f"pm_ okein {int(sapa)}",
-            "Blokir": f"pm_ blokbae {int(sapa)}",
+            "Setuju": f"pm_ okein {int(sapa[2])}",
+            "Blokir": f"pm_ blokbae {int(sapa[2])}",
         }
         for row in button.inline_keyboard:
             for data in row:
@@ -64,23 +64,23 @@ async def _(c, cq):
                 keyboard = ikb(def_keyb)
     else:
         def_keyb = {
-            "Setuju": f"pm_ okein {int(sapa)}",
-            "Blokir": f"pm_ blokbae {int(sapa)}",
+            "Setuju": f"pm_ okein {int(sapa[2])}",
+            "Blokir": f"pm_ blokbae {int(sapa[2])}",
         }
         keyboard = ikb(def_keyb)
-    tekss = await escape_tag(int(sapa), pm_text, parse_words)
+    tekss = await escape_tag(int(sapa[2]), pm_text, parse_words)
     kiki = None
     if nlx.me.id == gw:
-        if int(sapa) in flood2:
-            flood2[int(sapa)] += 1
+        if int(sapa[2]) in flood2:
+            flood2[int(sapa[2])] += 1
         else:
-            flood2[int(sapa)] = 1
-        async for m in nlx.get_chat_history(int(sapa), limit=pm_warns):
+            flood2[int(sapa[2])] = 1
+        async for m in nlx.get_chat_history(int(sapa[2]), limit=pm_warns):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
             tekss,
-            flood2[int(sapa)],
+            flood2[int(sapa[2])],
             pm_warns,
         )
         lah = udB.get_var(gw, "PMPIC")
