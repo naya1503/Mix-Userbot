@@ -11,18 +11,17 @@
 
 import re
 from datetime import datetime, timedelta
-from html import escape
+
 from re import findall
-from typing import List
+
 
 from pykeyboard import InlineKeyboard
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardButton as Ikb
 from pyrogram.types import InlineKeyboardMarkup
 
-from Mix import nlx
 
-from .parser import escape_markdown
+
 
 # NOTE: the url \ escape may cause double escapes
 # match * (bold) (don't escape if in url)
@@ -201,115 +200,3 @@ def btn(text, value, type="callback_data"):
     return InlineKeyboardButton(text, **{type: value})
 
 
-SMART_OPEN = "“"
-SMART_CLOSE = "”"
-START_CHAR = ("'", '"', SMART_OPEN)
-
-
-async def escape_invalid_curly_brackets(text: str, valids: List[str]) -> str:
-    new_text = ""
-    idx = 0
-    while idx < len(text):
-        if text[idx] == "{":
-            if idx + 1 < len(text) and text[idx + 1] == "{":
-                idx += 2
-                new_text += "{{{{"
-                continue
-            success = False
-            for v in valids:
-                if text[idx:].startswith("{" + v + "}"):
-                    success = True
-                    break
-            if success:
-                new_text += text[idx : idx + len(v) + 2]
-                idx += len(v) + 2
-                continue
-            new_text += "{{"
-
-        elif text[idx] == "}":
-            if idx + 1 < len(text) and text[idx + 1] == "}":
-                idx += 2
-                new_text += "}}}}"
-                continue
-            new_text += "}}"
-
-        else:
-            new_text += text[idx]
-        idx += 1
-
-    return new_text
-
-
-async def escape_tag(
-    ore: int,
-    text: str,
-    parse_words: list,
-) -> str:
-    orang = await nlx.get_users(int(ore))
-    teks = await escape_invalid_curly_brackets(text, parse_words)
-    if teks:
-        teks = teks.format(
-            first=escape(orang.first_name),
-            last=escape(orang.last_name or orang.first_name),
-            mention=orang.mention,
-            username=(
-                "@" + (await escape_markdown(escape(orang.username)))
-                if orang.username
-                else orang.mention
-            ),
-            fullname=" ".join(
-                (
-                    [
-                        escape(orang.first_name),
-                        escape(orang.last_name),
-                    ]
-                    if orang.last_name
-                    else [escape(orang.first_name)]
-                ),
-            ),
-            id=orang.id,
-        )
-    else:
-        teks = ""
-
-    return teks
-
-
-async def split_quotes(text: str):
-    """Split quotes in text."""
-    if not any(text.startswith(char) for char in START_CHAR):
-        return text.split(None, 1)
-    counter = 1  # ignore first char -> is some kind of quote
-    while counter < len(text):
-        if text[counter] == "\\":
-            counter += 1
-        elif text[counter] == text[0] or (
-            text[0] == SMART_OPEN and text[counter] == SMART_CLOSE
-        ):
-            break
-        counter += 1
-    else:
-        return text.split(None, 1)
-
-    # 1 to avoid starting quote, and counter is exclusive so avoids ending
-    key = await remove_escapes(text[1:counter].strip())
-    # index will be in range, or `else` would have been executed and returned
-    rest = text[counter + 1 :].strip()
-    if not key:
-        key = text[0] + text[0]
-    return list(filter(None, [key, rest]))
-
-
-async def remove_escapes(text: str) -> str:
-    """Remove the escaped from message."""
-    res = ""
-    is_escaped = False
-    for counter in range(len(text)):
-        if is_escaped:
-            res += text[counter]
-            is_escaped = False
-        elif text[counter] == "\\":
-            is_escaped = True
-        else:
-            res += text[counter]
-    return res
