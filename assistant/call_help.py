@@ -41,7 +41,10 @@ def clbk_stasm():
 
 @ky.callback("^back_permit")
 async def _(c, cq):
-    org = cq.data.split()
+    _, sapa = (
+        cq.data.split(None, 2)[1],
+        cq.data.split(None, 2)[2],
+    )
     gw = cq.from_user.id
     getpm_txt = udB.get_var(nlx.me.id, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
@@ -50,8 +53,8 @@ async def _(c, cq):
     teks, button = text_keyb(ikb, pm_text)
     if button:
         def_keyb = {
-            "Setuju": f"pm_ okein {int(org[2])}",
-            "Blokir": f"pm_ blokbae {int(org[2])}",
+            "Setuju": f"pm_ okein {int(sapa)}",
+            "Blokir": f"pm_ blokbae {int(sapa)}",
         }
         for row in button.inline_keyboard:
             for data in row:
@@ -64,37 +67,27 @@ async def _(c, cq):
                 keyboard = ikb(def_keyb)
     else:
         def_keyb = {
-            "Setuju": f"pm_ okein {int(org[2])}",
-            "Blokir": f"pm_ blokbae {int(org[2])}",
+            "Setuju": f"pm_ okein {int(sapa)}",
+            "Blokir": f"pm_ blokbae {int(sapa)}",
         }
         keyboard = ikb(def_keyb)
-    tekss = await escape_tag(int(org[2]), pm_text, parse_words)
+    tekss = await escape_tag(int(sapa), pm_text, parse_words)
     kiki = None
     if nlx.me.id == gw:
-        if int(org[1]) in flood2:
-            flood2[int(org[2])] += 1
+        if int(sapa) in flood2:
+            flood2[int(sapa)] += 1
         else:
-            flood2[int(org[2])] = 1
-        async for m in nlx.get_chat_history(int(org[2]), limit=pm_warns):
+            flood2[int(sapa)] = 1
+        async for m in nlx.get_chat_history(int(sapa), limit=pm_warns):
             if m.reply_markup:
                 await m.delete()
         kiki = PM_WARN.format(
             tekss,
-            flood2[int(org[2])],
+            flood2[int(sapa)],
             pm_warns,
         )
         lah = udB.get_var(gw, "PMPIC")
         if lah:
-            filem = (
-                InlineQueryResultVideo
-                if lah.endswith(".mp4")
-                else InlineQueryResultPhoto
-            )
-            url_ling = (
-                {"video_url": lah, "thumb_url": lah}
-                if lah.endswith(".mp4")
-                else {"photo_url": lah}
-            )
             await cq.edit_message_caption(caption=kiki, reply_markup=keyboard)
         else:
             await cq.edit_message_text(kiki, reply_markup=keyboard)
