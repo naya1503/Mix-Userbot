@@ -11,7 +11,9 @@
 
 import os
 import random
-from io import BytesIO
+import io
+import base64
+from PIL import Image
 
 from pyrogram.types import *
 
@@ -21,6 +23,12 @@ from Mix.core.tools_quote import *
 __modles__ = "Quote"
 __help__ = get_cgr("help_qot")
 
+async def consu(dok):
+    image_data = base64.b64decode(dok)
+    img = Image.open(io.BytesIO(image_data))
+    temp_file = io.BytesIO()
+    img.save(temp_file, format='webp')
+    return temp_file.getvalue()
 
 @ky.ubot("qcolor", sudo=True)
 async def _(c: nlx, m):
@@ -101,8 +109,7 @@ async def _(c: nlx, m):
         messages = [m_one]
     try:
         hasil = await quotly(messages, acak)
-        bs = BytesIO(hasil)
-        bs.name = "mix"
-        await m.reply_sticker(bs)
+        coba = await consu(hasil)
+        await m.reply_sticker(io.BytesIO(coba))
     except Exception as e:
         return await m.reply(cgr("err").format(em.gagal, e))
