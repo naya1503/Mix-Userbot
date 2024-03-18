@@ -24,15 +24,21 @@ __modles__ = "Quote"
 __help__ = get_cgr("help_qot")
 
 
-async def consu(dok):
+async def consu(json_doc):
     try:
-        image_data = base64.b64decode(dok)
+        data = json.loads(json_doc)
+        image_data_base64 = data.get("image")
+        if not image_data_base64:
+            raise ValueError("Tidak ada data gambar dalam JSON")
+        image_data = base64.b64decode(image_data_base64)
         img = Image.open(io.BytesIO(image_data))
+       
         temp_file = io.BytesIO()
-        img.save(temp_file, "webp")
+        img.save(temp_file, format='PNG')
+        temp_file.seek(0)
         return temp_file.getvalue()
     except Exception as e:
-        print(f"Error: {str(e)}")
+        print("Error:", e)
         raise
 
 
@@ -113,10 +119,10 @@ async def _(c: nlx, m):
             chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
         )
         messages = [m_one]
-        # try:
+    try:
         hasil = await quotly(messages, acak)
-        coba = await consu(hasil)
-        await m.reply_sticker(io.BytesIO(coba))
-    # except Exception as e:
-    # print(f"Error: {str(e)}")
-    # return await m.reply(cgr("err").format(em.gagal, e))
+        bs = io.BytesIO(hasil)
+        bs.name = "mix"
+        await m.reply_sticker(bs)
+    except Exception as e:
+        return await m.reply(cgr("err").format(em.gagal, e))
