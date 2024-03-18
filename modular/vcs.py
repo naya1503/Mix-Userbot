@@ -20,7 +20,7 @@ __help__ = get_cgr("help_vcs")
 from pytgcalls import GroupCallFactory
 
 vc = None
-CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+CLIENT_TYPE = GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
 OUTGOING_AUDIO_BITRATE_KBIT = 128
 PLAYOUT_FILE = "Mix/core/vc.raw"
 
