@@ -41,7 +41,7 @@ def clbk_stasm():
 
 @ky.callback("^back_permit")
 async def _(c, cq):
-    sapa = cq.data.split(None, 1)[1]
+    sapa = cq.data.split()
     gw = cq.from_user.id
     getpm_txt = udB.get_var(nlx.me.id, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
