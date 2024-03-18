@@ -52,16 +52,8 @@ async def _(c: nlx, m):
                 else:
                     await c.send_message(chat, send)
                 done += 1
-                await asyncio.sleep(0.2)
-            except UserBannedInChannel:
-                continue
-            except SlowmodeWait:
-                continue
-            except PeerIdInvalid:
-                continue
-            except Forbidden:
-                continue
-            except ChatWriteForbidden:
+                await asyncio.sleep(0.3)
+            except UserBannedInChannel, SlowmodeWait, PeerIdInvalid, Forbidden, ChatWriteForbidden:
                 continue
             except FloodWait as e:
                 await asyncio.sleep(e.value)
@@ -71,8 +63,10 @@ async def _(c: nlx, m):
                     else:
                         await c.send_message(chat, send)
                     done += 1
+                    await asyncio.sleep(0.3)
                 except Exception:
                     failed += 1
+                    await asyncio.sleep(0.3)
 
     return await msg.edit(
         cgr("gcs_2").format(em.alive, em.sukses, done, em.gagal, failed)
@@ -99,6 +93,7 @@ async def _(c: nlx, m):
                 else:
                     await c.send_message(chat, send)
                 done += 1
+                await asyncio.sleep(0.3)
             except PeerIdInvalid:
                 continue
             except FloodWait as e:
@@ -109,8 +104,10 @@ async def _(c: nlx, m):
                     else:
                         await c.send_message(chat, send)
                     done += 1
+                    await asyncio.sleep(0.3)
                 except Exception:
                     failed += 1
+                    await asyncio.sleep(0.3)
 
     return await msg.edit(
         cgr("gcs_3").format(em.alive, em.sukses, done, em.gagal, failed)
