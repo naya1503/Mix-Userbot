@@ -322,7 +322,7 @@ ping_1: "**{} Pong `{}ms`**\n**{} Uptime !! `{}`**"
 
 # pmpermit
 pmper_1: "Hey Don't spam or you'll be blocked!!"
-pmper_2: "Woy {} 👋. {}\n\nYou've got `{}/{}` warnings !!"
+pmper_2: "Woy {fullname} 👋. {}\n\nYou've got `{}/{}` warnings !!"
 pmper_3: "{} **User approved!**"
 pmper_4: "{} **Alright, user approved to send messages.**"
 pmper_5: "{} **User is not yet approved to send messages.**"
