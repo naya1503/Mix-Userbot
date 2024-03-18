@@ -2,11 +2,9 @@
 
 import asyncio
 import os
-
 from pyrogram.errors import *
 from pyrogram.raw.functions.phone import CreateGroupCall
 from pyrogram.raw.types import InputPeerChannel
-
 import vcmus
 
 vcmus.init()
@@ -15,12 +13,34 @@ from vcmus import vcmus
 PLAY_LOCK = asyncio.Lock()
 
 from Mix import *
-from Mix.core.tools_music import get_default_service, telegram
-
-from .vcs import PLAYOUT_FILE, vc
-
+from Mix.core.tools_music import get_default_service, telegram, play_song
+from .vcs import vc, PLAYOUT_FILE
 running = False
 
+async def start_queue(message=None):
+    while vcmus:
+        if "queue_breaker" in vcmus and vcmus.get("queue_breaker") != 0:
+            vcmus["queue_breaker"] -= 1
+            if vcmus["queue_breaker"] == 0:
+                del vcmus["queue_breaker"]
+            break
+        if vcmus["queue"].empty():
+            if "playlist" not in vcmus or not vcmus["playlist"]:
+                vcmus["running"] = False
+                break
+            else:
+                await playlist(nlx, message, redirected=True)
+        data = await vcmus["queue"].get()
+        service = data["service"]
+        if service == "telegram":
+            await telegram(data["message"])
+        else:
+            await play_song(
+                data["requested_by"],
+                data["query"],
+                data["message"],
+                service,
+            )
 
 @ky.ubot("play")
 async def _(_, message):
@@ -38,12 +58,7 @@ async def _(_, message):
                     await vc.start(message.chat.id)
                 except Exception:
                     peer = await nlx.resolve_peer(CHAT_ID)
-                    startVC = CreateGroupCall(
-                        peer=InputPeerChannel(
-                            channel_id=peer.channel_id, access_hash=peer.access_hash
-                        ),
-                        random_id=nlx.rnd_id() // 9000000000,
-                    )
+                    startVC = CreateGroupCall(peer=InputPeerChannel(channel_id=peer.channel_id, access_hash=peer.access_hash), random_id=nlx.rnd_id() // 9000000000)
                     try:
                         await nlx.send(startVC)
                         await vc.start(message.chat.id)
@@ -90,3 +105,48 @@ async def _(_, message):
             await start_queue()
     except Exception as e:
         await message.reply_text(str(e))
+
+
+async def playlist(_, message: Message, redirected=False):
+    if message.reply_to_message:
+        raw_playlist = message.reply_to_message.text
+    elif len(message.text) > 9:
+        raw_playlist = message.text[10:]
+    else:
+        usage = """
+**Usage: Same as /play
+Example:
+    __**/playlist song_name1
+    song_name2
+    youtube song_name3**__"""
+
+        return await message.reply_text(usage)
+    if "call" not in vcmus:
+        return await message.reply_text("**Use /joinvc First!**")
+    if "playlist" not in vcmus:
+        vcmus["playlist"] = False
+    if "running" in vcmus and vcmus.get("running"):
+        vcmus["queue_breaker"] = 1
+    vcmus["playlist"] = True
+    vcmus["queue"] = asyncio.Queue()
+    for line in raw_playlist.split("\n"):
+        services = ["youtube", "saavn"]
+        if line.split()[0].lower() in services:
+            service = line.split()[0].lower()
+            song_name = " ".join(line.split()[1:])
+        else:
+            service = "youtube"
+            song_name = line
+        requested_by = message.from_user.first_name
+        await vcmus["queue"].put(
+            {
+                "service": service or telegram,
+                "requested_by": requested_by,
+                "query": song_name,
+                "message": message,
+            }
+        )
+    if not redirected:
+        vcmus["running"] = True
+        await message.reply_text("**Playlist Started.**")
+        await start_queue(message)
