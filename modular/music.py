@@ -1,9 +1,10 @@
 # part of https://github.com/thehamkercat/Telegram_VC_Bot
 
 import asyncio
-
+import os
 from pyrogram.errors import *
-
+from pyrogram.raw.functions.phone import CreateGroupCall
+from pyrogram.raw.types import InputPeerChannel
 import vcmus
 
 vcmus.init()
@@ -13,13 +14,15 @@ PLAY_LOCK = asyncio.Lock()
 
 from Mix import *
 from Mix.core.tools_music import get_default_service, telegram
-
+from .vcs import vc, PLAYOUT_FILE
 running = False
 
 
 @ky.ubot("play")
 async def _(_, message):
     global running
+    vcmus["call"] = vc
+    os.popen(f"cp Mix/core/vc.raw {PLAYOUT_FILE}")
     try:
         usage = f"{message.command} [query]"
 
@@ -27,7 +30,17 @@ async def _(_, message):
             if len(message.command) < 2 and not message.reply_to_message:
                 return await message.reply_text(usage)
             if "call" not in vcmus:
-                return await message.reply_text("**Use /joinvc First!**")
+                try:
+                    await vc.start(message.chat.id)
+                except Exception:
+                    peer = await nlx.resolve_peer(CHAT_ID)
+                    startVC = CreateGroupCall(peer=InputPeerChannel(channel_id=peer.channel_id, access_hash=peer.access_hash), random_id=nlx.rnd_id() // 9000000000)
+                    try:
+                        await nlx.send(startVC)
+                        await vc.start(message.chat.id)
+                    except ChatAdminRequired:
+                        del vcmus["call"]
+                        await message.reply("Bukan admin!!")
             if message.reply_to_message:
                 if message.reply_to_message.audio:
                     service = "telegram"
