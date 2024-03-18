@@ -1,26 +1,25 @@
 # part of https://github.com/thehamkercat/Telegram_VC_Bot
 
 import asyncio
-import functools
 import os
 import traceback
 
 import aiofiles
 import ffmpeg
 import youtube_dl
-from aiohttp import ClientSession
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.phone import EditGroupCallTitle
 from Python_ARQ import ARQ
-from .misc import aiohttpsession as session
+
+from config import *
 from Mix import *
 from vcmus import vcmus
-from config import *
+
+from .misc import aiohttpsession as session
 
 arq = ARQ("https://thearq.tech", arq_api, session)
 ydl_opts = {"format": "bestaudio", "quiet": True}
-
 
 
 def get_default_service() -> str:
@@ -75,7 +74,6 @@ async def pause_skip_watcher(message: Message, duration: int):
     except Exception as e:
         e = traceback.format_exc()
         print(str(e))
-        pass
 
 
 async def change_vc_title(m, title: str):
@@ -120,10 +118,7 @@ def convert_seconds(seconds: int):
 # Convert hh:mm:ss to seconds
 def time_to_seconds(time):
     stringt = str(time)
-    return sum(
-        int(x) * 60 ** i
-        for i, x in enumerate(reversed(stringt.split(":")))
-    )
+    return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
 # Change image size
@@ -143,8 +138,7 @@ async def send(*args, **kwargs):
 # Generate cover for youtube
 
 
-async def generate_cover(msg, requested_by, title, artist, duration, thumbnail
-):
+async def generate_cover(msg, requested_by, title, artist, duration, thumbnail):
     async with session.get(thumbnail) as resp:
         if resp.status == 200:
             f = await aiofiles.open("background.png", mode="wb")
@@ -163,9 +157,7 @@ async def generate_cover(msg, requested_by, title, artist, duration, thumbnail
     img = Image.open(temp)
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("assets/font.otf", 32)
-    draw.text(
-        (190, 550), f"Title: {title}", (255, 255, 255), font=font
-    )
+    draw.text((190, 550), f"Title: {title}", (255, 255, 255), font=font)
     draw.text(
         (190, 590),
         f"Duration: {duration}",
@@ -190,10 +182,7 @@ async def generate_cover(msg, requested_by, title, artist, duration, thumbnail
     try:
         await change_vc_title(msg, title)
     except Exception:
-        await send(
-            text="[ERROR]: FAILED TO EDIT VC TITLE, MAKE ME ADMIN."
-        )
-        pass
+        await send(text="[ERROR]: FAILED TO EDIT VC TITLE, MAKE ME ADMIN.")
     return final
 
 
@@ -202,7 +191,8 @@ async def run_async(func, *args, **kwargs):
     return await loop.run_in_executor(None, func, *args, **kwargs)
 
 
-async def download_transcode_gencover(msg, requested_by, title, artist, duration, thumbnail, url
+async def download_transcode_gencover(
+    msg, requested_by, title, artist, duration, thumbnail, url
 ):
     return await asyncio.gather(
         generate_cover(
@@ -226,11 +216,7 @@ async def get_song(query: str, service: str):
         title = song.song[0:30]
         duration = int(song.duration)
         thumbnail = song.image
-        artist = (
-            song.singers
-            if not isinstance(song.singers, list)
-            else song.singers[0]
-        )
+        artist = song.singers if not isinstance(song.singers, list) else song.singers[0]
         url = song.media_url
     elif service == "youtube":
         resp = await arq.youtube(query)
@@ -283,9 +269,7 @@ async def play_song(requested_by, query, message, service):
         await run_async(transcode, song)
 
     else:
-        await m.edit(
-            "**Generating thumbnail, Downloading And Transcoding.**"
-        )
+        await m.edit("**Generating thumbnail, Downloading And Transcoding.**")
         cover, _ = await download_transcode_gencover(
             message,
             requested_by,
