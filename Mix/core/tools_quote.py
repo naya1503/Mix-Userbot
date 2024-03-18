@@ -326,7 +326,7 @@ async def quotly(messages, kolor):
     # }
     payload = {
         "type": "quote",
-        "format": "png",
+        "format": "webp",
         "backgroundColor": kolor,
         "messages": [],
     }
