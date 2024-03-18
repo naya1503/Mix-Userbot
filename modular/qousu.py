@@ -29,7 +29,7 @@ async def consu(dok):
         image_data = base64.b64decode(dok)
         img = Image.open(io.BytesIO(image_data))
         temp_file = io.BytesIO()
-        img.save(temp_file, format="webp")
+        img.save(temp_file, "webp")
         return temp_file.getvalue()
     except Exception as e:
         print(f"Error: {str(e)}")
@@ -113,10 +113,10 @@ async def _(c: nlx, m):
             chat_id=m.chat.id, message_ids=m.reply_to_message.id, replies=0
         )
         messages = [m_one]
-    try:
+    #try:
         hasil = await quotly(messages, acak)
         coba = await consu(hasil)
         await m.reply_sticker(io.BytesIO(coba))
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        return await m.reply(cgr("err").format(em.gagal, e))
+    #except Exception as e:
+        #print(f"Error: {str(e)}")
+        #return await m.reply(cgr("err").format(em.gagal, e))
