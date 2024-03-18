@@ -41,7 +41,7 @@ async def _(c, m):
         mmk = f"https://telegra.ph/{media_url[0]}"
         hasil = await rem_bg(mmk)
         if hasil:
-            await m.reply_photo(img, reply_to_message_id=ReplyCheck(m))
+            await m.reply_photo(hasil, reply_to_message_id=ReplyCheck(m))
             os.remove(hasil)
         else:
             await m.reply_text(
