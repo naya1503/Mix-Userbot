@@ -21,22 +21,12 @@ from pyrogram.types import *
 from telegraph import upload_file
 
 from Mix import *
-from Mix.core.sender_tools import escape_tag
+from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
 from modular.pmpermit import *
 
 from .call_markdown import markdown_help
-
-parse_words = [
-    "first",
-    "last",
-    "fullname",
-    "id",
-    "mention",
-    "username",
-    "chatname",
-]
 
 
 async def diinline(q):
