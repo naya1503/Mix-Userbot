@@ -334,8 +334,9 @@ async def _(c, iq):
     teks, button = text_keyb(ikb, pm_text)
     if button:
         def_keyb = {
-        "Setuju": f"pm_ okein {int(org[1])}",
-        "Blokir": f"pm_ blokbae {int(org[1])}"}
+            "Setuju": f"pm_ okein {int(org[1])}",
+            "Blokir": f"pm_ blokbae {int(org[1])}",
+        }
         for row in button.inline_keyboard:
             for data in row:
                 add_keyb = (
@@ -347,8 +348,9 @@ async def _(c, iq):
                 keyboard = ikb(def_keyb)
     else:
         def_keyb = {
-        "Setuju": f"pm_ okein {int(org[1])}",
-        "Blokir": f"pm_ blokbae {int(org[1])}"}
+            "Setuju": f"pm_ okein {int(org[1])}",
+            "Blokir": f"pm_ blokbae {int(org[1])}",
+        }
         keyboard = ikb(def_keyb)
     mari = await nlx.get_users(int(org[1]))
     tekss = await escape_tag(int(org[1]), pm_text, parse_words)
