@@ -22,7 +22,7 @@ from telegraph import upload_file
 
 from Mix import *
 from Mix.core.waktu import get_time, start_time
-from Mix.core.sender_tools import escape_tag
+#from Mix.core.sender_tools import escape_tag
 from modular.copy_con import *
 from modular.pmpermit import *
 
