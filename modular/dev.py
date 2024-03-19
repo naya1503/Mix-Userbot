@@ -399,7 +399,9 @@ async def _(c: nlx, m):
 
         try:
             unban_count = 0
-            banned_members = await c.get_chat_members(chat_id=m.chat.id, filter="banned")
+            banned_members = await c.get_chat_members(
+                chat_id=m.chat.id, filter="banned"
+            )
             for member in banned_members:
                 try:
                     await c.unban_chat_member(chat_id=m.chat.id, user_id=member.user.id)
