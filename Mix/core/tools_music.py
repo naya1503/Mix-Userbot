@@ -59,20 +59,20 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
     return False
 
 
-group_call = None
-CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
-OUTGOING_AUDIO_BITRATE_KBIT = 512
+vc = None
+CLIENT_TYPE = GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+OUTGOING_AUDIO_BITRATE_KBIT = 128
 PLAYOUT_FILE = "input.raw"
 
 
 def init_client(func):
     async def wrapper(client, message):
-        global group_call
-        if not group_call:
-            group_call = pytgcalls.GroupCallFactory(
+        global vc
+        if not vc:
+            vc = GroupCallFactory(
                 nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
-            ).get_file_group_call()
-            group_call.enable_logs_to_console = False
+            ).get_file_group_call(PLAYOUT_FILE)
+            vc.enable_logs_to_console = False
         return await func(client, message)
 
     return wrapper
