@@ -28,7 +28,7 @@ async def _(c: nlx, m):
     else:
         song, thumb, song_name, link, duration = await download(song)
     yoman = MP(chat)
-    song_name = f"{song_name[:30]}..."
+    song_name = f"{song_name}..."
     if not yoman.group_call.is_connected:
         if not (await yoman.vc_joiner()):
             return
