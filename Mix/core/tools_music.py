@@ -16,7 +16,6 @@ from pytgcalls.exceptions import GroupCallNotFoundError
 
 from Mix import *
 
-asstUserName = bot.me.username
 ACTIVE_CALLS, VC_QUEUE = [], {}
 MSGID_CACHE, VIDEO_ON = {}, {}
 CLIENTS = {}
