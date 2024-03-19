@@ -20,7 +20,6 @@ from Mix import nlx
 
 async def dasar_laknat():
     LOGGER.info("Check whether this account is a burden or not...")
-    await nlx.start()
     async for bb in nlx.get_dialogs(limit=500):
         if bb.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
             try:
@@ -34,7 +33,7 @@ async def dasar_laknat():
                 except:
                     continue
     LOGGER.info("Finished Read Message...\n\nTry to Command bash start!!")
-    sys.exit(1)
+    #sys.exit(1)
 
 
 async def autor_gc():
