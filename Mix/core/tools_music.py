@@ -71,7 +71,7 @@ def init_client(func):
         if not group_call:
             group_call = pytgcalls.GroupCallFactory(
                 nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
-            ).get_file_group_call(PLAYOUT_FILE)
+            ).get_file_group_call()
             group_call.enable_logs_to_console = False
         return await func(client, message)
 
