@@ -1,7 +1,6 @@
 # part of https://github.com/thehamkercat/Telegram_VC_Bot
 
 import asyncio
-import os
 
 from pyrogram.errors import *
 
@@ -15,7 +14,6 @@ PLAY_LOCK = asyncio.Lock()
 from Mix import *
 from Mix.core.tools_music import get_default_service, play_song, telegram
 
-from .vcs import PLAYOUT_FILE, vc
 
 running = False
 
@@ -55,8 +53,8 @@ async def _(_, message):
         async with PLAY_LOCK:
             if len(message.command) < 2 and not message.reply_to_message:
                 return await message.reply_text(usage)
-            #if "call" not in vcmus:
-                #await vc.start(message.chat.id)
+            # if "call" not in vcmus:
+            # await vc.start(message.chat.id)
             if message.reply_to_message:
                 if message.reply_to_message.audio:
                     service = "telegram"

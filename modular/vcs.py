@@ -1,8 +1,9 @@
 import asyncio
+import os
 from contextlib import suppress
 from random import randint
 from typing import Optional
-import os
+
 from pyrogram import enums
 from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
@@ -10,11 +11,12 @@ from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
                                           EditGroupCallTitle)
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
+
 import vcmus
 
 vcmus.init()
-from vcmus import vcmus
 from Mix import *
+from vcmus import vcmus
 
 __modles__ = "Voicechat"
 
