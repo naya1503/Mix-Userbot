@@ -10,12 +10,8 @@ from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
                                           EditGroupCallTitle)
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
-
-import vcmus
-
-vcmus.init()
+from Mix.core.tools_music import *
 from Mix import *
-from vcmus import vcmus
 
 __modles__ = "Voicechat"
 
@@ -130,14 +126,16 @@ async def _(c: nlx, m):
     em.initialize()
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
+    
     with suppress(ValueError):
         chat_id = int(chat_id)
+    yosh = MP(chat_id)
     if chat_id:
         try:
-            await vc.start(chat_id)
+            await yosh.group_call.join(chat_id)
             await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
             await asyncio.sleep(2)
-            await vc.set_is_mute(True)
+            await yosh.group_call.set_is_mute(True)
             return
         except GroupCallNotFoundError as e:
             return await ky.edit(cgr("err").format(em.gagal, e))
@@ -153,10 +151,15 @@ async def _(c: nlx, m):
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
         chat_id = int(chat_id)
+    jing = MP(chat_id)
     if chat_id:
         try:
-            await vc.stop()
+            await jing.group_call.leave()
             await ky.edit(cgr("vc_9").format(em.sukses, chat_id))
+            if CLIENTS.get(chat_id):
+                del CLIENTS[chat_id]
+            if VIDEO_ON.get(chat_id):
+                del VIDEO_ON[chat_id]
             return
         except Exception as e:
             await ky.edit(cgr("err").format(em.gagal, e))
