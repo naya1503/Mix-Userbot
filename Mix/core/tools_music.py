@@ -10,7 +10,7 @@ from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
-from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
+from pyrogram.raw.types import InputPeerChannel, InputPeerChat
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 from youtubesearchpython import VideosSearch
@@ -35,7 +35,9 @@ async def get_group_call(client: nlx, message, err_msg: str = "") -> Optional:
         if isinstance(chat_peer, InputPeerChannel):
             full_chat = (await client.send(GetFullChannel(channel=chat_peer))).full_chat
         elif isinstance(chat_peer, InputPeerChat):
-            full_chat = (await client.send(GetFullChat(chat_id=chat_peer.chat_id))).full_chat
+            full_chat = (
+                await client.send(GetFullChat(chat_id=chat_peer.chat_id))
+            ).full_chat
         if full_chat:
             return full_chat.call
     await message.reply_text(err_msg)
