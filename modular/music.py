@@ -5,7 +5,7 @@ import asyncio
 from pyrogram.errors import *
 
 import vcmus
-
+import pytgcalls
 vcmus.init()
 from vcmus import vcmus
 
@@ -13,6 +13,7 @@ PLAY_LOCK = asyncio.Lock()
 
 from Mix import *
 from Mix.core.tools_music import get_default_service, play_song, telegram
+from .vcs import CLIENT_TYPE, PLAYOUT_FILE, OUTGOING_AUDIO_BITRATE_KBIT
 
 running = False
 
@@ -42,6 +43,41 @@ async def start_queue(message=None):
                 service,
             )
 
+@ky.ubot("joinos")
+async def joinvc(_, message, manual=False):
+    if "call" in vcmus:
+        return await message.reply_text(
+            "__**Bot Is Already In The VC**__"
+        )
+    os.popen(f"cp Mix/core/vc.raw {PLAYOUT_FILE}")
+    vc = pytgcalls.GroupCallFactory(
+        nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+    ).get_file_group_call(PLAYOUT_FILE)
+    vcmus["call"] = vc
+    try:
+        await vc.start(message.chat.id)
+    except Exception:
+        peer = await nlx.resolve_peer(message.chat.id)
+        startVC = CreateGroupCall(
+            peer=InputPeerChannel(
+                channel_id=peer.channel_id,
+                access_hash=peer.access_hash,
+            ),
+            random_id=nlx.rnd_id() // 9000000000,
+        )
+        try:
+            await nlx.send(startVC)
+            await vc.start(message.chat.id)
+        except ChatAdminRequired:
+            del vcmus["call"]
+            return await message.reply_text(
+                "Make me admin with message delete and vc manage permission"
+            )
+    await message.reply_text(
+        "__**Joined The Voice Chat.**__ \n\n**Note:** __If you can't hear anything,"
+        + " Send /leavevc and then /joinvc again.__"
+    )
+    await message.delete()
 
 @ky.ubot("play")
 async def _(_, message):
