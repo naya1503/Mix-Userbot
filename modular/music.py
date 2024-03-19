@@ -4,8 +4,6 @@ import asyncio
 import os
 
 from pyrogram.errors import *
-from pyrogram.raw.functions.phone import CreateGroupCall
-from pyrogram.raw.types import InputPeerChannel
 
 import vcmus
 
