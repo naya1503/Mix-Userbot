@@ -380,7 +380,7 @@ async def _(c: nlx, m):
     em.initialize()
 
     chat = await c.get_chat(m.chat.id)
-    member = await chat.get_chat_member(m.from_user.id)
+    member = await c.get_chat_member(m.from_user.id)
 
     if member.status == "creator" or member.status == "administrator":
         is_channel = m.chat.type == "channel"
