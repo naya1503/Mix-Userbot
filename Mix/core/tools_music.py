@@ -257,8 +257,8 @@ class MixPlayer:
             pl = playlist[0]
             title = pl[1]
         call = InputGroupCall(
-            id=self.group_call.group_call.id,
-            access_hash=self.group_call.group_call.access_hash,
+            id=self.group_call.id,
+            access_hash=self.group_call.access_hash,
         )
         edit = EditGroupCallTitle(call=call, title=title)
         try:
