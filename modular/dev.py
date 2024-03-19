@@ -381,7 +381,7 @@ async def _(c: nlx, m):
     em.initialize()
     chat = await c.get_chat(m.chat.id)
     dia = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-    
+
     if dia.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
         if m.from_user.id not in DEVS:
             await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
@@ -391,20 +391,28 @@ async def _(c: nlx, m):
             proses = await m.reply(f"{em.proses} Sabar ya..")
 
             unban_count = 0
-            banned_members = await c.get_chat_members(chat_id=m.chat.id, filter=ChatMemberStatus.BANNED)
+            banned_members = await c.get_chat_members(
+                chat_id=m.chat.id, filter=ChatMemberStatus.BANNED
+            )
             for banned_member in banned_members:
                 try:
-                    await c.unban_chat_member(chat_id=m.chat.id, user_id=banned_member.user.id)
+                    await c.unban_chat_member(
+                        chat_id=m.chat.id, user_id=banned_member.user.id
+                    )
                     unban_count += 1
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
                     await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
 
-            await m.reply(f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member.")
+            await m.reply(
+                f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
+            )
         except Exception as e:
             await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
         finally:
-            if 'proses' in locals():
+            if "proses" in locals():
                 await proses.delete()
     else:
-        await m.reply(f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!")
+        await m.reply(
+            f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
+        )
