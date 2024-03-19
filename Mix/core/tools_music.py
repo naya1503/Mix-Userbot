@@ -78,7 +78,6 @@ def init_client(func):
 
     return wrapper
 
-
 ydl_opts = {
     "quiet": True,
     "geo_bypass": True,
@@ -89,17 +88,15 @@ ydl = YoutubeDL(ydl_opts)
 
 # pytgcalls handlers
 
-
-@vc.on_audio_playout_ended
 @init_client
+@vc.on_audio_playout_ended
 async def _(_, __):
     await sleep(3)
     await vc.stop()
     print(f"[INFO] - AUDIO_CALL ENDED !")
 
-
-@vc.on_video_playout_ended
 @init_client
+@vc.on_video_playout_ended
 async def _(_, __):
     await sleep(3)
     await vc.stop()
