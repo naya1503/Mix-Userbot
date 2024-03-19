@@ -154,7 +154,7 @@ async def play(client: nlx, m):
     else:
         await msg.edit(
             "💁🏻‍♂️ Do you want to search for a YouTube song?")
-            """
+"""
             reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -168,4 +168,4 @@ async def play(client: nlx, m):
             ]
         )
     )
-    """
+"""
