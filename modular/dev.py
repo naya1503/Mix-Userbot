@@ -297,7 +297,7 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(chat_id=m.chat.id)
-    gue = await chat.get_chat_members(c.me.id)
+    gue = await chat.get_members(c.me.id)
     if gue.privileges:
         if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
@@ -305,7 +305,7 @@ async def _(c: nlx, m):
                 await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
                 return
             if not is_channel:
-                req_user_member = await chat.get_member(m.from_user.id)
+                req_user_member = await chat.get_members(m.from_user.id)
                 if req_user_member.privileges is None:
                     await m.reply(
                         f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
@@ -381,7 +381,7 @@ async def _(c: nlx, m):
     em.initialize()
 
     chat = await c.get_chat(chat_id=m.chat.id)
-    gue = await chat.get_chat_members(c.me.id)
+    gue = await chat.get_members(c.me.id)
 
     if gue.privileges:
         if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
@@ -392,7 +392,7 @@ async def _(c: nlx, m):
                 return
 
             if not is_channel:
-                req_user_member = await chat.get_member(m.from_user.id)
+                req_user_member = await chat.get_members(m.from_user.id)
                 if req_user_member.privileges is None:
                     await m.reply(
                         f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
