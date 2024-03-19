@@ -3,7 +3,6 @@
 import asyncio
 from datetime import datetime, timedelta
 from time import time as waktunya
-
 from pyrogram.errors import FloodWait
 
 start_time = waktunya()
@@ -58,24 +57,28 @@ async def get_time(seconds):
     up_time += ":".join(time_list)
 
     return up_time
+    
+def time_formatter(milliseconds):
+    minutes, seconds = divmod(int(milliseconds / 1000), 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
+    weeks, days = divmod(days, 7)
+    tmp = (
+        ((str(weeks) + "w:") if weeks else "")
+        + ((str(days) + "d:") if days else "")
+        + ((str(hours) + "h:") if hours else "")
+        + ((str(minutes) + "m:") if minutes else "")
+        + ((str(seconds) + "s") if seconds else "")
+    )
+    if not tmp:
+        return "0s"
+
+    if tmp.endswith(":"):
+        return tmp[:-1]
+    return tmp
 
 
 # Part Of MissKaty
-"""
-async def put_cleanmode(org, message_id):
-    if org not in cleanmode:
-        cleanmode[org] = []
-    elif not isinstance(cleanmode[org], list):
-        cleanmode[org] = [cleanmode[org]]
-    time_now = datetime.now()
-    put = {
-        "msg_id": message_id,
-        "timer_after": time_now + timedelta(minutes=1),
-    }
-    cleanmode[org].append(put)
-"""
-
-
 async def put_cleanmode(chat_id, message_id):
     if chat_id not in cleanmode:
         cleanmode[chat_id] = []
