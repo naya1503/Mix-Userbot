@@ -146,7 +146,7 @@ class MP:
                 )
 
             except ChatSendMediaForbidden:
-                xx = await self.send_messages(
+                xx = await self.send_message(
                     self._current_chat, text, disable_web_page_preview=True
                 )
             MSGID_CACHE.update({chat_id: xx})
@@ -157,24 +157,24 @@ class MP:
         except (IndexError, KeyError):
             await self.group_call.stop()
             del CLIENTS[self._chat]
-            await nlx.send_messagess(
+            await nlx.send_messages(
                 self._current_chat, f"• Berhasil meninggalkan: {chat_id}"
             )
         except Exception as er:
-            await nlx.send_messages(self._current_chat, f"Error:{er}")
+            await nlx.send_message(self._current_chat, f"Error:{er}")
 
     async def vc_joiner(self):
         chat_id = self._chat
         done, err = await self.startCall()
 
         if done:
-            await nlx.send_messages(
+            await nlx.send_message(
                 self._current_chat,
                 f"• Joined VC in <code>{chat_id}</code>",
             )
 
             return True
-        await nlx.send_messages(
+        await nlx.send_message(
             self._current_chat,
             f"<strong>ERROR while Joining Vc -</strong> <code>{chat_id}</code> :\n<code>{err}</code>",
         )
