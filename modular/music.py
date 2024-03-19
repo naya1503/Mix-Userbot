@@ -49,16 +49,14 @@ async def start_queue(message=None):
 @ky.ubot("play")
 async def _(_, message):
     global running
-    vcmus["call"] = vc
-    os.popen(f"cp Mix/core/vc.raw {PLAYOUT_FILE}")
     try:
         usage = f"{message.command} [query]"
 
         async with PLAY_LOCK:
             if len(message.command) < 2 and not message.reply_to_message:
                 return await message.reply_text(usage)
-            if "call" not in vcmus:
-                await vc.start(message.chat.id)
+            #if "call" not in vcmus:
+                #await vc.start(message.chat.id)
             if message.reply_to_message:
                 if message.reply_to_message.audio:
                     service = "telegram"
