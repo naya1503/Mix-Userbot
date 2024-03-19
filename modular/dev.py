@@ -297,7 +297,7 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(chat_id=m.chat.id)
-    gue = await chat.get_member(c.me.id)
+    gue = await chat.get_chat_members(c.me.id)
     if gue.privileges:
         if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
@@ -381,7 +381,7 @@ async def _(c, m):
     em.initialize()
 
     chat = c.get_chat(chat_id=m.chat.id)
-    gue = chat.get_member(c.me.id)
+    gue = chat.get_chat_members(c.me.id)
 
     if gue.privileges:
         if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
