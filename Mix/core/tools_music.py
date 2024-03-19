@@ -23,9 +23,9 @@ from asyncio import sleep
 from os import path
 from random import randint
 from signal import SIGINT
-
-import wget
 from pydub import AudioSegment
+import ffmpeg
+import wget
 from pyrogram import emoji
 from pyrogram.errors import FloodWait
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
@@ -134,7 +134,7 @@ class MixPlayer:
             else:
                 original_file = wget.download(song[2])
             sound = AudioSegment.from_file(original_file)
-            sound.export(raw_file, format="raw", codec="pcm_s16le")
+            sound.export(raw_file, format="16le", codec="pcm_s16le")
             os.remove(original_file)
 
     async def start_radio(self, m):
