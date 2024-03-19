@@ -376,12 +376,12 @@ from pyrogram.errors import FloodWait
 
 
 @ky.ubot("anben")
-async def _(c, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
 
-    chat = c.get_chat(chat_id=m.chat.id)
-    gue = chat.get_chat_members(c.me.id)
+    chat = await c.get_chat(chat_id=m.chat.id)
+    gue = await chat.get_chat_members(c.me.id)
 
     if gue.privileges:
         if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
@@ -401,7 +401,7 @@ async def _(c, m):
 
             try:
                 unban_count = 0
-                benet = chat.get_members(chat.id, filter=ChatMembersFilter.BANNED)
+                benet = await chat.get_members(chat.id, filter=ChatMembersFilter.BANNED)
                 async for member in benet:
                     try:
                         await c.unban_chat_member(chat.id, member.user.id)
