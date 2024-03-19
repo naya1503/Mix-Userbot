@@ -129,10 +129,8 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    os.popen(f"cp Mix/core/vc.raw {PLAYOUT_FILE}")
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
-    vcmus["call"] = vc
     with suppress(ValueError):
         chat_id = int(chat_id)
     if chat_id:
