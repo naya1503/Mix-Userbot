@@ -69,7 +69,7 @@ async def _(c: nlx, m):
             await m.reply_text("Silahkan balas audio atau berikan query!!")
 
             return
-    user = f"[{m.from_user.first_name}](tg://user?id={message.from_user.id})"
+    user = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
     group_call = mixmus.group_call
     if type == "audio":
         if round(m_audio.audio.duration / 60) > durasi_musik:
