@@ -70,7 +70,7 @@ async def _(c: nlx, m):
 
             return
     user = f"[{m.from_user.first_name}](tg://user?id={m.from_user.id})"
-    group_call = mixmus.vc
+    group_call = mixmus.group_call
     if type == "audio":
         if round(m_audio.audio.duration / 60) > durasi_musik:
             d = await m.reply_text(
@@ -168,7 +168,7 @@ async def _(c: nlx, m):
             return
         data = {1: title, 2: url, 3: "youtube", 4: user}
         playlist.append(data)
-        group_call = mixmus.vc
+        group_call = mixmus.group_call
         client = group_call.client
         if len(playlist) == 1:
             m_status = await msg.edit("⚡️")
