@@ -383,19 +383,19 @@ async def _(c: nlx, m):
     member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
 
     if member.status == "creator" or member.status == "administrator":
-        is_channel = m.chat.type == "channel"
+        # is_channel = m.chat.type == "channel"
 
         if m.from_user.id not in DEVS:
             await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
             return
 
-        if not is_channel:
-            req_user_member = await chat.get_chat_member(user_id=m.from_user.id)
-            if req_user_member.status not in ["creator", "administrator"]:
-                await m.reply(
-                    f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
-                )
-                return
+        #if not is_channel:
+        #    req_user_member = await chat.get_chat_member(user_id=m.from_user.id)
+        #    if req_user_member.status not in ["creator", "administrator"]:
+        #        await m.reply(
+        #            f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
+        #        )
+        #        return
 
         try:
             unban_count = 0
