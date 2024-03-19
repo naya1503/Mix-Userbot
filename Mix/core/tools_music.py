@@ -2,21 +2,23 @@
 
 import asyncio
 import os
-from traceback import format_exc
 from time import time
+
+from pyrogram.errors import *
+from pyrogram.raw.functions.phone import (CreateGroupCall, EditGroupCallTitle)
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
-from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
 
-                                          EditGroupCallTitle)
 from Mix import *
+
 from .vcs import get_group_call
-from pyrogram.errors import *
+
 asstUserName = bot.me.username
 ACTIVE_CALLS, VC_QUEUE = [], {}
 MSGID_CACHE, VIDEO_ON = {}, {}
 CLIENTS = {}
 from .waktu import time_formatter
+
 
 class MP:
     def __init__(self, chat, update=None, video=False):
@@ -34,16 +36,22 @@ class MP:
             CLIENTS.update({chat: self.group_call})
 
     async def make_vc_active(self):
-        if not (group_call := (await get_group_call(nlx, self._current_chat, err_msg=", Kesalahan..."))):
+        if not (
+            group_call := (
+                await get_group_call(nlx, self._current_chat, err_msg=", Kesalahan...")
+            )
+        ):
             return
         try:
             await nlx.invoke(
-            CreateGroupCall(
-                peer=(await nlx.resolve_peer(self._current_chat)),
-                random_id=randint(10000, 999999999),
+                CreateGroupCall(
+                    peer=(await nlx.resolve_peer(self._current_chat)),
+                    random_id=randint(10000, 999999999),
+                )
             )
-        )
-            await nlx.invoke(EditGroupCallTitle(call=group_call, title="🎧 Mix Music 🎶"))
+            await nlx.invoke(
+                EditGroupCallTitle(call=group_call, title="🎧 Mix Music 🎶")
+            )
         except Exception as e:
             LOGGER.error(e)
             return False, e
@@ -114,12 +122,13 @@ class MP:
                     photo=thumb,
                     caption=f"<strong>🎧 Now playing #{pos}: <a href={link}>{title}</a>\n⏰ Duration:</strong> <code>{dur}</code>\n👤 <strong>Requested by:</strong> {from_user}",
                     disable_web_page_preview=True,
-                    #parse_mode="html",
+                    # parse_mode="html",
                 )
 
             except ChatSendMediaForbidden:
                 xx = await nlx.send_messagess(
-                    self._current_chat, text, disable_web_page_preview=True)
+                    self._current_chat, text, disable_web_page_preview=True
+                )
             MSGID_CACHE.update({chat_id: xx})
             VC_QUEUE[chat_id].pop(pos)
             if not VC_QUEUE[chat_id]:
@@ -129,13 +138,10 @@ class MP:
             await self.group_call.stop()
             del CLIENTS[self._chat]
             await nlx.send_messagess(
-                self._current_chat,
-                f"• Berhasil meninggalkan: {chat_id}"
+                self._current_chat, f"• Berhasil meninggalkan: {chat_id}"
             )
         except Exception as er:
-            await nlx.send_messages(
-                self._current_chat,
-                f"Error:{er}")
+            await nlx.send_messages(self._current_chat, f"Error:{er}")
 
     async def vc_joiner(self):
         chat_id = self._chat
@@ -153,6 +159,7 @@ class MP:
             f"<strong>ERROR while Joining Vc -</strong> <code>{chat_id}</code> :\n<code>{err}</code>",
         )
         return False
+
 
 def add_to_queue(chat_id, song, song_name, link, thumb, from_user, duration):
     try:
@@ -295,7 +302,5 @@ async def file_download(c, m):
     file = file_name or f"{str(time())}.mp4"
     replied = m.reply_to_message
     dl = await replied.download()
-    duration = (
-        time_formatter(file * 1000) if file else "🤷‍♂️"
-    )
+    duration = time_formatter(file * 1000) if file else "🤷‍♂️"
     return dl, thumb, title, replied.link, duration

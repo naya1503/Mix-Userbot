@@ -3,6 +3,7 @@
 import asyncio
 from datetime import datetime, timedelta
 from time import time as waktunya
+
 from pyrogram.errors import FloodWait
 
 start_time = waktunya()
@@ -57,7 +58,8 @@ async def get_time(seconds):
     up_time += ":".join(time_list)
 
     return up_time
-    
+
+
 def time_formatter(milliseconds):
     minutes, seconds = divmod(int(milliseconds / 1000), 60)
     hours, minutes = divmod(minutes, 60)
