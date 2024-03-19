@@ -7,15 +7,14 @@
 #
 # t.me/SharingUserbot & t.me/Lunatic0de
 
-import asyncio
 import math
 import os
-import shlex
-from typing import Tuple
 
 from PIL import Image
 from pymediainfo import MediaInfo
+
 from Mix import nlx
+
 
 async def convert_to_image(message, client) -> [None, str]:
     """Convert Most Media Formats To Raw Image"""
@@ -54,7 +53,9 @@ async def convert_to_image(message, client) -> [None, str]:
     elif message.reply_to_message.video or message.reply_to_message.animation:
         final_path = "fetched_thumb.png"
         vid_path = await client.download_media(message.reply_to_message)
-        await nlx.run_cmd(f"ffmpeg -i {vid_path} -filter:v scale=500:500 -an {final_path}")
+        await nlx.run_cmd(
+            f"ffmpeg -i {vid_path} -filter:v scale=500:500 -an {final_path}"
+        )
     return final_path
 
 

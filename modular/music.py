@@ -1,10 +1,11 @@
-
 import asyncio
 import os
-import re
-from Mix import *
+
 from pyrogram.errors import *
+
+from Mix import *
 from Mix.core.tools_music import *
+
 
 @ky.ubot("play")
 async def _(c: nlx, m):
@@ -35,8 +36,7 @@ async def _(c: nlx, m):
         else:
             song = input
     if not (reply or song):
-        return await xx.edit(
-            "Harap tentukan nama lagu atau balas ke file audio !")
+        return await xx.edit("Harap tentukan nama lagu atau balas ke file audio !")
     await xx.edit("mencoba-coba")
     if reply and reply.media and mediainfo(reply.media).startswith(("audio", "video")):
         song, thumb, song_name, link, duration = await file_download(c, reply)
@@ -84,4 +84,5 @@ async def _(c: nlx, m):
             link = song_name = link[0]
         add_to_queue(chat, song, song_name, link, thumb, from_user, duration)
         return await xx.edit(
-            f"✚ Ditambahkan 🎵 <a href={link}>{song_name}</a> antrian ke #{list(VC_QUEUE[chat].keys())[-1]}.")
+            f"✚ Ditambahkan 🎵 <a href={link}>{song_name}</a> antrian ke #{list(VC_QUEUE[chat].keys())[-1]}."
+        )
