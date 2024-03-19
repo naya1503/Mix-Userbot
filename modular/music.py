@@ -13,9 +13,7 @@ async def _(c: nlx, m):
     if "playfrom" in m.text.split()[0]:
         return  # For PlayFrom Conflict
     xx = await m.reply("proses")
-    chat = m.command[1] if len(m.command) > 1 else m.chat.id
-    with suppress(ValueError):
-        chat = int(chat)
+    chat = m.chat.id
     from_user = m.from_user
     reply, song = None, None
     if m.reply_to_message:
