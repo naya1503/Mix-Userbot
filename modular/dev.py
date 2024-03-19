@@ -417,9 +417,9 @@ async def _(c: nlx, m):
 
         except Exception as e:
             await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
-        proses.delete()
+            await proses.delete()
     else:
         await m.reply(
             f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
         )
-        proses.delete()
+        await proses.delete()
