@@ -78,6 +78,7 @@ def init_client(func):
 
     return wrapper
 
+
 ydl_opts = {
     "quiet": True,
     "geo_bypass": True,
