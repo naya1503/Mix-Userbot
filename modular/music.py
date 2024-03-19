@@ -7,7 +7,7 @@ from Mix import *
 from Mix.core.tools_music import *
 
 
-@ky.ubot("play")
+@ky.ubot("play", sudo=True)
 async def _(c: nlx, m):
     if "playfrom" in m.text.split()[0]:
         return  # For PlayFrom Conflict
