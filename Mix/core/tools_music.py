@@ -52,7 +52,7 @@ class MP:
         else:
             _client = GroupCallFactory(
                 nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
-            ).get_file_group_call(PLAYOUT_FILE)
+            )
             _client.enable_logs_to_console = False
             self.group_call = _client.get_group_call()
             CLIENTS.update({chat: self.group_call})
