@@ -23,24 +23,21 @@ from asyncio import sleep
 from os import path
 from random import randint
 from signal import SIGINT
+from typing import Optional
 
 import wget
 from pyrogram import emoji
+from pyrogram.errors import *
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
-from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
-from pyrogram.raw.types import InputGroupCall
+from pyrogram.raw.functions.channels import GetFullChannel
+from pyrogram.raw.functions.messages import GetFullChat
+from pyrogram.raw.functions.phone import (CreateGroupCall, EditGroupCallTitle)
+from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pyrogram.utils import MAX_CHANNEL_ID
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 from yt_dlp import YoutubeDL
-from typing import Optional
-from pyrogram import enums
-from pyrogram.errors import *
-from pyrogram.raw.functions.channels import GetFullChannel
-from pyrogram.raw.functions.messages import GetFullChat
-from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
-                                          EditGroupCallTitle)
-from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
+
 from Mix import *
 
 CALL_STATUS = {}
@@ -58,6 +55,7 @@ ydl_opts = {
     "outtmpl": "downloads/%(id)s.%(ext)s",
 }
 ydl = YoutubeDL(ydl_opts)
+
 
 async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCall]:
 
