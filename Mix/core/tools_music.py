@@ -133,7 +133,6 @@ def changeImageSize(maxWidth: int, maxHeight: int, image):
     return newImage
 
 
-
 # Generate cover for youtube
 
 
