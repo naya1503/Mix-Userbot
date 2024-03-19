@@ -63,9 +63,9 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
     chat_peer = await c.resolve_peer(m)
     if isinstance(chat_peer, (InputPeerChannel, InputPeerChat)):
         if isinstance(chat_peer, InputPeerChannel):
-            full_chat = (await c.send(GetFullChannel(channel=chat_peer))).full_chat
+            full_chat = (await c.invoke(GetFullChannel(channel=chat_peer))).full_chat
         elif isinstance(chat_peer, InputPeerChat):
-            full_chat = (await c.send(GetFullChat(chat_id=chat_peer.chat_id))).full_chat
+            full_chat = (await c.invoke(GetFullChat(chat_id=chat_peer.chat_id))).full_chat
         if full_chat is not None:
             return full_chat.call
     await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
@@ -256,7 +256,7 @@ class MixPlayer:
                 await group_call.start(m.chat.id)
         except GroupCallNotFoundError:
             try:
-                await nlx.send(
+                await nlx.invoke(
                     CreateGroupCall(
                         peer=(await nlx.resolve_peer(m.chat.id)),
                         random_id=randint(10000, 999999999),
@@ -278,7 +278,7 @@ class MixPlayer:
         if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
             return
         try:
-            await self.send(EditGroupCallTitle(call=group_call, title=title))
+            await self.invoke(EditGroupCallTitle(call=group_call, title=title))
         except Exception as e:
             print("Error Occured On Changing VC Title:", e)
 
