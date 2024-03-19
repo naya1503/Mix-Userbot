@@ -17,30 +17,29 @@ from youtubesearchpython import VideosSearch
 
 from Mix import *
 
-ACTIVE_CALLS, VC_QUEUE = [], {}
-MSGID_CACHE, VIDEO_ON = {}, {}
+ACTIVE_CALLS = []
+VC_QUEUE = {}
+MSGID_CACHE = {}
+VIDEO_ON = {}
 CLIENTS = {}
-CLIENT_TYPE = GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+CLIENT_TYPE = "PYROGRAM"
 OUTGOING_AUDIO_BITRATE_KBIT = 512
 PLAYOUT_FILE = "input.raw"
 from .waktu import time_formatter
 
 
-async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCall]:
-    em = Emojik()
-    em.initialize()
-    chat_peer = await c.resolve_peer(m.chat.id)
-    if isinstance(chat_peer, (InputPeerChannel, InputPeerChat)):
+async def get_group_call(client: nlx, message, err_msg: str = "") -> Optional:
+    chat_peer = await client.resolve_peer(message.chat.id)
+    if chat_peer:
+        full_chat = None
         if isinstance(chat_peer, InputPeerChannel):
-            full_chat = (await c.invoke(GetFullChannel(channel=chat_peer))).full_chat
+            full_chat = (await client.send(GetFullChannel(channel=chat_peer))).full_chat
         elif isinstance(chat_peer, InputPeerChat):
-            full_chat = (
-                await c.invoke(GetFullChat(chat_id=chat_peer.chat_id))
-            ).full_chat
-        if full_chat is not None:
+            full_chat = (await client.send(GetFullChat(chat_id=chat_peer.chat_id))).full_chat
+        if full_chat:
             return full_chat.call
-    await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
-    return False
+    await message.reply_text(err_msg)
+    return None
 
 
 class MP:
@@ -156,9 +155,9 @@ class MP:
         except (IndexError, KeyError):
             await self.group_call.stop()
             del CLIENTS[self._chat]
-            await nlx.send_messages(self._chat, f"• Berhasil meninggalkan: {chat_id}")
+            await nlx.send_messages(TAG_LOG, f"• Berhasil meninggalkan: {chat_id}")
         except Exception as er:
-            await nlx.send_message(self._chat, f"Error:{er}")
+            await nlx.send_message(TAG_LOG, f"Error:{er}")
 
     async def vc_joiner(self):
         chat_id = self._chat
@@ -166,13 +165,13 @@ class MP:
 
         if done:
             await nlx.send_message(
-                self._chat,
+                TAG_LOG,
                 f"• Joined VC in <code>{chat_id}</code>",
             )
 
             return True
         await nlx.send_message(
-            self._chat,
+            TAG_LOG,
             f"<strong>ERROR while Joining Vc -</strong> <code>{chat_id}</code> :\n<code>{err}</code>",
         )
         return False
