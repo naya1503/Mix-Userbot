@@ -54,7 +54,7 @@ async def convert_to_image(message, client) -> [None, str]:
     elif message.reply_to_message.video or message.reply_to_message.animation:
         final_path = "fetched_thumb.png"
         vid_path = await client.download_media(message.reply_to_message)
-        await run_cmd(f"ffmpeg -i {vid_path} -filter:v scale=500:500 -an {final_path}")
+        await nlx.run_cmd(f"ffmpeg -i {vid_path} -filter:v scale=500:500 -an {final_path}")
     return final_path
 
 
@@ -170,7 +170,7 @@ async def resize_media(media: str, video: bool, fast_forward: bool) -> str:
         fps_ = float(info_["frame_rate"])
         fps_cmd = "-r 30 " if fps_ > 30 else ""
         cmd = f"ffmpeg -i {media} {cmd_f} -ss 00:00:00 -to 00:00:03 -an -c:v libvpx-vp9 {fps_cmd}-fs 256K {resized_video}"
-        _, error, __, ___ = await run_cmd(cmd)
+        _, error, __, ___ = await nlx.run_cmd(cmd)
         os.remove(media)
         return resized_video
 
