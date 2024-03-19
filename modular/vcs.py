@@ -10,7 +10,7 @@ from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
                                           EditGroupCallTitle)
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
-
+from pytgcalls.exceptions import GroupCallNotFoundError
 from Mix import *
 from Mix.core.tools_music import *
 
@@ -18,24 +18,6 @@ __modles__ = "Voicechat"
 
 __help__ = get_cgr("help_vcs")
 
-from pytgcalls.exceptions import GroupCallNotFoundError
-
-
-async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCall]:
-    em = Emojik()
-    em.initialize()
-    chat_peer = await c.resolve_peer(m.chat.id)
-    if isinstance(chat_peer, (InputPeerChannel, InputPeerChat)):
-        if isinstance(chat_peer, InputPeerChannel):
-            full_chat = (await c.invoke(GetFullChannel(channel=chat_peer))).full_chat
-        elif isinstance(chat_peer, InputPeerChat):
-            full_chat = (
-                await c.invoke(GetFullChat(chat_id=chat_peer.chat_id))
-            ).full_chat
-        if full_chat is not None:
-            return full_chat.call
-    await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
-    return False
 
 
 @ky.ubot("startvc", sudo=True)
