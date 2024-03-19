@@ -65,7 +65,9 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
         if isinstance(chat_peer, InputPeerChannel):
             full_chat = (await c.invoke(GetFullChannel(channel=chat_peer))).full_chat
         elif isinstance(chat_peer, InputPeerChat):
-            full_chat = (await c.invoke(GetFullChat(chat_id=chat_peer.chat_id))).full_chat
+            full_chat = (
+                await c.invoke(GetFullChat(chat_id=chat_peer.chat_id))
+            ).full_chat
         if full_chat is not None:
             return full_chat.call
     await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
