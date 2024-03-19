@@ -1,8 +1,8 @@
 import asyncio
+import os
 from contextlib import suppress
 from random import randint
 from typing import Optional
-import os
 
 import ffmpeg
 from pyrogram import enums
