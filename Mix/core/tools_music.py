@@ -316,19 +316,18 @@ async def telegram(message):
 
 import asyncio
 import os
-import re
-import traceback
-from time import time
 from traceback import format_exc
-from Mix import *
+
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
-from yt_dlp import YoutubeDL
-from youtubesearchpython import VideosSearch
+
+from Mix import *
+
 asstUserName = bot.me.username
 ACTIVE_CALLS, VC_QUEUE = [], {}
 MSGID_CACHE, VIDEO_ON = {}, {}
 CLIENTS = {}
+
 
 class MP:
     def __init__(self, chat, update=None, video=False):
@@ -339,7 +338,8 @@ class MP:
             self.group_call = CLIENTS[chat]
         else:
             _client = GroupCallFactory(
-                nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM,
+                nlx,
+                GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM,
             )
             self.group_call = _client.get_group_call()
             CLIENTS.update({chat: self.group_call})
