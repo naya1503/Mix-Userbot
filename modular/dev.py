@@ -297,7 +297,7 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(m.chat.id)
-    member = await c.get_chat_member(chat, m.from_user.id)
+    member = await chat.get_chat_member(chat, m.from_user.id)
     if gue.privileges:
         if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
@@ -381,47 +381,42 @@ async def _(c: nlx, m):
     em.initialize()
 
     chat = await c.get_chat(m.chat.id)
-    member = await c.get_chat_member(chat, m.from_user.id)
+    member = await chat.get_chat_member(m.from_user.id)
 
-    if gue.privileges:
-        if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
-            is_channel = True if m.chat.type == ChatType.CHANNEL else False
+    if member.status == "creator" or member.status == "administrator":
+        is_channel = m.chat.type == "channel"
 
-            if m.from_user.id not in DEVS:
-                await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
+        if m.from_user.id not in DEVS:
+            await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
+            return
+
+        if not is_channel:
+            req_user_member = await chat.get_chat_member(m.from_user.id)
+            if req_user_member.status not in ["creator", "administrator"]:
+                await m.reply(
+                    f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
+                )
                 return
 
-            if not is_channel:
-                req_user_member = await chat.get_members(m.from_user.id)
-                if req_user_member.privileges is None:
-                    await m.reply(
-                        f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
-                    )
-                    return
+        try:
+            unban_count = 0
+            banned_members = await c.get_chat_members(m.chat.id, filter="banned")
+            for member in banned_members:
+                try:
+                    await c.unban_chat_member(m.chat.id, member.user.id)
+                    unban_count += 1
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
+                    await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
 
-            try:
-                unban_count = 0
-                benet = await chat.get_members(chat.id, filter=ChatMembersFilter.BANNED)
-                async for member in benet:
-                    try:
-                        await c.unban_chat_member(chat.id, member.user.id)
-                        unban_count += 1
-                    except FloodWait as e:
-                        await asyncio.sleep(e.x)
-                        await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
-
-                await m.reply(
-                    f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
-                )
-
-            except Exception as e:
-                await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
-
-        else:
             await m.reply(
-                f"{em.gagal} Izin admin Anda tidak cukup untuk menggunakan perintah ini!"
+                f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
             )
+
+        except Exception as e:
+            await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
+
     else:
         await m.reply(
-            f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!"
+            f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
         )
