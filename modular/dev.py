@@ -388,11 +388,11 @@ async def _(c: nlx, m):
         if member.user.id == c.me.id:
             continue
         elif (
-                member.status == ChatMemberStatus.ADMINISTRATOR
-                or member.status == ChatMemberStatus.OWNER
-                ):
+            member.status == ChatMemberStatus.ADMINISTRATOR
+            or member.status == ChatMemberStatus.OWNER
+        ):
             continue
-            
+
             if m.from_user.id not in DEVS:
                 await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
                 return
@@ -405,7 +405,9 @@ async def _(c: nlx, m):
 
                 for member in banned_members:
                     try:
-                        await c.unban_chat_member(chat_id=m.chat.id, user_id=member.user.id)
+                        await c.unban_chat_member(
+                            chat_id=m.chat.id, user_id=member.user.id
+                        )
                         unban_count += 1
                     except FloodWait as e:
                         await asyncio.sleep(e.x)
