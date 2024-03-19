@@ -40,8 +40,7 @@ async def _(c: nlx, m):
         if isinstance(link, list):
             for lin in link:
                 add_to_queue(chat, song, song_name, lin, thumb, from_user, duration)
-            link = link[0]
-            song_name = song_name[0]
+            link = song_name = link[0]
         elif isinstance(link, str):
             add_to_queue(chat, song, song_name, link, thumb, from_user, duration)
         text = "📀 <strong>Sedang dimainkan: <a href={}>{}</a>\n⏰ Durasi:</strong> <code>{}</code>\n👥 <strong>Di:</strong> <code>{}</code>\n🙋‍♂ <strong>Diminta oleh: {}</strong>".format(
