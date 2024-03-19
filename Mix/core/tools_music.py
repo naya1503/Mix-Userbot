@@ -30,6 +30,13 @@ from asyncio import sleep
 from signal import SIGINT
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
+from random import randint
+from pytgcalls import GroupCallFactory
+from pyrogram.errors import FloodWait
+from pyrogram.utils import MAX_CHANNEL_ID
+from pyrogram.raw.types import InputGroupCall
+from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
+from pyrogram.raw.functions.phone import EditGroupCallTitle, CreateGroupCall
 
 
 CALL_STATUS = {}
@@ -48,7 +55,7 @@ ydl_opts = {
 ydl = YoutubeDL(ydl_opts)
 
 
-class MusicPlayer(object):
+class MixPlayer(object):
     def __init__(self):
         self.group_call = GroupCallFactory(nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM).get_file_group_call()
 
@@ -265,11 +272,22 @@ class MusicPlayer(object):
             print("Error Occured On Changing VC Title:", e)
             pass
 
+mixmus = MixPlayer()
 
-    async def delete(self, message):
-        if message.chat.type == "supergroup":
-            await sleep(5)
-            try:
-                await message.delete()
-            except:
-                pass
+# pytgcalls handlers
+
+@mixmus.group_call.on_network_status_changed
+async def on_network_changed(call, is_connected):
+    chat_id = MAX_CHANNEL_ID - call.full_chat.id
+    if is_connected:
+        CALL_STATUS[chat_id] = True
+    else:
+        CALL_STATUS[chat_id] = False
+
+@mixmus.group_call.on_playout_ended
+async def playout_ended_handler(_, __):
+    if not playlist:
+        await mixmus.start_radio()
+    else:
+        await mixmus.skip_current_playing()
+        
