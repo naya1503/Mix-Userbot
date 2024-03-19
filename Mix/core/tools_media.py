@@ -15,7 +15,7 @@ from typing import Tuple
 
 from PIL import Image
 from pymediainfo import MediaInfo
-
+from Mix import nlx
 
 async def convert_to_image(message, client) -> [None, str]:
     """Convert Most Media Formats To Raw Image"""
@@ -47,7 +47,7 @@ async def convert_to_image(message, client) -> [None, str]:
             cmd = (
                 f"lottie_convert.py --frame 0 -if lottie -of png {path_s} {final_path}"
             )
-            await run_cmd(cmd)
+            await nlx.run_cmd(cmd)
     elif message.reply_to_message.audio:
         thumb = message.reply_to_message.audio.thumbs[0].file_id
         final_path = await client.download_media(thumb)
