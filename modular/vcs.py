@@ -91,10 +91,10 @@ async def _(c: nlx, m):
         chat_id = int(chat_id)
     if chat_id:
         try:
-            await vc.start(chat_id)
+            await group_call.start(chat_id)
             await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
             await asyncio.sleep(2)
-            await vc.set_is_mute(True)
+            await group_call.set_is_mute(True)
             return
         except GroupCallNotFoundError as e:
             return await ky.edit(cgr("err").format(em.gagal, e))
@@ -112,7 +112,7 @@ async def _(c: nlx, m):
         chat_id = int(chat_id)
     if chat_id:
         try:
-            await vc.stop()
+            await group_call.stop()
             await ky.edit(cgr("vc_9").format(em.sukses, chat_id))
             return
         except Exception as e:
