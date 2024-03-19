@@ -313,3 +313,13 @@ async def telegram(message):
     if os.path.exists(song):
         os.remove(song)
 """
+
+import asyncio
+import os
+import re
+import traceback
+from time import time
+from traceback import format_exc
+
+from pytgcalls import GroupCallFactory
+from pytgcalls.exceptions import GroupCallNotFoundError
