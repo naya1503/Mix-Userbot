@@ -59,13 +59,23 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
     await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
     return False
 
-
+group_call = None
 CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
 OUTGOING_AUDIO_BITRATE_KBIT = 512
 PLAYOUT_FILE = "input.raw"
 
 
-group_call = pytgcalls.GroupCallFactory(nlx, CLIENT_TYPE).get_group_call()
+def init_client(func):
+    async def wrapper(client, message):
+        global group_call
+        if not group_call:
+            group_call = pytgcalls.GroupCallFactory(
+                nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+            ).get_group_call()
+            group_call.enable_logs_to_console = False
+        return await func(client, message)
+
+    return wrapper
 
 
 ydl_opts = {
@@ -78,14 +88,14 @@ ydl = YoutubeDL(ydl_opts)
 
 # pytgcalls handlers
 
-
+@init_client
 @group_call.on_audio_playout_ended
 async def _(_, __):
     await sleep(3)
     await group_call.stop()
     print(f"[INFO] - AUDIO_CALL ENDED !")
 
-
+@init_client
 @group_call.on_video_playout_ended
 async def _(_, __):
     await sleep(3)
