@@ -4,7 +4,7 @@ import os
 import ffmpeg
 
 from Mix import *
-from Mix.core.tools_music import *
+from .vcs import init_client, vc
 
 
 @ky.ubot("play", sudo=True)
