@@ -43,7 +43,6 @@ async def _(c: nlx, m):
             await m.reply_photo(
                 photo=thumb,
                 caption=text,
-                disable_web_page_preview=True,
             )
             await xx.delete()
         except ChatSendMediaForbidden:
