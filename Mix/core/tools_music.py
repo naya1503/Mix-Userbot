@@ -25,7 +25,6 @@ from random import randint
 from signal import SIGINT
 
 import wget
-from pydub import AudioSegment
 from pyrogram import emoji
 from pyrogram.errors import FloodWait
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
@@ -136,7 +135,9 @@ class MixPlayer:
             if original_file.endswith(".wav"):
                 os.rename(original_file, raw_file)
             else:
-                ffmpeg.input(original_file).output(raw_file, format="wav").run(overwrite_output=True)
+                ffmpeg.input(original_file).output(raw_file, format="wav").run(
+                    overwrite_output=True
+                )
             os.remove(original_file)
 
     async def start_radio(self, m):
