@@ -141,7 +141,6 @@ class MP:
                     self._chat,
                     photo=thumb,
                     caption=f"<strong>🎧 Now playing #{pos}: <a href={link}>{title}</a>\n⏰ Duration:</strong> <code>{dur}</code>\n👤 <strong>Requested by:</strong> {from_user}",
-                    disable_web_page_preview=True,
                     # parse_mode="html",
                 )
 
