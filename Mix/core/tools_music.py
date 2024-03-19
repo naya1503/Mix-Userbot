@@ -50,9 +50,7 @@ class MP:
         if CLIENTS.get(chat):
             self.group_call = CLIENTS[chat]
         else:
-            _client = GroupCallFactory(
-                nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
-            )
+            _client = GroupCallFactory(nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT)
             _client.enable_logs_to_console = False
             self.group_call = _client.get_group_call()
             CLIENTS.update({chat: self.group_call})
