@@ -2,10 +2,11 @@
 
 import asyncio
 
+import pytgcalls
 from pyrogram.errors import *
 
 import vcmus
-import pytgcalls
+
 vcmus.init()
 from vcmus import vcmus
 
@@ -13,7 +14,8 @@ PLAY_LOCK = asyncio.Lock()
 
 from Mix import *
 from Mix.core.tools_music import get_default_service, play_song, telegram
-from .vcs import CLIENT_TYPE, PLAYOUT_FILE, OUTGOING_AUDIO_BITRATE_KBIT
+
+from .vcs import CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT, PLAYOUT_FILE
 
 running = False
 
@@ -43,12 +45,11 @@ async def start_queue(message=None):
                 service,
             )
 
+
 @ky.ubot("joinos")
 async def joinvc(_, message, manual=False):
     if "call" in vcmus:
-        return await message.reply_text(
-            "__**Bot Is Already In The VC**__"
-        )
+        return await message.reply_text("__**Bot Is Already In The VC**__")
     os.popen(f"cp Mix/core/vc.raw {PLAYOUT_FILE}")
     vc = pytgcalls.GroupCallFactory(
         nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
@@ -78,6 +79,7 @@ async def joinvc(_, message, manual=False):
         + " Send /leavevc and then /joinvc again.__"
     )
     await message.delete()
+
 
 @ky.ubot("play")
 async def _(_, message):
