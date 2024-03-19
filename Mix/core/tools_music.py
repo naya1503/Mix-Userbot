@@ -285,7 +285,7 @@ async def dl_playlist(chat, from_user, link):
                 thumb = f"https://i.ytimg.com/vi/{vid['id']}/hqdefault.jpg"
                 add_to_queue(chat, None, title, vid["link"], thumb, from_user, duration)
             except Exception as er:
-                LOGS.exception(er)
+                LOGGER.info(er)
 
 
 async def file_download(c, m):
