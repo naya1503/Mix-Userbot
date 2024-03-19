@@ -156,10 +156,10 @@ class MixPlayer:
                 )
             os.remove(original_file)
 
-    async def start_radio(self, m):
+    async def start_radio(self, chat):
         if vc.is_connected:
             playlist.clear()
-        process = FFMPEG_PROCESSES.get(m)
+        process = FFMPEG_PROCESSES.get(chat)
         if process:
             try:
                 process.send_signal(SIGINT)
@@ -177,13 +177,13 @@ class MixPlayer:
             RADIO.add(1)
         except:
             pass
-        if os.path.exists(f"radio-{m.id}.raw"):
-            os.remove(f"radio-{m.id}.raw")
+        if os.path.exists(f"radio-{chat}.raw"):
+            os.remove(f"radio-{chat}.raw")
         # credits: https://t.me/c/1480232458/6825
-        os.mkfifo(f"radio-{m.id}.raw")
-        vc.input_filename = f"radio-{m.id}.raw"
+        os.mkfifo(f"radio-{chat}.raw")
+        vc.input_filename = f"radio-{chat}.raw"
         if not vc.is_connected:
-            await self.start_call(m)
+            await self.start_call(chat)
         ffmpeg_log = open("ffmpeg.log", "w+")
         command = [
             "ffmpeg",
@@ -216,7 +216,7 @@ class MixPlayer:
                 break
             else:
                 print("Connecting, Please Wait ...")
-                await self.start_call(m)
+                await self.start_call(chat)
                 await sleep(10)
                 continue
 
@@ -293,8 +293,8 @@ async def on_network_changed(call, is_connected):
 
 
 @mixmus.group_call.on_playout_ended
-async def playout_ended_handler(_, m):
+async def playout_ended_handler(_, chat):
     if not playlist:
-        await mixmus.start_radio(m)
+        await mixmus.start_radio(chat)
     else:
-        await mixmus.skip_current_playing(m)
+        await mixmus.skip_current_playing(chat)
