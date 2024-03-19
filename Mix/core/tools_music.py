@@ -168,7 +168,7 @@ class MixPlayer:
             except Exception as e:
                 print(e)
             FFMPEG_PROCESSES[m] = ""
-        station_stream_url = STREAM_URL
+        station_stream_url = "http://peridot.streamguys.com:7150/Mirchi"
         try:
             RADIO.remove(0)
         except:
