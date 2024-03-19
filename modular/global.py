@@ -85,7 +85,7 @@ async def _(c: nlx, m):
     dbgb.add_gban(nyet, alasan, c.me.id)
     await c.block_user(nyet)
     await nlx.invoke(
-        DeleteHistory(peer=(await nlx.resolve_peer(sapa)), max_id=0, revoke=True)
+        DeleteHistory(peer=(await nlx.resolve_peer(nyet)), max_id=0, revoke=True)
     )
     mmg = cgr("glbl_6").format(
         em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan
