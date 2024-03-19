@@ -21,7 +21,7 @@ async def _(c: nlx, m):
     if m.reply_to_message:
         reply = m.reply_to_message
     else:
-         song = m.text.split(None, 1)[1]
+        song = m.text.split(None, 1)[1]
     if not (reply or song):
         return await xx.edit("Harap tentukan nama lagu atau balas ke file audio !")
     await xx.edit("mencoba-coba")
