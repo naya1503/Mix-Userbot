@@ -18,73 +18,81 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>
 
 import os
 import re
-import ffmpeg
-import asyncio
 import subprocess
-from config import *
 from signal import SIGINT
-from yt_dlp import YoutubeDL
-from youtube_search import YoutubeSearch
-from pyrogram import Client, filters, emoji
+
+from pyrogram import emoji
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
+from youtube_search import YoutubeSearch
+from yt_dlp import YoutubeDL
+
+from config import *
 from Mix import *
 from Mix.core.tools_music import *
 
-msg={}
-playlist=[]
+msg = {}
+playlist = []
 durasi_musik
+
 
 @ky.ubot("play")
 async def _(c: nlx, message):
-    type=""
-    yturl=""
-    ysearch=""
+    type = ""
+    yturl = ""
+    ysearch = ""
     if m.audio:
-        type="audio"
+        type = "audio"
         m_audio = m
     elif m.reply_to_message and m.reply_to_message.audio:
-        type="audio"
+        type = "audio"
         m_audio = m.reply_to_message
     else:
         if m.reply_to_message:
-            link=m.reply_to_message.text
+            link = m.reply_to_message.text
             regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
-            match = re.match(regex,link)
+            match = re.match(regex, link)
             if match:
-                type="youtube"
-                yturl=link
+                type = "youtube"
+                yturl = link
         elif " " in m.text:
             text = m.text.split(" ", 1)
             query = text[1]
             regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
-            match = re.match(regex,query)
+            match = re.match(regex, query)
             if match:
-                type="youtube"
-                yturl=query
+                type = "youtube"
+                yturl = query
             else:
-                type="query"
-                ysearch=query
+                type = "query"
+                ysearch = query
         else:
             await m.reply_text("Silahkan balas audio atau berikan query!!")
-            
+
             return
-    user=f"[{m.from_user.first_name}](tg://user?id={message.from_user.id})"
+    user = f"[{m.from_user.first_name}](tg://user?id={message.from_user.id})"
     group_call = mixmus.group_call
-    if type=="audio":
+    if type == "audio":
         if round(m_audio.audio.duration / 60) > durasi_musik:
-            d=await m.reply_text(f"❌ Audio lebih panjang dari {durasi_musik} menit tidak diizinkan, Audio yang diizinkan adalah {round(m_audio.audio.duration/60)} menit!")
+            d = await m.reply_text(
+                f"❌ Audio lebih panjang dari {durasi_musik} menit tidak diizinkan, Audio yang diizinkan adalah {round(m_audio.audio.duration/60)} menit!"
+            )
             return
         if playlist and playlist[-1][2] == m_audio.audio.file_id:
-            d=await m.reply_text(f"➕ **Sudah ditambahkan ke daftar putar!**")
+            await m.reply_text(f"➕ **Sudah ditambahkan ke daftar putar!**")
             return
-        data={1:m_audio.audio.title, 2:m_audio.audio.file_id, 3:"telegram", 4:user}
+        data = {
+            1: m_audio.audio.title,
+            2: m_audio.audio.file_id,
+            3: "telegram",
+            4: user,
+        }
         playlist.append(data)
         if len(playlist) == 1:
             m_status = await m.reply_text("Processing...")
             await mixmus.download_audio(playlist[0])
             if 1 in RADIO:
                 if group_call:
-                    group_call.input_filename = ''
+                    group_call.input_filename = ""
                     RADIO.remove(1)
                     RADIO.add(0)
                 process = FFMPEG_PROCESSES.get(m.chat.id)
@@ -95,45 +103,43 @@ async def _(c: nlx, message):
                         process.kill()
                     except Exception as e:
                         print(e)
-                        pass
                     FFMPEG_PROCESSES[m.chat.id] = ""
             if not group_call.is_connected:
                 await mixmus.start_call()
-            file=playlist[0][1]
+            file = playlist[0][1]
             group_call.input_filename = os.path.join(
-                _.workdir,
-                DEFAULT_DOWNLOAD_DIR,
-                f"{file}.raw"
+                _.workdir, DEFAULT_DOWNLOAD_DIR, f"{file}.raw"
             )
             await m_status.delete()
             print(f"- START PLAYING: {playlist[0][1]}")
         if not playlist:
             pl = f"{emoji.NO_ENTRY} **Tidak ada playlist!**"
-        else:   
-            pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-                f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
-                for i, x in enumerate(playlist)
-                ])
+        else:
+            pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join(
+                [
+                    f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
+                    for i, x in enumerate(playlist)
+                ]
+            )
         if EDIT_TITLE:
             await mixmus.edit_title()
         if m.chat.type == ChatType.PRIVATE:
-            await m.reply_text(pl)        
+            await m.reply_text(pl)
         elif TAG_LOG:
             await mixmus.send_playlist()
         elif not TAG_LOG and m.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
-            k=await m.reply_text(pl)
+            k = await m.reply_text(pl)
         for track in playlist[:2]:
             await mixmus.download_audio(track)
 
-
-    if type=="youtube" or type=="query":
-        if type=="youtube":
+    if type == "youtube" or type == "query":
+        if type == "youtube":
             msg = await m.reply_text("🔍")
-            url=yturl
-        elif type=="query":
+            url = yturl
+        elif type == "query":
             try:
                 msg = await m.reply_text("🔍")
-                ytquery=ysearch
+                ytquery = ysearch
                 results = YoutubeSearch(ytquery, max_results=1).to_dict()
                 url = f"https://youtube.com{results[0]['url_suffix']}"
                 title = results[0]["title"][:40]
@@ -145,26 +151,23 @@ async def _(c: nlx, message):
                 return
         else:
             return
-        ydl_opts = {
-            "geo-bypass": True,
-            "nocheckcertificate": True
-        }
+        ydl_opts = {"geo-bypass": True, "nocheckcertificate": True}
         ydl = YoutubeDL(ydl_opts)
         try:
             info = ydl.extract_info(url, False)
         except Exception as e:
             print(e)
-            k=await msg.edit(
-                f"❌ **YouTube Download Error !** \n\n{e}"
-                )
+            k = await msg.edit(f"❌ **YouTube Download Error !** \n\n{e}")
             print(str(e))
             return
         duration = round(info["duration"] / 60)
-        title= info["title"]
+        title = info["title"]
         if int(duration) > durasi_musik:
-            k=await m.reply_text(f"❌ __Videos Longer Than {durasi_musik} Minute(s) Aren't Allowed, The Provided Video Is {duration} Minute(s)!__")
+            k = await m.reply_text(
+                f"❌ __Videos Longer Than {durasi_musik} Minute(s) Aren't Allowed, The Provided Video Is {duration} Minute(s)!__"
+            )
             return
-        data={1:title, 2:url, 3:"youtube", 4:user}
+        data = {1: title, 2: url, 3: "youtube", 4: user}
         playlist.append(data)
         group_call = mixmus.group_call
         client = group_call.client
@@ -173,7 +176,7 @@ async def _(c: nlx, message):
             await mixmus.download_audio(playlist[0])
             if 1 in RADIO:
                 if group_call:
-                    group_call.input_filename = ''
+                    group_call.input_filename = ""
                     RADIO.remove(1)
                     RADIO.add(0)
                 process = FFMPEG_PROCESSES.get(m.chat.id)
@@ -184,15 +187,12 @@ async def _(c: nlx, message):
                         process.kill()
                     except Exception as e:
                         print(e)
-                        pass
                     FFMPEG_PROCESSES[m.chat.id] = ""
             if not group_call.is_connected:
                 await mixmus.start_call()
-            file=playlist[0][1]
+            file = playlist[0][1]
             group_call.input_filename = os.path.join(
-                client.workdir,
-                DEFAULT_DOWNLOAD_DIR,
-                f"{file}.raw"
+                client.workdir, DEFAULT_DOWNLOAD_DIR, f"{file}.raw"
             )
             await m_status.delete()
             print(f"- START PLAYING: {playlist[0][1]}")
@@ -201,10 +201,12 @@ async def _(c: nlx, message):
         if not playlist:
             pl = f"{emoji.NO_ENTRY} **Tidak ada playlist!**"
         else:
-            pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-                f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
-                for i, x in enumerate(playlist)
-                ])
+            pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join(
+                [
+                    f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
+                    for i, x in enumerate(playlist)
+                ]
+            )
         if EDIT_TITLE:
             await mixmus.edit_title()
         if m.chat.type == ChatType.PRIVATE:
@@ -212,9 +214,10 @@ async def _(c: nlx, message):
         if TAG_LOG:
             await mixmus.send_playlist()
         elif not TAG_LOG and m.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
-            k=await m.reply_text(pl)
+            await m.reply_text(pl)
         for track in playlist[:2]:
             await mixmus.download_audio(track)
+
 
 """
 @Client.on_message(filters.command(["current", f"current@{USERNAME}"]) & (filters.chat(m.chat.id) | filters.private | filters.chat(TAG_LOG)))
