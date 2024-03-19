@@ -63,9 +63,9 @@ class MP:
         ):
             return
         try:
-            await nlx.invoke(
+            await self.invoke(
                 CreateGroupCall(
-                    peer=(await nlx.resolve_peer(self._current_chat)),
+                    peer=(await self.resolve_peer(self._current_chat)),
                     random_id=randint(10000, 999999999),
                 )
             )
@@ -137,7 +137,7 @@ class MP:
             text = f"<strong>🎧 Now playing #{pos}: <a href={link}>{title}</a>\n⏰ Duration:</strong> <code>{dur}</code>\n👤 <strong>Requested by:</strong> {from_user}"
 
             try:
-                xx = await nlx.send_photo(
+                xx = await self.send_photo(
                     self._current_chat,
                     photo=thumb,
                     caption=f"<strong>🎧 Now playing #{pos}: <a href={link}>{title}</a>\n⏰ Duration:</strong> <code>{dur}</code>\n👤 <strong>Requested by:</strong> {from_user}",
@@ -146,7 +146,7 @@ class MP:
                 )
 
             except ChatSendMediaForbidden:
-                xx = await nlx.send_messagess(
+                xx = await self.send_messages(
                     self._current_chat, text, disable_web_page_preview=True
                 )
             MSGID_CACHE.update({chat_id: xx})
