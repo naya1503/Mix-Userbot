@@ -1,5 +1,5 @@
 # part of https://github.com/thehamkercat/Telegram_VC_Bot
-
+"""
 import asyncio
 import os
 import traceback
@@ -274,12 +274,12 @@ async def play_song(requested_by, query, message, service):
             url,
         )
     await m.delete()
-    caption = f"""
+    caption = f"
 **Name:** {title[:45]}
 **Duration:** {convert_seconds(duration)}
 **Requested By:** {message.from_user.mention}
 **Platform:** {service}
-"""
+"
     await m.delete()
     m = await message.reply_photo(
         photo=cover,
@@ -312,3 +312,4 @@ async def telegram(message):
     await pause_skip_watcher(m, reply.audio.duration)
     if os.path.exists(song):
         os.remove(song)
+"""
