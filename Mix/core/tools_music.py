@@ -65,8 +65,7 @@ OUTGOING_AUDIO_BITRATE_KBIT = 512
 PLAYOUT_FILE = "input.raw"
 
 
-group_call = pytgcalls.GroupCallFactory(
-    nlx, CLIENT_TYPE).get_group_call()
+group_call = pytgcalls.GroupCallFactory(nlx, CLIENT_TYPE).get_group_call()
 
 
 ydl_opts = {
