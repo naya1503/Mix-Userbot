@@ -11,7 +11,7 @@ from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
 from pyrogram.raw.types import InputPeerChannel, InputPeerChat
-from pytgcalls import GroupCallFactory
+import pytgcalls
 from pytgcalls.exceptions import GroupCallNotFoundError
 from youtubesearchpython import VideosSearch
 
@@ -22,7 +22,7 @@ VC_QUEUE = {}
 MSGID_CACHE = {}
 VIDEO_ON = {}
 CLIENTS = {}
-CLIENT_TYPE = "PYROGRAM"
+CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
 OUTGOING_AUDIO_BITRATE_KBIT = 512
 PLAYOUT_FILE = "input.raw"
 from .waktu import time_formatter
@@ -51,7 +51,7 @@ class MP:
         if CLIENTS.get(chat):
             self.group_call = CLIENTS[chat]
         else:
-            _client = GroupCallFactory(nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT)
+            _client = pytgcalls.GroupCallFactory(nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT)
             _client.enable_logs_to_console = False
             self.group_call = _client.get_group_call()
             CLIENTS.update({chat: self.group_call})
