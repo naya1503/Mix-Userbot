@@ -23,9 +23,9 @@ from asyncio import sleep
 from os import path
 from random import randint
 from signal import SIGINT
-from pydub import AudioSegment
-import ffmpeg
+
 import wget
+from pydub import AudioSegment
 from pyrogram import emoji
 from pyrogram.errors import FloodWait
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
