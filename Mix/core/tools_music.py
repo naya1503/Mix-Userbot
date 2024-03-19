@@ -51,8 +51,7 @@ class MP:
             self.group_call = CLIENTS[chat]
         else:
             _client = GroupCallFactory(
-                nlx,
-                CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+                nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
             ).get_file_group_call(PLAYOUT_FILE)
             _client.enable_logs_to_console = False
             self.group_call = _client.get_group_call()
@@ -160,9 +159,7 @@ class MP:
         except (IndexError, KeyError):
             await self.group_call.stop()
             del CLIENTS[self._chat]
-            await nlx.send_messages(
-                self._chat, f"• Berhasil meninggalkan: {chat_id}"
-            )
+            await nlx.send_messages(self._chat, f"• Berhasil meninggalkan: {chat_id}")
         except Exception as er:
             await nlx.send_message(self._chat, f"Error:{er}")
 
