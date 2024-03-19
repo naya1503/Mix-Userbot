@@ -154,7 +154,7 @@ class MixPlayer(object):
                 process.kill()
             except Exception as e:
                 print(e)
-            FFMPEG_PROCESSES[CHAT_ID] = ""
+            FFMPEG_PROCESSES[m.chat.id] = ""
         station_stream_url = STREAM_URL
         try:
             RADIO.remove(0)
