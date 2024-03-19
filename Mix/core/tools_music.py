@@ -90,14 +90,14 @@ ydl = YoutubeDL(ydl_opts)
 # pytgcalls handlers
 
 
-@vc.group_call.on_audio_playout_ended
+@vc.on_audio_playout_ended
 async def _(_, __):
     await sleep(3)
     await vc.stop()
     print(f"[INFO] - AUDIO_CALL ENDED !")
 
 
-@vc.group_call.on_video_playout_ended
+@vc.on_video_playout_ended
 async def _(_, __):
     await sleep(3)
     await vc.stop()
