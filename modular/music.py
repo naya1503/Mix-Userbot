@@ -25,7 +25,7 @@ async def _(c: nlx, m):
         tiny_input = input.split()[0]
         if tiny_input[0] in ["@", "-"]:
             try:
-                chat = await c.resolver_peer(tiny_input)
+                chat = await c.resolve_peer(tiny_input)
             except Exception as er:
                 return await xx.edit(str(er))
             try:
