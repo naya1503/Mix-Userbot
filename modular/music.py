@@ -1,63 +1,34 @@
-import asyncio
+"""
+RadioPlayerV3, Telegram Voice Chat Bot
+Copyright (c) 2021  Asm Safone <https://github.com/AsmSafone>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>
+"""
+
 import os
+import re
+import ffmpeg
+import asyncio
+import subprocess
+from config import Config
+from signal import SIGINT
+from yt_dlp import YoutubeDL
+from youtube_search import YoutubeSearch
+from pyrogram import Client, filters, emoji
+from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
 
-from pyrogram.errors import *
 
-from Mix import *
-from Mix.core.tools_media import *
-from Mix.core.tools_music import *
-
-
-@ky.ubot("play", sudo=True)
-async def _(c: nlx, m):
-    if "playfrom" in m.text.split()[0]:
-        return  # For PlayFrom Conflict
-    xx = await m.reply("proses")
-    chat = m.chat.id
-    from_user = f"<a href='tg://user?id={m.from_user.id}'>{m.from_user.first_name} {m.from_user.last_name or ''}</a>"
-    reply, song = None, None
-    if m.reply_to_message:
-        reply = m.reply_to_message
-    else:
-        song = m.text.split(None, 1)[1]
-    if not (reply or song):
-        return await xx.edit("Harap tentukan nama lagu atau balas ke file audio !")
-    await xx.edit("mencoba-coba")
-    if reply and reply.media and mediainfo(reply.media).startswith(("audio", "video")):
-        song, thumb, song_name, link, duration = await file_download(c, reply)
-    else:
-        song, thumb, song_name, link, duration = await download(song)
-    yoman = MP(chat)
-    song_name = f"{song_name}..."
-    if not yoman.group_call.is_connected:
-        if not (await yoman.vc_joiner()):
-            return
-        await yoman.group_call.join(chat)
-        await asyncio.sleep(2)
-        await yoman.group_call.start_audio(song)
-        add_to_queue(chat, song, song_name, link, thumb, from_user, duration)
-        text = "📀 <strong>Sedang dimainkan: <a href={}>{}</a>\n⏰ Durasi:</strong> <code>{}</code>\n👥 <strong>Di:</strong> <code>{}</code>\n🙋‍♂ <strong>Diminta oleh: {}</strong>".format(
-            link, song_name, duration, chat, from_user
-        )
-        try:
-            await m.reply_photo(
-                photo=thumb,
-                caption=text,
-            )
-            await xx.delete()
-        except ChatSendMediaForbidden:
-            await xx.edit(text, disable_web_page_preview=True)
-        if thumb and os.path.exists(thumb):
-            os.remove(thumb)
-    else:
-        if not (
-            reply
-            and reply.media
-            and mediainfo(reply.media).startswith(("audio", "video"))
-        ):
-            song = None
-            add_to_queue(chat, song, song_name, link, thumb, from_user, duration)
-
-        return await xx.edit(
-            f"✚ Ditambahkan 🎵 <a href={link}>{song_name}</a> antrian ke #{list(VC_QUEUE[chat].keys())[-1]}."
-        )
+msg={}
+playlist=[]
+durasi_musik
