@@ -169,43 +169,8 @@ class MixPlayer:
                 print(e)
             FFMPEG_PROCESSES[m] = ""
         station_stream_url = "http://peridot.streamguys.com:7150/Mirchi"
-        try:
-            RADIO.remove(0)
-        except:
-            pass
-        try:
-            RADIO.add(1)
-        except:
-            pass
-        if os.path.exists(f"radio-{chat}.raw"):
-            os.remove(f"radio-{chat}.raw")
-        # credits: https://t.me/c/1480232458/6825
-        os.mkfifo(f"radio-{chat}.raw")
-        vc.input_filename = f"radio-{chat}.raw"
         if not vc.is_connected:
             await self.start_call(chat)
-        ffmpeg_log = open("ffmpeg.log", "w+")
-        command = [
-            "ffmpeg",
-            "-y",
-            "-i",
-            station_stream_url,
-            "-f",
-            "s16le",
-            "-ac",
-            "2",
-            "-ar",
-            "48000",
-            "-acodec",
-            "pcm_s16le",
-            vc.input_filename,
-        ]
-
-        process = await asyncio.create_subprocess_exec(
-            *command,
-            stdout=ffmpeg_log,
-            stderr=asyncio.subprocess.STDOUT,
-        )
 
         FFMPEG_PROCESSES[m] = process
         await self.edit_title(m)
