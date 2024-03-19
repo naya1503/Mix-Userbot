@@ -314,12 +314,4 @@ async def telegram(message):
         os.remove(song)
 """
 
-import asyncio
-import os
-import re
-import traceback
-from time import time
-from traceback import format_exc
 
-from pytgcalls import GroupCallFactory
-from pytgcalls.exceptions import GroupCallNotFoundError
