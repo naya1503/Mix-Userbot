@@ -372,17 +372,18 @@ async def _(c: nlx, m):
 
 
 from pyrogram.errors import FloodWait
+from pyrogram.enums import *
 
 
 @ky.ubot("anben")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-
+    proses = await m.reply(f"{em.proses} sabar tuan ..")
     await c.get_chat(m.chat.id)
     member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
 
-    if member.status == "creator" or member.status == "administrator":
+    if member.status == "OWNER" or member.status == "ADMINISTRATOR":
         # is_channel = m.chat.type == "channel"
 
         if m.from_user.id not in DEVS:
@@ -400,7 +401,7 @@ async def _(c: nlx, m):
         try:
             unban_count = 0
             banned_members = await c.get_chat_members(
-                chat_id=m.chat.id, filter="banned"
+                chat_id=m.chat.id, filter="BANNED"
             )
             for member in banned_members:
                 try:
@@ -416,8 +417,9 @@ async def _(c: nlx, m):
 
         except Exception as e:
             await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
-
+        proses.delete()
     else:
         await m.reply(
             f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
         )
+        proses.delete()
