@@ -20,6 +20,9 @@ from Mix import *
 ACTIVE_CALLS, VC_QUEUE = [], {}
 MSGID_CACHE, VIDEO_ON = {}, {}
 CLIENTS = {}
+CLIENT_TYPE = GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+OUTGOING_AUDIO_BITRATE_KBIT = 128
+PLAYOUT_FILE = "input.raw"
 from .waktu import time_formatter
 
 
@@ -41,31 +44,31 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
 
 
 class MP:
-    def __init__(self, chat, update=None, video=False):
-        self._chat = chat
-        self._current_chat = update.chat.id if update else TAG_LOG
+    def __init__(self, chat, video=False):
+        self._chat = chat.chat.id
         self._video = video
         if CLIENTS.get(chat):
             self.group_call = CLIENTS[chat]
         else:
             _client = GroupCallFactory(
                 nlx,
-                GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM,
-            )
+                CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+            ).get_file_group_call(PLAYOUT_FILE)
+            _client.enable_logs_to_console = False
             self.group_call = _client.get_group_call()
             CLIENTS.update({chat: self.group_call})
 
     async def make_vc_active(self):
         if not (
             group_call := (
-                await get_group_call(nlx, self._current_chat, err_msg=", Kesalahan...")
+                await get_group_call(nlx, self._chat, err_msg=", Kesalahan...")
             )
         ):
             return
         try:
             await self.invoke(
                 CreateGroupCall(
-                    peer=(await self.resolve_peer(self._current_chat)),
+                    peer=(await self.resolve_peer(self._chat)),
                     random_id=randint(10000, 999999999),
                 )
             )
@@ -138,7 +141,7 @@ class MP:
 
             try:
                 xx = await self.send_photo(
-                    self._current_chat,
+                    self._chat,
                     photo=thumb,
                     caption=f"<strong>🎧 Now playing #{pos}: <a href={link}>{title}</a>\n⏰ Duration:</strong> <code>{dur}</code>\n👤 <strong>Requested by:</strong> {from_user}",
                     disable_web_page_preview=True,
@@ -147,7 +150,7 @@ class MP:
 
             except ChatSendMediaForbidden:
                 xx = await self.send_message(
-                    self._current_chat, text, disable_web_page_preview=True
+                    self._chat, text, disable_web_page_preview=True
                 )
             MSGID_CACHE.update({chat_id: xx})
             VC_QUEUE[chat_id].pop(pos)
@@ -158,10 +161,10 @@ class MP:
             await self.group_call.stop()
             del CLIENTS[self._chat]
             await nlx.send_messages(
-                self._current_chat, f"• Berhasil meninggalkan: {chat_id}"
+                self._chat, f"• Berhasil meninggalkan: {chat_id}"
             )
         except Exception as er:
-            await nlx.send_message(self._current_chat, f"Error:{er}")
+            await nlx.send_message(self._chat, f"Error:{er}")
 
     async def vc_joiner(self):
         chat_id = self._chat
@@ -169,13 +172,13 @@ class MP:
 
         if done:
             await nlx.send_message(
-                self._current_chat,
+                self._chat,
                 f"• Joined VC in <code>{chat_id}</code>",
             )
 
             return True
         await nlx.send_message(
-            self._current_chat,
+            self._chat,
             f"<strong>ERROR while Joining Vc -</strong> <code>{chat_id}</code> :\n<code>{err}</code>",
         )
         return False
