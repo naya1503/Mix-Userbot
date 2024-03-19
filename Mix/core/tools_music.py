@@ -23,7 +23,7 @@ from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
-from pytgcalls import GroupCallFactory
+import pytgcalls
 from youtube_dl import YoutubeDL
 from yt_dlp import YoutubeDL
 
@@ -60,15 +60,14 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
     return False
 
 
-CLIENT_TYPE = GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
-OUTGOING_AUDIO_BITRATE_KBIT = 128
+CLIENT_TYPE = pytgcalls.GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+OUTGOING_AUDIO_BITRATE_KBIT = 512
 PLAYOUT_FILE = "input.raw"
 
 
-group_call = GroupCallFactory(
+group_call = pytgcalls.GroupCallFactory(
     nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
 ).get_group_call()
-group_call.enable_logs_to_console = False
 
 
 ydl_opts = {
