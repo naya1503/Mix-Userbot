@@ -40,7 +40,7 @@ async def dasar_laknat():
 async def autor_gc():
     if not udB.get_var(nlx.me.id, "read_gc"):
         return
-    while not await asyncio.sleep(3600):
+    while not await asyncio.sleep(300):
         LOGGER.info("Running Autoread For Group...")
         async for bb in nlx.get_dialogs(limit=500):
             if bb.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
