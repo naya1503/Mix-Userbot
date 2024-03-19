@@ -45,7 +45,7 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
 
 class MP:
     def __init__(self, chat, video=False):
-        self._chat = chat.chat.id
+        self._chat = chat
         self._video = video
         if CLIENTS.get(chat):
             self.group_call = CLIENTS[chat]
