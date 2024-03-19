@@ -134,7 +134,7 @@ class Userbot(Client):
             err = stderr.decode().strip()
             out = stdout.decode().strip()
             return out, err
-        except NotImplementedError:o
+        except NotImplementedError:
             process = subprocess.Popen(
                 cmd,
                 stdout=subprocess.PIPE,
