@@ -65,8 +65,8 @@ OUTGOING_AUDIO_BITRATE_KBIT = 128
 PLAYOUT_FILE = "input.raw"
 
 
-vc = GroupCallFactory(nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT).get_group_call()
-vc.enable_logs_to_console = False
+group_call = GroupCallFactory(nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT).get_group_call()
+group_call.enable_logs_to_console = False
 
 
 ydl_opts = {
@@ -80,15 +80,15 @@ ydl = YoutubeDL(ydl_opts)
 # pytgcalls handlers
 
 
-@vc.on_audio_playout_ended
+@group_call.on_audio_playout_ended
 async def _(_, __):
     await sleep(3)
-    await vc.stop()
+    await group_call.stop()
     print(f"[INFO] - AUDIO_CALL ENDED !")
 
 
-@vc.on_video_playout_ended
+@group_call.on_video_playout_ended
 async def _(_, __):
     await sleep(3)
-    await vc.stop()
+    await group_call.stop()
     print(f"[INFO] - VIDEO_CALL ENDED !")
