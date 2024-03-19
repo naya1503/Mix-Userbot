@@ -73,12 +73,11 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
     await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
     return False
 
+vc = GroupCallFactory(nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM).get_file_group_call()
 
 class MixPlayer:
     def __init__(self, chat=None):
-        vc = GroupCallFactory(
-            nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
-        ).get_file_group_call()
+        self.group_call = vc
 
     async def send_playlist(self, m):
         if not playlist:
@@ -280,7 +279,7 @@ mixmus = MixPlayer()
 # pytgcalls handlers
 
 
-@mixmus.vc.on_network_status_changed
+@mixmus.group_call.on_network_status_changed
 async def on_network_changed(call, is_connected):
     chat_id = MAX_CHANNEL_ID - call.full_chat.id
     if is_connected:
@@ -289,7 +288,7 @@ async def on_network_changed(call, is_connected):
         CALL_STATUS[chat_id] = False
 
 
-@mixmus.vc.on_playout_ended
+@mixmus.group_call.on_playout_ended
 async def playout_ended_handler(_, __):
     if not playlist:
         await mixmus.start_radio()
