@@ -36,7 +36,7 @@ durasi_musik
 
 
 @ky.ubot("play")
-async def _(c: nlx, message):
+async def _(c: nlx, m):
     type = ""
     yturl = ""
     ysearch = ""
@@ -121,8 +121,7 @@ async def _(c: nlx, message):
                     for i, x in enumerate(playlist)
                 ]
             )
-        if EDIT_TITLE:
-            await mixmus.edit_title()
+        await mixmus.edit_title(m.chat.id)
         if m.chat.type == ChatType.PRIVATE:
             await m.reply_text(pl)
         elif TAG_LOG:
@@ -189,7 +188,7 @@ async def _(c: nlx, message):
                         print(e)
                     FFMPEG_PROCESSES[m.chat.id] = ""
             if not group_call.is_connected:
-                await mixmus.start_call()
+                await mixmus.start_call(m.chat.id)
             file = playlist[0][1]
             group_call.input_filename = os.path.join(
                 client.workdir, DEFAULT_DOWNLOAD_DIR, f"{file}.raw"
