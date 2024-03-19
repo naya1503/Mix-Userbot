@@ -50,7 +50,7 @@ ydl = YoutubeDL(ydl_opts)
 
 class MusicPlayer(object):
     def __init__(self):
-        self.group_call = GroupCallFactory(USER, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM).get_file_group_call()
+        self.group_call = GroupCallFactory(nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM).get_file_group_call()
 
 
     async def send_playlist(self):
@@ -145,11 +145,11 @@ class MusicPlayer(object):
             os.remove(original_file)
 
 
-    async def start_radio(self):
+    async def start_radio(self, m):
         group_call = self.group_call
         if group_call.is_connected:
             playlist.clear()   
-        process = FFMPEG_PROCESSES.get(CHAT_ID)
+        process = FFMPEG_PROCESSES.get(m.chat.id)
         if process:
             try:
                 process.send_signal(SIGINT)
@@ -168,11 +168,11 @@ class MusicPlayer(object):
             RADIO.add(1)
         except:
             pass
-        if os.path.exists(f'radio-{CHAT_ID}.raw'):
-            os.remove(f'radio-{CHAT_ID}.raw')
+        if os.path.exists(f'radio-{m.chat.id}.raw'):
+            os.remove(f'radio-{m.chat.id}.raw')
         # credits: https://t.me/c/1480232458/6825
-        os.mkfifo(f'radio-{CHAT_ID}.raw')
-        group_call.input_filename = f'radio-{CHAT_ID}.raw'
+        os.mkfifo(f'radio-{m.chat.id}.raw')
+        group_call.input_filename = f'radio-{m.chat.id}.raw'
         if not group_call.is_connected:
             await self.start_call()
         ffmpeg_log = open("ffmpeg.log", "w+")
@@ -187,7 +187,7 @@ class MusicPlayer(object):
             )
 
 
-        FFMPEG_PROCESSES[CHAT_ID] = process
+        FFMPEG_PROCESSES[m.chat.id] = process
         if RADIO_TITLE:
             await self.edit_title()
         await sleep(2)
@@ -202,7 +202,7 @@ class MusicPlayer(object):
                 continue
 
 
-    async def stop_radio(self):
+    async def stop_radio(self, m):
         group_call = self.group_call
         if group_call:
             playlist.clear()   
@@ -215,7 +215,7 @@ class MusicPlayer(object):
                 RADIO.add(0)
             except:
                 pass
-        process = FFMPEG_PROCESSES.get(CHAT_ID)
+        process = FFMPEG_PROCESSES.get(m.chat.id)
         if process:
             try:
                 process.send_signal(SIGINT)
@@ -224,25 +224,25 @@ class MusicPlayer(object):
             except Exception as e:
                 print(e)
                 pass
-            FFMPEG_PROCESSES[CHAT_ID] = ""
+            FFMPEG_PROCESSES[m.chat.id] = ""
 
 
-    async def start_call(self):
+    async def start_call(self, m):
         group_call = self.group_call
         try:
-            await group_call.start(CHAT_ID)
+            await group_call.start(m.chat.id)
         except FloodWait as e:
             await sleep(e.x)
             if not group_call.is_connected:
-                await group_call.start(CHAT_ID)
+                await group_call.start(m.chat.id)
         except GroupCallNotFoundError:
             try:
-                await USER.send(CreateGroupCall(
-                    peer=(await USER.resolve_peer(CHAT_ID)),
+                await nlx.send(CreateGroupCall(
+                    peer=(await nlx.resolve_peer(m.chat.id)),
                     random_id=randint(10000, 999999999)
                     )
                     )
-                await group_call.start(CHAT_ID)
+                await group_call.start(m.chat.id)
             except Exception as e:
                 print(e)
                 pass
@@ -251,9 +251,9 @@ class MusicPlayer(object):
             pass
 
 
-    async def edit_title(self):
+    async def edit_title(self, m):
         if not playlist:
-            title = RADIO_TITLE
+            title = m.text.split(None, 1)[1]
         else:       
             pl = playlist[0]
             title = pl[1]
