@@ -75,12 +75,12 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
 
 
 class MixPlayer:
-    def __init__(self):
-        self.group_call = GroupCallFactory(
+    def __init__(self, chat=None):
+        vc = GroupCallFactory(
             nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
         ).get_file_group_call()
 
-    async def send_playlist(self):
+    async def send_playlist(self, m):
         if not playlist:
             pl = f"{emoji.NO_ENTRY} **Empty Playlist!**"
         else:
@@ -92,41 +92,34 @@ class MixPlayer:
             )
         if msg.get("playlist") is not None:
             await msg["playlist"].delete()
-        msg["playlist"] = await self.send_text(pl)
+        msg["playlist"] = await self.send_text(m, pl)
 
-    async def skip_current_playing(self):
-        group_call = self.group_call
+    async def skip_current_playing(self, m):
         if not playlist:
             return
         if len(playlist) == 1:
-            await mp.start_radio()
+            await self.start_radio(m)
             return
-        client = group_call.client
-        download_dir = os.path.join(client.workdir, DEFAULT_DOWNLOAD_DIR)
-        group_call.input_filename = os.path.join(download_dir, f"{playlist[1][1]}.raw")
+        download_dir = os.path.join(vc.workdir, DEFAULT_DOWNLOAD_DIR)
+        vc.input_filename = os.path.join(download_dir, f"{playlist[1][1]}.raw")
         # remove old track from playlist
         old_track = playlist.pop(0)
         print(f"- START PLAYING: {playlist[0][1]}")
-        await self.edit_title()
-        if TAG_LOG:
-            await self.send_playlist()
+        await self.edit_title(m)
+        await self.send_playlist(m)
         os.remove(os.path.join(download_dir, f"{old_track[1]}.raw"))
         if len(playlist) == 1:
             return
         await self.download_audio(playlist[1])
 
-    async def send_text(self, text):
-        group_call = self.group_call
-        group_call.client
-        chat_id = TAG_LOG
+    async def send_text(self, m, text):
         message = await bot.send_message(
-            chat_id, text, disable_web_page_preview=True, disable_notification=True
+            m, text, disable_web_page_preview=True, disable_notification=True
         )
         return message
 
     async def download_audio(self, song):
-        group_call = self.group_call
-        client = group_call.client
+        client =  vc.client
         raw_file = os.path.join(client.workdir, DEFAULT_DOWNLOAD_DIR, f"{song[1]}.raw")
         # if os.path.exists(raw_file):
         # os.remove(raw_file)
@@ -161,10 +154,9 @@ class MixPlayer:
             os.remove(original_file)
 
     async def start_radio(self, m):
-        group_call = self.group_call
-        if group_call.is_connected:
+        if vc.is_connected:
             playlist.clear()
-        process = FFMPEG_PROCESSES.get(m.chat.id)
+        process = FFMPEG_PROCESSES.get(m)
         if process:
             try:
                 process.send_signal(SIGINT)
@@ -172,7 +164,7 @@ class MixPlayer:
                 process.kill()
             except Exception as e:
                 print(e)
-            FFMPEG_PROCESSES[m.chat.id] = ""
+            FFMPEG_PROCESSES[m] = ""
         station_stream_url = STREAM_URL
         try:
             RADIO.remove(0)
@@ -182,12 +174,12 @@ class MixPlayer:
             RADIO.add(1)
         except:
             pass
-        if os.path.exists(f"radio-{m.chat.id}.raw"):
-            os.remove(f"radio-{m.chat.id}.raw")
+        if os.path.exists(f"radio-{m}.raw"):
+            os.remove(f"radio-{m}.raw")
         # credits: https://t.me/c/1480232458/6825
-        os.mkfifo(f"radio-{m.chat.id}.raw")
-        group_call.input_filename = f"radio-{m.chat.id}.raw"
-        if not group_call.is_connected:
+        os.mkfifo(f"radio-{m}.raw")
+        vc.input_filename = f"radio-{m}.raw"
+        if not vc.is_connected:
             await self.start_call(m)
         ffmpeg_log = open("ffmpeg.log", "w+")
         command = [
@@ -203,7 +195,7 @@ class MixPlayer:
             "48000",
             "-acodec",
             "pcm_s16le",
-            group_call.input_filename,
+            vc.input_filename,
         ]
 
         process = await asyncio.create_subprocess_exec(
@@ -212,11 +204,11 @@ class MixPlayer:
             stderr=asyncio.subprocess.STDOUT,
         )
 
-        FFMPEG_PROCESSES[m.chat.id] = process
+        FFMPEG_PROCESSES[m] = process
         await self.edit_title(m)
         await sleep(2)
         while True:
-            if group_call.is_connected:
+            if vc.is_connected:
                 print("Succesfully Joined VC !")
                 break
             else:
@@ -226,10 +218,10 @@ class MixPlayer:
                 continue
 
     async def stop_radio(self, m):
-        group_call = self.group_call
-        if group_call:
+        
+        if vc:
             playlist.clear()
-            group_call.input_filename = ""
+            vc.input_filename = ""
             try:
                 RADIO.remove(1)
             except:
@@ -238,7 +230,7 @@ class MixPlayer:
                 RADIO.add(0)
             except:
                 pass
-        process = FFMPEG_PROCESSES.get(m.chat.id)
+        process = FFMPEG_PROCESSES.get(m)
         if process:
             try:
                 process.send_signal(SIGINT)
@@ -246,25 +238,24 @@ class MixPlayer:
                 process.kill()
             except Exception as e:
                 print(e)
-            FFMPEG_PROCESSES[m.chat.id] = ""
+            FFMPEG_PROCESSES[m] = ""
 
     async def start_call(self, m):
-        group_call = self.group_call
         try:
-            await group_call.start(m.chat.id)
+            await vc.start(m)
         except FloodWait as e:
             await sleep(e.x)
-            if not group_call.is_connected:
-                await group_call.start(m.chat.id)
+            if not vc.is_connected:
+                await vc.start(m)
         except GroupCallNotFoundError:
             try:
                 await nlx.invoke(
                     CreateGroupCall(
-                        peer=(await nlx.resolve_peer(m.chat.id)),
+                        peer=(await nlx.resolve_peer(m)),
                         random_id=randint(10000, 999999999),
                     )
                 )
-                await group_call.start(m.chat.id)
+                await vc.start(m)
             except Exception as e:
                 print(e)
         except Exception as e:
@@ -276,11 +267,10 @@ class MixPlayer:
         else:
             pl = playlist[0]
             title = pl[1]
-        c = self.group_call.client
-        if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
+        if not (group_call := (await get_group_call(nlx, m, err_msg=", Kesalahan..."))):
             return
         try:
-            await c.send(EditGroupCallTitle(call=group_call, title=title))
+            await nlx.invoke(EditGroupCallTitle(call=group_call, title=title))
         except Exception as e:
             print("Error Occured On Changing VC Title:", e)
 
