@@ -73,7 +73,11 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
     await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
     return False
 
-vc = GroupCallFactory(nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM).get_file_group_call()
+
+vc = GroupCallFactory(
+    nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+).get_file_group_call()
+
 
 class MixPlayer:
     def __init__(self, chat=None):
