@@ -60,7 +60,6 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
     return False
 
 
-vc = None
 CLIENT_TYPE = GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
 OUTGOING_AUDIO_BITRATE_KBIT = 128
 PLAYOUT_FILE = "input.raw"
