@@ -150,7 +150,7 @@ async def _(c: nlx, m):
                 return
         else:
             return
-        ydl_opts = {"geo-bypass": True, "nocheckcertificate": True}
+        ydl_opts = {"geo-bypass": True, "nocheckcertificate": True, "verbose": True}
         ydl = YoutubeDL(ydl_opts)
         try:
             info = ydl.extract_info(url, False)
