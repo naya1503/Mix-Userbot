@@ -7,7 +7,6 @@
 """
 ################################################################
 import asyncio
-import sys
 
 from pyrogram.enums import ChatType
 from pyrogram.errors import *
@@ -33,7 +32,7 @@ async def dasar_laknat():
                 except:
                     continue
     LOGGER.info("Finished Read Message...\n\nTry to Command bash start!!")
-    #sys.exit(1)
+    # sys.exit(1)
 
 
 async def autor_gc():
