@@ -114,7 +114,7 @@ class MixPlayer:
             # credits: https://t.me/c/1480232458/6825
             # os.mkfifo(raw_file)
             if song[3] == "telegram":
-                original_file = await bot.download_media(f"{song[2]}")
+                original_file = await nlx.download_media(f"{song[2]}")
             elif song[3] == "youtube":
                 url = song[2]
                 try:
@@ -195,8 +195,7 @@ class MixPlayer:
         )
 
         FFMPEG_PROCESSES[m.chat.id] = process
-        if RADIO_TITLE:
-            await self.edit_title()
+        await self.edit_title(m)
         await sleep(2)
         while True:
             if group_call.is_connected:
