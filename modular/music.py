@@ -1,14 +1,7 @@
 import asyncio
 import os
-import asyncio
 from contextlib import suppress
-from random import randint
 
-from pyrogram import enums
-from pyrogram.errors import *
-from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
-                                          EditGroupCallTitle)
-from pytgcalls.exceptions import GroupCallNotFoundError
 from pyrogram.errors import *
 
 from Mix import *
