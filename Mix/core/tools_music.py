@@ -119,7 +119,7 @@ class MixPlayer:
         return message
 
     async def download_audio(self, song):
-        client =  vc.client
+        client = vc.client
         raw_file = os.path.join(client.workdir, DEFAULT_DOWNLOAD_DIR, f"{song[1]}.raw")
         # if os.path.exists(raw_file):
         # os.remove(raw_file)
@@ -218,7 +218,7 @@ class MixPlayer:
                 continue
 
     async def stop_radio(self, m):
-        
+
         if vc:
             playlist.clear()
             vc.input_filename = ""
