@@ -66,17 +66,8 @@ OUTGOING_AUDIO_BITRATE_KBIT = 128
 PLAYOUT_FILE = "input.raw"
 
 
-def init_client(func):
-    async def wrapper(client, message):
-        global vc
-        if not vc:
-            vc = GroupCallFactory(
-                nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
-            ).get_group_call(PLAYOUT_FILE)
-            vc.enable_logs_to_console = False
-        return await func(client, message)
-
-    return wrapper
+vc = GroupCallFactory(nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT).get_group_call()
+vc.enable_logs_to_console = False
 
 
 ydl_opts = {
