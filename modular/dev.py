@@ -383,7 +383,7 @@ async def _(c: nlx, m):
     await c.get_chat(m.chat.id)
     member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
     gue = m.from_user.id
-    if gue.status == "OWNER" or gue.status == "ADMINISTRATOR":
+    if gue in (ChatMemberStatus.OWNER and ChatMemberStatus.ADMINISTRATOR):
         # is_channel = m.chat.type == "channel"
 
         if m.from_user.id not in DEVS:
