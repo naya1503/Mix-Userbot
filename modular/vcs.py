@@ -1,23 +1,19 @@
 import asyncio
 from contextlib import suppress
 from random import randint
-from typing import Optional
 
 from pyrogram import enums
 from pyrogram.errors import *
-from pyrogram.raw.functions.channels import GetFullChannel
-from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
                                           EditGroupCallTitle)
-from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pytgcalls.exceptions import GroupCallNotFoundError
+
 from Mix import *
 from Mix.core.tools_music import *
 
 __modles__ = "Voicechat"
 
 __help__ = get_cgr("help_vcs")
-
 
 
 @ky.ubot("startvc", sudo=True)
