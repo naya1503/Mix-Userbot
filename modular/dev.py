@@ -296,8 +296,8 @@ from pyrogram.types import *
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    chat = await c.get_chat(chat_id=m.chat.id)
-    gue = await chat.get_members(c.me.id)
+    chat = await c.get_chat(m.chat.id)
+    member = await c.get_chat_member(chat, m.from_user.id)
     if gue.privileges:
         if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
@@ -380,8 +380,8 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
 
-    chat = await c.get_chat(chat_id=m.chat.id)
-    gue = await chat.get_members(c.me.id)
+    chat = await c.get_chat(m.chat.id)
+    member = await c.get_chat_member(chat, m.from_user.id)
 
     if gue.privileges:
         if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
