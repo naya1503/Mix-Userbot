@@ -297,9 +297,9 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     chat = await c.get_chat(m.chat.id)
-    member = await chat.get_chat_member(chat, m.from_user.id)
-    if gue.privileges:
-        if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
+    member = await c.get_chat_member(chat, m.from_user.id)
+    if member.privileges:
+        if member.privileges.can_manage_chat and member.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
             if m.from_user.id not in DEVS:
                 await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
