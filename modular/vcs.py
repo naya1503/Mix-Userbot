@@ -10,8 +10,9 @@ from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
                                           EditGroupCallTitle)
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
-from Mix.core.tools_music import *
+
 from Mix import *
+from Mix.core.tools_music import *
 
 __modles__ = "Voicechat"
 
@@ -126,7 +127,7 @@ async def _(c: nlx, m):
     em.initialize()
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
-    
+
     with suppress(ValueError):
         chat_id = int(chat_id)
     yosh = MP(chat_id)

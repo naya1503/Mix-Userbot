@@ -5,7 +5,7 @@ import os
 from time import time
 
 from pyrogram.errors import *
-from pyrogram.raw.functions.phone import (CreateGroupCall, EditGroupCallTitle)
+from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 
