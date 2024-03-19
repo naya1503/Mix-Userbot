@@ -54,7 +54,7 @@ ydl_opts = {
 ydl = YoutubeDL(ydl_opts)
 
 
-class MixPlayer(object):
+class MixPlayer:
     def __init__(self):
         self.group_call = GroupCallFactory(
             nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
