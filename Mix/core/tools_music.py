@@ -280,7 +280,7 @@ class MixPlayer:
         if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
             return
         try:
-            await self.invoke(EditGroupCallTitle(call=group_call, title=title))
+            await c.send(EditGroupCallTitle(call=group_call, title=title))
         except Exception as e:
             print("Error Occured On Changing VC Title:", e)
 
