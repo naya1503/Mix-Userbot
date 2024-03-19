@@ -13,8 +13,8 @@ from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
+from yt_dlp import YoutubeDL
 from youtubesearchpython import VideosSearch
-
 from Mix import *
 
 ACTIVE_CALLS, VC_QUEUE = [], {}
@@ -258,7 +258,7 @@ async def get_stream_link(ytlink):
                 k = x["url"]
     return k
     """
-    stream = await bash(f'yt-dlp -g -f "best[height<=?720][width<=?1280]" {ytlink}')
+    stream = await nlx.bash(f'yt-dlp -g -f "best[height<=?720][width<=?1280]" {ytlink}')
     return stream[0]
 
 
