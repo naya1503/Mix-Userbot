@@ -168,7 +168,7 @@ class MixPlayer:
         os.mkfifo(f"radio-{m.chat.id}.raw")
         group_call.input_filename = f"radio-{m.chat.id}.raw"
         if not group_call.is_connected:
-            await self.start_call()
+            await self.start_call(m)
         ffmpeg_log = open("ffmpeg.log", "w+")
         command = [
             "ffmpeg",
@@ -201,7 +201,7 @@ class MixPlayer:
                 break
             else:
                 print("Connecting, Please Wait ...")
-                await self.start_call()
+                await self.start_call(m)
                 await sleep(10)
                 continue
 
