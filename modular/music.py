@@ -16,12 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
-import os
 import re
-import sys
-import ffmpeg
-import asyncio
-import subprocess
 from asyncio import sleep
 
 
@@ -35,23 +30,27 @@ async def play(client: nlx, m):
     msg = await m.reply_text("🔄 **Processing ...**")
     chat_id = m.chat.id
     media = m.reply_to_message
-    if not media and not ' ' in m.text:
-        await msg.edit("❗ __Send Me An Live Radio Link / YouTube Video Link / Reply To An Audio To Start Audio Streaming!__")
+    if not media and not " " in m.text:
+        await msg.edit(
+            "❗ __Send Me An Live Radio Link / YouTube Video Link / Reply To An Audio To Start Audio Streaming!__"
+        )
 
-    elif ' ' in m.text:
-        text = m.text.split(' ', 1)
+    elif " " in m.text:
+        text = m.text.split(" ", 1)
         query = text[1]
-        if not 'http' in query:
-            return await msg.edit("❗ __Send Me An Live Stream Link / YouTube Video Link / Reply To An Video To Start Video Streaming!__")
+        if not "http" in query:
+            return await msg.edit(
+                "❗ __Send Me An Live Stream Link / YouTube Video Link / Reply To An Video To Start Video Streaming!__"
+            )
         regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
         match = re.match(regex, query)
         if match:
             await msg.edit("🔄 **Starting YouTube Audio Stream ...**")
             try:
                 meta = ydl.extract_info(query, download=False)
-                formats = meta.get('formats', [meta])
+                formats = meta.get("formats", [meta])
                 for f in formats:
-                    ytstreamlink = f['url']
+                    ytstreamlink = f["url"]
                 link = ytstreamlink
             except Exception as e:
                 return await msg.edit(f"❌ **YouTube Download Error !** \n\n`{e}`")
@@ -79,7 +78,9 @@ async def play(client: nlx, m):
             await group_call.start_audio(link, repeat=False)
             AUDIO_CALL[chat_id] = group_call
             await msg.delete()
-            await m.reply_text(f"▶️ **Started [Audio Streaming]({query}) In {m.chat.title} !**")
+            await m.reply_text(
+                f"▶️ **Started [Audio Streaming]({query}) In {m.chat.title} !**"
+            )
             """
                reply_markup=InlineKeyboardMarkup(
                [
@@ -126,7 +127,9 @@ async def play(client: nlx, m):
             await group_call.start_audio(audio, repeat=False)
             AUDIO_CALL[chat_id] = group_call
             await msg.delete()
-            await m.reply_text(f"▶️ **Started [Audio Streaming](@NATSUKISUPPORT_OFFICIAL) In {m.chat.title} !**")
+            await m.reply_text(
+                f"▶️ **Started [Audio Streaming](@NATSUKISUPPORT_OFFICIAL) In {m.chat.title} !**"
+            )
             """
                reply_markup=InlineKeyboardMarkup(
                [
@@ -152,8 +155,9 @@ async def play(client: nlx, m):
             return await group_call.stop()
 
     else:
-        await msg.edit(
-            "💁🏻‍♂️ Do you want to search for a YouTube song?")
+        await msg.edit("💁🏻‍♂️ Do you want to search for a YouTube song?")
+
+
 """
             reply_markup=InlineKeyboardMarkup(
             [
