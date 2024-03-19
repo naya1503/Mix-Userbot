@@ -16,19 +16,10 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
-import os
-import re
-import ffmpeg
-import asyncio
-import subprocess
+
+
 from config import *
-from signal import SIGINT
-from yt_dlp import YoutubeDL
-from youtube_search import YoutubeSearch
-from pyrogram import Client, filters, emoji
-from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
 
-
-msg={}
-playlist=[]
+msg = {}
+playlist = []
 durasi_musik
