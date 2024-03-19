@@ -64,9 +64,12 @@ async def _(c: nlx, m):
             song = None
         if isinstance(link, list):
             for lin in link[1:]:
-                add_to_queue(chat, song, lin, lin, None, from_user, duration)
-            link = song_name = link[0]
-        add_to_queue(chat, song, song_name, link, thumb, from_user, duration)
+                add_to_queue(chat, song, song_name, lin, thumb, from_user, duration)
+            link = link[0]
+        elif isinstance(link, str):
+            add_to_queue(chat, song, song_name, link, thumb, from_user, duration)
+        else:
+            return await xx.edit("Format tautan tidak valid.")
         return await xx.edit(
             f"✚ Ditambahkan 🎵 <a href={link}>{song_name}</a> antrian ke #{list(VC_QUEUE[chat].keys())[-1]}."
         )
