@@ -371,7 +371,6 @@ async def _(c: nlx, m):
         )
 
 
-from pyrogram.enums import ChatMembersFilter
 from pyrogram.errors import FloodWait
 
 
