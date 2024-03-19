@@ -1,10 +1,8 @@
 import asyncio
-import os
 from contextlib import suppress
 from random import randint
 from typing import Optional
 
-import ffmpeg
 from pyrogram import enums
 from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
