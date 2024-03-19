@@ -133,8 +133,10 @@ class MixPlayer:
                     return
             else:
                 original_file = wget.download(song[2])
-            sound = AudioSegment.from_file(original_file)
-            sound.export(raw_file, format="16le", codec="pcm_s16le")
+            if original_file.endswith(".wav"):
+                os.rename(original_file, raw_file)
+            else:
+                ffmpeg.input(original_file).output(raw_file, format="wav").run(overwrite_output=True)
             os.remove(original_file)
 
     async def start_radio(self, m):
