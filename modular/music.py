@@ -107,9 +107,7 @@ async def _(c: nlx, m):
             if not group_call.is_connected:
                 await mixmus.start_call(m.chat.id)
             file = playlist[0][1]
-            group_call.input_filename = os.path.join(
-                _.workdir, DEFAULT_DOWNLOAD_DIR, f"{file}.raw"
-            )
+            group_call.input_filename = os.path.join(c.workdir, DEFAULT_DOWNLOAD_DIR, f"{file}.raw")
             await m_status.delete()
             print(f"- START PLAYING: {playlist[0][1]}")
         if not playlist:
