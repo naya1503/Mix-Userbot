@@ -17,18 +17,18 @@ from team.nandev.database import udB
 from Mix import nlx
 
 
-async def dasar_laknat():
+async def dasar_laknat(client):
     LOGGER.info("Check whether this account is a burden or not...")
-    async for bb in nlx.get_dialogs(limit=500):
+    async for bb in client.get_dialogs(limit=500):
         if bb.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
             try:
-                await nlx.read_chat_history(bb.chat.id, max_id=0)
+                await client.read_chat_history(bb.chat.id, max_id=0)
             except (ChannelPrivate, PeerIdInvalid, UserBannedInChannel):
                 continue
             except FloodWait as e:
                 await asyncio.sleep(e.value)
                 try:
-                    await nlx.read_chat_history(bb.chat.id, max_id=0)
+                    await client.read_chat_history(bb.chat.id, max_id=0)
                 except:
                     continue
     LOGGER.info("Finished Read Message...\n\nTry to Command bash start!!")
