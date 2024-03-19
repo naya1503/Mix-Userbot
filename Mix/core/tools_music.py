@@ -65,7 +65,9 @@ OUTGOING_AUDIO_BITRATE_KBIT = 128
 PLAYOUT_FILE = "input.raw"
 
 
-group_call = GroupCallFactory(nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT).get_group_call()
+group_call = GroupCallFactory(
+    nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
+).get_group_call()
 group_call.enable_logs_to_console = False
 
 
