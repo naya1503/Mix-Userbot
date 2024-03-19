@@ -26,7 +26,6 @@ from signal import SIGINT
 
 import wget
 from pyrogram import emoji
-from pyrogram.errors import FloodWait
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
 from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
 from pyrogram.raw.types import InputGroupCall
@@ -34,7 +33,14 @@ from pyrogram.utils import MAX_CHANNEL_ID
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 from yt_dlp import YoutubeDL
-
+from typing import Optional
+from pyrogram import enums
+from pyrogram.errors import *
+from pyrogram.raw.functions.channels import GetFullChannel
+from pyrogram.raw.functions.messages import GetFullChat
+from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
+                                          EditGroupCallTitle)
+from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from Mix import *
 
 CALL_STATUS = {}
@@ -52,6 +58,24 @@ ydl_opts = {
     "outtmpl": "downloads/%(id)s.%(ext)s",
 }
 ydl = YoutubeDL(ydl_opts)
+
+async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCall]:
+
+    em = Emojik()
+
+    em.initialize()
+    chat_peer = await c.resolve_peer(m.chat.id)
+    if isinstance(chat_peer, (InputPeerChannel, InputPeerChat)):
+        if isinstance(chat_peer, InputPeerChannel):
+            full_chat = (await c.invoke(GetFullChannel(channel=chat_peer))).full_chat
+        elif isinstance(chat_peer, InputPeerChat):
+            full_chat = (
+                await c.invoke(GetFullChat(chat_id=chat_peer.chat_id))
+            ).full_chat
+        if full_chat is not None:
+            return full_chat.call
+    await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
+    return False
 
 
 class MixPlayer:
@@ -256,13 +280,11 @@ class MixPlayer:
         else:
             pl = playlist[0]
             title = pl[1]
-        call = InputGroupCall(
-            id=self.group_call.id,
-            access_hash=self.group_call.access_hash,
-        )
-        edit = EditGroupCallTitle(call=call, title=title)
+        c = self.group_call.client
+        if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
+        return
         try:
-            await self.group_call.client.send(edit)
+            await self.send(EditGroupCallTitle(call=group_call, title=title))
         except Exception as e:
             print("Error Occured On Changing VC Title:", e)
 
