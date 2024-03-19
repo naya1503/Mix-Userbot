@@ -4,8 +4,9 @@ import os
 from pyrogram.errors import *
 
 from Mix import *
-from Mix.core.tools_music import *
 from Mix.core.tools_media import *
+from Mix.core.tools_music import *
+
 
 @ky.ubot("play", sudo=True)
 async def _(c: nlx, m):
@@ -57,7 +58,7 @@ async def _(c: nlx, m):
         ):
             song = None
             add_to_queue(chat, song, song_name, link, thumb, from_user, duration)
-            
+
         return await xx.edit(
             f"✚ Ditambahkan 🎵 <a href={link}>{song_name}</a> antrian ke #{list(VC_QUEUE[chat].keys())[-1]}."
         )
