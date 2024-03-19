@@ -133,9 +133,6 @@ def changeImageSize(maxWidth: int, maxHeight: int, image):
     return newImage
 
 
-async def send(m, *args, **kwargs):
-    await nlx.send_message(m.chat.id, *args, **kwargs)
-
 
 # Generate cover for youtube
 
@@ -181,10 +178,6 @@ async def generate_cover(msg, requested_by, title, artist, duration, thumbnail):
     img.save(final)
     os.remove(temp)
     os.remove(background)
-    try:
-        await change_vc_title(msg, title)
-    except Exception:
-        await send(text="[ERROR]: FAILED TO EDIT VC TITLE, MAKE ME ADMIN.")
     return final
 
 
