@@ -60,22 +60,7 @@ async def _(_, message):
             if len(message.command) < 2 and not message.reply_to_message:
                 return await message.reply_text(usage)
             if "call" not in vcmus:
-                try:
-                    await vc.start(message.chat.id)
-                except Exception:
-                    peer = await nlx.resolve_peer(CHAT_ID)
-                    startVC = CreateGroupCall(
-                        peer=InputPeerChannel(
-                            channel_id=peer.channel_id, access_hash=peer.access_hash
-                        ),
-                        random_id=nlx.rnd_id() // 9000000000,
-                    )
-                    try:
-                        await nlx.send(startVC)
-                        await vc.start(message.chat.id)
-                    except ChatAdminRequired:
-                        del vcmus["call"]
-                        await message.reply("Bukan admin!!")
+                await vc.start(message.chat.id)
             if message.reply_to_message:
                 if message.reply_to_message.audio:
                     service = "telegram"
