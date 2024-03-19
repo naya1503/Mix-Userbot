@@ -12,7 +12,8 @@ from Mix import *
 from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
 
-lool = asyncio.get_event_loop()
+loop = asyncio.get_event_loop_policy()
+event_loop = loop.get_event_loop()
 
 
 async def start_user():
@@ -76,8 +77,7 @@ async def main():
 
 if __name__ == "__main__":
     install()
-    # loop = asyncio.get_event_loop_policy()
-    # event_loop = loop.get_event_loop()
-    # asyncio.set_event_loop(event_loop)
-    # event_loop.run_until_complete(starter())
-    lool.run_until_complete(main())
+    asyncio.set_event_loop(event_loop)
+    event_loop.run_until_complete(starter())
+    #loop = asyncio.get_event_loop()
+    #loop.run_until_complete(starter())
