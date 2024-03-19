@@ -9,16 +9,42 @@ from pyrogram.errors import *
 from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
+import asyncio
+from contextlib import suppress
+from random import randint
+from typing import Optional
 
+from pyrogram import enums
+from pyrogram.errors import *
+from pyrogram.raw.functions.channels import GetFullChannel
+from pyrogram.raw.functions.messages import GetFullChat
+from pyrogram.raw.functions.phone import (CreateGroupCall, DiscardGroupCall,
+                                          EditGroupCallTitle)
+from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from Mix import *
-
-from .vcs import get_group_call
 
 asstUserName = bot.me.username
 ACTIVE_CALLS, VC_QUEUE = [], {}
 MSGID_CACHE, VIDEO_ON = {}, {}
 CLIENTS = {}
 from .waktu import time_formatter
+
+
+async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCall]:
+    em = Emojik()
+    em.initialize()
+    chat_peer = await c.resolve_peer(m.chat.id)
+    if isinstance(chat_peer, (InputPeerChannel, InputPeerChat)):
+        if isinstance(chat_peer, InputPeerChannel):
+            full_chat = (await c.invoke(GetFullChannel(channel=chat_peer))).full_chat
+        elif isinstance(chat_peer, InputPeerChat):
+            full_chat = (
+                await c.invoke(GetFullChat(chat_id=chat_peer.chat_id))
+            ).full_chat
+        if full_chat is not None:
+            return full_chat.call
+    await m.reply_text(cgr("vc_1").format(em.gagal, err_msg))
+    return False
 
 
 class MP:
