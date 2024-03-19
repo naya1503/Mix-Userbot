@@ -21,7 +21,7 @@ import re
 import ffmpeg
 import asyncio
 import subprocess
-from config import Config
+from config import *
 from signal import SIGINT
 from yt_dlp import YoutubeDL
 from youtube_search import YoutubeSearch
