@@ -1,8 +1,8 @@
 import asyncio
-import os
 from contextlib import suppress
 from random import randint
 from typing import Optional
+import os
 
 import ffmpeg
 from pyrogram import enums
@@ -35,7 +35,8 @@ def init_client(func):
             vc = GroupCallFactory(
                 nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
             ).get_file_group_call(PLAYOUT_FILE)
-            vc.enable_logs_to_console = False
+            group_call = vc.get_group_call()
+            vc.enable_logs_to_console = True
         return await func(client, message)
 
     return wrapper
