@@ -44,3 +44,4 @@ pyrogram
 youtube_dl
 python-arq
 git+https://github.com/asmsafone/downloader
+pydub
