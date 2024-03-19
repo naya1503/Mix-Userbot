@@ -282,7 +282,7 @@ class MixPlayer:
             title = pl[1]
         c = self.group_call.client
         if not (group_call := (await get_group_call(c, m, err_msg=", Kesalahan..."))):
-        return
+            return
         try:
             await self.send(EditGroupCallTitle(call=group_call, title=title))
         except Exception as e:
