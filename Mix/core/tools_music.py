@@ -253,7 +253,7 @@ class MusicPlayer(object):
 
     async def edit_title(self, m):
         if not playlist:
-            title = m.text.split(None, 1)[1]
+            title = "🎧 Mix-Music 🎶"
         else:       
             pl = playlist[0]
             title = pl[1]
@@ -268,7 +268,7 @@ class MusicPlayer(object):
 
     async def delete(self, message):
         if message.chat.type == "supergroup":
-            await sleep(DELAY)
+            await sleep(5)
             try:
                 await message.delete()
             except:
