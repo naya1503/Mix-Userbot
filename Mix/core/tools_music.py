@@ -35,7 +35,7 @@ class MP:
 
     async def make_vc_active(self):
         if not (group_call := (await get_group_call(nlx, self._current_chat, err_msg=", Kesalahan..."))):
-        return
+            return
         try:
             await nlx.invoke(
             CreateGroupCall(
