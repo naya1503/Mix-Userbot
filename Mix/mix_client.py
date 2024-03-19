@@ -10,6 +10,7 @@ import asyncio
 import importlib
 import re
 import subprocess
+
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -126,9 +127,7 @@ class Userbot(Client):
     async def bash(self, cmd):
         try:
             process = await asyncio.create_subprocess_shell(
-                cmd,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE
+                cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
             )
             stdout, stderr = await process.communicate()
             err = stderr.decode().strip()
@@ -136,10 +135,7 @@ class Userbot(Client):
             return out, err
         except NotImplementedError:
             process = subprocess.Popen(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                shell=True
+                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
             )
             stdout, stderr = process.communicate()
             err = stderr.decode().strip()
