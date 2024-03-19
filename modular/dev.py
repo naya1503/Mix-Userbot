@@ -382,8 +382,8 @@ async def _(c: nlx, m):
     proses = await m.reply(f"{em.proses} sabar tuan ..")
     await c.get_chat(m.chat.id)
     member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-
-    if member.status == "OWNER" or member.status == "ADMINISTRATOR":
+    gue = m.from_me.id
+    if gue.status == "OWNER" or gue.status == "ADMINISTRATOR":
         # is_channel = m.chat.type == "channel"
 
         if m.from_user.id not in DEVS:
