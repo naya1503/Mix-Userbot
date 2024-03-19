@@ -380,7 +380,7 @@ async def _(c: nlx, m):
     em.initialize()
 
     chat = await c.get_chat(m.chat.id)
-    member = await c.get_chat_member(m.from_user.id)
+    member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
 
     if member.status == "creator" or member.status == "administrator":
         is_channel = m.chat.type == "channel"
@@ -390,7 +390,7 @@ async def _(c: nlx, m):
             return
 
         if not is_channel:
-            req_user_member = await chat.get_chat_member(m.from_user.id)
+            req_user_member = await chat.get_chat_member(user_id=m.from_user.id)
             if req_user_member.status not in ["creator", "administrator"]:
                 await m.reply(
                     f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
@@ -399,10 +399,10 @@ async def _(c: nlx, m):
 
         try:
             unban_count = 0
-            banned_members = await c.get_chat_members(m.chat.id, filter="banned")
+            banned_members = await c.get_chat_members(chat_id=m.chat.id, filter="banned")
             for member in banned_members:
                 try:
-                    await c.unban_chat_member(m.chat.id, member.user.id)
+                    await c.unban_chat_member(chat_id=m.chat.id, user_id=member.user.id)
                     unban_count += 1
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
