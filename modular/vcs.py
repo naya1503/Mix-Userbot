@@ -35,7 +35,7 @@ def init_client(func):
             vc = GroupCallFactory(
                 nlx, CLIENT_TYPE, OUTGOING_AUDIO_BITRATE_KBIT
             ).get_group_call()
-            vc.enable_logs_to_console = True
+            vc.enable_logs_to_console = False
         return await func(client, message)
 
     return wrapper
