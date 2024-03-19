@@ -16,24 +16,42 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
+import os
+import re
+import sys
+import time
+import ffmpeg
+import asyncio
+import subprocess
 from asyncio import sleep
+from youtube_dl import YoutubeDL
+from pytgcalls import GroupCallFactory
+from youtubesearchpython import VideosSearch
+
+import os
+import subprocess
+from asyncio import sleep
+from os import path
+from random import randint
+from signal import SIGINT
 from typing import Optional
 
+import wget
+from pyrogram import emoji
 from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
+from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
+from pyrogram.utils import MAX_CHANNEL_ID
 from pytgcalls import GroupCallFactory
-from youtube_dl import YoutubeDL
+from pytgcalls.exceptions import GroupCallNotFoundError
 from yt_dlp import YoutubeDL
 
 from Mix import *
 
-CALL_STATUS = {}
-FFMPEG_PROCESSES = {}
-RADIO = {6}
-msg = {}
-playlist = []
+AUDIO_CALL = {}
+VIDEO_CALL = {}
 
 
 ydl_opts = {
@@ -68,22 +86,20 @@ group_call = GroupCallFactory(
 ).get_file_group_call()
 
 ydl_opts = {
-    "quiet": True,
-    "geo_bypass": True,
-    "nocheckcertificate": True,
+        "quiet": True,
+        "geo_bypass": True,
+        "nocheckcertificate": True,
 }
 ydl = YoutubeDL(ydl_opts)
 
 
 # pytgcalls handlers
 
-
 @group_call.on_audio_playout_ended
 async def _(_, __):
     await sleep(3)
     await group_call.stop()
     print(f"[INFO] - AUDIO_CALL ENDED !")
-
 
 @group_call.on_video_playout_ended
 async def _(_, __):
