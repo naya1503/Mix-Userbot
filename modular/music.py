@@ -20,22 +20,8 @@ async def _(c: nlx, m):
     reply, song = None, None
     if m.reply_to_message:
         reply = m.reply_to_message
-    if len(m.text.split()) > 1:
-        input = m.text.split(maxsplit=1)[1]
-        tiny_input = input.split()[0]
-        if tiny_input[0] in ["@", "-"]:
-            try:
-                chat = await c.resolve_peer(tiny_input)
-            except Exception as er:
-                return await xx.edit(str(er))
-            try:
-                song = input.split(maxsplit=1)[1]
-            except IndexError:
-                pass
-            except Exception as e:
-                return await xx.edit(str(e))
-        else:
-            song = input
+    else:
+         song = m.text.split(None, 1)[1]
     if not (reply or song):
         return await xx.edit("Harap tentukan nama lagu atau balas ke file audio !")
     await xx.edit("mencoba-coba")
