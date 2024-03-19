@@ -80,21 +80,21 @@ async def _(c: nlx, m):
 
 @ky.ubot("joinvc", sudo=True)
 @ky.devs("Jvcs")
+@init_client
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
+
     ky = await m.reply(cgr("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
-
     with suppress(ValueError):
         chat_id = int(chat_id)
-    yosh = MP(chat_id)
     if chat_id:
         try:
-            await yosh.group_call.join(chat_id)
+            await vc.start(chat_id)
             await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
             await asyncio.sleep(2)
-            await yosh.group_call.set_is_mute(True)
+            await vc.set_is_mute(True)
             return
         except GroupCallNotFoundError as e:
             return await ky.edit(cgr("err").format(em.gagal, e))
@@ -102,6 +102,7 @@ async def _(c: nlx, m):
 
 @ky.ubot("leavevc", sudo=True)
 @ky.devs("Lvcs")
+@init_client
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -109,15 +110,10 @@ async def _(c: nlx, m):
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     with suppress(ValueError):
         chat_id = int(chat_id)
-    jing = MP(chat_id)
     if chat_id:
         try:
-            await jing.group_call.leave()
+            await vc.stop()
             await ky.edit(cgr("vc_9").format(em.sukses, chat_id))
-            if CLIENTS.get(chat_id):
-                del CLIENTS[chat_id]
-            if VIDEO_ON.get(chat_id):
-                del VIDEO_ON[chat_id]
             return
         except Exception as e:
             await ky.edit(cgr("err").format(em.gagal, e))
