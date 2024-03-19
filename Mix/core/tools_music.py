@@ -177,11 +177,11 @@ class MixPlayer:
             RADIO.add(1)
         except:
             pass
-        if os.path.exists(f"radio-{m.chat.id}.raw"):
-            os.remove(f"radio-{m.chat.id}.raw")
+        if os.path.exists(f"radio-{m.id}.raw"):
+            os.remove(f"radio-{m.id}.raw")
         # credits: https://t.me/c/1480232458/6825
-        os.mkfifo(f"radio-{m.chat.id}.raw")
-        vc.input_filename = f"radio-{m.chat.id}.raw"
+        os.mkfifo(f"radio-{m.id}.raw")
+        vc.input_filename = f"radio-{m.id}.raw"
         if not vc.is_connected:
             await self.start_call(m)
         ffmpeg_log = open("ffmpeg.log", "w+")
