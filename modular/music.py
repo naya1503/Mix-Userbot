@@ -105,7 +105,7 @@ async def _(c: nlx, m):
                         print(e)
                     FFMPEG_PROCESSES[m.chat.id] = ""
             if not group_call.is_connected:
-                await mixmus.start_call()
+                await mixmus.start_call(m.chat.id)
             file = playlist[0][1]
             group_call.input_filename = os.path.join(
                 _.workdir, DEFAULT_DOWNLOAD_DIR, f"{file}.raw"
