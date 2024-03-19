@@ -13,7 +13,8 @@ from pyrogram.raw.functions.phone import CreateGroupCall, EditGroupCallTitle
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
-
+from yt_dlp import YoutubeDL
+from youtubesearchpython import VideosSearch
 from Mix import *
 
 ACTIVE_CALLS, VC_QUEUE = [], {}
