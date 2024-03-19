@@ -1,5 +1,4 @@
 import asyncio
-import os
 from contextlib import suppress
 from random import randint
 from typing import Optional

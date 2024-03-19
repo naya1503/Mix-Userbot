@@ -14,7 +14,6 @@ PLAY_LOCK = asyncio.Lock()
 from Mix import *
 from Mix.core.tools_music import get_default_service, play_song, telegram
 
-
 running = False
 
 
