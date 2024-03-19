@@ -384,36 +384,42 @@ async def _(c: nlx, m):
     await c.get_chat(m.chat.id)
 
     member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
+    async for member in chat.get_members():
+        if member.user.id == c.me.id:
+            continue
+        elif (
+                member.status == ChatMemberStatus.ADMINISTRATOR
+                or member.status == ChatMemberStatus.OWNER
+                ):
+            continue
+            
+            if m.from_user.id not in DEVS:
+                await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
+                return
 
-    if member.status in (ChatMemberStatus.CREATOR, ChatMemberStatus.ADMINISTRATOR):
+            try:
+                unban_count = 0
+                banned_members = await c.get_chat_members(
+                    chat_id=m.chat.id, filter="BANNED"
+                )
 
-        if m.from_user.id not in DEVS:
-            await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
-            return
+                for member in banned_members:
+                    try:
+                        await c.unban_chat_member(chat_id=m.chat.id, user_id=member.user.id)
+                        unban_count += 1
+                    except FloodWait as e:
+                        await asyncio.sleep(e.x)
+                        await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
 
-        try:
-            unban_count = 0
-            banned_members = await c.get_chat_members(
-                chat_id=m.chat.id, filter="BANNED"
-            )
+                await m.reply(
+                    f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
+                )
 
-            for member in banned_members:
-                try:
-                    await c.unban_chat_member(chat_id=m.chat.id, user_id=member.user.id)
-                    unban_count += 1
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
-
+            except Exception as e:
+                await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
+                await proses.delete()
+        else:
             await m.reply(
-                f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
+                f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
             )
-
-        except Exception as e:
-            await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
             await proses.delete()
-    else:
-        await m.reply(
-            f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
-        )
-        await proses.delete()
