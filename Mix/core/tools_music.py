@@ -293,8 +293,8 @@ async def on_network_changed(call, is_connected):
 
 
 @mixmus.group_call.on_playout_ended
-async def playout_ended_handler(_, __):
+async def playout_ended_handler(_, m):
     if not playlist:
-        await mixmus.start_radio()
+        await mixmus.start_radio(m)
     else:
-        await mixmus.skip_current_playing()
+        await mixmus.skip_current_playing(m)
