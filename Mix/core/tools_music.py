@@ -23,7 +23,7 @@ from asyncio import sleep
 from os import path
 from random import randint
 from signal import SIGINT
-
+from pydub import AudioSegment
 import ffmpeg
 import wget
 from pyrogram import emoji
@@ -133,14 +133,8 @@ class MixPlayer:
                     return
             else:
                 original_file = wget.download(song[2])
-            ffmpeg.input(original_file).output(
-                raw_file,
-                format="s16le",
-                acodec="pcm_s16le",
-                ac=2,
-                ar="48k",
-                loglevel="error",
-            ).overwrite_output().run()
+            sound = AudioSegment.from_file(original_file)
+            sound.export(raw_file, format="raw", codec="pcm_s16le")
             os.remove(original_file)
 
     async def start_radio(self, m):
