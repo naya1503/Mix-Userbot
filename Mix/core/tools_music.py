@@ -16,6 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
+import asyncio
 import os
 import subprocess
 from asyncio import sleep
@@ -166,13 +167,13 @@ class MixPlayer:
                 process.kill()
             except Exception as e:
                 print(e)
-            FFMPEG_PROCESSES[m] = ""
+            FFMPEG_PROCESSES[chat] = ""
         station_stream_url = "http://peridot.streamguys.com:7150/Mirchi"
         if not vc.is_connected:
             await self.start_call(chat)
 
-        FFMPEG_PROCESSES[m] = process
-        await self.edit_title(m)
+        FFMPEG_PROCESSES[chat] = process
+        await self.edit_title(chat)
         await sleep(2)
         while True:
             if vc.is_connected:
