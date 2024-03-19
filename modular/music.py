@@ -12,7 +12,7 @@ from Mix.core.tools_music import *
 async def start_playout(_, message):
     if not group_call:
         await message.reply(
-            f"<b>You are not joined [type <code>{m.command}join</code>]</b>"
+            f"<b>You are not joined [type <code>{message.command}join</code>]</b>"
         )
         return
     if not message.reply_to_message.audio:
