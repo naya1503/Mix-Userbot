@@ -14,7 +14,7 @@ async def _(c: nlx, m):
         return  # For PlayFrom Conflict
     xx = await m.reply("proses")
     chat = m.chat.id
-    from_user = m.from_user
+    from_user = f"<a href='tg://user?id={m.from_user.id}'>{m.from_user.first_name} {m.from_user.last_name or ''}</a>"
     reply, song = None, None
     if m.reply_to_message:
         reply = m.reply_to_message
