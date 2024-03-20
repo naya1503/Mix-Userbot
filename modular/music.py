@@ -23,7 +23,7 @@ from Mix.core.tools_music import *
 async def _(client: nlx, message):
     group_call = play_vc.get((message.chat.id, client.me.id))
     u_s = await client.eor(message, "`Processing..`")
-    input_str = get_text(message)
+    input_str = client.get_text(message)
     if not input_str:
         if not message.reply_to_message:
             return await u_s.edit_text("`Reply To A File To PLay It.`")
