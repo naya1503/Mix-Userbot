@@ -105,7 +105,9 @@ async def _(client: nlx, message):
                 reply_to_message_id=ReplyCheck(message),
             )
         except:
-            await client.eor(message, plere.format(vid_title, uploade_r, dur, url),
+            await client.eor(
+                message,
+                plere.format(vid_title, uploade_r, dur, url),
                 reply_to_message_id=ReplyCheck(message),
             )
         await u_s.delete()
@@ -134,7 +136,9 @@ async def _(client: nlx, message):
                 reply_to_message_id=ReplyCheck(message),
             )
         except:
-            await client.eor(message, plere.format(vid_title, uploade_r, dur, url),
+            await client.eor(
+                message,
+                plere.format(vid_title, uploade_r, dur, url),
                 reply_to_message_id=ReplyCheck(message),
             )
         await u_s.delete()
