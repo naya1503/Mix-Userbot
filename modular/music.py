@@ -49,6 +49,7 @@ async def _(client: nlx, message):
 
         url = rep.link
     else:
+        """
         search = SearchVideos(str(input_str), offset=1, mode="dict", max_results=1)
         rt = search.result()
         result_s = rt.get("search_result")
@@ -63,8 +64,11 @@ async def _(client: nlx, message):
         result_s[0]["id"]
         uploade_r = result_s[0]["channel"]
         start = time.time()
+        """
+        uploade_r, meki, vid_title, url, dur = await download(client, song)
         try:
-            audio_original = await yt_dl(url, bot, message, start)
+            #audio_original = await yt_dl(url, bot, message, start)
+            audio_original = uploade_r
         except BaseException as e:
             return await u_s.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
         raw_file_name = (
