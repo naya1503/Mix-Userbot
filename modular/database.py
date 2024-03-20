@@ -43,6 +43,11 @@ async def _(c: nlx, m):
             udB.set_var(c.me.id, "TAG_LOGGER", True)
             await jing.edit(cgr("dbs_10").format(em.sukses, value))
             return
+    elif variable.lower() == "pmlog":
+        if value.lower() == "on":
+            udB.set_var(c.me.id, "PM_LOGGER", True)
+            await jing.edit(cgr("dbs_11").format(em.sukses, value))
+            return
     else:
         await jing.edit(cgr("dbs_6").format(em.gagal))
         return
@@ -134,6 +139,10 @@ async def _(c, m):
         return
     elif variable.lower() == "taglog":
         udB.remove_var(c.me.id, "TAG_LOGGER")
+        await jing.edit(cgr("dbs_9").format(em.sukses, variable))
+        return
+    elif variable.lower() == "pmlog":
+        udB.remove_var(c.me.id, "PM_LOGGER")
         await jing.edit(cgr("dbs_9").format(em.sukses, variable))
         return
     else:
