@@ -27,20 +27,18 @@ async def _(client: nlx, message):
     if not input_str:
         if not message.reply_to_message:
             return await u_s.edit_text("`Reply To A File To PLay It.`")
-        if not message.reply_to_message.audio:
-            return await u_s.edit("`Reply To A File To PLay It.`")
         await u_s.edit_text("`Please Wait, Let Me Download This File!`")
-        audio = message.reply_to_message.audio
-        audio_original = await message.reply_to_message.download()
+        audio = message.reply_to_message
+        audio_original = await audio.download()
         vid_title = audio.title or audio.file_name
-        uploade_r = message.reply_to_message.audio.performer or "Unknown Artist."
-        dura_ = message.reply_to_message.audio.duration
+        uploade_r = audio.performer or "Unknown Artist."
+        dura_ = audio.duration
         dur = datetime.timedelta(seconds=dura_)
         raw_file_name = (
             "".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw"
         )
 
-        url = message.reply_to_message.link
+        url = audio.link
     else:
         search = SearchVideos(str(input_str), offset=1, mode="dict", max_results=1)
         rt = search.result()
