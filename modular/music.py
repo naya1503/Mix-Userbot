@@ -283,9 +283,7 @@ async def _(client: nlx, message):
         return await message.reply(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
     if not group_call.is_connected:
         return await message.reply(f"{em.gagal} **Ga lagi di obrolan suara Goblok!!**")
-    await message.reply(
-        f"⏸ **Trek dijeda** {group_call.song_name}.`
-    )
+    await message.reply(f"⏸ **Trek dijeda** {group_call.song_name}.")
     group_call.pause_playout()
     return
 
