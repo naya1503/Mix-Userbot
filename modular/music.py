@@ -34,7 +34,7 @@ async def _(client: nlx, message):
     org = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name} {message.from_user.last_name or ''}</a>"
     if len(message.command) == 1 and not rep:
         await pros.edit_text(
-            f"{em.gagal} **Salah goblok!! Format `{m.text}` [query/balas media.**"
+            f"{em.gagal} **Salah goblok!! Format `{message.text}` [query/balas media.**"
         )
         return
     await pros.edit_text(f"{em.proses} **Starting to download...**")
