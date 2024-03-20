@@ -91,7 +91,7 @@ async def _(client: nlx, message):
         Durasi : {}
         Pesan : {}
         """
-        await m.reply_photo(
+        await message.reply_photo(
             photo=gbr,
             caption=plere.format(vid_title, uploade_r, dur, url),
             reply_to_message_id=ReplyCheck(m),
@@ -113,7 +113,7 @@ async def _(client: nlx, message):
         Durasi : {}
         Pesan : {}
         """
-        await m.reply_photo(
+        await message.reply_photo(
             photo=gbr,
             caption=plere.format(vid_title, uploade_r, dur, url),
             reply_to_message_id=ReplyCheck(m),
