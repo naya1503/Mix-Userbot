@@ -197,12 +197,6 @@ async def _(client: nlx, message):
     m_ = await message.reply(cgr("proses").format(em.proses))
     group_call = play_vc.get((message.chat.id, client.me.id))
     s = stream_vc.get((message.chat.id, client.me.id))
-    name_ = s[0]["song_name"]
-    singer_ = s[0]["singer"]
-    dur = s[0]["dur"]
-    next_s = s[0]["raw"]
-    link = s[0]["url"]
-    thumb_ = s[0]["thumb"]
     if not group_call:
         await m_.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
         return
@@ -212,8 +206,13 @@ async def _(client: nlx, message):
     if not s:
         await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
         return
+    name_ = s[0]["song_name"]
+    singer_ = s[0]["singer"]
+    dur = s[0]["dur"]
+    next_s = s[0]["raw"]
+    link = s[0]["url"]
+    thumb_ = s[0]["thumb"]
     s.pop(0)
-    group_call.song_name
     group_call.input_filename = next_s
     bij = f'<a href="{link}">{name_}</a>'
     orgu = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name} {message.from_user.last_name or ''}</a>"
