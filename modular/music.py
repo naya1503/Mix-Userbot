@@ -246,3 +246,26 @@ async def _(client: nlx, message):
     await sleep(2)
     await m_.delete()
     return
+
+
+@ky.ubot("playlist", sudo=True)
+async def _(client: nlx, message):
+    group_call = play_vc.get((message.chat.id, client.me.id))
+    pros = await message.reply(cgr("proses").format(em.gagal))
+    song = f"{em.sukses} **Daftar Putar Di {message.chat.title}**: \n"
+    s = stream_vc.get((message.chat.id, client.me.id))
+    if not group_call:
+        return await pros.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
+        return
+    if not s:
+        if group_call.is_connected:
+            return await pros.edit(f"{em.gagal} **Hanya memutar trek saat ini :** `{group_call.song_name}`")
+        else:
+            return await pros.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
+    if group_call.is_connected:
+        song += f"**💿 Sedang Memutar:** `{group_call.song_name}` \n\n"
+    for count, i in enumerate(s, start=1):
+        song += f"**• {count} ▶** [{i['song_name']}]({i['url']}) `| {i['singer']} | {i['dur']}` \n"
+    await message.reply(song, disable_web_page_preview=True)
+    await pros.delete()
+    return
