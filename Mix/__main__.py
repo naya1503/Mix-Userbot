@@ -2,9 +2,9 @@ import asyncio
 from os import execvp
 from sys import executable
 
+import uvloop
 from pyrogram import idle
 from pyrogram.errors import *
-import uvloop
 
 from beban import (autor_all, autor_bot, autor_ch, autor_gc, autor_mention,
                    autor_us, dasar_laknat)
