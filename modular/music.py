@@ -56,12 +56,16 @@ async def _(client: nlx, message):
         if m.command == "vplay":
             search = VideosSearch(gt_txt, limit=1).result()["result"][0]
             link = f"https://youtu.be/{search['id']}"
-            file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (await YoutubeDownload(link, as_video=True))
+            file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (
+                await YoutubeDownload(link, as_video=True)
+            )
         else:
             search = VideosSearch(gt_txt, limit=1).result()["result"][0]
             link = f"https://youtu.be/{search['id']}"
-            file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (await YoutubeDownload(link, as_video=False))
-            
+            file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (
+                await YoutubeDownload(link, as_video=False)
+            )
+
         try:
             audio_original = file_name
             dur = datetime.timedelta(seconds=durok)
