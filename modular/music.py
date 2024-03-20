@@ -273,6 +273,7 @@ async def _(client: nlx, message):
     await pros.delete()
     return
 
+
 @ky.ubot("pause", sudo=True)
 async def _(client: nlx, message):
     em = Emojik()
@@ -282,10 +283,13 @@ async def _(client: nlx, message):
         return await message.reply(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
     if not group_call.is_connected:
         return await message.reply(f"{em.gagal} **Ga lagi di obrolan suara Goblok!!**")
-    await message.reply(f"`⏸ **Trek dijeda** {str(group_call.input_filename).replace('.raw', '')}.`")
+    await message.reply(
+        f"`⏸ **Trek dijeda** {str(group_call.input_filename).replace('.raw', '')}.`"
+    )
     group_call.pause_playout()
     return
-    
+
+
 @ky.ubot("resume", sudo=True)
 async def _(client: nlx, message):
     em = Emojik()
@@ -293,15 +297,17 @@ async def _(client: nlx, message):
     group_call = play_vc.get((message.chat.id, client.me.id))
     if not group_call:
         await message.reply(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
-        return    
+        return
     if not group_call.is_connected:
         await message.reply(f"{em.gagal} **Ga lagi di obrolan suara Goblok!!**")
-        return    
+        return
     group_call.resume_playout()
-    await message.reply(f"▶️ **Trek dilanjutkan** {str(group_call.input_filename).replace('.raw', '')}.`")
+    await message.reply(
+        f"▶️ **Trek dilanjutkan** {str(group_call.input_filename).replace('.raw', '')}.`"
+    )
     return
-  
-  
+
+
 @ky.ubot("resume", sudo=True)
 async def _(client: nlx, message):
     em = Emojik()
@@ -309,10 +315,10 @@ async def _(client: nlx, message):
     group_call = play_vc.get((message.chat.id, client.me.id))
     if not group_call:
         await message.reply(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
-        return    
+        return
     if not group_call.is_connected:
         await message.reply(f"{em.gagal} **Ga lagi di obrolan suara Goblok!!**")
-        return    
+        return
     if os.path.exists(group_call.input_filename):
         os.remove(group_call.input_filename)
     group_call.stop_playout()
