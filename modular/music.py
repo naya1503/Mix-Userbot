@@ -57,7 +57,7 @@ async def _(client: nlx, message):
                 f"`No Song Found Matching With Query - {input_str}, Please Try Giving Some Other Name.`"
             )
         url = result_s[0]["link"]
-        result_s[0]["thumbnails"].split("?")
+        meki = result_s[0]["thumbnails"]
         dur = result_s[0]["duration"]
         vid_title = result_s[0]["title"]
         result_s[0]["id"]
