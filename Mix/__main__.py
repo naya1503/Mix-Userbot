@@ -4,7 +4,6 @@ from sys import executable
 
 from pyrogram import idle
 from pyrogram.errors import *
-from uvloop import install
 
 from beban import (autor_all, autor_bot, autor_ch, autor_gc, autor_mention,
                    autor_us, dasar_laknat)
@@ -12,9 +11,10 @@ from Mix import *
 from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
 
-#loop = asyncio.get_event_loop_policy()
-#event_loop = loop.get_event_loop()
+# loop = asyncio.get_event_loop_policy()
+# event_loop = loop.get_event_loop()
 loop = asyncio.get_event_loop()
+
 
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
@@ -77,7 +77,7 @@ async def main():
 
 
 if __name__ == "__main__":
-    #install()
-    #asyncio.set_event_loop(event_loop)
-    #event_loop.run_until_complete(main())
+    # install()
+    # asyncio.set_event_loop(event_loop)
+    # event_loop.run_until_complete(main())
     loop.run_until_complete(main())
