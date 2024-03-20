@@ -39,7 +39,7 @@ async def _(client: nlx, message):
             "".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw"
         )
 
-        url = audio.link
+        url = rep.link
     else:
         search = SearchVideos(str(input_str), offset=1, mode="dict", max_results=1)
         rt = search.result()
@@ -49,6 +49,7 @@ async def _(client: nlx, message):
                 f"`No Song Found Matching With Query - {input_str}, Please Try Giving Some Other Name.`"
             )
         url = result_s[0]["link"]
+        thumbnail = result_s[0]["thumbnails"].split("?")
         dur = result_s[0]["duration"]
         vid_title = result_s[0]["title"]
         result_s[0]["id"]
@@ -91,6 +92,13 @@ async def _(client: nlx, message):
         group_call.add_handler(playout_ended_handler, GroupCallFileAction.PLAYOUT_ENDED)
         group_call.input_filename = raw_file_name
         group_call.song_name = vid_title
+        plere = """
+        Judul : {}
+        Artist : {}
+        Durasi : {}
+        Pesan : {}
+        """
+        await m.reply_photo(photo=thumbnail, plere.format(vid_title, uploade_r, dur, url))
         return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     else:
         s_d = stream_vc.get((message.chat.id, client.me.id))
