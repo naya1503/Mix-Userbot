@@ -159,7 +159,7 @@ dbs_7: "{} **Gunakan format : `{}` [query].**"
 dbs_8: "{} **Ini {} anda : `{}`.**"
 dbs_9: "{} **{} Berhasil dihapus!!**"
 dbs_10: "{} **Tag Logger diset ke `{}`.**"
-dbs_10: "{} **PM Logger diset ke `{}`.**"
+dbs_11: "{} **PM Logger diset ke `{}`.**"
 
 # emoji
 em_1: "{} **Emoji status diatur ke : <emoji id={}>😭</emoji>.**"
