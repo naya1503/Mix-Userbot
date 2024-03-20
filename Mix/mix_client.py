@@ -26,12 +26,7 @@ from modular import USER_MOD
 
 TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
 
-proxy={
-        "scheme": "socks5",
-        "hostname": proxy_host,
-        "port": 1080,
-        "username": proxy_username,
-        "password": proxy_password
+
     
 class Userbot(Client):
     _prefix = {}
@@ -44,7 +39,7 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
-            proxy=proxy,
+            proxy={"scheme": "socks5", "hostname": proxy_host, "port": 1080, "username": proxy_username, "password": proxy_password},
             **kwargs,
         )
 
