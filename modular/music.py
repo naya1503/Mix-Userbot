@@ -28,6 +28,7 @@ async def _(client: nlx, message):
     pros = await message.reply(cgr("proses").format(em.proses))
     gt_txt = client.get_text(message)
     rep = message.reply_to_message
+    org = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name} {message.from_user.last_name or ''}</a>"
     if len(message.command) == 1 and not rep:
         return await pros.edit_text(
             f"{em.gagal} **Salah goblok!! Format `{m.text}` [query/balas media.**"
@@ -64,7 +65,7 @@ async def _(client: nlx, message):
         raw_file_name = (
             "".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw"
         )
-
+    jadul = f'<a href="{url}">{vid_title}</a>'
     try:
         raw_file_name = await convert_to_raw(audio_original, raw_file_name)
     except BaseException as e:
@@ -89,17 +90,17 @@ async def _(client: nlx, message):
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
-**📩 Channel : [Youtube]({})**
+**📩 Permintaan : {}**
         """
         try:
             await message.reply_photo(
                 photo=meki,
-                caption=plere.format(vid_title, uploade_r, dur, url),
+                caption=plere.format(jadul, uploade_r, dur, org),
                 reply_to_message_id=ReplyCheck(message),
             )
         except:
             await message.reply(
-                plere.format(vid_title, uploade_r, dur, url),
+                plere.format(jadul, uploade_r, dur, org),
                 reply_to_message_id=ReplyCheck(message),
             )
         await pros.delete()
@@ -121,18 +122,18 @@ async def _(client: nlx, message):
 
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
-**⏲️️ Durasi :` {}`**
-**📩 Media : [Klik Disini]({})**
+**⏲️️ Durasi : `{}`**
+**📩 Permintaan : {}**
         """
         try:
             await message.reply_photo(
                 photo=meki,
-                caption=plere.format(vid_title, uploade_r, dur, url),
+                caption=plere.format(jadul, uploade_r, dur, org),
                 reply_to_message_id=ReplyCheck(message),
             )
         except:
             await message.reply(
-                plere.format(vid_title, uploade_r, dur, url),
+                plere.format(jadul, uploade_r, dur, org),
                 reply_to_message_id=ReplyCheck(message),
             )
         await pros.delete()
