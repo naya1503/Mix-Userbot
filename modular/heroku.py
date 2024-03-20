@@ -299,6 +299,7 @@ async def _(c: nlx, m):
 
 async def reload_user():
     try:
+        os.system("git pull")
         modxx = import_modular()
         for modx in modxx:
             imported_module = import_module(f"modular.{modx}")
