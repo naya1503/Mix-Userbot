@@ -17,10 +17,12 @@ from pyrogram.errors import *
 from pyrogram.handlers import *
 from pyrogram.types import *
 from team.nandev.class_log import LOGGER
+from team.nandev.class_modules import CMD_HELP
 from team.nandev.database import ndB, udB
 
 from assistant import BOT_PLUGINS
 from config import *
+from modular import USER_MOD
 
 TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
 
@@ -40,7 +42,9 @@ class Userbot(Client):
             proxy={
                 "scheme": "socks5",
                 "hostname": proxy_host,
-                "port": 22,
+                "port": 1080,
+                "username": proxy_username,
+                "password": proxy_password,
             },
             **kwargs,
         )
@@ -264,7 +268,6 @@ class Userbot(Client):
             self._prefix[self.me.id] = ["."]
         self._translate[self.me.id] = {"negara": "id"}
         LOGGER.info(f"Importing User Modules...")
-        """
         for modul in USER_MOD:
             imported_module = importlib.import_module(f"modular." + modul)
             if hasattr(imported_module, "__modles__") and imported_module.__modles__:
@@ -273,7 +276,6 @@ class Userbot(Client):
                     CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (
                         imported_module
                     )
-        """
         LOGGER.info(f"Successfully Import User Modules...")
         LOGGER.info(f"Starting Userbot {self.me.id}|{self.me.mention}")
 
