@@ -52,7 +52,7 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2:
-        return await m.reply(cgr("down_1").format(em.gagal))
+        return await m.reply(cgr("down_1").format(em.gagal, m.command))
     pros = await m.reply(cgr("proses").format(em.proses))
     try:
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
@@ -110,7 +110,7 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2:
-        return await m.reply(cgr("down_1").format(em.gagal))
+        return await m.reply(cgr("down_1").format(em.gagal, m.command))
     pros = await m.reply(cgr("proses").format(em.proses))
     try:
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
