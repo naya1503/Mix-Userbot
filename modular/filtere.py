@@ -202,7 +202,9 @@ async def send_filter_reply(c: nlx, m, trigger: str):
     return msgtype
 
 
-@nlx.on_message(filters.incoming & ~filters.private & ~filters.me & ~filters.bot, group=11)
+@nlx.on_message(
+    filters.incoming & ~filters.private & ~filters.me & ~filters.bot, group=11
+)
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
