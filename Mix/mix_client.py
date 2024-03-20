@@ -38,7 +38,7 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
-            #proxy=dict(scheme="socks5", hostname=proxy_host, port=8388),
+            # proxy=dict(scheme="socks5", hostname=proxy_host, port=8388),
             **kwargs,
         )
 
