@@ -95,6 +95,7 @@ async def get_chat_(client, chat_):
 
 async def playout_ended_handler(group_call, filename):
     client_ = group_call.client
+    mes = group_call.message
     chat_ = await get_chat_(client_, f"-100{group_call.full_chat.id}")
     chat_ = int(chat_)
     s = stream_vc.get((chat_, client_.me.id))
@@ -112,23 +113,25 @@ async def playout_ended_handler(group_call, filename):
     link = s[0]["url"]
     thumb_ = s[0]["thumb"]
     file_size = humanbytes(os.stat(raw_file).st_size)
+    orgu = f"<a href='tg://user?id={mes.from_user.id}'>{mes.from_user.first_name} {mes.from_user.last_name or ''}</a>"
+    bij = f'<a href="{link}">{name_}</a>'
     song_info = """
 <u><b>🎼 Sekarang Diputar 🎶</b></u>
 
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
-**📩 Channel : [Youtube]({})
+**📩 Permintaan : {}**
 """
     try:
         await client_.send_photo(
             chat_,
             photo=thumb_,
-            caption=song_info.format(name_, singer_, dur, link, file_size),
+            caption=song_info.format(biji, singer_, dur, orgu),
         )
     except:
         await client_.send_message(
-            chat_, song_info.format(name_, singer_, dur, link, file_size)
+            chat_, song_info.format(biji, singer_, dur, orgu),
         )
     s.pop(0)
     logging.debug(song_info)
