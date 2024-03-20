@@ -38,7 +38,7 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
-            proxy=dict(hostname=proxy_host, port=22),
+            proxy=dict(scheme="socks5", hostname=proxy_host, port=22),
             **kwargs,
         )
         # ipv6=True,
