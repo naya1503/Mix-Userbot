@@ -65,7 +65,7 @@ async def _(client: nlx, message):
     try:
         raw_file_name = await convert_to_raw(audio_original, raw_file_name)
     except BaseException as e:
-        return await pros.edit(cgr("err").format(em.gagal, e)
+        return await pros.edit(cgr("err").format(em.gagal, e))
     if os.path.exists(audio_original):
         os.remove(audio_original)
     if not group_call:
@@ -77,7 +77,7 @@ async def _(client: nlx, message):
         try:
             await group_call.start(message.chat.id)
         except BaseException as e:
-            return await pros.edit(f"**Error While Joining VC:** `{e}`")
+            return await pros.edit(cgr("err").format(em.gagal, e))
         group_call.add_handler(playout_ended_handler, GroupCallFileAction.PLAYOUT_ENDED)
         group_call.input_filename = raw_file_name
         plere = """
@@ -86,7 +86,7 @@ async def _(client: nlx, message):
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
-**📩 Pesan : [Disini]({})**
+**📩 Media : [Klik Disini]({})**
         """
         try:
             await message.reply_photo(
@@ -95,8 +95,7 @@ async def _(client: nlx, message):
                 reply_to_message_id=ReplyCheck(message),
             )
         except:
-            await client.eor(
-                message,
+            await message.reply(
                 plere.format(vid_title, uploade_r, dur, url),
                 reply_to_message_id=ReplyCheck(message),
             )
@@ -106,12 +105,11 @@ async def _(client: nlx, message):
         except:
             pass
         return
-        # return await pros.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     elif not group_call.is_connected:
         try:
             await group_call.start(message.chat.id)
         except BaseException as e:
-            return await pros.edit(f"**Error While Joining VC:** `{e}`")
+            return await pros.edit(cgr("err").format(em.gagal, e))
         group_call.add_handler(playout_ended_handler, GroupCallFileAction.PLAYOUT_ENDED)
         group_call.input_filename = raw_file_name
         group_call.song_name = vid_title
@@ -130,14 +128,12 @@ async def _(client: nlx, message):
                 reply_to_message_id=ReplyCheck(message),
             )
         except:
-            await client.eor(
-                message,
+            await message.reply(
                 plere.format(vid_title, uploade_r, dur, url),
                 reply_to_message_id=ReplyCheck(message),
             )
         await pros.delete()
         return
-        # return await pros.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     else:
         s_d = stream_vc.get((message.chat.id, client.me.id))
         f_info = {
@@ -146,10 +142,11 @@ async def _(client: nlx, message):
             "singer": uploade_r,
             "dur": dur,
             "url": url,
+            "thumb": meki,
         }
         if s_d:
             s_d.append(f_info)
         else:
             stream_vc[(message.chat.id, client.me.id)] = [f_info]
         s_d = stream_vc.get((message.chat.id, client.me.id))
-        return await pros.edit(f"Added `{vid_title}` To Position `#{len(s_d)+1}`!")
+        return await pros.edit(f"{em.sukses} **📝 <u>{vid_title}</u> antrean ke : #`{len(s_d)+1}`\n Ditambahkan kedalam antrean saat ini.**")
