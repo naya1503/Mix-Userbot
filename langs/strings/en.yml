@@ -137,6 +137,7 @@ dbs_6: "{} **Please see database query!!**"
 dbs_7: "{} **Use format : `{}` [query].**"
 dbs_8: "{} **This is your {} : `{}`.**"
 dbs_9: "{} **{} Successfully deleted!!**"
+dbs_10: "{} **Tag Logger set to `{}`.**"
 
 # emoji
 em_1: "{} **Emoji status set to: <emoji id={}>😭</emoji>.**"
