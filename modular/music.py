@@ -99,7 +99,7 @@ async def _(client: nlx, message):
         Durasi : {}
         Pesan : {}
         """
-        await m.reply_photo(photo=gbr, plere.format(vid_title, uploade_r, dur, url))
+        await m.reply_photo(photo=gbr, caption=plere.format(vid_title, uploade_r, dur, url))
         await u_s.delete()
         return
         #return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
