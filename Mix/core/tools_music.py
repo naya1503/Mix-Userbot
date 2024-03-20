@@ -125,7 +125,7 @@ async def playout_ended_handler(group_call, filename):
     try:
         await client_.send_photo(
           chat_,
-          photo=thumb_
+          photo=thumb_,
           caption=song_info.format(name_, singer_, dur, link, file_size))
     except:
         await client_.send_message(
