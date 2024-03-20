@@ -15,7 +15,7 @@ import time
 from pytgcalls import GroupCallFactory, GroupCallFileAction
 from youtubesearchpython import SearchVideos
 
-from Mix import ReplyCheck, bot, nlx, download
+from Mix import ReplyCheck, bot, nlx
 from Mix.core.tools_music import *
 
 gbr = "https://telegra.ph//file/b2a9611753657547acf15.jpg"
