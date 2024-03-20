@@ -197,7 +197,7 @@ async def _(client: nlx, message):
     orgu = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name} {message.from_user.last_name or ''}</a>"
     await m_.edit(f"{em.sukses} **Memutar lagu berikutnya.**")
     nxt_sg = """
-<u><b>Memutar</b></u>
+<u><b>Memutar Trek Berikutnya</b></u>
 
 **🎵 Judul : {}**
 **🎸 Artist : `{}`**
