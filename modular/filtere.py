@@ -3,7 +3,7 @@
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
  @ CREDIT : NAN-DEV || Gojo_Satoru
-"""
+
 ################################################################
 
 from re import escape as re_escape
@@ -14,8 +14,7 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.sender_tools import (escape_tag, parse_words, send_cmd,
-                                   split_quotes)
+from Mix.core.sender_tools import parse_words, send_cmd, split_quotes, escape_tag
 
 __modles__ = "Filter"
 __help__ = get_cgr("help_filr")
@@ -139,7 +138,7 @@ async def _(c: nlx, m):
 async def send_filter_reply(c: nlx, m, trigger: str):
     em = Emojik()
     em.initialize()
-    """Reply with assigned filter for the trigger"""
+
     getfilter = db.get_filter(m.chat.id, trigger)
     if m and not m.from_user:
         return
@@ -218,3 +217,4 @@ async def _(c: nlx, m):
             break
         continue
     return
+"""
