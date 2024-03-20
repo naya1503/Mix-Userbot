@@ -16,6 +16,7 @@ from pytgcalls import GroupCallFactory, GroupCallFileAction
 from youtubesearchpython import SearchVideos
 
 from Mix import *
+from Mix.core.tools_music import *
 
 
 @ky.ubot("play", sudo=True)
