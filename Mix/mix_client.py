@@ -38,20 +38,9 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
-            proxy=dict(scheme="socks5", hostname=proxy_host, port=8388),
+            #proxy=dict(scheme="socks5", hostname=proxy_host, port=8388),
             **kwargs,
         )
-        # ipv6=True,
-
-    """
-            proxy={
-                "scheme": "socks5",
-                "hostname": proxy_host,
-                "port": 1080,
-                "username": proxy_username,
-                "password": proxy_password,
-            },
-    """
 
     def on_message(self, filters=None, group=-1):
         def decorator(func):
