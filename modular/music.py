@@ -92,10 +92,11 @@ async def _(client: nlx, message):
         group_call.add_handler(playout_ended_handler, GroupCallFileAction.PLAYOUT_ENDED)
         group_call.input_filename = raw_file_name
         plere = """
-        Judul : {}
-        Artist : {}
-        Durasi : {}
-        Pesan : {}
+<u><b>🎼 Now Playing 🎼</b></u>
+**🎵 Judul : `{}`**
+**🎸 Artist : `{}`**
+**⏲️️ Durasi :` {}`**
+**📩 Pesan : [Disini]({})**
         """
         await message.reply_photo(
             photo=meki,
@@ -115,10 +116,11 @@ async def _(client: nlx, message):
         group_call.input_filename = raw_file_name
         group_call.song_name = vid_title
         plere = """
-        Judul : {}
-        Artist : {}
-        Durasi : {}
-        Pesan : {}
+<u><b>🎼 Sekarang Diputar 🎶</b></u>
+**🎵 Judul : `{}`**
+**🎸 Artist : `{}`**
+**⏲️️ Durasi :` {}`**
+**📩 Pesan : [Disini]({})**
         """
         await message.reply_photo(
             photo=gbr,
