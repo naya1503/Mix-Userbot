@@ -31,8 +31,7 @@ proxy={
         "hostname": proxy_host,
         "port": 1080,
         "username": proxy_username,
-        "password": proxy_password,
-    }
+        "password": proxy_password
     
 class Userbot(Client):
     _prefix = {}
