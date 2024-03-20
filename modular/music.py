@@ -191,7 +191,9 @@ async def _(client: nlx, message):
         s.pop(0)
         prev = group_call.song_name
         group_call.input_filename = next_s
-        return await m_.edit(f"{em.sukses} **Melewati trek : `{prev}`. Sekarang memutar `{name}`**")
+        return await m_.edit(
+            f"{em.sukses} **Melewati trek : `{prev}`. Sekarang memutar `{name}`**"
+        )
     else:
         if not s:
             await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
