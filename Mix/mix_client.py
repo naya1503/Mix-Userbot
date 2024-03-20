@@ -27,11 +27,12 @@ from modular import USER_MOD
 TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
 
 proxy = {
-    'hostname': proxy_host,
-    'port': proxy_port,
-    'username': proxy_username,
-    'password': proxy_password,
+    "hostname": proxy_host,
+    "port": proxy_port,
+    "username": proxy_username,
+    "password": proxy_password,
 }
+
 
 class Userbot(Client):
     _prefix = {}
