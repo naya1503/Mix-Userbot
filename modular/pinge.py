@@ -30,4 +30,4 @@ async def _(c: nlx, m):
     _ping = cgr("ping_1").format(
         em.ping, str(delta_ping).replace(".", ","), em.pong, upnya
     )
-    await c.eor(m, _ping)
+    await m.reply(_ping)
