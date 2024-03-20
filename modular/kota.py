@@ -23,7 +23,7 @@ __help__ = """
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    msg_ = await message.reply(cgr("proses").format(em.proses))
+    msg_ = await m.reply(cgr("proses").format(em.proses))
     lol = c.get_text(m)
     if not lol:
         await msg_.edit(f"{em.gagal}` **Kasih kota nya Goblok!!**")
