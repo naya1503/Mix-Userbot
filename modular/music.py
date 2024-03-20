@@ -10,12 +10,10 @@ import datetime
 import os
 import random
 import string
-import time
 
 from pytgcalls import GroupCallFactory, GroupCallFileAction
-from youtubesearchpython import SearchVideos
 
-from Mix import ReplyCheck, bot, nlx
+from Mix import ReplyCheck, nlx
 from Mix.core.tools_music import *
 
 gbr = "https://telegra.ph//file/b2a9611753657547acf15.jpg"
@@ -25,7 +23,7 @@ gbr = "https://telegra.ph//file/b2a9611753657547acf15.jpg"
 async def _(client: nlx, message):
     group_call = play_vc.get((message.chat.id, client.me.id))
     u_s = await client.eor(message, "`Processing..`")
-    input_str = client.get_text(message)
+    client.get_text(message)
     rep = message.reply_to_message
     if len(message.command) == 1 and not rep:
         return await u_s.edit_text("`Reply To A File To PLay It.`")
@@ -67,7 +65,7 @@ async def _(client: nlx, message):
         """
         uploade_r, meki, vid_title, url, dur = await download(client, song)
         try:
-            #audio_original = await yt_dl(url, bot, message, start)
+            # audio_original = await yt_dl(url, bot, message, start)
             audio_original = uploade_r
         except BaseException as e:
             return await u_s.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
