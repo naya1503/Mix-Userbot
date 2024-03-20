@@ -18,6 +18,7 @@ from youtubesearchpython import SearchVideos
 from Mix import ky, nlx
 from Mix.core.tools_music import *
 
+gbr = "https://telegra.ph//file/b2a9611753657547acf15.jpg"
 
 @ky.ubot("play", sudo=True)
 async def _(client: nlx, message):
@@ -98,8 +99,10 @@ async def _(client: nlx, message):
         Durasi : {}
         Pesan : {}
         """
-        await m.reply_photo(photo=thumbnail, plere.format(vid_title, uploade_r, dur, url))
-        return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
+        await m.reply_photo(photo=gbr, plere.format(vid_title, uploade_r, dur, url))
+        await u_s.delete()
+        return
+        #return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     else:
         s_d = stream_vc.get((message.chat.id, client.me.id))
         f_info = {
