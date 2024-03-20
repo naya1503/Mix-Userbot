@@ -30,42 +30,38 @@ async def _(client: nlx, message):
     rep = message.reply_to_message
     org = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name} {message.from_user.last_name or ''}</a>"
     if len(message.command) == 1 and not rep:
-        return await pros.edit_text(
+        await pros.edit_text(
             f"{em.gagal} **Salah goblok!! Format `{m.text}` [query/balas media.**"
         )
-    if rep.media:
-        await pros.edit_text(f"{em.proses} **Starting to download...**")
-        audio = rep.audio if rep.audio else rep.video
-        audio_original = await rep.download()
-        vid_title = audio.title if audio.title else audio.file_name
-        uploade_r = audio.performer or "**Unknown Artist.**"
-        dura_ = audio.duration
-        dur = datetime.timedelta(seconds=dura_)
-        if audio.thumbs:
-            thumb = audio.thumbs[0]
-            tumben = thumb.file_id
-            meki = await client.download_media(tumben)
+        return
+    await pros.edit_text(f"{em.proses} **Starting to download...**")
+    if rep:
+        if rep.text:
+            search = VideosSearch(gt_txt, limit=1).result()["result"][0]
+            link = f"https://youtu.be/{search['id']}"
+            file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (await YoutubeDownload(link, as_video=False))
+            try:
+                audio_original = file_name
+                dur = datetime.timedelta(seconds=durok)
+            except BaseException as e:
+                return await pros.edit(cgr("err").format(em.gagal, str(e)))
+            raw_file_name = ("".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw")
         else:
-            meki = gbr
-        raw_file_name = (
-            "".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw"
-        )
+            audio = rep.audio if rep.audio else rep.video
+            audio_original = await rep.download()
+            vid_title = audio.title if audio.title else audio.file_name
+            uploade_r = audio.performer or "**Unknown Artist.**"
+            dura_ = audio.duration
+            dur = datetime.timedelta(seconds=dura_)
+            if audio.thumbs:
+                thumb = audio.thumbs[0]
+                tumben = thumb.file_id
+                meki = await client.download_media(tumben)
+            else:
+                meki = gbr
+            raw_file_name = ("".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw")
 
-        url = rep.link
-    elif rep.text:
-        search = VideosSearch(gt_txt, limit=1).result()["result"][0]
-        link = f"https://youtu.be/{search['id']}"
-        file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (
-            await YoutubeDownload(link, as_video=False)
-        )
-        try:
-            audio_original = file_name
-            dur = datetime.timedelta(seconds=durok)
-        except BaseException as e:
-            return await pros.edit(cgr("err").format(em.gagal, str(e)))
-        raw_file_name = (
-            "".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw"
-        )
+            url = rep.link
     else:
         if m.command == "vplay":
             search = VideosSearch(gt_txt, limit=1).result()["result"][0]
