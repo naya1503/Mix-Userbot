@@ -72,7 +72,9 @@ async def _(client: nlx, message):
     if os.path.exists(audio_original):
         os.remove(audio_original)
     if not group_call:
-        group_call = GroupCallFactory(client, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM).get_file_group_call()
+        group_call = GroupCallFactory(
+            client, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
+        ).get_file_group_call()
         group_call.song_name = vid_title
         play_vc[(message.chat.id, client.me.id)] = group_call
         try:
