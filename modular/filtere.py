@@ -14,7 +14,7 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.sender_tools import send_cmd
+from Mix.core.sender_tools import send_cmd, split_quotes, parse_words,
 
 __modles__ = "Filter"
 __help__ = get_cgr("help_filr")
@@ -157,17 +157,7 @@ async def send_filter_reply(c: nlx, m, trigger: str):
         filter_reply = choice(filter_reply)
     except KeyError:
         filter_reply = ""
-
-    parse_words = [
-        "first",
-        "last",
-        "fullname",
-        "id",
-        "mention",
-        "username",
-        "chatname",
-    ]
-    text = await escape_mentions_using_curly_brackets(m, filter_reply, parse_words)
+    text = await escape_tag(m, filter_reply, parse_words)
     textt = text
     try:
         if msgtype == Types.TEXT:
