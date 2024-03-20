@@ -3,11 +3,12 @@ import functools
 import math
 import multiprocessing
 import time
-from concurrent.futures import ThreadPoolExecutor
 from asyncio import get_event_loop
+from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
 from yt_dlp import YoutubeDL
+
 max_workers = multiprocessing.cpu_count() * 5
 exc_ = ThreadPoolExecutor(max_workers=max_workers)
 
@@ -127,4 +128,3 @@ async def YoutubeDownload(url, as_video=False):
     views = f"{ytdl_data['view_count']:,}".replace(",", ".")
     thumb = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg"
     return file_name, title, url, duration, views, channel, thumb, data_ytp
-    
