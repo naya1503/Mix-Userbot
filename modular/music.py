@@ -37,6 +37,12 @@ async def _(client: nlx, message):
         uploade_r = audio.performer or "Unknown Artist."
         dura_ = audio.duration
         dur = datetime.timedelta(seconds=dura_)
+        if audio.thumbs:
+            thumb = audio.thumbs[0]
+            tumben = thumb.file_id
+            meki = await client.download_media(tumben)
+        else:
+            meki = gbr
         raw_file_name = (
             "".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw"
         )
@@ -92,11 +98,12 @@ async def _(client: nlx, message):
         Pesan : {}
         """
         await message.reply_photo(
-            photo=gbr,
+            photo=meki,
             caption=plere.format(vid_title, uploade_r, dur, url),
             reply_to_message_id=ReplyCheck(m),
         )
         await u_s.delete()
+        os.remove(meki)
         return
         # return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     elif not group_call.is_connected:
