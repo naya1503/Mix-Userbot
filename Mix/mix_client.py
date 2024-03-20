@@ -38,7 +38,7 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
-            #ipv6=True,
+            # ipv6=True,
             proxy={
                 "scheme": "socks5",
                 "hostname": proxy_host,
