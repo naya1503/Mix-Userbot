@@ -123,6 +123,18 @@ class Userbot(Client):
             else:
                 text = m.text.split(None, 1)[1]
         return text
+        
+    async def eor(self, message, text):
+        sudo_id = udB.get_list_from_var(self.me.id, "SUDO_USER", "ID_NYA")
+        if not message:
+            return await message.edit(text)
+        if not message.from_user:
+            return await message.edit(text)
+        if message.from_user.id in sudo_id:
+            if message.reply_to_message:
+                return await message.reply_to_message.reply_text(text)
+            return await message.reply_text(text)
+        return await message.edit(text)
 
     async def bash(self, cmd):
         try:
