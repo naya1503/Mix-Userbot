@@ -56,7 +56,7 @@ async def _(client: nlx, message):
         uploade_r = result_s[0]["channel"]
         start = time.time()
         try:
-            audio_original = await yt_dl(url, client, message, start)
+            audio_original = await yt_dl(url, bot, message, start)
         except BaseException as e:
             return await u_s.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
         raw_file_name = (
@@ -72,7 +72,7 @@ async def _(client: nlx, message):
     if os.path.exists(audio_original):
         os.remove(audio_original)
     if not group_call:
-        group_call = GroupCallFactory(client).get_file_group_call()
+        group_call = GroupCallFactory(client, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM).get_file_group_call()
         group_call.song_name = vid_title
         play_vc[(message.chat.id, client.me.id)] = group_call
         try:
