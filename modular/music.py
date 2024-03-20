@@ -89,7 +89,7 @@ async def _(client: nlx, message):
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
-**📩 Media : [Klik Disini]({})**
+**📩 Channel : [Youtube]({})**
         """
         try:
             await message.reply_photo(
@@ -122,7 +122,7 @@ async def _(client: nlx, message):
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi :` {}`**
-**📩 Channel : [Youtube]({})**
+**📩 Media : [Klik Disini]({})**
         """
         try:
             await message.reply_photo(
