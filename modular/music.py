@@ -85,7 +85,18 @@ async def _(client: nlx, message):
             return await u_s.edit(f"**Error While Joining VC:** `{e}`")
         group_call.add_handler(playout_ended_handler, GroupCallFileAction.PLAYOUT_ENDED)
         group_call.input_filename = raw_file_name
-        return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
+        plere = """
+        Judul : {}
+        Artist : {}
+        Durasi : {}
+        Pesan : {}
+        """
+        await m.reply_photo(
+            photo=gbr, caption=plere.format(vid_title, uploade_r, dur, url), reply_to_message_id=ReplyCheck(m),
+        )
+        await u_s.delete()
+        return
+        #return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     elif not group_call.is_connected:
         try:
             await group_call.start(message.chat.id)
@@ -101,7 +112,7 @@ async def _(client: nlx, message):
         Pesan : {}
         """
         await m.reply_photo(
-            photo=gbr, caption=plere.format(vid_title, uploade_r, dur, url)
+            photo=gbr, caption=plere.format(vid_title, uploade_r, dur, url), reply_to_message_id=ReplyCheck(m),
         )
         await u_s.delete()
         return
