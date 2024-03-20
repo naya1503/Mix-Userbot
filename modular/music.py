@@ -47,26 +47,10 @@ async def _(client: nlx, message):
 
         url = rep.link
     else:
-        """
-        search = SearchVideos(str(input_str), offset=1, mode="dict", max_results=1)
-        rt = search.result()
-        result_s = rt.get("search_result")
-        if not result_s:
-            return await u_s.edit(
-                f"`No Song Found Matching With Query - {input_str}, Please Try Giving Some Other Name.`"
-            )
-        url = result_s[0]["link"]
-        meki = result_s[0]["thumbnails"]
-        dur = result_s[0]["duration"]
-        vid_title = result_s[0]["title"]
-        result_s[0]["id"]
-        uploade_r = result_s[0]["channel"]
-        start = time.time()
-        """
-        uploade_r, meki, vid_title, url, dur = await download(client, input_str)
+        file_name, vid_title, url, dur, views, uploade_r, meki, data_ytp) = await YoutubeDownload(link, as_video=False)
         try:
             # audio_original = await yt_dl(url, bot, message, start)
-            audio_original = url
+            audio_original = file_name
         except BaseException as e:
             return await u_s.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
         raw_file_name = (
@@ -129,7 +113,7 @@ async def _(client: nlx, message):
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi :` {}`**
-**📩 Pesan : [Disini]({})**
+**📩 Channel : [Youtube]({})**
         """
         try:
             await message.reply_photo(
