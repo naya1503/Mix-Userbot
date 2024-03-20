@@ -5,7 +5,7 @@
 # Please see < https://github.com/DevsExpo/blob/master/LICENSE >
 #
 # All rights reserved.
-
+from asyncio import sleep
 import datetime
 import os
 import random
@@ -191,12 +191,13 @@ async def _(client: nlx, message):
         await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
         return
     s.pop(0)
-    group_call.song_name
+    prev = group_call.song_name
     group_call.input_filename = next_s
     bij = f'<a href="{link}">{name_}</a>'
     orgu = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name} {message.from_user.last_name or ''}</a>"
+    await m_.edit(f"{em.sukses} **Memutar lagu berikutnya.**")
     nxt_sg = """
-<u><b>Melewati Lagu</b></u>
+<u><b>Memutar</b></u>
 
 **🎵 Judul : {}**
 **🎸 Artist : `{}`**
@@ -214,5 +215,7 @@ async def _(client: nlx, message):
             message.chat.id,
             nxt_sg.format(bij, singer_, dur, orgu),
         )
+    await sleep(2)
     await m_.delete()
     return
+  
