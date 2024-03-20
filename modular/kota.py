@@ -7,14 +7,14 @@
 # All rights reserved.
 
 from countryinfo import CountryInfo
-from flag import flag
+import flag
 
 from Mix import *
 
-__modles__ = "Kota"
+__modles__ = "Negara"
 __help__ = """
  Kota
-• Perintah: `{p}kota` [query]
+• Perintah: `{p}negara` [query]
 • Penjelasan: Untuk mencari info tentang kota tersebut.
 """
 
