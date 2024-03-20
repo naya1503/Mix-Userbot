@@ -182,7 +182,7 @@ async def _(client: nlx, message):
     if not group_call.is_connected:
         await m_.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
         return
-    if len(m.command) == 1 and not no_t_s:
+    if len(message.command) == 1 and not no_t_s:
         if not s:
             await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
             return
