@@ -300,9 +300,7 @@ async def _(client: nlx, message):
         await message.reply(f"{em.gagal} **Ga lagi di obrolan suara Goblok!!**")
         return
     group_call.resume_playout()
-    await message.reply(
-        f"▶️ **Trek dilanjutkan** {group_call.song_name}."
-    )
+    await message.reply(f"▶️ **Trek dilanjutkan** {group_call.song_name}.")
     return
 
 
