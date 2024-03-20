@@ -6,13 +6,6 @@ import time
 from asyncio import get_event_loop
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
-from asyncio import get_event_loop
-from functools import partial
-from json import dumps, loads
-from urllib.parse import quote_plus
-
-from requests import get
-from yt_dlp import YoutubeDL
 
 from yt_dlp import YoutubeDL
 
