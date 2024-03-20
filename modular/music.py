@@ -206,15 +206,11 @@ async def _(client: nlx, message):
 """
     try:
         await message.reply_photo(
-            message.chat.id,
             photo=thumb_,
-            caption=nxt_sg.format(bij, singer_, dur, orgu),
-        )
+            caption=nxt_sg.format(bij, singer_, dur, orgu), reply_to_message_id=ReplyCheck(message))
     except:
         await message.reply(
-            message.chat.id,
-            nxt_sg.format(bij, singer_, dur, orgu),
-        )
+            nxt_sg.format(bij, singer_, dur, orgu), reply_to_message_id=ReplyCheck(message))
     await sleep(2)
     await m_.delete()
     return
