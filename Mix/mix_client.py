@@ -123,7 +123,7 @@ class Userbot(Client):
             else:
                 text = m.text.split(None, 1)[1]
         return text
-        
+
     async def eor(self, message, text):
         sudo_id = udB.get_list_from_var(self.me.id, "SUDO_USER", "ID_NYA")
         if not message:
