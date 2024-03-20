@@ -1,9 +1,11 @@
 # outdated code :( don't bother reading this shit
 
 from enum import IntEnum, unique
+
 from Mix import nlx, udB
 
 # part of https://github.com/DevsExpo/FridayUserbot
+
 
 async def eor(message, text):
     sudo_id = udB.get_list_from_var(nlx.me.id, "SUDO_USER", "ID_NYA")
@@ -17,6 +19,7 @@ async def eor(message, text):
             return await message.reply_to_message.reply_text(text)
         return await message.reply_text(text)
     return await message.edit(text)
+
 
 @unique
 class Types(IntEnum):

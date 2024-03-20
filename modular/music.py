@@ -6,35 +6,17 @@
 #
 # All rights reserved.
 
+import datetime
 import os
-import math
-import os
-import shlex
-import time
-from math import ceil
-import logging
-import ffmpeg
-from main_startup import Friday
-import functools
-import threading
-from concurrent.futures import ThreadPoolExecutor
-from pyrogram.errors import FloodWait, MessageNotModified
-import multiprocessing
-import time
-import calendar
-from pytgcalls import GroupCallFactory, GroupCallFileAction
-import signal
 import random
 import string
-import asyncio
-import os
 import time
-import requests
-import datetime
-from youtube_dl import YoutubeDL
+
+from pytgcalls import GroupCallFactory, GroupCallFileAction
 from youtubesearchpython import SearchVideos
 
 from Mix.core.tools_music import *
+
 
 @ky.ubot("play", sudo=True)
 async def play_m(client, message):
@@ -54,8 +36,7 @@ async def play_m(client, message):
         dura_ = message.reply_to_message.audio.duration
         dur = datetime.timedelta(seconds=dura_)
         raw_file_name = (
-            ''.join(random.choice(string.ascii_lowercase) for i in range(5))
-            + ".raw"
+            "".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw"
         )
 
         url = message.reply_to_message.link
@@ -64,26 +45,29 @@ async def play_m(client, message):
         rt = search.result()
         result_s = rt.get("search_result")
         if not result_s:
-           return await u_s.edit(f"`No Song Found Matching With Query - {input_str}, Please Try Giving Some Other Name.`")
+            return await u_s.edit(
+                f"`No Song Found Matching With Query - {input_str}, Please Try Giving Some Other Name.`"
+            )
         url = result_s[0]["link"]
         dur = result_s[0]["duration"]
         vid_title = result_s[0]["title"]
-        yt_id = result_s[0]["id"]
+        result_s[0]["id"]
         uploade_r = result_s[0]["channel"]
         start = time.time()
         try:
-           audio_original = await yt_dl(url, client, message, start)
+            audio_original = await yt_dl(url, client, message, start)
         except BaseException as e:
-           return await u_s.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
+            return await u_s.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
         raw_file_name = (
-            ''.join(random.choice(string.ascii_lowercase) for i in range(5))
-            + ".raw"
+            "".join(random.choice(string.ascii_lowercase) for i in range(5)) + ".raw"
         )
 
     try:
         raw_file_name = await convert_to_raw(audio_original, raw_file_name)
     except BaseException as e:
-        return await u_s.edit(f"`FFmpeg Failed To Convert Song To raw Format.` \n**Error :** `{e}`")
+        return await u_s.edit(
+            f"`FFmpeg Failed To Convert Song To raw Format.` \n**Error :** `{e}`"
+        )
     if os.path.exists(audio_original):
         os.remove(audio_original)
     if not group_call:
@@ -108,12 +92,13 @@ async def play_m(client, message):
         return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     else:
         s_d = s_dict.get((message.chat.id, client.me.id))
-        f_info = {"song_name": vid_title,
-                  "raw": raw_file_name,
-                  "singer": uploade_r,
-                  "dur": dur,
-                  "url": url
-                 }
+        f_info = {
+            "song_name": vid_title,
+            "raw": raw_file_name,
+            "singer": uploade_r,
+            "dur": dur,
+            "url": url,
+        }
         if s_d:
             s_d.append(f_info)
         else:
