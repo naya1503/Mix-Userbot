@@ -207,10 +207,14 @@ async def _(client: nlx, message):
     try:
         await message.reply_photo(
             photo=thumb_,
-            caption=nxt_sg.format(bij, singer_, dur, orgu), reply_to_message_id=ReplyCheck(message))
+            caption=nxt_sg.format(bij, singer_, dur, orgu),
+            reply_to_message_id=ReplyCheck(message),
+        )
     except:
         await message.reply(
-            nxt_sg.format(bij, singer_, dur, orgu), reply_to_message_id=ReplyCheck(message))
+            nxt_sg.format(bij, singer_, dur, orgu),
+            reply_to_message_id=ReplyCheck(message),
+        )
     await sleep(2)
     await m_.delete()
     return
