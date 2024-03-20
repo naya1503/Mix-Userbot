@@ -266,6 +266,7 @@ class Userbot(Client):
             self._prefix[self.me.id] = ["."]
         self._translate[self.me.id] = {"negara": "id"}
         LOGGER.info(f"Importing User Modules...")
+        """
         for modul in USER_MOD:
             imported_module = importlib.import_module(f"modular." + modul)
             if hasattr(imported_module, "__modles__") and imported_module.__modles__:
@@ -274,6 +275,7 @@ class Userbot(Client):
                     CMD_HELP[imported_module.__modles__.replace(" ", "_").lower()] = (
                         imported_module
                     )
+        """
         LOGGER.info(f"Successfully Import User Modules...")
         LOGGER.info(f"Starting Userbot {self.me.id}|{self.me.mention}")
 
