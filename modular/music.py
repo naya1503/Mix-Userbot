@@ -100,7 +100,7 @@ async def _(client: nlx, message):
         await message.reply_photo(
             photo=meki,
             caption=plere.format(vid_title, uploade_r, dur, url),
-            reply_to_message_id=ReplyCheck(m),
+            reply_to_message_id=ReplyCheck(message),
         )
         await u_s.delete()
         os.remove(meki)
@@ -123,7 +123,7 @@ async def _(client: nlx, message):
         await message.reply_photo(
             photo=gbr,
             caption=plere.format(vid_title, uploade_r, dur, url),
-            reply_to_message_id=ReplyCheck(m),
+            reply_to_message_id=ReplyCheck(message),
         )
         await u_s.delete()
         return
