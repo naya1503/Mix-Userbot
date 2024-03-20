@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://telegra.ph//file/19b336da463a05d7d8f8c.jpg" alt="Ayra Logo">
+  <img src="https://telegra.ph//file/19b336da463a05d7d8f8c.jpg" alt="Mix Logo">
 </p>
 <h1 align="center">
   <b>Mix Userbot</b>
@@ -58,7 +58,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
  • `screen -S mix`
 
- • `bash run.sh`
+ • `bash start`
 
 </details>
 
@@ -101,8 +101,9 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 
 ## © Credits & Thanks For
 * [TeamUltroid](https://github.com/TeamUltroid) for [Ultroid](https://github.com/TeamUltroid/Ultroid)
-* [Laky-64](https://github.com/Laky-64) for [PyTgCalls](https://github.com/pytgcalls/pytgcalls)
-* [Risman](https://github.com/mrismanaziz) for [Man-Userbot](https://github.com/mrismanaziz/Man-Userbot)
+* [DevsExpo](https://github.com/DevsExpo) for [FridayUB](https://github.com/DevsExpo/FridayUserBot)
+* [MarshalX](https://github.com/MarshalX) for [Tgcalls](https://github.com/MarshalX/tgcalls)
+* [Risman](https://github.com/mrismanaziz) for [Pyro-Man](https://github.com/mrismanaziz/Pyro-Man)
 * [AyiinXd](https://github.com/AyiinXd) for [Ayiin-Userbot](https://github.com/AyiinXd/Ayiin-Userbot)
 * [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)
 * [Kynan](https://github.com/naya1503) for [Mix-Userbot](https://github.com/naya1503/Mix-Userbot)
