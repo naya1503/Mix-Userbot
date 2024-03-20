@@ -104,7 +104,7 @@ async def playout_ended_handler(group_call, filename):
         await group_call.stop()
         del play_vc[(chat_, client_.me.id)]
         return
-      
+
     name_ = s[0]["song_name"]
     singer_ = s[0]["singer"]
     dur_ = s[0]["dur"]
