@@ -37,7 +37,7 @@ lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - J
 lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
 
 # download
-down_1: "{} *Salah Goblok!! Format `{}` [query]."
+down_1: "{} **Salah Goblok!! Format `{}` [query].**"
 
 # filter
 fil_1: "{} Daftar Filter Di Grup {}:\n"
