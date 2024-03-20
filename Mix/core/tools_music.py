@@ -16,7 +16,6 @@ from youtube_dl import YoutubeDL
 
 from .colong import *
 
-
 stream_vc = {}
 play_vc = {}
 
