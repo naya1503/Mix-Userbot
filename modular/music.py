@@ -163,6 +163,50 @@ async def _(client: nlx, message):
 **📩 Permintaan : {}**
 **🔖 Posisi Ke : #`{}`**
 """
-        await message.reply(antrek.format(jadul, uploade_r, dur, org, len(s_d) + 1))
+        await message.reply(antrek.format(jadul, uploade_r, dur, org, len(s_d)+1))
         await pros.delete()
         return
+      
+@ky.ubot("skip", sudo=True)
+async def _(client: nlx, message):
+    em = Emojik()
+    em.initialize()
+    m_ = await message.reply(cgr("proses").format(em.proses))
+    no_t_s = client.get_text(message)
+    group_call = play_vc.get((message.chat.id, client.me.id))
+    s = stream_vc.get((message.chat.id, client.me.id))
+    if not group_call:
+        await m_.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
+        return 
+    if not group_call.is_connected:
+        await m_.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
+        return
+    if len(m.command) == 1 and not no_t_s:
+        if not s:
+            await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
+            return
+        next_s = s[0]['raw']
+        name = str(s[0]['song_name'])
+        s.pop(0)
+        prev = group_call.song_name
+        group_call.input_filename = next_s
+        return await m_.edit(f"{em.sukses} **Lagu diputar {prev} Judul {name}**")
+    else:
+        if not s:
+            await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
+            return
+        if not no_t_s.isdigit():
+            await m_.edit(f"{em.gagal} **Kasih angka goblok!!")
+            return
+        no_t_s = int(no_t_s)
+        if int(no_t_s) == 0:
+            await m_.edit(f"{em.gagal} **Kaga jelas goblok 0 berapa!!")
+            return
+        no_t_s = int(no_t_s - 1)
+        try:
+            s_ = s[no_t_s]['song_name']
+            s.pop(no_t_s)
+        except:
+            return await m_.edit(f"{em.gagal} **Minimal mah liat playlist Goblok!! Ada berapa antrean disitu Tolol!!")
+        return await m_.edit(f"`Dilewati : {s_} Posisi #{no_t_s}`")
+   
