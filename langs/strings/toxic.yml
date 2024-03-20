@@ -157,6 +157,8 @@ dbs_6: "{} **Goblok Goblok!! liatlah query database Tolol!!**"
 dbs_7: "{} **Goblok!! Pake format : `{}` [query].**"
 dbs_8: "{} **Ini jing {} lu : `{}`.**"
 dbs_9: "{} **{} Yosh dibumi musnahkan!!**"
+dbs_10: "{} **Yosh, Tag Logger diset ke `{}`.**"
+
 
 # emoji
 em_1: "{} **Yosh Emoji status diset ke : <emoji id={}>😭</emoji>.**"
