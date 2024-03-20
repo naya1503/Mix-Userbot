@@ -51,8 +51,9 @@ async def _(c: nlx, m):
     filters.mentioned & filters.incoming & ~filters.bot & ~filters.via_bot, group=2
 )
 async def _(c, m):
-    if not TAG_LOG:
+    if not udB.get_var(nlx.me.id, "TAG_LOGGER"):
         return
+    
     org = f"[{m.from_user.first_name} {m.from_user.last_name or ''}](tg://user?id={m.from_user.id})"
     lenk = m.link
     media = None
