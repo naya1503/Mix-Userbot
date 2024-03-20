@@ -203,11 +203,10 @@ async def _(c: nlx, m):
     owo = m.text or m.caption
     chat_filters = db.get_all_filters(m.chat.id)
     actual_filters = {j for i in chat_filters for j in i.split("|")}
-    owo = owo.lower()
 
     for trigger in actual_filters:
         pattern = r"( |^|[^\w])" + re_escape(trigger) + r"(|$|[^\w])"
-        match = await regex_searcher(pattern, owo)
+        match = await regex_searcher(pattern, owo.lower())
         if match:
             try:
                 await send_filter_reply(c, m, trigger)
