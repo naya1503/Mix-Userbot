@@ -11,20 +11,19 @@ from Mix import *
 from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
 
-# loop = asyncio.get_event_loop_policy()
-# event_loop = loop.get_event_loop()
-loop = asyncio.get_event_loop()
+loop = asyncio.get_event_loop_policy()
+event_loop = loop.get_event_loop()
+#loop = asyncio.get_event_loop()
 
 
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
-        await Userbot().start()
+        await nlx.start()
         await dasar_laknat(nlx)
     except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
         LOGGER.info("Check your session or api id!!")
         sys.exit(1)
-    await idle()
 
 
 async def start_bot():
@@ -78,7 +77,7 @@ async def main():
 
 
 if __name__ == "__main__":
-    # install()
-    # asyncio.set_event_loop(event_loop)
-    # event_loop.run_until_complete(main())
-    loop.run_until_complete(start_user())
+    install()
+    asyncio.set_event_loop(event_loop)
+    event_loop.run_until_complete(main())
+    #loop.run_until_complete(main())
