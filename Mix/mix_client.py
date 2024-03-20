@@ -38,6 +38,7 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
+            **kwargs)
             # ipv6=True,
             """
             proxy={
@@ -48,7 +49,6 @@ class Userbot(Client):
                 "password": proxy_password,
             },
             """
-            **kwargs)
 
     def on_message(self, filters=None, group=-1):
         def decorator(func):
