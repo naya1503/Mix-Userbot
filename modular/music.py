@@ -13,7 +13,7 @@ import string
 
 from pytgcalls import GroupCallFactory, GroupCallFileAction
 
-from Mix import ReplyCheck, ky, nlx, cgr, bot
+from Mix import ReplyCheck, cgr, ky, nlx
 from Mix.core.tools_music import *
 
 gbr = "https://telegra.ph//file/b2a9611753657547acf15.jpg"
@@ -28,7 +28,9 @@ async def _(client: nlx, message):
     gt_txt = client.get_text(message)
     rep = message.reply_to_message
     if len(message.command) == 1 and not rep:
-        return await pros.edit_text(f"{em.gagal} **Salah goblok!! Format `{m.text}` [query/balas media.**")
+        return await pros.edit_text(
+            f"{em.gagal} **Salah goblok!! Format `{m.text}` [query/balas media.**"
+        )
     if rep:
         await pros.edit_text(f"{em.proses} **Starting to download...**")
         audio = rep.audio
@@ -149,4 +151,6 @@ async def _(client: nlx, message):
         else:
             stream_vc[(message.chat.id, client.me.id)] = [f_info]
         s_d = stream_vc.get((message.chat.id, client.me.id))
-        return await pros.edit(f"{em.sukses} **📝 <u>{vid_title}</u> antrean ke : #`{len(s_d)+1}`\n Ditambahkan kedalam antrean saat ini.**")
+        return await pros.edit(
+            f"{em.sukses} **📝 <u>{vid_title}</u> antrean ke : #`{len(s_d)+1}`\n Ditambahkan kedalam antrean saat ini.**"
+        )

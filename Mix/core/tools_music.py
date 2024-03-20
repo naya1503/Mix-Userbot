@@ -12,7 +12,6 @@ import threading
 
 import ffmpeg
 from pyrogram.errors import FloodWait, MessageNotModified
-from youtubesearchpython import VideosSearch
 from yt_dlp import YoutubeDL
 
 from .colong import *
@@ -108,7 +107,7 @@ async def playout_ended_handler(group_call, filename):
 
     name_ = s[0]["song_name"]
     singer_ = s[0]["singer"]
-    dur_ = s[0]["dur"]
+    s[0]["dur"]
     raw_file = s[0]["raw"]
     link = s[0]["url"]
     thumb_ = s[0]["thumb"]
@@ -124,13 +123,14 @@ async def playout_ended_handler(group_call, filename):
 """
     try:
         await client_.send_photo(
-          chat_,
-          photo=thumb_,
-          caption=song_info.format(name_, singer_, dur, link, file_size))
+            chat_,
+            photo=thumb_,
+            caption=song_info.format(name_, singer_, dur, link, file_size),
+        )
     except:
         await client_.send_message(
-          chat_,
-          song_info.format(name_, singer_, dur, link, file_size))
+            chat_, song_info.format(name_, singer_, dur, link, file_size)
+        )
     s.pop(0)
     logging.debug(song_info)
     group_call.song_name = name_
