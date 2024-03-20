@@ -38,8 +38,10 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
-            **kwargs)
-            # ipv6=True,
+            **kwargs,
+        )
+        # ipv6=True,
+
     """
             proxy={
                 "scheme": "socks5",
