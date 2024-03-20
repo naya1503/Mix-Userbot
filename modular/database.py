@@ -41,7 +41,7 @@ async def _(c: nlx, m):
     elif variable.lower() == "taglog":
         if value.lower() == "on":
             udB.set_var(c.me.id, "TAG_LOGGER", True)
-            await jing.edit(cgr("dbs_4").format(em.sukses, value))
+            await jing.edit(cgr("dbs_10").format(em.sukses, value))
             return
     else:
         await jing.edit(cgr("dbs_6").format(em.gagal))
