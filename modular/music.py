@@ -79,7 +79,7 @@ async def _(client: nlx, message):
 
             url = rep.link
     else:
-        if m.command == "vplay":
+        if message.command == "vplay":
             search = VideosSearch(gt_txt, limit=1).result()["result"][0]
             link = f"https://youtu.be/{search['id']}"
             file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (
