@@ -39,6 +39,7 @@ class Userbot(Client):
             session_string=session,
             device_model="Mix-Userbot",
             # ipv6=True,
+            """
             proxy={
                 "scheme": "socks5",
                 "hostname": proxy_host,
@@ -46,6 +47,7 @@ class Userbot(Client):
                 "username": proxy_username,
                 "password": proxy_password,
             },
+            """
             **kwargs,
         )
 
