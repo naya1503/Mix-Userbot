@@ -48,8 +48,7 @@ class Userbot(Client):
                 "password": proxy_password,
             },
             """
-            **kwargs,
-        )
+            **kwargs)
 
     def on_message(self, filters=None, group=-1):
         def decorator(func):
