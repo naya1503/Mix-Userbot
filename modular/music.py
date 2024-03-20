@@ -96,13 +96,18 @@ async def _(client: nlx, message):
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
-**📩 Pesan : [Disini]({})**
+**📩 Pesan : [Disini]({})**c
         """
-        await message.reply_photo(
-            photo=meki,
-            caption=plere.format(vid_title, uploade_r, dur, url),
-            reply_to_message_id=ReplyCheck(message),
-        )
+        try:
+            await message.reply_photo(
+                photo=meki,
+                caption=plere.format(vid_title, uploade_r, dur, url),
+                reply_to_message_id=ReplyCheck(message),
+            )
+        except:
+            await client.eor(message, plere.format(vid_title, uploade_r, dur, url),
+                reply_to_message_id=ReplyCheck(message),
+            )
         await u_s.delete()
         os.remove(meki)
         return
@@ -122,11 +127,16 @@ async def _(client: nlx, message):
 **⏲️️ Durasi :` {}`**
 **📩 Pesan : [Disini]({})**
         """
-        await message.reply_photo(
-            photo=gbr,
-            caption=plere.format(vid_title, uploade_r, dur, url),
-            reply_to_message_id=ReplyCheck(message),
-        )
+        try:
+            await message.reply_photo(
+                photo=meki,
+                caption=plere.format(vid_title, uploade_r, dur, url),
+                reply_to_message_id=ReplyCheck(message),
+            )
+        except:
+            await client.eor(message, plere.format(vid_title, uploade_r, dur, url),
+                reply_to_message_id=ReplyCheck(message),
+            )
         await u_s.delete()
         return
         # return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
