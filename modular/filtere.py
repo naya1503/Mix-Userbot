@@ -14,7 +14,7 @@ from pyrogram.errors import *
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.sender_tools import parse_words, send_cmd, split_quotes
+from Mix.core.sender_tools import parse_words, send_cmd, split_quotes, escape_tag
 
 __modles__ = "Filter"
 __help__ = get_cgr("help_filr")
