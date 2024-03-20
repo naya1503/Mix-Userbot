@@ -6,6 +6,10 @@
 #
 # All rights reserved.
 
+from Mix import *
+import flag
+from countryinfo import CountryInfo
+
 __modles__ = "Kota"
 __help__ = """
  Kota
