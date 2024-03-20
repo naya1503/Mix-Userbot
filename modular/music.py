@@ -173,44 +173,46 @@ async def _(client: nlx, message):
     em = Emojik()
     em.initialize()
     m_ = await message.reply(cgr("proses").format(em.proses))
-    no_t_s = client.get_text(message)
     group_call = play_vc.get((message.chat.id, client.me.id))
     s = stream_vc.get((message.chat.id, client.me.id))
+    name_ = s[0]["song_name"]
+    singer_ = s[0]["singer"]
+    dur = s[0]["dur"]
+    next_s = s[0]["raw"]
+    link = s[0]["url"]
+    thumb_ = s[0]["thumb"]
     if not group_call:
         await m_.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
         return
     if not group_call.is_connected:
         await m_.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
         return
-    if len(message.command) == 1 and not no_t_s:
-        if not s:
-            await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
-            return
-        next_s = s[0]["raw"]
-        name = str(s[0]["song_name"])
-        s.pop(0)
-        prev = group_call.song_name
-        group_call.input_filename = next_s
-        return await m_.edit(
-            f"{em.sukses} **Melewati trek : `{prev}`. Sekarang memutar `{name}`**"
+    if not s:
+        await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
+        return
+    s.pop(0)
+    prev = group_call.song_name
+    group_call.input_filename = next_s
+    bij = f'<a href="{link}">{name_}</a>'
+    orgu = f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name} {message.from_user.last_name or ''}</a>"
+    nxt_sg = """
+<u><b>Melewati Lagu</b></u>
+
+**🎵 Judul : {}**
+**🎸 Artist : `{}`**
+**⏲️️ Durasi : `{}`**
+**📩 Permintaan : {}**
+"""
+    try:
+        await message.reply_photo(
+            message.chat.id,
+            photo=thumb_,
+            caption=nxt_sg.format(bij, singer_, dur, orgu),
         )
-    else:
-        if not s:
-            await m_.edit(f"{em.gagal} **Kaga ada playlist Goblok!!")
-            return
-        if not no_t_s.isdigit():
-            await m_.edit(f"{em.gagal} **Kasih angka goblok!!")
-            return
-        no_t_s = int(no_t_s)
-        if int(no_t_s) == 0:
-            await m_.edit(f"{em.gagal} **Kaga jelas goblok 0 berapa!!")
-            return
-        no_t_s = int(no_t_s - 1)
-        try:
-            s_ = s[no_t_s]["song_name"]
-            s.pop(no_t_s)
-        except:
-            return await m_.edit(
-                f"{em.gagal} **Minimal mah liat playlist Goblok!! Ada berapa antrean disitu Tolol!!"
-            )
-        return await m_.edit(f"`Dilewati : {s_} Posisi #{no_t_s}`")
+    except:
+        await message.reply(
+            message.chat.id,
+            nxt_sg.format(bij, singer_, dur, orgu),
+        )
+    await m_.delete()
+    return
