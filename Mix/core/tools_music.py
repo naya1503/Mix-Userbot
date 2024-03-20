@@ -30,6 +30,7 @@ async def eor(message, text):
         return await message.reply_text(text)
     return await message.edit(text)
 
+
 stream_vc = {}
 play_vc = {}
 
