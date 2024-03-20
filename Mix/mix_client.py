@@ -31,7 +31,7 @@ proxy = {
     "port": proxy_port,
     "username": proxy_username,
     "password": proxy_password,
-    "scheme": "socks5"
+    "scheme": "socks5",
 }
 
 
