@@ -112,7 +112,7 @@ async def playout_ended_handler(group_call, filename):
     raw_file = s[0]["raw"]
     link = s[0]["url"]
     thumb_ = s[0]["thumb"]
-    file_size = humanbytes(os.stat(raw_file).st_size)
+    humanbytes(os.stat(raw_file).st_size)
     orgu = f"<a href='tg://user?id={mes.from_user.id}'>{mes.from_user.first_name} {mes.from_user.last_name or ''}</a>"
     bij = f'<a href="{link}">{name_}</a>'
     song_info = """
@@ -131,7 +131,8 @@ async def playout_ended_handler(group_call, filename):
         )
     except:
         await client_.send_message(
-            chat_, song_info.format(biji, singer_, dur, orgu),
+            chat_,
+            song_info.format(biji, singer_, dur, orgu),
         )
     s.pop(0)
     logging.debug(song_info)
