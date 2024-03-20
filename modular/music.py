@@ -163,6 +163,6 @@ async def _(client: nlx, message):
 **📩 Permintaan : {}**
 **🔖 Posisi Ke : #`{}`**
 """
-        await m.reply(antrek.format(jadul, uploade_r, dur, org, len(s_d) + 1))
+        await message.reply(antrek.format(jadul, uploade_r, dur, org, len(s_d)+1))
         await pros.delete()
         return
