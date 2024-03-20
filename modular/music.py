@@ -154,6 +154,15 @@ async def _(client: nlx, message):
         else:
             stream_vc[(message.chat.id, client.me.id)] = [f_info]
         s_d = stream_vc.get((message.chat.id, client.me.id))
-        return await pros.edit(
-            f"{em.sukses} **📝 <u>{vid_title}</u> antrean ke : #`{len(s_d)+1}`\n Ditambahkan kedalam antrean saat ini.**"
-        )
+        antrek = """
+<u><b>➕ Ditambahkan Ke Antrean 📝</b></u>
+
+**🎵 Judul : {}**
+**🎸 Artist : `{}`**
+**⏲️️ Durasi : `{}`**
+**📩 Permintaan : {}**
+**🔖 Posisi Ke : #`{}`**
+"""
+        await m.reply(antrek.format(jadul, uploade_r, dur, org, len(s_d)+1))
+        await pros.delete()
+        return
