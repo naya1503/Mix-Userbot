@@ -1,9 +1,18 @@
 import asyncio
 import math
 import time
+import multiprocessing
+import mimetypes
+import functools
+import threading
+from concurrent.futures import ThreadPoolExecutor
+
+max_workers = multiprocessing.cpu_count() * 5
+exc_ = ThreadPoolExecutor(max_workers=max_workers)
 
 from pyrogram.errors.exceptions import *
 
+# part of https://github.com/DevsExpo/FridayUserbot
 
 def humanbytes(size):
     """Convert Bytes To Bytes So That Human Can Read It"""
@@ -70,3 +79,10 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
                 await asyncio.sleep(e.x)
             except MessageNotModified:
                 pass
+
+def run_in_exc(f):
+    @functools.wraps(f)
+    async def wrapper(*args, **kwargs):
+        loop = asyncio.get_running_loop()
+        return await loop.run_in_executor(exc_, lambda: f(*args, **kwargs))
+    return wrapper
