@@ -5,7 +5,7 @@ from Mix import nlx, udB
 
 # part of https://github.com/DevsExpo/FridayUserbot
 
-async def eor(message, text)
+async def eor(message, text):
     sudo_id = udB.get_list_from_var(nlx.me.id, "SUDO_USER", "ID_NYA")
     """Edit Message If Its From Self, Else Reply To Message, (Only Works For Sudo's)"""
     if not message:
