@@ -12,7 +12,8 @@ import threading
 
 import ffmpeg
 from pyrogram.errors import FloodWait, MessageNotModified
-from youtube_dl import YoutubeDL
+from yt_dlp import YoutubeDL
+from youtubesearchpython import VideosSearch
 
 from .colong import *
 
@@ -42,6 +43,46 @@ def edit_msg(client, message, to_edit):
         client.loop.create_task(asyncio.sleep(e.x))
     except TypeError:
         pass
+
+async def download(client, query):
+    if query.startswith("https://") and "youtube" not in query.lower():
+        thumb, duration = None, "Unknown"
+        title = link = query
+    else:
+        search = VideosSearch(query, limit=1).result()
+        data = search["result"][0]
+        link = data["link"]
+        title = data["title"]
+        duration = data.get("duration") or "♾"
+        thumb = f"https://i.ytimg.com/vi/{data['id']}/hqdefault.jpg"
+    dl = await get_stream_link(client, link)
+    return dl, thumb, title, link, duration
+    
+async def get_stream_link(client, ytlink):
+    """
+    info = YoutubeDL({}).extract_info(url=ytlink, download=False)
+    k = ""
+    for x in info["formats"]:
+        h, w = ([x["height"], x["width"]])
+        if h and w:
+            if h <= 720 and w <= 1280:
+                k = x["url"]
+    return k
+    """
+    stream = await client.bash(f'yt-dlp -g -f "best[height<=?720][width<=?1280]" {ytlink}')
+    return stream[0]
+
+
+async def vid_download(query):
+    search = VideosSearch(query, limit=1).result()
+    data = search["result"][0]
+    link = data["link"]
+    video = await get_stream_link(link)
+    title = data["title"]
+    thumb = f"https://i.ytimg.com/vi/{data['id']}/hqdefault.jpg"
+    duration = data.get("duration") or "♾"
+    return video, thumb, title, link, duration
+
 
 
 def download_progress_hook(d, message, client, start):
