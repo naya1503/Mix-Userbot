@@ -24,9 +24,10 @@ async def _(client: nlx, message):
     group_call = play_vc.get((message.chat.id, client.me.id))
     u_s = await client.eor(message, "`Processing..`")
     input_str = client.get_text(message)
-    if not input_str:
-        if not message.reply_to_message:
-            return await u_s.edit_text("`Reply To A File To PLay It.`")
+    rep = message.reply_to_message
+    if len(message.command) == 1 and not rep:
+        return await u_s.edit_text("`Reply To A File To PLay It.`")
+    if rep:
         await u_s.edit_text("`Please Wait, Let Me Download This File!`")
         audio = message.reply_to_message
         audio_original = await audio.download()
