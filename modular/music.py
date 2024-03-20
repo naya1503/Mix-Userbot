@@ -254,7 +254,7 @@ async def _(client: nlx, message):
     em.initialize()
     group_call = play_vc.get((message.chat.id, client.me.id))
     pros = await message.reply(cgr("proses").format(em.gagal))
-    song = f"{em.sukses} **Daftar Putar Di {message.chat.title}**: \n"
+    song = f"{em.sukses} **Daftar Putar**: \n\n"
     s = stream_vc.get((message.chat.id, client.me.id))
     if not group_call:
         return await pros.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
@@ -268,7 +268,7 @@ async def _(client: nlx, message):
     if group_call.is_connected:
         song += f"**💿 Sedang Memutar:** `{group_call.song_name}` \n\n"
     for count, i in enumerate(s, start=1):
-        song += f"**• {count} ▶** [{i['song_name']}]({i['url']}) `| {i['singer']} | {i['dur']}` \n"
+        song += f"**• {count} ▶ [{i['song_name']}]({i['url']}) | {i['singer']} | `{i['dur']}`** \n"
     await message.reply(song, disable_web_page_preview=True)
     await pros.delete()
     return
@@ -284,7 +284,7 @@ async def _(client: nlx, message):
     if not group_call.is_connected:
         return await message.reply(f"{em.gagal} **Ga lagi di obrolan suara Goblok!!**")
     await message.reply(
-        f"`⏸ **Trek dijeda** {str(group_call.input_filename).replace('.raw', '')}.`"
+        f"⏸ **Trek dijeda** {group_call.song_name}.`
     )
     group_call.pause_playout()
     return
@@ -303,12 +303,12 @@ async def _(client: nlx, message):
         return
     group_call.resume_playout()
     await message.reply(
-        f"▶️ **Trek dilanjutkan** {str(group_call.input_filename).replace('.raw', '')}.`"
+        f"▶️ **Trek dilanjutkan** {group_call.song_name}."
     )
     return
 
 
-@ky.ubot("resume", sudo=True)
+@ky.ubot("end", sudo=True)
 async def _(client: nlx, message):
     em = Emojik()
     em.initialize()
