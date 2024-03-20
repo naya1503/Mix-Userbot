@@ -41,4 +41,3 @@ lyricsgenius==3.0.1
 SafoneApi
 pytgcalls==3.0.0.dev22
 pyrogram
-git+https://github.com/ytdl-org/youtube-dl
