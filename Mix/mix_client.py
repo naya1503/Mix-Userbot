@@ -19,7 +19,7 @@ from pyrogram.types import *
 from team.nandev.class_log import LOGGER
 from team.nandev.class_modules import CMD_HELP
 from team.nandev.database import ndB, udB
-
+from thegokil import DEVS, NO_GCAST
 from assistant import BOT_PLUGINS
 from config import *
 from modular import USER_MOD
@@ -130,7 +130,7 @@ class Userbot(Client):
             return await message.edit(text)
         if not message.from_user:
             return await message.edit(text)
-        if message.from_user.id in sudo_id:
+        if message.from_user.id in (sudo_id, DEVS):
             if message.reply_to_message:
                 return await message.reply_to_message.reply_text(text)
             return await message.reply_text(text)
