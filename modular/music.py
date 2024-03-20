@@ -47,7 +47,9 @@ async def _(client: nlx, message):
 
         url = rep.link
     else:
-        file_name, vid_title, url, dur, views, uploade_r, meki, data_ytp) = await YoutubeDownload(link, as_video=False)
+        search = VideosSearch(input_str, limit=1).result()["result"][0]
+        link = f"https://youtu.be/{search['id']}"
+        file_name, vid_title, url, dur, views, uploade_r, meki, data_ytp = await YoutubeDownload(link, as_video=False)
         try:
             # audio_original = await yt_dl(url, bot, message, start)
             audio_original = file_name
