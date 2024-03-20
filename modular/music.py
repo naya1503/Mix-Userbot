@@ -10,7 +10,6 @@ import datetime
 import os
 import random
 import string
-
 from pytgcalls import GroupCallFactory, GroupCallFileAction
 from youtubesearchpython import VideosSearch
 
@@ -55,11 +54,12 @@ async def _(client: nlx, message):
     else:
         search = VideosSearch(gt_txt, limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
-        file_name, vid_title, url, dur, views, uploade_r, meki, data_ytp = (
+        file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (
             await YoutubeDownload(link, as_video=False)
         )
         try:
             audio_original = file_name
+            dur = datetime.timedelta(seconds=durok)
         except BaseException as e:
             return await pros.edit(cgr("err").format(em.gagal, str(e)))
         raw_file_name = (
@@ -87,7 +87,7 @@ async def _(client: nlx, message):
         plere = """
 <u><b>🎼 Sekarang Diputar 🎶</b></u>
 
-**🎵 Judul : `{}`**
+**🎵 Judul : {}**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
 **📩 Permintaan : {}**
@@ -120,7 +120,7 @@ async def _(client: nlx, message):
         plere = """
 <u><b>🎼 Sekarang Diputar 🎶</b></u>
 
-**🎵 Judul : `{}`**
+**🎵 Judul : {}**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
 **📩 Permintaan : {}**
