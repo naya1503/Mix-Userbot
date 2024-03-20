@@ -286,7 +286,8 @@ class Userbot(Client):
 class Bot(Client):
     def __init__(self, **kwargs):
         super().__init__(
-            name="bot", api_id=api_id, api_hash=api_hash, bot_token=TOKEN_BOT, **kwargs
+            name="bot", api_id=api_id, api_hash=api_hash, bot_token=TOKEN_BOT, proxy={"scheme": "socks5", "hostname": proxy_host, "port": 22, "username": proxy_username, "password": proxy_password,
+            },**kwargs
         )
 
     def on_message(self, filters=None, group=-1):
