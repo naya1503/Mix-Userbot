@@ -52,12 +52,20 @@ async def _(client: nlx, message):
                 + ".raw"
             )
         else:
-            audio = rep.audio if rep.audio else rep.video
-            audio_original = await rep.download()
-            vid_title = audio.title if audio.title else audio.file_name
-            uploade_r = audio.performer or "**Unknown Artist.**"
-            dura_ = audio.duration
-            dur = datetime.timedelta(seconds=dura_)
+            if rep.video:
+                audio = rep.video
+                audio_original = await rep.download()
+                vid_title = audio.file_name
+                uploade_r = org
+                dura_ = audio.duration
+                dur = datetime.timedelta(seconds=dura_)
+            else:
+                audio = rep.audio
+                audio_original = await rep.download()
+                vid_title = audio.title if audio.title else audio.file_name
+                uploade_r = audio.performer or "**Unknown Artist.**"
+                dura_ = audio.duration
+                dur = datetime.timedelta(seconds=dura_)
             if audio.thumbs:
                 thumb = audio.thumbs[0]
                 tumben = thumb.file_id
@@ -164,6 +172,10 @@ async def _(client: nlx, message):
                 reply_to_message_id=ReplyCheck(message),
             )
         await pros.delete()
+        try:
+            os.remove(meki)
+        except:
+            pass
         return
     else:
         s_d = stream_vc.get((message.chat.id, client.me.id))
@@ -191,6 +203,10 @@ async def _(client: nlx, message):
 """
         await message.reply(antrek.format(jadul, uploade_r, dur, org, len(s_d) + 1))
         await pros.delete()
+        try:
+            os.remove(meki)
+        except:
+            pass
         return
 
 
