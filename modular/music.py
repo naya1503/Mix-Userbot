@@ -14,8 +14,11 @@ from asyncio import sleep
 from pytgcalls import GroupCallFactory, GroupCallFileAction
 from youtubesearchpython import VideosSearch
 
-from Mix import Emojik, ReplyCheck, YoutubeDownload, cgr, ky, nlx
+from Mix import Emojik, ReplyCheck, YoutubeDownload, cgr, ky, nlx, get_cgr
 from Mix.core.tools_music import *
+
+__modles__ = "Music"
+__help__ = get_cgr("help_mus")
 
 gbr = "https://telegra.ph//file/b2a9611753657547acf15.jpg"
 
