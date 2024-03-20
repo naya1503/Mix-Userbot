@@ -131,7 +131,7 @@ class Userbot(Client):
             return await message.edit(text)
         if not message.from_user:
             return await message.edit(text)
-        if message.from_user.id in (sudo_id, DEVS):
+        if message.from_user.id in sudo_id:
             if message.reply_to_message:
                 return await message.reply_to_message.reply_text(text)
             return await message.reply_text(text)
