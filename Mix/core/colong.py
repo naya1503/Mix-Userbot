@@ -98,9 +98,8 @@ from functools import partial
 from json import dumps, loads
 from urllib.parse import quote_plus
 
-from yt_dlp import YoutubeDL
-
 from requests import get
+from yt_dlp import YoutubeDL
 
 
 def run_sync(func, *args, **kwargs):
@@ -138,6 +137,7 @@ async def YoutubeDownload(url, as_video=False):
     views = f"{ytdl_data['view_count']:,}".replace(",", ".")
     thumb = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg"
     return file_name, title, url, duration, views, channel, thumb, data_ytp
+
 
 class YouTubeSearch:
     def __init__(self, search_terms: str, max_results=None):
