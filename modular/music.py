@@ -259,7 +259,9 @@ async def _(client: nlx, message):
         return
     if not s:
         if group_call.is_connected:
-            return await pros.edit(f"{em.gagal} **Hanya memutar trek saat ini :** `{group_call.song_name}`")
+            return await pros.edit(
+                f"{em.gagal} **Hanya memutar trek saat ini :** `{group_call.song_name}`"
+            )
         else:
             return await pros.edit(f"{em.gagal} **Ga lagi memutar musik Goblok!!**")
     if group_call.is_connected:
