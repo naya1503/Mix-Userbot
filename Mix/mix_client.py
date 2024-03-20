@@ -27,7 +27,6 @@ from modular import USER_MOD
 TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
 
 proxy = {
-    "scheme": "socks5",
     "hostname": proxy_host,
     "port": proxy_port,
     "username": proxy_username,
