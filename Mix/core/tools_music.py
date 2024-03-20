@@ -45,49 +45,6 @@ def edit_msg(client, message, to_edit):
         pass
 
 
-async def download(client, query):
-    if query.startswith("https://") and "youtube" not in query.lower():
-        thumb, duration = None, "Unknown"
-        title = link = query
-    else:
-        search = VideosSearch(query, limit=1).result()
-        data = search["result"][0]
-        link = data["link"]
-        title = data["title"]
-        duration = data.get("duration") or "♾"
-        thumb = f"https://i.ytimg.com/vi/{data['id']}/hqdefault.jpg"
-    dl = await get_stream_link(client, link)
-    return dl, thumb, title, link, duration
-
-
-async def get_stream_link(client, ytlink):
-    """
-    info = YoutubeDL({}).extract_info(url=ytlink, download=False)
-    k = ""
-    for x in info["formats"]:
-        h, w = ([x["height"], x["width"]])
-        if h and w:
-            if h <= 720 and w <= 1280:
-                k = x["url"]
-    return k
-    """
-    stream = await client.bash(
-        f'yt-dlp -g -f "best[height<=?720][width<=?1280]" {ytlink}'
-    )
-    return stream[0]
-
-
-async def vid_download(query):
-    search = VideosSearch(query, limit=1).result()
-    data = search["result"][0]
-    link = data["link"]
-    video = await get_stream_link(link)
-    title = data["title"]
-    thumb = f"https://i.ytimg.com/vi/{data['id']}/hqdefault.jpg"
-    duration = data.get("duration") or "♾"
-    return video, thumb, title, link, duration
-
-
 def download_progress_hook(d, message, client, start):
     if d["status"] == "downloading":
         current = d.get("_downloaded_bytes_str") or humanbytes(
@@ -154,13 +111,26 @@ async def playout_ended_handler(group_call, filename):
     dur_ = s[0]["dur"]
     raw_file = s[0]["raw"]
     link = s[0]["url"]
+    thumb_ = s[0]["thumb"]
     file_size = humanbytes(os.stat(raw_file).st_size)
-    song_info = f'<u><b>🎼 Now Playing 🎼</b></u> \n<b>🎵 Song :</b> <a href="{link}">{name_}</a> \n<b>🎸 Singer :</b> <code>{singer_}</code> \n<b>⏲️ Duration :</b> <code>{dur_}</code> \n<b>📂 Size :</b> <code>{file_size}</code>'
-    await client_.send_message(
-        chat_,
-        song_info,
-        disable_web_page_preview=True,
-    )
+    song_info = """
+<u><b>🎼 Sekarang Diputar 🎶</b></u>
+
+**🎵 Judul : `{}`**
+**🎸 Artist : `{}`**
+**⏲️️ Durasi : `{}`**
+**📩 Media : [Klik Disini]({})**
+**📂 Ukuran : `{}`**
+"""
+    try:
+        await client_.send_photo(
+          chat_,
+          photo=thumb_
+          song_info.format(name_, singer_, dur, link, file_size))
+    except:
+        await client_.send_message(
+          chat_,
+          song_info.format(name_, singer_, dur, link, file_size))
     s.pop(0)
     logging.debug(song_info)
     group_call.song_name = name_
