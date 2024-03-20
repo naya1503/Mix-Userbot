@@ -107,7 +107,7 @@ async def playout_ended_handler(group_call, filename):
 
     name_ = s[0]["song_name"]
     singer_ = s[0]["singer"]
-    s[0]["dur"]
+    dur = s[0]["dur"]
     raw_file = s[0]["raw"]
     link = s[0]["url"]
     thumb_ = s[0]["thumb"]
@@ -118,8 +118,7 @@ async def playout_ended_handler(group_call, filename):
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
-**📩 Media : [Klik Disini]({})**
-**📂 Ukuran : `{}`**
+**📩 Channel : [Youtube]({})
 """
     try:
         await client_.send_photo(
