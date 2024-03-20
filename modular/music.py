@@ -92,11 +92,13 @@ async def _(client: nlx, message):
         Pesan : {}
         """
         await m.reply_photo(
-            photo=gbr, caption=plere.format(vid_title, uploade_r, dur, url), reply_to_message_id=ReplyCheck(m),
+            photo=gbr,
+            caption=plere.format(vid_title, uploade_r, dur, url),
+            reply_to_message_id=ReplyCheck(m),
         )
         await u_s.delete()
         return
-        #return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
+        # return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     elif not group_call.is_connected:
         try:
             await group_call.start(message.chat.id)
@@ -112,7 +114,9 @@ async def _(client: nlx, message):
         Pesan : {}
         """
         await m.reply_photo(
-            photo=gbr, caption=plere.format(vid_title, uploade_r, dur, url), reply_to_message_id=ReplyCheck(m),
+            photo=gbr,
+            caption=plere.format(vid_title, uploade_r, dur, url),
+            reply_to_message_id=ReplyCheck(m),
         )
         await u_s.delete()
         return
