@@ -1,2 +1,2 @@
-rm -rf *,jpg *.session *.raw unknown_errors.txt /downloads/*
+rm -rf *,jpg *.session *.session journal *.raw unknown_errors.txt /downloads/*
 ls
