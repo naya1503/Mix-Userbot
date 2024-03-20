@@ -116,7 +116,7 @@ async def _(c, m):
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
     except Exception as error:
-        return await pros.edit(cgr("err").format(em.gagal))
+        return await pros.edit(cgr("err").format(em.gagal, error))
     try:
         (
             file_name,
@@ -129,7 +129,7 @@ async def _(c, m):
             data_ytp,
         ) = await YoutubeDownload(link, as_video=False)
     except Exception as error:
-        return await pros.edit(cgr("err").format(em.gagal))
+        return await pros.edit(cgr("err").format(em.gagal, error))
     thumbnail = wget.download(thumb)
     await c.send_audio(
         m.chat.id,
