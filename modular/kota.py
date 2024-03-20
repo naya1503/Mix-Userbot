@@ -6,7 +6,7 @@
 #
 # All rights reserved.
 
-import flag
+from flag import flag
 from countryinfo import CountryInfo
 
 from Mix import *
@@ -60,7 +60,7 @@ async def _(c: nlx, m):
         iso += po + ",  "
     fla = iSo.get("alpha2")
     nox = fla.upper()
-    okie = flag.flag(nox)
+    okie = flag(nox)
     languages = a.get("languages")
     lMAO = "".join(lmao + ",  " for lmao in languages)
     nonive = a.get("nativeName")
