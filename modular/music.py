@@ -66,7 +66,7 @@ async def _(client: nlx, message):
         uploade_r, meki, vid_title, url, dur = await download(client, input_str)
         try:
             # audio_original = await yt_dl(url, bot, message, start)
-            audio_original = uploade_r
+            audio_original = url
         except BaseException as e:
             return await u_s.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
         raw_file_name = (
