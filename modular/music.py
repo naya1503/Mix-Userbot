@@ -31,7 +31,7 @@ async def _(client: nlx, message):
         await u_s.edit_text("`Please Wait, Let Me Download This File!`")
         audio = message.reply_to_message
         audio_original = await audio.download()
-        vid_title = audio.title or audio.file_name
+        vid_title = audio.file_name
         uploade_r = audio.performer or "Unknown Artist."
         dura_ = audio.duration
         dur = datetime.timedelta(seconds=dura_)
