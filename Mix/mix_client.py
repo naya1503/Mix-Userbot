@@ -43,8 +43,6 @@ class Userbot(Client):
                 "scheme": "socks5",
                 "hostname": proxy_host,
                 "port": 22,
-                "username": proxy_username,
-                "password": proxy_password,
             },
             **kwargs,
         )
