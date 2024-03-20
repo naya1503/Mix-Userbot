@@ -250,6 +250,8 @@ async def _(client: nlx, message):
 
 @ky.ubot("playlist", sudo=True)
 async def _(client: nlx, message):
+    em = Emojik()
+    em.initialize()
     group_call = play_vc.get((message.chat.id, client.me.id))
     pros = await message.reply(cgr("proses").format(em.gagal))
     song = f"{em.sukses} **Daftar Putar Di {message.chat.title}**: \n"
