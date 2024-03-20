@@ -20,6 +20,7 @@ from Mix.core.tools_music import *
 
 gbr = "https://telegra.ph//file/b2a9611753657547acf15.jpg"
 
+
 @ky.ubot("play", sudo=True)
 async def _(client: nlx, message):
     group_call = play_vc.get((message.chat.id, client.me.id))
@@ -50,7 +51,7 @@ async def _(client: nlx, message):
                 f"`No Song Found Matching With Query - {input_str}, Please Try Giving Some Other Name.`"
             )
         url = result_s[0]["link"]
-        thumbnail = result_s[0]["thumbnails"].split("?")
+        result_s[0]["thumbnails"].split("?")
         dur = result_s[0]["duration"]
         vid_title = result_s[0]["title"]
         result_s[0]["id"]
@@ -99,10 +100,12 @@ async def _(client: nlx, message):
         Durasi : {}
         Pesan : {}
         """
-        await m.reply_photo(photo=gbr, caption=plere.format(vid_title, uploade_r, dur, url))
+        await m.reply_photo(
+            photo=gbr, caption=plere.format(vid_title, uploade_r, dur, url)
+        )
         await u_s.delete()
         return
-        #return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
+        # return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     else:
         s_d = stream_vc.get((message.chat.id, client.me.id))
         f_info = {
