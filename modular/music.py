@@ -15,12 +15,12 @@ import time
 from pytgcalls import GroupCallFactory, GroupCallFileAction
 from youtubesearchpython import SearchVideos
 
-from Mix.core.tools_music import *
+from Mix import *
 
 
 @ky.ubot("play", sudo=True)
-async def play_m(client, message):
-    group_call = GPC.get((message.chat.id, client.me.id))
+async def _(client, message):
+    group_call = play_vc.get((message.chat.id, client.me.id))
     u_s = await edit_or_reply(message, "`Processing..`")
     input_str = get_text(message)
     if not input_str:
@@ -73,7 +73,7 @@ async def play_m(client, message):
     if not group_call:
         group_call = GroupCallFactory(client).get_file_group_call()
         group_call.song_name = vid_title
-        GPC[(message.chat.id, client.me.id)] = group_call
+        play_vc[(message.chat.id, client.me.id)] = group_call
         try:
             await group_call.start(message.chat.id)
         except BaseException as e:
@@ -91,7 +91,7 @@ async def play_m(client, message):
         group_call.song_name = vid_title
         return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     else:
-        s_d = s_dict.get((message.chat.id, client.me.id))
+        s_d = stream_vc.get((message.chat.id, client.me.id))
         f_info = {
             "song_name": vid_title,
             "raw": raw_file_name,
@@ -102,6 +102,6 @@ async def play_m(client, message):
         if s_d:
             s_d.append(f_info)
         else:
-            s_dict[(message.chat.id, client.me.id)] = [f_info]
-        s_d = s_dict.get((message.chat.id, client.me.id))
+            stream_vc[(message.chat.id, client.me.id)] = [f_info]
+        s_d = stream_vc.get((message.chat.id, client.me.id))
         return await u_s.edit(f"Added `{vid_title}` To Position `#{len(s_d)+1}`!")
