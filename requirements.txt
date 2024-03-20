@@ -41,5 +41,3 @@ lyricsgenius==3.0.1
 SafoneApi
 pytgcalls==3.0.0.dev22
 pyrogram
-youtube_dl
-git+https://github.com/asmsafone/downloader
