@@ -20,7 +20,7 @@ from Mix.core.tools_music import *
 gbr = "https://telegra.ph//file/b2a9611753657547acf15.jpg"
 
 
-@ky.ubot("play", sudo=True)
+@ky.ubot("play|vplay", sudo=True)
 async def _(client: nlx, message):
     em = Emojik()
     em.initialize()
@@ -35,9 +35,9 @@ async def _(client: nlx, message):
         )
     if rep:
         await pros.edit_text(f"{em.proses} **Starting to download...**")
-        audio = rep.audio
+        audio = rep.audio if rep.audio else rep.video
         audio_original = await rep.download()
-        vid_title = audio.title or audio.file_name
+        vid_title = audio.title if audio.title else audio.file_name
         uploade_r = audio.performer or "**Unknown Artist.**"
         dura_ = audio.duration
         dur = datetime.timedelta(seconds=dura_)
@@ -53,11 +53,15 @@ async def _(client: nlx, message):
 
         url = rep.link
     else:
-        search = VideosSearch(gt_txt, limit=1).result()["result"][0]
-        link = f"https://youtu.be/{search['id']}"
-        file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (
-            await YoutubeDownload(link, as_video=False)
-        )
+        if m.command == "vplay":
+            search = VideosSearch(gt_txt, limit=1).result()["result"][0]
+            link = f"https://youtu.be/{search['id']}"
+            file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (await YoutubeDownload(link, as_video=True))
+        else:
+            search = VideosSearch(gt_txt, limit=1).result()["result"][0]
+            link = f"https://youtu.be/{search['id']}"
+            file_name, vid_title, url, durok, views, uploade_r, meki, data_ytp = (await YoutubeDownload(link, as_video=False))
+            
         try:
             audio_original = file_name
             dur = datetime.timedelta(seconds=durok)
