@@ -107,6 +107,9 @@ autoread_7: "{} **Successfully turned on autoread bot.**"
 autoread_8: "{} **Autoread { } was successfully disabled.**"
 autoread_9: "{} **Successfully turned on autoread mention s.**"
 
+# download
+down_1: "{} **Stupid Wrong!! Format {} [query].**"
+
 # button
 butt_1: "{} **Please type `help markdown` to see button format!**"
 
