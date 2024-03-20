@@ -26,14 +26,14 @@ async def _(c: nlx, m):
     msg_ = await m.reply(cgr("proses").format(em.proses))
     lol = c.get_text(m)
     if not lol:
-        await msg_.edit(f"{em.gagal}` **Kasih kota nya Goblok!!**")
+        await msg_.edit(f"{em.gagal} **Kasih kota nya Goblok!!**")
         return
     country = CountryInfo(lol)
     try:
         a = country.info()
     except:
         await msg_.edit(
-            f"{em.gagal}` **Lu sekolah kaga si nyet? Kota model begini `{lol}` kaga ada Tolol!! **"
+            f"{em.gagal} **Lu sekolah kaga si nyet? Kota model begini `{lol}` kaga ada Tolol!! **"
         )
         return
     name = a.get("name")
