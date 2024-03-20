@@ -6,9 +6,10 @@
 #
 # All rights reserved.
 
-from Mix import *
 import flag
 from countryinfo import CountryInfo
+
+from Mix import *
 
 __modles__ = "Kota"
 __help__ = """
@@ -31,7 +32,9 @@ async def _(c: nlx, m):
     try:
         a = country.info()
     except:
-        await msg_.edit(f"{em.gagal}` **Lu sekolah kaga si nyet? Kota model begini `{lol}` kaga ada Tolol!! **")
+        await msg_.edit(
+            f"{em.gagal}` **Lu sekolah kaga si nyet? Kota model begini `{lol}` kaga ada Tolol!! **"
+        )
         return
     name = a.get("name")
     bb = a.get("altSpellings")
@@ -53,8 +56,8 @@ async def _(c: nlx, m):
     iso = ""
     iSo = a.get("ISO")
     for hitler in iSo:
-      po = iSo.get(hitler)
-      iso += po + ",  "
+        po = iSo.get(hitler)
+        iso += po + ",  "
     fla = iSo.get("alpha2")
     nox = fla.upper()
     okie = flag.flag(nox)
