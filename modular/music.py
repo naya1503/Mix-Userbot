@@ -83,10 +83,11 @@ async def _(client: nlx, message):
         group_call.input_filename = raw_file_name
         plere = """
 <u><b>🎼 Sekarang Diputar 🎶</b></u>
+
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
-**📩 Pesan : [Disini]({})**c
+**📩 Pesan : [Disini]({})**
         """
         try:
             await message.reply_photo(
@@ -101,7 +102,10 @@ async def _(client: nlx, message):
                 reply_to_message_id=ReplyCheck(message),
             )
         await u_s.delete()
-        os.remove(meki)
+        try:
+            os.remove(meki)
+        except:
+            pass
         return
         # return await u_s.edit(f"Playing `{vid_title}` in `{message.chat.title}`!")
     elif not group_call.is_connected:
@@ -114,6 +118,7 @@ async def _(client: nlx, message):
         group_call.song_name = vid_title
         plere = """
 <u><b>🎼 Sekarang Diputar 🎶</b></u>
+
 **🎵 Judul : `{}`**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi :` {}`**
