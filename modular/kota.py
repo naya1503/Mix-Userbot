@@ -6,8 +6,8 @@
 #
 # All rights reserved.
 
-from flag import flag
 from countryinfo import CountryInfo
+from flag import flag
 
 from Mix import *
 
