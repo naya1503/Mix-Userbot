@@ -117,7 +117,7 @@ async def playout_ended_handler(group_call, filename):
     song_info = """
 <u><b>🎼 Sekarang Diputar 🎶</b></u>
 
-**🎵 Judul : `{}`**
+**🎵 Judul : {}**
 **🎸 Artist : `{}`**
 **⏲️️ Durasi : `{}`**
 **📩 Permintaan : {}**
