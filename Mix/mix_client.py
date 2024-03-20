@@ -19,7 +19,6 @@ from pyrogram.types import *
 from team.nandev.class_log import LOGGER
 from team.nandev.class_modules import CMD_HELP
 from team.nandev.database import ndB, udB
-from thegokil import DEVS
 
 from assistant import BOT_PLUGINS
 from config import *
