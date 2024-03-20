@@ -24,6 +24,7 @@ async def start_user():
     except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
         LOGGER.info("Check your session or api id!!")
         sys.exit(1)
+    await idle()
 
 
 async def start_bot():
@@ -80,4 +81,4 @@ if __name__ == "__main__":
     # install()
     # asyncio.set_event_loop(event_loop)
     # event_loop.run_until_complete(main())
-    loop.run_until_complete(main())
+    loop.run_until_complete(start_user())
