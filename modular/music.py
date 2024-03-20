@@ -20,9 +20,9 @@ from Mix.core.tools_music import *
 
 
 @ky.ubot("play", sudo=True)
-async def _(client, message):
+async def _(client: nlx, message):
     group_call = play_vc.get((message.chat.id, client.me.id))
-    u_s = await edit_or_reply(message, "`Processing..`")
+    u_s = await client.eor(message, "`Processing..`")
     input_str = get_text(message)
     if not input_str:
         if not message.reply_to_message:
