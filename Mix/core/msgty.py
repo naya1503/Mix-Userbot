@@ -2,24 +2,6 @@
 
 from enum import IntEnum, unique
 
-from Mix import nlx, udB
-
-# part of https://github.com/DevsExpo/FridayUserbot
-
-
-async def eor(message, text):
-    sudo_id = udB.get_list_from_var(nlx.me.id, "SUDO_USER", "ID_NYA")
-    """Edit Message If Its From Self, Else Reply To Message, (Only Works For Sudo's)"""
-    if not message:
-        return await message.edit(text)
-    if not message.from_user:
-        return await message.edit(text)
-    if message.from_user.id in sudo_id:
-        if message.reply_to_message:
-            return await message.reply_to_message.reply_text(text)
-        return await message.reply_text(text)
-    return await message.edit(text)
-
 
 @unique
 class Types(IntEnum):
