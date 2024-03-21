@@ -51,7 +51,7 @@ async def get_dare(category="classic|kids|party|hot|mixed"):
 
 
 @ky.ubot("dare", sudo=True)
-async def dare_command(c, m):
+async def dare_command(c: nlx, m):
     em = Emojik()
     em.initialize()
     proses = await m.reply(cgr("proses").format(em.proses))
@@ -69,7 +69,7 @@ async def dare_command(c, m):
 
 
 @ky.ubot("truth", sudo=True)
-async def truth_command(c, m):
+async def truth_command(c: nlx, m):
     em = Emojik()
     em.initialize()
     proses = await m.reply(cgr("proses").format(em.proses))
