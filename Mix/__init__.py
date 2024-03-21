@@ -1,15 +1,14 @@
 import asyncio
 
-from pyrogram import Client
-
 from config import *
 from Mix.core import *
 from Mix.mix_client import *
-
+from pyrogram import Client
 git()
 heroku()
 bot = Bot()
-# nlx = Userbot()
+nlx = Userbot()
+"""
 nlx = Client(
     name="user",
     api_id=api_id,
@@ -17,7 +16,8 @@ nlx = Client(
     session_string=session,
     device_model="Mix-Userbot",
     proxy=dict(scheme="socks5", hostname=proxy_host, port=22),
-)
+ )
+ """
 
 
 from team import *
