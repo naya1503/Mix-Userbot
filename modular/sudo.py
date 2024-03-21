@@ -80,7 +80,7 @@ async def _(c: nlx, m):
         else:
             msg += f"• {ix}\n"
 
-    if not sudo_users:
+    if sudoers() == []:
         return await m.reply(cgr("sud_5").format(em.gagal))
     else:
         await m.reply(cgr("sud_6").format(em.sukses, msg))
