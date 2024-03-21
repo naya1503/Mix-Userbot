@@ -40,7 +40,7 @@ class Userbot(Client):
             session_string=session,
             device_model="Mix-Userbot",
             test_mode=False,
-            proxy=dict(scheme=scheme, hostname=hostname, port=port, ** kwargs))
+            proxy=dict(scheme=scheme, hostname=hostname, port=port, **kwargs))
 
     def on_message(self, filters=None, group=-1):
         def decorator(func):
