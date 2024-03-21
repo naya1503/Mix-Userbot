@@ -6,7 +6,6 @@
 #
 # All rights reserved.
 
-import flag
 from countryinfo import CountryInfo
 
 from Mix import Emojik, cgr, ky, nlx
@@ -59,8 +58,8 @@ async def _(c: nlx, m):
         po = iSo.get(hitler)
         iso += po + ",  "
     fla = iSo.get("alpha2")
-    nox = fla.upper()
-    #okie = flag.get_flag(nox)
+    fla.upper()
+    # okie = flag.get_flag(nox)
     languages = a.get("languages")
     lMAO = "".join(lmao + ",  " for lmao in languages)
     nonive = a.get("nativeName")
