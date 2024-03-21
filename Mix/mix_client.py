@@ -39,8 +39,6 @@ class Userbot(Client):
             session_string=session,
             device_model="Mix-Userbot",
             test_mode=False,
-            no_updates=False,
-            takeout=False,
             **kwargs,
         )
 
