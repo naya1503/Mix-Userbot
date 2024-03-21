@@ -60,6 +60,7 @@ async def _(c: nlx, m):
                 Forbidden,
                 ChatWriteForbidden,
             ):
+                failed += 1
                 continue
             except Exception:
                 failed += 1
