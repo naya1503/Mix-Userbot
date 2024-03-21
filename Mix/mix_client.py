@@ -305,7 +305,7 @@ class _SudoManager:
 
     def _init_db(self):
         if not self.db:
-            self.db = udB
+            self.db = ndB
         return self.db
 
     def get_sudos(self):
