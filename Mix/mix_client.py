@@ -40,7 +40,7 @@ class Userbot(Client):
             session_string=session,
             device_model="Mix-Userbot",
             test_mode=False,
-            #proxy=dict(scheme="socks5", hostname=proxy_host, port=proxy_port),
+            # proxy=dict(scheme="socks5", hostname=proxy_host, port=proxy_port),
             **kwargs,
         )
 
