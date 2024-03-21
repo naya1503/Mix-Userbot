@@ -65,7 +65,7 @@ async def dare_command(c: nlx, m):
     else:
         response = await m.reply_text(cgr("tod_2").format(em.gagal))
 
-    await asyncio.gather(response, proses.delete())
+    await asyncio.gather(response.delete(), proses.delete())
 
 
 @ky.ubot("truth", sudo=True)
