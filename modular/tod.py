@@ -56,12 +56,16 @@ async def dare_command(c, m):
     em.initialize()
     proses = await m.reply(cgr("proses").format(em.proses))
     dare = await get_dare()
-    response_text = dare.get("text", dare.get("text_raw"))
-    if response_text:
-        response = m.reply(cgr("tod_1").format(em.sukses, response_text))
+    if dare:
+        response_text = dare.get("text", dare.get("text_raw"))
+        if response_text:
+            response = await m.reply_text(cgr("tod_1").format(em.sukses, response_text))
+        else:
+            response = await m.reply_text(cgr("tod_2").format(em.gagal))
     else:
-        response = m.reply(cgr("tod_2").format(em.gagal))
-    await asyncio.gather(m.reply_text(response), proses.delete())
+        response = await m.reply_text(cgr("tod_2").format(em.gagal))
+    
+    await asyncio.gather(response, proses.delete())
 
 
 @ky.ubot("truth", sudo=True)
