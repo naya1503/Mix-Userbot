@@ -26,3 +26,6 @@ genius_api = getenv(
     "genius_api",
     "zhtfIphjnawHBcLFkIi-zE7tp8B9kJqY3xGnz_BlzQM9nhJJrD7csS1upSxUE0OMmiP3c7lgabJcRaB0hwViow",
 )
+scheme = getenv("scheme", None)
+hostname = getenv("hostname", None)
+port = getenv("hostname", None)
