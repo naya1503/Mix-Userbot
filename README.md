@@ -108,6 +108,7 @@ Gunakan bot ini dengan risiko Anda sendiri, dan gunakan userbot ini dengan bijak
 * [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)
 * [Kynan](https://github.com/naya1503) for [Mix-Userbot](https://github.com/naya1503/Mix-Userbot)
 * [Lucifer](https://github.com/jonesroot) for [BugHunter](https://t.me/LuciferBukanRobot)
+* [Lumiere](https://github.com/NotLumiere) for [Making Some Bugs](https://t.me/Urfavtoyy)
 * [TheHamkerCat](https://github.com/TheHamkerCat) for [WilliamButcherBot](https://github.com/TheHamkerCat/WilliamButcherBot)
 * [Yasir Aris M](https://github.com/yasirarism) for [MissKatyPyro](https://github.com/yasirarism/MissKatyPyro)
 * [Captain D. Ezio](https://github.com/iamgojoof6eyes) for [Gojo_Satoru](https://github.com/Gojo-Bots/Gojo_Satoru)
