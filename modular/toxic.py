@@ -21,7 +21,7 @@ async def _(c: nlx, m):
         "**ANAK KONTOL, MUKA KEK JEMBUT MASIH MAEN TELE ?**",
         reply_to_message_id=ReplyCheck(m),
     )
-
+    await m.delete()
 
 @ky.ubot("b", sudo=True)
 async def _(c: nlx, m):
@@ -32,6 +32,7 @@ async def _(c: nlx, m):
         "**BAJINGAN!! KEREN LOE GITU ? CUIH ANAK HASIL CLONE BELAGU**",
         reply_to_message_id=ReplyCheck(m),
     )
+    await m.delete()
 
 
 @ky.ubot("c", sudo=True)
@@ -42,6 +43,7 @@ async def _(c: nlx, m):
     await m.reply(
         "**CEBOK LAH DEK MINIMAL SEBELUM TYPING!!**", reply_to_message_id=ReplyCheck(m)
     )
+    await m.delete()
 
 
 @ky.ubot("d", sudo=True)
@@ -53,6 +55,7 @@ async def _(c: nlx, m):
         "**DARI KEMAREN GW LIATIN MUKA LU KAGA BENER-BENER!! KEBENGKEL LAS DULU SONO. TAMBEL ITU MUKA LOE YANH BOPAK**",
         reply_to_message_id=ReplyCheck(m),
     )
+    await m.delete()
 
 
 @ky.ubot("e", sudo=True)
@@ -64,6 +67,7 @@ async def _(c: nlx, m):
         "**EALAH INI TOH PETINGGI TELE ? JUJURLY MUKA LU KEK JAMET PASAR SENEN BANG. MENDING LOE NGADUK SEMEN!!**",
         reply_to_message_id=ReplyCheck(m),
     )
+    await m.delete()
 
 
 @ky.ubot("f", sudo=True)
@@ -75,6 +79,7 @@ async def _(c: nlx, m):
         "**FANTAT LOE BURIK YA ? SOALNYA MUKA LU KEREMIAN!!**",
         reply_to_message_id=ReplyCheck(m),
     )
+    await m.delete()
 
 
 @ky.ubot("g", sudo=True)
@@ -86,6 +91,7 @@ async def _(c: nlx, m):
         "**GOBLOK DIPIARA!! MEMEG NOH LOE PIARA BIAR BANYAK ANAK!!**",
         reply_to_message_id=ReplyCheck(m),
     )
+    await m.delete()
 
 
 @ky.ubot("h", sudo=True)
@@ -97,6 +103,7 @@ async def _(c: nlx, m):
         "**HAHAHAHA KOK DIEM ? BINGUNG YA LOE BACOT APAAN**",
         reply_to_message_id=ReplyCheck(m),
     )
+    await m.delete()
 
 
 @ky.ubot("i", sudo=True)
@@ -108,6 +115,7 @@ async def _(c: nlx, m):
         "**IDIH NAJIS BET PESAN GW DIREP AMA BOCAH KEK LOE**",
         reply_to_message_id=ReplyCheck(m),
     )
+    await m.delete()
 
 
 @ky.ubot("j", sudo=True)
