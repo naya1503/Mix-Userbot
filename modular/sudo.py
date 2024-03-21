@@ -71,6 +71,8 @@ async def _(c: nlx, m):
     sudo_users = sudoers()
     msg = ""
     for user_id in sudo_users:
+        if c.me.id in sudo_users:
+            continue
         try:
             org = await c.get_users(int(user_id))
         except BaseException:
