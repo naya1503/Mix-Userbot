@@ -25,6 +25,7 @@ from config import *
 from modular import USER_MOD
 
 TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
+OWNER = ndB.get_key("OWNER_ID")
 
 
 class Userbot(Client):
@@ -243,6 +244,11 @@ class Userbot(Client):
     async def start(self):
         await super().start()
         handler = udB.get_pref(self.me.id)
+        if OWNER is None:
+            ndB.set_key("OWNER_ID", self.me.id)
+        if OWNER != self.me.id:
+            ndB.del_key("OWNER_ID")
+            ndB.set_key("OWNER_ID", self.me.id)
         if handler:
             self._prefix[self.me.id] = handler
         else:
@@ -289,3 +295,51 @@ class Bot(Client):
             importlib.reload(imported_module)
         LOGGER.info(f"Successfully Import Bot Modules...")
         LOGGER.info(f"Starting Assistant {self.me.id}|{self.me.mention}")
+
+
+class _SudoManager:
+    def __init__(self):
+        self.db = None
+        self.owner = None
+        self._owner_sudos = []
+
+    def _init_db(self):
+        if not self.db:
+            self.db = udB
+        return self.db
+
+    def get_sudos(self):
+        db = self._init_db()
+        SUDOS = db.get_key("SUDOS")
+        return SUDOS or []
+
+    @property
+    def allow_sudo(self):
+        db = self._init_db()
+        return db.get_key("SUDO")
+
+    def owner_and_sudos(self):
+        if not self.owner:
+            db = self._init_db()
+            self.owner = db.get_key("OWNER_ID")
+        return [self.owner, *self.get_sudos()]
+
+    def is_sudo(self, id_):
+        return bool(id_ in self.get_sudos())
+
+
+SUDO_M = _SudoManager()
+owner_and_sudos = SUDO_M.owner_and_sudos
+sudoers = SUDO_M.get_sudos
+is_sudo = SUDO_M.is_sudo
+
+# ------------------------------------------------ #
+
+
+def append_or_update(load, func, name, arggs):
+    if isinstance(load, list):
+        return load.append(func)
+    if isinstance(load, dict):
+        if load.get(name):
+            return load[name].append((func, arggs))
+        return load.update({name: [(func, arggs)]})
