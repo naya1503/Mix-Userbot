@@ -55,7 +55,7 @@ def get_colok(kontol):
                 "subregion": data[0]["subregion"],
                 "timezones": ", ".join(data[0]["timezones"]),
                 "top_level_domain": ", ".join(data[0]["tld"]),
-                "wikipedia": data[0]["flags"]["maps"]["wikipedia"],
+                "wikipedia": data[0]["flags"]["googleMaps"]["wikipedia"],
             }
             return info
     return None
