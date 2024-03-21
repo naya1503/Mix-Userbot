@@ -49,6 +49,7 @@ async def get_dare(category="classic|kids|party|hot|mixed"):
         print("Failed to fetch Dare:", e)
         return None
 
+
 """
 @ky.ubot("dare", sudo=True)
 async def dare_command(c: nlx, m):
@@ -88,6 +89,7 @@ async def truth_command(c: nlx, m):
         await m.reply(f"Error :\n `{e}`")
 """
 
+
 @ky.ubot("dare", sudo=True)
 async def dare_command(c: nlx, m):
     em = Emojik()
@@ -98,7 +100,10 @@ async def dare_command(c: nlx, m):
         if dare:
             response_text = dare.get("text", dare.get("text_raw"))
             if response_text:
-                response_parts = [response_text[i:i+4000] for i in range(0, len(response_text), 4000)]
+                response_parts = [
+                    response_text[i : i + 4000]
+                    for i in range(0, len(response_text), 4000)
+                ]
                 for part in response_parts:
                     await m.reply_text(cgr("tod_1").format(em.sukses, part))
             else:
@@ -119,7 +124,9 @@ async def truth_command(c: nlx, m):
         truth = await get_truth()
         response_text = truth.get("text", truth.get("text_raw"))
         if response_text:
-            response_parts = [response_text[i:i+4000] for i in range(0, len(response_text), 4000)]
+            response_parts = [
+                response_text[i : i + 4000] for i in range(0, len(response_text), 4000)
+            ]
             for part in response_parts:
                 await m.reply_text(cgr("tod_3").format(em.sukses, part))
         else:
