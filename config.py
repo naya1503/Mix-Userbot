@@ -26,7 +26,3 @@ genius_api = getenv(
     "genius_api",
     "zhtfIphjnawHBcLFkIi-zE7tp8B9kJqY3xGnz_BlzQM9nhJJrD7csS1upSxUE0OMmiP3c7lgabJcRaB0hwViow",
 )
-proxy_host = getenv("proxy_host", None)
-proxy_port = int(getenv("proxy_port"))
-proxy_username = getenv("proxy_username", None)
-proxy_password = getenv("proxy_password", None)
