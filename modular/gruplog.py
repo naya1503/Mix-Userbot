@@ -46,10 +46,7 @@ async def _(c: nlx, m):
         return await xx.edit(cgr("grplog_5").format(em.gagal))
 
 
-# @ky.gc()
-@nlx.on_message(
-    filters.mentioned & filters.incoming & ~filters.bot & ~filters.via_bot, group=2
-)
+@ky.gc()
 async def _(c, m):
     if not udB.get_var(nlx.me.id, "TAG_LOGGER"):
         return
