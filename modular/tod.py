@@ -72,8 +72,7 @@ async def dare_command(c: nlx, m):
                         )
                     else:
                         await m.reply_text(
-                            cgr("tod_1").format(em.sukses, part),
-                            reply_to_message_id=m.message_id,
+                            cgr("tod_1").format(em.sukses, part)
                         )
             else:
                 if m.reply_to_message:
@@ -83,7 +82,7 @@ async def dare_command(c: nlx, m):
                     )
                 else:
                     await m.reply_text(
-                        cgr("tod_2").format(em.gagal), reply_to_message_id=m.message_id
+                        cgr("tod_2").format(em.gagal)
                     )
         else:
             if m.reply_to_message:
@@ -93,7 +92,7 @@ async def dare_command(c: nlx, m):
                 )
             else:
                 await m.reply_text(
-                    cgr("tod_2").format(em.gagal), reply_to_message_id=m.message_id
+                    cgr("tod_2").format(em.gagal)
                 )
     except MessageTooLong:
         pass
@@ -120,8 +119,7 @@ async def truth_command(c: nlx, m):
                     )
                 else:
                     await m.reply_text(
-                        cgr("tod_3").format(em.sukses, part),
-                        reply_to_message_id=m.message_id,
+                        cgr("tod_3").format(em.sukses, part)
                     )
         else:
             if m.reply_to_message:
@@ -131,7 +129,7 @@ async def truth_command(c: nlx, m):
                 )
             else:
                 await m.reply_text(
-                    cgr("tod_4").format(em.gagal), reply_to_message_id=m.message_id
+                    cgr("tod_4").format(em.gagal)
                 )
     except MessageTooLong:
         pass
