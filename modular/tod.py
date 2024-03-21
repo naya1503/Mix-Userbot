@@ -124,4 +124,3 @@ async def truth_command(c: nlx, m):
     except MessageTooLong:
         pass
     await proses.delete()
-
