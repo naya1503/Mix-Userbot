@@ -8,8 +8,10 @@
 
 # from countryinfo import CountryInfo
 
-from Mix import *
 import requests
+
+from Mix import *
+
 __modles__ = "Negara"
 __help__ = """
  Kota
