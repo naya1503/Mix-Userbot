@@ -9,7 +9,7 @@
 import flag
 from countryinfo import CountryInfo
 
-from Mix import ky, cgr, nlx
+from Mix import ky, cgr, nlx, Emojik
 
 __modles__ = "Negara"
 __help__ = """
