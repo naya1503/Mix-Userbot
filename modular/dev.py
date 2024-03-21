@@ -296,16 +296,16 @@ from pyrogram.types import *
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    chat = await c.get_chat(chat_id=m.chat.id)
-    gue = await chat.get_member(c.me.id)
-    if gue.privileges:
-        if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
+    chat = await c.get_chat(m.chat.id)
+    member = await c.get_chat_member(chat, m.from_user.id)
+    if member.privileges:
+        if member.privileges.can_manage_chat and member.privileges.can_restrict_members:
             is_channel = True if m.chat.type == ChatType.CHANNEL else False
             if m.from_user.id not in DEVS:
                 await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
                 return
             if not is_channel:
-                req_user_member = await chat.get_member(m.from_user.id)
+                req_user_member = await chat.get_members(m.from_user.id)
                 if req_user_member.privileges is None:
                     await m.reply(
                         f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
@@ -371,57 +371,48 @@ async def _(c: nlx, m):
         )
 
 
-from pyrogram.enums import ChatMembersFilter
+from pyrogram.enums import *
 from pyrogram.errors import FloodWait
 
 
 @ky.ubot("anben")
-async def _(c, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
+    chat = await c.get_chat(m.chat.id)
+    dia = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
 
-    chat = c.get_chat(chat_id=m.chat.id)
-    gue = chat.get_member(c.me.id)
+    if dia.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
+        if m.from_user.id not in DEVS:
+            await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
+            return
 
-    if gue.privileges:
-        if gue.privileges.can_manage_chat and gue.privileges.can_restrict_members:
-            is_channel = True if m.chat.type == ChatType.CHANNEL else False
+        try:
+            proses = await m.reply(f"{em.proses} Sabar ya..")
 
-            if m.from_user.id not in DEVS:
-                await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
-                return
-
-            if not is_channel:
-                req_user_member = await chat.get_member(m.from_user.id)
-                if req_user_member.privileges is None:
-                    await m.reply(
-                        f"{em.gagal} Anda bukan seorang admin! Anda tidak bisa menggunakan perintah ini di sini!"
-                    )
-                    return
-
-            try:
-                unban_count = 0
-                benet = chat.get_members(chat.id, filter=ChatMembersFilter.BANNED)
-                async for member in benet:
-                    try:
-                        await c.unban_chat_member(chat.id, member.user.id)
-                        unban_count += 1
-                    except FloodWait as e:
-                        await asyncio.sleep(e.x)
-                        await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
-
-                await m.reply(
-                    f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
-                )
-
-            except Exception as e:
-                await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
-
-        else:
-            await m.reply(
-                f"{em.gagal} Izin admin Anda tidak cukup untuk menggunakan perintah ini!"
+            unban_count = 0
+            banned_members = await c.get_chat_members(
+                chat_id=m.chat.id, filter=ChatMemberStatus.BANNED
             )
+            for banned_member in banned_members:
+                try:
+                    await c.unban_chat_member(
+                        chat_id=m.chat.id, user_id=banned_member.user.id
+                    )
+                    unban_count += 1
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
+                    await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
+
+            await m.reply(
+                f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
+            )
+        except Exception as e:
+            await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
+        finally:
+            if "proses" in locals():
+                await proses.delete()
     else:
         await m.reply(
-            f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!"
+            f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
         )

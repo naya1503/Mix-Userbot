@@ -8,3 +8,8 @@ cache/
 downloads/
 __pycache__/
 *.session-journal
+bot.session
+bot.session-journal
+*.raw
+*.jpg
+*.tmp

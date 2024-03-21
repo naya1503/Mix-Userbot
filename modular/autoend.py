@@ -13,7 +13,7 @@ from pyrogram.raw.functions.messages import DeleteHistory
 
 from Mix import *
 
-__modles__ = "AutoEndChat"
+__modles__ = "EndChat"
 __help__ = get_cgr("help_auend")
 
 

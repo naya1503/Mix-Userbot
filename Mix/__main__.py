@@ -2,23 +2,25 @@ import asyncio
 from os import execvp
 from sys import executable
 
-from pyrogram import *
+import uvloop
+from pyrogram import idle
 from pyrogram.errors import *
-from uvloop import install
 
 from beban import (autor_all, autor_bot, autor_ch, autor_gc, autor_mention,
-                   autor_us)
+                   autor_us, dasar_laknat)
 from Mix import *
 from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
 
-lool = asyncio.get_event_loop()
+loop = asyncio.get_event_loop_policy()
+event_loop = loop.get_event_loop()
 
 
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
         await nlx.start()
+        await dasar_laknat(nlx)
     except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
         LOGGER.info("Check your session or api id!!")
         sys.exit(1)
@@ -75,9 +77,6 @@ async def main():
 
 
 if __name__ == "__main__":
-    install()
-    # loop = asyncio.get_event_loop_policy()
-    # event_loop = loop.get_event_loop()
-    # asyncio.set_event_loop(event_loop)
-    # event_loop.run_until_complete(starter())
-    lool.run_until_complete(main())
+    uvloop.install()
+    asyncio.set_event_loop(event_loop)
+    event_loop.run_until_complete(main())

@@ -36,6 +36,9 @@ auend_4: "{} Berhasil menghapus riwayat {} obrolan bot!"
 lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - Judul Lagu\n\n{} Contoh : <code>{} Arctic Monkeys - Do i Wanna Know</code></b>"
 lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
 
+# download
+down_1: "{} **Salah Goblok!! Format `{}` [query].**"
+
 # filter
 fil_1: "{} Daftar Filter Di Grup {}:\n"
 fil_2: "{} Tidak ada filters digrup ini."
@@ -157,6 +160,9 @@ dbs_6: "{} **Goblok Goblok!! liatlah query database Tolol!!**"
 dbs_7: "{} **Goblok!! Pake format : `{}` [query].**"
 dbs_8: "{} **Ini jing {} lu : `{}`.**"
 dbs_9: "{} **{} Yosh dibumi musnahkan!!**"
+dbs_10: "{} **Yosh, Tag Logger diset ke `{}`.**"
+dbs_11: "{} **Yosh, PM Logger diset ke `{}`.**"
+
 
 # emoji
 em_1: "{} **Yosh Emoji status diset ke : <emoji id={}>😭</emoji>.**"

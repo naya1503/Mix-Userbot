@@ -128,7 +128,7 @@ async def _(c: nlx, m):
 
 
 async def formula(c: nlx, m):
-    if TAG_LOG is None:
+    if not udB.get_var(c.me.id, "PM_LOGGER"):
         return
     if m.chat.id != 777000:
         try:

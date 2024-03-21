@@ -1,0 +1,2 @@
+rm -rf *.jpg *png *raw *session* *log* pycache *tmp* /downloads/*
+ls

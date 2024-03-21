@@ -7,7 +7,6 @@
 ################################################################
 
 import asyncio
-import math
 import os
 import time
 from datetime import timedelta
@@ -21,74 +20,10 @@ from pyrogram.raw.functions.messages import *
 from pyrogram.types import *
 from youtubesearchpython import VideosSearch
 
-from Mix import *
+from Mix import Emojik, YoutubeDownload, cgr, get_cgr, ky, nlx, progress
 
 __modles__ = "Download"
 __help__ = get_cgr("help_download")
-
-
-def humanbytes(size):
-    if not size:
-        return ""
-    power = 2**10
-    raised_to_pow = 0
-    dict_power_n = {0: "", 1: "KB", 2: "MB", 3: "GB", 4: "TB"}
-    while size > power:
-        size /= power
-        raised_to_pow += 1
-    return f"{str(round(size, 2))} {dict_power_n[raised_to_pow]}"
-
-
-def time_formatter(milliseconds: int) -> str:
-    seconds, milliseconds = divmod(milliseconds, 1000)
-    minutes, seconds = divmod(seconds, 60)
-    hours, minutes = divmod(minutes, 60)
-    days, hours = divmod(hours, 24)
-    tmp = (
-        (f"{str(days)} Hari, " if days else "")
-        + (f"{str(hours)} Jam, " if hours else "")
-        + (f"{str(minutes)} Menit, " if minutes else "")
-        + (f"{str(seconds)} Detik, " if seconds else "")
-        + (f"{str(milliseconds)} Microdetik, " if milliseconds else "")
-    )
-    return tmp[:-2]
-
-
-async def progress(current, total, message, start, type_of_ps, file_name=None):
-    now = time()
-    diff = now - start
-    if round(diff % 10.00) == 0 or current == total:
-        percentage = current * 100 / total
-        speed = current / diff
-        elapsed_time = round(diff) * 1000
-        if elapsed_time == 0:
-            return
-        time_to_completion = round((total - current) / speed) * 1000
-        estimated_total_time = elapsed_time + time_to_completion
-        progress_str = "{0}{1} {2}%\n".format(
-            "".join(["▰" for i in range(math.floor(percentage / 10))]),
-            "".join(["▱" for i in range(10 - math.floor(percentage / 10))]),
-            round(percentage, 2),
-        )
-        tmp = progress_str + "{0} of {1}\nETA: {2}".format(
-            humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
-        )
-        if file_name:
-            try:
-                await message.edit(
-                    "{}\n**File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
-                )
-            except FloodWait as e:
-                await asyncio.sleep(e.x)
-            except MessageNotModified:
-                pass
-        else:
-            try:
-                await message.edit("{}\n{}".format(type_of_ps, tmp))
-            except FloodWait as e:
-                await asyncio.sleep(e.x)
-            except MessageNotModified:
-                pass
 
 
 @ky.ubot("dtik", sudo=False)
@@ -117,7 +52,7 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2:
-        return await m.reply(cgr("down_1").format(em.gagal))
+        return await m.reply(cgr("down_1").format(em.gagal, m.command))
     pros = await m.reply(cgr("proses").format(em.proses))
     try:
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
@@ -175,13 +110,13 @@ async def _(c, m):
     em = Emojik()
     em.initialize()
     if len(m.command) < 2:
-        return await m.reply(cgr("down_1").format(em.gagal))
+        return await m.reply(cgr("down_1").format(em.gagal, m.command))
     pros = await m.reply(cgr("proses").format(em.proses))
     try:
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
     except Exception as error:
-        return await pros.edit(cgr("err").format(em.gagal))
+        return await pros.edit(cgr("err").format(em.gagal, error))
     try:
         (
             file_name,
@@ -194,7 +129,7 @@ async def _(c, m):
             data_ytp,
         ) = await YoutubeDownload(link, as_video=False)
     except Exception as error:
-        return await pros.edit(cgr("err").format(em.gagal))
+        return await pros.edit(cgr("err").format(em.gagal, error))
     thumbnail = wget.download(thumb)
     await c.send_audio(
         m.chat.id,
