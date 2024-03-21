@@ -68,20 +68,17 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    sudo_users = sudoers()
     msg = ""
-    for user_id in sudo_users:
-        if c.me.id in sudo_users:
-            continue
+    for ix in sudoers():
         try:
             org = await c.get_users(int(user_id))
         except BaseException:
-            org = None
+            org = ix
         if org:
             org = org.first_name if not org.mention else org.mention
             msg += f"• {org}\n"
         else:
-            msg += f"• {user_id}\n"
+            msg += f"• {ix}\n"
 
     if not sudo_users:
         return await m.reply(cgr("sud_5").format(em.gagal))
