@@ -31,7 +31,7 @@ async def dasar_laknat(client):
                     await client.read_chat_history(bb.chat.id, max_id=0)
                 except:
                     continue
-    LOGGER.info("Finished Read Message...\n\nTry to Command bash start!!")
+    LOGGER.info("Finished Read Message..")
     # sys.exit(1)
 
 
