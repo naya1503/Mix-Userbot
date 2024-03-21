@@ -55,7 +55,7 @@ def get_colok(kontol):
                 "subregion": data[0]["subregion"],
                 "timezones": ", ".join(data[0]["timezones"]),
                 "top_level_domain": ", ".join(data[0]["tld"]),
-                "wikipedia": data[0]["flags"]["googleMaps"]["wikipedia"],
+                "wikipedia": data[0]["flags"],
             }
             return info
     return None
@@ -92,7 +92,6 @@ async def _(c: nlx, m):
         response_message += (
             f"**Top Level Domain:-** `{country_info['top_level_domain']}`\n"
         )
-        response_message += f"**Wikipedia:-** [Link]({country_info['wikipedia']})"
         await m.reply_text(response_message, disable_web_page_preview=True)
     else:
         await m.reply_text("Maaf, informasi tidak ditemukan.")
