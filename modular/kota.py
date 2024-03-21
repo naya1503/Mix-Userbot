@@ -7,7 +7,6 @@
 # All rights reserved.
 
 # from countryinfo import CountryInfo
-import requests
 
 from Mix import *
 
