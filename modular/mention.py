@@ -141,7 +141,7 @@ async def tag_all_members(c: nlx, m: Message):
     async for member in members:
         if not berenti:
             break
-        if not member.user.is_bot:
+        if not member.user.is_bot and member.status != "user_status_empty":
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
@@ -173,6 +173,7 @@ async def tag_all_members(c: nlx, m: Message):
     await m.reply(
         f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
     )
+
 
 
 @ky.ubot("stop", sudo=True)
