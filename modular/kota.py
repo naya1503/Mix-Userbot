@@ -9,7 +9,7 @@
 import flag
 from countryinfo import CountryInfo
 
-from Mix import *
+from Mix import ky, cgr, nlx
 
 __modles__ = "Negara"
 __help__ = """
@@ -19,7 +19,7 @@ __help__ = """
 """
 
 
-@ky.ubot("kota", sudo=True)
+@ky.ubot("negara", sudo=True)
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
