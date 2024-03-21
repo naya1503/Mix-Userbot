@@ -81,7 +81,6 @@ async def _(c: nlx, m):
         response_message += f"**Mata uang negara:-** `{country_info['currencies']}`\n"
         response_message += f"**Bendera Negara:-** [Link]({country_info['flag']})\n"
         response_message += f"**Demonim:-** `{country_info['demonym']}`\n"
-        response_message += f"**Jenis Negara:-** `{country_info['government_type']}`\n"
         response_message += f"**Nama ISO:-** `{country_info['iso']}`\n"
         response_message += f"**Bahasa:-** `{country_info['languages']}`\n"
         response_message += f"**Nama Asli:-** `{country_info['native_name']}`\n"
