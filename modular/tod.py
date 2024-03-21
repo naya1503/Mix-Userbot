@@ -2,7 +2,7 @@ import random
 
 import requests
 from gpytranslate import Translator
-
+from pyrogram.errors import *
 from Mix import *
 
 __modles__ = "TOD"
@@ -72,11 +72,16 @@ async def truth_command(c: nlx, m):
     em = Emojik()
     em.initialize()
     proses = await m.reply(cgr("proses").format(em.proses))
-    truth = await get_truth()
-    response_text = truth.get("text", truth.get("text_raw"))
-    if response_text:
-        response = await m.reply(cgr("tod_3").format(em.sukses, response_text))
-    else:
-        response = await m.reply(cgr("tod_4").format(em.gagal))
-    await proses.delete()
-    await m.reply(response)
+    try:
+        truth = await get_truth()
+        response_text = truth.get("text", truth.get("text_raw"))
+        if response_text:
+            response = cgr("tod_3").format(em.sukses, response_text)
+        else:
+            response = cgr("tod_4").format(em.gagal)
+        await proses.delete()
+        await m.reply(response)
+    except MessageTooLong:
+        pass
+    except Exception as e:
+        await m.reply(f"Error :\n `{e}`")
