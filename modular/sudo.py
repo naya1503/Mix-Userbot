@@ -73,7 +73,7 @@ async def _(c: nlx, m):
         try:
             org = await c.get_users(int(user_id))
         except BaseException:
-            org = ix
+            org = None
         if org:
             org = org.first_name if not org.mention else org.mention
             msg += f"• {org}\n"
