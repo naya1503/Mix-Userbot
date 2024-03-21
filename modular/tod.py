@@ -64,8 +64,8 @@ async def dare_command(c: nlx, m):
             response = await m.reply_text(cgr("tod_2").format(em.gagal))
     else:
         response = await m.reply_text(cgr("tod_2").format(em.gagal))
-
-    await asyncio.gather(response.delete(), proses.delete())
+    await m.reply(response)
+    await proses.delete()
 
 
 @ky.ubot("truth", sudo=True)
@@ -79,4 +79,5 @@ async def truth_command(c: nlx, m):
         response = await m.reply(cgr("tod_3").format(em.sukses, response_text))
     else:
         response = await m.reply(cgr("tod_4").format(em.gagal))
-    await asyncio.gather(m.reply_text(response), proses.delete())
+    await proses.delete()
+    await m.reply(response)
