@@ -60,7 +60,7 @@ async def _(c: nlx, m):
         iso += po + ",  "
     fla = iSo.get("alpha2")
     nox = fla.upper()
-    okie = flag.get_flag(nox)
+    #okie = flag.get_flag(nox)
     languages = a.get("languages")
     lMAO = "".join(lmao + ",  " for lmao in languages)
     nonive = a.get("nativeName")
@@ -80,7 +80,6 @@ Perbatasan:- `{borders}`
 Kode Panggilan:- `{call}`
 Ibukota Negara:- `{capital}`
 Mata uang negara:- `{currencies}`
-Bendera Negara:- `{okie}`
 Demonim:- `{HmM}`
 Jenis Negara:- `{EsCoBaR}`
 Nama ISO:- `{iso}`
