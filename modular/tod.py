@@ -68,7 +68,7 @@ async def dare_command(c: nlx, m):
                     if m.reply_to_message:
                         await m.reply_text(
                             cgr("tod_1").format(em.sukses, part),
-                            reply_to_message_id=m.reply_to_message.message_id,
+                            reply_to_message_id=ReplyCheck(m),
                         )
                     else:
                         await m.reply_text(
@@ -79,7 +79,7 @@ async def dare_command(c: nlx, m):
                 if m.reply_to_message:
                     await m.reply_text(
                         cgr("tod_2").format(em.gagal),
-                        reply_to_message_id=m.reply_to_message.message_id,
+                        reply_to_message_id=ReplyCheck(m),
                     )
                 else:
                     await m.reply_text(
@@ -89,7 +89,7 @@ async def dare_command(c: nlx, m):
             if m.reply_to_message:
                 await m.reply_text(
                     cgr("tod_2").format(em.gagal),
-                    reply_to_message_id=m.reply_to_message.message_id,
+                    reply_to_message_id=ReplyCheck(m),
                 )
             else:
                 await m.reply_text(
@@ -116,7 +116,7 @@ async def truth_command(c: nlx, m):
                 if m.reply_to_message:
                     await m.reply_text(
                         cgr("tod_3").format(em.sukses, part),
-                        reply_to_message_id=m.reply_to_message.message_id,
+                        reply_to_message_id=ReplyCheck(m),
                     )
                 else:
                     await m.reply_text(
@@ -127,7 +127,7 @@ async def truth_command(c: nlx, m):
             if m.reply_to_message:
                 await m.reply_text(
                     cgr("tod_4").format(em.gagal),
-                    reply_to_message_id=m.reply_to_message.message_id,
+                    reply_to_message_id=ReplyCheck(m),
                 )
             else:
                 await m.reply_text(
