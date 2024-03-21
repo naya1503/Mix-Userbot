@@ -49,7 +49,7 @@ async def get_dare(category="classic|kids|party|hot|mixed"):
         print("Failed to fetch Dare:", e)
         return None
 
-
+"""
 @ky.ubot("dare", sudo=True)
 async def dare_command(c: nlx, m):
     em = Emojik()
@@ -86,3 +86,44 @@ async def truth_command(c: nlx, m):
         pass
     except Exception as e:
         await m.reply(f"Error :\n `{e}`")
+"""
+
+@ky.ubot("dare", sudo=True)
+async def dare_command(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    proses = await m.reply(cgr("proses").format(em.proses))
+    try:
+        dare = await get_dare()
+        if dare:
+            response_text = dare.get("text", dare.get("text_raw"))
+            if response_text:
+                response_parts = [response_text[i:i+4000] for i in range(0, len(response_text), 4000)]
+                for part in response_parts:
+                    await m.reply_text(cgr("tod_1").format(em.sukses, part))
+            else:
+                await m.reply_text(cgr("tod_2").format(em.gagal))
+        else:
+            await m.reply_text(cgr("tod_2").format(em.gagal))
+    except MessageTooLong:
+        pass
+    await proses.delete()
+
+
+@ky.ubot("truth", sudo=True)
+async def truth_command(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    proses = await m.reply(cgr("proses").format(em.proses))
+    try:
+        truth = await get_truth()
+        response_text = truth.get("text", truth.get("text_raw"))
+        if response_text:
+            response_parts = [response_text[i:i+4000] for i in range(0, len(response_text), 4000)]
+            for part in response_parts:
+                await m.reply_text(cgr("tod_3").format(em.sukses, part))
+        else:
+            await m.reply_text(cgr("tod_4").format(em.gagal))
+    except MessageTooLong:
+        pass
+    await proses.delete()
