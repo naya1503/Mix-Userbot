@@ -9,16 +9,13 @@
 # from countryinfo import CountryInfo
 
 from Mix import *
-
+import requests
 __modles__ = "Negara"
 __help__ = """
  Kota
 • Perintah: `{p}negara` [query]
 • Penjelasan: Untuk mencari info tentang kota tersebut.
 """
-
-
-import requests
 
 
 def get_colok(kontol):
