@@ -19,50 +19,11 @@ __help__ = """
 """
 
 
-def get_city_info(city):
-    url = f"https://restcountries.com/v3.1/city/{city}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        if data:
-            info = {
-                "name": data[0]["name"]["common"],
-                "alt_spellings": ", ".join(data[0]["name"]["native"].values()),
-                "area": data[0]["area"],
-                "borders": (
-                    ", ".join(data[0]["borders"])
-                    if "borders" in data[0]
-                    else "Tidak ada perbatasan"
-                ),
-                "calling_code": ", ".join(data[0]["callingCodes"]),
-                "capital": data[0]["capital"],
-                "currencies": (
-                    ", ".join(data[0]["currencies"])
-                    if "currencies" in data[0]
-                    else "Tidak ada mata uang"
-                ),
-                "flag": data[0]["flags"]["png"],
-                "demonym": data[0]["demonyms"]["eng"]["m"],
-                "government_type": data[0]["government"]["government_type"],
-                "iso": data[0]["cca2"],
-                "languages": ", ".join(data[0]["languages"]),
-                "native_name": data[0]["name"]["native"]["eng"]["official"],
-                "population": data[0]["population"],
-                "region": data[0]["region"],
-                "subregion": data[0]["subregion"],
-                "timezones": ", ".join(data[0]["timezones"]),
-                "top_level_domain": ", ".join(data[0]["topLevelDomain"]),
-                "wikipedia": data[0]["wikipedia"],
-            }
-            return info
-    return None
-
-
-def get_country_info(country):
+async def get_country_info(country):
     url = f"https://restcountries.com/v3.1/name/{country}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
+    response = await aiohttp.ClientSession().get(url)
+    data = await response.json()
+    if response.status == 200:
         if data:
             info = {
                 "name": data[0]["name"]["common"],
@@ -102,7 +63,7 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     rep = c.get_text(m)
-    country_info = get_country_info(rep)
+    country_info = await get_country_info(rep)
     if country_info:
         response_message = f"**Nama negara:-** `{country_info['name']}`\n"
         response_message += (
