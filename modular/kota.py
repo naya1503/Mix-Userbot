@@ -60,7 +60,7 @@ async def _(c: nlx, m):
         iso += po + ",  "
     fla = iSo.get("alpha2")
     nox = fla.upper()
-    okie = flag(nox)
+    okie = flag.get_flag(nox)
     languages = a.get("languages")
     lMAO = "".join(lmao + ",  " for lmao in languages)
     nonive = a.get("nativeName")
