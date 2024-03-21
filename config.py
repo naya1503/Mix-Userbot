@@ -28,4 +28,4 @@ genius_api = getenv(
 )
 scheme = getenv("scheme", None)
 hostname = getenv("hostname", None)
-port = getenv("hostname", None)
+port = int(getenv("hostname", None))
