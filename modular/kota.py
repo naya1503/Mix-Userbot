@@ -49,7 +49,7 @@ def get_colok(kontol):
                 "demonym": data[0]["demonyms"]["eng"]["m"],
                 "iso": data[0]["cca2"],
                 "languages": ", ".join(data[0]["languages"].keys()),
-                "native_name": data[0]["name"]["nativeName"],
+                "native_name": data[0]["name"]["nativeName"]["common"],
                 "population": data[0]["population"],
                 "region": data[0]["region"],
                 "subregion": data[0]["subregion"],
