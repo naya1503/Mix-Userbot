@@ -23,6 +23,7 @@ async def _(c: nlx, m):
     )
     await m.delete()
 
+
 @ky.ubot("b", sudo=True)
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
