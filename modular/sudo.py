@@ -24,13 +24,13 @@ async def _(c: nlx, m):
         user = await c.get_users(user_id)
     except Exception as error:
         return await msg.edit(error)
-
-    sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
     usro = f"[{user.first_name} {user.last_name or ''}](tg://user?id={user.id})"
-    if user.id in sudo_users:
+    if user.id in sudoers():
         return await msg.edit(cgr("sud_1").format(em.sukses, usro))
+    key = sudoers()
     try:
-        udB.add_to_var(c.me.id, "SUDO_USER", user.id, "ID_NYA")
+        key.append(user.id)
+        ndB.set_key("SUDOS", key)
         return await msg.edit(cgr("sud_2").format(em.sukses, usro))
     except Exception as error:
         return await msg.edit(error)
@@ -50,13 +50,15 @@ async def _(c: nlx, m):
     except Exception as error:
         return await msg.edit(error)
 
-    sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
+    sudo_users = sudoers()
     usro = f"[{user.first_name} {user.last_name or ''}](tg://user?id={user.id})"
     if user.id not in sudo_users:
         return await msg.edit(cgr("sud_3").format(em.sukses, usro))
 
+    key = sudoers()
     try:
-        udB.remove_from_var(c.me.id, "SUDO_USER", user.id, "ID_NYA")
+        key.remove(user.id)
+        ndB.set_key("SUDOS", key)
         return await msg.edit(cgr("sud_4").format(em.sukses, usro))
     except Exception as error:
         return await msg.edit(cgr("err").format(em.gagal, error))
@@ -66,20 +68,21 @@ async def _(c: nlx, m):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    sudo_users = udB.get_list_from_var(c.me.id, "SUDO_USER", "ID_NYA")
-    sd = 0
-    hsl = "\n"
+    sudo_users = sudoers()
+    msg = ""
     for user_id in sudo_users:
         try:
-            org = await user.get_users(int(user_id))
+            org = await c.get_users(int(user_id))
+        except BaseException:
+            org = None
+        if org:
             org = org.first_name if not org.mention else org.mention
-            sd += 1
-            hsl += f"**{em.profil} {sd} - {org}**\n"
-        except:
-            continue
+            msg += f"• {org}\n"
+        else:
+            msg += f"• {user_id}\n"
 
     if not sudo_users:
         return await m.reply(cgr("sud_5").format(em.gagal))
     else:
-        await m.reply(cgr("sud_6").format(em.sukses, hsl))
+        await m.reply(cgr("sud_6").format(em.sukses, msg))
         return
