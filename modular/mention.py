@@ -98,6 +98,7 @@ async def tag_all_members(c: nlx, m: Message):
     )
 """
 
+
 @ky.ubot("tagall", sudo=True)
 async def tag_all_members(c: nlx, m: Message):
     em = Emojik()
@@ -107,10 +108,12 @@ async def tag_all_members(c: nlx, m: Message):
     admins = False
     berenti = True
     progres = await m.edit(cgr("proses").format(em.proses))
-    
+
     try:
         administrator = []
-        async for admin in c.get_chat_members(chat_id, filter=ChatMembersFilter.ADMINISTRATORS):
+        async for admin in c.get_chat_members(
+            chat_id, filter=ChatMembersFilter.ADMINISTRATORS
+        ):
             if not berenti:
                 break
             administrator.append(admin)
@@ -134,12 +137,14 @@ async def tag_all_members(c: nlx, m: Message):
     members = c.get_chat_members(chat_id)
     berenti = True
     count = 0
-    
+
     async for member in members:
         if not berenti:
             break
         if not member.user.is_bot:
-            full_name = member.user.first_name + (" " + member.user.last_name if member.user.last_name else "")
+            full_name = member.user.first_name + (
+                " " + member.user.last_name if member.user.last_name else ""
+            )
             mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
             count += 1
             if len(mention_texts) == 4:
@@ -165,7 +170,7 @@ async def tag_all_members(c: nlx, m: Message):
             await asyncio.sleep(e.x)
             await c.send_message(chat_id, repl_text)
         await asyncio.sleep(2.5)
-        
+
     berenti = False
     await progres.delete()
     await m.reply(
