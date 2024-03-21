@@ -6,9 +6,9 @@
 #
 # All rights reserved.
 
-from countryinfo import CountryInfo
-
-from Mix import Emojik, cgr, ky, nlx
+#from countryinfo import CountryInfo
+import requests
+from Mix import *
 
 __modles__ = "Negara"
 __help__ = """
@@ -17,7 +17,128 @@ __help__ = """
 • Penjelasan: Untuk mencari info tentang kota tersebut.
 """
 
+def get_city_info(city):
+    url = f"https://restcountries.com/v3.1/city/{city}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        if data:
+            info = {
+                "name": data[0]["name"]["common"],
+                "alt_spellings": ', '.join(data[0]["name"]["native"].values()),
+                "area": data[0]["area"],
+                "borders": ', '.join(data[0]["borders"]) if "borders" in data[0] else "Tidak ada perbatasan",
+                "calling_code": ', '.join(data[0]["callingCodes"]),
+                "capital": data[0]["capital"],
+                "currencies": ', '.join(data[0]["currencies"]) if "currencies" in data[0] else "Tidak ada mata uang",
+                "flag": data[0]["flags"]["png"],
+                "demonym": data[0]["demonyms"]["eng"]["m"],
+                "government_type": data[0]["government"]["government_type"],
+                "iso": data[0]["cca2"],
+                "languages": ', '.join(data[0]["languages"]),
+                "native_name": data[0]["name"]["native"]["eng"]["official"],
+                "population": data[0]["population"],
+                "region": data[0]["region"],
+                "subregion": data[0]["subregion"],
+                "timezones": ', '.join(data[0]["timezones"]),
+                "top_level_domain": ', '.join(data[0]["topLevelDomain"]),
+                "wikipedia": data[0]["wikipedia"]
+            }
+            return info
+    return None
 
+def get_country_info(country):
+    url = f"https://restcountries.com/v3.1/name/{country}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        if data:
+            info = {
+                "name": data[0]["name"]["common"],
+                "alt_spellings": ', '.join(data[0]["altSpellings"]),
+                "area": data[0]["area"],
+                "borders": ', '.join(data[0]["borders"]) if "borders" in data[0] else "Tidak ada perbatasan",
+                "calling_code": ', '.join(data[0]["callingCodes"]),
+                "capital": data[0]["capital"],
+                "currencies": ', '.join(data[0]["currencies"]) if "currencies" in data[0] else "Tidak ada mata uang",
+                "flag": data[0]["flags"]["png"],
+                "demonym": data[0]["demonyms"]["eng"]["m"],
+                "government_type": data[0]["government"]["government_type"],
+                "iso": data[0]["cca2"],
+                "languages": ', '.join(data[0]["languages"]),
+                "native_name": data[0]["name"]["native"]["eng"]["official"],
+                "population": data[0]["population"],
+                "region": data[0]["region"],
+                "subregion": data[0]["subregion"],
+                "timezones": ', '.join(data[0]["timezones"]),
+                "top_level_domain": ', '.join(data[0]["topLevelDomain"]),
+                "wikipedia": data[0]["wikipedia"]
+            }
+            return info
+    return None
+
+@ky.ubot("negara", sudo=True)
+async def _(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    rep = c.get_text(m)
+    country_info = get_country_info(rep)
+    if country_info:
+        response_message = f"**Nama negara:-** `{country_info['name']}`\n"
+        response_message += f"**Ejaan Alternatif:-** `{country_info['alt_spellings']}`\n"
+        response_message += f"**Wilayah Negara:-** `{country_info['area']}` kilometer persegi\n"
+        response_message += f"**Perbatasan:-** `{country_info['borders']}`\n"
+        response_message += f"**Kode Panggilan:-** `{country_info['calling_code']}`\n"
+        response_message += f"**Ibukota Negara:-** `{country_info['capital']}`\n"
+        response_message += f"**Mata uang negara:-** `{country_info['currencies']}`\n"
+        response_message += f"**Bendera Negara:-** [Link]({country_info['flag']})\n"
+        response_message += f"**Demonim:-** `{country_info['demonym']}`\n"
+        response_message += f"**Jenis Negara:-** `{country_info['government_type']}`\n"
+        response_message += f"**Nama ISO:-** `{country_info['iso']}`\n"
+        response_message += f"**Bahasa:-** `{country_info['languages']}`\n"
+        response_message += f"**Nama Asli:-** `{country_info['native_name']}`\n"
+        response_message += f"**Populasi:-** `{country_info['population']}`\n"
+        response_message += f"**Wilayah:-** `{country_info['region']}`\n"
+        response_message += f"**Sub Wilayah:-** `{country_info['subregion']}`\n"
+        response_message += f"**Zona waktu:-** `{country_info['timezones']}`\n"
+        response_message += f"**Top Level Domain:-** `{country_info['top_level_domain']}`\n"
+        response_message += f"**Wikipedia:-** [Link]({country_info['wikipedia']})"
+        await m.reply_text(response_message, disable_web_page_preview=True)
+    else:
+        await m.reply_text("Maaf, informasi tidak ditemukan.")
+
+@ky.ubot("kota", sudo=True)
+async def _(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    rep = c.get_text(m)
+    city_info = get_city_info(rep)
+    if city_info:
+        response_message = f"**Nama kota:-** `{city_info['name']}`\n"
+        response_message += f"**Ejaan Alternatif:-** `{city_info['alt_spellings']}`\n"
+        response_message += f"**Wilayah Kota:-** `{city_info['area']}` kilometer persegi\n"
+        response_message += f"**Perbatasan:-** `{city_info['borders']}`\n"
+        response_message += f"**Kode Panggilan:-** `{city_info['calling_code']}`\n"
+        response_message += f"**Ibukota Kota:-** `{city_info['capital']}`\n"
+        response_message += f"**Mata uang kota:-** `{city_info['currencies']}`\n"
+        response_message += f"**Bendera Kota:-** [Link]({city_info['flag']})\n"
+        response_message += f"**Demonim:-** `{city_info['demonym']}`\n"
+        response_message += f"**Jenis Kota:-** `{city_info['government_type']}`\n"
+        response_message += f"**Nama ISO:-** `{city_info['iso']}`\n"
+        response_message += f"**Bahasa:-** `{city_info['languages']}`\n"
+        response_message += f"**Nama Asli:-** `{city_info['native_name']}`\n"
+        response_message += f"**Populasi:-** `{city_info['population']}`\n"
+        response_message += f"**Wilayah:-** `{city_info['region']}`\n"
+        response_message += f"**Sub Wilayah:-** `{city_info['subregion']}`\n"
+        response_message += f"**Zona waktu:-** `{city_info['timezones']}`\n"
+        response_message += f"**Top Level Domain:-** `{city_info['top_level_domain']}`\n"
+        response_message += f"**Wikipedia:-** [Link]({city_info['wikipedia']})"
+        await m.reply_text(response_message, disable_web_page_preview=True)
+    else:
+        await m.reply_text("Maaf, informasi tidak ditemukan.")
+
+
+"""
 @ky.ubot("negara", sudo=True)
 async def _(c: nlx, m):
     em = Emojik()
@@ -71,7 +192,7 @@ async def _(c: nlx, m):
     GOT = a.get("tld")
     lanester = "".join(targaryen + ",   " for targaryen in GOT)
     wiki = a.get("wiki")
-    caption = f"""<b><u>Informasi</b></u>
+    caption = f"<b><u>Informasi</b></u>
 **Nama negara:- `{name}`
 Ejaan Alternatif:- `{hu}`
 Wilayah Negara:- `{area}` kilometer persegi
@@ -90,5 +211,6 @@ Sub Wilayah:- `{sub}`
 Zona waktu:- `{tom}`
 Top Level Domain:- `{lanester}`
 Wikipedia:- `{wiki}`**
-"""
+
     await msg_.edit(caption, disable_web_page_preview=True)
+"""
