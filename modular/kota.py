@@ -20,6 +20,7 @@ __help__ = """
 
 import requests
 
+
 def get_colok(kontol):
     url = f"https://restcountries.com/v3.1/name/{kontol}"
     response = requests.get(url)
@@ -28,27 +29,37 @@ def get_colok(kontol):
         if data:
             info = {
                 "name": data[0]["name"]["common"],
-                "alt_spellings": ', '.join(data[0]["altSpellings"]),
+                "alt_spellings": ", ".join(data[0]["altSpellings"]),
                 "area": data[0]["area"],
-                "borders": ', '.join(data[0]["borders"]) if "borders" in data[0] else "Tidak ada perbatasan",
-                "calling_code": '+'.join(data[0]["idd"]["root"] + suffix for suffix in data[0]["idd"]["suffixes"]),
-                "capital": ', '.join(data[0]["capital"]),
-                "currencies": ', '.join(data[0]["currencies"].keys()) if "currencies" in data[0] else "Tidak ada mata uang",
+                "borders": (
+                    ", ".join(data[0]["borders"])
+                    if "borders" in data[0]
+                    else "Tidak ada perbatasan"
+                ),
+                "calling_code": "+".join(
+                    data[0]["idd"]["root"] + suffix
+                    for suffix in data[0]["idd"]["suffixes"]
+                ),
+                "capital": ", ".join(data[0]["capital"]),
+                "currencies": (
+                    ", ".join(data[0]["currencies"].keys())
+                    if "currencies" in data[0]
+                    else "Tidak ada mata uang"
+                ),
                 "flag": data[0]["flags"]["png"],
                 "demonym": data[0]["demonyms"]["eng"]["m"],
                 "iso": data[0]["cca2"],
-                "languages": ', '.join(data[0]["languages"].keys()),
+                "languages": ", ".join(data[0]["languages"].keys()),
                 "native_name": data[0]["name"]["nativeName"]["ind"]["official"],
                 "population": data[0]["population"],
                 "region": data[0]["region"],
                 "subregion": data[0]["subregion"],
-                "timezones": ', '.join(data[0]["timezones"]),
-                "top_level_domain": ', '.join(data[0]["tld"]),
-                "wikipedia": data[0]["flags"]["maps"]["wikipedia"]
+                "timezones": ", ".join(data[0]["timezones"]),
+                "top_level_domain": ", ".join(data[0]["tld"]),
+                "wikipedia": data[0]["flags"]["maps"]["wikipedia"],
             }
             return info
     return None
-
 
 
 @ky.ubot("negara", sudo=True)
