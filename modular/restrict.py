@@ -7,7 +7,6 @@
 ################################################################
 
 import asyncio
-from time import time
 
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -20,25 +19,24 @@ __modles__ = "Restrict"
 __help__ = get_cgr("help_rest")
 
 
-
 async def admin_check(message):
     client = message._client
     chat_id = message.chat.id
     user_id = message.from_user.id
 
-    check_status = await client.get_chat_member(
-        chat_id=chat_id,
-        user_id=user_id
-    )
+    check_status = await client.get_chat_member(chat_id=chat_id, user_id=user_id)
     admin_strings = [ChatMemberStatus.ADMINISTRATORS, ChatMemberStatus.OWNER]
     if check_status.status not in admin_strings:
         return False
     else:
         return True
 
+
 async def member_check(message) -> bool:
     client = message._client
-    check_user = await client.get_chat_member(message.chat.id, message.from_user.id).privileges
+    check_user = await client.get_chat_member(
+        message.chat.id, message.from_user.id
+    ).privileges
     user_type = check_user.status
     if user_type == ChatMemberStatus.MEMBER:
         return False
@@ -48,6 +46,7 @@ async def member_check(message) -> bool:
             return True
         return False
     return True
+
 
 async def member_permissions(chat: int, org: int):
     perms = []
