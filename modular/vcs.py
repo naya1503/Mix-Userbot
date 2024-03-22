@@ -33,7 +33,6 @@ class JoinVC:
                 nlx,
                 GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM,
             )
-            _client.enable_logs_to_console = False
             self.group_call = _client.get_group_call()
             klen_.update({chat: self.group_call})
 
