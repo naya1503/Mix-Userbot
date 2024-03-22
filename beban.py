@@ -58,7 +58,7 @@ async def autor_gc():
 async def autor_mention():
     if not udB.get_var(nlx.me.id, "read_mention"):
         return
-    while not await asyncio.sleep(300):
+    while not await asyncio.sleep(3600):
         LOGGER.info("Running Autoread For Mention...")
         async for bb in nlx.get_dialogs(limit=500):
             if bb.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
@@ -82,7 +82,7 @@ async def autor_mention():
 async def autor_ch():
     if not udB.get_var(nlx.me.id, "read_ch"):
         return
-    while not await asyncio.sleep(300):
+    while not await asyncio.sleep(3600):
         LOGGER.info("Running Autoread For Channel...")
         async for bb in nlx.get_dialogs(limit=500):
             if bb.chat.type == ChatType.CHANNEL:
@@ -102,7 +102,7 @@ async def autor_ch():
 async def autor_us():
     if not udB.get_var(nlx.me.id, "read_us"):
         return
-    while not await asyncio.sleep(300):
+    while not await asyncio.sleep(3600):
         LOGGER.info("Running Autoread For Users...")
         async for bb in nlx.get_dialogs(limit=500):
             if bb.chat.type == ChatType.PRIVATE:
@@ -122,7 +122,7 @@ async def autor_us():
 async def autor_bot():
     if not udB.get_var(nlx.me.id, "read_bot"):
         return
-    while not await asyncio.sleep(300):
+    while not await asyncio.sleep(3600):
         LOGGER.info("Running Autoread For Users...")
         async for bb in nlx.get_dialogs(limit=500):
             if bb.chat.type == ChatType.BOT:
@@ -142,7 +142,7 @@ async def autor_bot():
 async def autor_all():
     if not udB.get_var(nlx.me.id, "read_all"):
         return
-    while not await asyncio.sleep(300):
+    while not await asyncio.sleep(3600):
         LOGGER.info("Running Autoread For All...")
         async for bb in nlx.get_dialogs(limit=500):
             if bb.chat.type in [
