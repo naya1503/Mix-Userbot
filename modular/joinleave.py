@@ -119,7 +119,7 @@ async def _(c, m):
                     await c.leave_chat(chat)
             except BaseException:
                 luci += 1
-    await xenn.edit(cgr("join_5").format(em.sukses, nan, luci, em.gagal))
+    await xenn.edit(cgr("join_5").format(em.sukses, nan, em.gagal, luci))
 
 
 @ky.ubot("leaveallch|kickmeallch", sudo=True)
