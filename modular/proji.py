@@ -1,14 +1,12 @@
-import asyncio
-from pyrogram import Client, filters
-import socks
 import socket
 import time
+
 import requests
+import socks
 from bs4 import BeautifulSoup
+from pyrogram import filters
 
 from Mix import *
-
-
 
 __modles__ = "proji"
 __help__ = "proji"
@@ -33,7 +31,7 @@ def scrape_proxies():
     try:
         url = "https://www.freeproxy.world/?type=socks5"
         response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
+        soup = BeautifulSoup(response.text, "html.parser")
         proxy_rows = soup.find_all("tr")
         for row in proxy_rows[1:]:
             columns = row.find_all("td")
