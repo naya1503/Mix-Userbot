@@ -10,6 +10,7 @@ import asyncio
 
 from pyrogram.enums import *
 from pyrogram.errors import *
+from pyrogram.types import ChatPermissions, ChatPrivileges
 
 from Mix import DEVS, Emojik, cgr, get_cgr, ky, nlx
 from Mix.core.parser import mention_html
@@ -352,7 +353,7 @@ async def _(c: nlx, m):
     admin_data = [
         i
         async for i in c.get_chat_members(
-            chat_id=m.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
+            chat_id=m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
         )
     ]  # will it give floods ???
     for admin in admin_data:
