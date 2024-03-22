@@ -7,9 +7,7 @@
 ################################################################
 
 
-from asyncio import sleep
 
-from pyrogram.enums import MessageEntityType as MET
 from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
 from pyrogram.types import ChatPermissions
 
