@@ -65,11 +65,29 @@ async def dare_command(c: nlx, m):
                     for i in range(0, len(response_text), 4000)
                 ]
                 for part in response_parts:
-                    await m.reply_text(cgr("tod_1").format(em.sukses, part))
+                    if m.reply_to_message:
+                        await m.reply_text(
+                            cgr("tod_1").format(em.sukses, part),
+                            reply_to_message_id=ReplyCheck(m),
+                        )
+                    else:
+                        await m.reply_text(cgr("tod_1").format(em.sukses, part))
+            else:
+                if m.reply_to_message:
+                    await m.reply_text(
+                        cgr("tod_2").format(em.gagal),
+                        reply_to_message_id=ReplyCheck(m),
+                    )
+                else:
+                    await m.reply_text(cgr("tod_2").format(em.gagal))
+        else:
+            if m.reply_to_message:
+                await m.reply_text(
+                    cgr("tod_2").format(em.gagal),
+                    reply_to_message_id=ReplyCheck(m),
+                )
             else:
                 await m.reply_text(cgr("tod_2").format(em.gagal))
-        else:
-            await m.reply_text(cgr("tod_2").format(em.gagal))
     except MessageTooLong:
         pass
     await proses.delete()
@@ -88,9 +106,21 @@ async def truth_command(c: nlx, m):
                 response_text[i : i + 4000] for i in range(0, len(response_text), 4000)
             ]
             for part in response_parts:
-                await m.reply_text(cgr("tod_3").format(em.sukses, part))
+                if m.reply_to_message:
+                    await m.reply_text(
+                        cgr("tod_3").format(em.sukses, part),
+                        reply_to_message_id=ReplyCheck(m),
+                    )
+                else:
+                    await m.reply_text(cgr("tod_3").format(em.sukses, part))
         else:
-            await m.reply_text(cgr("tod_4").format(em.gagal))
+            if m.reply_to_message:
+                await m.reply_text(
+                    cgr("tod_4").format(em.gagal),
+                    reply_to_message_id=ReplyCheck(m),
+                )
+            else:
+                await m.reply_text(cgr("tod_4").format(em.gagal))
     except MessageTooLong:
         pass
     await proses.delete()

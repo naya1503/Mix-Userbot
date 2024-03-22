@@ -464,7 +464,7 @@ async def _(c: nlx, m):
         await m.reply_text(cgr("prof_1").format(em.gagal))
         return
     try:
-        user_id, user_first_name, _ = await extract_user(c, m)
+        user_id, user_first_name, user_name = await extract_user(c, m)
     except Exception:
         return
     if user_id == c.me.id:
