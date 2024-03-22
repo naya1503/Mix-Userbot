@@ -4,7 +4,6 @@ import time
 import requests
 import socks
 from bs4 import BeautifulSoup
-from pyrogram import filters
 
 from Mix import *
 
