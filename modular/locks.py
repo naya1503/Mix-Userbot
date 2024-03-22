@@ -32,90 +32,7 @@ l_t = """
 - `animations` = Animations
 - `games` = Game Bots
 - `stickers` = Stickers
-- `anonchannel` = Send as chat will be locked
-- `forwardall` = Forwarding from channel and user
-- `forwardu` = Forwarding from user
-- `forwardc` = Forwarding from channel
 - `url` = Lock links"""
-
-
-async def prevent_approved(m):
-    ceksud = udB.get_list_from_var(user.me.id, "SUDO_USER", "ID_NYA")
-    ms = m.from_user.id
-    for ms in (DEVS, ceksud):
-        try:
-            await m.chat.unban_member(ms)
-        except (ChatAdminRequired, ChatNotModified, RPCError):
-            continue
-        await sleep(0.1)
-    return
-
-
-async def is_approved_user(c: nlx, m):
-    # admins_group = member_permissions(m.chat.id, m.from_user.id)
-    if m.forward_from:
-        if m.from_user.id in DEVS or m.from_user.id == c.me.id:
-            return False
-        return True
-    elif m.forward_from_chat:
-        x_chat = (await c.get_chat(m.forward_from_chat.id)).linked_chat
-        if m.from_user.id in DEVS or m.from_user.id == c.me.id:
-            return True
-        if not x_chat:
-            return False
-        elif x_chat and x_chat.id == m.chat.id:
-            return True
-    elif m.from_user:
-        if m.from_user.id in DEVS or m.from_user.id == c.me.id:
-            return False
-        return True
-
-
-async def delete_messages(c: nlx, m):
-    try:
-        await c.delete_messages(m.chat.id, message_ids=m.id)
-        return
-    except RPCError as e:
-        await m.reply(f"{e}")
-
-
-# @nlx.on_message(filters.group & filters.me, group=4)
-async def _(c: nlx, m):
-    lock = LOCKS()
-    all_chats = lock.get_lock_channel()
-    if not all_chats:
-        return
-    if m.chat.id not in all_chats:
-        return
-    if m.sender_chat and not (m.forward_from_chat or m.forward_from):
-        if m.sender_chat.id == m.chat.id:
-            return
-        await delete_messages(c, m)
-        return
-    is_approved = await is_approved_user(c, m)
-    entity = m.entities if m.text else m.caption_entities
-    if entity:
-        for i in entity:
-            if i.type in [MET.URL or MET.TEXT_LINK]:
-                if not is_approved:
-                    await delete_messages(c, m)
-                    return
-    elif m.forward_from or m.forward_from_chat:
-        if not is_approved:
-            if lock.is_particular_lock(m.chat.id, "anti_fwd"):
-                await delete_messages(c, m)
-                return
-            elif (
-                lock.is_particular_lock(m.chat.id, "anti_fwd_u")
-                and not m.forward_from_chat
-            ):
-                await delete_messages(c, m)
-                return
-            elif (
-                lock.is_particular_lock(m.chat.id, "anti_fwd_c") and m.forward_from_chat
-            ):
-                await delete_messages(c, m)
-                return
 
 
 @ky.ubot("locktypes", sudo=True)
@@ -159,7 +76,6 @@ async def _(c: nlx, m):
         except ChatAdminRequired:
             await m.reply_text(cgr("lck_3").format(em.gagal))
         await m.reply_text(cgr("lck_4").format(em.sukses))
-        await prevent_approved(m)
         return
 
     lock = LOCKS()
@@ -266,7 +182,6 @@ async def _(c: nlx, m):
     except ChatAdminRequired:
         await m.reply_text(cgr("lck_13").format(em.gagal))
     await m.reply_text(cgr("lck_14").format(em.sukses, perm))
-    await prevent_approved(m)
     return
 
 
@@ -429,7 +344,7 @@ async def _(c: nlx, m):
     except ChatAdminRequired:
         await m.reply_text(cgr("lck_13").format(em.gagal))
     await m.reply_text(cgr("lck_27").format(em.sukses, uperm))
-    await prevent_approved(m)
+
     return
 
 
