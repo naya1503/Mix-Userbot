@@ -30,8 +30,7 @@ def init_client(func):
     async def wrapper(client, message):
         global group_call
         if not group_call:
-            group_call = GroupCallFactory(
-                nlx, CLIENT_TYPE).get_group_call()
+            group_call = GroupCallFactory(nlx, CLIENT_TYPE).get_group_call()
             group_call.enable_logs_to_console = False
         return await func(client, message)
 
