@@ -118,9 +118,9 @@ async def extract_user(c: nlx, m) -> Tuple[int, str, str]:
 
             if user_id is not None:
                 try:
-                    sone = Users.get_user_info(user_id)
-                    # user_first_name = sone["name"]
-                    user_name = sone["username"]
+                    user = await c.get_users(user_id)
+                    user_first_name = user.first_name
+                    user_name = user.username
                 except Exception as ef:
                     try:
                         sone = await c.get_users(user_id)
