@@ -29,3 +29,5 @@ genius_api = getenv(
 scheme = getenv("scheme", None)
 hostname = getenv("hostname", None)
 port = int(getenv("port", None))
+username = getenv("username", None)
+password = getenv("password", None)

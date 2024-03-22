@@ -40,9 +40,21 @@ class Userbot(Client):
             session_string=session,
             device_model="Mix-Userbot",
             test_mode=False,
-            proxy=dict(scheme=scheme, hostname=hostname, port=port),
+            proxy=self._configure_proxy(),
             **kwargs,
         )
+
+    def _configure_proxy():
+        proxy_config = {
+            "scheme": scheme,
+            "hostname": hostname,
+            "port": port
+        }
+        if username is not None and password is not None:
+            proxy_config["username"] = username
+            proxy_config["password"] = password
+        
+        return proxy_config
 
     def on_message(self, filters=None, group=-1):
         def decorator(func):
