@@ -17,7 +17,7 @@ async def measure_latency(proxy_address):
         start_time = time.time()
         with socks.socksocket(socket.AF_INET, socket.SOCK_STREAM) as sock:
             sock.set_proxy(socks.SOCKS5, proxy_address[0], proxy_address[1])
-            sock.settimeout(5)  # Timeout koneksi 5 detik
+            sock.settimeout(5)
             sock.connect(("www.google.com", 80))
         latency = time.time() - start_time
         return latency
