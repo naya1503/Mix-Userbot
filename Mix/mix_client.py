@@ -243,7 +243,7 @@ class Userbot(Client):
         return (await self.extract_user_and_reason(m))[0]
 
     async def start(self):
-        await super().start()
+        # await super().start()
         handler = udB.get_pref(self.me.id)
         if OWNER is None:
             ndB.set_key("OWNER_ID", self.me.id)
