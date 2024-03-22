@@ -45,15 +45,11 @@ class Userbot(Client):
         )
 
     def _configure_proxy():
-        proxy_config = {
-            "scheme": scheme,
-            "hostname": hostname,
-            "port": port
-        }
+        proxy_config = {"scheme": scheme, "hostname": hostname, "port": port}
         if username is not None and password is not None:
             proxy_config["username"] = username
             proxy_config["password"] = password
-        
+
         return proxy_config
 
     def on_message(self, filters=None, group=-1):
