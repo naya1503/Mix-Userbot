@@ -22,6 +22,7 @@ from pytgcalls.exceptions import GroupCallNotFoundError
 
 klen_ = {}
 
+
 class JoinVC:
     def __init__(self, chat):
         self._chat = chat
@@ -29,12 +30,13 @@ class JoinVC:
             self.group_call = klen_[chat]
         else:
             _client = GroupCallFactory(
-                nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM,
+                nlx,
+                GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM,
             )
             _client.enable_logs_to_console = False
             self.group_call = _client.get_group_call()
             klen_.update({chat: self.group_call})
-            
+
 
 async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCall]:
     em = Emojik()
