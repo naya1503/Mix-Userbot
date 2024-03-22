@@ -20,22 +20,21 @@ __help__ = get_cgr("help_vcs")
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 
-group_call = None
-CLIENT_TYPE = GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM
-OUTGOING_AUDIO_BITRATE_KBIT = 128
-PLAYOUT_FILE = "input.raw"
+klen_ = {}
 
-
-def init_client(func):
-    async def wrapper(client, message):
-        global group_call
-        if not group_call:
-            group_call = GroupCallFactory(nlx, CLIENT_TYPE).get_group_call()
-            group_call.enable_logs_to_console = False
-        return await func(client, message)
-
-    return wrapper
-
+class JoinVC:
+    def __init__(self, chat):
+        self._chat = chat
+        if klen_.get(chat):
+            self.group_call = klen_[chat]
+        else:
+            _client = GroupCallFactory(
+                nlx, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM,
+            )
+            _client.enable_logs_to_console = False
+            self.group_call = _client.get_group_call()
+            klen_.update({chat: self.group_call})
+            
 
 async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCall]:
     em = Emojik()
@@ -128,11 +127,12 @@ async def _(c: nlx, m):
     with suppress(ValueError):
         chat_id = int(chat_id)
     if chat_id:
+        Nan = JoinVC(chat_id)
         try:
-            await group_call.start(chat_id)
+            await Nan.group_call.join(chat_id)
             await ky.edit(cgr("vc_7").format(em.sukses, chat_id))
             await asyncio.sleep(2)
-            await group_call.set_is_mute(True)
+            await Nan.group_call.set_is_mute(True)
             return
         except GroupCallNotFoundError as e:
             return await ky.edit(cgr("err").format(em.gagal, e))
@@ -149,8 +149,9 @@ async def _(c: nlx, m):
     with suppress(ValueError):
         chat_id = int(chat_id)
     if chat_id:
+        Nan = JoinVC(chat_id)
         try:
-            await group_call.stop()
+            await Nan.group_call.leave()
             await ky.edit(cgr("vc_9").format(em.sukses, chat_id))
             return
         except Exception as e:
