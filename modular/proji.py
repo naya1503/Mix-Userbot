@@ -56,7 +56,7 @@ async def find_best_proxies(proxies):
     return best_proxies[:2]
 
 
-@app.on_message(filters.command("get_proxies"))
+@ky.ubot("get_proxies", sudo=True)
 async def get_proxies(client, message):
     try:
         scraped_proxies = scrape_proxies()
