@@ -22,13 +22,14 @@ async def scrape_memes(count_page=1):
                 if image_response.status_code == 200:
                     memes.append(BytesIO(image_response.content))
                 else:
-                    print(f"Failed to fetch image from URL: {image_url}. Status code: {image_response.status_code}")
+                    print(
+                        f"Failed to fetch image from URL: {image_url}. Status code: {image_response.status_code}"
+                    )
             else:
                 print(f"Skipping non-image/jpeg content: {meme_data.get('type')}")
     except Exception as e:
         print(f"Failed to scrape memes: {e}")
     return memes
-
 
 
 @ky.ubot("meme", sudo=True)
