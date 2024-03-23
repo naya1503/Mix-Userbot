@@ -408,11 +408,7 @@ async def _(c: nlx, m):
             await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
             return
 
-        try:
-            await mak_mek(nlx, m.chat.id)
-        except Exception as e:
-            await m.reply(f"{em.gagal} Terjadi kesalahan: {e}")
-            return
+        await mak_mek(nlx, m.chat.id)
     else:
         await m.reply(
             f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
