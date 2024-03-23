@@ -12,7 +12,6 @@ __help__ = "Google"
 async def google_search(query, limit=3):
     encoded_query = urllib.parse.quote_plus(query)
     url = f"https://api.safone.dev/google?query={encoded_query}&limit=3"
-
     response = requests.get(url)
     data = response.json()
     if "results" in data:
@@ -37,24 +36,23 @@ async def google_search(query, limit=3):
 async def google_command(c: nlx, m):
     em = Emojik()
     em.initialize()
-    await m.reply(cgr("proses").format(em.proses))
+    pros = await m.reply(cgr("proses").format(em.proses))
     query = m.text.split(maxsplit=1)[1]
+    encoded_query = urllib.parse.quote_plus(query)
+    url = f"https://api.safone.dev/google?query={encoded_query}&limit=3"
+    response = requests.get(url)
+    data = response.json()
 
-    if query:
-        results = await google_search(query)
-        if results["results"]:
-            for result in results["results"]:
-                await c.send_message(
-                    chat_id=m.chat.id,
-                    text=f"{em.sukses} {result['title']}\n\n{result['link']}\n{result['description']}\n",
-                )
-        else:
-            await c.send_message(
-                chat_id=m.chat.id,
-                text=f"{em.gagal} Maaf, tidak dapat menemukan hasil untuk pencarian ini.",
-            )
+    if "results" in data:
+        results = data["results"]
+        await c.send_message(
+            chat_id=m.chat.id,
+            text=results
+        )
+        await pros.delete()
     else:
         await c.send_message(
             chat_id=m.chat.id,
-            text=f"{em.gagal} Silakan berikan query untuk pencarian Google.",
+            text=f"{em.gagal} Maaf, tidak dapat menemukan hasil untuk pencarian ini.",
         )
+        await pros.delete()
