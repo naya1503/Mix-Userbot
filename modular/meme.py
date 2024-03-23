@@ -47,6 +47,9 @@ async def scrape_memes():
 
 @ky.ubot("meme", sudo=True)
 async def _(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    pros = await m.reply(cgr("proses").format(em.proses))
     try:
         meme_url = await scrape_memes()
         if meme_url:
@@ -54,10 +57,14 @@ async def _(c: nlx, m):
             if image_path:
                 await m.reply_photo(photo=image_path)
                 os.remove(image_path)
+                await pros.delete()
             else:
-                await m.reply("Gagal mendownload gambar. Silakan coba lagi nanti.")
+                await m.reply(f"{em.gagal} Gagal mendownload gambar. Silakan coba lagi nanti.")
+                await pros.delete()
         else:
-            await m.reply("Gagal mendapatkan URL gambar. Silakan coba lagi nanti.")
+            await m.reply(f"{em.gagal} Gagal mendapatkan URL gambar. Silakan coba lagi nanti.")
+            await pros.delete()
     except Exception as e:
         print(f"Failed to process meme: {e}")
-        await m.reply("Terjadi kesalahan dalam pemrosesan meme.")
+        await m.reply(f"{em.gagal} Terjadi kesalahan dalam pemrosesan meme.")
+        await pros.delete()
