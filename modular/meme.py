@@ -10,7 +10,7 @@ __help__ = "Meme"
 async def scrape_memes(count_page=1):
     memes = []
     try:
-        command = f'curl -X GET "https://api.safone.dev/meme?page={count_page}" -H "accept: application/json"'
+        command = f'curl -X GET "https://api.safone.dev/meme?page=1" -H "accept: application/json"'
         process = subprocess.Popen(
             command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
