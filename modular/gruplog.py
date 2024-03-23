@@ -37,7 +37,7 @@ async def _(c: nlx, m):
     if cek.lower() == "off":
         if TAG_LOG:
             ndB.del_key("TAG_LOG")
-            xx = await nlx.get_grup()
+            xx = await c.get_grup()
             await c.delete_supergroup(int(xx.id))
             return await xx.edit(cgr("grplog_3").format(em.gagal))
         else:
