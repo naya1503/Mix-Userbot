@@ -374,11 +374,14 @@ async def _(c: nlx, m):
 from pyrogram.enums import *
 from pyrogram.errors import FloodWait
 
+
 async def mak_mek(update, chat_id):
     em = Emojik()
     em.initialize()
     unban_count = 0
-    async for meki in nlx.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+    async for meki in nlx.get_chat_members(
+        chat_id, filter=enums.ChatMembersFilter.BANNED
+    ):
         if meki.user is not None:
             try:
                 user_id = meki.user.id
