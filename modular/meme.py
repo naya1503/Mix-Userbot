@@ -15,18 +15,10 @@ async def scrape_memes(count_page=1):
         response = requests.get(url)
         data = response.json()
         results = data.get("results", [])
-        for i, meme_data in enumerate(results, start=1):
+        for meme_data in results:
             if "type" in meme_data and "image/jpeg" in meme_data["type"].lower():
                 image_url = meme_data.get("image")
-                image_response = requests.get(image_url)
-                if image_response.status_code == 200:
-                    memes.append(BytesIO(image_response.content))
-                else:
-                    print(
-                        f"Failed to fetch image from URL: {image_url}. Status code: {image_response.status_code}"
-                    )
-            else:
-                print(f"Skipping non-image/jpeg content: {meme_data.get('type')}")
+                memes.append(image_url)
     except Exception as e:
         print(f"Failed to scrape memes: {e}")
     return memes
