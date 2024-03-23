@@ -430,13 +430,13 @@ async def backup(_, message: Message):
 
     m = await message.reply("Backing up data...")
     parts = message.text.split()
-    if len(parts) < 2:
+    if len(parts) < 3:
         return await m.edit(
             "Invalid command usage. Please provide MongoDB URI and password."
         )
 
     uri = parts[1]
-    password = parts[2]
+    password = " ".join(parts[2:])
 
     try:
         run_mongodump(uri, password)
