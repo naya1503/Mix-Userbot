@@ -70,6 +70,7 @@ async def get_proxies(client, message):
             for i, (proxy, latency) in enumerate(best_proxies, start=1):
                 response += f"**{i}. `{proxy[0]}:{proxy[1]}` - Latency: `{round(latency, 2)}` seconds\n"
             await message.reply_text(response)
+            pros.delete()
         else:
             await message.reply(cgr("err").format(em.gagal))
             await pros.delete()
