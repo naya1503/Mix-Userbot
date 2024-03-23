@@ -66,11 +66,9 @@ async def get_proxies(client, message):
         best_proxies = await find_best_proxies(scraped_proxies)
 
         if best_proxies:
-            response = await message.reply(cgr("prox_1").format(em.sukses))
+            response = (cgr("prox_1").format(em.sukses))
             for i, (proxy, latency) in enumerate(best_proxies, start=1):
-                response += await message.reply(
-                    cgr("prox_2").format(i, proxy[0], proxy[1])
-                )
+                response += (cgr("prox_2").format(i, proxy[0], proxy[1]))
             await message.reply(response)
         else:
             await message.reply(cgr("err").format(em.gagal))
