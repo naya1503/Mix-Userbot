@@ -18,13 +18,7 @@ async def scrape_memes(count_page=1):
         for i, meme_data in enumerate(results, start=1):
             if "type" in meme_data and "image" in meme_data["type"].lower():
                 image_url = meme_data.get("image")
-                file_extension = os.path.splitext(image_url)[1]
-                memes.append(
-                    {
-                        "url": image_url,
-                        "filename": f"meme_{count_page}_{i}{file_extension}",
-                    }
-                )
+                memes.append(image_url)
     except Exception as e:
         print(f"Failed to scrape memes: {e}")
     return memes
