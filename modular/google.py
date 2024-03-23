@@ -10,8 +10,8 @@ __help__ = "Google"
 
 
 async def google_search(query, limit=3):
-    encoded_query = urllib.parse.quote(query)
-    url = f"https://api.safone.dev/google?query={encoded_query}&limit={limit}"
+    encoded_query = urllib.parse.quote_plus(query)
+    url = f"https://api.safone.dev/google?query={encoded_query}&limit=3"
 
     response = requests.get(url)
     data = response.json()
@@ -39,6 +39,8 @@ async def google_command(c: nlx, m):
     em.initialize()
     await m.reply(cgr("proses").format(em.proses))
     query = m.text.split(maxsplit=1)[1]
+    
+    
 
     if query:
         results = await google_search(query)
