@@ -44,7 +44,6 @@ def scrape_proxies():
     return proxies
 
 
-
 async def find_best_proxies(proxies):
     best_proxies = []
 
