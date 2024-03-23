@@ -76,3 +76,4 @@ async def get_proxies(client, message):
     except Exception as e:
         await message.reply_text(f"An error occurred: {e}")
         await pros.delete()
+    pros.delete()
