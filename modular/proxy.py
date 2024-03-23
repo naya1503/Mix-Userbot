@@ -30,7 +30,6 @@ async def get_best_proxy(proxy_type):
         await broker.stop()
 
 
-
 async def check_proxy(session, proxy):
     try:
         async with session.get(
