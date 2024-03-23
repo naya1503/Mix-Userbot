@@ -12,11 +12,8 @@ async def scrape_memes():
         url = "https://memeapi.dev/meme"
         response = requests.get(url)
         if response.status_code == 200:
-            data = response.json()
-            meme_data = data.get("data")
-            if meme_data and "image" in meme_data:
-                image_url = meme_data["image"]
-                memes.append(image_url)
+            meme_url = response.text
+            memes.append(meme_url)
         else:
             print(f"Failed to scrape memes: {response.text}")
     except Exception as e:
@@ -28,7 +25,7 @@ async def scrape_memes():
 async def _(c: nlx, m):
     memes = await scrape_memes()
     if memes:
-        for image_url in memes:
-            await m.reply_photo(photo=image_url)
+        for meme_url in memes:
+            await m.reply_photo(photo=meme_url)
     else:
         await m.reply("Gagal mendapatkan meme. Silakan coba lagi nanti.")
