@@ -39,12 +39,12 @@ async def google_command(c: nlx, m):
     pros = await m.reply(cgr("proses").format(em.proses))
     query = m.text.split(maxsplit=1)[1]
     encoded_query = urllib.parse.quote_plus(query)
-    url = f"https://api.safone.dev/google?query={encoded_query}&limit=3"
+    url = f"https://api.safone.dev/llama?query={encoded_query}"
     response = requests.get(url)
     data = response.json()
 
-    if "results" in data:
-        results = data["results"]
+    if "answer" in data:
+        results = data["answer"]
         await c.send_message(chat_id=m.chat.id, text=results)
         await pros.delete()
     else:
