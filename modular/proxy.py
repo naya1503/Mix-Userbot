@@ -1,26 +1,28 @@
 import asyncio
 import random
+
 from aiohttp import ClientSession
 
 from Mix import *
-
 
 __modles__ = "Proxy"
 __help__ = get_cgr("help_prox")
 
 
 async def fetch_proxies():
-    url = 'https://www.proxy-list.download/api/v1/get?type=http'
+    url = "https://www.proxy-list.download/api/v1/get?type=http"
     async with ClientSession() as session:
         async with session.get(url) as response:
             data = await response.text()
-            proxies = data.split('\r\n')
+            proxies = data.split("\r\n")
             return proxies
 
 
 async def test_proxy(session, proxy):
     try:
-        async with session.get("https://api.ipify.org?format=json", proxy=f"http://{proxy}") as response:
+        async with session.get(
+            "https://api.ipify.org?format=json", proxy=f"http://{proxy}"
+        ) as response:
             if response.status == 200:
                 return True
     except Exception:
