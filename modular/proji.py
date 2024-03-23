@@ -15,7 +15,9 @@ async def measure_latency(proxy_address):
     try:
         start_time = time.time()
         with socks.socksocket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.set_proxy(socks.SOCKS5, proxy_address[0], int(proxy_address[1]))
+            sock.set_proxy(
+                socks.SOCKS5, proxy_address[0], int(proxy_address[1])
+            )
             sock.settimeout(5)
             sock.connect(("www.google.com", 80))
         latency = time.time() - start_time
@@ -66,10 +68,10 @@ async def get_proxies(client, message):
         best_proxies = await find_best_proxies(scraped_proxies)
 
         if best_proxies:
-            response = cgr("prox_1").format(em.sukses)
+            response = await message.reply(cgr("prox_1").format(em.sukses))
             for i, (proxy, latency) in enumerate(best_proxies, start=1):
-                response += cgr("prox_2").format(i, proxy[0], proxy[1])
-            await message.reply(response)
+                response += f"**{i}. `{proxy[0]}:{proxy[1]}` - Latency: `{round(latency, 2)}` seconds\n"
+            await message.reply_text(response)
         else:
             await message.reply(cgr("err").format(em.gagal))
             await pros.delete()

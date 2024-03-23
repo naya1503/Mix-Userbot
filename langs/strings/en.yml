@@ -22,7 +22,6 @@ supot: "**If you need help, please come to the Support Group Below!!\n\nOr you c
 
 # proxy
 prox_1: "{} **Top 2 best proxies:**\n"
-prox_2: "**{}. `{[]}:{[]}` - Latency: `{(, )}` seconds\n"
 
 # tod
 tod_1: "{} **Dare :**\n\n `{}`"
