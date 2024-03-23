@@ -1,6 +1,7 @@
-from PIL import Image
 from io import BytesIO
+
 import requests
+from PIL import Image
 
 from Mix import *
 
@@ -22,12 +23,11 @@ async def scrape_memes(count_page=1):
                 image_bytes = BytesIO(image_response.content)
                 image = Image.open(image_bytes)
                 jpeg_image = BytesIO()
-                image.save(jpeg_image, format='JPEG')
+                image.save(jpeg_image, format="JPEG")
                 memes.append(jpeg_image.getvalue())
     except Exception as e:
         print(f"Failed to scrape memes: {e}")
     return memes
-
 
 
 @ky.ubot("meme", sudo=True)
