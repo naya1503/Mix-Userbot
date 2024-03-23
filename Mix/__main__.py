@@ -9,7 +9,7 @@ from pyrogram.errors import *
 from beban import (autor_all, autor_bot, autor_ch, autor_gc, autor_mention,
                    autor_us, dasar_laknat)
 from Mix import *
-from Mix.core.gclog import check_logger, getFinish
+from Mix.core.gclog import getFinish
 from Mix.core.waktu import auto_clean
 
 
@@ -36,8 +36,8 @@ async def starter():
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
         execvp(executable, [executable, "-m", "Mix"])
-    #if TAG_LOG is None:
-        #await check_logger()
+    # if TAG_LOG is None:
+    # await check_logger()
 
 
 async def main():
