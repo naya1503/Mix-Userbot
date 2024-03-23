@@ -397,7 +397,7 @@ async def mak_mek(update, chat_id):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    chat = await c.get_chat(m.chat.id)
+    await c.get_chat(m.chat.id)
     dia = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
     pros = await m.reply(f"{em.proses} Sabar ya..")
     if dia.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
