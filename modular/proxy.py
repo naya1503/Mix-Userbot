@@ -58,7 +58,6 @@ async def find_best_proxies(proxies):
     return best_proxies
 
 
-
 @ky.ubot("proxy", sudo=True)
 async def get_proxies(client, message):
     em = Emojik()
