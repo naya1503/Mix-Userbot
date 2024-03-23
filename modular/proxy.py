@@ -58,7 +58,6 @@ async def get_proxy_command(c: nlx, m):
         if command not in ["http", "socks4", "socks5"]:
             await c.send_message(m.chat.id, "Perintah tidak valid.")
             return
-        await pros.delete()
 
         proxy_type = command.upper()
         best_proxy = await get_best_proxy(proxy_type)
