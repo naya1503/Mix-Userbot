@@ -31,9 +31,9 @@ def scrape_proxies():
         url = "https://proxyscrape.com/free-proxy-list"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
-        proxy_rows = soup.find_all("td")
+        proxy_rows = soup.find_all("tr")
         for row in proxy_rows[1:]:
-            columns = row.find_all("tr")
+            columns = row.find_all("td")
             if len(columns) >= 2:
                 host = columns[0].text.strip()
                 port = columns[1].text.strip()
@@ -42,6 +42,7 @@ def scrape_proxies():
     except Exception as e:
         print(f"Failed to scrape proxies: {e}")
     return proxies
+
 
 
 async def find_best_proxies(proxies):
