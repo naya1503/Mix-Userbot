@@ -38,7 +38,7 @@ async def google_command(c: nlx, m):
     em = Emojik()
     em.initialize()
     await m.reply(cgr("proses").format(em.proses))
-    query = m.command[1]
+    query = m.text.split(maxsplit=1)[1]
 
     if query:
         results = await google_search(query)
