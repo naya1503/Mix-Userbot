@@ -415,7 +415,9 @@ def run_mongodump(uri, password):
     if i == 0:
         child.sendline(password)
     else:
-        raise RuntimeError("Error while executing mongodump: Password prompt not found.")
+        raise RuntimeError(
+            "Error while executing mongodump: Password prompt not found."
+        )
 
     child.expect(pexpect.EOF)
     child.close()
@@ -429,8 +431,10 @@ async def backup(_, message: Message):
     m = await message.reply("Backing up data...")
     parts = message.text.split()
     if len(parts) != 2:
-        return await m.edit("Invalid command usage. Please provide MongoDB URI and password.")
-    
+        return await m.edit(
+            "Invalid command usage. Please provide MongoDB URI and password."
+        )
+
     uri = parts[1]
     password = parts[2]
 
@@ -438,7 +442,9 @@ async def backup(_, message: Message):
         run_mongodump(uri, password)
         code = execute("zip backup.zip -r9 dump/*")
         if int(code) != 0:
-            return await m.edit("Looks like you don't have `zip` package installed, BACKUP FAILED!")
+            return await m.edit(
+                "Looks like you don't have `zip` package installed, BACKUP FAILED!"
+            )
         await message.reply_document("backup.zip")
         await m.delete()
         remove("backup.zip")
