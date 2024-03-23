@@ -19,5 +19,5 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
-    joke = get_joke()
+    joke = c.get_joke()
     await pros.edit(joke)
