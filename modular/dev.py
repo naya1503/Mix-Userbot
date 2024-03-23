@@ -395,7 +395,8 @@ async def _(c: nlx, m):
                 m.chat.id, filter=enums.ChatMembersFilter.BANNED
             ):
                 try:
-                    await c.unban_chat_member(chat_id=m.chat.id, user_id=meki.user.id)
+                    user_id = meki.user.id
+                    await c.unban_chat_member(chat_id=m.chat.id, user_id)
                     unban_count += 1
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
