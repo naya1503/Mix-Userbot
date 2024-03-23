@@ -14,7 +14,7 @@ async def scrape_memes(count_page=1):
         data = response.json()
         results = data.get("results", [])
         for meme_data in results:
-            if "type" in meme_data and "image/jpeg" in meme_data["type"].lower():
+            if "image/jpeg" in meme_data["type"].lower():
                 image_url = meme_data.get("image")
                 memes.append(image_url)
     except Exception as e:
@@ -39,7 +39,7 @@ async def _(c: nlx, m):
 
     memes = await scrape_memes(count_page)
     if memes:
-        for meme_url in memes:
-            await m.reply_photo(photo=meme_url)
+        for image_url in memes:
+            await m.reply_photo(photo=image_url)
     else:
         await m.reply("Gagal mendapatkan meme. Silakan coba lagi nanti.")
