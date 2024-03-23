@@ -28,7 +28,7 @@ async def measure_latency(proxy_address):
 def scrape_proxies():
     proxies = []
     try:
-        url = "https://hidemy.io/en/proxy-list/?type=5#list"
+        url = "https://www.proxy-list.download/SOCKS5"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
         proxy_rows = soup.find_all("tr")
