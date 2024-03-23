@@ -14,9 +14,6 @@ from Mix.core.waktu import auto_clean
 
 
 async def starter():
-    LOGGER.info(f"Check Updater...")
-    await cek_updater()
-    LOGGER.info(f"Updater Finished...")
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
