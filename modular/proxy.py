@@ -26,7 +26,6 @@ async def get_best_proxy(proxy_type):
     return best_proxy
 
 
-
 async def check_proxy(session, proxy):
     try:
         async with session.get(
