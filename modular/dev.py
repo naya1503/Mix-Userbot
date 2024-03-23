@@ -4,6 +4,7 @@
  
  @ CREDIT : NAN-DEV
 """
+import asyncio
 import os
 import platform
 import sys
@@ -16,14 +17,11 @@ from time import perf_counter
 
 import psutil
 from psutil._common import bytes2human
-from pytz import timezone
-import asyncio
-from datetime import datetime, timedelta
-
 from pyrogram.enums import *
 from pyrogram.errors import *
-from pyrogram.types import *
 from pyrogram.errors import FloodWait
+from pyrogram.types import *
+from pytz import timezone
 
 from Mix import *
 
@@ -370,14 +368,11 @@ async def _(c: nlx, m):
         )
 
 
-
 async def mak_mek(c, chat_id):
     em = Emojik()
     em.initialize()
     unban_count = 0
-    async for meki in c.get_chat_members(
-        chat_id, filter=ChatMembersFilter.BANNED
-    ):
+    async for meki in c.get_chat_members(chat_id, filter=ChatMembersFilter.BANNED):
         if meki.user is not None:
             try:
                 user_id = meki.user.id
@@ -398,7 +393,6 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     dia = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-    query = "BANNED"
     pros = await m.reply(f"{em.proses} Sabar ya..")
     if dia.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
         if m.from_user.id not in DEVS:
