@@ -411,35 +411,34 @@ async def _(c: nlx, m):
 
 def run_mongodump(uri, password):
     child = pexpect.spawn(f"mongodump --uri='{uri}'")
-
     i = child.expect(["Enter password:", pexpect.EOF, pexpect.TIMEOUT])
     if i == 0:
         child.sendline(password)
     else:
-        raise RuntimeError(
-            "Error while executing mongodump: Password prompt not found."
-        )
+        raise RuntimeError("Error while executing mongodump: Password prompt not found.")
 
     child.expect(pexpect.EOF)
     child.close()
 
 
 @ky.ubot("mongodump", sudo=False)
-async def backup(_, message):
+async def backup(_, message: Message):
     if message.chat.type != ChatType.PRIVATE:
         return await message.reply("This command can only be used in private")
 
     m = await message.reply("Backing up data...")
-    uri = message.text.split(None, 1)[1]
+    parts = message.text.split()
+    if len(parts) != 2:
+        return await m.edit("Invalid command usage. Please provide MongoDB URI and password.")
+    
+    uri = parts[1]
+    password = parts[2]
 
     try:
-        password = await nlx.ask("Masukkan password untuk MongoDB:")
-        run_mongodump(uri, password.text)
+        run_mongodump(uri, password)
         code = execute("zip backup.zip -r9 dump/*")
         if int(code) != 0:
-            return await m.edit(
-                "Looks like you don't have `zip` package installed, BACKUP FAILED!"
-            )
+            return await m.edit("Looks like you don't have `zip` package installed, BACKUP FAILED!")
         await message.reply_document("backup.zip")
         await m.delete()
         remove("backup.zip")
