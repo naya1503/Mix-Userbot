@@ -1,5 +1,5 @@
 import subprocess
-
+import json
 
 from Mix import *
 
@@ -16,12 +16,15 @@ async def scrape_memes(count_page=1):
         )
         output, error = process.communicate()
         if process.returncode == 0:
-            data = json.loads(output)
-            results = data.get("results", [])
-            for meme_data in results:
-                if "image/jpeg" in meme_data.get("type", "").lower():
-                    image_url = meme_data.get("image")
-                    memes.append(image_url)
+            try:
+                data = json.loads(output)
+                results = data.get("results", [])
+                for meme_data in results:
+                    if "image/jpeg" in meme_data.get("type", "").lower():
+                        image_url = meme_data.get("image")
+                        memes.append(image_url)
+            except json.JSONDecodeError as e:
+                print(f"Failed to decode JSON: {e}")
         else:
             print(f"Failed to scrape memes: {error.decode()}")
     except Exception as e:
