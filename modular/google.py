@@ -9,7 +9,7 @@ __help__ = "Google"
 
 async def google_search(query, limit=3):
     url = f"https://api.safone.dev/google?query={query}"
-    response = await requests.get(url)
+    response = requests.get(url)
     data = response.json()
     return {
         "limit": limit,
@@ -26,6 +26,9 @@ async def google_search(query, limit=3):
 
 @ky.ubot("google", sudo=True)
 async def google_command(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    pros = await m.reply(cgr("proses").format(em.proses))
     query = " ".join(m.command[1:])
 
     if query:
@@ -34,14 +37,14 @@ async def google_command(c: nlx, m):
             for result in results["results"]:
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text=f"{result['title']}\n{result['link']}\n{result['description']}\n",
+                    text=f"{em.sukses} {result['title']}\n\n{result['link']}\n{result['description']}\n",
                 )
         else:
             await c.send_message(
                 chat_id=m.chat.id,
-                text="Maaf, tidak dapat menemukan hasil untuk pencarian ini.",
+                text=f"{em.gagal} Maaf, tidak dapat menemukan hasil untuk pencarian ini.",
             )
     else:
         await c.send_message(
-            chat_id=m.chat.id, text="Silakan berikan query untuk pencarian Google."
+            chat_id=m.chat.id, text=f"{em.gagal} Silakan berikan query untuk pencarian Google."
         )
