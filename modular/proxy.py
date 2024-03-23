@@ -1,4 +1,3 @@
-
 import requests
 
 from Mix import *
@@ -12,26 +11,20 @@ async def fetch_proxies(proxy_type):
     response = requests.get(url)
     if response.status_code == 200:
         proxies = response.text.split("\r\n")
-        return proxies
+        proxies.sort()
+        formatted_proxies = [f"{i}) {proxy}" for i, proxy in enumerate(proxies, start=1)]
+        return formatted_proxies[:10]
     else:
         return None
 
 
-# async def get_best_proxy(proxy_type):
-#     proxies = fetch_proxies(proxy_type)
-#     if proxies:
-#         return random.choice(proxies)
-#     else:
-#         return None
-
-
-async def send_proxy(c: nlx, chat_id, proxy):
-    if proxy:
-        await c.send_message(chat_id, proxy)
+async def send_proxy(c: nlx, chat_id, proxies):
+    if proxies:
+        await c.send_message(chat_id, "\n".join(proxies))
     else:
-        await c.send_message(
-            chat_id, f"{em.gagal} Tidak dapat menemukan proxy yang valid."
-        )
+        em = Emojik()
+        em.initialize()
+        await c.send_message(chat_id, f"{em.gagal} Tidak dapat menemukan proxy yang valid.")
 
 
 @ky.ubot("getproxy", sudo=True)
@@ -46,8 +39,8 @@ async def get_proxy_command(c: nlx, m):
             return
 
         proxy_type = command
-        best_proxy = await fetch_proxies(proxy_type)
-        await send_proxy(c, m.chat.id, best_proxy)
+        proxies = await fetch_proxies(proxy_type)
+        await send_proxy(c, m.chat.id, proxies)
         await pros.delete()
     except IndexError:
         await c.send_message(m.chat.id, f"{em.gagal} Perintah tidak valid.")
