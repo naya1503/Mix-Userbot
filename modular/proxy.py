@@ -7,12 +7,12 @@ __modles__ = "Proxy"
 __help__ = get_cgr("help_prox")
 
 
-async def scrape_proxies(country, limit):
+async def scrape_proxies(country="Singapore", limit=10):
     proxies = []
     try:
         url = f"https://api.safone.dev/proxy/socks5?country={country}&limit={limit}"
         response = requests.get(url)
-        data = response.json()
+        data = response.json()  # Assuming API returns JSON data
         for proxy_data in data:
             host = proxy_data.get("ip")
             port = proxy_data.get("port")
