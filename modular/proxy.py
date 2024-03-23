@@ -12,8 +12,8 @@ __help__ = get_cgr("help_prox")
 async def get_best_proxy(proxy_type):
     proxies = []
 
-    async for proxy in Broker().find(types=[proxy_type], limit=10):
-        proxies.append(proxy)
+    async with Broker() as broker:
+        proxies = await broker.find(types=[proxy_type], limit=10)
 
     async with ClientSession() as session:
         tasks = []
@@ -24,6 +24,7 @@ async def get_best_proxy(proxy_type):
 
     best_proxy = max(proxies, key=lambda x: x.score)
     return best_proxy
+
 
 
 async def check_proxy(session, proxy):
