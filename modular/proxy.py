@@ -9,8 +9,8 @@ __modles__ = "Proxy"
 __help__ = get_cgr("help_prox")
 
 
-async def fetch_proxies():
-    url = "https://www.proxy-list.download/api/v1/get?type=http"
+async def fetch_proxies(command):
+    url = f"https://www.proxy-list.download/api/v1/get?type={command}"
     async with ClientSession() as session:
         async with session.get(url) as response:
             data = await response.text()
