@@ -1,4 +1,3 @@
-import random
 
 import requests
 
@@ -30,7 +29,9 @@ async def send_proxy(c: nlx, chat_id, proxy):
     if proxy:
         await c.send_message(chat_id, proxy)
     else:
-        await c.send_message(chat_id, f"{em.gagal} Tidak dapat menemukan proxy yang valid.")
+        await c.send_message(
+            chat_id, f"{em.gagal} Tidak dapat menemukan proxy yang valid."
+        )
 
 
 @ky.ubot("getproxy", sudo=True)
