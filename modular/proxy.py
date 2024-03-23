@@ -1,8 +1,8 @@
 import random
+
 import requests
 
 from Mix import *
-
 
 __modles__ = "Proxy"
 __help__ = get_cgr("help_prox")
