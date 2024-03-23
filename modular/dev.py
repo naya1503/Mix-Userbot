@@ -379,7 +379,7 @@ async def mak_mek(c, chat_id):
                 await c.unban_chat_member(chat_id, user_id)
                 unban_count += 1
             except FloodWait as e:
-                await asyncio.sleep(e.x)
+                await asyncio.sleep(e.value)
                 await c.send_message(
                     chat_id, f"{em.gagal} Harap tunggu {e.x} detik lagi"
                 )
