@@ -31,9 +31,9 @@ def scrape_proxies():
         url = "http://free-proxy.cz/en/proxylist/country/SG/socks5/ping/all"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
-        proxy_rows = soup.find_all("tr")
+        proxy_rows = soup.find_all("td")
         for row in proxy_rows[1:]:
-            columns = row.find_all("td")
+            columns = row.find_all("td style")
             if len(columns) >= 2:
                 host = columns[0].text.strip()
                 port = columns[1].text.strip()
