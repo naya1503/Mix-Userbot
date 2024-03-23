@@ -59,10 +59,14 @@ async def _(c: nlx, m):
                 os.remove(image_path)
                 await pros.delete()
             else:
-                await m.reply(f"{em.gagal} Gagal mendownload gambar. Silakan coba lagi nanti.")
+                await m.reply(
+                    f"{em.gagal} Gagal mendownload gambar. Silakan coba lagi nanti."
+                )
                 await pros.delete()
         else:
-            await m.reply(f"{em.gagal} Gagal mendapatkan URL gambar. Silakan coba lagi nanti.")
+            await m.reply(
+                f"{em.gagal} Gagal mendapatkan URL gambar. Silakan coba lagi nanti."
+            )
             await pros.delete()
     except Exception as e:
         print(f"Failed to process meme: {e}")
