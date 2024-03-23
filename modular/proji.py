@@ -28,7 +28,7 @@ async def measure_latency(proxy_address):
 def scrape_proxies():
     proxies = []
     try:
-        url = "https://www.freeproxy.world/?type=socks5"
+        url = "https://spys.one/en/socks-proxy-list/"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
         proxy_rows = soup.find_all("tr")
@@ -63,9 +63,9 @@ async def get_proxies(client, message):
         best_proxies = await find_best_proxies(scraped_proxies)
 
         if best_proxies:
-            response = "Top 2 best proxies:\n"
+            response = "**Top 2 best proxies:**\n"
             for i, (proxy, latency) in enumerate(best_proxies, start=1):
-                response += f"{i}. {proxy[0]}:{proxy[1]} - Latency: {round(latency, 2)} seconds\n"
+                response += f"**{i}. `{proxy[0]}:{proxy[1]}` - Latency: {round(latency, 2)} seconds\n"
             await message.reply_text(response)
         else:
             await message.reply_text("Failed to find suitable proxies.")
