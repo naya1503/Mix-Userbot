@@ -32,7 +32,7 @@ async def _(c: nlx, m):
         elif len(command_parts) == 2:
             count_page = int(command_parts[1])
         else:
-            await m.reply("Format perintah salah. Gunakan: /meme [count_page]")
+            await m.reply("Format perintah salah. Gunakan: meme [count_page]")
             return
     except ValueError:
         await m.reply("Halaman harus berupa bilangan bulat.")
