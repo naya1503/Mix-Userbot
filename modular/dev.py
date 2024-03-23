@@ -399,21 +399,19 @@ async def _(c: nlx, m):
     em.initialize()
     chat = await c.get_chat(m.chat.id)
     dia = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-
+    pros = await m.reply(f"{em.proses} Sabar ya..")
     if dia.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
         if m.from_user.id not in DEVS:
             await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
             return
 
         try:
-            proses = await m.reply(f"{em.proses} Sabar ya..")
             await mak_mek(m, m.chat.id)
         except Exception as e:
             await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
-        finally:
-            if "proses" in locals():
-                await proses.delete()
     else:
         await m.reply(
             f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
         )
+    await pros.delete()
+    return
