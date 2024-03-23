@@ -9,17 +9,14 @@ from pyrogram.errors import *
 from beban import (autor_all, autor_bot, autor_ch, autor_gc, autor_mention,
                    autor_us, dasar_laknat)
 from Mix import *
-from Mix.core.gclog import getFinish
+from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
 
+loop = asyncio.get_event_loop_policy()
+event_loop = loop.get_event_loop()
 
-async def starter():
-    LOGGER.info(f"Check Updater...")
-    await cek_updater()
-    LOGGER.info(f"Updater Finished...")
-    LOGGER.info(f"Connecting to {ndB.name}...")
-    if ndB.ping():
-        LOGGER.info(f"Connected to {ndB.name} Successfully!")
+
+async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
         await nlx.start()
@@ -27,6 +24,9 @@ async def starter():
     except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
         LOGGER.info("Check your session or api id!!")
         sys.exit(1)
+
+
+async def start_bot():
     LOGGER.info(f"Starting Telegram Bot Client...")
     if TOKEN_BOT is None:
         await autobot()
@@ -36,8 +36,20 @@ async def starter():
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
         execvp(executable, [executable, "-m", "Mix"])
-    # if TAG_LOG is None:
-    # await check_logger()
+
+
+async def starter():
+    LOGGER.info(f"Check Updater...")
+    await cek_updater()
+    LOGGER.info(f"Updater Finished...")
+    LOGGER.info(f"Connecting to {ndB.name}...")
+    if ndB.ping():
+        LOGGER.info(f"Connected to {ndB.name} Successfully!")
+    await start_user()
+    if nlx.is_connected:
+        await start_bot()
+    if TAG_LOG is None:
+        await check_logger()
 
 
 async def main():
@@ -66,5 +78,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop_policy().get_event_loop()
-    loop.run_until_complete(main())
+    asyncio.set_event_loop(event_loop)
+    event_loop.run_until_complete(main())
