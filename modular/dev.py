@@ -430,7 +430,7 @@ async def backup(_, message: Message):
 
     m = await message.reply("Backing up data...")
     parts = message.text.split()
-    if len(parts) != 2:
+    if len(parts) < 2:
         return await m.edit(
             "Invalid command usage. Please provide MongoDB URI and password."
         )
