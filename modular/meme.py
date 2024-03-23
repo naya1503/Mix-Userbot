@@ -20,7 +20,10 @@ async def scrape_memes(count_page=1):
                 data = json.loads(output)
                 results = data.get("results", [])
                 for meme_data in results:
-                    if "image/jpeg" in meme_data.get("type", "").lower() or "image/jpg" in meme_data.get("type", "").lower():
+                    if (
+                        "image/jpeg" in meme_data.get("type", "").lower()
+                        or "image/jpg" in meme_data.get("type", "").lower()
+                    ):
                         image_url = meme_data.get("image")
                         memes.append(image_url)
             except json.JSONDecodeError as e:
