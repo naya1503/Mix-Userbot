@@ -40,6 +40,7 @@ class Userbot(Client):
             session_string=session,
             device_model="Mix-Userbot",
             test_mode=False,
+            ipv6=True,
             proxy=self._configure_proxy(),
             **kwargs,
         )
