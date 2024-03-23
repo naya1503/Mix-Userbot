@@ -13,7 +13,6 @@ async def get_best_proxy(proxy_type):
     proxies = []
 
     broker = Broker()
-    await broker.start()
 
     try:
         proxies = await broker.find(types=[proxy_type], limit=10)
@@ -29,6 +28,7 @@ async def get_best_proxy(proxy_type):
         return best_proxy
     finally:
         await broker.stop()
+
 
 
 async def check_proxy(session, proxy):
