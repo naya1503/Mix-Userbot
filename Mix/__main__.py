@@ -36,8 +36,8 @@ async def starter():
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
         execvp(executable, [executable, "-m", "Mix"])
-    if TAG_LOG is None:
-        await check_logger()
+    #if TAG_LOG is None:
+        #await check_logger()
 
 
 async def main():
