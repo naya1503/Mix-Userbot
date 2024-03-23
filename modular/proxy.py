@@ -48,12 +48,14 @@ async def find_best_proxies(proxies):
     best_proxies = []
 
     for proxy in proxies:
-        latency = await measure_latency(proxy)
-        best_proxies.append((proxy, latency))
+        host, port, country = proxy
+        latency = await measure_latency((host, port))
+        best_proxies.append((host, port, latency, country))
 
-    best_proxies.sort(key=lambda x: x[1])
+    best_proxies.sort(key=lambda x: x[2])
 
     return best_proxies[:2]
+
 
 
 @ky.ubot("proxy", sudo=True)
@@ -68,8 +70,9 @@ async def get_proxies(client, message):
 
         if best_proxies:
             response = f"**{em.sukses} Top 2 best of list Proxy:**\n"
-            for i, (proxy, latency, country) in enumerate(best_proxies, start=1):
-                response += f"**{i}. Region : `{country}` | `{proxy[0]}:{proxy[1]}` - Latency: `{round(latency, 2)}` seconds\n"
+            for i, (proxy, port, latency, country) in enumerate(best_proxies, start=1):
+                response += f"**{i}. Negara : `{country}` | `{proxy}:{port}` - Latensi: `{round(latency, 2)}` detik\n"
+
             await message.reply_text(response)
             await pros.delete()
         else:
