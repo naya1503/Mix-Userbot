@@ -1,14 +1,12 @@
 import asyncio
-from pyrogram import Client
+
 from aiohttp import ClientSession
 from proxybroker import Broker
 
 from Mix import *
 
-
 __modles__ = "Proxy"
 __help__ = get_cgr("help_prox")
-
 
 
 async def get_best_proxy(proxy_type):
@@ -24,14 +22,15 @@ async def get_best_proxy(proxy_type):
             tasks.append(task)
         await asyncio.gather(*tasks)
 
-
     best_proxy = max(proxies, key=lambda x: x.score)
     return best_proxy
 
 
 async def check_proxy(session, proxy):
     try:
-        async with session.get("https://api.ipify.org?format=json", proxy=f"{proxy.host}:{proxy.port}") as response:
+        async with session.get(
+            "https://api.ipify.org?format=json", proxy=f"{proxy.host}:{proxy.port}"
+        ) as response:
             if response.status == 200:
                 proxy.score = proxy.score + 1
     except Exception:
@@ -45,7 +44,7 @@ async def send_proxy(client, chat_id, proxy):
 @ky.ubot("getproxy", sudo=True)
 async def get_proxy_command(client, message):
     command = message.text.split()[1].lower()
-    if command not in ['http', 'socks4', 'socks5']:
+    if command not in ["http", "socks4", "socks5"]:
         await client.send_message(message.chat.id, "Perintah tidak valid.")
         return
 

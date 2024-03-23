@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 from io import BytesIO, StringIO
 from subprocess import PIPE, Popen, TimeoutExpired
 from time import perf_counter
+
 import pexpect
 import psutil
 from psutil._common import bytes2human
@@ -407,6 +408,7 @@ async def _(c: nlx, m):
     await pros.delete()
     return
 
+
 def run_mongodump(uri, password):
     child = pexpect.spawn(f"mongodump --uri='{uri}'")
 
@@ -414,11 +416,13 @@ def run_mongodump(uri, password):
     if i == 0:
         child.sendline(password)
     else:
-        raise RuntimeError("Error while executing mongodump: Password prompt not found.")
+        raise RuntimeError(
+            "Error while executing mongodump: Password prompt not found."
+        )
 
     child.expect(pexpect.EOF)
     child.close()
-    
+
 
 @ky.ubot("mongodump", sudo=False)
 async def backup(_, message):
@@ -433,7 +437,9 @@ async def backup(_, message):
         run_mongodump(uri, password.text)
         code = execute("zip backup.zip -r9 dump/*")
         if int(code) != 0:
-            return await m.edit("Looks like you don't have `zip` package installed, BACKUP FAILED!")
+            return await m.edit(
+                "Looks like you don't have `zip` package installed, BACKUP FAILED!"
+            )
         await message.reply_document("backup.zip")
         await m.delete()
         remove("backup.zip")
