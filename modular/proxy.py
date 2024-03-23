@@ -1,36 +1,25 @@
 import random
-
-from aiohttp import ClientSession
+import requests
 
 from Mix import *
+
 
 __modles__ = "Proxy"
 __help__ = get_cgr("help_prox")
 
 
-async def fetch_proxies(command):
-    url = f"https://www.proxy-list.download/api/v1/get?type={command}&country=US"
-    async with ClientSession() as session:
-        async with session.get(url) as response:
-            data = await response.text()
-            proxies = data.split("\r\n")
-            return proxies
-
-
-async def test_proxy(session, proxy):
-    try:
-        async with session.get(
-            "https://api.ipify.org?format=json", proxy=f"http://{proxy}"
-        ) as response:
-            if response.status == 200:
-                return True
-    except Exception:
-        pass
-    return False
+def fetch_proxies(proxy_type):
+    url = f"https://www.proxy-list.download/api/v1/get?type={proxy_type}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        proxies = response.text.split("\r\n")
+        return proxies
+    else:
+        return None
 
 
 async def get_best_proxy(proxy_type):
-    proxies = await fetch_proxies(proxy_type)
+    proxies = fetch_proxies(proxy_type)
     if proxies:
         return random.choice(proxies)
     else:
@@ -54,7 +43,7 @@ async def get_proxy_command(c: nlx, m):
             await c.send_message(m.chat.id, "Perintah tidak valid.")
             return
 
-        proxy_type = command.upper()
+        proxy_type = command
         best_proxy = await get_best_proxy(proxy_type)
         await send_proxy(c, m.chat.id, best_proxy)
     except IndexError:
