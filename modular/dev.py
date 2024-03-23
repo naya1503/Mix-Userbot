@@ -391,9 +391,7 @@ async def _(c: nlx, m):
             proses = await m.reply(f"{em.proses} Sabar ya..")
 
             unban_count = 0
-            tt = []
-            async for meki in c.get_chat_members(chat_id=m.chat.id, query="BANNED"):
-                tt.append(meki)
+            async for meki in c.get_chat_members(m.chat.id, filter=enums.ChatMembersFilter.BANNED):
                 try:
                     await c.unban_chat_member(chat_id=m.chat.id, user_id=meki.user.id)
                     unban_count += 1
