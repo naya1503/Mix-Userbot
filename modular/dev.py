@@ -380,7 +380,7 @@ async def mak_mek(update, chat_id):
     em.initialize()
     unban_count = 0
     async for meki in nlx.get_chat_members(
-        chat_id, filter=enums.ChatMembersFilter.BANNED
+        chat_id, query="BANNED", filter=enums.ChatMembersFilter.BANNED
     ):
         if meki.user is not None:
             try:
