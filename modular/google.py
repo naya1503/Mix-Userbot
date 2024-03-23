@@ -1,6 +1,8 @@
+import urllib.parse
+
 import requests
 from pyrogram import *
-import urllib.parse
+
 from Mix import *
 
 __modles__ = "Google"
@@ -10,27 +12,24 @@ __help__ = "Google"
 async def google_search(query, limit=3):
     encoded_query = urllib.parse.quote(query)
     url = f"https://api.safone.dev/google?query={encoded_query}&limit={limit}"
-    
+
     response = requests.get(url)
     data = response.json()
     if "results" in data:
         results = data["results"]
     else:
-        return {
-            "limit": 0,
-            "results": []
-        }
-    
+        return {"limit": 0, "results": []}
+
     return {
         "limit": limit,
         "results": [
             {
                 "description": result["description"],
                 "link": result["link"],
-                "title": result["title"]
+                "title": result["title"],
             }
             for result in results[:limit]
-        ]
+        ],
     }
 
 
