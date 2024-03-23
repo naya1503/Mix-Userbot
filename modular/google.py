@@ -28,7 +28,7 @@ async def google_search(query, limit=3):
 async def google_command(c: nlx, m):
     em = Emojik()
     em.initialize()
-    pros = await m.reply(cgr("proses").format(em.proses))
+    await m.reply(cgr("proses").format(em.proses))
     query = " ".join(m.command[1:])
 
     if query:
@@ -46,5 +46,6 @@ async def google_command(c: nlx, m):
             )
     else:
         await c.send_message(
-            chat_id=m.chat.id, text=f"{em.gagal} Silakan berikan query untuk pencarian Google."
+            chat_id=m.chat.id,
+            text=f"{em.gagal} Silakan berikan query untuk pencarian Google.",
         )
