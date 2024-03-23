@@ -32,13 +32,10 @@ async def test_proxy(session, proxy):
 
 async def get_best_proxy(proxy_type):
     proxies = await fetch_proxies(proxy_type)
-    async with ClientSession() as session:
-        tasks = [test_proxy(session, proxy) for proxy in proxies]
-        results = await asyncio.gather(*tasks)
-        valid_proxies = [proxy for proxy, result in zip(proxies, results) if result]
-        if valid_proxies:
-            return random.choice(valid_proxies)
-    return None
+    if proxies:
+        return random.choice(proxies)
+    else:
+        return None
 
 
 async def send_proxy(c: nlx, chat_id, proxy):
