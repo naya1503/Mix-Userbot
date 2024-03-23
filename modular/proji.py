@@ -59,6 +59,9 @@ async def find_best_proxies(proxies):
 
 @ky.ubot("proxy", sudo=True)
 async def get_proxies(client, message):
+    em = Emojik()
+    em.initialize()
+    pros = await message.reply(cgr("proses").format(em.proses))
     try:
         scraped_proxies = scrape_proxies()
 
@@ -67,9 +70,11 @@ async def get_proxies(client, message):
         if best_proxies:
             response = "**Top 2 best proxies:**\n"
             for i, (proxy, latency) in enumerate(best_proxies, start=1):
-                response += f"**{i}. `{proxy[0]}:{proxy[1]}` - Latency: {round(latency, 2)} seconds\n"
+                response += f"**{i}. `{proxy[0]}:{proxy[1]}` - Latency: `{round(latency, 2)}` seconds\n"
             await message.reply_text(response)
         else:
             await message.reply_text("Failed to find suitable proxies.")
+            await pros.delete()
     except Exception as e:
         await message.reply_text(f"An error occurred: {e}")
+        await pros.delete()
