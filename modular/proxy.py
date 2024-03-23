@@ -55,7 +55,8 @@ async def find_best_proxies(proxies):
 
     best_proxies.sort(key=lambda x: x[2])
 
-    return best_proxies[:2]
+    return best_proxies
+
 
 
 @ky.ubot("proxy", sudo=True)
