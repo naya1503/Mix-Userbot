@@ -37,11 +37,13 @@ def scrape_proxies():
             if len(columns) >= 2:
                 host = columns[0].text.strip()
                 port = columns[1].text.strip()
-                country = columns[5].text.strip()
+                country = columns[3].text.strip()
                 proxies.append((host, port, country))
+                print(f"Host: {host}, Port: {port}, Country: {country}")
     except Exception as e:
         print(f"Failed to scrape proxies: {e}")
     return proxies
+
 
 
 async def find_best_proxies(proxies):
