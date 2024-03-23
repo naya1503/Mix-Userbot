@@ -39,8 +39,7 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
-            test_mode=False,
-            ipv6=True,
+            ipv6=False,
             proxy=self._configure_proxy(),
             **kwargs,
         )
