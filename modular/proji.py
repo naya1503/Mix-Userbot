@@ -66,7 +66,7 @@ async def get_proxies(client, message):
         best_proxies = await find_best_proxies(scraped_proxies)
 
         if best_proxies:
-            response = f"**{em.sukses}Top 2 best of list Proxy:**\n"
+            response = f"**{em.sukses} Top 2 best of list Proxy:**\n"
             for i, (proxy, latency) in enumerate(best_proxies, start=1):
                 response += f"**{i}. `{proxy[0]}:{proxy[1]}` - Latency: `{round(latency, 2)}` seconds\n"
             await message.reply_text(response)
