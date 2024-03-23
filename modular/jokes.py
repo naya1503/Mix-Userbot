@@ -2,7 +2,6 @@ import requests
 
 from Mix import *
 
-
 __modles__ = "Joke"
 __help__ = "Joke"
 
@@ -16,7 +15,7 @@ def get_joke():
 
 
 @ky.ubot("joke", sudo=True)
-async def _(c :nlx, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
