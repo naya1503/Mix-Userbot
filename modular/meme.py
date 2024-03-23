@@ -17,14 +17,13 @@ async def scrape_memes(count_page=1):
         data = response.json()
         results = data.get("results", [])
         for i, meme_data in enumerate(results, start=1):
-            if "type" in meme_data and "image" in meme_data["type"].lower():
+            if "type" in meme_data and "image/jpeg" in meme_data["type"].lower():
                 image_url = meme_data.get("image")
                 image_response = requests.get(image_url)
-                image_bytes = BytesIO(image_response.content)
-                image = Image.open(image_bytes)
-                jpeg_image = BytesIO()
-                image.save(jpeg_image, format="JPEG")
-                memes.append(jpeg_image.getvalue())
+                if image_response.status_code == 200:
+                    memes.append(BytesIO(image_response.content))
+                else:
+                    print(f"Failed to fetch image from URL: {image_url}")
     except Exception as e:
         print(f"Failed to scrape memes: {e}")
     return memes
