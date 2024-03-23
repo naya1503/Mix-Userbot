@@ -9,7 +9,7 @@ __help__ = "Meme"
 async def scrape_memes():
     memes = []
     try:
-        url = "https://memeapi.dev/api/v1/memes"
+        url = "https://memeapi.dev/meme"
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
