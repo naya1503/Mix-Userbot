@@ -43,4 +43,3 @@ async def _(c: nlx, m):
             await m.reply_photo(photo=meme_url)
     else:
         await m.reply("Gagal mendapatkan meme. Silakan coba lagi nanti.")
-
