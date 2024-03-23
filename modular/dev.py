@@ -391,18 +391,14 @@ async def _(c: nlx, m):
             proses = await m.reply(f"{em.proses} Sabar ya..")
 
             unban_count = 0
-            banned_members = await c.get_chat_members(
-                chat_id=m.chat.id, filter=ChatMemberStatus.BANNED
-            )
-            for banned_member in banned_members:
-                try:
-                    await c.unban_chat_member(
-                        chat_id=m.chat.id, user_id=banned_member.user.id
-                    )
-                    unban_count += 1
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
+            async for meki in c.get_chat_members(
+                chat_id=m.chat.id, filter=ChatMemberStatus.BANNED):
+                    try:
+                        await c.unban_chat_member(chat_id=m.chat.id, user_id=meki.user.id)
+                        unban_count += 1
+                    except FloodWait as e:
+                        await asyncio.sleep(e.x)
+                        await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
 
             await m.reply(
                 f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
