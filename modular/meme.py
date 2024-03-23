@@ -8,7 +8,7 @@ __modles__ = "Meme"
 __help__ = "Meme"
 
 
-async def scrape_memes(count_page):
+async def scrape_memes(count_page=1):
     memes = []
     try:
         url = f"https://api.safone.dev/meme?page={count_page}"
