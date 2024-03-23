@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from Mix import *
 
 __modles__ = "Proxy"
-__help__ = "Proxy"
+__help__ = get_cgr("help_prox")
 
 
 async def measure_latency(proxy_address):
