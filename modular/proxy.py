@@ -28,16 +28,17 @@ async def measure_latency(proxy_address):
 def scrape_proxies():
     proxies = []
     try:
-        url = "http://free-proxy.cz/en/proxylist/country/SG/socks5/ping/all"
+        url = "https://proxyscrape.com/free-proxy-list"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
         proxy_rows = soup.find_all("td")
         for row in proxy_rows[1:]:
-            columns = row.find_all("td style")
+            columns = row.find_all("tr")
             if len(columns) >= 2:
                 host = columns[0].text.strip()
                 port = columns[1].text.strip()
-                proxies.append((host, port))
+                country = columns[5].text.strip()
+                proxies.append((host, port, country))
     except Exception as e:
         print(f"Failed to scrape proxies: {e}")
     return proxies
@@ -67,8 +68,8 @@ async def get_proxies(client, message):
 
         if best_proxies:
             response = f"**{em.sukses} Top 2 best of list Proxy:**\n"
-            for i, (proxy, latency) in enumerate(best_proxies, start=1):
-                response += f"**{i}. `{proxy[0]}:{proxy[1]}` - Latency: `{round(latency, 2)}` seconds\n"
+            for i, (proxy, latency, country) in enumerate(best_proxies, start=1):
+                response += f"**{i}. Region : `{country}` | `{proxy[0]}:{proxy[1]}` - Latency: `{round(latency, 2)}` seconds\n"
             await message.reply_text(response)
             await pros.delete()
         else:
