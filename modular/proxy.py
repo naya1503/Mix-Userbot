@@ -41,18 +41,17 @@ async def get_best_proxy(proxy_type):
     return None
 
 
-async def send_proxy(client, chat_id, proxy):
+async def send_proxy(c: nlx, chat_id, proxy):
     if proxy:
-        await client.send_message(chat_id, proxy)
+        await c.send_message(chat_id, proxy)
     else:
-        await client.send_message(chat_id, "Tidak dapat menemukan proxy yang valid.")
+        await c.send_message(chat_id, "Tidak dapat menemukan proxy yang valid.")
 
 
 @ky.ubot("getproxy", sudo=True)
 async def get_proxy_command(c: nlx, m):
     em = Emojik()
     em.initialize()
-    pros = await m.reply(cgr("proses").format(em.proses))
     try:
         command = m.text.split()[1].lower()
         if command not in ["http", "socks4", "socks5"]:
@@ -64,4 +63,3 @@ async def get_proxy_command(c: nlx, m):
         await send_proxy(c, m.chat.id, best_proxy)
     except IndexError:
         await c.send_message(m.chat.id, "Perintah tidak valid.")
-        await pros.delete()
