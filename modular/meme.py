@@ -1,6 +1,6 @@
-import requests
 import os
-from pyrogram import Client, filters
+
+import requests
 
 from Mix import *
 
@@ -19,14 +19,19 @@ async def scrape_memes(count_page):
             if "type" in meme_data and "image" in meme_data["type"].lower():
                 image_url = meme_data.get("image")
                 file_extension = os.path.splitext(image_url)[1]
-                memes.append({"url": image_url, "filename": f"meme_{count_page}_{i}{file_extension}"})
+                memes.append(
+                    {
+                        "url": image_url,
+                        "filename": f"meme_{count_page}_{i}{file_extension}",
+                    }
+                )
     except Exception as e:
         print(f"Failed to scrape memes: {e}")
     return memes
 
 
 @ky.ubot("meme", sudo=True)
-async def _(c :nlx, m):
+async def _(c: nlx, m):
     try:
         command_parts = m.text.split(" ")
         if len(command_parts) == 1:
@@ -46,4 +51,3 @@ async def _(c :nlx, m):
             await m.reply_photo(photo=meme_data["url"])
     else:
         await m.reply("Gagal mendapatkan meme. Silakan coba lagi nanti.")
-
