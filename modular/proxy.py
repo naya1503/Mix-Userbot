@@ -10,7 +10,7 @@ __help__ = get_cgr("help_prox")
 
 
 async def fetch_proxies(command):
-    url = f"https://www.proxy-list.download/api/v1/get?type={command}"
+    url = f"https://www.proxy-list.download/api/v1/get?type={command}&country=SG"
     async with ClientSession() as session:
         async with session.get(url) as response:
             data = await response.text()
