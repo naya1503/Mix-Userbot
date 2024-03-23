@@ -45,10 +45,7 @@ async def google_command(c: nlx, m):
 
     if "results" in data:
         results = data["results"]
-        await c.send_message(
-            chat_id=m.chat.id,
-            text=results
-        )
+        await c.send_message(chat_id=m.chat.id, text=results)
         await pros.delete()
     else:
         await c.send_message(
