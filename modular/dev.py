@@ -375,29 +375,28 @@ from pyrogram.enums import *
 from pyrogram.errors import FloodWait
 
 
-async def mak_mek(update, chat_id):
+async def mak_mek(c, chat_id):
     em = Emojik()
     em.initialize()
     unban_count = 0
-    async for meki in nlx.get_chat_members(
+    async for meki in c.get_chat_members(
         chat_id, query="BANNED", filter=enums.ChatMembersFilter.BANNED
     ):
         if meki.user is not None:
             try:
                 user_id = meki.user.id
-                await nlx.unban_chat_member(chat_id, user_id)
+                await c.unban_chat_member(chat_id, user_id)
                 unban_count += 1
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-                await update.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
-    await m.reply(f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member.")
+                await c.send_message(chat_id, f"{em.gagal} Harap tunggu {e.x} detik lagi")
+    await c.send_message(chat_id, f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member.")
 
 
 @ky.ubot("anben")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    await c.get_chat(m.chat.id)
     dia = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
     pros = await m.reply(f"{em.proses} Sabar ya..")
     if dia.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
@@ -406,9 +405,9 @@ async def _(c: nlx, m):
             return
 
         try:
-            await mak_mek(m, m.chat.id)
+            await mak_mek(nlx, m.chat.id)
         except Exception as e:
-            await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
+            await m.reply(f"{em.gagal} Terjadi kesalahan: {e}")
     else:
         await m.reply(
             f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
