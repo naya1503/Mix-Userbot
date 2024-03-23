@@ -1,9 +1,5 @@
-import socket
-import time
 
 import requests
-import socks
-from bs4 import BeautifulSoup
 
 from Mix import *
 
@@ -42,7 +38,9 @@ async def get_proxies_command(client, message):
             country = command_parts[1]
             limit = int(command_parts[2])
         else:
-            await message.reply_text("Format perintah salah. Gunakan: /getproxy [country] [limit]")
+            await message.reply_text(
+                "Format perintah salah. Gunakan: /getproxy [country] [limit]"
+            )
             return
     except ValueError:
         await message.reply_text("Limit harus berupa bilangan bulat.")
