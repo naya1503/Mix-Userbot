@@ -11,6 +11,54 @@ __modles__ = "Proxy"
 __help__ = get_cgr("help_prox")
 
 
+async def scrape_proxies(country, limit):
+    proxies = []
+    try:
+        url = f"https://api.safone.dev/proxy/socks5?country={country}&limit={limit}"
+        response = requests.get(url)
+        data = response.json()
+        for proxy_data in data:
+            host = proxy_data.get("ip")
+            port = proxy_data.get("port")
+            country = proxy_data.get("country")
+            proxies.append((host, port, country))
+            print(f"Host: {host}, Port: {port}, Country: {country}")
+    except Exception as e:
+        print(f"Failed to scrape proxies: {e}")
+    return proxies
+
+
+@ky.ubot("proxy", sudo=True)
+async def get_proxies_command(client, message):
+    try:
+        command_parts = message.text.split(" ")
+        if len(command_parts) == 1:
+            country = "Singapore"
+            limit = 10
+        elif len(command_parts) == 2:
+            country = command_parts[1]
+            limit = 10
+        elif len(command_parts) == 3:
+            country = command_parts[1]
+            limit = int(command_parts[2])
+        else:
+            await message.reply_text("Format perintah salah. Gunakan: /getproxy [country] [limit]")
+            return
+    except ValueError:
+        await message.reply_text("Limit harus berupa bilangan bulat.")
+        return
+
+    proxies = await scrape_proxies(country, limit)
+    if proxies:
+        response = f"**Daftar Proxy SOCKS5 dari {country} (Limit: {limit}):**\n"
+        for i, (host, port, _) in enumerate(proxies, start=1):
+            response += f"**{i}. Host: `{host}` | Port: `{port}`\n"
+        await message.reply(response)
+    else:
+        await message.reply("Gagal mendapatkan daftar proxy. Silakan coba lagi nanti.")
+
+
+"""
 async def measure_latency(proxy_address):
     try:
         start_time = time.time()
@@ -25,10 +73,10 @@ async def measure_latency(proxy_address):
         return float("inf")
 
 
-def scrape_proxies():
+def scrape_proxies(query):
     proxies = []
     try:
-        url = "https://www.freeproxy.world/?type=socks5"
+        url = "https://api.safone.dev/proxy/socks5?country={country}&limit={limit}"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
         proxy_rows = soup.find_all("tr")
@@ -82,3 +130,4 @@ async def get_proxies(client, message):
         await message.reply_text(f"An error occurred: {e}")
         await pros.delete()
     await pros.delete()
+"""
