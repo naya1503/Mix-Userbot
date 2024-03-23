@@ -1,21 +1,20 @@
 import socket
 import time
-
 import requests
 import socks
 from bs4 import BeautifulSoup
 
 from Mix import *
 
-__modles__ = "proji"
-__help__ = "proji"
+__modles__ = "Proxy"
+__help__ = "Proxy"
 
 
 async def measure_latency(proxy_address):
     try:
         start_time = time.time()
         with socks.socksocket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.set_proxy(socks.SOCKS5, proxy_address[0], proxy_address[1])
+            sock.set_proxy(socks.SOCKS5, proxy_address[0], int(proxy_address[1]))  # Mengonversi port ke integer
             sock.settimeout(5)
             sock.connect(("www.google.com", 80))
         latency = time.time() - start_time
@@ -55,7 +54,7 @@ async def find_best_proxies(proxies):
     return best_proxies[:2]
 
 
-@ky.ubot("get_proxies", sudo=True)
+@ky.ubot("proxy", sudo=True)
 async def get_proxies(client, message):
     try:
         scraped_proxies = scrape_proxies()
@@ -71,3 +70,4 @@ async def get_proxies(client, message):
             await message.reply_text("Failed to find suitable proxies.")
     except Exception as e:
         await message.reply_text(f"An error occurred: {e}")
+
