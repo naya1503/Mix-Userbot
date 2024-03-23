@@ -28,7 +28,7 @@ async def measure_latency(proxy_address):
 def scrape_proxies():
     proxies = []
     try:
-        url = "https://proxyscrape.com/free-proxy-list"
+        url = "https://www.freeproxy.world/?type=socks5"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
         proxy_rows = soup.find_all("tr")
