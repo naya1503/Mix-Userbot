@@ -14,6 +14,9 @@ from Mix.core.waktu import auto_clean
 
 
 async def starter():
+    LOGGER.info(f"Check Updater...")
+    await cek_updater()
+    LOGGER.info(f"Updater Finished...")
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
@@ -63,4 +66,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop_policy().get_event_loop().run_until_complete(main())
+    loop = asyncio.get_event_loop_policy().get_event_loop()
+    loop.run_until_complete(main())
