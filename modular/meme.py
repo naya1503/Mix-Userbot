@@ -39,7 +39,8 @@ async def _(c: nlx, m):
 
     memes = await scrape_memes(count_page)
     if memes:
-        for meme_data in memes:
-            await m.reply_photo(photo=meme_data["url"])
+        for meme_url in memes:
+            await m.reply_photo(photo=meme_url)
     else:
         await m.reply("Gagal mendapatkan meme. Silakan coba lagi nanti.")
+
