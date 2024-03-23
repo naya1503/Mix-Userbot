@@ -374,6 +374,21 @@ async def _(c: nlx, m):
 from pyrogram.enums import *
 from pyrogram.errors import FloodWait
 
+async def mak_mek(update, chat_id):
+    em = Emojik()
+    em.initialize()
+    unban_count = 0
+    async for meki in nlx.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+        if meki.user is not None:
+            try:
+                user_id = meki.user.id
+                await nlx.unban_chat_member(chat_id, user_id)
+                unban_count += 1
+            except FloodWait as e:
+                await asyncio.sleep(e.x)
+                await update.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
+    await m.reply(f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member.")
+
 
 @ky.ubot("anben")
 async def _(c: nlx, m):
@@ -389,22 +404,7 @@ async def _(c: nlx, m):
 
         try:
             proses = await m.reply(f"{em.proses} Sabar ya..")
-
-            unban_count = 0
-            async for meki in c.get_chat_members(
-                chat_id=m.chat.id, filter=enums.ChatMembersFilter.BANNED
-            ):
-                try:
-                    user_id = meki.user.id
-                    await c.unban_chat_member(m.chat.id, user_id)
-                    unban_count += 1
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
-
-            await m.reply(
-                f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
-            )
+            await mak_mek(m, m.chat.id)
         except Exception as e:
             await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
         finally:
