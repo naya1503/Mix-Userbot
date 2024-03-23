@@ -27,8 +27,6 @@ async def starter():
     except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
         LOGGER.info("Check your session or api id!!")
         sys.exit(1)
-    if TAG_LOG is None:
-        await check_logger()
     LOGGER.info(f"Starting Telegram Bot Client...")
     if TOKEN_BOT is None:
         await autobot()
@@ -38,6 +36,8 @@ async def starter():
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
         execvp(executable, [executable, "-m", "Mix"])
+    if TAG_LOG is None:
+        await check_logger()
 
 
 async def main():
