@@ -20,6 +20,10 @@ reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes 
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 supot: "**If you need help, please come to the Support Group Below!!\n\nOr you can see updates on our Channel...**"
 
+# proxy
+prox_1: "{} **Top 2 best proxies:**\n"
+prox_2: "**{}. `{[]}:{[]}` - Latency: `{(, )}` seconds\n"
+
 # tod
 tod_1: "{} **Dare :**\n\n `{}`"
 tod_2: "{} **Failed to get Dare. Please try again.**"
@@ -526,3 +530,4 @@ help_lirk: " **Lyric**\n\n• Command: `{0}`lyrics\n• Description: To search f
 help_auend: " **AutoEnd**\n\n• Command: `{0}`endchat [username/user ID/reply to user]\n• Description: To delete chat history\n\n• Optional: \n• `username/reply to user` - Delete chat history of user\n• `bot` - Delete all bot chat history\n• `all` - Delete chat history of all your private messages."
 help_img: " **Image**\n\n• Command: `{0}`img [query]\n• Description: Searching image.\n"
 help_tod: " **Truth Or Dare**\n\n• Command: `{0}truth`\n• Description: To provide random questions that must be answered truthfully!\n\n• Command: `{0}dare`\n• Description: To provide a random challenge that must be done!\n"
+help_prox: " **Proxy**\n\n• Command: `{0}proxy`\n• Description: For get Top 2 socks5 as random but best.\n"

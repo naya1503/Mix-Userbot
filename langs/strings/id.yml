@@ -20,6 +20,10 @@ reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimul
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 supot: "**Jika anda butuhkan bantuan silahkan datang ke Grup Support Dibawah!!**\n\n**Atau kamu bisa melihat update di Channel Kami..**"
 
+# proxy
+prox_1: "{} **Top 2 Proxy Terbaik :**\n"
+prox_2: "**{}. `{[]}:{[]}` - Latency: `{(, )}` detik\n"
+
 # tod
 tod_1: "{} **Tantangan :**\n\n `{}`"
 tod_2: "{} **Gagal mengambil Tantangan. Silakan coba lagi nanti.**"
@@ -527,3 +531,4 @@ help_lirk: " **Lyric**\n\n• Perintah: `{0}`lyrics\n• Penjelasan: Untuk menca
 help_auend: " **AutoEnd**\n\n• Perintah: `{0}`endchat [username/id pengguna/balas pengguna]\n• Penjelasan: Untuk menghapus riwayat obrolan\n\n• Optional: \n• `username/balas pengguna` - Menghapus riwayat obrolan pengguna\n• `bot` - Menghapus semua riwayat obrolan bot\n• `all` - Menghapus riwayat obrolan pesan pribadi anda dengan semua pengguna.\n"
 help_img: " **Image**\n\n• Perintah: `{0}`img [kata pencarian]\n• Penjelasan: Mencari image atau gambar.\n"
 help_tod: " **Truth Or Dare**\n\n• Perintah: `{0}truth`\n• Penjelasan: Untuk memberikan pertanyaan random yang harus dijawab jujur!\n\n• Perintah: `{0}dare`\n• Penjelasan: Untuk memberikan tantangan random yang harus dilakukan!\n"
+help_prox: " **Proxy**\n\n• Perintah: `{0}proxy`\n• Penjelasan: Untuk mengambil 2 proxy socks5 acak terbaik.\n"
