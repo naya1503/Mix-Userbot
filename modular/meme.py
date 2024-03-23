@@ -1,4 +1,5 @@
 import requests
+import subprocess
 
 from Mix import *
 
@@ -9,14 +10,18 @@ __help__ = "Meme"
 async def scrape_memes(count_page=1):
     memes = []
     try:
-        url = f"https://api.safone.dev/meme?page={count_page}"
-        response = requests.get(url)
-        data = response.json()
-        results = data.get("results", [])
-        for meme_data in results:
-            if "image/jpeg" in meme_data["type"].lower():
-                image_url = meme_data.get("image")
-                memes.append(image_url)
+        command = f'curl -X GET "https://api.safone.dev/meme?page={count_page}" -H "accept: application/json"'
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        output, error = process.communicate()
+        if process.returncode == 0:
+            data = json.loads(output)
+            results = data.get("results", [])
+            for meme_data in results:
+                if "image/jpeg" in meme_data.get("type", "").lower():
+                    image_url = meme_data.get("image")
+                    memes.append(image_url)
+        else:
+            print(f"Failed to scrape memes: {error.decode()}")
     except Exception as e:
         print(f"Failed to scrape memes: {e}")
     return memes
