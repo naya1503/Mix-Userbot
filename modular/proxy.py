@@ -25,7 +25,7 @@ async def scrape_proxies(country, limit=10):
 
 
 @ky.ubot("getproxy", sudo=True)
-async def _(c :nlx, m):
+async def _(c: nlx, m):
     try:
         command_parts = m.text.split(" ")
         if len(command_parts) == 1:
