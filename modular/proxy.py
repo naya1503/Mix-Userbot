@@ -11,7 +11,7 @@ async def scrape_proxies(country="Singapore", limit=10):
     try:
         url = f"https://api.safone.dev/proxy/socks5?country={country}&limit={limit}"
         response = requests.get(url)
-        data = response.json()  # Assuming API returns JSON data
+        data = response.json()
         for proxy_data in data:
             host = proxy_data.get("ip")
             port = proxy_data.get("port")
