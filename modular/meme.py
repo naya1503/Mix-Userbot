@@ -1,8 +1,8 @@
-import requests
 import os
 
-from Mix import *
+import requests
 
+from Mix import *
 
 __modles__ = "Meme"
 __help__ = "Meme"
