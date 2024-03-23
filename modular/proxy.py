@@ -6,13 +6,14 @@ __modles__ = "Proxy"
 __help__ = get_cgr("help_prox")
 
 
-async def scrape_proxies(country="Singapore", limit=10):
+async def scrape_proxies(country, limit=10):
     proxies = []
     try:
         url = f"https://api.safone.dev/proxy/socks5?country={country}&limit={limit}"
         response = requests.get(url)
         data = response.json()
-        for proxy_data in data:
+        results = data.get("results", [])
+        for proxy_data in results:
             host = proxy_data.get("ip")
             port = proxy_data.get("port")
             country = proxy_data.get("country")
@@ -23,13 +24,13 @@ async def scrape_proxies(country="Singapore", limit=10):
     return proxies
 
 
-@ky.ubot("proxy", sudo=True)
-async def get_proxies_command(client, message):
+@ky.ubot("getproxy", sudo=True)
+async def _(c :nlx, m):
     try:
-        command_parts = message.text.split(" ")
+        command_parts = m.text.split(" ")
         if len(command_parts) == 1:
-            country = "Singapore"
-            limit = 10
+            await m.reply("Gunakan: /getproxy [country] [limit]")
+            return
         elif len(command_parts) == 2:
             country = command_parts[1]
             limit = 10
@@ -37,12 +38,10 @@ async def get_proxies_command(client, message):
             country = command_parts[1]
             limit = int(command_parts[2])
         else:
-            await message.reply_text(
-                "Format perintah salah. Gunakan: /getproxy [country] [limit]"
-            )
+            await m.reply("Format perintah salah. Gunakan: /getproxy [country] [limit]")
             return
     except ValueError:
-        await message.reply_text("Limit harus berupa bilangan bulat.")
+        await m.reply("Limit harus berupa bilangan bulat.")
         return
 
     proxies = await scrape_proxies(country, limit)
@@ -50,9 +49,9 @@ async def get_proxies_command(client, message):
         response = f"**Daftar Proxy SOCKS5 dari {country} (Limit: {limit}):**\n"
         for i, (host, port, _) in enumerate(proxies, start=1):
             response += f"**{i}. Host: `{host}` | Port: `{port}`\n"
-        await message.reply(response)
+        await m.reply(response)
     else:
-        await message.reply("Gagal mendapatkan daftar proxy. Silakan coba lagi nanti.")
+        await m.reply("Gagal mendapatkan daftar proxy. Silakan coba lagi nanti.")
 
 
 """
