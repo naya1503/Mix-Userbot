@@ -31,7 +31,7 @@ async def test_proxy(session, proxy):
 
 
 async def get_best_proxy(proxy_type):
-    proxies = await fetch_proxies()
+    proxies = await fetch_proxies(proxy_type)
     async with ClientSession() as session:
         tasks = [test_proxy(session, proxy) for proxy in proxies]
         results = await asyncio.gather(*tasks)
