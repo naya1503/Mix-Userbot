@@ -389,8 +389,12 @@ async def mak_mek(c, chat_id):
                 unban_count += 1
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-                await c.send_message(chat_id, f"{em.gagal} Harap tunggu {e.x} detik lagi")
-    await c.send_message(chat_id, f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member.")
+                await c.send_message(
+                    chat_id, f"{em.gagal} Harap tunggu {e.x} detik lagi"
+                )
+    await c.send_message(
+        chat_id, f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
+    )
 
 
 @ky.ubot("anben")
