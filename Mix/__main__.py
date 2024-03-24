@@ -10,8 +10,6 @@ from Mix import *
 from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
 
-loop = asyncio.get_event_loop()
-
 
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
@@ -74,5 +72,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    # loop = asyncio.get_event_loop_policy().get_event_loop()
-    loop.run_until_complete(main())
+    asyncio.get_event_loop_policy().get_event_loop().run_until_complete(main())
