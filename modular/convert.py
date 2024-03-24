@@ -277,6 +277,9 @@ async def _(c: nlx, message):
             await message.reply_voice(
                 open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
             )
+            for files in ("audio.mp3", indir):
+                if files and os.path.exists(files):
+                    os.remove(files)
         else:
             await message.reply(
                 "{} **Silahkan ketik `{}list_efek` untuk melihat daftar efek yang tersedia!!**".format(
@@ -291,5 +294,3 @@ async def _(c: nlx, message):
             )
         )
         await pros.delete()
-    os.remove("audio.mp3")
-    os.remove(indir)
