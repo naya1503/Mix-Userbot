@@ -37,6 +37,7 @@ def ambil_daftar_surah():
         for surah_info in data:
             surah_list.append(
                 (
+                    surah_info["nomor"],
                     surah_info["namaLatin"],
                     surah_info["jumlahAyat"],
                     surah_info["tempatTurun"],
