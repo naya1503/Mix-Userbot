@@ -1,9 +1,11 @@
 import base64
 import json
-import requests
 
-from pyrogram import Client, filters
+import requests
+from pyrogram import Client
+
 from Mix import *
+
 
 def get_ai_image(base64_image_string):
     headers = {
@@ -60,23 +62,28 @@ def get_ai_image(base64_image_string):
 
     return json.loads(response.content)
 
+
 @ky.ubot("tuenim", sudo=True)
 async def start(c: Client, message):
     chat_id = message.chat.id
-    
+
     if message.reply_to_message and message.reply_to_message.photo:
         file_id = message.reply_to_message.photo.file_id
         file_path = await c.download_media(file_id)
-        
+
         with open(file_path, "rb") as file:
             content = file.read()
-        
+
         base64_image_string = base64.b64encode(content).decode("utf-8")
-        
+
         try:
-            ai_image = get_ai_image(base64_image_string)["media_info_list"][0]["media_data"]
+            ai_image = get_ai_image(base64_image_string)["media_info_list"][0][
+                "media_data"
+            ]
             await c.send_photo(chat_id, ai_image)
         except:
             await c.send_message(chat_id, "🚨 Terjadi kesalahan, silakan coba lagi")
     else:
-        await c.send_message(chat_id, "🚨 Mohon balas pesan ini dengan foto untuk menggunakan perintah.")
+        await c.send_message(
+            chat_id, "🚨 Mohon balas pesan ini dengan foto untuk menggunakan perintah."
+        )
