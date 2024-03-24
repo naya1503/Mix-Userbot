@@ -13,7 +13,6 @@ loop = asyncio.get_event_loop_policy()
 event_loop = loop.get_event_loop()
 
 
-
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
