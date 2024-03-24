@@ -7,7 +7,6 @@
 import asyncio
 import os
 import platform
-import subprocess
 import sys
 import traceback
 ################################################################
@@ -15,8 +14,9 @@ from datetime import datetime, timedelta
 from io import BytesIO, StringIO
 from subprocess import PIPE, Popen, TimeoutExpired
 from time import perf_counter
-
+import subprocess
 import pexpect
+
 import psutil
 from psutil._common import bytes2human
 from pyrogram.enums import *
@@ -411,19 +411,15 @@ async def _(c: nlx, m):
 
 
 async def run_mongodump(uri, password):
-    pexpect.spawn(f"")
-    process = subprocess.Popen(
-        f"mongodump --uri='{uri}'",
-        shell=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
+    child = pexpect.spawn(f"")
+    process = subprocess.Popen(f"mongodump --uri='{uri}'", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output, error = process.communicate()
     if error:
         LOGGER.info(f"Error: {error.decode()}")
         return
     if "Enter password for mongo user:" in output.decode():
         pexpect.sendline(password)
+
 
 
 @ky.ubot("mongodump", sudo=False)
@@ -439,7 +435,7 @@ async def backup(c: nlx, message):
     password = " ".join(parts[2:])
 
     try:
-        run_mongodump(uri, password)
+        await run_mongodump(uri, password)
         os.system("zip backup.zip -r9 dump/*")
         await message.reply_document("backup.zip")
         await m.delete()
