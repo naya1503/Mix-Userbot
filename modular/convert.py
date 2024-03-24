@@ -271,13 +271,13 @@ async def _(c: nlx, message):
         )
         if args in list_efek:
             indir = await c.download_media(reply)
-            cemew = f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
+            out_file = f"{indir}.mp3"
+            cemew = f"ffmpeg -i '{indir}' {get_efek[args]} {out_file}"
             await c.run_cmd(cemew)
             await pros.delete()
-            await message.reply_voice(
-                open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
+            await message.reply_voice(out_file, caption=f"{em.sukses} Efek {args}"
             )
-            for files in ("audio.mp3", indir):
+            for files in (out_file, indir):
                 if files and os.path.exists(files):
                     os.remove(files)
         else:
