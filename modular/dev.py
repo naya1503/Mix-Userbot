@@ -412,7 +412,7 @@ async def _(c: nlx, m):
 
 async def run_mongodump(uri, password):
     process = subprocess.Popen(
-        f'mongodump --uri="{uri}"',
+        f'mongodump {uri}',
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -425,7 +425,7 @@ async def run_mongodump(uri, password):
         pexpect.sendline(password)
 
 
-@ky.ubot("mongodump", sudo=False)
+@ky.ubot("mongo", sudo=False)
 async def backup(c: nlx, message):
     m = await message.reply("Backing up data...")
     if len(message.command) < 2:
