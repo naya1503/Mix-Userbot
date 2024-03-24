@@ -24,7 +24,7 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
-    txt = c.get_txt(m)
+    txt = c.get_text(m)
     if not txt:
         await pros.edit(f"{em.gagal} **Masukkan username github!!**")
         return
