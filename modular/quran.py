@@ -48,14 +48,14 @@ async def _(c: nlx, m):
         )
 
         audio_urls = surah_info["audioFull"]
-        qori_name = next(iter(audio_urls.keys())).split('-')[0].title()
+        qori_name = next(iter(audio_urls.keys())).split("-")[0].title()
         response_text += f"Qori: `{qori_name}`\n"
         audio_url = None
         for url in audio_urls.values():
             if url:
                 audio_url = url
                 break
-              
+
         if audio_url:
             if len(response_text) > 4096:
                 file_name = f"{surah_name.capitalize()}.txt"
@@ -64,7 +64,9 @@ async def _(c: nlx, m):
                 aud = await m.reply_audio(audio_url, reply_to_message_id=ReplyCheck(m))
                 await m.reply_document(file_name, reply_to_message_id=aud.id)
             else:
-                await m.reply_audio(audio_url, caption=response_text, reply_to_message_id=ReplyCheck(m))
+                await m.reply_audio(
+                    audio_url, caption=response_text, reply_to_message_id=ReplyCheck(m)
+                )
         else:
             await m.reply(response_text, reply_to_message_id=ReplyCheck(m))
 
