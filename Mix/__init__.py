@@ -1,8 +1,9 @@
 import asyncio
 
+import uvloop
 from pyrogram import Client
 from pyromod import listen
-import uvloop
+
 from config import *
 from Mix.core import *
 from Mix.mix_client import *
