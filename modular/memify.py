@@ -25,15 +25,15 @@ __help__ = """
 async def memify(c: nlx, m):
     em = Emojik()
     em.initialize()
+    pros = await m.reply(cgr("proses").format(em.proses))
     if not m.reply_to_message_id:
-        await m.reply(f"{em.gagal} **Balas ke pesan foto atau sticker!**")
+        await pros.edit(f"{em.gagal} **Balas ke pesan foto atau sticker!**")
         return
     rep = m.reply_to_message
     if not rep.media:
-        await m.reply(f"{em.gagal} **Harap Balas ke foto atau sticker!**")
+        await pros.edit(f"{em.gagal} **Harap Balas ke foto atau sticker!**")
         return
     doc = await c.download_media(rep)
-    pros = await m.reply(cgr("proses").format(em.proses))
     txt = c.get_m(m)
     if not txt:
         return await pros.edit(f"{em.gagal} **Harap Ketik `{m.command} text`**")
