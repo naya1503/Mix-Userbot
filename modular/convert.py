@@ -77,7 +77,7 @@ async def _(c: nlx, message):
     else:
         await c.send_message(
             message.chat.id,
-            f"{em.gagal} <b>Media {file} tidak didukung!!</b>",
+            f"{em.gagal} <b>Error API AI!!</b>",
             reply_to_message_id=message.id,
         )
         return await c.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
