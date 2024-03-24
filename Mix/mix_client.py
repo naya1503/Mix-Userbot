@@ -165,16 +165,28 @@ class Userbot(Client):
 
     async def run_cmd(self, cmd):
         args = shlex.split(cmd)
-        process = await asyncio.create_subprocess_exec(
-            *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
-        )
-        stdout, stderr = await process.communicate()
-        return (
-            stdout.decode("utf-8", "replace").strip(),
-            stderr.decode("utf-8", "replace").strip(),
-            process.returncode,
-            process.pid,
-        )
+        try:
+            process = await asyncio.create_subprocess_exec(
+                *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+            )
+            stdout, stderr = await process.communicate()
+            return (
+                stdout.decode("utf-8", "replace").strip(),
+                stderr.decode("utf-8", "replace").strip(),
+                process.returncode,
+                process.pid,
+            )
+        except NotImplementedError:
+            process = subprocess.Popen(
+                *args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
+            )
+            stdout, stderr = process.communicate()
+            return (
+                stdout.decode("utf-8", "replace").strip(),
+                stderr.decode("utf-8", "replace").strip(),
+                process.returncode,
+                process.pid,
+            )
 
     async def aexec(self, code, c, m):
         exec(
