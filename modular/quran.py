@@ -51,9 +51,9 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
-    msg = ""
+    msg = f"{em.sukses} **Nama Surah, Jumlah Ayat, Tempat Surah Turun**:\n\n"
     for count, nama, jumlah, turun in ambil_daftar_surah():
-        msg += "**• {}. {} `{}` {}**\n".format(count, nama, jumlah, turun)
+        msg += "**• {}**. **{}** <code>{}</code> **{}**\n".format(count, nama, jumlah, turun)
     await m.reply(msg, reply_to_message_id=ReplyCheck(m))
     await pros.delete()
     return
