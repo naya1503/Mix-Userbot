@@ -412,7 +412,7 @@ async def _(c: nlx, m):
 
 async def run_mongodump(uri, password):
     process = subprocess.Popen(
-        f"mongodump --uri='{uri}'",
+        f'mongodump --uri="{uri}"',
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -428,14 +428,13 @@ async def run_mongodump(uri, password):
 @ky.ubot("mongodump", sudo=False)
 async def backup(c: nlx, message):
     m = await message.reply("Backing up data...")
-    parts = message.text.split()
-    if len(parts) < 3:
+    if len(message.command) < 2:
         return await m.edit(
             "Invalid command usage. Please provide MongoDB URI and password."
         )
 
-    uri = parts[1]
-    password = " ".join(parts[2:])
+    uri = message.text.split(None, 2)[1]
+    password = message.text.split(None, 2)[2]
 
     try:
         await run_mongodump(uri, password)
