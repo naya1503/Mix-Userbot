@@ -268,7 +268,8 @@ async def _(c: nlx, message):
     if reply and list_efek:
         if args in list_efek:
             pros = await message.reply(
-            f"{em.proses} **Proses mengubah suara ke : `{args}`**")
+                f"{em.proses} **Proses mengubah suara ke : `{args}`**"
+            )
             indir = await c.download_media(reply)
             cemew = f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
             await c.run_cmd(cemew)
