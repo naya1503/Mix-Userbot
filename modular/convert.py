@@ -287,7 +287,7 @@ async def _(c: nlx, message):
             return
         else:
             await message.reply(
-                "{} Silahkan ketik`{}list_efek` untuk melihat daftar efek yang tersedia!!".format(
+                "{} Silahkan ketik `{}list_efek` untuk melihat daftar efek yang tersedia!!".format(
                     em.gagal, next((p) for p in prefix)
                 )
             )
