@@ -81,6 +81,8 @@ async def surah_command(c: nlx, m):
         )
         await pros.delete()
 """
+
+
 def ambil_nama_surah(surah_name):
     response = requests.get("https://equran.id/api/v2/surat")
     if response.status_code == 200:
@@ -89,6 +91,7 @@ def ambil_nama_surah(surah_name):
             if surah_info["namaLatin"].lower() == surah_name.lower():
                 return surah_info
     return None
+
 
 async def ambil_audio_surah(m, audio_url, response_text):
     try:
@@ -108,16 +111,18 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
-    
-    surah_name = m.text.split(maxsplit=1)[1].strip().lower() if len(m.command) > 1 else None
-    
+
+    surah_name = (
+        m.text.split(maxsplit=1)[1].strip().lower() if len(m.command) > 1 else None
+    )
+
     if not surah_name:
         await m.reply(f"{em.gagal} Silahkan berikan nama surah.")
         await pros.delete()
         return
-    
+
     surah_info = ambil_nama_surah(surah_name)
-    
+
     if surah_info:
         response_text = (
             f"Nomor Surah: `{surah_info['nomor']}`\n"
@@ -128,15 +133,17 @@ async def _(c: nlx, m):
             f"Arti: `{surah_info['arti']}`\n"
             f"Deskripsi: `{surah_info['deskripsi']}`\n"
         )
-        
+
         audio_files = surah_info["audioFull"].values()
         if audio_files:
             audio_url = next(iter(audio_files))
             await ambil_audio_surah(m, audio_url, response_text)
         else:
             await m.reply(response_text)
-        
+
         await pros.delete()
     else:
-        await m.reply_text(f"Surah dengan nama '{surah_name.capitalize()}' tidak ditemukan.")
+        await m.reply_text(
+            f"Surah dengan nama '{surah_name.capitalize()}' tidak ditemukan."
+        )
         await pros.delete()
