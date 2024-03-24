@@ -50,7 +50,7 @@ async def _(c: nlx, message):
                 get_photo = await c.dln(photo)
             except Exception as error:
                 return await pros.edit(cgr("err").format(em.gagal, error))
-    await pros.edit(cgr("proses").format(em.proses))
+    await pros.edit(f"{em.proses} Converting...")
     await c.unblock_user("@qq_neural_anime_bot")
     send_photo = await c.send_photo("@qq_neural_anime_bot", get_photo)
     await asyncio.sleep(30)
@@ -132,7 +132,7 @@ async def _(c: nlx, message):
     pros = await message.reply(cgr("proses").format(em.proses))
     if not message.reply_to_message.sticker:
         return await pros.edit(f"{em.gagal} Silahkan balas ke sticker!!")
-    await pros.edit(cgr("proses").format(em.proses))
+    await pros.edit(f"{em.proses} Converting....")
     file = await c.download_media(
         message.reply_to_message,
         f"gift_{message.from_user.id}.mp4",
@@ -156,7 +156,7 @@ async def _(c: nlx, message):
     if not replied:
         return await pros.edit(f"{em.gagal} Silahkan balas ke media video!!")
     if replied.media == MessageMediaType.VIDEO:
-        await pros.edit(cgr("proses").format(em.proses))
+        await pros.edit(f"{em.proses} Converting...")
         file = await c.download_media(
             message=replied,
             file_name=f"toaudio_{replied.id}",
