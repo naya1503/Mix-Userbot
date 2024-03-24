@@ -46,7 +46,7 @@ async def starter():
     await start_user()
     if nlx.is_connected:
         await start_bot()
-    if TAG_LOG is None:
+    if not TAG_LOG:
         await check_logger()
 
 
