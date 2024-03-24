@@ -10,6 +10,8 @@ import asyncio
 import importlib
 import re
 import subprocess
+import os
+from io import BytesIO
 
 from pyrogram import *
 from pyrogram.enums import *
@@ -64,6 +66,14 @@ class Userbot(Client):
 
     async def get_prefix(self, user_id):
         return self._prefix.get(user_id, ["."])
+        
+    async def dln(self, download):
+        path = await self.download_media(download)
+        with open(path, "rb") as f:
+            content = f.read()
+        os.remove(path)
+        doc = BytesIO(content)
+        return doc
 
     def user_prefix(self, cmd):
         command_re = re.compile(r"([\"'])(.*?)(?<!\\)\1|(\S+)")
