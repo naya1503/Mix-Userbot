@@ -61,7 +61,7 @@ async def _(c: nlx, m):
                 qori_name = url.split("audio-full/")[1].split("/")[0]
                 break
 
-        response_text += f"Qori: `{qori_name}`\n" if qori_name else ""
+        response_text += f"**Qori**: `{qori_name}`\n" if qori_name else ""
         audio_url = next((url for url in audio_urls.values() if url), None)
         if audio_url:
             audio_file_name = f"{surah_name.capitalize()}.mp3"
