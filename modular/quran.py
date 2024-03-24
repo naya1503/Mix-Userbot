@@ -38,23 +38,25 @@ async def _(c: nlx, m):
 
     if surah_info:
         response_text = (
-            f"Nomor Surah: `{surah_info['nomor']}`\n"
-            f"Nama Surah: `{surah_info['nama']}`\n"
-            f"Nama Surah (Latin): `{surah_info['namaLatin']}`\n"
-            f"Jumlah Ayat: `{surah_info['jumlahAyat']}`\n"
-            f"Tempat Turun: `{surah_info['tempatTurun']}`\n"
-            f"Arti: `{surah_info['arti']}`\n"
-            f"Deskripsi: `{surah_info['deskripsi']}`\n"
+            f"**Nomor Surah**: `{surah_info['nomor']}`\n"
+            f"**Nama Surah**: `{surah_info['nama']}`\n"
+            f"**Nama Surah (Latin)**: `{surah_info['namaLatin']}`\n"
+            f"**Jumlah Ayat**: `{surah_info['jumlahAyat']}`\n"
+            f"**Tempat Turun**: `{surah_info['tempatTurun']}`\n"
+            f"**Arti**: `{surah_info['arti']}`\n"
+            f"**Deskripsi**: `{surah_info['deskripsi']}`\n"
         )
 
         audio_urls = surah_info["audioFull"]
-        qori_name = next(iter(audio_urls.keys())).split("-")[0].title()
+        qori_name = None
         response_text += f"Qori: `{qori_name}`\n"
-        audio_url = None
-        for url in audio_urls.values():
+        for key, url in audio_urls.items():
             if url:
-                audio_url = url
+                qori_name = key.split('-')[0].title()
                 break
+        
+        response_text += f"Qori: `{qori_name}`\n" if qori_name else ""
+        audio_url = next((url for url in audio_urls.values() if url), None)
 
         if audio_url:
             if len(response_text) > 4096:
