@@ -1,18 +1,17 @@
 import os
-import requests
-from pyrogram import filters
-from Mix import *
 
+import requests
+
+from Mix import *
 
 __modles__ = "Waifu"
 __help__ = "Waifu"
 
 
-
 @ky.ubot("waifu", sudo=True)
 async def get_waifu_image(c: nlx, m):
     category = m.text.lower()
-    
+
     api_url = f"https://api.waifu.pics/sfw/{category}"
     response = await c.get(api_url)
 
@@ -30,8 +29,8 @@ async def get_waifu_image(c: nlx, m):
 
 async def download_and_send_image(client, message, image_url, image_content):
     await client.send_photo(message.chat.id, image_content)
-    folder_path = 'waifu_images'
+    folder_path = "waifu_images"
     os.makedirs(folder_path, exist_ok=True)
-    filename = image_url.split('/')[-1]
+    filename = image_url.split("/")[-1]
     filepath = os.path.join(folder_path, filename)
     os.remove(filepath)
