@@ -249,7 +249,7 @@ get_efek = {
 }
 
 
-@ky.ubot("list_efek", sudo=True)
+@ky.ubot("list-efek|efeks|lefek", sudo=True)
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
