@@ -1,7 +1,6 @@
 import glob
 import os
 import random
-import subprocess
 
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import *
