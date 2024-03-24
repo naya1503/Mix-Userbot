@@ -1,7 +1,7 @@
 import requests
 import wget
 from pyrogram import *
-
+from pyrogram.enums import ParseMode
 from Mix import *
 
 processed_surah_numbers = set()
@@ -56,7 +56,7 @@ async def _(c: nlx, m):
         msg += "<b>• {}</b>. <b>{}</b> <code>{}</code> <b>{}</b>\n".format(
             count, nama, jumlah, turun
         )
-    await m.reply(msg, reply_to_message_id=ReplyCheck(m))
+    await m.reply(msg, reply_to_message_id=ReplyCheck(m), parse_mode=ParseMode.HTML)
     await pros.delete()
     return
 
