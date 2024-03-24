@@ -46,7 +46,9 @@ async def surah_command(c: nlx, m):
                     try:
                         audio_response = requests.get(audio_url)
                         if audio_response.status_code == 200:
-                            await m.reply_audio(audio_response.content, caption=response_text)
+                            await m.reply_audio(
+                                audio_response.content, caption=response_text
+                            )
                         else:
                             print(f"Gagal mengunduh file audio dari {audio_url}")
                     except Exception as e:
