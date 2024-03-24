@@ -24,6 +24,7 @@ async def _(c: nlx, m):
     req = requests.get(url)
     if req.status_code != 200:
         await pros.edit(f"{em.gagal} **Maaf tidak menemukan Kota `{lok}`")
+        return
     result = json.loads(req.text)
     txt = f"""
 **Jadwal Shalat Wilayah <u>{lok}</u>
