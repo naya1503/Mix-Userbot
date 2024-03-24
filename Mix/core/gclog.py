@@ -29,6 +29,8 @@ from Mix import bot, nlx
 
 
 async def check_logger():
+    if not TAG_LOG:
+        return
     LOGGER.info(f"Check Grup Log User...")
 
     LOGGER.info(f"Creating Grup Log...")
