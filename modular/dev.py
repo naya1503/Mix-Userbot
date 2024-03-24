@@ -411,7 +411,6 @@ async def _(c: nlx, m):
 
 
 async def run_mongodump(uri, password):
-    pexpect.spawn(f"")
     process = subprocess.Popen(
         f"mongodump --uri='{uri}'",
         shell=True,
