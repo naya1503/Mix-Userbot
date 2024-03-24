@@ -8,6 +8,7 @@ processed_surah_numbers = set()
 __modules__ = "Quran"
 __help__ = "Quran"
 
+
 def ambil_nama_surah(surah_name):
     response = requests.get("https://equran.id/api/v2/surat")
     if response.status_code == 200:
