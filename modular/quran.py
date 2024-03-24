@@ -134,10 +134,9 @@ async def _(c: nlx, m):
             f"Deskripsi: `{surah_info['deskripsi']}`\n"
         )
 
-        audio_files = surah_info["audioFull"].values()
-        if audio_files:
-            for audio_url in audio_files:
-                await ambil_audio_surah(m, audio_url, response_text)
+        audio_url = next(iter(surah_info["audioFull"].values()), None)
+        if audio_url:
+            await m.reply_audio(audio_url, caption=response_text)
         else:
             await m.reply(response_text)
 
