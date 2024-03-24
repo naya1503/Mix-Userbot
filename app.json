@@ -38,6 +38,18 @@
             "description": "Isi Coy Jan Dikosongin",
             "required": true
         }
+        "hostname": {
+            "description": "Isi Coy Jan Dikosongin.",
+            "required": true
+        },
+        "port": {
+            "description": "Isi Coy Jan Dikosongin",
+            "required": true
+        }
+        "scheme": {
+            "description": "Isi Coy Jan Dikosongin",
+            "required": true
+        }
     },
   "buildpacks": [
     {
