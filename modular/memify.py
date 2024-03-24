@@ -34,7 +34,7 @@ async def memify(c: nlx, m):
         return
     doc = await c.download_media(rep)
     pros = await m.reply(cgr("proses").format(em.proses))
-    txt = c.get_text(m)
+    txt = c.get_m(m)
     if len(txt) < 1:
         return await pros.edit(f"{em.gagal} **Harap Ketik `{m.command} text`**")
     meme = await add_text_img(doc, txt)
