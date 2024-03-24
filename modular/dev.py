@@ -450,3 +450,12 @@ async def backup(_, message: Message):
         remove("backup.zip")
     except Exception as e:
         await m.edit(f"Backup failed: {str(e)}")
+
+@ky.ubot("logut")
+async def _(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    pros await m.reply(cgr("proses").format(em.proses))
+    await pros.edit(f"{em.sukses} Done!! You Logout!!")
+    await c.log_out()
+    sys.exit(1)
