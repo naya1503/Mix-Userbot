@@ -46,15 +46,18 @@ categories = [
 
 @ky.ubot("waifu", sudo=True)
 async def get_waifu_image(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    pros = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) > 1:
         category = m.text.split(maxsplit=1)[1].lower()
     else:
-        categories_text = "\n".join(categories)
-        await m.reply_text(
-            f"Silakan pilih kategori dari daftar berikut:\n\n{categories_text}"
+        categories_text = "\n".join([f"`{i+1}`)  `{cat}`" for i, cat in enumerate(categories, start=1)])
+        await m.reply(
+            f"{em.gagal} **Silakan pilih kategori dari daftar berikut:**\n\n`{categories_text}`"
         )
         return
-
+    
     api_url = f"https://api.waifu.pics/sfw/{category}"
     response = requests.get(api_url)
 
@@ -65,19 +68,21 @@ async def get_waifu_image(c: nlx, m):
         if image_response.status_code == 200:
             await download_and_send_image(c, m, image_url, image_response.content)
         else:
-            await m.reply("Gagal mengunduh gambar.")
+            await m.reply(f"{em.gagal} **Gagal mengunduh gambar.**")
     else:
-        await m.reply("Gagal mengambil gambar.")
+        await m.reply(f"{em.gagal} **Gagal mengambil gambar.**")
 
 
 async def download_and_send_image(client, message, image_url, image_content):
     image_bytes = io.BytesIO(image_content)
-    image_bytes.name = "MixWaifu.jpg"
-
+    image_bytes.name = "image.jpg"
+    
     await client.send_photo(message.chat.id, photo=image_bytes)
-
+    
     folder_path = "waifu_images"
     os.makedirs(folder_path, exist_ok=True)
     filename = image_url.split("/")[-1]
     filepath = os.path.join(folder_path, filename)
-    os.remove(filepath)
+    
+    if os.path.exists(filepath):
+        os.remove(filepath)
