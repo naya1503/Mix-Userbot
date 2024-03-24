@@ -277,7 +277,7 @@ async def _(c: nlx, message):
             await message.reply_voice(
                 open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
             )
-            for files in ("audio.mp3", indir, ses):
+            for files in ("audio.mp3", indir):
                 if files and os.path.exists(files):
                     os.remove(files)
             await pros.delete()
