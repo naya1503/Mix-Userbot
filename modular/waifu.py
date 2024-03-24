@@ -1,5 +1,5 @@
 import os
-
+import io
 import requests
 
 from Mix import *
@@ -64,13 +64,17 @@ async def get_waifu_image(c: nlx, m):
         if image_response.status_code == 200:
             await download_and_send_image(c, m, image_url, image_response.content)
         else:
-            await m.reply_text("Gagal mengunduh gambar.")
+            await m.reply("Gagal mengunduh gambar.")
     else:
-        await m.reply_text("Gagal mengambil gambar.")
+        await m.reply("Gagal mengambil gambar.")
 
 
 async def download_and_send_image(client, message, image_url, image_content):
-    await client.send_photo(message.chat.id, image_content)
+    image_bytes = io.BytesIO(image_content)
+    image_bytes.name = "MixWaifu.jpg"
+    
+    await client.send_photo(message.chat.id, photo=image_bytes)
+    
     folder_path = "waifu_images"
     os.makedirs(folder_path, exist_ok=True)
     filename = image_url.split("/")[-1]
