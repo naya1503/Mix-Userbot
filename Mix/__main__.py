@@ -47,7 +47,6 @@ async def starter():
 
 
 async def main():
-    uvloop.install()
     await starter()
     await asyncio.gather(refresh_cache(), getFinish())
     LOGGER.info("Successfully Started Userbot.")
