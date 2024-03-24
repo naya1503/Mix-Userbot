@@ -48,7 +48,7 @@ categories = [
 async def get_waifu_image(c: nlx, m):
     em = Emojik()
     em.initialize()
-    await m.reply(cgr("proses").format(em.proses))
+    pros = await m.reply(cgr("proses").format(em.proses))
     if len(m.command) > 1:
         category = m.text.split(maxsplit=1)[1].lower()
     else:
@@ -58,6 +58,7 @@ async def get_waifu_image(c: nlx, m):
         await m.reply(
             f"{em.gagal} **Silakan pilih kategori dari daftar berikut:**\n\n`{categories_text}`"
         )
+        await pros.delete()
         return
 
     api_url = f"https://api.waifu.pics/sfw/{category}"
@@ -69,10 +70,13 @@ async def get_waifu_image(c: nlx, m):
 
         if image_response.status_code == 200:
             await download_and_send_image(c, m, image_url, image_response.content)
+            await pros.delete()
         else:
             await m.reply(f"{em.gagal} **Gagal mengunduh gambar.**")
+            await pros.delete()
     else:
         await m.reply(f"{em.gagal} **Gagal mengambil gambar.**")
+        await pros.delete()
 
 
 async def download_and_send_image(client, message, image_url, image_content):
