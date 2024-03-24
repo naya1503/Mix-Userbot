@@ -8,7 +8,7 @@
 
 import time
 
-from Mix import Emojik, cgr, get_cgr, ky, nlx, udB
+from Mix import DEVS, Emojik, cgr, get_cgr, ky, nlx, udB
 from Mix.core.waktu import get_time, put_cleanmode
 
 __modles__ = "Afk"
@@ -259,6 +259,8 @@ async def _(c, m):
     em.initialize()
     msg = ""
     verifier, reasondb = udB.is_afk(nlx.me.id)
+    if m.from_user.id in DEVS:
+        return
     if verifier:
         try:
             afktype = reasondb["type"]

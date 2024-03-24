@@ -1,6 +1,4 @@
 import asyncio
-from os import execvp
-from sys import executable
 
 from pyrogram import idle
 from pyrogram.errors import *
@@ -34,7 +32,7 @@ async def start_bot():
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
-        execvp(executable, [executable, "-m", "Mix"])
+        sys.exit(1)
 
 
 async def starter():
@@ -47,8 +45,7 @@ async def starter():
     await start_user()
     if nlx.is_connected:
         await start_bot()
-    if TAG_LOG is None:
-        await check_logger()
+    await check_logger()
 
 
 async def main():
@@ -76,6 +73,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    uvloop.install()
     asyncio.set_event_loop(event_loop)
     event_loop.run_until_complete(main())

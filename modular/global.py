@@ -74,13 +74,12 @@ async def _(c: nlx, m):
             await c.ban_chat_member(chat, nyet)
             bs += 1
             await asyncio.sleep(0.1)
-
+        except Exception:
+            gg += 1
         except FloodWait as e:
             await asyncio.sleep(int(e.value))
             await c.ban_chat_member(chat, nyet)
             bs += 1
-        except BaseException:
-            gg += 1
             await asyncio.sleep(0.1)
     dbgb.add_gban(nyet, alasan, c.me.id)
     await c.block_user(nyet)
@@ -120,7 +119,7 @@ async def _(c: nlx, m):
             await c.unban_chat_member(chat, nyet)
             bs += 1
             await asyncio.sleep(0.1)
-        except BaseException:
+        except Exception:
             gg += 1
             await asyncio.sleep(0.1)
     dbgb.remove_gban(nyet)
@@ -166,7 +165,7 @@ async def _(c: nlx, m):
             await c.restrict_chat_member(chat, nyet, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
-        except BaseException:
+        except Exception:
             gg += 1
             await asyncio.sleep(0.1)
     dbgm.add_gmute(nyet, alasan, c.me.id)
@@ -203,7 +202,7 @@ async def _(c: nlx, m):
             await c.unban_member(chat, nyet, ChatPermissions())
             bs += 1
             await asyncio.sleep(0.1)
-        except BaseException:
+        except Exception:
             gg += 1
             await asyncio.sleep(0.1)
     dbgm.remove_gmute(nyet)

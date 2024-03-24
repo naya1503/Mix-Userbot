@@ -4,6 +4,7 @@
  
  @ CREDIT : NAN-DEV
 """
+import asyncio
 import os
 import platform
 import sys
@@ -14,8 +15,13 @@ from io import BytesIO, StringIO
 from subprocess import PIPE, Popen, TimeoutExpired
 from time import perf_counter
 
+import pexpect
 import psutil
 from psutil._common import bytes2human
+from pyrogram.enums import *
+from pyrogram.errors import *
+from pyrogram.errors import FloodWait
+from pyrogram.types import *
 from pytz import timezone
 
 from Mix import *
@@ -284,14 +290,6 @@ async def _(c: nlx, m):
     )
 
 
-import asyncio
-from datetime import datetime, timedelta
-
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.types import *
-
-
 @ky.ubot("benal")
 async def _(c: nlx, m):
     em = Emojik()
@@ -371,48 +369,94 @@ async def _(c: nlx, m):
         )
 
 
-from pyrogram.enums import *
-from pyrogram.errors import FloodWait
+async def mak_mek(c, chat_id):
+    em = Emojik()
+    em.initialize()
+    unban_count = 0
+    async for meki in c.get_chat_members(chat_id, filter=ChatMembersFilter.BANNED):
+        if meki.user is not None:
+            try:
+                user_id = meki.user.id
+                await c.unban_chat_member(chat_id, user_id)
+                unban_count += 1
+            except FloodWait as e:
+                await asyncio.sleep(e.value)
+                await c.send_message(
+                    chat_id, f"{em.gagal} Harap tunggu {e.value} detik lagi"
+                )
+    await c.send_message(
+        chat_id, f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
+    )
 
 
 @ky.ubot("anben")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    chat = await c.get_chat(m.chat.id)
     dia = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-
+    pros = await m.reply(f"{em.proses} Sabar ya..")
     if dia.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
         if m.from_user.id not in DEVS:
             await m.reply(f"{em.gagal} Maaf, Anda bukan seorang DEVELOPER!")
             return
 
-        try:
-            proses = await m.reply(f"{em.proses} Sabar ya..")
-
-            unban_count = 0
-            banned_members = await c.get_chat_members(
-                chat_id=m.chat.id, filter=ChatMemberStatus.BANNED
-            )
-            for banned_member in banned_members:
-                try:
-                    await c.unban_chat_member(
-                        chat_id=m.chat.id, user_id=banned_member.user.id
-                    )
-                    unban_count += 1
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    await m.reply(f"{em.gagal} Harap tunggu {e.x} detik lagi")
-
-            await m.reply(
-                f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
-            )
-        except Exception as e:
-            await m.reply(f"{em.gagal} Terjadi kesalahan: {str(e)}")
-        finally:
-            if "proses" in locals():
-                await proses.delete()
+        await mak_mek(nlx, m.chat.id)
     else:
         await m.reply(
             f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
         )
+    await pros.delete()
+    return
+
+
+def run_mongodump(uri, password):
+    child = pexpect.spawn(f"mongodump --uri='{uri}'")
+    i = child.expect(["Enter password:", pexpect.EOF, pexpect.TIMEOUT])
+    if i == 0:
+        child.sendline(password)
+    else:
+        raise RuntimeError(
+            "Error while executing mongodump: Password prompt not found."
+        )
+
+    child.expect(pexpect.EOF)
+    child.close()
+
+
+@ky.ubot("mongodump", sudo=False)
+async def backup(_, message: Message):
+    if message.chat.type != ChatType.PRIVATE:
+        return await message.reply("This command can only be used in private")
+
+    m = await message.reply("Backing up data...")
+    parts = message.text.split()
+    if len(parts) < 3:
+        return await m.edit(
+            "Invalid command usage. Please provide MongoDB URI and password."
+        )
+
+    uri = parts[1]
+    password = " ".join(parts[2:])
+
+    try:
+        run_mongodump(uri, password)
+        code = execute("zip backup.zip -r9 dump/*")
+        if int(code) != 0:
+            return await m.edit(
+                "Looks like you don't have `zip` package installed, BACKUP FAILED!"
+            )
+        await message.reply_document("backup.zip")
+        await m.delete()
+        remove("backup.zip")
+    except Exception as e:
+        await m.edit(f"Backup failed: {str(e)}")
+
+
+@ky.ubot("logut")
+async def _(c: nlx, m):
+    em = Emojik()
+    em.initialize()
+    pros = await m.reply(cgr("proses").format(em.proses))
+    await pros.edit(f"{em.sukses} Done!! You Logout!!")
+    await c.log_out()
+    sys.exit(1)

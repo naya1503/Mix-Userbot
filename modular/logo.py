@@ -1,22 +1,16 @@
 import glob
 import os
 import random
-import subprocess
 
 from PIL import Image, ImageDraw, ImageFont
 from pyrogram import *
 from pyrogram.types import *
 
 from Mix import Emojik, cgr, get_cgr, ky, nlx
+from Mix.core.tools_media import dl_font
 
 __modles__ = "Logo"
 __help__ = get_cgr("help_logo")
-
-
-async def dl_font():
-    if os.path.exists("font-module"):
-        return
-    subprocess.run(["git", "clone", "https://github.com/naya1503/font-module.git"])
 
 
 @ky.ubot("logo", sudo=True)

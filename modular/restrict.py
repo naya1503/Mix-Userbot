@@ -7,12 +7,10 @@
 ################################################################
 
 import asyncio
-from time import time
 
-from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
-from pyrogram.types import *
+from pyrogram.types import ChatPermissions, ChatPrivileges
 
 from Mix import DEVS, Emojik, cgr, get_cgr, ky, nlx
 from Mix.core.parser import mention_html
@@ -20,6 +18,33 @@ from Mix.core.sender_tools import extract_user
 
 __modles__ = "Restrict"
 __help__ = get_cgr("help_rest")
+
+
+async def admin_check(message):
+    client = message._client
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+
+    check_status = await client.get_chat_member(chat_id=chat_id, user_id=user_id)
+    admin_strings = [ChatMemberStatus.ADMINISTRATORS, ChatMemberStatus.OWNER]
+    if check_status.status not in admin_strings:
+        return False
+    else:
+        return True
+
+
+async def member_check(message) -> bool:
+    client = message._client
+    check_user = await client.get_chat_member(
+        message.chat.id, message.from_user.id
+    ).privileges
+    user_type = check_user.status
+    if user_type == ChatMemberStatus.MEMBER:
+        return False
+    if user_type == ChatMemberStatus.ADMINISTRATORS:
+        add_adminperm = check_user.can_promote_members
+        return bool(add_adminperm)
+    return True
 
 
 async def member_permissions(chat: int, org: int):
@@ -46,28 +71,6 @@ async def member_permissions(chat: int, org: int):
     if member.can_manage_video_chats:
         perms.append("can_manage_video_chats")
     return perms
-
-
-admins_in_chat = {}
-
-
-async def list_admins(m):
-    global admins_in_chat
-    if m.chat.id in admins_in_chat:
-        interval = time() - admins_in_chat[m.chat.id]["last_updated_at"]
-        if interval < 3600:
-            return admins_in_chat[m.chat.id]["data"]
-
-    admins_in_chat[m.chat.id] = {
-        "last_updated_at": time(),
-        "data": [
-            mek.user.id
-            async for mek in nlx.get_chat_members(
-                m.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
-            )
-        ],
-    }
-    return admins_in_chat[m.chat.id]["data"]
 
 
 @ky.ubot("purge", sudo=True)
@@ -348,7 +351,7 @@ async def _(c: nlx, m):
     admin_data = [
         i
         async for i in c.get_chat_members(
-            chat_id=m.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS
+            chat_id=m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
         )
     ]  # will it give floods ???
     for admin in admin_data:
