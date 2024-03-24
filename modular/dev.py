@@ -455,7 +455,7 @@ async def backup(_, message: Message):
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    pros await m.reply(cgr("proses").format(em.proses))
+    pros = await m.reply(cgr("proses").format(em.proses))
     await pros.edit(f"{em.sukses} Done!! You Logout!!")
     await c.log_out()
     sys.exit(1)
