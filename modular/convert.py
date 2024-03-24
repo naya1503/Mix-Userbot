@@ -270,7 +270,7 @@ async def _(c: nlx, message):
     if reply and list_efek:
         if args in list_efek:
             pros = await message.reply(
-                f"{em.proses} Proses mengubah suara ke : `{args}`"
+                f"{em.proses} **Proses mengubah suara ke : `{args}`**"
             )
             indir = await c.download_media(reply)
             ses = await asyncio.create_subprocess_shell(
@@ -287,7 +287,7 @@ async def _(c: nlx, message):
             return
         else:
             await message.reply(
-                "{} Silahkan ketik `{}list_efek` untuk melihat daftar efek yang tersedia!!".format(
+                "{} **Silahkan ketik `{}list_efek` untuk melihat daftar efek yang tersedia!!**".format(
                     em.gagal, next((p) for p in prefix)
                 )
             )
@@ -295,7 +295,7 @@ async def _(c: nlx, message):
             return
     else:
         await message.reply(
-            "{} Silahkan ketik`{}list_efek` untuk melihat daftar efek yang tersedia!!".format(
+            "{} **Silahkan ketik `{}list_efek` untuk melihat daftar efek yang tersedia!!**".format(
                 em.gagal, next((p) for p in prefix)
             )
         )
