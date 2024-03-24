@@ -1,7 +1,7 @@
 import asyncio
 import os
 
-from pyrogram.enums import MessageMediaType, MessagesFilter
+from pyrogram.enums import MessagesFilter
 from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import InputMediaPhoto
 
