@@ -266,17 +266,15 @@ async def _(c: nlx, message):
     reply = message.reply_to_message
     prefix = await c.get_prefix(c.me.id)
     if reply and list_efek:
-        pros = await message.reply(
-            f"{em.proses} **Proses mengubah suara ke : `{args}`**"
-        )
         if args in list_efek:
+            pros = await message.reply(
+            f"{em.proses} **Proses mengubah suara ke : `{args}`**")
             indir = await c.download_media(reply)
-            out_file = "audio.mp3"
-            cemew = f"ffmpeg -i '{indir}' {get_efek[args]} {out_file}"
+            cemew = f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
             await c.run_cmd(cemew)
             await pros.delete()
             await message.reply_voice(
-                open(out_file, "rb"), caption=f"{em.sukses} Efek {args}"
+                open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
             )
             for files in (out_file, indir):
                 if files and os.path.exists(files):
