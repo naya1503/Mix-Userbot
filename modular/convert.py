@@ -19,13 +19,10 @@ async def _(c: nlx, message):
     if message.reply_to_message:
         if len(message.command) < 2:
             if message.reply_to_message.photo:
-                file = "foto"
                 get_photo = message.reply_to_message.photo.file_id
             elif message.reply_to_message.sticker:
-                file = "sticker"
                 get_photo = await c.dln(message.reply_to_message)
             elif message.reply_to_message.animation:
-                file = "gift"
                 get_photo = await c.dln(message.reply_to_message)
             else:
                 return await pros.edit(f"{em.gagal} Silahkan balas ke media foto")
@@ -35,7 +32,6 @@ async def _(c: nlx, message):
                     message.reply_to_message.from_user
                     or message.reply_to_message.sender_chat
                 )
-                file = "foto profil"
                 get = await c.get_chat(chat.id)
                 photo = get.photo.big_file_id
                 get_photo = await c.dln(photo)
@@ -44,7 +40,6 @@ async def _(c: nlx, message):
             return await pros.edit(f"{em.gagal} Silahkan balas ke media foto")
         else:
             try:
-                file = "foto"
                 get = await c.get_chat(message.command[1])
                 photo = get.photo.big_file_id
                 get_photo = await c.dln(photo)
