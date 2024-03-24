@@ -48,6 +48,7 @@ async def starter():
 
 async def main():
     uvloop.install()
+    asyncio.set_event_loop_policy(asyncio.unix_events.DefaultEventLoopPolicy())
     await starter()
     await asyncio.gather(refresh_cache(), getFinish())
     LOGGER.info("Successfully Started Userbot.")
@@ -72,4 +73,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.get_event_loop_policy().get_event_loop().run_until_complete(main())
+    asyncio.run(main())
