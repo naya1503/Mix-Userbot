@@ -20,6 +20,7 @@ __help__ = """
 `{0}mmf teks atas; teks bawah`
 """
 
+
 @ky.ubot("mmf|memify")
 async def memify(c: nlx, m):
     em = Emojik()
