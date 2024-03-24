@@ -3,12 +3,12 @@ import json
 import requests
 from Mix import *
 
+__modles__ = "Adzan"
 __help__ = """
  Adzan
 • Perintah: `{0}adzan` [nama kota]
 • Penjelasan: Untuk mengetahui waktu adzan.
 """
-__modles__ "Adzan"
 
 
 @ky.ubot("adzan", sudo=True)
