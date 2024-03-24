@@ -16,7 +16,7 @@ __help__ = "Convert"
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
-    pros = await message.reply(cgr("proses").format(em.proses)
+    pros = await message.reply(cgr("proses").format(em.proses))
     if message.reply_to_message:
         if len(message.command) < 2:
             if message.reply_to_message.photo:
