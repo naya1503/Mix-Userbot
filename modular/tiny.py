@@ -9,12 +9,10 @@
 
 import asyncio
 import os
-from io import BytesIO
 
 import cv2
-import requests
-from bs4 import BeautifulSoup as bs
 from PIL import Image
+
 from Mix import *
 from Mix.core.tools_media import *
 
