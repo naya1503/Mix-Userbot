@@ -1,15 +1,14 @@
-
 import asyncio
 import os
 
 from pyrogram.enums import MessageMediaType, MessagesFilter
 from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import InputMediaPhoto
+
 from Mix import *
 
 __modles__ = "Convert"
 __help__ = "Convert"
-
 
 
 @ky.ubot("toanime", sudo=True)
@@ -82,8 +81,8 @@ async def _(c: nlx, message):
             reply_to_message_id=message.id,
         )
         return await c.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
-        
-        
+
+
 @ky.ubot("toimg", sudo=True)
 async def _(c: nlx, message):
     em = Emojik()
@@ -106,13 +105,16 @@ async def _(c: nlx, message):
             reply_to_message_id=message.id,
         )
 
+
 @ky.ubot("tosticker|tostick", sudo=True)
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
     try:
         if not message.reply_to_message or not message.reply_to_message.photo:
-            return await message.reply_text(f"{em.gagal} Silahkan balas ke media foto!!")
+            return await message.reply_text(
+                f"{em.gagal} Silahkan balas ke media foto!!"
+            )
         sticker = await c.download_media(
             message.reply_to_message.photo.file_id,
             f"sticker_{message.from_user.id}.webp",
@@ -136,9 +138,7 @@ async def _(c: nlx, message):
         f"gift_{message.from_user.id}.mp4",
     )
     try:
-        await c.send_animation(
-            message.chat.id, file, reply_to_message_id=message.id
-        )
+        await c.send_animation(message.chat.id, file, reply_to_message_id=message.id)
         os.remove(file)
         await pros.delete()
         return
@@ -253,6 +253,7 @@ get_efek = {
     "radio": '-filter_complex "amix=inputs=2:duration=first:dropout_transition=2,volume=volume=2.5"',
 }
 
+
 @ky.ubot("list_efek", sudo=True)
 async def _(c: nlx, message):
     em = Emojik()
@@ -260,7 +261,8 @@ async def _(c: nlx, message):
     await message.reply(
         f"""
 {em.sukses} Daftar Effect Suara:\n\n• {'''
-• '''.join(list_efek)}""")
+• '''.join(list_efek)}"""
+    )
 
 
 @ky.ubot("efek|effect|voifek", sudo=True)
@@ -272,29 +274,35 @@ async def _(c: nlx, message):
     prefix = await c.get_prefix(c.me.id)
     if reply and list_efek:
         if args in list_efek:
-            pros = await message.reply(f"{em.proses} Proses mengubah suara ke : `{args}`")
+            pros = await message.reply(
+                f"{em.proses} Proses mengubah suara ke : `{args}`"
+            )
             indir = await c.download_media(reply)
             ses = await asyncio.create_subprocess_shell(
                 f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
             )
             await ses.communicate()
             await pros.delete()
-            await message.reply_voice(open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}")
+            await message.reply_voice(
+                open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
+            )
             for files in ("audio.mp3", indir, ses):
                 if files and os.path.exists(files):
                     os.remove(files)
             return
         else:
             await message.reply(
-                "{} Silahkan ketik`{}list_efek` untuk melihat daftar efek yang tersedia!!".format(em.gagal, next((p) for p in prefix)
+                "{} Silahkan ketik`{}list_efek` untuk melihat daftar efek yang tersedia!!".format(
+                    em.gagal, next((p) for p in prefix)
                 )
             )
             await pros.delete()
             return
     else:
         await message.reply(
-                "{} Silahkan ketik`{}list_efek` untuk melihat daftar efek yang tersedia!!".format(em.gagal, next((p) for p in prefix)
-                )
+            "{} Silahkan ketik`{}list_efek` untuk melihat daftar efek yang tersedia!!".format(
+                em.gagal, next((p) for p in prefix)
             )
+        )
         await pros.delete()
         return
