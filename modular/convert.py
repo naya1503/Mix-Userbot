@@ -213,9 +213,9 @@ list_efek = [
 ]
 get_efek = {
     "bengek": '-filter_complex "rubberband=pitch=1.5"',
-    "robot": "-filter_complex \"afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=0.75\"",
+    "robot": '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"',
     "jedug": '-filter_complex "acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1"',
-    "fast": "-filter_complex \"afftfilt=real='hypot(re,im)*cos((random(0)*2-1)*2*3.14)':imag='hypot(re,im)*sin((random(1)*2-1)*2*3.14)':win_size=128:overlap=0.8\"",
+    "fast": '-filter_complex "afftfilt=real=\'hypot(re,im)*cos((random(0)*2-1)*2*3.14)\':imag=\'hypot(re,im)*sin((random(1)*2-1)*2*3.14)\':win_size=128:overlap=0.8"',
     "echo": '-filter_complex "aecho=0.8:0.9:500|1000:0.2|0.1"',
     "tremolo": '-filter_complex "tremolo=f=5:d=0.5"',
     "reverse": '-filter_complex "areverse"',
@@ -246,6 +246,7 @@ get_efek = {
     "telephone": '-filter_complex "amix=inputs=2:duration=first:dropout_transition=2,volume=volume=1.5"',
     "radio": '-filter_complex "amix=inputs=2:duration=first:dropout_transition=2,volume=volume=2.5"',
 }
+
 
 
 @ky.ubot("list-efek|efeks|lefek", sudo=True)
