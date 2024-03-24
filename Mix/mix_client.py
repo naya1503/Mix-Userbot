@@ -8,9 +8,9 @@
 
 import asyncio
 import importlib
+import os
 import re
 import subprocess
-import os
 from io import BytesIO
 
 from pyrogram import *
@@ -66,7 +66,7 @@ class Userbot(Client):
 
     async def get_prefix(self, user_id):
         return self._prefix.get(user_id, ["."])
-        
+
     async def dln(self, download):
         path = await self.download_media(download)
         with open(path, "rb") as f:
