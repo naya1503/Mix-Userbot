@@ -53,10 +53,10 @@ async def get_waifu_image(c: nlx, m):
         category = m.text.split(maxsplit=1)[1].lower()
     else:
         categories_text = "\n".join(
-            [f"{i+1}) `{cat}`" for i, cat in enumerate(categories, start=1)]
+            [f"{i+1}) <code>{cat}</code>" for i, cat in enumerate(categories, start=1)]
         )
         await m.reply(
-            f"{em.gagal} **Silakan pilih kategori dari daftar berikut:**\n\n`{categories_text}`"
+            f"{em.gagal} **Silakan pilih kategori dari daftar berikut:**\n\n{categories_text}"
         )
         await pros.delete()
         return
