@@ -31,7 +31,9 @@ async def surah_command(c: nlx, m):
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
 
-    surah_name = m.text.split(maxsplit=1)[1].strip().lower() if len(m.command) > 1 else None
+    surah_name = (
+        m.text.split(maxsplit=1)[1].strip().lower() if len(m.command) > 1 else None
+    )
 
     if not surah_name:
         await m.reply(f"{em.gagal} Silahkan berikan nama surah.")
@@ -63,8 +65,7 @@ async def surah_command(c: nlx, m):
                     audio_response = requests.get(audio_url)
                     if audio_response.status_code == 200:
                         await m.reply_audio(
-                            audio_response.content,
-                            caption=response_text
+                            audio_response.content, caption=response_text
                         )
                         processed_surah_numbers.add(surah_number)
                     else:
@@ -76,5 +77,7 @@ async def surah_command(c: nlx, m):
                 await m.reply(response_text)
         await pros.delete()
     else:
-        await m.reply_text(f"Surah dengan nama '{surah_name.capitalize()}' tidak ditemukan.")
+        await m.reply_text(
+            f"Surah dengan nama '{surah_name.capitalize()}' tidak ditemukan."
+        )
         await pros.delete()
