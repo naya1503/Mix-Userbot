@@ -54,9 +54,7 @@ async def _(c: nlx, m):
     pros = await m.reply(cgr("proses").format(em.proses))
     msg = f"{em.sukses} **Nama Surah, Jumlah Ayat, Tempat Surah Turun**:\n\n"
     for count, nama, jumlah, turun in ambil_daftar_surah():
-        msg += "<b>• {}</b>. <b>{}</b> <code>{}</code> <b>{}</b>\n".format(
-            count, nama, jumlah, turun
-        )
+        msg += f"<b>• {count}</b>. <b>{nama}</b> <code>{jumlah}</code> <b>{turun}</b>\n"
     await m.reply(msg, reply_to_message_id=ReplyCheck(m), parse_mode=ParseMode.HTML)
     await pros.delete()
     return
