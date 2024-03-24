@@ -35,7 +35,7 @@ async def start_bot():
     except (AccessTokenExpired, SessionRevoked, AccessTokenInvalid):
         LOGGER.info("Token Expired.")
         ndB.del_key("BOT_TOKEN")
-        execvp(executable, [executable, "-m", "Mix"])
+        sys.exit(1)
 
 
 async def starter():
