@@ -1,6 +1,5 @@
 import asyncio
 
-import uvloop
 from pyrogram import idle
 from pyrogram.errors import *
 
