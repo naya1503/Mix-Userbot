@@ -446,7 +446,7 @@ async def backup(c: nlx, message):
 
     try:
         run_mongodump(uri, password)
-        code = os.execute("zip backup.zip -r9 dump/*")
+        code = os.system("zip backup.zip -r9 dump/*")
         if int(code) != 0:
             return await m.edit(
                 "Looks like you don't have `zip` package installed, BACKUP FAILED!"
