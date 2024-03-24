@@ -273,8 +273,9 @@ async def _(c: nlx, message):
             )
             indir = await c.download_media(reply, file_name=f"{c.me.id}.mp3")
             cmd = f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
-            process = subprocess.Popen(cmd, shell=True)
-            process.communicate()
+            #process = subprocess.Popen(cmd, shell=True)
+            #process.communicate()
+            await c.run_cmd(cmd)
             await message.reply_voice(
                 open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
             )
