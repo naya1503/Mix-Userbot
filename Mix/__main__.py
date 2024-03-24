@@ -1,6 +1,5 @@
 import asyncio
 
-import uvloop
 from pyrogram import idle
 from pyrogram.errors import *
 
@@ -11,6 +10,7 @@ from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
 
 loop = asyncio.get_event_loop()
+
 
 async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
