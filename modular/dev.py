@@ -454,7 +454,7 @@ async def backup(c: nlx, message):
             )
         await message.reply_document("backup.zip")
         await m.delete()
-        remove("backup.zip")
+        os.remove("backup.zip")
     except Exception as e:
         await m.edit(f"Backup failed: {str(e)}")
 
