@@ -1,5 +1,5 @@
-
 import os
+
 import requests
 from pyrogram import *
 
@@ -21,7 +21,7 @@ def get_surah_info():
     else:
         print("Gagal mengambil data Surah.")
         return None
-    
+
 
 @ky.ubot("surah", sudo=True)
 async def surah_command(c: nlx, m):
