@@ -5,6 +5,9 @@ from pyrogram import *
 
 from Mix import *
 
+
+processed_surah_numbers = set()
+
 __modules__ = "Quran"
 __help__ = "Quran"
 
@@ -25,6 +28,8 @@ def get_surah_info():
 
 @ky.ubot("surah", sudo=True)
 async def surah_command(c: nlx, m):
+    global processed_surah_numbers
+
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
@@ -32,8 +37,12 @@ async def surah_command(c: nlx, m):
 
     if surah_info:
         for surah in surah_info:
+            surah_number = surah['nomor']
+            if surah_number in processed_surah_numbers:
+                continue
+            
             response_text = (
-                f"Nomor Surah: `{surah['nomor']}`\n"
+                f"Nomor Surah: `{surah_number}`\n"
                 f"Nama Surah: `{surah['nama']}`\n"
                 f"Nama Surah (Latin): `{surah['namaLatin']}`\n"
                 f"Jumlah Ayat: `{surah['jumlahAyat']}`\n"
@@ -48,11 +57,8 @@ async def surah_command(c: nlx, m):
                 try:
                     audio_response = requests.get(audio_url)
                     if audio_response.status_code == 200:
-                        audio_filename = "temp_audio.mp3"
-                        with open(audio_filename, "wb") as file:
-                            file.write(audio_response.content)
-                        await m.reply_audio(audio_filename, caption=response_text)
-                        os.remove(audio_filename)
+                        await m.reply_audio(audio_response.content, caption=response_text, file_name=None)
+                        processed_surah_numbers.add(surah_number)
                     else:
                         print(f"Gagal mengunduh file audio dari {audio_url}")
                 except Exception as e:
