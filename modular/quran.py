@@ -19,7 +19,7 @@ def ambil_nama_surah(surah_name):
     return None
 
 
-@ky.ubot("surat|surah|quran", sudo=True)
+@ky.ubot("surat|surah|qs", sudo=True)
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
