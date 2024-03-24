@@ -160,7 +160,7 @@ async def _(c: nlx, message):
         try:
             await pros.edit(f"{em.proses} <b>Converting audio...</b>")
             cmd = f"ffmpeg -i {file} -q:a 0 -map a {out_file}"
-            await c.bash(cmd)
+            await c.run_cmd(cmd)
             await pros.edit(f"{em.proses} <b>Sending audio...</b>")
             await c.send_voice(
                 message.chat.id,
@@ -272,7 +272,7 @@ async def _(c: nlx, message):
         if args in list_efek:
             indir = await c.download_media(reply)
             cemew = f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
-            await c.bash(cemew)
+            await c.run_cmd(cemew)
             await pros.delete()
             await message.reply_voice(
                 open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
