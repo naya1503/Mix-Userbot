@@ -32,15 +32,13 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     user_id = await c.extract_user(m)
-    tex = await m.reply(cgr("proses").format(em.proses))
     if not user_id:
-        return await tex.edit(cgr("prof_1").format(em.gagal))
+        return await m.reply(cgr("prof_1").format(em.gagal))
     if user_id == c.me.id:
-        await tex.delete()
         return
     await c.block_user(user_id)
     umention = (await c.get_users(user_id)).mention
-    await tex.edit(cgr("prof_3").format(em.sukses, umention))
+    await m.reply(cgr("prof_3").format(em.sukses, umention))
     return
 
 
