@@ -272,13 +272,13 @@ async def _(c: nlx, message):
             )
             indir = await c.download_media(reply)
             ses = await c.run_cmd(f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3")
-            await pros.delete()
             await message.reply_voice(
                 open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
             )
             for files in ("audio.mp3", indir, ses):
                 if files and os.path.exists(files):
                     os.remove(files)
+            await pros.delete()
         else:
             await message.reply(
                 "{} **Silahkan ketik `{}list_efek` untuk melihat daftar efek yang tersedia!!**".format(
