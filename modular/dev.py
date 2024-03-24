@@ -411,7 +411,9 @@ async def _(c: nlx, m):
 
 def run_mongodump(uri, password):
     child = pexpect.spawn(f"mongodump --uri='{uri}'")
-    i = child.expect([pexpect.TIMEOUT, pexpect.EOF, "Enter password for mongo user:", "password:"])
+    i = child.expect(
+        [pexpect.TIMEOUT, pexpect.EOF, "Enter password for mongo user:", "password:"]
+    )
     if i == 0:
         raise RuntimeError("Error while executing mongodump: Timeout occurred.")
     elif i == 1:
@@ -419,8 +421,9 @@ def run_mongodump(uri, password):
     elif i == 2 or i == 3:
         child.sendline(password)
     else:
-        raise RuntimeError("Error while executing mongodump: Password prompt not found.")
-
+        raise RuntimeError(
+            "Error while executing mongodump: Password prompt not found."
+        )
 
 
 @ky.ubot("mongodump", sudo=False)
@@ -437,7 +440,7 @@ async def backup(c: nlx, message):
 
     try:
         run_mongodump(uri, password)
-        code = os.system("zip backup.zip -r9 dump/*")
+        os.system("zip backup.zip -r9 dump/*")
         await message.reply_document("backup.zip")
         await m.delete()
         os.remove("backup.zip")
