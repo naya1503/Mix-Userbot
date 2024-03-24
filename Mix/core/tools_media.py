@@ -10,21 +10,19 @@
 import math
 import os
 import subprocess
-import asyncio
-import os
-import shlex
 import textwrap
-from typing import Tuple
 
 from PIL import Image, ImageDraw, ImageFont
 from pymediainfo import MediaInfo
 
 from Mix import nlx
 
+
 async def dl_font():
     if os.path.exists("font-module"):
         return
     subprocess.run(["git", "clone", "https://github.com/naya1503/font-module.git"])
+
 
 async def convert_to_image(message, client) -> [None, str]:
     """Convert Most Media Formats To Raw Image"""
