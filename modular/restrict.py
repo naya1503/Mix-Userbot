@@ -43,9 +43,7 @@ async def member_check(message) -> bool:
         return False
     if user_type == ChatMemberStatus.ADMINISTRATORS:
         add_adminperm = check_user.can_promote_members
-        if add_adminperm:
-            return True
-        return False
+        return bool(add_adminperm)
     return True
 
 
