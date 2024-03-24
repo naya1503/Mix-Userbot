@@ -26,7 +26,7 @@ __help__ = """
 
 @ky.ubot("tiny", sudo=True)
 async def memify(c: nlx, m):
-    em = Emojdoc()
+    em = Emojik()
     em.initialize()
     rep = m.reply_to_message
     pros = await m.reply(cgr("proses").format(em.proses))
