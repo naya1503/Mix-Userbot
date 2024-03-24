@@ -275,7 +275,9 @@ async def _(c: nlx, message):
             cemew = f"ffmpeg -i '{indir}' {get_efek[args]} {out_file}"
             await c.run_cmd(cemew)
             await pros.delete()
-            await message.reply_voice(open(out_file, "rb"), caption=f"{em.sukses} Efek {args}")
+            await message.reply_voice(
+                open(out_file, "rb"), caption=f"{em.sukses} Efek {args}"
+            )
             for files in (out_file, indir):
                 if files and os.path.exists(files):
                     os.remove(files)
