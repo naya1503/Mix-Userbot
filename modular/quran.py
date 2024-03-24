@@ -7,7 +7,7 @@ from Mix import *
 
 processed_surah_numbers = set()
 
-__modules__ = "Qur'an"
+__modules__ = "Quran"
 __help__ = """
  Qur'an
 • Perintah: `{0}qs [nama surah]`
