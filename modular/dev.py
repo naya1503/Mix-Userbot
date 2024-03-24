@@ -408,22 +408,18 @@ async def _(c: nlx, m):
     await pros.delete()
     return
 
-
 def run_mongodump(uri, password):
     child = pexpect.spawn(f"mongodump --uri='{uri}'")
-    i = child.expect(
-        [pexpect.TIMEOUT, pexpect.EOF, "Enter password for mongo user:", "password:"]
-    )
+    i = child.expect(["Enter password for mongo user:", pexpect.EOF, pexpect.TIMEOUT])
     if i == 0:
-        raise RuntimeError("Error while executing mongodump: Timeout occurred.")
-    elif i == 1:
-        raise RuntimeError("Error while executing mongodump: Unexpected EOF.")
-    elif i == 2 or i == 3:
         child.sendline(password)
     else:
         raise RuntimeError(
             "Error while executing mongodump: Password prompt not found."
         )
+
+    child.expect(pexpect.EOF)
+    child.close()
 
 
 @ky.ubot("mongodump", sudo=False)
