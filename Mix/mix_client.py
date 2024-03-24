@@ -9,6 +9,7 @@
 import asyncio
 import importlib
 import os
+import shlex
 import re
 import subprocess
 from io import BytesIO
