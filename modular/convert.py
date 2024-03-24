@@ -213,9 +213,9 @@ list_efek = [
 ]
 get_efek = {
     "bengek": '-filter_complex "rubberband=pitch=1.5"',
-    "robot": "-filter_complex \"afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=0.75\"",
+    "robot": '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"',
     "jedug": '-filter_complex "acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1"',
-    "fast": "-filter_complex \"afftfilt=real='hypot(re,im)*cos((random(0)*2-1)*2*3.14)':imag='hypot(re,im)*sin((random(1)*2-1)*2*3.14)':win_size=128:overlap=0.8\"",
+    "fast": '-filter_complex "afftfilt=real=\'hypot(re,im)*cos((random(0)*2-1)*2*3.14)\':imag=\'hypot(re,im)*sin((random(1)*2-1)*2*3.14)\':win_size=128:overlap=0.8"',
     "echo": '-filter_complex "aecho=0.8:0.9:500|1000:0.2|0.1"',
     "tremolo": '-filter_complex "tremolo=f=5:d=0.5"',
     "reverse": '-filter_complex "areverse"',
@@ -230,22 +230,23 @@ get_efek = {
     "fade_out": '-filter_complex "afade=t=out:st=5:d=5"',
     "chorus": '-filter_complex "chorus=0.7:0.9:55:0.4:0.25:2"',
     "vibrato": '-filter_complex "vibrato=f=10"',
-    "phaser": "-af aphaser=type=t:decay=1",
-    "reverb": "-af reverb",
-    "distortion": "-af distortion=gain=6",
+    "phaser": '-filter_complex "aphaser=type=t:gain=0.2"',
+    "reverb": '-filter_complex "reverb"',
+    "distortion": '-filter_complex "distortion=gain=6"',
     "bitcrush": '-filter_complex "acrusher=level_in=10:level_out=16:bits=4:mode=log:aa=1"',
-    "wahwah": "-af wahwah",
+    "wahwah": '-filter_complex "wahwah"',
     "compressor": '-filter_complex "compand=0.3|0.8:6:-70/-70/-20/-20/-20/-20:6:0:-90:0.2"',
     "delay": '-filter_complex "adelay=1000|1000"',
-    "stereo_widen": "-af stereowiden=level_in=0.5:level_out=1.0:delay=20:width=40",
-    "phaser2": "-af aphaser=type=t:gain=0.2",
+    "stereo_widen": '-filter_complex "stereowiden=level_in=0.5:level_out=1.0:delay=20:width=40"',
+    "phaser2": '-filter_complex "aphaser=type=t:decay=1"',
     "reverse_echo": '-filter_complex "aecho=0.8:0.88:1000:0.5"',
     "low_pitch": '-filter_complex "rubberband=pitch=0.7"',
     "high_pitch": '-filter_complex "rubberband=pitch=1.3"',
-    "megaphone": "-filter_complex amix=inputs=2:duration=first:dropout_transition=2,volume=volume=3",
-    "telephone": "-filter_complex amix=inputs=2:duration=first:dropout_transition=2,volume=volume=1.5",
-    "radio": "-af flanger",
+    "megaphone": '-filter_complex "amix=inputs=2:duration=first:dropout_transition=2,volume=volume=3"',
+    "telephone": '-filter_complex "amix=inputs=2:duration=first:dropout_transition=2,volume=volume=1.5"',
+    "radio": '-filter_complex "amix=inputs=2:duration=first:dropout_transition=2,volume=volume=2.5"',
 }
+
 
 
 @ky.ubot("list-efek|efeks|lefek", sudo=True)
@@ -272,13 +273,14 @@ async def _(c: nlx, message):
                 f"{em.proses} **Proses mengubah suara ke : `{args}`**"
             )
             indir = await c.download_media(reply, file_name=f"{c.me.id}.mp3")
-            cmd = f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
-            process = subprocess.run(cmd, shell=True)
-            process.communicate()
+            ses = await asyncio.create_subprocess_shell(
+                f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
+            )
+            await ses.communicate()
             await message.reply_voice(
                 open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
             )
-            for files in ("audio.mp3", indir):
+            for files in ("audio.mp3", indir, ses):
                 if files and os.path.exists(files):
                     os.remove(files)
             await pros.delete()
