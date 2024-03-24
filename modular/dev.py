@@ -433,7 +433,7 @@ def run_mongodump(uri, password):
 
 
 @ky.ubot("mongodump", sudo=False)
-async def backup(_, message: Message):
+async def backup(c: nlx, message):
 
     m = await message.reply("Backing up data...")
     parts = message.text.split()
