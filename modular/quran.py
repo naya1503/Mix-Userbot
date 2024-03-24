@@ -82,7 +82,6 @@ async def surah_command(c: nlx, m):
         await pros.delete()
 """
 
-
 @ky.ubot("surat|surah|quran", sudo=True)
 async def surah_command(c: nlx, m):
     em = Emojik()
@@ -117,8 +116,10 @@ async def surah_command(c: nlx, m):
             try:
                 audio_response = requests.get(audio_url)
                 if audio_response.status_code == 200:
-                    await m.reply_audio(audio_response.content, caption=response_text)
-                    processed_surah_numbers.add(surah_number)
+                    await m.reply_audio(
+                        audio_response.content, caption=response_text
+                    )
+                    #processed_surah_numbers.add(surah_number)
                 else:
                     print(f"Gagal mengunduh file audio dari {audio_url}")
             except Exception as e:
