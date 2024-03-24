@@ -21,7 +21,7 @@ __help__ = """
 """
 
 
-@ky.ubot("mmf|memify")
+@ky.ubot("mmf|memify", sudo=True)
 async def memify(c: nlx, m):
     em = Emojik()
     em.initialize()
