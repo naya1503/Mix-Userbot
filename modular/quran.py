@@ -75,8 +75,8 @@ async def _(c: nlx, m):
                 else:
                     await m.reply_audio(audio_file_name, caption=response_text, reply_to_message_id=ReplyCheck(m)
                     )
-              else:
-                   await m.reply(f"{em.gagal} Gagal mengunduh audio.")
+            else:
+                 await m.reply(f"{em.gagal} Gagal mengunduh audio.")
         else:
             await m.reply(response_text, reply_to_message_id=ReplyCheck(m))
 
