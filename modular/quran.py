@@ -52,9 +52,9 @@ async def _(c: nlx, m):
         response_text += f"Qori: `{qori_name}`\n"
         for key, url in audio_urls.items():
             if url:
-                qori_name = key.split('-')[0].title()
+                qori_name = key.split("-")[0].title()
                 break
-        
+
         response_text += f"Qori: `{qori_name}`\n" if qori_name else ""
         audio_url = next((url for url in audio_urls.values() if url), None)
 
