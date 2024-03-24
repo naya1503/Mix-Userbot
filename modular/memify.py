@@ -34,7 +34,7 @@ async def memify(c: nlx, m):
         await pros.edit(f"{em.gagal} **Harap Balas ke foto atau sticker!**")
         return
     doc = await c.download_media(rep)
-    txt = c.get_m(m)
+    txt = c.get_arg(m)
     if not txt:
         return await pros.edit(f"{em.gagal} **Harap Ketik `{m.command} text`**")
     meme = await add_text_img(doc, txt)
