@@ -93,15 +93,17 @@ def ambil_nama_surah(surah_name):
     return None
 
 
-async def ambil_audio_surah(m, audio_url):
+async def ambil_audio_surah(m, audio_url, response_text):
     try:
         audio_response = requests.get(audio_url)
         if audio_response.status_code == 200:
-            await m.reply_audio(audio_response.content)
+            await m.reply_audio(audio_response.content, caption=response_text)
         else:
             print(f"Gagal mengunduh file audio dari {audio_url}")
+            await m.reply(response_text)
     except Exception as e:
         print(f"Terjadi kesalahan: {str(e)}")
+        await m.reply(response_text)
 
 
 @ky.ubot("surat|surah|quran", sudo=True)
@@ -134,7 +136,8 @@ async def _(c: nlx, m):
 
         audio_files = surah_info["audioFull"].values()
         if audio_files:
-            await m.reply_audio(audio_files, caption=response_text)
+            for audio_url in audio_files:
+                await ambil_audio_surah(m, audio_url, response_text)
         else:
             await m.reply(response_text)
 
