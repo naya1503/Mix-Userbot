@@ -12,7 +12,7 @@ git()
 heroku()
 bot = Bot()
 nlx = Userbot()
-uvloop.install()
+
 
 from team import *
 from thegokil import DEVS, NO_GCAST
