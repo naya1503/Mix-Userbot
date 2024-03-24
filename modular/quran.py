@@ -7,8 +7,15 @@ from Mix import *
 
 processed_surah_numbers = set()
 
-__modules__ = "Quran"
-__help__ = "Quran"
+__modules__ = "Qur'an"
+__help__ = """
+ Qur'an
+• Perintah: `{0}qs [nama surah]`
+• Penjelasan: Untuk mengambil info surah tersebut.
+
+• Perintah: `{0}list-surah`
+• Penjelasan: Untuk mengambil daftar surah.
+"""
 
 
 def download_audio(url, file_name):
@@ -52,7 +59,7 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
-    msg = f"{em.sukses} **Nama Surah, Jumlah Ayat, Tempat Surah Turun**:\n\n"
+    msg = f"{em.sukses} <b>Nama Surah, Jumlah Ayat, Tempat Surah Turun</b>:\n\n"
     for count, nama, jumlah, turun in ambil_daftar_surah():
         msg += f"<b>• {count}</b>. <b>{nama}</b> <code>{jumlah}</code> <b>{turun}</b>\n"
     await m.reply(msg, reply_to_message_id=ReplyCheck(m), parse_mode=ParseMode.HTML)
