@@ -1,12 +1,14 @@
 import requests
-from pyrogram import *
 import wget
+from pyrogram import *
+
 from Mix import *
 
 processed_surah_numbers = set()
 
 __modules__ = "Quran"
 __help__ = "Quran"
+
 
 def download_audio(url, file_name):
     try:
@@ -15,6 +17,7 @@ def download_audio(url, file_name):
     except Exception as e:
         print(f"Failed to download audio: {e}")
         return False
+
 
 def ambil_nama_surah(surah_name):
     response = requests.get("https://equran.id/api/v2/surat")
@@ -70,13 +73,18 @@ async def _(c: nlx, m):
                     file_name = f"{surah_name.capitalize()}.txt"
                     with open(file_name, "w", encoding="utf-8") as file:
                         file.write(response_text)
-                    aud = await m.reply_audio(audio_file_name, reply_to_message_id=ReplyCheck(m))
+                    aud = await m.reply_audio(
+                        audio_file_name, reply_to_message_id=ReplyCheck(m)
+                    )
                     await m.reply_document(file_name, reply_to_message_id=aud.id)
                 else:
-                    await m.reply_audio(audio_file_name, caption=response_text, reply_to_message_id=ReplyCheck(m)
+                    await m.reply_audio(
+                        audio_file_name,
+                        caption=response_text,
+                        reply_to_message_id=ReplyCheck(m),
                     )
             else:
-                 await m.reply(f"{em.gagal} Gagal mengunduh audio.")
+                await m.reply(f"{em.gagal} Gagal mengunduh audio.")
         else:
             await m.reply(response_text, reply_to_message_id=ReplyCheck(m))
 
