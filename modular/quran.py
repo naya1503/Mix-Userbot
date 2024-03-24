@@ -9,8 +9,8 @@ __modules__ = "Quran"
 __help__ = "Quran"
 
 
-def get_surah_info():
-    url = "https://equran.id/api/v2/surat"
+def get_surah_info(surah_name):
+    url = f"https://equran.id/api/v2/{surah_name}"
     headers = {"Accept": "application/json", "Content-Type": "application/json"}
 
     response = requests.get(url, headers=headers)
@@ -30,7 +30,15 @@ async def surah_command(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
-    surah_info = get_surah_info()
+
+    surah_name = m.text.split(maxsplit=1)[1].strip().lower() if len(m.command) > 1 else None
+
+    if not surah_name:
+        await m.reply(f"{em.gagal} Silahkan berikan nama surah.")
+        await pros.delete()
+        return
+
+    surah_info = get_surah_info(surah_name)
 
     if surah_info:
         for surah in surah_info:
@@ -56,8 +64,7 @@ async def surah_command(c: nlx, m):
                     if audio_response.status_code == 200:
                         await m.reply_audio(
                             audio_response.content,
-                            caption=response_text,
-                            file_name=None,
+                            caption=response_text
                         )
                         processed_surah_numbers.add(surah_number)
                     else:
@@ -69,5 +76,5 @@ async def surah_command(c: nlx, m):
                 await m.reply(response_text)
         await pros.delete()
     else:
-        await m.reply_text("Tidak ada data Surah yang ditemukan.")
+        await m.reply_text(f"Surah dengan nama '{surah_name.capitalize()}' tidak ditemukan.")
         await pros.delete()
