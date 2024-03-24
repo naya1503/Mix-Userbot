@@ -171,7 +171,7 @@ async def _(c: nlx, message):
             await pros.delete()
             return
         except Exception as error:
-            await pros.edit(cgr("err").format(em.gagal, str(error)))
+            await pros.edit(error)
             return
     else:
         return await pros.edit(f"{em.gagal} Silahkan balas ke media video!!")
