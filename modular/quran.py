@@ -3,7 +3,7 @@ from pyrogram import *
 
 from Mix import *
 
-__modles__ = "Quran"
+__modules__ = "Quran"
 __help__ = "Quran"
 
 
@@ -22,28 +22,38 @@ def get_surah_info():
 
 
 @ky.ubot("surah", sudo=True)
-async def surah_command(client, message):
+async def surah_command(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
     surah_info = get_surah_info()
 
     if surah_info:
-        response_text = ""
         for surah in surah_info:
-            response_text += f"Nomor Surah: {surah['nomor']}\n"
-            response_text += f"Nama Surah: {surah['nama']}\n"
-            response_text += f"Nama Surah (Latin): {surah['namaLatin']}\n"
-            response_text += f"Jumlah Ayat: {surah['jumlahAyat']}\n"
-            response_text += f"Tempat Turun: {surah['tempatTurun']}\n"
-            response_text += f"Arti: {surah['arti']}\n"
-            response_text += f"Deskripsi: {surah['deskripsi']}\n"
-            response_text += "Audio Full:\n"
-            for key, value in surah["audioFull"].items():
-                response_text += f"  {key}: {value}\n"
-            response_text += "\n"
-        await message.reply_text(response_text)
+            response_text = (
+                f"Nomor Surah: {surah['nomor']}\n"
+                f"Nama Surah: {surah['nama']}\n"
+                f"Nama Surah (Latin): {surah['namaLatin']}\n"
+                f"Jumlah Ayat: {surah['jumlahAyat']}\n"
+                f"Tempat Turun: {surah['tempatTurun']}\n"
+                f"Arti: {surah['arti']}\n"
+                f"Deskripsi: {surah['deskripsi']}\n"
+            )
+
+            audio_files = surah["audioFull"].values()
+            if audio_files:
+                for audio_url in audio_files:
+                    try:
+                        audio_response = requests.get(audio_url)
+                        if audio_response.status_code == 200:
+                            await m.reply_audio(audio_response.content, caption=response_text)
+                        else:
+                            print(f"Gagal mengunduh file audio dari {audio_url}")
+                    except Exception as e:
+                        print(f"Terjadi kesalahan: {str(e)}")
+            else:
+                await m.reply(response_text)
         await pros.delete()
     else:
-        await message.reply_text("Tidak ada data Surah yang ditemukan.")
+        await m.reply_text("Tidak ada data Surah yang ditemukan.")
         await pros.delete()
