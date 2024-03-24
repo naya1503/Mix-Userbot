@@ -3,7 +3,7 @@ import base64
 import requests
 import json
 
-from Mix import ky
+from Mix import *
 
 
 def get_ai_image(base64_image_string):
