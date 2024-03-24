@@ -1,5 +1,5 @@
-from pyrogram import *
 import requests
+from pyrogram import *
 
 from Mix import *
 
@@ -9,10 +9,7 @@ __help__ = "Quran"
 
 def get_surah_info():
     url = "https://equran.id/api/v2/surat"
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-    }
+    headers = {"Accept": "application/json", "Content-Type": "application/json"}
 
     response = requests.get(url, headers=headers)
 
