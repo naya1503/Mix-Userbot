@@ -1,10 +1,8 @@
-import os
 
 import requests
 from pyrogram import *
 
 from Mix import *
-
 
 processed_surah_numbers = set()
 
@@ -37,10 +35,10 @@ async def surah_command(c: nlx, m):
 
     if surah_info:
         for surah in surah_info:
-            surah_number = surah['nomor']
+            surah_number = surah["nomor"]
             if surah_number in processed_surah_numbers:
                 continue
-            
+
             response_text = (
                 f"Nomor Surah: `{surah_number}`\n"
                 f"Nama Surah: `{surah['nama']}`\n"
@@ -57,7 +55,11 @@ async def surah_command(c: nlx, m):
                 try:
                     audio_response = requests.get(audio_url)
                     if audio_response.status_code == 200:
-                        await m.reply_audio(audio_response.content, caption=response_text, file_name=None)
+                        await m.reply_audio(
+                            audio_response.content,
+                            caption=response_text,
+                            file_name=None,
+                        )
                         processed_surah_numbers.add(surah_number)
                     else:
                         print(f"Gagal mengunduh file audio dari {audio_url}")
