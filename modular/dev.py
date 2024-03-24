@@ -434,7 +434,6 @@ def run_mongodump(uri, password):
 
 @ky.ubot("mongodump", sudo=False)
 async def backup(c: nlx, message):
-
     m = await message.reply("Backing up data...")
     parts = message.text.split()
     if len(parts) < 3:
@@ -447,7 +446,7 @@ async def backup(c: nlx, message):
 
     try:
         run_mongodump(uri, password)
-        code = sys.execute("zip backup.zip -r9 dump/*")
+        code = os.execute("zip backup.zip -r9 dump/*")
         if int(code) != 0:
             return await m.edit(
                 "Looks like you don't have `zip` package installed, BACKUP FAILED!"
