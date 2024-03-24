@@ -169,10 +169,8 @@ async def _(c: nlx, message):
             )
             os.remove(file)
             await pros.delete()
-            return
         except Exception as error:
             await pros.edit(error)
-            return
     else:
         return await pros.edit(f"{em.gagal} Silahkan balas ke media video!!")
 
@@ -268,9 +266,7 @@ async def _(c: nlx, message):
     reply = message.reply_to_message
     prefix = await c.get_prefix(c.me.id)
     if reply and list_efek:
-        pros = await message.reply(
-            f"{em.proses} **Proses mengubah suara ke : `{args}`**"
-        )
+        pros = await message.reply(f"{em.proses} **Proses mengubah suara ke : `{args}`**")
         if args in list_efek:
             indir = await c.download_media(reply)
             cemew = f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
