@@ -1,6 +1,4 @@
 import asyncio
-from os import execvp
-from sys import executable
 
 import uvloop
 from pyrogram import idle
