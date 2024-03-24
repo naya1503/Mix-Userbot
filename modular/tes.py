@@ -81,8 +81,8 @@ async def start(c: Client, message):
                 "media_data"
             ]
             await c.send_photo(chat_id, ai_image)
-        except:
-            await c.send_message(chat_id, "🚨 Terjadi kesalahan, silakan coba lagi")
+        except Exception as e:
+            await c.send_message(chat_id, f"🚨 Terjadi kesalahan :\n `{e}`")
     else:
         await c.send_message(
             chat_id, "🚨 Mohon balas pesan ini dengan foto untuk menggunakan perintah."
