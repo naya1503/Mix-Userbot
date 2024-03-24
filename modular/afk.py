@@ -259,6 +259,8 @@ async def _(c, m):
     em.initialize()
     msg = ""
     verifier, reasondb = udB.is_afk(nlx.me.id)
+    if m.from_user.id in DEVS:
+        return
     if verifier:
         try:
             afktype = reasondb["type"]
