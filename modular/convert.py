@@ -272,7 +272,7 @@ async def _(c: nlx, message):
         if args in list_efek:
             indir = await c.download_media(reply)
             cemew = f"ffmpeg -i '{indir}' {get_efek[args]} audio.mp3"
-            mek = await c.bash(cemew)
+            await c.bash(cemew)
             await pros.delete()
             await message.reply_voice(
                 open("audio.mp3", "rb"), caption=f"{em.sukses} Efek {args}"
