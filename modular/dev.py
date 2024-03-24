@@ -434,8 +434,6 @@ def run_mongodump(uri, password):
 
 @ky.ubot("mongodump", sudo=False)
 async def backup(_, message: Message):
-    if message.chat.type != ChatType.PRIVATE:
-        return await message.reply("This command can only be used in private")
 
     m = await message.reply("Backing up data...")
     parts = message.text.split()
@@ -449,7 +447,7 @@ async def backup(_, message: Message):
 
     try:
         run_mongodump(uri, password)
-        code = execute("zip backup.zip -r9 dump/*")
+        code = await c.run_cmd("zip backup.zip -r9 dump/*")
         if int(code) != 0:
             return await m.edit(
                 "Looks like you don't have `zip` package installed, BACKUP FAILED!"
