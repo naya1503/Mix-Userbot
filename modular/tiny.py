@@ -33,7 +33,7 @@ async def memify(c: nlx, m):
     if not rep and not reply.media:
         return await pros.edit(f"{em.gagal} **Silahkan Balas Ke Pesan Sticker!**")
     doc = await c.download_media(rep)
-    im1 = Image.open("otanproject/resources/blank.png")
+    im1 = Image.open("Mix/core/bahan2.png")
     if doc.endswith(".tgs"):
         await client.download_media(reply, "man.tgs")
         await bash("lottie_convert.py man.tgs json.json")
