@@ -29,7 +29,7 @@ from Mix import bot, nlx
 
 
 async def check_logger():
-    if TAG_LOG is None:
+    if TAG_LOG is not None:
         return
     LOGGER.info(f"Check Grup Log User...")
 
