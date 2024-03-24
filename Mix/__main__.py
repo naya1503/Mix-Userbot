@@ -2,7 +2,7 @@ import asyncio
 from os import execvp
 from sys import executable
 
-import uvloop
+#import uvloop
 from pyrogram import idle
 from pyrogram.errors import *
 
@@ -14,7 +14,7 @@ from Mix.core.waktu import auto_clean
 
 loop = asyncio.get_event_loop_policy()
 event_loop = loop.get_event_loop()
-uvloop.install()
+#uvloop.install()
 
 
 async def start_user():
