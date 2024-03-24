@@ -178,7 +178,7 @@ class Userbot(Client):
             )
         except NotImplementedError:
             process = subprocess.Popen(
-                *args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
+                cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
             )
             stdout, stderr = process.communicate()
             return (
