@@ -7,7 +7,6 @@
 import asyncio
 import os
 import platform
-import subprocess
 import sys
 import traceback
 ################################################################
@@ -15,8 +14,9 @@ from datetime import datetime, timedelta
 from io import BytesIO, StringIO
 from subprocess import PIPE, Popen, TimeoutExpired
 from time import perf_counter
-
+import subprocess
 import pexpect
+
 import psutil
 from psutil._common import bytes2human
 from pyrogram.enums import *
@@ -411,19 +411,15 @@ async def _(c: nlx, m):
 
 
 async def run_mongodump(uri, password):
-    child = pexpect.spawn(f"mongodump --uri='{uri}'")
-    try:
-        index = child.expect(
-            ["Enter password for mongo user:", pexpect.EOF, pexpect.TIMEOUT]
-        )
-        if index == 0:
-            child.sendline(password)
-        else:
-            print("Password prompt not found.")
-        child.expect(pexpect.EOF)
-        child.close()
-    except Exception as e:
-        print(f"Error while executing mongodump: {str(e)}")
+    child = pexpect.spawn(f"")
+    process = subprocess.Popen(f"mongodump --uri='{uri}'", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, error = process.communicate()
+    if error:
+        LOGGER.info(f"Error: {error.decode()}")
+        return
+    if "Enter password for mongo user:" in output.decode():
+        pexpect.sendline(password)
+
 
 
 @ky.ubot("mongodump", sudo=False)
@@ -437,23 +433,13 @@ async def backup(c: nlx, message):
 
     uri = parts[1]
     password = " ".join(parts[2:])
-    name = parts[3]
 
     try:
-        await run_mongodump(uri, password)
-        process = subprocess.Popen(
-            f"zip {name}.zip -r9 dump/*",
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-        output, error = process.communicate()
-        if error:
-            LOGGER.info(f"Error: {error.decode()}")
-            return await m.edit("Backup failed: Error while zipping the backup.")
-
+        run_mongodump(uri, password)
+        os.system("zip backup.zip -r9 dump/*")
         await message.reply_document("backup.zip")
         await m.delete()
+        os.remove("backup.zip")
     except Exception as e:
         await m.edit(f"Backup failed: {str(e)}")
 
