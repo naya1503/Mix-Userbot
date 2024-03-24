@@ -150,7 +150,7 @@ async def _(c: nlx, message):
     pros = await message.reply(cgr("proses").format(em.proses))
     if not replied:
         return await pros.edit(f"{em.gagal} Silahkan balas ke media video!!")
-    if replied.media == MessageMediaType.VIDEO:
+    if replied.video:
         await pros.edit(f"{em.proses} **Converting...**")
         file = await c.download_media(
             message=replied,
