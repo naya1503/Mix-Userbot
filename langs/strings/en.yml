@@ -465,6 +465,11 @@ prof_9: "{} **Your Profile Picture has been successfully changed.**"
 # waifu
 waif_1: "{} **please choose one:**\n\n{}"
 
+# qur'an
+qur_1: "{} Please give me name of surah."
+qur_2: "{} Failed to download audio."
+qur_3: "{} There's nothing surah with name '{}' "
+
 # help_for
 help_afk: " Afk\n\n• Command: `{0}afk` [reason]\n• Description: To activate afk mode.\n\n• Command: `{0}unafk` [reason]\n• Description: To deactivate afk mode."
 help_alive: " Alive\n\n• Command: `{0}alive`\n• Description: Alive."

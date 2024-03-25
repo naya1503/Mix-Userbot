@@ -7,15 +7,8 @@ from Mix import *
 
 processed_surah_numbers = set()
 
-__modles__ = "Qu'ran"
-__help__ = """
- Qur'an
-• Perintah: `{0}qs [nama surah]`
-• Penjelasan: Untuk mengambil info surah tersebut.
-
-• Perintah: `{0}list-surah`
-• Penjelasan: Untuk mengambil daftar surah.
-"""
+__modles__ = "Qur'an"
+__help__ = get_cgr("help_qur")
 
 
 def download_audio(url, file_name):
@@ -78,7 +71,7 @@ async def _(c: nlx, m):
     )
 
     if not surah_name:
-        await m.reply(f"{em.gagal} Silahkan berikan nama surah.")
+        await m.reply(cgr("qur_1").format(em.gagal))
         await pros.delete()
         return
 
@@ -122,13 +115,11 @@ async def _(c: nlx, m):
                         reply_to_message_id=ReplyCheck(m),
                     )
             else:
-                await m.reply(f"{em.gagal} Gagal mengunduh audio.")
+                await m.reply(cgr("qur_2").format(em.gagal))
         else:
             await m.reply(response_text, reply_to_message_id=ReplyCheck(m))
 
         await pros.delete()
     else:
-        await m.reply_text(
-            f"Surah dengan nama '{surah_name.capitalize()}' tidak ditemukan."
-        )
+        await m.reply(cgr("qur_3").format(em.gagal, surah_name.capitalize()))
         await pros.delete()

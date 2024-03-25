@@ -466,6 +466,11 @@ prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 # waifu
 waif_1: "{} **Silakan pilih kategori dari daftar berikut:**\n\n{}"
 
+# qur'an
+qur_1: "{} Silahkan berikan nama surah."
+qur_2: "{} Gagal mengunduh audio."
+qur_3: "{} Surah dengan nama '{}' tidak ditemukan."
+
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [alasan]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk`\n• Penjelasan : Untuk menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
