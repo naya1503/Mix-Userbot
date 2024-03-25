@@ -265,9 +265,7 @@ async def _(c: nlx, message):
     args = c.get_arg(message)
     reply = message.reply_to_message
     prefix = await c.get_prefix(c.me.id)
-    pros = await message.reply(
-                f"{em.proses} **Proses mengubah suara ke : `{args}`**"
-            )
+    pros = await message.reply(f"{em.proses} **Proses mengubah suara ke : `{args}`**")
     if reply and list_efek:
         if args in list_efek:
             indir = await c.download_media(reply, file_name=f"{c.me.id}.mp3")
