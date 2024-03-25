@@ -45,7 +45,7 @@ categories = [
 
 
 @ky.ubot("waifu", sudo=True)
-async def get_waifu_image(c: nlx, m):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
