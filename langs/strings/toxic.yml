@@ -89,8 +89,8 @@ join_1: "{} <b>Berhasil gabung ke</b> <code>{}</code>"
 join_2: "{} <b>Kaga boleh make itu perintah di `{}` goblok</b>"
 join_3: "{} <b>Sukses keluar dari <code>{}</code>"
 join_4: "{} <b>Bye!</b>"
-join_5: "{} **Sukses keluar dari `{}` Grup ampas, Gagal Keluar dari `{}` Grup ampas</b>"
-join_6: "{} **Berhasil keluar dari `{}` Channel ampas\n{} **Gagal keluar dari `{}` Channel ampas.**"
+join_5: "{} <b>Sukses keluar dari `{}` Grup ampas,\n{} Gagal Keluar dari `{}` Grup ampas</b>"
+join_6: "{} <b>Berhasil keluar dari `{}` Channel ampas\n{} Gagal keluar dari `{}` Channel ampas.</b>"
 join_7: "{} <b>Yang bener bae! masa lo mau ot dari sini? Lo kan `Admin` atau `Owner` di `{}`</b>"
 
 # uprefixies

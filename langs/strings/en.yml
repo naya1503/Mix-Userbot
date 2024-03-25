@@ -86,8 +86,8 @@ join_1: "{} <b>Successfully Joined</b> <code>{}</code>"
 join_2: "{} <b>Not allowed to use that command in `{}`!</b>"
 join_3: "{} {} Successfully left <code>{}</code>"
 join_4: "{} <b>Bye!</b>"
-join_5: "{} <b>Successfully left `{}` Groups, Failed to leave `{}` Groups</b>"
-join_6: "{} **Successfully left `{}` channel\n{} **Failed to leave `{}` channel.**"
+join_5: "{} <b>Successfully left `{}` Groups\n{} Failed to leave `{}` Groups</b>"
+join_6: "{} <b>Successfully left `{}` channel\n{} Failed to leave `{}` channel.</b>"
 join_7: "{} <b>You can't use this command on this chat!\nBecause, You're a `Admin` or `Owner` of `{}`</b>"
 
 # assistant
