@@ -533,5 +533,5 @@ help_auend: " **AutoEnd**\n\n• Command: `{0}`endchat [username/user ID/reply t
 help_img: " **Image**\n\n• Command: `{0}`img [query]\n• Description: Searching image.\n"
 help_tod: " **Truth Or Dare**\n\n• Command: `{0}truth`\n• Description: To provide random questions that must be answered truthfully!\n\n• Command: `{0}dare`\n• Description: To provide a random challenge that must be done!\n"
 help_prox: " **Proxy**\n\n• Command: `{0}proxy`\n• Description: For get Top 2 socks5 as random but best.\n"
-help_waif: " **Waifu**\n\n• Perintah: `{0}waifu` [kategori]\n• Penjelasan: Untuk mendapatkan gambar waifu/anime sesuai kategori.\n"
-help_qur: " **Qur'an**\n\n• Perintah: `{0}qs [nama surah]`\n• Penjelasan: Untuk mengambil info surah tersebut.\n\n• Perintah: `{0}list-surah`\n• Description: Getting List of Surah Al-Quran.\n"
+help_waif: " **Waifu**\n\n• Command: `{0}waifu` [categori]\n• Description: For getting image/content about waifu/anime.\n"
+help_qur: " **Qur'an**\n\n• Command: `{0}qs [name of surah]`\n• Description: Fetching information of Surah.\n\n• Command: `{0}list-surah`\n• Description: Getting List of Surah Al-Quran.\n"
