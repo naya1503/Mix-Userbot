@@ -463,6 +463,10 @@ prof_7: "{} **Kamu tidak menjadi admin di grup manapun!**"
 prof_8: "{} **Kamu admin di `{}` grup :**\n\n**{}**"
 prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 
+# waifu
+waif_1: "{} **Silakan pilih kategori dari daftar berikut:**\n\n{}"
+waif_2: ""
+
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [alasan]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk`\n• Penjelasan : Untuk menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
@@ -531,3 +535,4 @@ help_auend: " **AutoEnd**\n\n• Perintah: `{0}`endchat [username/id pengguna/ba
 help_img: " **Image**\n\n• Perintah: `{0}`img [kata pencarian]\n• Penjelasan: Mencari image atau gambar.\n"
 help_tod: " **Truth Or Dare**\n\n• Perintah: `{0}truth`\n• Penjelasan: Untuk memberikan pertanyaan random yang harus dijawab jujur!\n\n• Perintah: `{0}dare`\n• Penjelasan: Untuk memberikan tantangan random yang harus dilakukan!\n"
 help_prox: " **Proxy**\n\n• Perintah: `{0}proxy`\n• Penjelasan: Untuk mengambil 2 proxy socks5 acak terbaik.\n"
+help_waif: " **Waifu**\n\n• Perintah: `{0}waifu` [kategori]\n• Penjelasan: Untuk mendapatkan gambar waifu/anime sesuai kategori.\n"

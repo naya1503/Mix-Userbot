@@ -531,3 +531,4 @@ help_auend: " **AutoEnd**\n\n• Perintah: `{0}endchat` [username/id pengguna/ba
 help_img: " **Image**\n\n• Perintah: `{0}`img [kata kunci]\n• Penjelasan: Nyari gambar.\n"
 help_tod: " **Truth Or Dare**\n\n• Perintah: `{0}truth`\n• Penjelasan: Untuk memberikan pertanyaan random yang harus dijawab jujur!\n\n• Perintah: `{0}dare`\n• Penjelasan: Untuk memberikan tantangan random yang harus dilakukan!\n"
 help_prox: " **Proxy**\n\n• Perintah: `{0}proxy`\n• Penjelasan: Buat ngambil 2 proxy socks5 ngacak terbaik.\n"
+help_waif: " **Waifu**\n\n• Perintah: `{0}waifu` [kategori]\n• Penjelasan: Untuk mendapatkan gambar waifu/anime sesuai kategori.\n"
