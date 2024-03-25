@@ -17,7 +17,7 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     lok = c.get_text(m)
-    pros = await m.reply(cgr("proses").format(em.gagal))
+    pros = await m.reply(cgr("proses").format(em.proses))
     if not lok:
         await pros.edit(f"{em.gagal} **Silahkan Masukkan Nama Kota Anda!!**")
         return
