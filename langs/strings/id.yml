@@ -535,3 +535,4 @@ help_img: " **Image**\n\n• Perintah: `{0}`img [kata pencarian]\n• Penjelasan
 help_tod: " **Truth Or Dare**\n\n• Perintah: `{0}truth`\n• Penjelasan: Untuk memberikan pertanyaan random yang harus dijawab jujur!\n\n• Perintah: `{0}dare`\n• Penjelasan: Untuk memberikan tantangan random yang harus dilakukan!\n"
 help_prox: " **Proxy**\n\n• Perintah: `{0}proxy`\n• Penjelasan: Untuk mengambil 2 proxy socks5 acak terbaik.\n"
 help_waif: " **Waifu**\n\n• Perintah: `{0}waifu` [kategori]\n• Penjelasan: Untuk mendapatkan gambar waifu/anime sesuai kategori.\n"
+help_qur: " **Qur'an**\n\n• Perintah: `{0}qs [nama surah]`\n• Penjelasan: Untuk mengambil info surah tersebut.\n\n• Perintah: `{0}list-surah`\n• Penjelasan: Untuk mengambil daftar surah.\n"
