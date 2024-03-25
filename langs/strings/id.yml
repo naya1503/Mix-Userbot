@@ -465,7 +465,6 @@ prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 
 # waifu
 waif_1: "{} **Silakan pilih kategori dari daftar berikut:**\n\n{}"
-waif_2: ""
 
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [alasan]\n• Penjelasan : Untuk mengaktifkan mode afk.\n\n• Perintah : `{0}unafk`\n• Penjelasan : Untuk menonaktifkan mode afk."

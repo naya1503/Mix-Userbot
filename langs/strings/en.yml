@@ -462,6 +462,9 @@ prof_7: "{} **You're not an admin in any group!**"
 prof_8: "{} **You're an admin in `{}` group(s) :**\n\n**{}**"
 prof_9: "{} **Your Profile Picture has been successfully changed.**"
 
+# waifu
+waif_1: "{} **please choose one:**\n\n{}"
+
 # help_for
 help_afk: " Afk\n\n• Command: `{0}afk` [reason]\n• Description: To activate afk mode.\n\n• Command: `{0}unafk` [reason]\n• Description: To deactivate afk mode."
 help_alive: " Alive\n\n• Command: `{0}alive`\n• Description: Alive."

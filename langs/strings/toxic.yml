@@ -463,6 +463,9 @@ prof_7: "{} **Loe receh bangsat!! Kaga admin dimana-mana!!**"
 prof_8: "{} **Nih tempat loe jadi babu `{}` grup :**\n\n**{}**"
 prof_9: "{} **Foto Profil anda Berhasil Diubah.**"
 
+# waifu
+waif_1: "{} **Silakan pilih kategori dari daftar berikut:**\n\n{}"
+
 # help_for
 help_afk: " Afk\n\n• Perintah : `{0}afk` [alesan]\n• Penjelasan : Buat mengaktifkan mode afk.\n\n• Perintah : `{0}unafk`\n• Penjelasan : Buat menonaktifkan mode afk."
 help_alive: " Alive\n\n• Perintah : `{0}alive`\n• Penjelasan : Alive."
