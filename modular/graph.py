@@ -7,7 +7,8 @@
 ################################################################
 
 
-from telegraph import Telegraph, exceptions, upload_file
+from telegraph import Telegraph, upload_file
+from telegraph.exceptions import TelegraphException
 
 from Mix import *
 
@@ -39,7 +40,7 @@ async def _(c: nlx, m):
         page_text = page_text.replace("\n", "<br>")
         try:
             response = telegraph.create_page(page_title, html_content=page_text)
-        except exceptions.TelegraphException as r:
+        except TelegraphException as r:
             return await xx.edit(cgr("err").format(em.gagal, r))
         ybg = cgr("grp_5").format(
             em.sukses, response["path"], disable_web_page_preview=True
