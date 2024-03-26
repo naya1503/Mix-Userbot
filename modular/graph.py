@@ -28,7 +28,7 @@ async def _(c: nlx, m):
         m_d = await m.reply_to_message.download()
         try:
             media_url = upload_file(m_d)
-        except exceptions.TelegraphException as r:
+        except TelegraphException as r:
             return await xx.edit(cgr("err").format(em.gagal, r))
         dnbg = cgr("grp_3").format(
             em.sukses, media_url[0], disable_web_page_preview=True
