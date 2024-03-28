@@ -11,12 +11,13 @@ __help__ = """
 • Penjelasan: Untuk generate random joke.
 """
 
-
 async def kitatr(txt):
     cokk = Translator()
     gasin = await cokk.translate(txt, "en", "id")
-    return gasin["text_raw"]
-
+    sukses = []
+    for gs in gasin["raw"]["sentences"]:
+        sukses.append(gas["trans"])
+    return sukses
 
 async def get_joke():
     url = "https://api.safone.dev/joke"
