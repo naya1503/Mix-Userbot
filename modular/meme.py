@@ -5,7 +5,11 @@ import requests
 from Mix import *
 
 __modles__ = "Meme"
-__help__ = "Meme"
+__help__ = """
+ Meme
+• Perintah: `{0}meme`
+• Penjelasan: Untuk generate random meme.
+"""
 
 
 TEMP_DIR = "temp"
