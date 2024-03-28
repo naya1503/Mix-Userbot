@@ -22,9 +22,7 @@ async def get_joke():
     url = "https://api.safone.dev/joke"
     res = requests.get(url)
     if res.status_code == 200:
-        mam = res.json()["joke"]
-        trbang = await kitatr(mam)
-        return trbang
+        return res.json()["joke"]
     else:
         print(f"Error: {res.status_code} - {res.text}")
         return None
