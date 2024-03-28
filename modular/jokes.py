@@ -1,5 +1,6 @@
 import requests
 from gpytranslate import Translator
+
 from Mix import *
 
 __modles__ = "Joke"
@@ -12,10 +13,10 @@ __help__ = """
 
 
 async def kitatr(txt):
-    transper = Translator()
+    Translator()
     gasin = await translator.translate(txt, "en", "id")
     return gasin
-    
+
 
 async def get_joke():
     url = "https://api.safone.dev/joke"
