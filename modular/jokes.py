@@ -3,9 +3,12 @@ from gpytranslate import Translator
 from Mix import *
 
 __modles__ = "Joke"
-__help__ = "Joke"
+__help__ = """
+ Joke
 
-1eval import requests
+• Perintah: `{0}joke`
+• Penjelasan: Untuk generate random joke.
+"""
 
 
 async def kitatr(txt):
