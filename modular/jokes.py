@@ -1,6 +1,5 @@
 import requests
 from gpytranslate import Translator
-
 from Mix import *
 
 __modles__ = "Joke"
@@ -13,16 +12,16 @@ __help__ = """
 
 
 async def kitatr(txt):
-    Translator()
+    transper = Translator()
     gasin = await translator.translate(txt, "en", "id")
     return gasin
-
+    
 
 async def get_joke():
     url = "https://api.safone.dev/joke"
     res = requests.get(url)
     if res.status_code == 200:
-        mam = res.json()["response"]
+        mam = res.json()["joke"]
         trbang = await kitatr(mam)
         return trbang
     else:
