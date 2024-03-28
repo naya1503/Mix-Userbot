@@ -17,7 +17,7 @@ async def kitatr(txt):
     gasin = await cokk.translate(txt, "en", "id")
     sukses = []
     for gs in gasin["raw"]["sentences"]:
-        sukses.append(gas["trans"])
+        sukses.append(gs["trans"])
     return sukses
 
 
