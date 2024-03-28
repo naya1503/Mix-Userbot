@@ -13,8 +13,8 @@ __help__ = """
 
 
 async def kitatr(txt):
-    Translator()
-    gasin = await translator.translate(txt, "en", "id")
+    cokk = Translator()
+    gasin = await cokk.translate(txt, "en", "id")
     return gasin
 
 
@@ -22,7 +22,9 @@ async def get_joke():
     url = "https://api.safone.dev/joke"
     res = requests.get(url)
     if res.status_code == 200:
-        return res.json()["joke"]
+        mak = res.json()["joke"]
+        trbang = await kitatr(mak)
+        return trbang
     else:
         print(f"Error: {res.status_code} - {res.text}")
         return None
