@@ -1,20 +1,29 @@
-import aiohttp
-from bs4 import BeautifulSoup
-
+import requests
+from gpytranslate import Translator
 from Mix import *
 
 __modles__ = "Joke"
 __help__ = "Joke"
 
+1eval import requests
+
+
+async def kitatr(txt):
+    transper = Translator()
+    gasin = await translator.translate(txt, "en", "id")
+    return gasin
+    
 
 async def get_joke():
-    async with aiohttp.ClientSession() as session:
-        url = "https://api.safon.dev/joke"
-        async with session.get(url) as response:
-            html = await response.text()
-            soup = BeautifulSoup(html, "html.parser")
-            joke = soup.find("p").text.strip()
-            return joke
+    url = "https://api.safone.dev/joke"
+    res = requests.get(url)
+    if res.status_code == 200:
+        mam = res.json()["response"]
+        trbang = await kitatr(mam)
+        return trbang
+    else:
+        print(f"Error: {res.status_code} - {res.text}")
+        return None
 
 
 @ky.ubot("joke", sudo=True)
