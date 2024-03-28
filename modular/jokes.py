@@ -15,7 +15,7 @@ __help__ = """
 async def kitatr(txt):
     cokk = Translator()
     gasin = await cokk.translate(txt, "en", "id")
-    return gasin
+    return gasin["text_raw"]
 
 
 async def get_joke():
