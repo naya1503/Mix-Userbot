@@ -18,7 +18,7 @@ async def kitatr(txt):
     sukses = []
     for gs in gasin["raw"]["sentences"]:
         sukses.append(gs["trans"])
-    return sukses
+    return sukses[0]
 
 
 async def get_joke():
